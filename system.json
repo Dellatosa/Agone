@@ -1,0 +1,24 @@
+{
+  "name": "agone",
+  "title": "Agone RPG",
+  "description": "A system for playing Agone RPG",
+  "version": "0.0.1",
+  "minimumCoreVersion": "0.7.9",
+  "compatibleCoreVersion": "0.7.9",
+  "templateVersion": 2,
+  "author": "Antony Maillot",
+  "esmodules": [ "module/agone.js" ],
+  "styles": [ "css/agone.css" ],
+  "scripts": [],
+  "packs": [],
+  "languages": [
+    {
+      "lang": "fr",
+      "name": "Francais",
+      "path": "lang/fr.json"
+    }
+  ],
+  "gridDistance": 2,
+  "gridUnits": "m",
+  "primaryTokenAttribute": "HP"
+}
