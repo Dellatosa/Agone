@@ -1,0 +1,37 @@
+{
+  "Actor": {},
+  "Item": {
+    "types": [ "Weapon", "Dancer" ],
+    "templates": {
+      "base": {
+        "name": "",
+        "description": ""
+      }
+    },
+    "Weapon": {
+      "templates": [ "base" ],
+      "type": "",
+      "skillname": "",
+      "style": "",
+      "SIZ": 0,
+      "initMod": 0,
+      "attackMod": 0,
+      "defenseMod": 0,
+      "damagesMod": 0
+    },
+    "Dancer": {
+      "templates": [ "base" ],
+      "experience": 0,
+      "memory": {
+        "value": 0,
+        "max": 0
+      },
+      "ascendancyBonus": 0,
+      "empathy": 0,
+      "stamina": {
+        "value": 0,
+        "max": 0
+      }
+    }
+  }
+}
