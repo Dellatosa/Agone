@@ -1,0 +1,40 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
+    </header>
+    <div>
+        <table>
+            <tr>
+                <th>{{localize "agone.common.type"}}</th>
+                <th>{{localize "agone.common.cost"}}</th>
+            </tr>
+            <tr>
+                <td>
+                    <select name="data.type">
+                        {{#select data.type}}
+                        {{#each config.assetFaultTypes as |name type|}}
+                        <option value="{{type}}">{{localize name}}</option>
+                        {{/each}}
+                        {{/select}} 
+                    </select>
+                </td>
+                 <td>
+                     <input name="data.cost" type="text" value="{{data.cost}}" data-dtype="Number" />
+                 </td>
+            </tr>
+        </table>
+        <div>
+            <span>{{localize "agone.asset.descriptionLabel"}}</span>
+            <textarea name="data.description">{{data.description}}</textarea>
+        </div>
+        <div>
+            <span>{{localize "agone.asset.bonusDesc"}}</span>
+            <textarea name="data.bonusDesc">{{data.bonusDesc}}</textarea>
+        </div> 
+        <div>
+            <span>{{localize "agone.asset.prerequisite"}}</span>
+            <input name="data.prerequisite" type="text" value="{{data.prerequisite}}"/>
+        </div> 
+    </div>
+</form>

@@ -1,5 +1,22 @@
 {
     "agone":{
+        "common":{
+            "type": "Type",
+            "cost": "Coût",
+            "soul": "Ame",
+            "spirit": "Esprit",
+            "body": "Corps",
+            "arts": "Arts",
+            "ascendancy": "Emprise",
+            "seasons": "Saisons",
+            "flame": "Flamme",
+            "darkness": "Ténèbre",
+            "perfidy": "Perfidie",
+            "blackness": "Noirceur"
+        },
+        "assetFaultTypes":{
+            "chargesociety": "Charge et Société"
+        },
         "weapontypes":{
             "pierce": "Perforante",
             "sharp": "Tranchante",
@@ -12,15 +29,29 @@
             "archery": "Trait"
         },
         "weapon": {
-            "type": "Type",
             "skillname": "Compétence",
             "style": "Style",
             "SIZ": "TAI",
-            "initMod": "Mod. Init",
-            "attackMod": "Mod. Attaque",
-            "defenseMod": "Mod. Défense",
-            "damagesMod": "Mod. Dommages",
+            "initMod": "Init.",
+            "attackMod": "Att.",
+            "defenseMod": "Def.",
+            "damagesMod": "Dom.",
+            "minAgility": "AGI min.",
+            "minStrength": "FOR min.",
             "descriptionLabel": "Description de l'arme"
+        },
+        "asset": {
+            "bonusDesc": "Description du Bonus",
+            "prerequisite": "Prérequis",
+            "descriptionLabel": "Description de l'Avantage"
+        },
+        "fault": {
+            "penaltyDesc": "Description du malus",
+            "descriptionLabel": "Description du Défaut"
+        },
+        "trouble": {
+            "level": "Palier",
+            "descriptionLabel": "Description de la Peine"
         }
     }
 }

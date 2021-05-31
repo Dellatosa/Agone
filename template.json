@@ -535,7 +535,7 @@
     }
   },
   "Item": {
-    "types": [ "item", "Asset", "Fault", "DarknessTrouble", "PerfidyTrouble", "Gift", "FlamePower", "SeasonPower", "Maneuver", "Armor", 
+    "types": [ "item", "Asset", "Fault", "Trouble", "Gift", "FlamePower", "SeasonPower", "Maneuver", "Armor", 
                "SeriousWound", "Weapon", "Dancer", "Spell", "Work", "Connivance" ],
     "templates": {
       "base": {
@@ -549,19 +549,21 @@
     },
     "Asset": {
       "templates": [ "base" ],
-      "cost": 0
+      "type":"",
+      "cost": 0,
+      "bonusDesc": "",
+      "prerequisite": ""
     },
     "Fault": {
       "templates": [ "base" ],
-      "cost": 0
+      "type": "",
+      "cost": 0,
+      "penaltyDesc": ""
     },
-    "DarknessTrouble": {
+    "Trouble": {
       "templates": [ "base" ],
-      "darknessLevel": 0
-    },
-    "PerfidyTrouble": {
-      "templates": [ "base" ],
-      "perfidyLevel": 0,
+      "type": "",
+      "level": 0,
       "associatedGift": {}
     },
     "Gift": {
@@ -603,7 +605,9 @@
       "initMod": 0,
       "attackMod": 0,
       "defenseMod": 0,
-      "damagesMod": 0
+      "damagesMod": 0,
+      "minStrength": 0,
+      "minAgility": 0
     },
     "Dancer": {
       "templates": [ "base" ],

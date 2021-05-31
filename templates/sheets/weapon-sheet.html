@@ -6,27 +6,19 @@
     <div>
         <table>
             <tr>
-                <th>{{localize "agone.weapon.type"}}</th>
-                <!-- <th>{{localize "agone.weapon.skillname"}}</th> -->
                 <th>{{localize "agone.weapon.style"}}</th>
-                <th>{{localize "agone.weapon.SIZ"}}</th>
                 <th>{{localize "agone.weapon.initMod"}}</th>
                 <th>{{localize "agone.weapon.attackMod"}}</th>
                 <th>{{localize "agone.weapon.defenseMod"}}</th>
                 <th>{{localize "agone.weapon.damagesMod"}}</th>
+                <th>{{localize "agone.common.type"}}</th>
+                <th>{{localize "agone.weapon.minStrength"}}</th>
+                <th>{{localize "agone.weapon.minAgility"}}</th>
+                <th>{{localize "agone.weapon.SIZ"}}</th>
+                <!-- <th>{{localize "agone.weapon.skillname"}}</th> -->
             </tr>
             <tr>
                 <td>
-                    <select name="data.type">
-                        {{#select data.type}}
-                        {{#each config.weaponTypes as |name type|}}
-                        <option value="{{type}}">{{localize name}}</option>
-                        {{/each}}
-                        {{/select}} 
-                    </select>
-                </td>
-                 <!-- <td></td> récupérer la compétence selon l'acteur -->
-                 <td>
                     <select name="data.style">
                         {{#select data.style}}
                         {{#each config.weaponStyles as |name type|}}
@@ -34,11 +26,8 @@
                         {{/each}}
                         {{/select}}
                     </select>
-                 </td>
-                 <td>
-                     <input name="data.SIZ" type="text" value="{{data.SIZ}}" data-dtype="Number" />
-                 </td>
-                 <td>
+                </td>
+                <td>
                     <input name="data.initMod" type="text" value="{{data.initMod}}" data-dtype="Number" />
                 </td>
                 <td>
@@ -50,6 +39,25 @@
                 <td>
                     <input name="data.damagesMod" type="text" value="{{data.damagesMod}}" data-dtype="Number" />
                 </td>
+                <td>
+                    <select name="data.type">
+                        {{#select data.type}}
+                        {{#each config.weaponTypes as |name type|}}
+                        <option value="{{type}}">{{localize name}}</option>
+                        {{/each}}
+                        {{/select}} 
+                    </select>
+                </td>
+                <td>
+                    <input name="data.minStrength" type="text" value="{{data.minStrength}}" data-dtype="Number" />
+                </td>
+                <td>
+                    <input name="data.minAgility" type="text" value="{{data.damagesMod}}" data-dtype="Number" />
+                </td>
+                <td>
+                    <input name="data.SIZ" type="text" value="{{data.SIZ}}" data-dtype="Number" />
+                </td>
+                <!-- <td></td> récupérer la compétence selon l'acteur -->
             </tr>
         </table>
         <div>{{localize "agone.weapon.descriptionLabel"}}</div> 

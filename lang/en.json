@@ -1,5 +1,22 @@
 {
     "agone":{
+        "common": {
+            "type": "Type",
+            "cost": "Cost",
+            "soul": "Soul",
+            "spirit": "Spirit",
+            "body": "body",
+            "arts": "Arts",
+            "ascendancy": "Ascendancy",
+            "seasons": "Seasons",
+            "flame": "Flame",
+            "darkness": "Darkness",
+            "perfidy": "Perfidy",
+            "blackness": "Blackness"
+        },
+        "assetFaultTypes":{
+            "chargesociety": "Charge and Society"
+        },
         "weapontypes":{
             "pierce": "Pierce",
             "sharp": "Sharp",
@@ -12,15 +29,29 @@
             "archery": "Archery"
         },
         "weapon": {
-            "type": "Type",
-            "skillname": "Skillname",
+            "skillname": "Skill",
             "style": "Style",
             "SIZ": "SIZ",
-            "initMod": "Init mod",
-            "attackMod": "Attack mod",
-            "defenseMod": "Defense mod",
-            "damagesMod": "Damage mod",
+            "initMod": "Init.",
+            "attackMod": "Att.",
+            "defenseMod": "Def.",
+            "damagesMod": "Dam.",
+            "minAgility": "min. AGI",
+            "minStrength": "min. STR",
             "descriptionLabel": "Weapon description"
+        },
+        "asset": {
+            "bonusDesc": "Bonus description",
+            "prerequisite": "Prerequisite",
+            "descriptionLabel": "Asset description"
+        },
+        "fault": {
+            "penaltyDesc": "Bonus description",
+            "descriptionLabel": "Fault description"
+        },
+        "trouble": {
+            "level": "Level",
+            "descriptionLabel": "Trouble description"
         }
     }
 }
