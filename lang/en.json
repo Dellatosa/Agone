@@ -1,0 +1,26 @@
+{
+    "agone":{
+        "weapontypes":{
+            "pierce": "Pierce",
+            "sharp": "Sharp",
+            "piercesharp": "Pierce/Sharp",
+            "blunt": "Blunt"
+        },
+        "weaponStyles": {
+            "melee": "Melee",
+            "thrown": "Thrown",
+            "archery": "Archery"
+        },
+        "weapon": {
+            "type": "Type",
+            "skillname": "Skillname",
+            "style": "Style",
+            "SIZ": "SIZ",
+            "initMod": "Init mod",
+            "attackMod": "Attack mod",
+            "defenseMod": "Defense mod",
+            "damagesMod": "Damage mod",
+            "descriptionLabel": "Weapon description"
+        }
+    }
+}

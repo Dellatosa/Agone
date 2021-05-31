@@ -1,0 +1,58 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
+    </header>
+    <div>
+        <table>
+            <tr>
+                <th>{{localize "agone.weapon.type"}}</th>
+                <!-- <th>{{localize "agone.weapon.skillname"}}</th> -->
+                <th>{{localize "agone.weapon.style"}}</th>
+                <th>{{localize "agone.weapon.SIZ"}}</th>
+                <th>{{localize "agone.weapon.initMod"}}</th>
+                <th>{{localize "agone.weapon.attackMod"}}</th>
+                <th>{{localize "agone.weapon.defenseMod"}}</th>
+                <th>{{localize "agone.weapon.damagesMod"}}</th>
+            </tr>
+            <tr>
+                <td>
+                    <select name="data.type">
+                        {{#select data.type}}
+                        {{#each config.weaponTypes as |name type|}}
+                        <option value="{{type}}">{{localize name}}</option>
+                        {{/each}}
+                        {{/select}} 
+                    </select>
+                </td>
+                 <!-- <td></td> récupérer la compétence selon l'acteur -->
+                 <td>
+                    <select name="data.style">
+                        {{#select data.style}}
+                        {{#each config.weaponStyles as |name type|}}
+                        <option value="{{type}}">{{localize name}}</option>
+                        {{/each}}
+                        {{/select}}
+                    </select>
+                 </td>
+                 <td>
+                     <input name="data.SIZ" type="text" value="{{data.SIZ}}" data-dtype="Number" />
+                 </td>
+                 <td>
+                    <input name="data.initMod" type="text" value="{{data.initMod}}" data-dtype="Number" />
+                </td>
+                <td>
+                    <input name="data.attackMod" type="text" value="{{data.attackMod}}" data-dtype="Number" />
+                </td>
+                <td>
+                    <input name="data.defenseMod" type="text" value="{{data.defenseMod}}" data-dtype="Number" />
+                </td>
+                <td>
+                    <input name="data.damagesMod" type="text" value="{{data.damagesMod}}" data-dtype="Number" />
+                </td>
+            </tr>
+        </table>
+        <div>{{localize "agone.weapon.descriptionLabel"}}</div> 
+        <textarea name="data.description">{{data.description}}</textarea> 
+    </div>
+</form>

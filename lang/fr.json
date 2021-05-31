@@ -1,0 +1,26 @@
+{
+    "agone":{
+        "weapontypes":{
+            "pierce": "Perforante",
+            "sharp": "Tranchante",
+            "piercesharp": "Perforante/Tranchante",
+            "blunt": "Contondente"
+        },
+        "weaponStyles": {
+            "melee": "Mélée",
+            "thrown": "Jet",
+            "archery": "Trait"
+        },
+        "weapon": {
+            "type": "Type",
+            "skillname": "Compétence",
+            "style": "Style",
+            "SIZ": "TAI",
+            "initMod": "Mod. Init",
+            "attackMod": "Mod. Attaque",
+            "defenseMod": "Mod. Défense",
+            "damagesMod": "Mod. Dommages",
+            "descriptionLabel": "Description de l'arme"
+        }
+    }
+}

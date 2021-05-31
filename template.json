@@ -3,7 +3,6 @@
     "types": [ "Character", "Nemesis", "Demon" ],
     "templates": {
       "base": {
-        "Name": "",
         "Appearance": "",
         "HP": {
           "value": 0,
@@ -540,7 +539,6 @@
                "SeriousWound", "Weapon", "Dancer", "Spell", "Work", "Connivance" ],
     "templates": {
       "base": {
-        "name": "",
         "description": ""
       }
     },
