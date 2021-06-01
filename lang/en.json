@@ -56,6 +56,15 @@
             "label": "Trouble",
             "level": "Level",
             "descriptionLabel": "Trouble description"
+        },
+        "gift": {
+            "label": "Gift",
+            "descriptionLabel": "Gift description"
+        },
+        "flamePower": {
+            "label": "Flame Power",
+            "fortuneCost": "Fortune cost",
+            "descriptionLabel": "Flame Power description"
         }
     }
 }
