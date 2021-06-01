@@ -56,6 +56,15 @@
             "label": "Peine",
             "level": "Palier",
             "descriptionLabel": "Description de la Peine"
+        },
+        "gift": {
+            "label": "Bienfait",
+            "descriptionLabel": "Description du Bienfait"
+        },
+        "flamePower": {
+            "label": "Pouvoir de Flamme",
+            "fortuneCost": "Coût en point d'héroïsme",
+            "descriptionLabel": "Description du Pouvoir de Flamme"
         }
     }
 }
