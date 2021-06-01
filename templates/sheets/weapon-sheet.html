@@ -3,7 +3,7 @@
         <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
         <h1><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
     </header>
-    <div>
+    <div class="sheet-content">
         <table>
             <tr>
                 <th>{{localize "agone.weapon.style"}}</th>
@@ -60,7 +60,7 @@
                 <!-- <td></td> récupérer la compétence selon l'acteur -->
             </tr>
         </table>
-        <div>{{localize "agone.weapon.descriptionLabel"}}</div> 
-        <textarea name="data.description">{{data.description}}</textarea> 
+         <div>{{localize "agone.weapon.descriptionLabel"}}</div> 
+         {{editor content=data.description target="data.description" button=true owner=true editable=true}}
     </div>
 </form>
