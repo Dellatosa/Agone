@@ -2,10 +2,10 @@ export const agone = {};
 
 agone.weaponTypes = {
     none: "",
-    pierce: "agone.weapontypes.pierce",
-    sharp: "agone.weapontypes.sharp",
-    piercesharp: "agone.weapontypes.piercesharp",
-    blunt: "agone.weapontypes.blunt"
+    pierce: "agone.weaponTypes.pierce",
+    sharp: "agone.weaponTypes.sharp",
+    piercesharp: "agone.weaponTypes.piercesharp",
+    blunt: "agone.weaponTypes.blunt"
 }
 
 agone.weaponStyles = {

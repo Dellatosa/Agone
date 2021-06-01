@@ -17,7 +17,7 @@
         "assetFaultTypes":{
             "chargesociety": "Charge and Society"
         },
-        "weapontypes":{
+        "weaponTypes":{
             "pierce": "Pierce",
             "sharp": "Sharp",
             "piercesharp": "Pierce/Sharp",
@@ -29,6 +29,7 @@
             "archery": "Archery"
         },
         "weapon": {
+            "label": "Weapon",
             "skillname": "Skill",
             "style": "Style",
             "SIZ": "SIZ",
@@ -41,15 +42,18 @@
             "descriptionLabel": "Weapon description"
         },
         "asset": {
+            "label": "Asset",
             "bonusDesc": "Bonus description",
             "prerequisite": "Prerequisite",
             "descriptionLabel": "Asset description"
         },
         "fault": {
+            "label": "Fault",
             "penaltyDesc": "Bonus description",
             "descriptionLabel": "Fault description"
         },
         "trouble": {
+            "label": "Trouble",
             "level": "Level",
             "descriptionLabel": "Trouble description"
         }

@@ -17,7 +17,7 @@
         "assetFaultTypes":{
             "chargesociety": "Charge et Société"
         },
-        "weapontypes":{
+        "weaponTypes":{
             "pierce": "Perforante",
             "sharp": "Tranchante",
             "piercesharp": "Perforante/Tranchante",
@@ -29,6 +29,7 @@
             "archery": "Trait"
         },
         "weapon": {
+            "label": "Arme",
             "skillname": "Compétence",
             "style": "Style",
             "SIZ": "TAI",
@@ -41,15 +42,18 @@
             "descriptionLabel": "Description de l'arme"
         },
         "asset": {
+            "label": "Avantage",
             "bonusDesc": "Description du Bonus",
             "prerequisite": "Prérequis",
             "descriptionLabel": "Description de l'Avantage"
         },
         "fault": {
+            "label": "Défaut",
             "penaltyDesc": "Description du malus",
             "descriptionLabel": "Description du Défaut"
         },
         "trouble": {
+            "label": "Peine",
             "level": "Palier",
             "descriptionLabel": "Description de la Peine"
         }

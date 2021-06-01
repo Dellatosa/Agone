@@ -1,4 +1,4 @@
-.sheet form {
+.agone.sheet.item form {
   display: flex;
   flex-direction: column;
 }
@@ -9,4 +9,7 @@
 }
 .sheet-content .editor {
   height: 100%;
+}
+.sheet-footer {
+  display: inline-flex;
 }
