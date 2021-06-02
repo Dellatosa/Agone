@@ -536,7 +536,7 @@
   },
   "Item": {
     "types": [ "item", "Asset", "Fault", "Trouble", "Gift", "FlamePower", "SeasonPower", "Maneuver", "Armor", 
-               "SeriousWound", "Weapon", "Dancer", "Spell", "Work", "Connivance" ],
+               "SeriousWound", "Weapon", "Dancer", "Spell", "Work", "Connivance", "School" ],
     "templates": {
       "base": {
         "description": ""
@@ -622,30 +622,35 @@
         "value": 0,
         "max": 0
       },
-      "Spell": {
-        "templates": [ "base" ],
-        "spellBranch": "",
-        "threshold": 0,
-        "range": "",
-        "danceDuration": "",
-        "spellDuration": ""
-      },
-      "Work": {
-        "templates": [ "base" ],
-        "art": "",
-        "season": "",
-        "threshold": 0,
-        "range": "",
-        "preparationDuration": "",
-        "workDuration": ""
-      },
-      "Connivance": {
-        "templates": [ "base" ],
-        "terms": "",
-        "demonCircle": 0,
-        "demonName": "",
-        "advocatusName": ""
-      }
+      "knownSpells": []
+    },
+    "Spell": {
+      "templates": [ "base" ],
+      "spellBranch": "",
+      "threshold": 0,
+      "range": "",
+      "danceDuration": "",
+      "spellDuration": ""
+    },
+    "Work": {
+      "templates": [ "base" ],
+      "art": "",
+      "season": "",
+      "threshold": 0,
+      "range": "",
+      "preparationDuration": "",
+      "workDuration": ""
+    },
+    "Connivance": {
+      "templates": [ "base" ],
+      "terms": "",
+      "demonCircle": 0,
+      "demonName": "",
+      "advocatusName": ""
+    },
+    "School": {
+      "templates": [ "base" ],
+      "type": ""
     }
   }
 }

@@ -3,12 +3,19 @@
         "common": {
             "type": "Type",
             "cost": "Cost",
+            "arts": "Arts",
+            "seasons": "Seasons",
+            "season": "Season",
+            "spring": "Spring",
+            "summer": "Summer",
+            "fall": "Winter",
+            "winter": "Fall"
+        },
+        "attributes": {
             "soul": "Soul",
             "spirit": "Spirit",
-            "body": "body",
-            "arts": "Arts",
+            "body": "body",          
             "ascendancy": "Ascendancy",
-            "seasons": "Seasons",
             "flame": "Flame",
             "darkness": "Darkness",
             "perfidy": "Perfidy",
@@ -27,6 +34,13 @@
             "melee": "Melee",
             "thrown": "Thrown",
             "archery": "Archery"
+        },
+        "skillTypes": {
+            "trials": "Trials",
+            "rogue": "Rogue",
+            "courtly": "Courtly",
+            "knowledge": "Knowledge",
+            "occult": "Occult"
         },
         "weapon": {
             "label": "Weapon",
@@ -62,9 +76,18 @@
             "descriptionLabel": "Gift description"
         },
         "flamePower": {
-            "label": "Flame Power",
+            "label": "Flame power",
             "fortuneCost": "Fortune cost",
-            "descriptionLabel": "Flame Power description"
+            "descriptionLabel": "Flame power description"
+        },
+        "seasonPower": {
+            "label": "Season power",
+            "fortuneCost": "Fortune cost",
+            "descriptionLabel": "Season power description"
+        },
+        "school": {
+            "label": "School",
+            "descriptionLabel": "School description"
         }
     }
 }
