@@ -1,7 +1,7 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
         <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
-        <h1><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.common.name'}}"/></h1>
     </header>
     <div class="sheet-content">
         <table>
@@ -20,25 +20,21 @@
                     </select>
                 </td>
                  <td>
-                     <input name="data.cost" type="text" value="{{data.cost}}" data-dtype="Number" />
+                     <input name="data.cost" type="text" value="{{data.cost}}" data-dtype="Number" placeholder="0"/>
                  </td>
             </tr>
         </table>
-        <div>{{localize "agone.asset.descriptionLabel"}}</div>
+        <div>{{localize "agone.fault.descriptionLabel"}}</div>
         {{editor content=data.description target="data.description" button=true owner=true editable=true}}
         <div>
-            <span>{{localize "agone.asset.bonusDesc"}}</span>
-            <textarea name="data.bonusDesc">{{data.bonusDesc}}</textarea>
-        </div> 
-        <div>
-            <span>{{localize "agone.asset.prerequisite"}}</span>
-            <input name="data.prerequisite" type="text" value="{{data.prerequisite}}"/>
-        </div> 
+            <span>{{localize "agone.fault.penaltyDesc"}}</span>
+            <textarea name="data.penaltyDesc" placeholder="{{localize 'agone.fault.penaltyDesc'}}">{{data.penaltyDesc}}</textarea>
+        </div>
     </div>
     <footer class="sheet-footer">
         <div>
             <hr>
-            <p>{{localize "agone.common.type"}} : <span>{{localize "agone.asset.label"}}</span></p>
+            <p>{{localize "agone.common.type"}} : <span>{{localize "agone.fault.label"}}</span></p>
         </div>
     </footer>
 </form>

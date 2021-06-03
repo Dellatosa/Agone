@@ -16,9 +16,14 @@
       "lang": "fr",
       "name": "Francais",
       "path": "lang/fr.json"
+    },
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
     }
   ],
-  "gridDistance": 2,
+  "gridDistance": 1.5,
   "gridUnits": "m",
   "primaryTokenAttribute": "HP"
 }

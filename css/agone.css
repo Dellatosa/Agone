@@ -2,14 +2,14 @@
   display: flex;
   flex-direction: column;
 }
-.sheet-content {
+.agone.sheet.item .sheet-content {
   height: 100%;
   display: flex;
   flex-direction: column;
 }
-.sheet-content .editor {
+.agone.sheet.item .sheet-content .editor {
   height: 100%;
 }
-.sheet-footer {
+.agone.sheet.item .sheet-footer {
   display: inline-flex;
 }

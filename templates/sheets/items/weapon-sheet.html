@@ -1,7 +1,7 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
         <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
-        <h1><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.common.name'}}"/></h1>
     </header>
     <div class="sheet-content">
         <table>
@@ -28,16 +28,16 @@
                     </select>
                 </td>
                 <td>
-                    <input name="data.initMod" type="text" value="{{data.initMod}}" data-dtype="Number" />
+                    <input name="data.initMod" type="text" value="{{data.initMod}}" data-dtype="Number" placeholder="0"/>
                 </td>
                 <td>
-                    <input name="data.attackMod" type="text" value="{{data.attackMod}}" data-dtype="Number" />
+                    <input name="data.attackMod" type="text" value="{{data.attackMod}}" data-dtype="Number" placeholder="0"/>
                 </td>
                 <td>
-                    <input name="data.defenseMod" type="text" value="{{data.defenseMod}}" data-dtype="Number" />
+                    <input name="data.defenseMod" type="text" value="{{data.defenseMod}}" data-dtype="Number" placeholder="0"/>
                 </td>
                 <td>
-                    <input name="data.damagesMod" type="text" value="{{data.damagesMod}}" data-dtype="Number" />
+                    <input name="data.damagesMod" type="text" value="{{data.damagesMod}}" data-dtype="Number" placeholder="0"/>
                 </td>
                 <td>
                     <select name="data.type">
@@ -49,10 +49,10 @@
                     </select>
                 </td>
                 <td>
-                    <input name="data.minStrength" type="text" value="{{data.minStrength}}" data-dtype="Number" />
+                    <input name="data.minStrength" type="text" value="{{data.minStrength}}" data-dtype="Number" placeholder="0"/>
                 </td>
                 <td>
-                    <input name="data.minAgility" type="text" value="{{data.damagesMod}}" data-dtype="Number" />
+                    <input name="data.minAgility" type="text" value="{{data.damagesMod}}" data-dtype="Number" placeholder="0"/>
                 </td>
                 <td>
                     <input name="data.SIZ" type="text" value="{{data.SIZ}}" data-dtype="Number" />

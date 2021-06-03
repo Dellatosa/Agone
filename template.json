@@ -30,41 +30,49 @@
         "primary": {
           "Strength": {
             "value": 0,
+            "aspect": "body",
             "label": "Strength",
             "abrev": "STR"
           },
           "Agility": {
             "value": 0,
+            "aspect": "body",
             "label": "Agility",
             "abrev": "AGI"
           },
           "Stamina": {
             "value": 0,
+            "aspect": "body",
             "label": "Stamina",
             "abrev": "STA"
           },
           "Perception": {
             "value": 0,
+            "aspect": "body",
             "label": "Perception",
             "abrev": "PER"
           },
           "Intelligence": {
             "value": 0,
+            "aspect": "spirit",
             "label": "Intelligence",
             "abrev": "INT"
           },
           "Will": {
             "value": 0,
+            "aspect": "spirit",
             "label": "Will",
             "abrev": "WIL"
           },
           "Charisma": {
             "value": 0,
+            "aspect": "soul",
             "label": "Charisma",
             "abrev": "CHA"
           },
           "Creativity": {
             "value": 0,
+            "aspect": "soul",
             "label": "Creativity",
             "abrev": "CRE"
           }

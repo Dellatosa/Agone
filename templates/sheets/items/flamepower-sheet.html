@@ -1,7 +1,7 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
         <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
-        <h1><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.common.name'}}"/></h1>
     </header>
     <div class="sheet-content">
         <table>
@@ -10,7 +10,7 @@
             </tr>
             <tr>
                  <td>
-                     <input name="data.level" type="text" value="{{data.fortuneCost}}" data-dtype="Number" />
+                     <input name="data.level" type="text" value="{{data.fortuneCost}}" data-dtype="Number" placeholder="0"/>
                  </td>
             </tr>
         </table>

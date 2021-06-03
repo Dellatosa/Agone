@@ -1,40 +1,39 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
         <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
-        <h1><input name="name" type="text" value="{{item.name}}" placeholder="Name"/></h1>
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.common.name'}}"/></h1>
     </header>
     <div class="sheet-content">
         <table>
             <tr>
                 <th>{{localize "agone.common.type"}}</th>
-                <th>{{localize "agone.common.cost"}}</th>
+                <th>{{localize "agone.trouble.level"}}</th>
             </tr>
             <tr>
                 <td>
                     <select name="data.type">
                         {{#select data.type}}
-                        {{#each config.assetFaultTypes as |name type|}}
+                        {{#each config.troubleTypes as |name type|}}
                         <option value="{{type}}">{{localize name}}</option>
                         {{/each}}
                         {{/select}} 
                     </select>
                 </td>
                  <td>
-                     <input name="data.cost" type="text" value="{{data.cost}}" data-dtype="Number" />
+                     <input name="data.level" type="text" value="{{data.level}}" data-dtype="Number" placeholder="0"/>
                  </td>
             </tr>
         </table>
-        <div>{{localize "agone.fault.descriptionLabel"}}</div>
-        {{editor content=data.description target="data.description" button=true owner=true editable=true}}
         <div>
-            <span>{{localize "agone.fault.penaltyDesc"}}</span>
-            <textarea name="data.penaltyDesc">{{data.penaltyDesc}}</textarea>
+            <span>{{localize "agone.trouble.descriptionLabel"}}</span>
         </div>
+        {{editor content=data.description target="data.description" button=true owner=true editable=true}}
+        <!-- Gérer la sélection du bienfait associé -->
     </div>
     <footer class="sheet-footer">
         <div>
             <hr>
-            <p>{{localize "agone.common.type"}} : <span>{{localize "agone.fault.label"}}</span></p>
+            <p>{{localize "agone.common.type"}} : <span>{{localize "agone.trouble.label"}}</span></p>
         </div>
     </footer>
 </form>
