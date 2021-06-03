@@ -4,12 +4,19 @@
             "name": "Nom",
             "type": "Type",
             "cost": "Coût",
+            "arts": "Arts",
+            "seasons": "Saisons",
+            "season": "Saison",
+            "spring": "Printemps",
+            "summer": "Eté",
+            "fall": "Automne",
+            "winter": "Hiver"
+        },
+        "attributes": {
             "soul": "Ame",
             "spirit": "Esprit",
             "body": "Corps",
-            "arts": "Arts",
             "ascendancy": "Emprise",
-            "seasons": "Saisons",
             "flame": "Flamme",
             "darkness": "Ténèbre",
             "perfidy": "Perfidie",
@@ -28,6 +35,13 @@
             "melee": "Mélée",
             "thrown": "Jet",
             "archery": "Trait"
+        },
+        "skillTypes": {
+            "trials": "Epreuve",
+            "rogue": "Maraude",
+            "courtly": "Société",
+            "knowledge": "Connaissance",
+            "occult": "Occulte"
         },
         "weapon": {
             "label": "Arme",
@@ -66,6 +80,15 @@
             "label": "Pouvoir de Flamme",
             "fortuneCost": "Coût en point d'Héroïsme",
             "descriptionLabel": "Description du Pouvoir de Flamme"
+        },
+        "seasonPower": {
+            "label": "Pouvoir de Saison",
+            "fortuneCost": "Coût en point d'héroïsme",
+            "descriptionLabel": "Description du pouvoir de Saison"
+        },
+        "school": {
+            "label": "Ecole",
+            "descriptionLabel": "Description de l'école"
         }
     }
 }
