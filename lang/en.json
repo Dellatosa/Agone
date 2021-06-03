@@ -1,6 +1,7 @@
 {
     "agone":{
         "common": {
+            "name": "Name",
             "type": "Type",
             "cost": "Cost",
             "soul": "Soul",

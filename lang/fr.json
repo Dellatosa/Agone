@@ -1,6 +1,7 @@
 {
     "agone":{
         "common":{
+            "name": "Nom",
             "type": "Type",
             "cost": "Coût",
             "soul": "Ame",
@@ -21,7 +22,7 @@
             "pierce": "Perforante",
             "sharp": "Tranchante",
             "piercesharp": "Perforante/Tranchante",
-            "blunt": "Contondente"
+            "blunt": "Contondante"
         },
         "weaponStyles": {
             "melee": "Mélée",
@@ -63,7 +64,7 @@
         },
         "flamePower": {
             "label": "Pouvoir de Flamme",
-            "fortuneCost": "Coût en point d'héroïsme",
+            "fortuneCost": "Coût en point d'Héroïsme",
             "descriptionLabel": "Description du Pouvoir de Flamme"
         }
     }

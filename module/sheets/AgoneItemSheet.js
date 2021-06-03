@@ -9,6 +9,7 @@ export default class AgoneItemSheet extends ItemSheet {
     }
 
     get template() {
+        console.log(`Agone | loading systems/agone/templates/sheets/${this.item.data.type}-sheet.html template`);
         return `systems/agone/templates/sheets/${this.item.data.type}-sheet.html`
     }
 
