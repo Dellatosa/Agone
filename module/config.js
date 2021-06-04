@@ -9,10 +9,17 @@ agone.typesArme = {
 }
 
 agone.stylesArme = {
-    none: "",
+    aucun: "",
     melee: "agone.stylesArme.melee",
     jet: "agone.stylesArme.jet",
     trait: "agone.stylesArme.trait"
+}
+
+agone.typesArmure = {
+    aucun: "",
+    vesteSeule: "agone.typesArmure.vesteSeule",
+    partielle: "agone.typesArmure.partielle",
+    complete: "agone.typesArmure.complete"
 }
 
 agone.typesAvantageDefaut = {

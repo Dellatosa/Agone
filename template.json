@@ -3,14 +3,7 @@
     "types": [ "Personnage", "Nemesis", "Demon" ],
     "templates": {
       "base": {
-        "apparence": "",
-        "PV": {
-          "value": 0,
-          "min": 0,
-          "max": 0
-        },
-        "TAI": 0,
-        "mouvement": 0
+        "apparence": ""
       },
       "informations": {
         "origine": "",
@@ -96,6 +89,16 @@
             "label": "Créativité",
             "abrev": "CRE"
           }
+        },
+        "secondaires": {
+          "pdv": {
+            "value": 0,
+            "min": 0,
+            "max": 0
+          },
+          "tai": 0,
+          "mouvement": 0,
+          "nbBlessureGrave": 0
         }
       },
       "competences": {
@@ -533,17 +536,11 @@
     }
   },
   "Item": {
-    "types": [ "item", "Avantage", "Defaut", "Peine", "Bienfait", "PouvoirFlamme", "PouvoirSaison", "Manoeuvre", "Armor", 
-               "SeriousWound", "Arme", "Dancer", "Spell", "Work", "Connivance", "Ecole" ],
+    "types": [ "Avantage", "Defaut", "Peine", "Bienfait", "PouvoirFlamme", "PouvoirSaison", "Manoeuvre", "Armure", "Arme", "Danseur", "Spell", "Work", "Connivance", "Ecole", "item" ],
     "templates": {
       "base": {
         "description": ""
       }
-    },
-    "item": {
-      "templates": [ "base" ],
-      "quantity": 1,
-      "weight": 0
     },
     "Avantage": {
       "templates": [ "base" ],
@@ -578,30 +575,26 @@
     },
     "Manoeuvre": {
       "templates": [ "base" ],
-      "school": [],
+      "ecole": [],
       "prerequis": "",
       "modifInit": 0,
       "modifAttaque": 0,
       "modifDefense": 0,
       "modifDommages": 0
     },
-    "Armor": {
+    "Armure": {
       "templates": [ "base" ],
       "type": "",
       "protection": 0,
-      "penalty": 0,
-      "perceptionPenalty": 0
-    },
-    "SeriousWound": {
-      "templates": [ "base" ],
-      "penalty": 0
+      "malus": 0,
+      "malusPerception": 0
     },
     "Arme": {
       "templates": [ "base" ],
       "type": "",
       "competence": "",
       "style": "",
-      "TAI": 0,
+      "tai": 0,
       "modifInit": 0,
       "modifAttaque": 0,
       "modifDefense": 0,
@@ -609,20 +602,20 @@
       "minForce": 0,
       "minAgilite": 0
     },
-    "Dancer": {
+    "Danseur": {
       "templates": [ "base" ],
       "experience": 0,
-      "memory": {
+      "memoire": {
         "value": 0,
         "max": 0
       },
-      "ascendancyBonus": 0,
-      "empathy": 0,
-      "stamina": {
+      "bonusEmprise": 0,
+      "empathie": 0,
+      "endurance": {
         "value": 0,
         "max": 0
       },
-      "knownSpells": []
+      "sortsConnus": []
     },
     "Spell": {
       "templates": [ "base" ],
@@ -651,6 +644,11 @@
     "Ecole": {
       "templates": [ "base" ],
       "type": ""
+    },
+    "item": {
+      "templates": [ "base" ],
+      "quantite": 1,
+      "poids": 0
     }
   }
 }

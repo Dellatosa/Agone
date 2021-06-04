@@ -1,0 +1,53 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.common.name'}}"/></h1>
+    </header>
+    <div class="sheet-content">
+        <table>
+            <tr>
+                <th>{{localize "agone.danseur.memoireDispo"}}</th>
+                <th>{{localize "agone.danseur.memoireMax"}}</th>
+                <th>{{localize "agone.danseur.bonusEmprise"}}</th>
+                <th>{{localize "agone.danseur.empathie"}}</th>
+                <th>{{localize "agone.danseur.enduranceDispo"}}</th>
+                <th>{{localize "agone.danseur.enduranceMax"}}</th>
+                <th>{{localize "agone.common.experience"}}</th>
+                <!-- <th>{{localize "agone.danseur.sortsConnus"}}</th> -->
+                
+            </tr>
+            <tr>
+                <td>
+                    <input name="data.memoire.value" type="text" value="{{data.memoire.value}}" data-dtype="Number" placeholder="0"/>
+                </td>
+                <td>
+                    <input name="data.memoire.max" type="text" value="{{data.memoire.max}}" data-dtype="Number" placeholder="0"/>
+                </td>
+                <td>
+                    <input name="data.bonusEmprise" type="text" value="{{data.bonusEmprise}}" data-dtype="Number" placeholder="0"/>
+                </td>
+                <td>
+                    <input name="data.empathie" type="text" value="{{data.empathie}}" data-dtype="Number" placeholder="0"/>
+                </td>
+                <td>
+                    <input name="data.endurance.value" type="text" value="{{data.endurance.value}}" data-dtype="Number" placeholder="0"/>
+                </td>
+                <td>
+                    <input name="data.endurance.max" type="text" value="{{data.endurance.max}}" data-dtype="Number" placeholder="0"/>
+                </td>
+                <td>
+                    <input name="data.experience" type="text" value="{{data.experience}}" data-dtype="Number" placeholder="0"/>
+                </td>
+            </tr>
+        </table>
+        <!-- brancher la liste des sorts connus -->
+         <div>{{localize "agone.danseur.descriptionLabel"}}</div> 
+         {{editor content=data.description target="data.description" button=true owner=true editable=true}}
+    </div>
+    <footer class="sheet-footer">
+        <div>
+            <hr>
+            <p>{{localize "agone.common.type"}} : <span>{{localize "agone.danseur.label"}}</span></p>
+        </div>
+    </footer>
+</form>

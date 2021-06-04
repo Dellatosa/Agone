@@ -10,7 +10,7 @@
                 <th>{{localize "agone.arme.modifAttaque"}}</th>
                 <th>{{localize "agone.arme.modifDefense"}}</th>
                 <th>{{localize "agone.arme.modifDommages"}}</th>
-                <!-- <th>{{localize "agone.weapon.skillname"}}</th> -->
+                <!-- <th>{{localize "agone.ecole.label"}}</th> -->
             </tr>
             <tr>
                 <td>
@@ -25,34 +25,20 @@
                 <td>
                     <input name="data.modifDommages" type="text" value="{{data.modifDommages}}" data-dtype="Number" placeholder="0"/>
                 </td>
-                <td>
-                    <select name="data.type">
-                        {{#select data.type}}
-                        {{#each config.typesArme as |name type|}}
-                        <option value="{{type}}">{{localize name}}</option>
-                        {{/each}}
-                        {{/select}} 
-                    </select>
-                </td>
-                <td>
-                    <input name="data.minForce" type="text" value="{{data.minForce}}" data-dtype="Number" placeholder="0"/>
-                </td>
-                <td>
-                    <input name="data.minAgilite" type="text" value="{{data.minAgilite}}" data-dtype="Number" placeholder="0"/>
-                </td>
-                <td>
-                    <input name="data.TAI" type="text" value="{{data.TAI}}" data-dtype="Number" />
-                </td>
-                <!-- <td></td> récupérer la compétence selon l'acteur -->
+                <!-- <td></td> récupérer l'école' par glisser déposer -->
             </tr>
         </table>
-         <div>{{localize "agone.arme.descriptionLabel"}}</div> 
-         {{editor content=data.description target="data.description" button=true owner=true editable=true}}
-    </div>
+         <div>{{localize "agone.manoeuvre.descriptionLabel"}}</div> 
+            {{editor content=data.description target="data.description" button=true owner=true editable=true}}
+        </div>
+        <div>
+            <span>{{localize "agone.manoeuvre.prerequis"}}</span>
+            <input name="data.prerequis" type="text" value="{{data.prerequis}}" placeholder="{{localize 'agone.manoeuvre.prerequis'}}"/>
+        </div>
     <footer class="sheet-footer">
         <div>
             <hr>
-            <p>{{localize "agone.common.type"}} : <span>{{localize "agone.arme.label"}}</span></p>
+            <p>{{localize "agone.common.type"}} : <span>{{localize "agone.manoeuvre.label"}}</span></p>
         </div>
     </footer>
 </form>

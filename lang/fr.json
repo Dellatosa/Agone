@@ -14,6 +14,7 @@
             "automne": "Automne",
             "hiver": "Hiver",
             "apparence": "Apparence",
+            "nbBlessureGrave": "Blessure grave",
             "origine": "Origine",
             "occupation": "Occupation",
             "sexe": "Sexe",
@@ -23,7 +24,8 @@
             "peuple": "Peuple",
             "vol": "Vol",
             "opacite": "Opacité",
-            "seuilInvocation": "Seuil d'invocation"
+            "seuilInvocation": "Seuil d'invocation",
+            "experience": "Expérience"
         },
         "caracteristiques": {
             "primaires": {
@@ -37,7 +39,19 @@
                 "creativite": "Créativité"
             },
             "secondaires": {
-                "emprise": "Emprise"
+                "pdv": "PDV",
+                "tai": "TAI",
+                "mouvement": "mouvement",
+                "seuilBlessureGrave": "Seuil de blessure grave",
+                "seuilBlessureCritique": "Seuil de blessure critique",
+                "bonusDommages": "Bonus de dommages",
+                "chargeMax": "Charge maximale",
+                "demiCharge": "Demi charge",
+                "chargeQuotidienne": "Charge quotidienne",
+                "emprise": "Emprise",
+                "melee": "Mélée",
+                "tir": "Tir",
+                "art": "Art"
             },
             "aspects": {
                 "ame": "Ame",
@@ -78,6 +92,11 @@
             "jet": "Jet",
             "trait": "Trait"
         },
+        "typesArmure": {
+            "vesteSeule" : "Veste seule",
+            "partielle": "Partielle",
+            "complete": "Complète"
+        },
         "typesCompetence": {
             "epreuves": "Epreuves",
             "maraude": "Maraude",
@@ -89,7 +108,7 @@
             "label": "Arme",
             "competence": "Compétence",
             "style": "Style",
-            "TAI": "TAI",
+            "tai": "TAI",
             "modifInit": "Init.",
             "modifAttaque": "Att.",
             "modifDefense": "Def.",
@@ -136,6 +155,25 @@
             "label": "Manoeuvre",
             "prerequis": "Prérequis",
             "descriptionLabel": "Description de la manoeuvre"
+        },
+        "armure": {
+            "label": "Armure",
+            "protection": "Protection",
+            "malus": "Malus",
+            "malusPerception": "Malus de perception",
+            "descriptionLabel": "Description de l'armure"
+        },
+        "danseur": {
+            "label": "Danseur",
+            "memoire": "Mémoire",
+            "memoireDispo": "Mémoire disp.",
+            "memoireMax": "Mémoire max.",
+            "bonusEmprise": "Bonus d'Emprise",
+            "empathie": "Empathie",
+            "endurance": "Endurance",
+            "enduranceDispo": "Endurance disp.",
+            "enduranceMax": "Endurance max.",
+            "descriptionLabel": "Description du danseur"
         }
     }
 }

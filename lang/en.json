@@ -13,7 +13,8 @@
             "automne": "Summer",
             "hiver": "Winter",
             "winter": "Fall",
-            "apparence": "Appearance",
+            "apparence": "Appearance",      
+            "nbBlessureGrave": "Serious wound",
             "origine": "Birthplace",
             "occupation": "Occupation",
             "sexe": "Sex",
@@ -23,7 +24,8 @@
             "peuple": "Race",
             "vol": "Flight move",
             "opacite": "Opacity",
-            "seuilInvocation": "InvokingThreshold"
+            "seuilInvocation": "Invoking threshold",
+            "experience": "Experience"
         },
         "caracteristiques": {
             "primaires": {
@@ -37,7 +39,19 @@
                 "creativite": "Creativity"
             },
             "secondaires": {
-                "emprise": "Ascendancy"
+                "pdv": "HP",
+                "tai": "SIZ",
+                "mouvement": "movement",
+                "seuilBlessureGrave": "Serious wound threshold",
+                "seuilBlessureCritique": "Critical wound threshold",
+                "bonusDommages": "Damages bonus",
+                "chargeMax": "Maximum load",
+                "demiCharge": "Half load",
+                "chargeQuotidienne": "Daily load",
+                "emprise": "Ascendancy",
+                "melee": "Melee",
+                "tir": "Aim",
+                "art": "Art"
             },
             "aspects": {
                 "ame": "Soul",
@@ -78,6 +92,11 @@
             "jet": "Thrown",
             "trait": "Archery"
         },
+        "typesArmure": {
+            "vesteSeule" : "Chest only",
+            "partielle": "Intermediate",
+            "complete": "Full"
+        },
         "TypesCompetence": {
             "epreuves": "Trials",
             "maraude": "Rogue",
@@ -89,7 +108,7 @@
             "label": "Weapon",
             "competence": "Skill",
             "style": "Style",
-            "TAI": "SIZ",
+            "tai": "SIZ",
             "modifInit": "Init.",
             "modifAttaque": "Att.",
             "modifDefense": "Def.",
@@ -136,6 +155,25 @@
             "label": "Manoeuvre",
             "prerequis": "Prerequisite",
             "descriptionLabel": "Description de la manoeuvre"
+        },
+        "armure": {
+            "label": "Armor",
+            "protection": "Protection",
+            "malus": "Penalty",
+            "malusPerception": "Perception penalty",
+            "descriptionLabel": "Armor description"
+        },
+        "danseur": {
+            "label": "Dancer",
+            "memoire": "Memory",
+            "memoireDispo": "Ava. memory",
+            "memoireMax": "Max. memory",
+            "bonusEmprise": "Ascendancy bonus",
+            "empathie": "Empathy",
+            "endurance": "Stamina",
+            "enduranceDispo": "Ava. Stamina",
+            "enduranceMax": "Max. stamina",
+            "descriptionLabel": "Dancer description"
         }
     }
 }
