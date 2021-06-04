@@ -131,6 +131,11 @@
         "ecole": {
             "label": "School",
             "descriptionLabel": "School description"
+        },
+        "manoeuvre": {
+            "label": "Manoeuvre",
+            "prerequis": "Prerequisite",
+            "descriptionLabel": "Description de la manoeuvre"
         }
     }
 }
