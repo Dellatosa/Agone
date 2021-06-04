@@ -533,7 +533,7 @@
     }
   },
   "Item": {
-    "types": [ "item", "Avantage", "Defaut", "Peine", "Bienfait", "PouvoirFlamme", "PouvoirSaison", "Maneuver", "Armor", 
+    "types": [ "item", "Avantage", "Defaut", "Peine", "Bienfait", "PouvoirFlamme", "PouvoirSaison", "Manoeuvre", "Armor", 
                "SeriousWound", "Arme", "Dancer", "Spell", "Work", "Connivance", "Ecole" ],
     "templates": {
       "base": {
@@ -576,12 +576,14 @@
       "saison": "",
       "coutHeroisme": 0
     },
-    "Maneuver": {
+    "Manoeuvre": {
       "templates": [ "base" ],
-      "school": "",
-      "initMod": 0,
-      "attackMod": 0,
-      "defenseMod": 0
+      "school": [],
+      "prerequis": "",
+      "modifInit": 0,
+      "modifAttaque": 0,
+      "modifDefense": 0,
+      "modifDommages": 0
     },
     "Armor": {
       "templates": [ "base" ],

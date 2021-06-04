@@ -1,0 +1,58 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.common.name'}}"/></h1>
+    </header>
+    <div class="sheet-content">
+        <table>
+            <tr>
+                <th>{{localize "agone.arme.modifInit"}}</th>
+                <th>{{localize "agone.arme.modifAttaque"}}</th>
+                <th>{{localize "agone.arme.modifDefense"}}</th>
+                <th>{{localize "agone.arme.modifDommages"}}</th>
+                <!-- <th>{{localize "agone.weapon.skillname"}}</th> -->
+            </tr>
+            <tr>
+                <td>
+                    <input name="data.modifInit" type="text" value="{{data.modifInit}}" data-dtype="Number" placeholder="0"/>
+                </td>
+                <td>
+                    <input name="data.modifAttaque" type="text" value="{{data.modifAttaque}}" data-dtype="Number" placeholder="0"/>
+                </td>
+                <td>
+                    <input name="data.modifDefense" type="text" value="{{data.modifDefense}}" data-dtype="Number" placeholder="0"/>
+                </td>
+                <td>
+                    <input name="data.modifDommages" type="text" value="{{data.modifDommages}}" data-dtype="Number" placeholder="0"/>
+                </td>
+                <td>
+                    <select name="data.type">
+                        {{#select data.type}}
+                        {{#each config.typesArme as |name type|}}
+                        <option value="{{type}}">{{localize name}}</option>
+                        {{/each}}
+                        {{/select}} 
+                    </select>
+                </td>
+                <td>
+                    <input name="data.minForce" type="text" value="{{data.minForce}}" data-dtype="Number" placeholder="0"/>
+                </td>
+                <td>
+                    <input name="data.minAgilite" type="text" value="{{data.minAgilite}}" data-dtype="Number" placeholder="0"/>
+                </td>
+                <td>
+                    <input name="data.TAI" type="text" value="{{data.TAI}}" data-dtype="Number" />
+                </td>
+                <!-- <td></td> récupérer la compétence selon l'acteur -->
+            </tr>
+        </table>
+         <div>{{localize "agone.arme.descriptionLabel"}}</div> 
+         {{editor content=data.description target="data.description" button=true owner=true editable=true}}
+    </div>
+    <footer class="sheet-footer">
+        <div>
+            <hr>
+            <p>{{localize "agone.common.type"}} : <span>{{localize "agone.arme.label"}}</span></p>
+        </div>
+    </footer>
+</form>
