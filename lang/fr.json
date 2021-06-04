@@ -1,92 +1,134 @@
 {
     "agone":{
         "common":{
+            "biographie": "Biographie",
+            "parrain": "parrain",
             "name": "Nom",
             "type": "Type",
-            "cost": "Coût",
+            "cout": "Coût",
             "arts": "Arts",
-            "seasons": "Saisons",
-            "season": "Saison",
-            "spring": "Printemps",
-            "summer": "Eté",
-            "fall": "Automne",
-            "winter": "Hiver"
+            "saisons": "Saisons",
+            "saison": "Saison",
+            "printemps": "Printemps",
+            "ete": "Eté",
+            "automne": "Automne",
+            "hiver": "Hiver",
+            "apparence": "Apparence",
+            "origine": "Origine",
+            "occupation": "Occupation",
+            "sexe": "Sexe",
+            "age": "Age",
+            "taille": "Taille",
+            "poids": "Poids",
+            "peuple": "Peuple",
+            "vol": "Vol",
+            "opacite": "Opacité",
+            "seuilInvocation": "Seuil d'invocation"
         },
-        "attributes": {
-            "soul": "Ame",
-            "spirit": "Esprit",
-            "body": "Corps",
-            "ascendancy": "Emprise",
-            "flame": "Flamme",
-            "darkness": "Ténèbre",
-            "perfidy": "Perfidie",
-            "blackness": "Noirceur"
+        "caracteristiques": {
+            "primaires": {
+                "force": "Force",
+                "agilite": "Agilité",
+                "resistance": "Résistance",
+                "perception": "Perception",
+                "intelligence": "Intelligence",
+                "volonte": "Volonté",
+                "charisme": "Charisme",
+                "creativite": "Créativité"
+            },
+            "secondaires": {
+                "emprise": "Emprise"
+            },
+            "aspects": {
+                "ame": "Ame",
+                "ameNoire": "Ame noire",
+                "esprit": "Esprit",
+                "espritNoir": "Esprit noir",
+                "corps": "Corps",
+                "corpsNoir": "Corps noir",
+                "flamme": "Flamme",
+                "tenebre": "Ténèbre",
+                "perfidie": "Perfidie",
+                "noirceur": "Noirceur",
+                "heroisme": "Héroïsme"
+            }
         },
-        "assetFaultTypes":{
-            "chargesociety": "Charge et Société"
+        "competences": {
+            "vigilance": "Vigilance",
+            "athletisme": "Athlétisme",
+            "escalade": "Escalade",
+            "equitation": "Equitation",
+            "esquive": "Esquive",
+            "natation": "Natation",
+            "premiersSoins": "Premiers Soins",
+            "survie": "Survie",
+            "armes": "Armes"
         },
-        "weaponTypes":{
-            "pierce": "Perforante",
-            "sharp": "Tranchante",
-            "piercesharp": "Perforante/Tranchante",
-            "blunt": "Contondante"
+        "typesAvantageDefaut":{
+            "chargeSociete": "Charge et Société"
         },
-        "weaponStyles": {
+        "typesArmes":{
+            "perforante": "Perforante",
+            "tranchante": "Tranchante",
+            "perftranch": "Perforante/Tranchante",
+            "contondante": "Contondante"
+        },
+        "stylesArme": {
             "melee": "Mélée",
-            "thrown": "Jet",
-            "archery": "Trait"
+            "jet": "Jet",
+            "trait": "Trait"
         },
-        "skillTypes": {
-            "trials": "Epreuve",
-            "rogue": "Maraude",
-            "courtly": "Société",
-            "knowledge": "Connaissance",
-            "occult": "Occulte"
+        "typesCompetence": {
+            "epreuves": "Epreuves",
+            "maraude": "Maraude",
+            "societe": "Société",
+            "savoir": "Savoir",
+            "occulte": "Occulte"
         },
-        "weapon": {
+        "arme": {
             "label": "Arme",
-            "skillname": "Compétence",
+            "competence": "Compétence",
             "style": "Style",
-            "SIZ": "TAI",
-            "initMod": "Init.",
-            "attackMod": "Att.",
-            "defenseMod": "Def.",
-            "damagesMod": "Dom.",
-            "minAgility": "AGI min.",
-            "minStrength": "FOR min.",
+            "TAI": "TAI",
+            "modifInit": "Init.",
+            "modifAttaque": "Att.",
+            "modifDefense": "Def.",
+            "modifDommages": "Dom.",
+            "minAgilite": "AGI min.",
+            "minForce": "FOR min.",
             "descriptionLabel": "Description de l'arme"
         },
-        "asset": {
+        "avantage": {
             "label": "Avantage",
-            "bonusDesc": "Description du Bonus",
-            "prerequisite": "Prérequis",
+            "descBonus": "Description du Bonus",
+            "prerequis": "Prérequis",
             "descriptionLabel": "Description de l'Avantage"
         },
-        "fault": {
+        "defaut": {
             "label": "Défaut",
-            "penaltyDesc": "Description du malus",
+            "descMalus": "Description du malus",
             "descriptionLabel": "Description du Défaut"
         },
-        "trouble": {
+        "peine": {
             "label": "Peine",
-            "level": "Palier",
+            "palier": "Palier",
             "descriptionLabel": "Description de la Peine"
         },
-        "gift": {
+        "bienfait": {
             "label": "Bienfait",
             "descriptionLabel": "Description du Bienfait"
         },
-        "flamePower": {
+        "pouvoirFlamme": {
             "label": "Pouvoir de Flamme",
-            "fortuneCost": "Coût en point d'Héroïsme",
+            "coutHeroisme": "Coût en point d'Héroïsme",
             "descriptionLabel": "Description du Pouvoir de Flamme"
         },
-        "seasonPower": {
+        "pouvoirSaison": {
             "label": "Pouvoir de Saison",
-            "fortuneCost": "Coût en point d'héroïsme",
+            "coutHeroisme": "Coût en point d'héroïsme",
             "descriptionLabel": "Description du pouvoir de Saison"
         },
-        "school": {
+        "ecole": {
             "label": "Ecole",
             "descriptionLabel": "Description de l'école"
         }

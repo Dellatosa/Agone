@@ -1,92 +1,134 @@
 {
     "agone":{
         "common": {
+            "biographie": "Biography",
+            "parrain": "godfather",
             "name": "Name",
             "type": "Type",
-            "cost": "Cost",
+            "cout": "Cost",
             "arts": "Arts",
-            "seasons": "Seasons",
-            "season": "Season",
-            "spring": "Spring",
-            "summer": "Summer",
-            "fall": "Winter",
-            "winter": "Fall"
+            "saisons": "Seasons",
+            "saison": "Season",
+            "printemps": "Spring",
+            "automne": "Summer",
+            "hiver": "Winter",
+            "winter": "Fall",
+            "apparence": "Appearance",
+            "origine": "Birthplace",
+            "occupation": "Occupation",
+            "sexe": "Sex",
+            "age": "Age",
+            "taille": "Size",
+            "poids": "Weight",
+            "peuple": "Race",
+            "vol": "Flight move",
+            "opacite": "Opacity",
+            "seuilInvocation": "InvokingThreshold"
         },
-        "attributes": {
-            "soul": "Soul",
-            "spirit": "Spirit",
-            "body": "body",          
-            "ascendancy": "Ascendancy",
-            "flame": "Flame",
-            "darkness": "Darkness",
-            "perfidy": "Perfidy",
-            "blackness": "Blackness"
+        "caracteristiques": {
+            "primaires": {
+                "force": "Strength",
+                "agilite": "Agility",
+                "resistance": "Stamina",
+                "perception": "Perception",
+                "intelligence": "Intelligence",
+                "volonte": "Will",
+                "charisme": "Charisma",
+                "creativite": "Creativity"
+            },
+            "secondaires": {
+                "emprise": "Ascendancy"
+            },
+            "aspects": {
+                "ame": "Soul",
+                "ameNoire": "Black soul",
+                "esprit": "Spirit",
+                "espritNoir": "Black spirit",
+                "corps": "Body",        
+                "corpsNoir": "Black body",
+                "flamme": "Flame",
+                "tenebre": "Darkness",
+                "perfidie": "Perfidy",
+                "noirceur": "Blackness",
+                "heroisme": "Fortune"
+            }
         },
-        "assetFaultTypes":{
-            "chargesociety": "Charge and Society"
+        "competences": {
+            "vigilance": "Alterness",
+            "athletisme": "Athletics",
+            "escalade": "Climb",
+            "equitation": "Ride",
+            "esquive": "Dodge",
+            "natation": "Swim",
+            "premiersSoins": "FirstAid",
+            "survie": "Survival",
+            "armes": "Weapons"
         },
-        "weaponTypes":{
-            "pierce": "Pierce",
-            "sharp": "Sharp",
-            "piercesharp": "Pierce/Sharp",
-            "blunt": "Blunt"
+        "typesAvantageDefaut":{
+            "chargeSociete": "Charge and Society"
         },
-        "weaponStyles": {
+        "typesArmes":{
+            "perforante": "Pierce",
+            "tranchante": "Sharp",
+            "perftranch": "Pierce/Sharp",
+            "contondante": "Blunt"
+        },
+        "stylesArme": {
             "melee": "Melee",
-            "thrown": "Thrown",
-            "archery": "Archery"
+            "jet": "Thrown",
+            "trait": "Archery"
         },
-        "skillTypes": {
-            "trials": "Trials",
-            "rogue": "Rogue",
-            "courtly": "Courtly",
-            "knowledge": "Knowledge",
-            "occult": "Occult"
+        "TypesCompetence": {
+            "epreuves": "Trials",
+            "maraude": "Rogue",
+            "societe": "Courtly",
+            "savoir": "Knowledge",
+            "occulte": "Occult"
         },
-        "weapon": {
+        "arme": {
             "label": "Weapon",
-            "skillname": "Skill",
+            "competence": "Skill",
             "style": "Style",
-            "SIZ": "SIZ",
-            "initMod": "Init.",
-            "attackMod": "Att.",
-            "defenseMod": "Def.",
-            "damagesMod": "Dam.",
-            "minAgility": "min. AGI",
-            "minStrength": "min. STR",
+            "TAI": "SIZ",
+            "modifInit": "Init.",
+            "modifAttaque": "Att.",
+            "modifDefense": "Def.",
+            "modifDommages": "Dam.",
+            "minAgilite": "min. AGI",
+            "minForce": "min. STR",
             "descriptionLabel": "Weapon description"
         },
-        "asset": {
+        "avantage": {
             "label": "Asset",
-            "bonusDesc": "Bonus description",
-            "prerequisite": "Prerequisite",
+            "descBonus": "Bonus description",
+            "prerequis": "Prerequisite",
             "descriptionLabel": "Asset description"
         },
-        "fault": {
+        "defaut": {
             "label": "Fault",
-            "penaltyDesc": "Bonus description",
+            "descMalus": "Penalty description",
             "descriptionLabel": "Fault description"
         },
-        "trouble": {
+        "peine": {
             "label": "Trouble",
-            "level": "Level",
+            "palier": "Level",
             "descriptionLabel": "Trouble description"
         },
-        "gift": {
+        "bienfait": {
             "label": "Gift",
             "descriptionLabel": "Gift description"
         },
-        "flamePower": {
+        "pouvoirFlamme": {
             "label": "Flame power",
-            "fortuneCost": "Fortune cost",
+            "coutHeroisme": "Fortune cost",
             "descriptionLabel": "Flame power description"
         },
-        "seasonPower": {
+        "pouvoirSaison": {
             "label": "Season power",
-            "fortuneCost": "Fortune cost",
+            "coutHeroisme": "Fortune cost",
             "descriptionLabel": "Season power description"
         },
-        "school": {
+        "ecole": {
             "label": "School",
             "descriptionLabel": "School description"
         }

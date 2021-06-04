@@ -7,33 +7,26 @@
         <table>
             <tr>
                 <th>{{localize "agone.common.type"}}</th>
-                <th>{{localize "agone.trouble.level"}}</th>
             </tr>
             <tr>
                 <td>
                     <select name="data.type">
                         {{#select data.type}}
-                        {{#each config.troubleTypes as |name type|}}
+                        {{#each config.skillTypes as |name type|}}
                         <option value="{{type}}">{{localize name}}</option>
                         {{/each}}
                         {{/select}} 
                     </select>
                 </td>
-                 <td>
-                     <input name="data.level" type="text" value="{{data.level}}" data-dtype="Number" placeholder="0"/>
-                 </td>
             </tr>
         </table>
-        <div>
-            <span>{{localize "agone.trouble.descriptionLabel"}}</span>
-        </div>
+        <div>{{localize "agone.ecole.descriptionLabel"}}</div>
         {{editor content=data.description target="data.description" button=true owner=true editable=true}}
-        <!-- Gérer la sélection du bienfait associé -->
     </div>
     <footer class="sheet-footer">
         <div>
             <hr>
-            <p>{{localize "agone.common.type"}} : <span>{{localize "agone.trouble.label"}}</span></p>
+            <p>{{localize "agone.common.type"}} : <span>{{localize "agone.ecole.label"}}</span></p>
         </div>
     </footer>
 </form>

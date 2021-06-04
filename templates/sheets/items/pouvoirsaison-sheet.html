@@ -6,33 +6,33 @@
     <div class="sheet-content">
         <table>
             <tr>
-                <th>{{localize "agone.common.season"}}</th>
-                <th>{{localize "agone.seasonPower.fortuneCost"}}</th>
+                <th>{{localize "agone.common.saison"}}</th>
+                <th>{{localize "agone.pouvoirSaison.coutHeroisme"}}</th>
             </tr>
             <tr>
                 <td>
-                    <select name="data.season">
-                        {{#select data.season}}
-                        {{#each config.seasons as |name type|}}
+                    <select name="data.saison">
+                        {{#select data.saison}}
+                        {{#each config.saisons as |name type|}}
                         <option value="{{type}}">{{localize name}}</option>
                         {{/each}}
                         {{/select}} 
                     </select>
                 </td>
                  <td>
-                     <input name="data.fortuneCost" type="text" value="{{data.fortuneCost}}" data-dtype="Number" placeholder="0"/>
+                     <input name="data.coutHeroisme" type="text" value="{{data.coutHeroisme}}" data-dtype="Number" placeholder="0"/>
                  </td>
             </tr>
         </table>
         <div>
-            <span>{{localize "agone.seasonPower.descriptionLabel"}}</span>
+            <span>{{localize "agone.pouvoirSaison.descriptionLabel"}}</span>
         </div>
         {{editor content=data.description target="data.description" button=true owner=true editable=true}}
     </div>
     <footer class="sheet-footer">
         <div>
             <hr>
-            <p>{{localize "agone.common.type"}} : <span>{{localize "agone.seasonPower.label"}}</span></p>
+            <p>{{localize "agone.common.type"}} : <span>{{localize "agone.pouvoirSaison.label"}}</span></p>
         </div>
     </footer>
 </form>

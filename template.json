@@ -1,550 +1,540 @@
 {
   "Actor": {
-    "types": [ "Character", "Nemesis", "Demon" ],
+    "types": [ "Personnage", "Nemesis", "Demon" ],
     "templates": {
       "base": {
-        "Appearance": "",
-        "HP": {
+        "apparence": "",
+        "PV": {
           "value": 0,
           "min": 0,
           "max": 0
         },
-        "SIZ": 0,
-        "Move": 0
+        "TAI": 0,
+        "mouvement": 0
       },
-      "information": {
-        "Birthplace": "",
-        "Occupation": "",
-        "Sex": "",
-        "Age": 0,
-        "Size": 0,
-        "Weight": 0,
-        "Race": ""
+      "informations": {
+        "origine": "",
+        "occupation": "",
+        "sexe": "",
+        "age": 0,
+        "taille": 0,
+        "poids": 0,
+        "peuple": ""
       },
-      "corruption": {
-        "Darkness": 0,
-        "Blackness": 0,
-        "Perfidy": 0
-      },
-      "attributes": {
-        "primary": {
-          "Strength": {
-            "value": 0,
-            "aspect": "body",
-            "label": "Strength",
-            "abrev": "STR"
+      "aspects": {
+        "flamme": {
+          "aspectCorps": {
+            "corps": 0,
+            "corpsNoir": 0
           },
-          "Agility": {
+          "aspectEsprit": {
+            "esprit": 0,
+            "espritNoir": 0
+          },
+          "aspectAme": {
+            "ame": 0,
+            "ameNoire": 0
+          },
+          "heroisme": {
             "value": 0,
-            "aspect": "body",
-            "label": "Agility",
+            "max": 0
+          }
+        },
+        "corruption": {
+          "tenebre": 0,
+          "noirceur": 0,
+          "perfidie": 0
+        }
+      },
+      "caracteristiques": {
+        "primaires": {
+          "force": {
+            "valeur": 0,
+            "aspect": "corps",
+            "label": "Force",
+            "abrev": "FOR"
+          },
+          "agilite": {
+            "valeur": 0,
+            "aspect": "corps",
+            "label": "Agilité",
             "abrev": "AGI"
           },
-          "Stamina": {
-            "value": 0,
-            "aspect": "body",
-            "label": "Stamina",
-            "abrev": "STA"
+          "resistance": {
+            "valeur": 0,
+            "aspect": "corps",
+            "label": "Résistance",
+            "abrev": "RES"
           },
-          "Perception": {
-            "value": 0,
-            "aspect": "body",
+          "perception": {
+            "valeur": 0,
+            "aspect": "corps",
             "label": "Perception",
             "abrev": "PER"
           },
           "Intelligence": {
-            "value": 0,
-            "aspect": "spirit",
-            "label": "Intelligence",
+            "valeur": 0,
+            "aspect": "esprit",
+            "label": "intelligence",
             "abrev": "INT"
           },
-          "Will": {
-            "value": 0,
-            "aspect": "spirit",
-            "label": "Will",
-            "abrev": "WIL"
+          "volonte": {
+            "valeur": 0,
+            "aspect": "esprit",
+            "label": "Volonté",
+            "abrev": "VOL"
           },
-          "Charisma": {
-            "value": 0,
-            "aspect": "soul",
-            "label": "Charisma",
+          "charisme": {
+            "valeur": 0,
+            "aspect": "ame",
+            "label": "Charisme",
             "abrev": "CHA"
           },
-          "Creativity": {
-            "value": 0,
-            "aspect": "soul",
-            "label": "Creativity",
+          "creativité": {
+            "valeur": 0,
+            "aspect": "ame",
+            "label": "Créativité",
             "abrev": "CRE"
           }
         }
       },
-      "skills": {
-        "Alterness": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Trials",
+      "competences": {
+        "vigilance": {
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "epreuves",
           "max": 10
         },
-        "Athletics": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Trials",
+        "athletisme": {
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "epreuves",
           "max": 10
         },
-        "Climb": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Trials",
+        "escalade": {
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "epreuves",
           "max": 10
         },
-        "Ride": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Trials",
+        "equitation": {
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "epreuves",
           "max": 10
         },
-        "Dodge": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Trials",
+        "esquive": {
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "epreuves",
           "max": 10
         },
-        "Swim": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Trials",
+        "natation": {
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "epreuves",
           "max": 10
         },
-        "FirstAid": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Trials",
+        "premiersSoins": {
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "epreuves",
           "max": 10
         },
-        "Survival": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Trials",
+        "survie": {
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "epreuves",
           "max": 10
         },
-        "Weapons": {
-          "fields": [],
-          "characteristic": "",
-          "type": "Trials"
+        "armes": {
+          "domaines": [],
+          "caracteristique": "",
+          "type": "epreuves"
         },
         "Acrobatics": {
-          "rank": 0,
-          "characteristic": "Agility",
-          "specilisation": false,
-          "type": "Rogue",
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "maraude",
           "max": 10
         },
         "Conceal": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Rogue",
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "maraude",
           "max": 10
         },
         "Hunt": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Rogue",
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "maraude",
           "max": 10
         },
         "Disguise": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Rogue",
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "maraude",
           "max": 10
         },
         "Stealth": {
-          "rank": 0,
-          "characteristic": "Agility",
-          "specilisation": false,
-          "type": "Rogue",
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "maraude",
           "max": 10
         },
         "Search": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Rogue",
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "maraude",
           "max": 10
         },
         "Intrigue": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Rogue",
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "maraude",
           "max": 10
         },
         "Gambling": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Rogue",
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "maraude",
           "max": 10
         },
         "Legerdemain": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Rogue",
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "maraude",
           "max": 10
         },
         "Poisons": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Rogue",
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "maraude",
           "max": 10
         },
         "locksmith": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Rogue",
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "maraude",
           "max": 10
         },
         "FastTalk": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Courtly",
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "societe",
           "max": 10
         },
         "Diplomacy": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Courtly",
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "societe",
           "max": 10
         },
         "Eloquence": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Courtly",
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "societe",
           "max": 10
         },
         "Etiquette": {
-          "fields": [],
-          "characteristic": "",
-          "type": "Courtly"
+          "domaines": [],
+          "caracteristique": "",
+          "type": "societe"
         },
         "Stewardship": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Courtly",
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "societe",
           "max": 10
         },
         "Music": {
-          "fields": [],
-          "characteristic": "",
-          "type": "Courtly"
+          "domaines": [],
+          "caracteristique": "",
+          "type": "societe"
         },
         "Trade": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Courtly",
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "societe",
           "max": 10
         },
         "Painting": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Courtly",
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "societe",
           "max": 10
         },
         "Poetry": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Courtly",
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "societe",
           "max": 10
         },
         "Craft": {
-          "fields": [],
-          "characteristic": "",
-          "type": "Courtly"
+          "domaines": [],
+          "caracteristique": "",
+          "type": "societe"
         },
         "Sculpture": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Courtly",
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "societe",
           "max": 10
         },
         "Traditions": {
-          "fields": [],
-          "characteristic": "",
-          "type": "Courtly"
+          "domaines": [],
+          "caracteristique": "",
+          "type": "societe"
         },
         "Alphabets": {
-          "fields": [],
-          "characteristic": "",
-          "type": "Knowledge"
+          "domaines": [],
+          "caracteristique": "",
+          "type": "savoir"
         },
         "Astronomy": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Knowledge",
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "savoir",
           "max": 10
         },
         "Surgery": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Knowledge",
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "savoir",
           "max": 10
         },
         "Cults": {
-          "fields": [],
-          "characteristic": "",
-          "type": "Knowledge"
+          "domaines": [],
+          "caracteristique": "",
+          "type": "savoir"
         },
         "Geography": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Knowledge",
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "savoir",
           "max": 10
         },
         "PlantLore": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Knowledge",
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "savoir",
           "max": 10
         },
         "HistoryAndLegends": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Knowledge",
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "savoir",
           "max": 10
         },
         "Languages": {
-          "fields": [],
-          "characteristic": "",
-          "type": "Knowledge"
+          "domaines": [],
+          "caracteristique": "",
+          "type": "savoir"
         },
         "Law": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Knowledge",
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "savoir",
           "max": 10
         },
         "Medicine": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Knowledge",
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "savoir",
           "max": 10
         },
         "Navigation": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Knowledge",
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "savoir",
           "max": 10
         },
         "Seasons": {
-          "fields": [
+          "domaines": [
             {
               "label": "Winter",
-              "rank": 0,
+              "rang": 0,
               "max": 10,
-              "specilisation": false
+              "specialisation": false
             },
             {
               "label": "Spring",
-              "rank": 0,
+              "rang": 0,
               "max": 10,
-              "specilisation": false
+              "specialisation": false
             },
             {
               "label": "Summer",
-              "rank": 0,
+              "rang": 0,
               "max": 10,
-              "specilisation": false
+              "specialisation": false
             },
             {
               "label": "Fall",
-              "rank": 0,
+              "rang": 0,
               "max": 10,
-              "specilisation": false
+              "specialisation": false
             }
           ],
-          "characteristic": "",
-          "type": "Knowledge"
+          "caracteristique": "",
+          "type": "savoir"
         },
         "Strategy": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Knowledge",
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "savoir",
           "max": 10
         },
         "BeastLore": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Knowledge",
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "savoir",
           "max": 10
         },
         "MagicalArts": {
-          "fields": [
+          "domaines": [
             {
               "label": "Tune",
-              "rank": 0,
+              "rang": 0,
               "max": 10,
-              "specilisation": false
+              "specialisation": false
             },
             {
               "label": "Shape",
-              "rank": 0,
+              "rang": 0,
               "max": 10,
-              "specilisation": false
+              "specialisation": false
             },
             {
               "label": "Vista",
-              "rank": 0,
+              "rang": 0,
               "max": 10,
-              "specilisation": false
+              "specialisation": false
             },
             {
               "label": "Scansion",
-              "rank": 0,
+              "rang": 0,
               "max": 10,
-              "specilisation": false
+              "specialisation": false
             }
           ],
-          "characteristic": "",
-          "type": "Occult"
+          "caracteristique": "",
+          "type": "occulte"
         },
         "DancerLore": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Occult",
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "occulte",
           "max": 10
         },
         "CypherSorcery": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Occult",
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "occulte",
           "max": 10
         },
         "Demonology": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Occult",
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "occulte",
           "max": 10
         },
         "Concord": {
-          "rank": 0,
-          "characteristic": "",
-          "specilisation": false,
-          "type": "Occult",
+          "rang": 0,
+          "caracteristique": "",
+          "specialisation": false,
+          "type": "occulte",
           "max": 10
         },
         "Resonance": {
-          "fields": [
+          "domaines": [
             {
               "label": "Jornist",
-              "rank": 0,
+              "rang": 0,
               "max": 10,
-              "specilisation": false
+              "specialisation": false
             },
             {
               "label": "Eclipsist",
-              "rank": 0,
+              "rang": 0,
               "max": 10,
-              "specilisation": false
+              "specialisation": false
             },
             {
               "label": "Obscurantist",
-              "rank": 0,
+              "rang": 0,
               "max": 10,
-              "specilisation": false
+              "specialisation": false
             }
           ],
-          "characteristic": "",
-          "type": "Occult"
+          "caracteristique": "",
+          "type": "occulte"
         }
       }
     },
-    "Character": {
-      "templates": [ "base", "information", "attributes", "corruption", "skills" ],
-      "biography": "",
-      "godfather": "",
+    "Personnage": {
+      "templates": [ "base", "informations", "caracteristiques", "aspects", "competences" ],
+      "biographie": "",
+      "parrain": "",
       "experience": {
-        "available": 0,
-        "total": 0
-      },
-      "Flame": {
-        "body": {
-          "Body": {
-            "value": 0
-          },
-          "DarkBody": {
-            "value": 0
-          }
-        },
-        "spirit": {
-          "Spirit": {
-            "value": 0
-          },
-          "DarkSpirit": {
-            "value": 0
-          }
-        },
-        "soul": {
-          "Soul": {
-            "value": 0
-          },
-          "DarkSoul": {
-            "value": 0
-          }
-        },
-        "Fortune": {
-          "value": 0,
-          "max": 0
-        }
+        "disponible": 0,
+        "totale": 0
       }
     },
     "Nemesis": {
-      "templates": [ "base", "information", "attributes", "corruption", "skills" ]
+      "templates": [ "base", "informations", "caracteristiques", "aspects", "competences" ]
     },
     "Demon": {
-      "templates": [ "base", "attributes", "skills" ],
-      "demonRace": "",
-      "flightMove": 0,
-      "opacity": 0,
-      "InvokingThreshold": 0
+      "templates": [ "base", "caracteristiques", "competences" ],
+      "typedemon": "",
+      "vol": 0,
+      "opacite": 0,
+      "seuilInvocation": 0
     }
   },
   "Item": {
-    "types": [ "item", "Asset", "Fault", "Trouble", "Gift", "FlamePower", "SeasonPower", "Maneuver", "Armor", 
-               "SeriousWound", "Weapon", "Dancer", "Spell", "Work", "Connivance", "School" ],
+    "types": [ "item", "Avantage", "Defaut", "Peine", "Bienfait", "PouvoirFlamme", "PouvoirSaison", "Maneuver", "Armor", 
+               "SeriousWound", "Arme", "Dancer", "Spell", "Work", "Connivance", "Ecole" ],
     "templates": {
       "base": {
         "description": ""
@@ -555,36 +545,36 @@
       "quantity": 1,
       "weight": 0
     },
-    "Asset": {
+    "Avantage": {
       "templates": [ "base" ],
       "type":"",
-      "cost": 0,
-      "bonusDesc": "",
+      "cout": 0,
+      "descBonus": "",
       "prerequisite": ""
     },
-    "Fault": {
+    "Defaut": {
       "templates": [ "base" ],
       "type": "",
-      "cost": 0,
-      "penaltyDesc": ""
+      "cout": 0,
+      "descMalus": ""
     },
-    "Trouble": {
+    "Peine": {
       "templates": [ "base" ],
       "type": "",
-      "level": 0,
-      "associatedGift": {}
+      "palier": 0,
+      "bienfaitAssocie": []
     },
-    "Gift": {
+    "Bienfait": {
       "templates": [ "base" ]
     },
-    "FlamePower": {
+    "PouvoirFlamme": {
       "templates": [ "base" ],
-      "fortuneCost": 0
+      "coutHeroisme": 0
     },
-    "SeasonPower": {
+    "PouvoirSaison": {
       "templates": [ "base" ],
-      "season": "",
-      "fortuneCost": 0
+      "saison": "",
+      "coutHeroisme": 0
     },
     "Maneuver": {
       "templates": [ "base" ],
@@ -604,18 +594,18 @@
       "templates": [ "base" ],
       "penalty": 0
     },
-    "Weapon": {
+    "Arme": {
       "templates": [ "base" ],
       "type": "",
-      "skillname": "",
+      "competence": "",
       "style": "",
-      "SIZ": 0,
-      "initMod": 0,
-      "attackMod": 0,
-      "defenseMod": 0,
-      "damagesMod": 0,
-      "minStrength": 0,
-      "minAgility": 0
+      "TAI": 0,
+      "modifInit": 0,
+      "modifAttaque": 0,
+      "modifDefense": 0,
+      "modifDommages": 0,
+      "minForce": 0,
+      "minAgilite": 0
     },
     "Dancer": {
       "templates": [ "base" ],
@@ -656,7 +646,7 @@
       "demonName": "",
       "advocatusName": ""
     },
-    "School": {
+    "Ecole": {
       "templates": [ "base" ],
       "type": ""
     }

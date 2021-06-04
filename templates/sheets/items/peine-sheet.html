@@ -7,34 +7,33 @@
         <table>
             <tr>
                 <th>{{localize "agone.common.type"}}</th>
-                <th>{{localize "agone.common.cost"}}</th>
+                <th>{{localize "agone.peine.palier"}}</th>
             </tr>
             <tr>
                 <td>
                     <select name="data.type">
                         {{#select data.type}}
-                        {{#each config.assetFaultTypes as |name type|}}
+                        {{#each config.typesPeine as |name type|}}
                         <option value="{{type}}">{{localize name}}</option>
                         {{/each}}
                         {{/select}} 
                     </select>
                 </td>
                  <td>
-                     <input name="data.cost" type="text" value="{{data.cost}}" data-dtype="Number" placeholder="0"/>
+                     <input name="data.palier" type="text" value="{{data.palier}}" data-dtype="Number" placeholder="0"/>
                  </td>
             </tr>
         </table>
-        <div>{{localize "agone.fault.descriptionLabel"}}</div>
-        {{editor content=data.description target="data.description" button=true owner=true editable=true}}
         <div>
-            <span>{{localize "agone.fault.penaltyDesc"}}</span>
-            <textarea name="data.penaltyDesc" placeholder="{{localize 'agone.fault.penaltyDesc'}}">{{data.penaltyDesc}}</textarea>
+            <span>{{localize "agone.peine.descriptionLabel"}}</span>
         </div>
+        {{editor content=data.description target="data.description" button=true owner=true editable=true}}
+        <!-- Gérer la sélection du bienfait associé -->
     </div>
     <footer class="sheet-footer">
         <div>
             <hr>
-            <p>{{localize "agone.common.type"}} : <span>{{localize "agone.fault.label"}}</span></p>
+            <p>{{localize "agone.common.type"}} : <span>{{localize "agone.peine.label"}}</span></p>
         </div>
     </footer>
 </form>

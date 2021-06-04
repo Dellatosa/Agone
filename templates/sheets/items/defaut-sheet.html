@@ -7,26 +7,34 @@
         <table>
             <tr>
                 <th>{{localize "agone.common.type"}}</th>
+                <th>{{localize "agone.common.cout"}}</th>
             </tr>
             <tr>
                 <td>
                     <select name="data.type">
                         {{#select data.type}}
-                        {{#each config.skillTypes as |name type|}}
+                        {{#each config.typesAvantageDefaut as |name type|}}
                         <option value="{{type}}">{{localize name}}</option>
                         {{/each}}
                         {{/select}} 
                     </select>
                 </td>
+                 <td>
+                     <input name="data.cout" type="text" value="{{data.cout}}" data-dtype="Number" placeholder="0"/>
+                 </td>
             </tr>
         </table>
-        <div>{{localize "agone.school.descriptionLabel"}}</div>
+        <div>{{localize "agone.defaut.descriptionLabel"}}</div>
         {{editor content=data.description target="data.description" button=true owner=true editable=true}}
+        <div>
+            <span>{{localize "agone.defaut.descMalus"}}</span>
+            <textarea name="data.descMalus" placeholder="{{localize 'agone.defaut.descMalus'}}">{{data.descMalus}}</textarea>
+        </div>
     </div>
     <footer class="sheet-footer">
         <div>
             <hr>
-            <p>{{localize "agone.common.type"}} : <span>{{localize "agone.school.label"}}</span></p>
+            <p>{{localize "agone.common.type"}} : <span>{{localize "agone.defaut.label"}}</span></p>
         </div>
     </footer>
 </form>

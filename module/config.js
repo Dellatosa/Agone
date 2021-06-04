@@ -1,51 +1,51 @@
 export const agone = {};
 
-agone.weaponTypes = {
-    none: "",
-    pierce: "agone.weaponTypes.pierce",
-    sharp: "agone.weaponTypes.sharp",
-    piercesharp: "agone.weaponTypes.piercesharp",
-    blunt: "agone.weaponTypes.blunt"
+agone.typesArme = {
+    aucun: "",
+    perforante: "agone.typesArme.perforante",
+    tranchante: "agone.typesArme.tranchante",
+    perftranch: "agone.typesArme.perftranch",
+    contondante: "agone.typesArme.contondante"
 }
 
-agone.weaponStyles = {
+agone.stylesArme = {
     none: "",
-    melee: "agone.weaponStyles.melee",
-    thrown: "agone.weaponStyles.thrown",
-    archery: "agone.weaponStyles.archery"
+    melee: "agone.stylesArme.melee",
+    jet: "agone.stylesArme.jet",
+    trait: "agone.stylesArme.trait"
 }
 
-agone.assetFaultTypes = {
-    none: "",
-    chargesociety: "agone.assetFaultTypes.chargesociety",
-    soul: "agone.attributes.soul",
-    spirit: "agone.attributes.spirit",
-    body: "agone.attributes.body",
+agone.typesAvantageDefaut = {
+    aucun: "",
+    chargeSociete: "agone.typesAvantageDefaut.chargeSociete",
+    ame: "agone.caracteristiques.aspects.ame",
+    esprit: "agone.caracteristiques.aspects.esprit",
+    corps: "agone.caracteristiques.aspects.corps",
     arts: "agone.common.arts",
-    ascendancy: "agone.attributes.ascendancy",
-    seasons: "agone.common.seasons",
-    flame: "agone.attributes.flame"
+    emprise: "agone.caracteristiques.secondaires.emprise",
+    saisons: "agone.common.saisons",
+    flamme: "agone.caracteristiques.aspects.flamme"
 }
 
-agone.troubleTypes = {
-    none: "",
-    darkness: "agone.common.darkness",
-    perfidy: "agone.common.perfidy",
+agone.typesPeine = {
+    aucun: "",
+    tenebre: "agone.caracteristiques.aspects.tenebre",
+    perfidie: "agone.caracteristiques.aspects.perfidie",
 }
 
-agone.seasons = {
-    none: "",
-    spring: "agone.common.spring",
-    summer: "agone.common.summer",
-    fall: "agone.common.fall",
-    winter: "agone.common.winter"
+agone.saisons = {
+    aucun: "",
+    printemps: "agone.common.printemps",
+    ete: "agone.common.ete",
+    automne: "agone.common.automne",
+    hiver: "agone.common.hiver"
 }
 
-agone.skillTypes = {
-    none: "",
-    trials: "agone.skillTypes.trials",
-    rogue: "agone.skillTypes.rogue",
-    courtly: "agone.skillTypes.courtly",
-    knowledge: "agone.skillTypes.knowledge",
-    occult: "agone.skillTypes.occult"
+agone.typesCompetence = {
+    aucun: "",
+    epreuves: "agone.typesCompetence.epreuves",
+    maraude: "agone.typesCompetence.maraude",
+    societe: "agone.typesCompetence.societe",
+    savoir: "agone.typesCompetence.savoir",
+    occulte: "agone.typesCompetence.occulte"
 }

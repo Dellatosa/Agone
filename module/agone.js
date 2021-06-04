@@ -3,7 +3,7 @@ import AgoneItemSheet from "./sheets/AgoneItemSheet.js";
 import AgoneActorSheet from "./sheets/AgoneActorSheet.js";
 
 Hooks.once("init", function(){
-    console.log("Agone | Initialising Agone RPG System");
+    console.log("Agone | Initialisation du système Agone RPG");
 
     CONFIG.agone = agone;
 
