@@ -41,7 +41,14 @@
             "secondaires": {
                 "pdv": "HP",
                 "tai": "SIZ",
-                "mouvement": "movement",
+                "mouvement": { 
+                    "label": "Movement",
+                    "abbr": "Mov."
+                },
+                "diffJetVieillesse": {
+                  "label":  "Old age difficulty roll",
+                  "abbr": "Old age diff."
+                },
                 "seuilBlessureGrave": "Serious wound threshold",
                 "seuilBlessureCritique": "Critical wound threshold",
                 "bonusDommages": "Damages bonus",
@@ -55,12 +62,16 @@
             },
             "aspects": {
                 "ame": "Soul",
-                "ameNoire": "Black soul",
+                "ameNoire": "Dark soul",
+                "bonusAme": "Soul bonus",
                 "esprit": "Spirit",
-                "espritNoir": "Black spirit",
+                "espritNoir": "Dark spirit",
+                "bonusEsprit": "Spirit bonus",
                 "corps": "Body",        
-                "corpsNoir": "Black body",
+                "corpsNoir": "Dark body",
+                "bonusCorps": "Body bonus",
                 "flamme": "Flame",
+                "flammeNoire": "Dark flame",
                 "tenebre": "Darkness",
                 "perfidie": "Perfidy",
                 "noirceur": "Blackness",

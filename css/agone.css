@@ -13,3 +13,56 @@
 .agone.sheet.item .sheet-footer {
   display: inline-flex;
 }
+.small-size {
+  flex: 0 1 3.5em;
+  padding: 3px;
+  text-align: center;
+}
+.auto-size {
+  flex: 1 1 auto;
+  padding: 3px;
+}
+.agone.sheet.actor label {
+  padding: 7px 0;
+}
+.agone.sheet.actor form {
+  display: flex;
+  flex-direction: column;
+}
+.agone.sheet.actor .sheet-header img {
+  flex: 0 0 150px;
+  height: 150px;
+}
+.actor-infos-line {
+  display: flex;
+  flex-flow: row wrap;
+}
+.actor-flamme {
+  display: flex;
+  padding: 3px;
+  justify-content: center;
+}
+.actor-flamme div {
+  display: flex;
+  justify-content: center;
+}
+.actor-caracs-primaires {
+  display: flex;
+  padding: 3px;
+}
+.actor-caracs-primaires .actor-caracs-aspect {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  margin: 2px;
+  padding: 3px;
+  border: solid 1px;
+  border-radius: 15px;
+}
+.actor-caracs-primaires .actor-caracs-aspect h3 {
+  text-align: center;
+}
+.actor-caracs-primaires .actor-caracs-aspect .actor-caracs-line {
+  display: flex;
+  justify-content: center;
+}

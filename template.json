@@ -98,7 +98,8 @@
           },
           "tai": 0,
           "mouvement": 0,
-          "nbBlessureGrave": 0
+          "nbBlessureGrave": 0,
+          "diffJetVieillesse": 0
         }
       },
       "competences": {

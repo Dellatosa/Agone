@@ -41,7 +41,14 @@
             "secondaires": {
                 "pdv": "PDV",
                 "tai": "TAI",
-                "mouvement": "mouvement",
+                "mouvement": { 
+                    "label": "Mouvement",
+                    "abbr": "Mouv."
+                },
+                "diffJetVieillesse": {
+                    "label": "Difficulté du jet de vieillesse",
+                    "abbr": "Diff. jet vieil."
+                },
                 "seuilBlessureGrave": "Seuil de blessure grave",
                 "seuilBlessureCritique": "Seuil de blessure critique",
                 "bonusDommages": "Bonus de dommages",
@@ -56,11 +63,15 @@
             "aspects": {
                 "ame": "Ame",
                 "ameNoire": "Ame noire",
+                "bonusAme": "Bonus d'âme",
                 "esprit": "Esprit",
                 "espritNoir": "Esprit noir",
+                "bonusEsprit": "Bonus d'esprit",
                 "corps": "Corps",
                 "corpsNoir": "Corps noir",
+                "bonusCorps": "Bonus de corps",
                 "flamme": "Flamme",
+                "flammeNoire": "Flamme noire",
                 "tenebre": "Ténèbre",
                 "perfidie": "Perfidie",
                 "noirceur": "Noirceur",
