@@ -27,56 +27,54 @@
             "seuilInvocation": "Seuil d'invocation",
             "experience": "Expérience"
         },
-        "caracteristiques": {
-            "primaires": {
-                "force": "Force",
-                "agilite": "Agilité",
-                "resistance": "Résistance",
-                "perception": "Perception",
-                "intelligence": "Intelligence",
-                "volonte": "Volonté",
-                "charisme": "Charisme",
-                "creativite": "Créativité"
+        "caracPrimaires": {    
+            "force": "Force",
+            "agilite": "Agilité",
+            "resistance": "Résistance",
+            "perception": "Perception",
+            "intelligence": "Intelligence",
+            "volonte": "Volonté",
+            "charisme": "Charisme",
+            "creativite": "Créativité"
+        },
+        "caracSecondaires": {
+            "pdv": "PDV",
+            "tai": "TAI",
+            "mouvement": { 
+                "label": "Mouvement",
+                "abbr": "Mouv."
             },
-            "secondaires": {
-                "pdv": "PDV",
-                "tai": "TAI",
-                "mouvement": { 
-                    "label": "Mouvement",
-                    "abbr": "Mouv."
-                },
-                "diffJetVieillesse": {
-                    "label": "Difficulté du jet de vieillesse",
-                    "abbr": "Diff. jet vieil."
-                },
-                "seuilBlessureGrave": "Seuil de blessure grave",
-                "seuilBlessureCritique": "Seuil de blessure critique",
-                "bonusDommages": "Bonus de dommages",
-                "chargeMax": "Charge maximale",
-                "demiCharge": "Demi charge",
-                "chargeQuotidienne": "Charge quotidienne",
-                "emprise": "Emprise",
-                "melee": "Mélée",
-                "tir": "Tir",
-                "art": "Art"
+            "diffJetVieillesse": {
+                "label": "Difficulté du jet de vieillesse",
+                "abbr": "Diff. jet vieil."
             },
-            "aspects": {
-                "ame": "Ame",
-                "ameNoire": "Ame noire",
-                "bonusAme": "Bonus d'âme",
-                "esprit": "Esprit",
-                "espritNoir": "Esprit noir",
-                "bonusEsprit": "Bonus d'esprit",
-                "corps": "Corps",
-                "corpsNoir": "Corps noir",
-                "bonusCorps": "Bonus de corps",
-                "flamme": "Flamme",
-                "flammeNoire": "Flamme noire",
-                "tenebre": "Ténèbre",
-                "perfidie": "Perfidie",
-                "noirceur": "Noirceur",
-                "heroisme": "Héroïsme"
-            }
+            "seuilBlessureGrave": "Seuil de blessure grave",
+            "seuilBlessureCritique": "Seuil de blessure critique",
+            "bonusDommages": "Bonus de dommages",
+            "chargeMax": "Charge maximale",
+            "demiCharge": "Demi charge",
+            "chargeQuotidienne": "Charge quotidienne",
+            "emprise": "Emprise",
+            "melee": "Mélée",
+            "tir": "Tir",
+            "art": "Art"
+        },
+        "aspectsFlamme": {
+            "ame": "Ame",
+            "ameNoire": "Ame noire",
+            "bonusAme": "Bonus d'âme",
+            "esprit": "Esprit",
+            "espritNoir": "Esprit noir",
+            "bonusEsprit": "Bonus d'esprit",
+            "corps": "Corps",
+            "corpsNoir": "Corps noir",
+            "bonusCorps": "Bonus de corps",
+            "flamme": "Flamme",
+            "flammeNoire": "Flamme noire",
+            "tenebre": "Ténèbre",
+            "perfidie": "Perfidie",
+            "noirceur": "Noirceur",
+            "heroisme": "Héroïsme"
         },
         "competences": {
             "vigilance": "Vigilance",

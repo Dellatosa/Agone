@@ -27,56 +27,54 @@
             "seuilInvocation": "Invoking threshold",
             "experience": "Experience"
         },
-        "caracteristiques": {
-            "primaires": {
-                "force": "Strength",
-                "agilite": "Agility",
-                "resistance": "Stamina",
-                "perception": "Perception",
-                "intelligence": "Intelligence",
-                "volonte": "Will",
-                "charisme": "Charisma",
-                "creativite": "Creativity"
+        "caracPrimaires": {
+            "force": "Strength",
+            "agilite": "Agility",
+            "resistance": "Stamina",
+            "perception": "Perception",
+            "intelligence": "Intelligence",
+            "volonte": "Will",
+            "charisme": "Charisma",
+            "creativite": "Creativity"
+        },
+        "caracSecondaires": {
+            "pdv": "HP",
+            "tai": "SIZ",
+            "mouvement": { 
+                "label": "Movement",
+                "abbr": "Mov."
             },
-            "secondaires": {
-                "pdv": "HP",
-                "tai": "SIZ",
-                "mouvement": { 
-                    "label": "Movement",
-                    "abbr": "Mov."
-                },
-                "diffJetVieillesse": {
-                  "label":  "Old age difficulty roll",
-                  "abbr": "Old age diff."
-                },
-                "seuilBlessureGrave": "Serious wound threshold",
-                "seuilBlessureCritique": "Critical wound threshold",
-                "bonusDommages": "Damages bonus",
-                "chargeMax": "Maximum load",
-                "demiCharge": "Half load",
-                "chargeQuotidienne": "Daily load",
-                "emprise": "Ascendancy",
-                "melee": "Melee",
-                "tir": "Aim",
-                "art": "Art"
+            "diffJetVieillesse": {
+              "label":  "Old age difficulty roll",
+              "abbr": "Old age diff."
             },
-            "aspects": {
-                "ame": "Soul",
-                "ameNoire": "Dark soul",
-                "bonusAme": "Soul bonus",
-                "esprit": "Spirit",
-                "espritNoir": "Dark spirit",
-                "bonusEsprit": "Spirit bonus",
-                "corps": "Body",        
-                "corpsNoir": "Dark body",
-                "bonusCorps": "Body bonus",
-                "flamme": "Flame",
-                "flammeNoire": "Dark flame",
-                "tenebre": "Darkness",
-                "perfidie": "Perfidy",
-                "noirceur": "Blackness",
-                "heroisme": "Fortune"
-            }
+            "seuilBlessureGrave": "Serious wound threshold",
+            "seuilBlessureCritique": "Critical wound threshold",
+            "bonusDommages": "Damages bonus",
+            "chargeMax": "Maximum load",
+            "demiCharge": "Half load",
+            "chargeQuotidienne": "Daily load",
+            "emprise": "Ascendancy",
+            "melee": "Melee",
+            "tir": "Aim",
+            "art": "Art"
+        },
+        "aspectsFlamme": {
+            "ame": "Soul",
+            "ameNoire": "Dark soul",
+            "bonusAme": "Soul bonus",
+            "esprit": "Spirit",
+            "espritNoir": "Dark spirit",
+            "bonusEsprit": "Spirit bonus",
+            "corps": "Body",        
+            "corpsNoir": "Dark body",
+            "bonusCorps": "Body bonus",
+            "flamme": "Flame",
+            "flammeNoire": "Dark flame",
+            "tenebre": "Darkness",
+            "perfidie": "Perfidy",
+            "noirceur": "Blackness",
+            "heroisme": "Fortune"
         },
         "competences": {
             "vigilance": "Alterness",

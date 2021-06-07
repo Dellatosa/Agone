@@ -14,8 +14,8 @@
         "poids": 0,
         "peuple": ""
       },
-      "aspects": {
-        "flamme": {
+      "aspects": {        
+        "aspectsFlamme": {
           "aspectCorps": {
             "corps": 0,
             "corpsNoir": 0
@@ -26,71 +26,69 @@
           },
           "aspectAme": {
             "ame": 0,
-            "ameNoire": 0
+            "ameNoir": 0
           },
           "heroisme": {
             "value": 0,
             "max": 0
           }
         },
-        "corruption": {
+        "AspectsCorruption": {
           "tenebre": 0,
           "noirceur": 0,
           "perfidie": 0
         }
       },
       "caracteristiques": {
-        "primaires": {
-          "force": {
-            "valeur": 0,
-            "aspect": "corps",
-            "label": "Force",
-            "abrev": "FOR"
+        "caracPrimaires": {
+          "corps": {
+            "agilite": {
+              "valeur": 0,
+              "label": "Agilité",
+              "abrev": "AGI"
+            },
+            "force": {
+              "valeur": 0,
+              "label": "Force",
+              "abrev": "FOR"
+            },
+            "perception": {
+              "valeur": 0,
+              "label": "Perception",
+              "abrev": "PER"
+            },
+            "resistance": {
+              "valeur": 0,
+              "label": "Résistance",
+              "abrev": "RES"
+            }
           },
-          "agilite": {
-            "valeur": 0,
-            "aspect": "corps",
-            "label": "Agilité",
-            "abrev": "AGI"
+          "esprit": {
+            "Intelligence": {
+              "valeur": 0,
+              "label": "intelligence",
+              "abrev": "INT"
+            },
+            "volonte": {
+              "valeur": 0,
+              "label": "Volonté",
+              "abrev": "VOL"
+            }
           },
-          "resistance": {
-            "valeur": 0,
-            "aspect": "corps",
-            "label": "Résistance",
-            "abrev": "RES"
-          },
-          "perception": {
-            "valeur": 0,
-            "aspect": "corps",
-            "label": "Perception",
-            "abrev": "PER"
-          },
-          "Intelligence": {
-            "valeur": 0,
-            "aspect": "esprit",
-            "label": "intelligence",
-            "abrev": "INT"
-          },
-          "volonte": {
-            "valeur": 0,
-            "aspect": "esprit",
-            "label": "Volonté",
-            "abrev": "VOL"
-          },
-          "charisme": {
-            "valeur": 0,
-            "aspect": "ame",
-            "label": "Charisme",
-            "abrev": "CHA"
-          },
-          "creativité": {
-            "valeur": 0,
-            "aspect": "ame",
-            "label": "Créativité",
-            "abrev": "CRE"
+          "ame": {
+            "charisme": {
+              "valeur": 0,
+              "label": "Charisme",
+              "abrev": "CHA"
+            },
+            "creativite": {
+              "valeur": 0,
+              "label": "Créativité",
+              "abrev": "CRE"
+            }
           }
         },
-        "secondaires": {
+        "caracSecondaires": {
           "pdv": {
             "value": 0,
             "min": 0,
