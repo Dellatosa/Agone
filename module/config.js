@@ -34,6 +34,80 @@ agone.aspects = {
     Bame: "agone.aspects.bonusAme"
 }
 
+agone.peuple = {
+    aucun: "",
+    humain: {
+        label: "Humain",
+        bpdv: 25,
+        mpoids: 7,
+        tai: 0,
+        mv: 3
+    },
+    ogre: {
+        label: "Ogre",
+        bpdv: 25,
+        mpoids: 7,
+        tai: 0,
+        mv: 3
+    },
+    minotaure: {
+        label: "Minotaure",
+        bpdv: 45,
+        mpoids: 10,
+        tai: 1,
+        mv: 4
+    },
+    geant: {
+        label: "Géant",
+        bpdv: 100,
+        mpoids: 20,
+        tai: 3,
+        mv: 8
+    },
+    feeNoire: {
+        label: "Fée noire",
+        bpdv: 10,
+        mpoids: 4,
+        tai: -2,
+        mv: 1
+    },
+    nain: {
+        label: "Nain",
+        bpdv: 20,
+        mpoids: 6,
+        tai: -1,
+        mv: 2
+    },
+    meduse: {
+        label: "Méduse",
+        bpdv: 25,
+        mpoids: 7,
+        tai: 0,
+        mv: 3
+    },
+    lutin: {
+        label: "Lutin",
+        bpdv: 20,
+        mpoids: 6,
+        tai: -1,
+        mv: 2
+    },
+    farfadet: {
+        label: "Farfadet",
+        bpdv: 20,
+        mpoids: 6,
+        tai: -1,
+        mv: 2
+    },
+    satyre: {
+        label: "Satyre",
+        bpdv: 25,
+        mpoids: 7,
+        tai: 0,
+        mv: 3
+    } 
+}
+
 agone.typesArme = {
     aucun: "",
     perforante: "agone.typesArme.perforante",

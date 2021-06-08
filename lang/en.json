@@ -25,7 +25,12 @@
             "vol": "Flight move",
             "opacite": "Opacity",
             "seuilInvocation": "Invoking threshold",
-            "experience": "Experience"
+            "experience": "Experience",
+            "competences": "Skills",
+            "caracsSecondaires": "Sec. attributes",
+            "avantagesDefauts": "Assets / Faults",
+            "magie": "Magic",
+            "combat": "Fight"
         },
         "caracteristiques": {
             "force": "Strength",

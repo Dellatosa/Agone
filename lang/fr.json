@@ -25,7 +25,12 @@
             "vol": "Vol",
             "opacite": "Opacité",
             "seuilInvocation": "Seuil d'invocation",
-            "experience": "Expérience"
+            "experience": "Expérience",
+            "competences": "Compétences",
+            "caracsSecondaires": "Carac. secondaires",
+            "avantagesDefauts": "Avantages / Défauts",
+            "magie": "Magie",
+            "combat": "Combat"
         },
         "caracteristiques": {    
             "force": "Force",
