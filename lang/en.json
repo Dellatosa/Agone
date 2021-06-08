@@ -27,18 +27,24 @@
             "seuilInvocation": "Invoking threshold",
             "experience": "Experience"
         },
-        "caracPrimaires": {
+        "caracteristiques": {
             "force": "Strength",
+            "for": "STR",
             "agilite": "Agility",
+            "agi": "AGI",
             "resistance": "Stamina",
+            "res": "STA",
             "perception": "Perception",
+            "per": "PER",
             "intelligence": "Intelligence",
+            "int": "INT",
             "volonte": "Will",
+            "vol": "WIL",
             "charisme": "Charisma",
-            "creativite": "Creativity"
-        },
-        "caracSecondaires": {
-            "pdv": "HP",
+            "cha": "CHA",
+            "creativite": "Creativity",
+            "cre": "CRE",
+            "pdv": "Hit points",
             "tai": "SIZ",
             "mouvement": { 
                 "label": "Movement",
@@ -57,9 +63,13 @@
             "emprise": "Ascendancy",
             "melee": "Melee",
             "tir": "Aim",
-            "art": "Art"
+            "art": "Art",
+            "tenebre": "Darkness",
+            "perfidie": "Perfidy",
+            "noirceur": "Blackness",
+            "heroisme": "Fortune"
         },
-        "aspectsFlamme": {
+        "aspects": {
             "ame": "Soul",
             "ameNoire": "Dark soul",
             "bonusAme": "Soul bonus",
@@ -70,11 +80,7 @@
             "corpsNoir": "Dark body",
             "bonusCorps": "Body bonus",
             "flamme": "Flame",
-            "flammeNoire": "Dark flame",
-            "tenebre": "Darkness",
-            "perfidie": "Perfidy",
-            "noirceur": "Blackness",
-            "heroisme": "Fortune"
+            "flammeNoire": "Dark flame"
         },
         "competences": {
             "vigilance": "Alterness",

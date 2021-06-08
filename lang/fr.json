@@ -27,18 +27,24 @@
             "seuilInvocation": "Seuil d'invocation",
             "experience": "Expérience"
         },
-        "caracPrimaires": {    
+        "caracteristiques": {    
             "force": "Force",
+            "for": "FOR",
             "agilite": "Agilité",
+            "agi": "AGI",
             "resistance": "Résistance",
+            "res": "RES",
             "perception": "Perception",
+            "per": "PER",
             "intelligence": "Intelligence",
+            "int": "INT",
             "volonte": "Volonté",
+            "vol": "VOL",
             "charisme": "Charisme",
-            "creativite": "Créativité"
-        },
-        "caracSecondaires": {
-            "pdv": "PDV",
+            "cha": "CHA",
+            "creativite": "Créativité",
+            "cre": "CRE",
+            "pdv": "Points de vie",
             "tai": "TAI",
             "mouvement": { 
                 "label": "Mouvement",
@@ -59,7 +65,7 @@
             "tir": "Tir",
             "art": "Art"
         },
-        "aspectsFlamme": {
+        "aspects": {
             "ame": "Ame",
             "ameNoire": "Ame noire",
             "bonusAme": "Bonus d'âme",

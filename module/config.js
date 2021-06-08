@@ -1,5 +1,39 @@
 export const agone = {};
 
+agone.caracteristiques = {
+    agilite: "agone.caracteristiques.agilite",
+    force: "agone.caracteristiques.force",
+    perception: "agone.caracteristiques.perception",
+    resistance: "agone.caracteristiques.resistance",
+    intelligence: "agone.caracteristiques.intelligence",
+    volonte: "agone.caracteristiques.volonte",
+    charisme: "agone.caracteristiques.charisme",
+    creativite: "agone.caracteristiques.creativite",
+}
+
+agone.caracAbrev = {
+    agilite: "agone.caracteristiques.agi",
+    force: "agone.caracteristiques.for",
+    perception: "agone.caracteristiques.per",
+    resistance: "agone.caracteristiques.res",
+    intelligence: "agone.caracteristiques.int",
+    volonte: "agone.caracteristiques.vol",
+    charisme: "agone.caracteristiques.cha",
+    creativite: "agone.caracteristiques.cre",
+}
+
+agone.aspects = {
+    corps: "agone.aspects.corps",
+    corpsN: "agone.aspects.corpsNoir",
+    Bcorps: "agone.aspects.bonusCorps",
+    esprit: "agone.aspects.esprit",
+    espritN: "agone.aspects.espritNoir",
+    Besprit: "agone.aspects.bonusEsprit",
+    ame: "agone.aspects.ame",
+    ameN: "agone.aspects.ameNoire",
+    Bame: "agone.aspects.bonusAme"
+}
+
 agone.typesArme = {
     aucun: "",
     perforante: "agone.typesArme.perforante",

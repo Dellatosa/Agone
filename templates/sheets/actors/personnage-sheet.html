@@ -18,125 +18,127 @@
                 <div class="small-size"><input name="data.age" type="number" value="{{data.age}}" placeholder="{{localize 'agone.common.age'}}"/></div>
             </div>
             <div class="actor-infos-line">
-                <label>{{localize "agone.caracSecondaires.diffJetVieillesse.abbr"}}</label>
-                <div class="small-size"><input name="data.caracSecondaires.diffJetVieillesse" type="number" value="{{data.caracSecondaires.diffJetVieillesse}}" placeholder="{{localize 'agone.caracSecondaires.diffJetVieillesse.abbr'}}"/></div>
+                <label>{{localize "agone.caracteristiques.diffJetVieillesse.abbr"}}</label>
+                <div class="small-size"><input name="data.caracSecondaires.diffJetVieillesse" type="number" value="{{data.caracSecondaires.diffJetVieillesse}}" placeholder="{{localize 'agone.caracteristiques.diffJetVieillesse.abbr'}}"/></div>
                 <label>{{localize "agone.common.taille"}}</label>
                 <div class="small-size"><input name="data.taille" type="number" value="{{data.taille}}" placeholder="{{localize 'agone.common.taille'}}"/></div>
-                <label >{{localize "agone.caracSecondaires.tai"}}</label>
-                <div class="small-size"><input name="data.caracSecondaires.tai" type="number" value="{{data.caracSecondaires.tai}}" placeholder="{{localize 'agone.caracSecondaires.tai'}}"/></div>
+                <label >{{localize "agone.caracteristiques.tai"}}</label>
+                <div class="small-size"><input name="data.caracSecondaires.tai" type="number" value="{{data.caracSecondaires.tai}}" placeholder="{{localize 'agone.caracteristiques.tai'}}"/></div>
                 <label>{{localize "agone.common.poids"}}</label>
                 <div class="small-size"><input name="data.poids" type="number" value="{{data.poids}}" placeholder="{{localize 'agone.common.poids'}}"/></div>
-                <label>{{localize "agone.caracSecondaires.mouvement.abbr"}}</label>
-                <div class="small-size"><input name="data.caracSecondaires.mouvement" type="number" value="{{data.caracSecondaires.mouvement}}" placeholder="{{localize 'agone.caracSecondaires.mouvement.abbr'}}"/></div>
+                <label>{{localize "agone.caracteristiques.mouvement.abbr"}}</label>
+                <div class="small-size"><input name="data.caracSecondaires.mouvement" type="number" value="{{data.caracSecondaires.mouvement}}" placeholder="{{localize 'agone.caracteristiques.mouvement.abbr'}}"/></div>
             </div>
         </div>
     </header>
     <div class="sheet-content">
         <div class="actor-flamme">
             <div>
-                <label>{{localize "agone.aspectsFlamme.flamme"}}</label>
-                <div class="small-size"><input name="data.aspectsFlamme.flamme" type="number" value="{{data.aspectsFlamme.flamme}}" placeholder="0" readonly/></div>
+                <label>{{localize "agone.aspects.flamme"}}</label>
+                <div class="small-size"><input name="data.caracSecondaires.flamme" type="number" value="{{data.caracSecondaires.flamme}}" placeholder="0" readonly/></div>
             </div>
             <div>
-                <label>{{localize "agone.aspectsFlamme.flammeNoire"}}</label>
-                <div class="small-size"><input name="data.aspectsFlamme.flammeNoire" type="number" value="{{data.aspectsFlamme.flammeNoire}}" placeholder="0" readonly/></div>
+                <label>{{localize "agone.aspects.flammeNoire"}}</label>
+                <div class="small-size"><input name="data.caracSecondaires.flammeNoire" type="number" value="{{data.caracSecondaires.flammeNoire}}" placeholder="0" readonly/></div>
+            </div>
+            <div>
+                <label>{{localize "agone.caracteristiques.pdv"}}</label>
+                <div class="small-size"><input name="data.caracSecondaires.pdv.value" type="number" value="{{data.caracSecondaires.pdv.value}}" placeholder="0" readonly/></div>
+                <label> / </label>
+                <div class="small-size"><input name="data.caracSecondaires.pdv.max" type="number" value="{{data.caracSecondaires.pdv.max}}" placeholder="0" readonly/></div>
             </div>
         </div>
         <div class="actor-caracs-primaires">    
-           <!-- {{#each data.aspectsFlamme as |elem key|}}
+            {{#each data.aspects as |aspect keyAsp|}}
             <div class="actor-caracs-aspect">
-                <h3>{{localize "{{elem.pos.label}}"}}</h3>
+                <h3>{{aspect.positif.label}}</h3>
                 <div class="actor-caracs-line">
-                    <label>{{localize "{{elem.pos.label}}"}}</label>
-                    <div class="small-size"><input name="data.aspectsFlamme.{{key}}.pos.value" type="number" value="{{elem.pos.value}}" placeholder="0" min="0" max="10"/></div>
-                    <label>{{localize "{{elem.neg.label}}"}}</label>
-                    <div class="small-size"><input name="data.aspectsFlamme.{{key}}.neg.value" type="number" value="{{elem.neg.value}}" placeholder="0" min="0" max="10"/></div>
-                </div>
-                 <div class="actor-caracs-line">
-                    <label>{{localize "agone.aspectsFlamme.bonusCorps"}}</label>
-                    <div class="small-size"><input name="data.aspectsFlamme.aspectCorps.bonusCorps" type="number" value="{{data.aspectsFlamme.aspectCorps.bonusCorps}}" placeholder="0" readonly/></div>
+                    <label>{{aspect.positif.label}}</label>
+                    <div class="small-size"><input name="data.aspects.{{keyAsp}}.positif.valeur" type="number" value="{{aspect.positif.valeur}}" placeholder="0" min="0" max="10"/></div>
+                    <label>{{aspect.negatif.label}}</label>
+                    <div class="small-size"><input name="data.aspects.{{keyAsp}}.negatif.valeur" type="number" value="{{aspect.negatif.valeur}}" placeholder="0" min="0" max="10"/></div>
                 </div>
                 <div class="actor-caracs-line">
-                    <label>{{localize "agone.caracPrimaires.agilite"}}</label>
-                    <div class="small-size"><input name="data.caracPrimaires.agilite.valeur" type="number" value="{{data.caracPrimaires.agilite.valeur}}" placeholder="0" min="0" max="10"/></div>
-                    <label>{{localize "agone.caracPrimaires.force"}}</label>
-                    <div class="small-size"><input name="data.caracPrimaires.force.valeur" type="number" value="{{data.caracPrimaires.force.valeur}}" placeholder="0" min="0" max="10"/></div>
+                    <label>{{aspect.bonus.label}}</label>
+                    <div class="small-size"><input name="data.aspects.{{keyAsp}}.bonus.valeur" type="number" value="{{aspect.bonus.valeur}}" placeholder="0" readonly/></div>
+                </div>
+                <!--<div class="actor-caracs-line">
+                    <label>{{localize "agone.caracteristiques.intelligence"}}</label>
+                    <div class="small-size"><input name="data.aspects.esprit.caracteristiques.intelligence.valeur" type="number" value="{{data.aspects.esprit.caracteristiques.intelligence.valeur}}" placeholder="0" min="0" max="10"/></div>
                 </div>
                 <div class="actor-caracs-line">
-                    <label>{{localize "agone.caracPrimaires.perception"}}</label>
-                    <div class="small-size"><input name="data.caracPrimaires.perception.valeur" type="number" value="{{data.caracPrimaires.perception.valeur}}" placeholder="0" min="0" max="10"/></div>
-                    <label>{{localize "agone.caracPrimaires.resistance"}}</label>
-                    <div class="small-size"><input name="data.caracPrimaires.resistance.valeur" type="number" value="{{data.caracPrimaires.resistance.valeur}}" placeholder="0" min="0" max="10"/></div>
-                </div> 
+                    <label>{{localize "agone.caracteristiques.volonte"}}</label>
+                    <div class="small-size"><input name="data.aspects.esprit.caracteristiques.volonte.valeur" type="number" value="{{data.aspects.esprit.caracteristiques.volonte.valeur}}" placeholder="0" min="0" max="10"/></div>
+                </div> -->
             </div>
-            {{/each}} -->
-            <div class="actor-caracs-aspect">
-                <h3>{{localize "agone.aspectsFlamme.corps"}}</h3>
+            {{/each}}
+            <!-- <div class="actor-caracs-aspect">
+                <h3>{{localize "agone.aspects.corps"}}</h3>
                 <div class="actor-caracs-line">
-                    <label>{{localize "agone.aspectsFlamme.corps"}}</label>
-                    <div class="small-size"><input name="data.aspectsFlamme.aspectCorps.corps" type="number" value="{{data.aspectsFlamme.aspectCorps.corps}}" placeholder="0" min="0" max="10"/></div>
-                    <label>{{localize "agone.aspectsFlamme.corpsNoir"}}</label>
-                    <div class="small-size"><input name="data.aspectsFlamme.aspectCorps.corpsNoir" type="number" value="{{data.aspectsFlamme.aspectCorps.corpsNoir}}" placeholder="0" min="0" max="10"/></div>
+                    <label>{{localize "agone.aspects.corps"}}</label>
+                    <div class="small-size"><input name="data.aspects.corps.positif.valeur" type="number" value="{{data.aspects.corps.positif.valeur}}" placeholder="0" min="0" max="10"/></div>
+                    <label>{{localize "agone.aspects.corpsNoir"}}</label>
+                    <div class="small-size"><input name="data.aspects.corps.negatif.valeur" type="number" value="{{data.aspects.corps.negatif.valeur}}" placeholder="0" min="0" max="10"/></div>
                 </div>
                 <div class="actor-caracs-line">
-                    <label>{{localize "agone.aspectsFlamme.bonusCorps"}}</label>
-                    <div class="small-size"><input name="data.aspectsFlamme.aspectCorps.bonusCorps" type="number" value="{{data.aspectsFlamme.aspectCorps.bonusCorps}}" placeholder="0" readonly/></div>
+                    <label>{{localize "agone.aspects.bonusCorps"}}</label>
+                    <div class="small-size"><input name="data.aspects.corps.bonus.valeur" type="number" value="{{data.aspects.corps.bonus.valeur}}" placeholder="0" readonly/></div>
                 </div>
                 <div class="actor-caracs-line">
-                    <label>{{localize "agone.caracPrimaires.agilite"}}</label>
-                    <div class="small-size"><input name="data.caracPrimaires.corps.agilite.valeur" type="number" value="{{data.caracPrimaires.corps.agilite.valeur}}" placeholder="0" min="0" max="10"/></div>
-                    <label>{{localize "agone.caracPrimaires.force"}}</label>
-                    <div class="small-size"><input name="data.caracPrimaires.corps.force.valeur" type="number" value="{{data.caracPrimaires.corps.force.valeur}}" placeholder="0" min="0" max="10"/></div>
+                    <label>{{localize "agone.caracteristiques.agilite"}}</label>
+                    <div class="small-size"><input name="data.aspects.corps.caracteristiques.agilite.valeur" type="number" value="{{data.aspects.corps.caracteristiques.agilite.valeur}}" placeholder="0" min="0" max="10"/></div>
+                    <label>{{localize "agone.caracteristiques.force"}}</label>
+                    <div class="small-size"><input name="data.aspects.corps.caracteristiques.force.valeur" type="number" value="{{data.aspects.corps.caracteristiques.force.valeur}}" placeholder="0" min="0" max="10"/></div>
                 </div>
                 <div class="actor-caracs-line">
-                    <label>{{localize "agone.caracPrimaires.perception"}}</label>
-                    <div class="small-size"><input name="data.caracPrimaires.corps.perception.valeur" type="number" value="{{data.caracPrimaires.corps.perception.valeur}}" placeholder="0" min="0" max="10"/></div>
-                    <label>{{localize "agone.caracPrimaires.resistance"}}</label>
-                    <div class="small-size"><input name="data.caracPrimaires.corps.resistance.valeur" type="number" value="{{data.caracPrimaires.corps.resistance.valeur}}" placeholder="0" min="0" max="10"/></div>
+                    <label>{{localize "agone.caracteristiques.perception"}}</label>
+                    <div class="small-size"><input name="data.aspects.corps.caracteristiques.perception.valeur" type="number" value="{{data.aspects.corps.caracteristiques.perception.valeur}}" placeholder="0" min="0" max="10"/></div>
+                    <label>{{localize "agone.caracteristiques.resistance"}}</label>
+                    <div class="small-size"><input name="data.aspects.corps.caracteristiques.resistance.valeur" type="number" value="{{data.aspects.corps.caracteristiques.resistance.valeur}}" placeholder="0" min="0" max="10"/></div>
                 </div>
             </div>
             <div class="actor-caracs-aspect">
-                <h3>{{localize "agone.aspectsFlamme.esprit"}}</h3>
+                <h3>{{localize "agone.aspects.esprit"}}</h3>
                 <div class="actor-caracs-line">
-                    <label>{{localize "agone.aspectsFlamme.esprit"}}</label>
-                    <div class="small-size"><input name="data.aspectsFlamme.aspectEsprit.esprit" type="number" value="{{data.aspectsFlamme.aspectEsprit.esprit}}" placeholder="0" min="0" max="10"/></div>
-                    <label>{{localize "agone.aspectsFlamme.espritNoir"}}</label>
-                    <div class="small-size"><input name="data.aspectsFlamme.aspectEsprit.espritNoir" type="number" value="{{data.aspectsFlamme.aspectEsprit.espritNoir}}" placeholder="0" min="0" max="10"/></div>
+                    <label>{{localize "agone.aspects.esprit"}}</label>
+                    <div class="small-size"><input name="data.aspects.esprit.positif.valeur" type="number" value="{{data.aspects.esprit.positif.valeur}}" placeholder="0" min="0" max="10"/></div>
+                    <label>{{localize "agone.aspects.espritNoir"}}</label>
+                    <div class="small-size"><input name="data.aspects.esprit.negatif.valeur" type="number" value="{{data.aspects.esprit.negatif.valeur}}" placeholder="0" min="0" max="10"/></div>
                 </div>
                 <div class="actor-caracs-line">
-                    <label>{{localize "agone.aspectsFlamme.bonusEsprit"}}</label>
-                    <div class="small-size"><input name="data.aspectsFlamme.aspectEsprit.bonusEsprit" type="number" value="{{data.aspectsFlamme.aspectEsprit.bonusEsprit}}" placeholder="0" readonly/></div>
+                    <label>{{localize "agone.aspects.bonusEsprit"}}</label>
+                    <div class="small-size"><input name="data.aspects.esprit.bonus.valeur" type="number" value="{{data.aspects.esprit.bonus.valeur}}" placeholder="0" readonly/></div>
                 </div>
                 <div class="actor-caracs-line">
-                    <label>{{localize "agone.caracPrimaires.intelligence"}}</label>
-                    <div class="small-size"><input name="data.caracPrimaires.esprit.intelligence.valeur" type="number" value="{{data.caracPrimaires.esprit.intelligence.valeur}}" placeholder="0" min="0" max="10"/></div>
+                    <label>{{localize "agone.caracteristiques.intelligence"}}</label>
+                    <div class="small-size"><input name="data.aspects.esprit.caracteristiques.intelligence.valeur" type="number" value="{{data.aspects.esprit.caracteristiques.intelligence.valeur}}" placeholder="0" min="0" max="10"/></div>
                 </div>
                 <div class="actor-caracs-line">
-                    <label>{{localize "agone.caracPrimaires.volonte"}}</label>
-                    <div class="small-size"><input name="data.caracPrimaires.esprit.volonte.valeur" type="number" value="{{data.caracPrimaires.esprit.volonte.valeur}}" placeholder="0" min="0" max="10"/></div>
+                    <label>{{localize "agone.caracteristiques.volonte"}}</label>
+                    <div class="small-size"><input name="data.aspects.esprit.caracteristiques.volonte.valeur" type="number" value="{{data.aspects.esprit.caracteristiques.volonte.valeur}}" placeholder="0" min="0" max="10"/></div>
                 </div>
             </div>
             <div class="actor-caracs-aspect">
-                <h3>{{localize "agone.aspectsFlamme.ame"}}</h3>
+                <h3>{{localize "agone.aspects.ame"}}</h3>
                 <div class="actor-caracs-line">
-                    <label>{{localize "agone.aspectsFlamme.ame"}}</label>
-                    <div class="small-size"><input name="data.aspectsFlamme.aspectAme.ame" type="number" value="{{data.aspectsFlamme.aspectAme.ame}}" placeholder="0" min="0" max="10"/></div>
-                    <label>{{localize "agone.aspectsFlamme.ameNoire"}}</label>
-                    <div class="small-size"><input name="data.aspectsFlamme.aspectAme.ameNoire" type="number" value="{{data.aspectsFlamme.aspectAme.ameNoire}}" placeholder="0" min="0" max="10"/></div>
+                    <label>{{localize "agone.aspects.ame"}}</label>
+                    <div class="small-size"><input name="data.aspects.ame.positif.valeur" type="number" value="{{data.aspects.ame.positif.valeur}}" placeholder="0" min="0" max="10"/></div>
+                    <label>{{localize "agone.aspects.ameNoire"}}</label>
+                    <div class="small-size"><input name="data.aspects.ame.negatif.valeur" type="number" value="{{data.aspects.ame.negatif.valeur}}" placeholder="0" min="0" max="10"/></div>
                 </div>
                 <div class="actor-caracs-line">
-                    <label>{{localize "agone.aspectsFlamme.bonusAme"}}</label>
-                    <div class="small-size"><input name="data.aspectsFlamme.aspectAme.bonusAme" type="number" value="{{data.aspectsFlamme.aspectAme.bonusAme}}" placeholder="0" readonly/></div>
+                    <label>{{localize "agone.aspects.bonusAme"}}</label>
+                    <div class="small-size"><input name="data.aspects.ame.bonus.valeur" type="number" value="{{data.aspects.ame.bonus.valeur}}" placeholder="0" readonly/></div>
                 </div>
                 <div class="actor-caracs-line">
-                    <label>{{localize "agone.caracPrimaires.charisme"}}</label>
-                    <div class="small-size"><input name="data.caracPrimaires.ame.charisme.valeur" type="number" value="{{data.caracPrimaires.ame.charisme.valeur}}" placeholder="0" min="0" max="10"/></div>
+                    <label>{{localize "agone.caracteristiques.charisme"}}</label>
+                    <div class="small-size"><input name="data.aspects.ame.caracteristiques.charisme.valeur" type="number" value="{{data.aspects.ame.caracteristiques.charisme.valeur}}" placeholder="0" min="0" max="10"/></div>
                 </div>
                 <div class="actor-caracs-line">
-                    <label>{{localize "agone.caracPrimaires.creativite"}}</label>
-                    <div class="small-size"><input name="data.caracPrimaires.ame.creativite.valeur" type="number" value="{{data.caracPrimaires.ame.creativite.valeur}}" placeholder="0" min="0" max="10"/></div>
+                    <label>{{localize "agone.caracteristiques.creativite"}}</label>
+                    <div class="small-size"><input name="data.aspects.ame.caracteristiques.creativite.valeur" type="number" value="{{data.aspects.ame.caracteristiques.creativite.valeur}}" placeholder="0" min="0" max="10"/></div>
                 </div>
-            </div>
+            </div> -->
         </div>    
     </div>
     <!-- <footer class="sheet-footer">    

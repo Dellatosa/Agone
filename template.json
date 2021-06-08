@@ -14,77 +14,82 @@
         "poids": 0,
         "peuple": ""
       },
-      "aspects": {        
-        "aspectsFlamme": {
-          "aspectCorps": {
-            "corps": 0,
-            "corpsNoir": 0
-          },
-          "aspectEsprit": {
-            "esprit": 0,
-            "espritNoir": 0
-          },
-          "aspectAme": {
-            "ame": 0,
-            "ameNoir": 0
-          },
-          "heroisme": {
-            "value": 0,
-            "max": 0
-          }
-        },
-        "AspectsCorruption": {
-          "tenebre": 0,
-          "noirceur": 0,
-          "perfidie": 0
-        }
-      },
-      "caracteristiques": {
-        "caracPrimaires": {
+      "caracsAspects": {
+        "aspects": {
           "corps": {
-            "agilite": {
+            "positif": {
               "valeur": 0,
-              "label": "Agilité",
-              "abrev": "AGI"
+              "label": "Corps"
             },
-            "force": {
+            "negatif": {
               "valeur": 0,
-              "label": "Force",
-              "abrev": "FOR"
+              "label": "Corps noir"
             },
-            "perception": {
-              "valeur": 0,
-              "label": "Perception",
-              "abrev": "PER"
-            },
-            "resistance": {
-              "valeur": 0,
-              "label": "Résistance",
-              "abrev": "RES"
+            "caracteristiques" : {
+              "agilite": {
+                "valeur": 0,
+                "label": "Agilité",
+                "abrev": "AGI"
+              },
+              "force": {
+                "valeur": 0,
+                "label": "Force",
+                "abrev": "FOR"
+              },
+              "perception": {
+                "valeur": 0,
+                "label": "Perception",
+                "abrev": "PER"
+              },
+              "resistance": {
+                "valeur": 0,
+                "label": "Résistance",
+                "abrev": "RES"
+              }
             }
           },
           "esprit": {
-            "Intelligence": {
+            "positif": {
               "valeur": 0,
-              "label": "intelligence",
-              "abrev": "INT"
+              "label": "Esprit"
             },
-            "volonte": {
+            "negatif": {
               "valeur": 0,
-              "label": "Volonté",
-              "abrev": "VOL"
+              "label": "Esprit noir"
+            },
+            "caracteristiques" : {
+              "intelligence": {
+                "valeur": 0,
+                "label": "Intelligence",
+                "abrev": "INT"
+              },
+              "volonte": {
+                "valeur": 0,
+                "label": "Volonté",
+                "abrev": "VOL"
+              }
             }
           },
           "ame": {
-            "charisme": {
+            "positif": {
               "valeur": 0,
-              "label": "Charisme",
-              "abrev": "CHA"
+              "label": "Ame"
             },
-            "creativite": {
+            "negatif": {
               "valeur": 0,
-              "label": "Créativité",
-              "abrev": "CRE"
+              "label": "Ame noire"
+            },
+            "caracteristiques" : {
+              "charisme": {
+                "valeur": 0,
+                "label": "Charisme",
+                "abrev": "CHA"
+              },
+              "creativite": {
+                "valeur": 0,
+                "label": "Créativité",
+                "abrev": "CRE"
+              }
             }
           }
         },
@@ -97,7 +102,14 @@
           "tai": 0,
           "mouvement": 0,
           "nbBlessureGrave": 0,
-          "diffJetVieillesse": 0
+          "diffJetVieillesse": 0,
+          "heroisme": {
+            "value": 0,
+            "max": 0
+          },
+          "tenebre": 0,
+          "noirceur": 0,
+          "perfidie": 0
         }
       },
       "competences": {
@@ -515,7 +527,7 @@
       }
     },
     "Personnage": {
-      "templates": [ "base", "informations", "caracteristiques", "aspects", "competences" ],
+      "templates": [ "base", "informations", "caracsAspects", "competences" ],
       "biographie": "",
       "parrain": "",
       "experience": {
@@ -524,10 +536,10 @@
       }
     },
     "Nemesis": {
-      "templates": [ "base", "informations", "caracteristiques", "aspects", "competences" ]
+      "templates": [ "base", "informations", "caracsAspects", "competences" ]
     },
     "Demon": {
-      "templates": [ "base", "caracteristiques", "competences" ],
+      "templates": [ "base", "caracsAspects", "competences" ],
       "typedemon": "",
       "vol": 0,
       "opacite": 0,
