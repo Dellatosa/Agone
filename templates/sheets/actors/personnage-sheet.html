@@ -91,16 +91,22 @@
     </nav>
     <section class="sheet-body">
         <div class="tab" data-group="principal" data-tab="competences">
-            <h2>TODO : compétences</h2>
             <div class="actor-fam-comp">
             {{#each data.familleCompetences as |famille keyFam|}}
                 <div class="actor-comp-grid">
                     <label class="titre-fam">{{famille.label}}</label>
                     {{#each famille.competences as |competence keyComp|}}
-                    {{#unless domaine}}
-                    <label>{{competence.label}}</label>
-                    <div class="small-size"><input name="data.familleCompetences.{{keyFam}}.competences.{{keyComp}}.rang" type="number" value="{{competence.rang}}" placeholder="0" readonly/></div>
-                    {{/unless}}
+                        {{#if domaine}}
+                            <label class="titre-comp">{{competence.label}}</label>
+                            {{#each domaines}}
+                                <label>{{this.label}}</label>
+                                <div class="small-size">val</div>
+                                <!-- <div class="small-size"><input name="data.familleCompetences.{{keyFam}}.competences.{{keyComp}}.domaines.{{this.rang}}" type="number" value="{{this.rang}}" placeholder="0"/></div> -->
+                            {{/each}}
+                        {{else}}
+                            <label>{{competence.label}}</label>
+                            <div class="small-size"><input name="data.familleCompetences.{{keyFam}}.competences.{{keyComp}}.rang" type="number" value="{{competence.rang}}" placeholder="0"/></div>
+                        {{/if}}
                     {{/each}}
                 </div> 
             {{/each}}

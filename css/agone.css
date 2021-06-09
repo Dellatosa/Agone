@@ -106,11 +106,18 @@ select.auto-size {
   display: flex;
 }
 .actor-fam-comp .actor-comp-grid {
+  padding: 3px;
   display: grid;
   align-content: start;
   grid-template-columns: max-content 3.5em;
+  font-size: 0.8em;
 }
 .actor-fam-comp .actor-comp-grid .titre-fam {
   grid-column-start: span 2;
   grid-row: 1;
+  font-size: 1.2em;
+  text-align: center;
+}
+.actor-fam-comp .actor-comp-grid .titre-comp {
+  grid-column-start: span 2;
 }
