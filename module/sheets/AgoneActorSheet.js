@@ -4,7 +4,8 @@ export default class AgoneActorSheet extends ActorSheet {
         return mergeObject(super.defaultOptions, {
             width: 670,
             height: 870,
-            classes: ["agone", "sheet", "actor"]
+            classes: ["agone", "sheet", "actor"],
+            tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "competences" }]
         });
     }
 
@@ -36,20 +37,21 @@ export default class AgoneActorSheet extends ActorSheet {
         }
         actorData.aspects.ame.bonus.valeur = actorData.aspects.ame.positif.valeur - actorData.aspects.ame.negatif.valeur;
 
-        // Calcul des scores de Flamme et Flamme noire
+        // Calcul des scores de Flamme, Flamme noire et de points d'heroisme
         actorData.caracSecondaires.flamme = Math.min(actorData.aspects.corps.positif.valeur, actorData.aspects.esprit.positif.valeur, actorData.aspects.ame.positif.valeur);
         actorData.caracSecondaires.flammeNoire = Math.min(actorData.aspects.corps.negatif.valeur, actorData.aspects.esprit.negatif.valeur, actorData.aspects.ame.negatif.valeur);
+        actorData.caracSecondaires.heroisme.max = actorData.caracSecondaires.flamme * 2;
 
         // Calcul des caractéristiques secondaires
-        actorData.caracSecondaires.seuilBlessureGrave = Math.floor(actorData.caracSecondaires.pdv.max /3);
-        actorData.caracSecondaires.seuilBlessureCritique = Math.floor(actorData.caracSecondaires.pdv.max /2);
-        if(actorData.peuple != "aucun" && actorData.peuple != null)
+        actorData.caracSecondaires.seuilBlessureGrave = Math.floor(actorData.caracSecondaires.pdv.max / 3);
+        actorData.caracSecondaires.seuilBlessureCritique = Math.floor(actorData.caracSecondaires.pdv.max / 2);
+        if(actorData.peuple != "aucun" && actorData.peuple != "" && actorData.peuple != null)
         {
             actorData.caracSecondaires.tai = CONFIG.agone.peuple[actorData.peuple].tai;
             actorData.caracSecondaires.mouvement = CONFIG.agone.peuple[actorData.peuple].mv;
             actorData.caracSecondaires.chargeMax = (actorData.aspects.corps.caracteristiques.force.valeur + actorData.aspects.corps.caracteristiques.resistance.valeur) * CONFIG.agone.peuple[actorData.peuple].mpoids;
-            actorData.caracSecondaires.demiCharge = Math.floor(actorData.caracSecondaires.chargeMax /2);
-            actorData.caracSecondaires.chargeQuotidienne = Math.floor(actorData.caracSecondaires.chargeMax /4);
+            actorData.caracSecondaires.demiCharge = Math.floor(actorData.caracSecondaires.chargeMax / 2);
+            actorData.caracSecondaires.chargeQuotidienne = Math.floor(actorData.caracSecondaires.chargeMax / 4);
             actorData.caracSecondaires.bonusDommages = calcBonusDommages(actorData.aspects.corps.caracteristiques.force.valeur, actorData.caracSecondaires.tai);
         } else {
             actorData.caracSecondaires.tai = 0;

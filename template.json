@@ -96,7 +96,6 @@
         "caracSecondaires": {
           "pdv": {
             "value": 0,
-            "min": 0,
             "max": 0
           },
           "tai": 0,
@@ -113,416 +112,526 @@
         }
       },
       "competences": {
-        "vigilance": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "epreuves",
-          "max": 10
-        },
-        "athletisme": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "epreuves",
-          "max": 10
-        },
-        "escalade": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "epreuves",
-          "max": 10
-        },
-        "equitation": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "epreuves",
-          "max": 10
-        },
-        "esquive": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "epreuves",
-          "max": 10
-        },
-        "natation": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "epreuves",
-          "max": 10
-        },
-        "premiersSoins": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "epreuves",
-          "max": 10
-        },
-        "survie": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "epreuves",
-          "max": 10
-        },
-        "armes": {
-          "domaines": [],
-          "caracteristique": "",
-          "type": "epreuves"
-        },
-        "Acrobatics": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "maraude",
-          "max": 10
-        },
-        "Conceal": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "maraude",
-          "max": 10
-        },
-        "Hunt": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "maraude",
-          "max": 10
-        },
-        "Disguise": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "maraude",
-          "max": 10
-        },
-        "Stealth": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "maraude",
-          "max": 10
-        },
-        "Search": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "maraude",
-          "max": 10
-        },
-        "Intrigue": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "maraude",
-          "max": 10
-        },
-        "Gambling": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "maraude",
-          "max": 10
-        },
-        "Legerdemain": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "maraude",
-          "max": 10
-        },
-        "Poisons": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "maraude",
-          "max": 10
-        },
-        "locksmith": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "maraude",
-          "max": 10
-        },
-        "FastTalk": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "societe",
-          "max": 10
-        },
-        "Diplomacy": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "societe",
-          "max": 10
-        },
-        "Eloquence": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "societe",
-          "max": 10
-        },
-        "Etiquette": {
-          "domaines": [],
-          "caracteristique": "",
-          "type": "societe"
-        },
-        "Stewardship": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "societe",
-          "max": 10
-        },
-        "Music": {
-          "domaines": [],
-          "caracteristique": "",
-          "type": "societe"
-        },
-        "Trade": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "societe",
-          "max": 10
-        },
-        "Painting": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "societe",
-          "max": 10
-        },
-        "Poetry": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "societe",
-          "max": 10
-        },
-        "Craft": {
-          "domaines": [],
-          "caracteristique": "",
-          "type": "societe"
-        },
-        "Sculpture": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "societe",
-          "max": 10
-        },
-        "Traditions": {
-          "domaines": [],
-          "caracteristique": "",
-          "type": "societe"
-        },
-        "Alphabets": {
-          "domaines": [],
-          "caracteristique": "",
-          "type": "savoir"
-        },
-        "Astronomy": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "savoir",
-          "max": 10
-        },
-        "Surgery": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "savoir",
-          "max": 10
-        },
-        "Cults": {
-          "domaines": [],
-          "caracteristique": "",
-          "type": "savoir"
-        },
-        "Geography": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "savoir",
-          "max": 10
-        },
-        "PlantLore": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "savoir",
-          "max": 10
-        },
-        "HistoryAndLegends": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "savoir",
-          "max": 10
-        },
-        "Languages": {
-          "domaines": [],
-          "caracteristique": "",
-          "type": "savoir"
-        },
-        "Law": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "savoir",
-          "max": 10
-        },
-        "Medicine": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "savoir",
-          "max": 10
-        },
-        "Navigation": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "savoir",
-          "max": 10
-        },
-        "Seasons": {
-          "domaines": [
-            {
-              "label": "Winter",
-              "rang": 0,
-              "max": 10,
-              "specialisation": false
-            },
-            {
-              "label": "Spring",
-              "rang": 0,
-              "max": 10,
-              "specialisation": false
-            },
-            {
-              "label": "Summer",
-              "rang": 0,
-              "max": 10,
-              "specialisation": false
-            },
-            {
-              "label": "Fall",
-              "rang": 0,
-              "max": 10,
-              "specialisation": false
+        "familleCompetences": {
+          "epreuves": {
+            "label": "Epreuves",
+            "competences": {
+              "armes": {
+                "label": "Armes",
+                "domaine": true,
+                "domaines": [
+                  {
+                    "label": "1",
+                    "rang": 0,
+                    "max": 10,
+                    "specialisation": false
+                  },
+                  {
+                    "label": "2",
+                    "rang": 0,
+                    "max": 10,
+                    "specialisation": false
+                  },
+                  {
+                    "label": "3",
+                    "rang": 0,
+                    "max": 10,
+                    "specialisation": false
+                  },
+                  {
+                    "label": "4",
+                    "rang": 0,
+                    "max": 10,
+                    "specialisation": false
+                  },
+                  {
+                    "label": "5",
+                    "rang": 0,
+                    "max": 10,
+                    "specialisation": false
+                  }
+                ],
+                "caracteristique": ""
+              },
+              "athletisme": {
+                "label": "Athlétisme",
+                "domaine": false,
+                "rang": 0,
+                "caracteristique": "",
+                "specialisation": false,
+                "max": 10
+              },
+              "equitation": {
+                "label": "Equitation",
+                "domaine": false,
+                "rang": 0,
+                "caracteristique": "",
+                "specialisation": false,
+                "max": 10
+              },
+              "escalade": {
+                "label": "Escalade",
+                "domaine": false,
+                "rang": 0,
+                "caracteristique": "",
+                "specialisation": false,
+                "max": 10
+              },
+              "esquive": {
+                "label": "Esquive",
+                "domaine": false,
+                "rang": 0,
+                "caracteristique": "",
+                "specialisation": false,
+                "max": 10
+              },
+              "natation": {
+                "label": "Natation",
+                "domaine": false,
+                "rang": 0,
+                "caracteristique": "",
+                "specialisation": false,
+                "max": 10
+              },
+              "premiersSoins": {
+                "label": "Premiers soins",
+                "domaine": false,
+                "rang": 0,
+                "caracteristique": "",
+                "specialisation": false,
+                "max": 10
+              },
+              "survie": {
+                "label": "Survie",
+                "domaine": false,
+                "rang": 0,
+                "caracteristique": "",
+                "specialisation": false,
+                "max": 10
+              },
+              "vigilance": {
+                "label": "Vigilance",
+                "domaine": false,
+                "rang": 0,
+                "caracteristique": "",
+                "specialisation": false,
+                "max": 10
+              }
             }
-          ],
-          "caracteristique": "",
-          "type": "savoir"
-        },
-        "Strategy": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "savoir",
-          "max": 10
-        },
-        "BeastLore": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "savoir",
-          "max": 10
-        },
-        "MagicalArts": {
-          "domaines": [
-            {
-              "label": "Tune",
+          },
+          "maraude" : {
+            "label": "Maraude",
+            "competences": {
+            "acrobatie": {
+              "label": "Acrobatie",
+              "domaine": false,
               "rang": 0,
-              "max": 10,
-              "specialisation": false
+              "caracteristique": "",
+              "specialisation": false,
+              "max": 10
             },
-            {
-              "label": "Shape",
+            "camouflage": {
+              "label": "Camouflage",
+              "domaine": false,
               "rang": 0,
-              "max": 10,
-              "specialisation": false
+              "caracteristique": "",
+              "specialisation": false,
+              "max": 10
             },
-            {
-              "label": "Vista",
+            "chasse": {
+              "label": "Chasse",
+              "domaine": false,
               "rang": 0,
-              "max": 10,
-              "specialisation": false
+              "caracteristique": "",
+              "specialisation": false,
+              "max": 10
             },
-            {
-              "label": "Scansion",
+            "deguisement": {
+              "label": "Déguisement",
+              "domaine": false,
               "rang": 0,
-              "max": 10,
-              "specialisation": false
+              "caracteristique": "",
+              "specialisation": false,
+              "max": 10
+            },
+            "discretion": {
+              "label": "Discrétion",
+              "domaine": false,
+              "rang": 0,
+              "caracteristique": "",
+              "specialisation": false,
+              "max": 10
+            },  
+            "fouille": {
+              "label": "Fouille",
+              "domaine": false,
+              "rang": 0,
+              "caracteristique": "",
+              "specialisation": false,
+              "max": 10
+            },
+            "intrigue": {
+              "label": "Intigue",
+              "domaine": false,
+              "rang": 0,
+              "caracteristique": "",
+              "specialisation": false,
+              "max": 10
+            },
+            "jeu": {
+              "label": "Jeu",
+              "domaine": false,
+              "rang": 0,
+              "caracteristique": "",
+              "specialisation": false,
+              "max": 10
+            },
+            "passePasse": {
+              "label": "Passe-passe",
+              "domaine": false,
+              "rang": 0,
+              "caracteristique": "",
+              "specialisation": false,
+              "max": 10
+            },
+            "poisons": {
+              "label": "Poisons",
+              "domaine": false,
+              "rang": 0,
+              "caracteristique": "",
+              "specialisation": false,
+              "max": 10
+            },
+            "serrurerie": {
+              "label": "Serrurerie",
+              "domaine": false,
+              "rang": 0,
+              "caracteristique": "",
+              "specialisation": false,
+              "max": 10
             }
-          ],
-          "caracteristique": "",
-          "type": "occulte"
-        },
-        "DancerLore": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "occulte",
-          "max": 10
-        },
-        "CypherSorcery": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "occulte",
-          "max": 10
-        },
-        "Demonology": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "occulte",
-          "max": 10
-        },
-        "Concord": {
-          "rang": 0,
-          "caracteristique": "",
-          "specialisation": false,
-          "type": "occulte",
-          "max": 10
-        },
-        "Resonance": {
-          "domaines": [
-            {
-              "label": "Jornist",
-              "rang": 0,
-              "max": 10,
-              "specialisation": false
-            },
-            {
-              "label": "Eclipsist",
-              "rang": 0,
-              "max": 10,
-              "specialisation": false
-            },
-            {
-              "label": "Obscurantist",
-              "rang": 0,
-              "max": 10,
-              "specialisation": false
             }
-          ],
-          "caracteristique": "",
-          "type": "occulte"
+          },
+          "societe": {
+            "label": "Société",
+            "competences": {
+            "baratin": {
+              "label": "Baratin",
+              "domaine": false,
+              "rang": 0,
+              "caracteristique": "",
+              "specialisation": false,
+              "max": 10
+            },
+            "diplomatie": {
+              "label": "Diplomatie",
+              "domaine": false,
+              "rang": 0,
+              "caracteristique": "",
+              "specialisation": false,
+              "max": 10
+            },
+            "eloquence": {
+              "label": "Eloquence",
+              "domaine": false,
+              "rang": 0,
+              "caracteristique": "",
+              "specialisation": false,
+              "max": 10
+            },
+            "etiquette": {
+              "label": "Etiquette",
+              "domaine": true,
+              "domaines": [],
+              "caracteristique": ""
+            },
+            "intendance": {
+              "label": "Intendance",
+              "domaine": false,
+              "rang": 0,
+              "caracteristique": "",
+              "specialisation": false,
+              "max": 10
+            },
+            "musique": {
+              "label": "Musique",
+              "domaine": true,
+              "domaines": [],
+              "caracteristique": ""
+            },
+            "negoce": {
+              "label": "Négoce",
+              "domaine": false,
+              "rang": 0,
+              "caracteristique": "",
+              "specialisation": false,
+              "max": 10
+            },
+            "peinture": {
+              "label": "Peinture",
+              "domaine": false,
+              "rang": 0,
+              "caracteristique": "",
+              "specialisation": false,
+              "max": 10
+            },
+            "poesie": {
+              "label": "Poésie",
+              "domaine": false,
+              "rang": 0,
+              "caracteristique": "",
+              "specialisation": false,
+              "max": 10
+            },
+            "savoirFaire": {
+              "label": "Savoir-faire",
+              "domaine": true,
+              "domaines": [],
+              "caracteristique": ""
+            },
+            "sculpture": {
+              "label": "Sculpture",
+              "domaine": false,
+              "rang": 0,
+              "caracteristique": "",
+              "specialisation": false,
+              "max": 10
+            },
+            "usCoutumes": {
+              "label": "Us et coutumes",
+              "domaine": true,
+              "domaines": [],
+              "caracteristique": ""
+            }
+          }
+          },
+          "savoir": {
+            "label": "Savoir",
+            "competences": {
+            "alphabets": {
+              "label": "Alphabets",
+              "domaine": true,
+              "domaines": [],
+              "caracteristique": ""  
+            },
+            "astronomie": {
+              "label": "Astronomie",
+              "domaine": false,
+              "rang": 0,
+              "caracteristique": "",
+              "specialisation": false,
+              "max": 10
+            },
+            "chirurgie": {
+              "label": "Chirurgie",
+              "domaine": false,
+              "rang": 0,
+              "caracteristique": "",
+              "specialisation": false,
+              "max": 10
+            },
+            "cultes": {
+              "label": "Cultes",
+              "domaine": true,
+              "domaines": [],
+              "caracteristique": ""
+            },
+            "geographie": {
+              "label": "Géographie",
+              "domaine": false,
+              "rang": 0,
+              "caracteristique": "",
+              "specialisation": false,
+              "max": 10
+            },
+            "herboristerie": {
+              "label": "Herboristerie",
+              "domaine": false,
+              "rang": 0,
+              "caracteristique": "",
+              "specialisation": false,
+              "max": 10
+            },
+            "histoiresLegendes": {
+              "label": "Histoire et Légendes",
+              "domaine": false,
+              "rang": 0,
+              "caracteristique": "",
+              "specialisation": false,
+              "max": 10
+            },
+            "langues": {
+              "label": "Langues",
+              "domaine": true,
+              "domaines": [],
+              "caracteristique": ""
+            },
+            "loi": {
+              "label": "Loi",
+              "domaine": false,
+              "rang": 0,
+              "caracteristique": "",
+              "specialisation": false,
+              "max": 10
+            },
+            "medecine": {
+              "label": "Médecine",
+              "domaine": false,
+              "rang": 0,
+              "caracteristique": "",
+              "specialisation": false,
+              "max": 10
+            },
+            "navigation": {
+              "label": "Navigation",
+              "domaine": false,
+              "rang": 0,
+              "caracteristique": "",
+              "specialisation": false,
+              "max": 10
+            },
+            "saisons": {
+              "label": "Saisons",
+              "domaine": true,
+              "domaines": [
+                {
+                  "label": "Hiver",
+                  "rang": 0,
+                  "max": 10,
+                  "specialisation": false
+                },
+                {
+                  "label": "Printemps",
+                  "rang": 0,
+                  "max": 10,
+                  "specialisation": false
+                },    
+                {
+                  "label": "Eté",
+                  "rang": 0,
+                  "max": 10,
+                  "specialisation": false
+                },
+                {
+                  "label": "Automne",
+                  "rang": 0,
+                  "max": 10,
+                  "specialisation": false
+                }
+              ],
+              "caracteristique": ""
+            },
+            "strategie": {
+              "label": "Stratégie",
+              "domaine": false,
+              "rang": 0,
+              "caracteristique": "",
+              "specialisation": false,
+              "max": 10
+            },
+            "zoologie": {
+              "label": "Zoologie",
+              "domaine": false,
+              "rang": 0,
+              "caracteristique": "",
+              "specialisation": false,
+              "max": 10
+            }
+          }
+          },
+          "occulte": {
+            "label": "Occulte",
+            "competences": {
+            "artsMagiques": {
+              "label": "Arts magiques",
+              "domaine": true,
+              "domaines": [
+                {
+                  "label": "Accord",
+                  "rang": 0,
+                  "max": 10,
+                  "specialisation": false
+                },
+                {
+                  "label": "Cyse",
+                  "rang": 0,
+                  "max": 10,
+                  "specialisation": false
+                },
+                {
+                  "label": "Décorum",
+                  "rang": 0,
+                  "max": 10,
+                  "specialisation": false
+                },
+                {
+                 "label": "Geste",
+                  "rang": 0,
+                  "max": 10,
+                  "specialisation": false
+                }
+              ],
+              "caracteristique": ""
+            },
+            "connDanseurs": {
+              "label": "Conn. des danseurs",
+              "domaine": false,
+              "rang": 0,
+              "caracteristique": "",
+              "specialisation": false,
+              "max": 10
+            },
+            "cryptogramme": {
+              "label": "Cryptogramme",
+              "domaine": false,
+              "rang": 0,
+              "caracteristique": "",
+              "specialisation": false,
+              "max": 10
+            },
+            "demonologie": {
+              "label": "Démonologie",
+              "domaine": false,
+              "rang": 0,
+              "caracteristique": "",
+              "specialisation": false,
+              "max": 10
+            },
+            "harmonie": {
+              "label": "Harmonie",
+              "domaine": false,
+              "rang": 0,
+              "caracteristique": "",
+              "specialisation": false,
+              "max": 10
+            },
+            "resonance": {
+              "label": "Résonance",
+              "domaine": true,
+              "domaines": [
+                {
+                  "label": "Jorniste",
+                  "rang": 0,
+                  "max": 10,
+                  "specialisation": false
+                },
+                {
+                  "label": "Eclipsiste",
+                  "rang": 0,
+                  "max": 10,
+                  "specialisation": false
+                },
+                {
+                  "label": "Obscurantiste",
+                  "rang": 0,
+                  "max": 10,
+                  "specialisation": false
+                }
+              ],
+              "caracteristique": ""
+            }
+          }
+          }
         }
       }
     },
