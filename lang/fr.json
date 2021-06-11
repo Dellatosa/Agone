@@ -36,7 +36,8 @@
             "magie": "Magie",
             "combat": "Combat",
             "sante": "Santé",
-            "poidsPortable" : "Poids portable"
+            "poidsPortable" : "Poids portable",
+            "domaine": "Domaine"
         },
         "caracteristiques": {    
             "force": "Force",

@@ -119,38 +119,43 @@
               "armes": {
                 "label": "Armes",
                 "domaine": true,
-                "domaines": [
-                  {
-                    "label": "1",
+                "domaines": {
+                  "d1": {
+                    "domPerso": true,
+                    "label": "d1",
                     "rang": 0,
                     "max": 10,
                     "specialisation": false
                   },
-                  {
-                    "label": "2",
+                  "d2": {
+                    "domPerso": true,
+                    "label": "",
                     "rang": 0,
                     "max": 10,
                     "specialisation": false
                   },
-                  {
-                    "label": "3",
+                  "d3": {
+                    "domPerso": true,
+                    "label": "",
                     "rang": 0,
                     "max": 10,
                     "specialisation": false
                   },
-                  {
-                    "label": "4",
+                  "d4": {
+                    "domPerso": true,
+                    "label": "",
                     "rang": 0,
                     "max": 10,
                     "specialisation": false
                   },
-                  {
-                    "label": "5",
+                  "d5": {
+                    "domPerso": true,
+                    "label": "",
                     "rang": 0,
                     "max": 10,
                     "specialisation": false
                   }
-                ],
+                },
                 "caracteristique": ""
               },
               "athletisme": {
@@ -342,7 +347,22 @@
               "etiquette": {
                 "label": "Etiquette",
                 "domaine": true,
-                "domaines": [],
+                "domaines": {
+                  "d1": {
+                    "domPerso": true,
+                    "label": "",
+                    "rang": 0,
+                    "max": 10,
+                    "specialisation": false
+                  },
+                  "d2": {
+                    "domPerso": true,
+                    "label": "",
+                    "rang": 0,
+                    "max": 10,
+                    "specialisation": false
+                  }
+                },
                 "caracteristique": ""
               },
               "intendance": {
@@ -356,7 +376,22 @@
               "musique": {
                 "label": "Musique",
                 "domaine": true,
-                "domaines": [],
+                "domaines": {
+                  "d1": {
+                    "domPerso": true,
+                    "label": "",
+                    "rang": 0,
+                    "max": 10,
+                    "specialisation": false
+                  },
+                  "d2": {
+                    "domPerso": true,
+                    "label": "",
+                    "rang": 0,
+                    "max": 10,
+                    "specialisation": false
+                  }
+                },
                 "caracteristique": ""
               },
               "negoce": {
@@ -386,7 +421,22 @@
               "savoirFaire": {
                 "label": "Savoir-faire",
                 "domaine": true,
-                "domaines": [],
+                "domaines": {
+                  "d1": {
+                    "domPerso": true,
+                    "label": "",
+                    "rang": 0,
+                    "max": 10,
+                    "specialisation": false
+                  },
+                  "d2": {
+                    "domPerso": true,
+                    "label": "",
+                    "rang": 0,
+                    "max": 10,
+                    "specialisation": false
+                  }
+                },
                 "caracteristique": ""
               },  
               "sculpture": {
@@ -400,7 +450,22 @@
               "usCoutumes": {
                 "label": "Us et coutumes",
                 "domaine": true,
-                "domaines": [],
+                "domaines": {
+                  "d1": {
+                    "domPerso": true,
+                    "label": "",
+                    "rang": 0,
+                    "max": 10,
+                    "specialisation": false
+                  },
+                  "d2": {
+                    "domPerso": true,
+                    "label": "",
+                    "rang": 0,
+                    "max": 10,
+                    "specialisation": false
+                  }
+                },
                 "caracteristique": ""
               }
             }
@@ -411,7 +476,22 @@
               "alphabets": {
                 "label": "Alphabets",
                 "domaine": true,
-                "domaines": [],
+                "domaines": {
+                  "d1": {
+                    "domPerso": true,
+                    "label": "",
+                    "rang": 0,
+                    "max": 10,
+                    "specialisation": false
+                  },
+                  "d2": {
+                    "domPerso": true,
+                    "label": "",
+                    "rang": 0,
+                    "max": 10,
+                    "specialisation": false
+                  }
+                },
                 "caracteristique": ""  
               },
               "astronomie": {
@@ -433,7 +513,22 @@
               "cultes": {
                 "label": "Cultes",
                 "domaine": true,
-                "domaines": [],
+                "domaines": {
+                  "d1": {
+                    "domPerso": true,
+                    "label": "",
+                    "rang": 0,
+                    "max": 10,
+                    "specialisation": false
+                  },
+                  "d2": {
+                    "domPerso": true,
+                    "label": "",
+                    "rang": 0,
+                    "max": 10,
+                    "specialisation": false
+                  }
+                },
                 "caracteristique": ""
               },
               "geographie": {
@@ -463,7 +558,22 @@
               "langues": {
                 "label": "Langues",
                 "domaine": true,
-                "domaines": [],
+                "domaines": {
+                  "d1": {
+                    "domPerso": true,
+                    "label": "",
+                    "rang": 0,
+                    "max": 10,
+                    "specialisation": false
+                  },
+                  "d2": {
+                    "domPerso": true,
+                    "label": "",
+                    "rang": 0,
+                    "max": 10,
+                    "specialisation": false
+                  }
+                },
                 "caracteristique": ""
               },
               "loi": {
@@ -493,32 +603,32 @@
               "saisons": {
                 "label": "Saisons",
                 "domaine": true,
-                "domaines": [
-                  {
+                "domaines": {
+                  "hiver": {
                     "label": "Hiver",
                     "rang": 0,
                     "max": 10,
                     "specialisation": false
                   },
-                  {
+                  "printemps": {
                     "label": "Printemps",
                     "rang": 0,
                     "max": 10,
                     "specialisation": false
                   },    
-                  {
+                  "ete": {
                     "label": "Eté",
                     "rang": 0,
                     "max": 10,
                     "specialisation": false
                   },
-                  {
+                  "automne": { 
                     "label": "Automne",
                     "rang": 0,
                     "max": 10,
                     "specialisation": false
                   }
-                ],  
+                },  
                 "caracteristique": ""
               },
               "strategie": {
@@ -545,32 +655,32 @@
               "artsMagiques": {
                 "label": "Arts magiques",
                 "domaine": true,
-                "domaines": [
-                  {
+                "domaines": {
+                  "accord": {
                     "label": "Accord",
                     "rang": 0,
                     "max": 10,
                     "specialisation": false
                   },
-                  {
+                  "cyse": {
                     "label": "Cyse",
                     "rang": 0,
                     "max": 10,
                     "specialisation": false
                   },
-                  {
+                  "decorum": {
                     "label": "Décorum",
                     "rang": 0,
                     "max": 10,
                     "specialisation": false
                   },
-                  {
+                  "geste": {
                    "label": "Geste",
                     "rang": 0,
                     "max": 10,
                     "specialisation": false
                   }
-                ],
+                },
                 "caracteristique": ""
               },
               "connDanseurs": {
@@ -608,26 +718,26 @@
               "resonance": {
                 "label": "Résonance",
                 "domaine": true,
-                "domaines": [
-                  {
+                "domaines": {
+                  "jorniste" : {
                     "label": "Jorniste",
                     "rang": 0,
                     "max": 10,
                     "specialisation": false
                   },
-                  {
+                  "eclipsiste": {
                     "label": "Eclipsiste",
                     "rang": 0,
                     "max": 10,
                     "specialisation": false
                   },
-                  {
+                  "obscurantiste": {
                     "label": "Obscurantiste",
                     "rang": 0,
                     "max": 10,
                     "specialisation": false
                   }
-                ],
+                },
                 "caracteristique": ""
               }
             }

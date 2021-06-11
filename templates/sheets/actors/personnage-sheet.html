@@ -29,7 +29,7 @@
                 <label>{{localize "agone.common.taille"}}</label>
                 <div class="small-size"><input name="data.taille" type="number" value="{{data.taille}}" placeholder="{{localize 'agone.common.taille'}}"/></div>
                 <label >{{localize "agone.caracteristiques.tai"}}</label>
-                <div class="small-size"><input name="data.caracSecondaires.tai" type="number" value="{{data.caracSecondaires.tai}}" placeholder="{{localize 'agone.caracteristiques.tai'}}"/></div>
+                <div class="small-size"><input name="data.caracSecondaires.tai" type="number" value="{{data.caracSecondaires.tai}}" placeholder="{{localize 'agone.caracteristiques.tai'}}" readonly/></div>
                 <label>{{localize "agone.common.poids"}}</label>
                 <div class="small-size"><input name="data.poids" type="number" value="{{data.poids}}" placeholder="{{localize 'agone.common.poids'}}"/></div>
                 <label>{{localize "agone.caracteristiques.mouvement.abbr"}}</label>
@@ -92,24 +92,41 @@
     <section class="sheet-body">
         <div class="tab" data-group="principal" data-tab="competences">
             <div class="actor-fam-comp">
-            {{#each data.familleCompetences as |famille keyFam|}}
-                <div class="actor-comp-grid">
-                    <label class="titre-fam">{{famille.label}}</label>
-                    {{#each famille.competences as |competence keyComp|}}
-                        {{#if domaine}}
-                            <label class="titre-comp">{{competence.label}}</label>
-                            {{#each domaines}}
-                                <label>{{this.label}}</label>
-                                <div class="small-size">val</div>
-                                <!-- <div class="small-size"><input name="data.familleCompetences.{{keyFam}}.competences.{{keyComp}}.domaines.{{this.rang}}" type="number" value="{{this.rang}}" placeholder="0"/></div> -->
+                {{#each data.colonnes as |col|}}
+                    <div class="actor-comp-grid">
+                        {{#each ../data.familleCompetences as |famille keyFam|}} 
+                            {{#if (eq famille.numcol col)}}
+                                <label class="titre-fam">{{famille.label}}</label>
+                            {{/if}}
+                            {{#each famille.competences as |competence keyComp|}}
+                                {{#if domaine}}
+                                    {{#if (eq competence.numcol col)}}
+                                        <label class="titre-comp">{{competence.label}}</label>
+                                    {{/if}}
+                                    {{#each domaines as |domaine keyDom|}}
+                                        {{#if (eq domaine.numcol col)}}
+                                            {{#if domPerso}}
+                                                <div class="dom-perso"><input name="data.familleCompetences.{{keyFam}}.competences.{{keyComp}}.domaines.{{keyDom}}.label" type="text" value="{{domaine.label}}" placeholder="{{localize 'agone.common.domaine'}}"/></div>
+                                            {{else}}
+                                                <label class="dom-fixe">{{domaine.label}}</label>
+                                            {{/if}}
+                                            <div class="val-comp"><input name="data.familleCompetences.{{keyFam}}.competences.{{keyComp}}.domaines.{{keyDom}}.rang" type="number" value="{{domaine.rang}}" placeholder="0"/></div>
+                                            <div class="chk-spe"><input name="data.familleCompetences.{{keyFam}}.competences.{{keyComp}}.domaines.{{keyDom}}.specialisation" type="checkbox" data-dtype="Boolean" {{checked domaine.specialisation}}/></div>
+                                            <i class="fas fa-dice rollable" data-roll="d10+@familleCompetences.{{keyFam}}.competences.{{keyComp}}.domaines.{{keyDom}}.rang" data-label="{{domaine.label}}"></i>
+                                        {{/if}}      
+                                    {{/each}}
+                                {{else}}
+                                    {{#if (eq competence.numcol col)}}
+                                        <label class="lbl-comp">{{competence.label}}</label>     
+                                        <div class="val-comp"><input name="data.familleCompetences.{{keyFam}}.competences.{{keyComp}}.rang" type="number" value="{{competence.rang}}" placeholder="0"/></div>
+                                        <div class="chk-spe"><input name="data.familleCompetences.{{keyFam}}.competences.{{keyComp}}.specialisation" type="checkbox" data-dtype="Boolean" {{checked competence.specialisation}}/></div>
+                                        <i class="fas fa-dice rollable" data-roll="d10+@familleCompetences.{{keyFam}}.competences.{{keyComp}}.rang" data-label="{{competence.label}}"></i>
+                                    {{/if}}    
+                                {{/if}}
                             {{/each}}
-                        {{else}}
-                            <label>{{competence.label}}</label>
-                            <div class="small-size"><input name="data.familleCompetences.{{keyFam}}.competences.{{keyComp}}.rang" type="number" value="{{competence.rang}}" placeholder="0"/></div>
-                        {{/if}}
-                    {{/each}}
-                </div> 
-            {{/each}}
+                        {{/each}}
+                    </div> 
+                {{/each}}
             </div>
         </div>
         <div class="tab" data-group="principal" data-tab="caracSecondaires">

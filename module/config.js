@@ -34,6 +34,81 @@ agone.aspects = {
     Bame: "agone.aspects.bonusAme"
 }
 
+agone.typesCompetence = {
+    aucun: "",
+    epreuves: "agone.typesCompetence.epreuves",
+    maraude: "agone.typesCompetence.maraude",
+    societe: "agone.typesCompetence.societe",
+    savoir: "agone.typesCompetence.savoir",
+    occulte: "agone.typesCompetence.occulte"
+}
+
+agone.competences = {
+    vigilance: "agone.competences.vigilance",
+    athletisme: "agone.competences.athletisme",
+    escalade: "agone.competences.escalade",
+    equitation: "agone.competences.equitation",
+    esquive: "agone.competences.esquive",
+    natation: "agone.competences.natation",
+    premiersSoins: "agone.competences.premiersSoins",
+    survie: "agone.competences.survie",
+    armes: "agone.competences.armes",
+    acrobatie : "agone.competences.acrobatie",
+    camouflage: "agone.competences.camouflage",
+    chasse: "agone.competences.chasse",
+    deguisement: "agone.competences.deguisement",
+    discretion: "agone.competences.discretion",
+    fouille: "agone.competences.fouille",
+    intrigue: "agone.competences.intrigue",
+    jeu: "agone.competences.jeu",
+    passePasse: "agone.competences.passePasse",
+    poisons: "agone.competences.poisons",
+    serrurerie: "agone.competences.serrurerie",
+    baratin: "agone.competences.baratin",
+    diplomatie: "Diplomacy",
+    eloquence: "agone.competences.eloquence",
+    etiquette: "agone.competences.etiquette",
+    intendance: "agone.competences.intendance",
+    musique: "agone.competences.musique",
+    negoce: "agone.competences.negoce",
+    einture: "agone.competences.peinture",
+    poesie: "agone.competences.poesie",
+    savoirFaire: "agone.competences.savoirFaire",
+    sculpture: "agone.competences.sculpture",
+    usCoutumes: "agone.competences.usCoutumes",
+    alphabets: "agone.competences.alphabets",
+    astronomie: "agone.competences.astronomie",
+    chirurgie: "agone.competences.chirurgie",
+    cultes: "agone.competences.cultes",
+    geographie: "agone.competences.geographie",
+    herboristerie: "agone.competences.herboristerie",
+    histoireLegendes: "agone.competences.histoireLegendes",
+    langues: "agone.competences.langues",
+    loi: "agone.competences.loi",
+    medecine: "agone.competences.medecine",
+    navigation: "agone.competences.navigation",
+    saisons: "agone.competences.saisons",
+    strategie: "agone.competences.strategie",
+    zoologie: "agone.competences.zoologie",
+    artsMagiques: "agone.competences.artsMagiques",
+    accord: "agone.competences.accord",
+    cyse: "agone.competences.cyse",
+    decorum: "agone.competences.decorum",
+    geste: "agone.competences.geste",
+    connDanseurs: "agone.competences.connDanseurs",
+    cryptogramme: "agone.competences.cryptogramme",
+    demonologie: "agone.competences.demonologie",
+    harmonie: "agone.competences.harmonie",
+    resonance: "agone.competences.resonance",
+    printemps: "agone.common.printemps",
+    ete: "agone.common.ete",
+    automne: "agone.common.automne",
+    hiver: "agone.common.hiver",
+    jorniste: "agone.common.jorniste",
+    eclipsiste: "agone.common.eclipsiste",
+    obscurantiste: "agone.common.obscurantiste"
+}
+
 agone.peuple = {
     aucun: "",
     humain: {
@@ -154,13 +229,4 @@ agone.saisons = {
     ete: "agone.common.ete",
     automne: "agone.common.automne",
     hiver: "agone.common.hiver"
-}
-
-agone.typesCompetence = {
-    aucun: "",
-    epreuves: "agone.typesCompetence.epreuves",
-    maraude: "agone.typesCompetence.maraude",
-    societe: "agone.typesCompetence.societe",
-    savoir: "agone.typesCompetence.savoir",
-    occulte: "agone.typesCompetence.occulte"
 }

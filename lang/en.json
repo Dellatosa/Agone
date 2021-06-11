@@ -36,7 +36,8 @@
             "magie": "Magic",
             "combat": "Fight",
             "sante": "Health",
-            "poidsPortable" : "Load"
+            "poidsPortable" : "Load",
+            "domaine": "Field"
         },
         "caracteristiques": {
             "force": "Strength",
@@ -170,7 +171,7 @@
             "partielle": "Intermediate",
             "complete": "Full"
         },
-        "TypesCompetence": {
+        "typesCompetence": {
             "epreuves": "Trials",
             "maraude": "Rogue",
             "societe": "Courtly",

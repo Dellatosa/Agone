@@ -4,30 +4,29 @@
     text-align: center;
 }
 
-select.auto-size {
-    margin: 3px;
-}
-
 .auto-size {
     flex: 1 1 auto;
     padding: 3px;
 }
 
-.agone.sheet.actor label {
-    padding: 7px 0;
+select.auto-size {
+    margin: 3px;
 }
 
-.agone.sheet.actor {
-    form {
-        display: flex;
-        flex-direction: column;
-    }
+.agone.sheet.actor form {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
-.agone.sheet.actor .sheet-header {
+.agone.sheet.actor .sheet-header, .sheet-fixed-content {
     img {
         flex: 0 0 150px;
         height: 150px;
+    }
+
+    label {
+        padding: 7px 0;
     }
 }
 
@@ -109,26 +108,76 @@ select.auto-size {
     }
 }
 
+.sheet-body {
+    height: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
 .actor-fam-comp {
     display: flex;
     
-
     .actor-comp-grid {
-        padding: 3px;
         display: grid;
+        padding: 3px;
         align-content: start;
-        grid-template-columns: max-content 3.5em;
+        grid-template-columns: 1fr 2.5em 2em 2em;
         font-size: 0.8em;
 
         .titre-fam {
-            grid-column-start: span 2;
-            grid-row: 1;
+            grid-column-start: span 4;
             font-size: 1.2em;
+            font-weight: bold;
             text-align: center;
         }
 
         .titre-comp {
-            grid-column-start: span 2;
+            grid-column-start: span 4;
+            font-weight: bold;
+        }
+
+        .lbl-comp {
+            position: relative;
+            top: 7px;
+        }
+
+        .dom-fixe {
+            text-indent: 1em;
+            position: relative;
+            top: 7px;
+        }
+
+        .dom-perso {
+            padding-top : 2px;
+            padding-bottom : 2px;
+        }
+
+        .rollable {
+            padding-top : 6px;
+            padding-bottom : 6px;
+        }
+
+        .rollable:hover, .rollable:focus {
+            color: #000;
+            text-shadow: 0 0 10px red;
+            cursor: pointer;
+          }
+
+        .chk-spe {
+            padding-top : 2px;
+            padding-bottom : 2px;
+            
+            input[type="checkbox"] {
+                width: 16px;
+                height: 16px;
+            }
+
+        }
+
+        .val-comp {
+            padding-top : 2px;
+            padding-bottom : 2px;
+            text-align: center;
         }
     }
 }

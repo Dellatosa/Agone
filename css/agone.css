@@ -18,23 +18,26 @@
   padding: 3px;
   text-align: center;
 }
-select.auto-size {
-  margin: 3px;
-}
 .auto-size {
   flex: 1 1 auto;
   padding: 3px;
 }
-.agone.sheet.actor label {
-  padding: 7px 0;
+select.auto-size {
+  margin: 3px;
 }
 .agone.sheet.actor form {
   display: flex;
   flex-direction: column;
+  overflow: hidden;
 }
-.agone.sheet.actor .sheet-header img {
+.agone.sheet.actor .sheet-header img,
+.sheet-fixed-content img {
   flex: 0 0 150px;
   height: 150px;
+}
+.agone.sheet.actor .sheet-header label,
+.sheet-fixed-content label {
+  padding: 7px 0;
 }
 .actor-infos-line {
   display: flex;
@@ -102,22 +105,64 @@ select.auto-size {
   justify-content: center;
   grid-template-columns: max-content 3.5em;
 }
+.sheet-body {
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
 .actor-fam-comp {
   display: flex;
 }
 .actor-fam-comp .actor-comp-grid {
-  padding: 3px;
   display: grid;
+  padding: 3px;
   align-content: start;
-  grid-template-columns: max-content 3.5em;
+  grid-template-columns: 1fr 2.5em 2em 2em;
   font-size: 0.8em;
 }
 .actor-fam-comp .actor-comp-grid .titre-fam {
-  grid-column-start: span 2;
-  grid-row: 1;
+  grid-column-start: span 4;
   font-size: 1.2em;
+  font-weight: bold;
   text-align: center;
 }
 .actor-fam-comp .actor-comp-grid .titre-comp {
-  grid-column-start: span 2;
+  grid-column-start: span 4;
+  font-weight: bold;
+}
+.actor-fam-comp .actor-comp-grid .lbl-comp {
+  position: relative;
+  top: 7px;
+}
+.actor-fam-comp .actor-comp-grid .dom-fixe {
+  text-indent: 1em;
+  position: relative;
+  top: 7px;
+}
+.actor-fam-comp .actor-comp-grid .dom-perso {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+.actor-fam-comp .actor-comp-grid .rollable {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+.actor-fam-comp .actor-comp-grid .rollable:hover,
+.actor-fam-comp .actor-comp-grid .rollable:focus {
+  color: #000;
+  text-shadow: 0 0 10px red;
+  cursor: pointer;
+}
+.actor-fam-comp .actor-comp-grid .chk-spe {
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+.actor-fam-comp .actor-comp-grid .chk-spe input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+}
+.actor-fam-comp .actor-comp-grid .val-comp {
+  padding-top: 2px;
+  padding-bottom: 2px;
+  text-align: center;
 }

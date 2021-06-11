@@ -2,7 +2,7 @@ export default class AgoneActorSheet extends ActorSheet {
      
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
-            width: 670,
+            width: 760,
             height: 870,
             classes: ["agone", "sheet", "actor"],
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "competences" }]
@@ -19,6 +19,7 @@ export default class AgoneActorSheet extends ActorSheet {
         data.config = CONFIG.agone;
 
         const actorData = data.data;
+
         console.log(actorData);
 
         // Calcul des scores de bonus d'aspects
@@ -65,9 +66,9 @@ export default class AgoneActorSheet extends ActorSheet {
         actorData.caracSecondaires.emprise = 0;
         actorData.caracSecondaires.melee = Math.floor((actorData.aspects.corps.caracteristiques.force.valeur + actorData.aspects.corps.caracteristiques.agilite.valeur * 2) / 3);
         actorData.caracSecondaires.tir = Math.floor((actorData.aspects.corps.caracteristiques.perception.valeur + actorData.aspects.corps.caracteristiques.agilite.valeur) / 2);
-        actorData.caracSecondaires.art = Math.floor((actorData.aspects.ame.caracteristiques.charisme.valeur + actorData.aspects.ame.caracteristiques.creativite.valeur) / 2);
+        actorData.caracSecondaires.art = Math.floor((actorData.aspects.ame.caracteristiques.charisme.valeur + actorData.aspects.ame.caracteristiques.creativite.valeur) / 2); 
 
-        // Récupération des traductions pour les caractéristiues
+        // Récupération des traductions pour les caractéristiques
         for (let [key, carac] of Object.entries(actorData.aspects.corps.caracteristiques)) {
             carac.label = game.i18n.localize(CONFIG.agone.caracteristiques[key]);
             carac.abrev = game.i18n.localize(CONFIG.agone.caracAbrev[key]);
@@ -92,61 +93,133 @@ export default class AgoneActorSheet extends ActorSheet {
             aspect.bonus.label = game.i18n.localize(CONFIG.agone.aspects[keyBonus]);
         }
 
+        // Récupération des traductions pour les compétences
+        // Et décompte du nombre de compétences pour les répartir équitablement dans les colonnes
+        let nbElemsGridComp = 0;
+        for(let[keyFam, famille] of Object.entries(actorData.familleCompetences)) {
+            famille.label = game.i18n.localize(CONFIG.agone.typesCompetence[keyFam]);
+            nbElemsGridComp += 1;
+            
+            for(let[keyComp, competence] of Object.entries(famille.competences)) {
+                competence.label = game.i18n.localize(CONFIG.agone.competences[keyComp]);
+                nbElemsGridComp += 1;
+                
+                if(competence.domaine == true) {
+                    for(let[keyDom, domaine] of Object.entries(competence.domaines)) {
+                        nbElemsGridComp += 1;
+                        if(domaine.domPerso == false) domaine.label = game.i18n.localize(CONFIG.agone.competences[keyDom]);
+                    }
+                }
+            } 
+        }
+
+        // Calcul de répartition des compétences dans 4 colonnes
+        const nbColonnes = 4;
+        var arr = Array(nbColonnes);
+        for (let i = 0; i < nbColonnes; i++) {
+            arr[i] = i;
+        }
+        actorData.colonnes = arr;
+
+        const nbCompParColonne = Math.ceil(nbElemsGridComp / nbColonnes);
+        let numCompetence = 0;
+        for(let[keyFam, famille] of Object.entries(actorData.familleCompetences)) {
+            famille.numcol = Math.floor(numCompetence / nbCompParColonne);
+            numCompetence += 1;
+            
+            for(let[keyComp, competence] of Object.entries(famille.competences)) {
+                competence.numcol = Math.floor(numCompetence / nbCompParColonne);
+                numCompetence += 1;
+                
+                if(competence.domaine == true) {
+                    for(let[keyDom, domaine] of Object.entries(competence.domaines)) {
+                        domaine.numcol = Math.floor(numCompetence / nbCompParColonne);
+                        numCompetence += 1;
+                    }
+                }
+            } 
+        }
+
         console.log(actorData);
 
         return data;
     }
-}
 
-function calcBonusDommages(force, tai) {
-    let total = force + tai;
-    switch(total) {
-        case -1:
-            return -6;
-        case 0:   
-            return -4; 
-        case 1:   
-            return -2; 
-        case 2:
-        case 3:   
-            return -1; 
-        case 4:
-        case 5:
-        case 6:   
-            return 0; 
-        case 7:
-        case 8:
-            return 1;
-        case 9:
-            return 2;
-        case 10:
-            return 4;
-        case 11:
-            return 6;
-        case 12:
-            return 8;
-        case 13:
-            return 10;
-        case 14:
-            return 12;
-        case 15:
-            return 15;
-        case 16:
-            return 18;
-        case 17:
-            return 21;
-        case 18:
-            return 24;
-        case 19:
-            return 27;
-        case 20:
-            return 31;
-        case 21:
-            return 35;
-        case 22:
-            return 39;
-        case 23:
-            return 43;
-             
+    calcBonusDommages(force, tai) {
+        let total = force + tai;
+        switch(total) {
+            case -1:
+                return -6;
+            case 0:   
+                return -4; 
+            case 1:   
+                return -2; 
+            case 2:
+            case 3:   
+                return -1; 
+            case 4:
+            case 5:
+            case 6:   
+                return 0; 
+            case 7:
+            case 8:
+                return 1;
+            case 9:
+                return 2;
+            case 10:
+                return 4;
+            case 11:
+                return 6;
+            case 12:
+                return 8;
+            case 13:
+                return 10;
+            case 14:
+                return 12;
+            case 15:
+                return 15;
+            case 16:
+                return 18;
+            case 17:
+                return 21;
+            case 18:
+                return 24;
+            case 19:
+                return 27;
+            case 20:
+                return 31;
+            case 21:
+                return 35;
+            case 22:
+                return 39;
+            case 23:
+                return 43;
+                 
+        }
+    }
+
+    activateListeners(html) {
+        super.activateListeners(html);
+    
+        // Everything below here is only needed if the sheet is editable
+        if (!this.options.editable) return;
+
+         // Rollable.
+        html.find('.rollable').click(this._onRoll.bind(this));
+    }
+
+    _onRoll(event) {
+        event.preventDefault();
+        const element = event.currentTarget;
+        const dataset = element.dataset;
+    
+        if (dataset.roll) {
+          let roll = new Roll(dataset.roll, this.actor.getRollData());
+          let label = dataset.label ? `Jet de compétence ${dataset.label}` : '';
+          roll.roll().toMessage({
+            speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+            flavor: label
+          });
+        }
     }
 }
