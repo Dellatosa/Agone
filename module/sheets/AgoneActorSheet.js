@@ -34,7 +34,7 @@ export default class AgoneActorSheet extends ActorSheet {
         actorData.aspects.esprit.bonus.valeur = actorData.aspects.esprit.positif.valeur - actorData.aspects.esprit.negatif.valeur;
 
         if(actorData.aspects.ame.bonus == null) {
-        actorData.aspects.ame.bonus = {};
+            actorData.aspects.ame.bonus = {};
         }
         actorData.aspects.ame.bonus.valeur = actorData.aspects.ame.positif.valeur - actorData.aspects.ame.negatif.valeur;
 
@@ -44,6 +44,36 @@ export default class AgoneActorSheet extends ActorSheet {
         actorData.caracSecondaires.heroisme.max = actorData.caracSecondaires.flamme * 2;
 
         // Calcul des caractéristiques secondaires
+        // Melée
+        if(actorData.aspects.corps.caracteristiques.melee == null)
+        {
+            actorData.aspects.corps.caracteristiques.melee = {label: "Melée", abrev: "MEL"}
+        }
+        actorData.aspects.corps.caracteristiques.melee.valeur = Math.floor((actorData.aspects.corps.caracteristiques.force.valeur + actorData.aspects.corps.caracteristiques.agilite.valeur * 2) / 3);
+        actorData.aspects.corps.caracteristiques.melee.secondaire = true;
+
+        // Tir
+        if(actorData.aspects.corps.caracteristiques.tir == null)
+        {
+            actorData.aspects.corps.caracteristiques.tir = {label: "Tir", abrev: "TIR"};
+        }
+        actorData.aspects.corps.caracteristiques.tir.valeur = Math.floor((actorData.aspects.corps.caracteristiques.perception.valeur + actorData.aspects.corps.caracteristiques.agilite.valeur) / 2);
+        actorData.aspects.corps.caracteristiques.tir.secondaire = true;
+
+        // Emprise
+        if(actorData.aspects.esprit.caracteristiques.emprise == null) {
+            actorData.aspects.esprit.caracteristiques.emprise = {label: "Emprise", abrev: "EMP"};
+        }
+        actorData.aspects.esprit.caracteristiques.emprise.valeur = 0;
+        actorData.aspects.esprit.caracteristiques.emprise.secondaire = true;
+
+        // Art
+        if(actorData.aspects.ame.caracteristiques.art == null) {
+            actorData.aspects.ame.caracteristiques.art = {label: "Art", abrev: "ART"};
+        }
+        actorData.aspects.ame.caracteristiques.art.valeur = Math.floor((actorData.aspects.ame.caracteristiques.charisme.valeur + actorData.aspects.ame.caracteristiques.creativite.valeur) / 2); 
+        actorData.aspects.ame.caracteristiques.art.secondaire = true;
+
         actorData.caracSecondaires.seuilBlessureGrave = Math.floor(actorData.caracSecondaires.pdv.max / 3);
         actorData.caracSecondaires.seuilBlessureCritique = Math.floor(actorData.caracSecondaires.pdv.max / 2);
         if(actorData.peuple != "aucun" && actorData.peuple != "" && actorData.peuple != null)
@@ -63,11 +93,6 @@ export default class AgoneActorSheet extends ActorSheet {
             actorData.caracSecondaires.bonusDommages = 0;
         }
         
-        actorData.caracSecondaires.emprise = 0;
-        actorData.caracSecondaires.melee = Math.floor((actorData.aspects.corps.caracteristiques.force.valeur + actorData.aspects.corps.caracteristiques.agilite.valeur * 2) / 3);
-        actorData.caracSecondaires.tir = Math.floor((actorData.aspects.corps.caracteristiques.perception.valeur + actorData.aspects.corps.caracteristiques.agilite.valeur) / 2);
-        actorData.caracSecondaires.art = Math.floor((actorData.aspects.ame.caracteristiques.charisme.valeur + actorData.aspects.ame.caracteristiques.creativite.valeur) / 2); 
-
         // Récupération des traductions pour les caractéristiques
         for (let [key, carac] of Object.entries(actorData.aspects.corps.caracteristiques)) {
             carac.label = game.i18n.localize(CONFIG.agone.caracteristiques[key]);
@@ -162,6 +187,12 @@ export default class AgoneActorSheet extends ActorSheet {
     
         if (dataset.roll) {
           let roll = new Roll(dataset.roll, this.actor.getRollData());
+          
+          //console.log("dataset roll : ", dataset.roll);
+          //console.log("actor.getRolData : ", this.actor.getRollData());
+          console.log(this.actor.getRollData().hasOwnProperty("force"));
+          console.log(this.actor.getRollData().aspects.corps.caracteristiques.hasOwnProperty("force"));
+
           let label = dataset.label ? `Jet de compétence ${dataset.label}` : '';
           roll.roll().toMessage({
             speaker: ChatMessage.getSpeaker({ actor: this.actor }),

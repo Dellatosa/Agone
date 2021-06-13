@@ -9,6 +9,10 @@ agone.caracteristiques = {
     volonte: "agone.caracteristiques.volonte",
     charisme: "agone.caracteristiques.charisme",
     creativite: "agone.caracteristiques.creativite",
+    melee: "agone.caracteristiques.melee",
+    tir: "agone.caracteristiques.tir",
+    emprise: "agone.caracteristiques.emprise",
+    art: "agone.caracteristiques.art"
 }
 
 agone.caracAbrev = {
@@ -20,6 +24,10 @@ agone.caracAbrev = {
     volonte: "agone.caracteristiques.vol",
     charisme: "agone.caracteristiques.cha",
     creativite: "agone.caracteristiques.cre",
+    melee: "agone.caracteristiques.mel",
+    tir: "agone.caracteristiques.tirA",
+    emprise: "agone.caracteristiques.emp",
+    art: "agone.caracteristiques.artA"
 }
 
 agone.aspects = {
