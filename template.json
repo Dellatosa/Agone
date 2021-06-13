@@ -122,7 +122,7 @@
                 "domaines": {
                   "d1": {
                     "domPerso": true,
-                    "label": "d1",
+                    "label": "",
                     "rang": 0,
                     "max": 10,
                     "specialisation": false

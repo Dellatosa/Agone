@@ -74,8 +74,10 @@
                 </div>
                 <div class="actor-carac-line {{keyAsp}}">
                     {{#each aspect.caracteristiques as |carac keyCarac|}}
+                    {{#unless carac.secondaire}}
                     <label>{{carac.label}}</label>
                     <div class="small-size"><input name="data.aspects.{{keyAsp}}.caracteristiques.{{keyCarac}}.valeur" type="number" value="{{carac.valeur}}" placeholder="0" min="0" max="10"/></div>
+                    {{/unless}}
                     {{/each}}
                 </div>
             </div>
@@ -135,9 +137,9 @@
                     <h3>{{localize "agone.common.combat"}}</h3>
                     <div class="actor-caracSec-grid">
                         <label>{{localize "agone.caracteristiques.melee"}}</label>
-                        <div class="small-size"><input name="data.caracSecondaires.melee" type="number" value="{{data.caracSecondaires.melee}}" placeholder="0" readonly/></div>
+                        <div class="small-size"><input name="data.aspects.corps.caracteristiques.melee.valeur" type="number" value="{{data.aspects.corps.caracteristiques.melee.valeur}}" placeholder="0" readonly/></div>
                         <label>{{localize "agone.caracteristiques.tir"}}</label>
-                        <div class="small-size"><input name="data.caracSecondaires.tir" type="number" value="{{data.caracSecondaires.tir}}" placeholder="0" readonly/></div>
+                        <div class="small-size"><input name="data.aspects.corps.caracteristiques.tir.valeur" type="number" value="{{data.aspects.corps.caracteristiques.tir.valeur}}" placeholder="0" readonly/></div>
                         <label>{{localize "agone.caracteristiques.bonusDommages"}}</label>
                         <div class="small-size"><input name="data.caracSecondaires.bonusDommages" type="number" value="{{data.caracSecondaires.bonusDommages}}" placeholder="0" readonly/></div>
                     </div>
@@ -170,9 +172,9 @@
                     <h3>{{localize "agone.common.magie"}}</h3>
                     <div class="actor-caracSec-grid">
                         <label>{{localize "agone.caracteristiques.emprise"}}</label>
-                        <div class="small-size"><input name="data.caracSecondaires.emprise" type="number" value="{{data.caracSecondaires.emprise}}" placeholder="0" readonly/></div>
+                        <div class="small-size"><input name="data.aspects.esprit.caracteristiques.emprise.valeur" type="number" value="{{data.aspects.esprit.caracteristiques.emprise.valeur}}" placeholder="0" readonly/></div>
                         <label>{{localize "agone.caracteristiques.art"}}</label>
-                        <div class="small-size"><input name="data.caracSecondaires.art" type="number" value="{{data.caracSecondaires.art}}" placeholder="0" readonly/></div>
+                        <div class="small-size"><input name="data.aspects.ame.caracteristiques.art.valeur" type="number" value="{{data.aspects.ame.caracteristiques.art.valeur}}" placeholder="0" readonly/></div>
                     </div>
                 </div>
                 <div class="actor-caracSec-block">
