@@ -68,17 +68,35 @@ select.auto-size {
 .actor-aspects-and-caracs .actor-aspect h3 {
   text-align: center;
 }
+.actor-aspects-and-caracs .actor-aspect .rollable {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+.actor-aspects-and-caracs .actor-aspect .rollable:hover,
+.actor-aspects-and-caracs .actor-aspect .rollable:focus {
+  color: #000;
+  text-shadow: 0 0 10px red;
+  cursor: pointer;
+}
 .actor-aspects-and-caracs .actor-aspect .actor-aspect-line {
   display: flex;
   justify-content: center;
 }
-.actor-aspects-and-caracs .actor-aspect .actor-carac-line,
+.actor-aspects-and-caracs .actor-aspect .actor-carac-line {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: max-content 3.5em 2em;
+}
 .actor-aspects-and-caracs .actor-aspect .actor-bonus-line {
   display: grid;
   justify-content: center;
   grid-template-columns: max-content 3.5em;
 }
-.actor-aspects-and-caracs .actor-aspect .actor-carac-line.corps,
+.actor-aspects-and-caracs .actor-aspect .actor-carac-line.corps {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: max-content 3.5em 2em max-content 3.5em 2em;
+}
 .actor-aspects-and-caracs .actor-aspect .actor-aspect-line {
   display: grid;
   justify-content: center;

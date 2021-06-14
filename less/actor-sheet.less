@@ -64,18 +64,41 @@ select.auto-size {
             text-align: center;
         }
 
+        .rollable {
+            padding-top : 6px;
+            padding-bottom : 6px;
+        }
+
+        .rollable:hover, .rollable:focus {
+            color: #000;
+            text-shadow: 0 0 10px red;
+            cursor: pointer;
+        }
+
         .actor-aspect-line {
             display: flex;            
             justify-content: center;
         }
 
-        .actor-carac-line, .actor-bonus-line {
+        .actor-carac-line {
+            display: grid;
+            justify-content: center;
+            grid-template-columns: max-content 3.5em 2em;
+        }
+
+        .actor-bonus-line {
             display: grid;
             justify-content: center;
             grid-template-columns: max-content 3.5em;
         }
 
-        .actor-carac-line.corps, .actor-aspect-line {
+        .actor-carac-line.corps {
+            display: grid;
+            justify-content: center;
+            grid-template-columns: max-content 3.5em 2em max-content 3.5em 2em;
+        }
+
+        .actor-aspect-line {
             display: grid;
             justify-content: center;
             grid-template-columns: max-content 3.5em max-content 3.5em;
@@ -161,7 +184,7 @@ select.auto-size {
             color: #000;
             text-shadow: 0 0 10px red;
             cursor: pointer;
-          }
+        }
 
         .chk-spe {
             padding-top : 2px;

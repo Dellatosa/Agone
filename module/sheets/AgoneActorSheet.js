@@ -44,35 +44,10 @@ export default class AgoneActorSheet extends ActorSheet {
         actorData.caracSecondaires.heroisme.max = actorData.caracSecondaires.flamme * 2;
 
         // Calcul des caractéristiques secondaires
-        // Melée
-        if(actorData.aspects.corps.caracteristiques.melee == null)
-        {
-            actorData.aspects.corps.caracteristiques.melee = {label: "Melée", abrev: "MEL"}
-        }
         actorData.aspects.corps.caracteristiques.melee.valeur = Math.floor((actorData.aspects.corps.caracteristiques.force.valeur + actorData.aspects.corps.caracteristiques.agilite.valeur * 2) / 3);
-        actorData.aspects.corps.caracteristiques.melee.secondaire = true;
-
-        // Tir
-        if(actorData.aspects.corps.caracteristiques.tir == null)
-        {
-            actorData.aspects.corps.caracteristiques.tir = {label: "Tir", abrev: "TIR"};
-        }
         actorData.aspects.corps.caracteristiques.tir.valeur = Math.floor((actorData.aspects.corps.caracteristiques.perception.valeur + actorData.aspects.corps.caracteristiques.agilite.valeur) / 2);
-        actorData.aspects.corps.caracteristiques.tir.secondaire = true;
-
-        // Emprise
-        if(actorData.aspects.esprit.caracteristiques.emprise == null) {
-            actorData.aspects.esprit.caracteristiques.emprise = {label: "Emprise", abrev: "EMP"};
-        }
         actorData.aspects.esprit.caracteristiques.emprise.valeur = 0;
-        actorData.aspects.esprit.caracteristiques.emprise.secondaire = true;
-
-        // Art
-        if(actorData.aspects.ame.caracteristiques.art == null) {
-            actorData.aspects.ame.caracteristiques.art = {label: "Art", abrev: "ART"};
-        }
         actorData.aspects.ame.caracteristiques.art.valeur = Math.floor((actorData.aspects.ame.caracteristiques.charisme.valeur + actorData.aspects.ame.caracteristiques.creativite.valeur) / 2); 
-        actorData.aspects.ame.caracteristiques.art.secondaire = true;
 
         actorData.caracSecondaires.seuilBlessureGrave = Math.floor(actorData.caracSecondaires.pdv.max / 3);
         actorData.caracSecondaires.seuilBlessureCritique = Math.floor(actorData.caracSecondaires.pdv.max / 2);
@@ -185,19 +160,81 @@ export default class AgoneActorSheet extends ActorSheet {
         const element = event.currentTarget;
         const dataset = element.dataset;
     
+        let roll;
+        let label;
         if (dataset.roll) {
-          let roll = new Roll(dataset.roll, this.actor.getRollData());
-          
-          //console.log("dataset roll : ", dataset.roll);
-          //console.log("actor.getRolData : ", this.actor.getRollData());
-          console.log(this.actor.getRollData().hasOwnProperty("force"));
-          console.log(this.actor.getRollData().aspects.corps.caracteristiques.hasOwnProperty("force"));
+            if(dataset.rolltype == "competence") {
+                let caracRoll;
+                let labCarac;
+                
+                // Si une caractéristique est précisée en data, on récupère sa valeur et son label, et son bonus d'aspect
+                if(dataset.carac)
+                {
+                    if(this.actor.getRollData().aspects.corps.caracteristiques.hasOwnProperty(dataset.carac)) {
+                        caracRoll = `+@aspects.corps.caracteristiques.${dataset.carac}.valeur +@aspects.corps.bonus.valeur`;
+                        labCarac = this.actor.getRollData().aspects.corps.caracteristiques[dataset.carac].label;
+                    } else if(this.actor.getRollData().aspects.esprit.caracteristiques.hasOwnProperty(dataset.carac)) {
+                        caracRoll = `+@aspects.esprit.caracteristiques.${dataset.carac}.valeur +@aspects.esprit.bonus.valeur`;
+                        labCarac = this.actor.getRollData().aspects.esprit.caracteristiques[dataset.carac].label;
+                    } else if(this.actor.getRollData().aspects.ame.caracteristiques.hasOwnProperty(dataset.carac)) {
+                        caracRoll = `+@aspects.ame.caracteristiques.${dataset.carac}.valeur +@aspects.ame.bonus.valeur`;
+                        labCarac = this.actor.getRollData().aspects.ame.caracteristiques[dataset.carac].label;
+                    }
+                }
 
-          let label = dataset.label ? `Jet de compétence ${dataset.label}` : '';
-          roll.roll().toMessage({
-            speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-            flavor: label
-          });
+                // Contruction de notre roll de base 1d10 explosif + compétence + carac + bonus d'aspect
+                let rolldata = caracRoll ? `${dataset.roll} ${caracRoll}`: dataset.roll;
+                roll = new Roll(`1d10x + ${rolldata}`, this.actor.getRollData());
+                roll.roll();
+                
+                // Contruction du label
+                label = dataset.label ? dataset.label : '';
+                label = labCarac ? `<b>${label} + ${labCarac}</b>` : label;
+
+                // Si le dé donne un résultat de 1, on recontruit un roll avec 1d10 explosif retranché au résultat
+                // Le +1 conrrespond au résultat du dé sur le roll initial
+                if(roll.dice[0].results[0].result == 1) {
+                    roll = new Roll(`(1d10x * -1) + 1 + ${rolldata}`, this.actor.getRollData());
+                    roll.roll();
+                    // Le jet est un Fumble !
+                    label = `${label} <br><b style="color: red">FUMBLE !!!</b>`;
+                }
+                
+                label = label != '' ? `Jet de compétence ${label}` : '';
+            }
+            else if(dataset.rolltype == "caracteristique") {
+                let aspectRoll;
+                if(dataset.aspect) {
+                    // Si un aspect est précisé, on récupère du bonus d'aspect
+                    aspectRoll = `+@aspects.${dataset.aspect}.bonus.valeur`;
+                }
+
+                // Contruction de notre roll de base 1d10 explosif + (carac x2) + bonus d'aspect
+                let rolldata = aspectRoll ? `${dataset.roll} ${aspectRoll}`: dataset.roll;
+                roll = new Roll(`1d10x + ${rolldata}`, this.actor.getRollData());
+                roll.roll();
+
+                label = dataset.label ? `<b>${dataset.label} x 2</b>` : '';
+
+                // Si le dé donne un résultat de 1, on recontruit un roll avec 1d10 explosif retranché au résultat
+                // Le +1 conrrespond au résultat du dé sur le roll initial
+                if(roll.dice[0].results[0].result == 1) {
+                    roll = new Roll(`(1d10x * -1) + 1 + ${rolldata}`, this.actor.getRollData());
+                    roll.roll();
+                    // Le jet est un Fumble !
+                    label = `${label} <br><b style="color: red">FUMBLE !!!</b>`;
+                }
+            }
+            else {
+                roll = new Roll(dataset.roll, this.actor.getRollData());
+                roll.roll();
+                label = dataset.label ? `Jet '${dataset.label}'` : '';
+            }
+        
+            roll./*roll().*/toMessage({
+                speaker: ChatMessage.getSpeaker({ actor: this.actor }),
+                flavor: label
+            });
         }
     }
 }

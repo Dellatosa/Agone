@@ -45,6 +45,18 @@
                 "valeur": 0,
                 "label": "Résistance",
                 "abrev": "RES"
+              },
+              "melee": {
+                "valeur": 0,
+                "label": "Melée",
+                "abrev": "MEL",
+                "secondaire": true
+              },
+              "tir": {
+                "valeur": 0,
+                "label": "Tir",
+                "abrev": "TIR",
+                "secondaire": true
               }
             }
           },
@@ -67,6 +79,11 @@
                 "valeur": 0,
                 "label": "Volonté",
                 "abrev": "VOL"
+              },
+              "emprise": {
+                "label": "Emprise", 
+                "abrev": "EMP",
+                "secondaire": true
               }
             }
           },
@@ -89,6 +106,11 @@
                 "valeur": 0,
                 "label": "Créativité",
                 "abrev": "CRE"
+              },
+              "art": {
+                "label": "Art", 
+                "abrev": "ART",
+                "secondaire": true
               }
             }
           }
@@ -125,38 +147,42 @@
                     "label": "",
                     "rang": 0,
                     "max": 10,
-                    "specialisation": false
+                    "specialisation": false,
+                    "caracteristique": ""
                   },
                   "d2": {
                     "domPerso": true,
                     "label": "",
                     "rang": 0,
                     "max": 10,
-                    "specialisation": false
+                    "specialisation": false,
+                    "caracteristique": ""
                   },
                   "d3": {
                     "domPerso": true,
                     "label": "",
                     "rang": 0,
                     "max": 10,
-                    "specialisation": false
+                    "specialisation": false,
+                    "caracteristique": ""
                   },
                   "d4": {
                     "domPerso": true,
                     "label": "",
                     "rang": 0,
                     "max": 10,
-                    "specialisation": false
+                    "specialisation": false,
+                    "caracteristique": ""
                   },
                   "d5": {
                     "domPerso": true,
                     "label": "",
                     "rang": 0,
                     "max": 10,
-                    "specialisation": false
+                    "specialisation": false,
+                    "caracteristique": ""
                   }
-                },
-                "caracteristique": ""
+                }
               },
               "athletisme": {
                 "label": "Athlétisme",
@@ -353,17 +379,18 @@
                     "label": "",
                     "rang": 0,
                     "max": 10,
-                    "specialisation": false
+                    "specialisation": false,
+                    "caracteristique": ""
                   },
                   "d2": {
                     "domPerso": true,
                     "label": "",
                     "rang": 0,
                     "max": 10,
-                    "specialisation": false
+                    "specialisation": false,
+                    "caracteristique": ""
                   }
-                },
-                "caracteristique": ""
+                }
               },
               "intendance": {
                 "label": "Intendance",
@@ -382,17 +409,18 @@
                     "label": "",
                     "rang": 0,
                     "max": 10,
-                    "specialisation": false
+                    "specialisation": false,
+                    "caracteristique": ""
                   },
                   "d2": {
                     "domPerso": true,
                     "label": "",
                     "rang": 0,
                     "max": 10,
-                    "specialisation": false
+                    "specialisation": false,
+                    "caracteristique": ""
                   }
-                },
-                "caracteristique": ""
+                }
               },
               "negoce": {
                 "label": "Négoce",
@@ -427,17 +455,18 @@
                     "label": "",
                     "rang": 0,
                     "max": 10,
-                    "specialisation": false
+                    "specialisation": false,
+                    "caracteristique": ""
                   },
                   "d2": {
                     "domPerso": true,
                     "label": "",
                     "rang": 0,
                     "max": 10,
-                    "specialisation": false
+                    "specialisation": false,
+                    "caracteristique": ""
                   }
-                },
-                "caracteristique": ""
+                }
               },  
               "sculpture": {
                 "label": "Sculpture",
@@ -456,17 +485,18 @@
                     "label": "",
                     "rang": 0,
                     "max": 10,
-                    "specialisation": false
+                    "specialisation": false,
+                    "caracteristique": ""
                   },
                   "d2": {
                     "domPerso": true,
                     "label": "",
                     "rang": 0,
                     "max": 10,
-                    "specialisation": false
+                    "specialisation": false,
+                    "caracteristique": ""
                   }
-                },
-                "caracteristique": ""
+                }
               }
             }
           },
@@ -482,17 +512,18 @@
                     "label": "",
                     "rang": 0,
                     "max": 10,
-                    "specialisation": false
+                    "specialisation": false,
+                    "caracteristique": ""
                   },
                   "d2": {
                     "domPerso": true,
                     "label": "",
                     "rang": 0,
                     "max": 10,
-                    "specialisation": false
+                    "specialisation": false,
+                    "caracteristique": ""
                   }
-                },
-                "caracteristique": ""  
+                } 
               },
               "astronomie": {
                 "label": "Astronomie",
@@ -519,17 +550,18 @@
                     "label": "",
                     "rang": 0,
                     "max": 10,
-                    "specialisation": false
+                    "specialisation": false,
+                    "caracteristique": ""
                   },
                   "d2": {
                     "domPerso": true,
                     "label": "",
                     "rang": 0,
                     "max": 10,
-                    "specialisation": false
+                    "specialisation": false,
+                    "caracteristique": ""
                   }
-                },
-                "caracteristique": ""
+                }
               },
               "geographie": {
                 "label": "Géographie",
@@ -564,17 +596,18 @@
                     "label": "",
                     "rang": 0,
                     "max": 10,
-                    "specialisation": false
+                    "specialisation": false,
+                    "caracteristique": ""
                   },
                   "d2": {
                     "domPerso": true,
                     "label": "",
                     "rang": 0,
                     "max": 10,
-                    "specialisation": false
+                    "specialisation": false,
+                    "caracteristique": ""
                   }
-                },
-                "caracteristique": ""
+                }
               },
               "loi": {
                 "label": "Loi",
@@ -608,28 +641,31 @@
                     "label": "Hiver",
                     "rang": 0,
                     "max": 10,
-                    "specialisation": false
+                    "specialisation": false,
+                    "caracteristique": ""
                   },
                   "printemps": {
                     "label": "Printemps",
                     "rang": 0,
                     "max": 10,
-                    "specialisation": false
+                    "specialisation": false,
+                    "caracteristique": ""
                   },    
                   "ete": {
                     "label": "Eté",
                     "rang": 0,
                     "max": 10,
-                    "specialisation": false
+                    "specialisation": false,
+                    "caracteristique": ""
                   },
                   "automne": { 
                     "label": "Automne",
                     "rang": 0,
                     "max": 10,
-                    "specialisation": false
+                    "specialisation": false,
+                    "caracteristique": ""
                   }
-                },  
-                "caracteristique": ""
+                }
               },
               "strategie": {
                 "label": "Stratégie",
@@ -660,28 +696,31 @@
                     "label": "Accord",
                     "rang": 0,
                     "max": 10,
-                    "specialisation": false
+                    "specialisation": false,
+                    "caracteristique": ""
                   },
                   "cyse": {
                     "label": "Cyse",
                     "rang": 0,
                     "max": 10,
-                    "specialisation": false
+                    "specialisation": false,
+                    "caracteristique": ""
                   },
                   "decorum": {
                     "label": "Décorum",
                     "rang": 0,
                     "max": 10,
-                    "specialisation": false
+                    "specialisation": false,
+                    "caracteristique": ""
                   },
                   "geste": {
                    "label": "Geste",
                     "rang": 0,
                     "max": 10,
-                    "specialisation": false
+                    "specialisation": false,
+                    "caracteristique": ""
                   }
-                },
-                "caracteristique": ""
+                }
               },
               "connDanseurs": {
                 "label": "Conn. des danseurs",
@@ -723,22 +762,24 @@
                     "label": "Jorniste",
                     "rang": 0,
                     "max": 10,
-                    "specialisation": false
+                    "specialisation": false,
+                    "caracteristique": ""
                   },
                   "eclipsiste": {
                     "label": "Eclipsiste",
                     "rang": 0,
                     "max": 10,
-                    "specialisation": false
+                    "specialisation": false,
+                    "caracteristique": ""
                   },
                   "obscurantiste": {
                     "label": "Obscurantiste",
                     "rang": 0,
                     "max": 10,
-                    "specialisation": false
+                    "specialisation": false,
+                    "caracteristique": ""
                   }
-                },
-                "caracteristique": ""
+                }
               }
             }
           }
