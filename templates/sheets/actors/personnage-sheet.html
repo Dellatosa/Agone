@@ -115,7 +115,7 @@
                                             {{/if}}
                                             <div class="val-comp"><input name="data.familleCompetences.{{keyFam}}.competences.{{keyComp}}.domaines.{{keyDom}}.rang" type="number" value="{{domaine.rang}}" placeholder="0"/></div>
                                             <div class="chk-spe"><input name="data.familleCompetences.{{keyFam}}.competences.{{keyComp}}.domaines.{{keyDom}}.specialisation" type="checkbox" data-dtype="Boolean" {{checked domaine.specialisation}}/></div>
-                                            <i class="fas fa-dice rollable" data-rolltype="competence" data-roll="@familleCompetences.{{keyFam}}.competences.{{keyComp}}.domaines.{{keyDom}}.rang" data-carac="{{domaine.caracteristique}}" data-label="{{domaine.label}}"></i>
+                                            <i class="fas fa-dice rollable" data-rolltype="competence" data-roll="@familleCompetences.{{keyFam}}.competences.{{keyComp}}.domaines.{{keyDom}}.rang" data-carac="{{domaine.caracteristique}}" data-label="{{domaine.label}}" data-spe="{{domaine.specialisation}}" data-spelabel="{{domaine.labelSpecialisation}}"></i>
                                         {{/if}}      
                                     {{/each}}
                                 {{else}}
@@ -123,7 +123,7 @@
                                         <label class="lbl-comp">{{competence.label}}</label>     
                                         <div class="val-comp"><input name="data.familleCompetences.{{keyFam}}.competences.{{keyComp}}.rang" type="number" value="{{competence.rang}}" placeholder="0"/></div>
                                         <div class="chk-spe"><input name="data.familleCompetences.{{keyFam}}.competences.{{keyComp}}.specialisation" type="checkbox" data-dtype="Boolean" {{checked competence.specialisation}}/></div>
-                                        <i class="fas fa-dice rollable" data-rolltype="competence" data-roll="@familleCompetences.{{keyFam}}.competences.{{keyComp}}.rang" data-carac="{{competence.caracteristique}}" data-label="{{competence.label}}"></i>
+                                        <i class="fas fa-dice rollable" data-rolltype="competence" data-roll="@familleCompetences.{{keyFam}}.competences.{{keyComp}}.rang" data-carac="{{competence.caracteristique}}" data-label="{{competence.label}}" data-spe="{{competence.specialisation}}" data-spelabel="{{competence.labelSpecialisation}}"></i>
                                     {{/if}}    
                                 {{/if}}
                             {{/each}}

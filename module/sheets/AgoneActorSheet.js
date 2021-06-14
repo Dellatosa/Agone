@@ -151,8 +151,10 @@ export default class AgoneActorSheet extends ActorSheet {
         // Everything below here is only needed if the sheet is editable
         if (!this.options.editable) return;
 
-         // Rollable.
-        html.find('.rollable').click(this._onRoll.bind(this));
+            // Rollable
+            if(this.actor.owner) {
+            html.find('.rollable').click(this._onRoll.bind(this));
+        }
     }
 
     _onRoll(event) {
@@ -182,14 +184,20 @@ export default class AgoneActorSheet extends ActorSheet {
                     }
                 }
 
-                // Contruction de notre roll de base 1d10 explosif + compétence + carac + bonus d'aspect
+                // Construction de notre roll de base 1d10 explosif + compétence + carac + bonus d'aspect
                 let rolldata = caracRoll ? `${dataset.roll} ${caracRoll}`: dataset.roll;
                 roll = new Roll(`1d10x + ${rolldata}`, this.actor.getRollData());
                 roll.roll();
                 
-                // Contruction du label
+                // Construction du label
                 label = dataset.label ? dataset.label : '';
                 label = labCarac ? `<b>${label} + ${labCarac}</b>` : label;
+
+                if(dataset.spe) {
+                    if(dataset.spe == "true") {
+                        label = `${label}<br>Spécialisation <b>${dataset.spelabel}</b>`
+                    }
+                }
 
                 // Si le dé donne un résultat de 1, on recontruit un roll avec 1d10 explosif retranché au résultat
                 // Le +1 conrrespond au résultat du dé sur le roll initial
@@ -209,7 +217,7 @@ export default class AgoneActorSheet extends ActorSheet {
                     aspectRoll = `+@aspects.${dataset.aspect}.bonus.valeur`;
                 }
 
-                // Contruction de notre roll de base 1d10 explosif + (carac x2) + bonus d'aspect
+                // Construction de notre roll de base 1d10 explosif + (carac x2) + bonus d'aspect
                 let rolldata = aspectRoll ? `${dataset.roll} ${aspectRoll}`: dataset.roll;
                 roll = new Roll(`1d10x + ${rolldata}`, this.actor.getRollData());
                 roll.roll();
@@ -224,6 +232,8 @@ export default class AgoneActorSheet extends ActorSheet {
                     // Le jet est un Fumble !
                     label = `${label} <br><b style="color: red">FUMBLE !!!</b>`;
                 }
+
+                label = label != '' ? `Jet de caractéristique ${label}` : '';
             }
             else {
                 roll = new Roll(dataset.roll, this.actor.getRollData());

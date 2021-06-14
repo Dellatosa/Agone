@@ -73,7 +73,7 @@ agone.competences = {
     poisons: "agone.competences.poisons",
     serrurerie: "agone.competences.serrurerie",
     baratin: "agone.competences.baratin",
-    diplomatie: "Diplomacy",
+    diplomatie: "agone.competences.diplomatie",
     eloquence: "agone.competences.eloquence",
     etiquette: "agone.competences.etiquette",
     intendance: "agone.competences.intendance",
