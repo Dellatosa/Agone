@@ -4,25 +4,16 @@
         <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.common.name'}}"/></h1>
     </header>
     <div class="sheet-content">
-        <table>
-            <tr>
-                <th>{{localize "agone.pouvoirFlamme.coutHeroisme"}}</th>
-            </tr>
-            <tr>
-                 <td>
-                     <input name="data.coutHeroisme" type="text" value="{{data.coutHeroisme}}" data-dtype="Number" placeholder="0"/>
-                 </td>
-            </tr>
-        </table>
+        <div class="grid-pvflamme">
+            <label class="grid-titre">{{localize "agone.pouvoirFlamme.coutHeroisme"}}</label>
+            <div><input name="data.coutHeroisme" type="text" value="{{data.coutHeroisme}}" data-dtype="Number" placeholder="0"/></div>
+        </div>
         <div>
             <span>{{localize "agone.pouvoirFlamme.descriptionLabel"}}</span>
         </div>
         {{editor content=data.description target="data.description" button=true owner=true editable=true}}
     </div>
     <footer class="sheet-footer">
-        <div>
-            <hr>
-            <p>{{localize "agone.common.type"}} : <span>{{localize "agone.pouvoirFlamme.label"}}</span></p>
-        </div>
+        <div>{{localize "agone.common.type"}} : <span>{{localize "agone.pouvoirFlamme.label"}}</span></div>
     </footer>
 </form>

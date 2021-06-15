@@ -4,29 +4,22 @@
         <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.common.name'}}"/></h1>
     </header>
     <div class="sheet-content">
-        <table>
-            <tr>
-                <th>{{localize "agone.common.type"}}</th>
-            </tr>
-            <tr>
-                <td>
-                    <select name="data.type">
-                        {{#select data.type}}
-                        {{#each config.skillTypes as |name type|}}
-                        <option value="{{type}}">{{localize name}}</option>
+        <div class="grid-ecole">
+            <label class="grid-titre">{{localize "agone.common.type"}}</label>
+            <div>
+                <select name="data.type">
+                    {{#select data.type}}
+                        {{#each config.typesCompetence as |name type|}}
+                            <option value="{{type}}">{{localize name}}</option>
                         {{/each}}
-                        {{/select}} 
-                    </select>
-                </td>
-            </tr>
-        </table>
+                    {{/select}} 
+                </select>
+            </div>
+        </div>
         <div>{{localize "agone.ecole.descriptionLabel"}}</div>
         {{editor content=data.description target="data.description" button=true owner=true editable=true}}
     </div>
     <footer class="sheet-footer">
-        <div>
-            <hr>
-            <p>{{localize "agone.common.type"}} : <span>{{localize "agone.ecole.label"}}</span></p>
-        </div>
+        <div>{{localize "agone.common.type"}} : <span>{{localize "agone.ecole.label"}}</span></div>
     </footer>
 </form>

@@ -9,11 +9,84 @@
     height: 100%;
     display: flex;
     flex-direction: column;
+
+    select {
+        width: 100%;
+    }
+
     .editor {
         height: 100%;
+    }
+
+    div {
+        padding: 1px;
     }
 }
 
 .agone.sheet.item .sheet-footer {
-    display: inline-flex;    
+    border-top: solid thin rgb(119, 119, 119);
+    padding: 3px;  
 }
+
+.grid-titre {
+    font-weight: bold;
+    text-align: center;
+    background-color: rgba(82, 77, 77, 0.075);
+    border-top: solid thin rgb(119, 119, 119);
+    padding: 3px;
+}
+
+.grid-arme {
+    display: grid;
+    grid-template-columns: 2fr repeat(4, 1fr) 2.5fr repeat(3, 1fr);
+    padding: 3px;
+}
+
+.grid-danseur {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    padding: 3px;
+}
+
+.grid-oeuvre {
+    display: grid;
+    grid-template-columns: 1.5fr 1.5fr repeat(4, 1fr);
+    padding: 3px;
+}
+
+.grid-sort {
+    display: grid;
+    grid-template-columns: 1.5fr repeat(4, 1fr);
+    padding: 3px;
+}
+
+.grid-armure {
+    display: grid;
+    grid-template-columns: 1.5fr repeat(3, 1fr);
+    padding: 3px;
+}
+
+.grid-manoeuvre {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 3px;
+}
+
+.grid-connivence {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    padding: 3px;
+}
+
+.grid-avantage, .grid-defaut, .grid-peine, .grid-pvsaison {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    padding: 3px;
+}
+
+.grid-pvflamme, .grid-ecole {
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 3px;
+}
+

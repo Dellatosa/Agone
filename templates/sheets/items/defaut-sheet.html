@@ -4,26 +4,20 @@
         <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.common.name'}}"/></h1>
     </header>
     <div class="sheet-content">
-        <table>
-            <tr>
-                <th>{{localize "agone.common.type"}}</th>
-                <th>{{localize "agone.common.cout"}}</th>
-            </tr>
-            <tr>
-                <td>
-                    <select name="data.type">
-                        {{#select data.type}}
+        <div class="grid-defaut">
+            <label class="grid-titre">{{localize "agone.common.type"}}</label>
+            <label class="grid-titre">{{localize "agone.common.cout"}}</label>
+            <div>
+                <select name="data.type">
+                    {{#select data.type}}
                         {{#each config.typesAvantageDefaut as |name type|}}
-                        <option value="{{type}}">{{localize name}}</option>
+                            <option value="{{type}}">{{localize name}}</option>
                         {{/each}}
-                        {{/select}} 
-                    </select>
-                </td>
-                 <td>
-                     <input name="data.cout" type="text" value="{{data.cout}}" data-dtype="Number" placeholder="0"/>
-                 </td>
-            </tr>
-        </table>
+                    {{/select}} 
+                </select>
+            </div>
+            <div><input name="data.cout" type="text" value="{{data.cout}}" data-dtype="Number" placeholder="0"/></div>
+        </div>
         <div>{{localize "agone.defaut.descriptionLabel"}}</div>
         {{editor content=data.description target="data.description" button=true owner=true editable=true}}
         <div>
@@ -32,9 +26,6 @@
         </div>
     </div>
     <footer class="sheet-footer">
-        <div>
-            <hr>
-            <p>{{localize "agone.common.type"}} : <span>{{localize "agone.defaut.label"}}</span></p>
-        </div>
+        <div>{{localize "agone.common.type"}} : <span>{{localize "agone.defaut.label"}}</span></div>
     </footer>
 </form>

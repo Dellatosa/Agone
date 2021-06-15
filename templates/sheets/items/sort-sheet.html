@@ -1,0 +1,33 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.common.name'}}"/></h1>
+    </header>
+    <div class="sheet-content">
+        <div class="grid-sort">
+            <label class="grid-titre">{{localize "agone.sort.resonance"}}</label>
+            <label class="grid-titre">{{localize "agone.common.seuil"}}</label>
+            <label class="grid-titre">{{localize "agone.common.portee"}}</label>
+            <label class="grid-titre">{{localize "agone.sort.dureeDanse"}}</label>
+            <label class="grid-titre">{{localize "agone.sort.dureeSort"}}</label>
+            <div>
+                <select name="data.resonance">
+                    {{#select data.resonance}}
+                        {{#each config.resonances as |name type|}}
+                            <option value="{{type}}">{{localize name}}</option>
+                        {{/each}}
+                    {{/select}}
+                </select>
+            </div>
+            <div><input name="data.seuil" type="text" value="{{data.seuil}}" data-dtype="Number" placeholder="0"/></div>
+            <div><input name="data.portee" type="text" value="{{data.portee}}" placeholder="{{localize 'agone.common.portee'}}"/></div>
+            <div><input name="data.dureeDanse" type="text" value="{{data.dureeDanse}}" placeholder="{{localize 'agone.sort.dureeDanse'}}"/></div>
+            <div><input name="data.dureeSort" type="text" value="{{data.dureeSort}}" placeholder="{{localize 'agone.sort.dureeSort'}}"/></div>
+        </div>
+         <div>{{localize "agone.sort.descriptionLabel"}}</div> 
+         {{editor content=data.description target="data.description" button=true owner=true editable=true}}
+    </div>
+    <footer class="sheet-footer">
+        <div>{{localize "agone.common.type"}} : <span>{{localize "agone.sort.label"}}</span></div>
+    </footer>
+</form>

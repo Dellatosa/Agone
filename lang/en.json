@@ -37,7 +37,9 @@
             "combat": "Fight",
             "sante": "Health",
             "poidsPortable" : "Load",
-            "domaine": "Field"
+            "domaine": "Field",
+            "seuil": "Threshold",
+            "portee": "Range"
         },
         "caracteristiques": {
             "force": "Strength",
@@ -159,7 +161,7 @@
         "typesAvantageDefaut":{
             "chargeSociete": "Charge and Society"
         },
-        "typesArmes":{
+        "typesArme":{
             "perforante": "Pierce",
             "tranchante": "Sharp",
             "perftranch": "Pierce/Sharp",
@@ -181,6 +183,13 @@
             "societe": "Courtly",
             "savoir": "Knowledge",
             "occulte": "Occult"
+        },
+        "cerclesDemon": {
+            "opalin": "Opalin",
+            "azurin": "Azurin / Saphirin",
+            "safran": "Ambré / Safran",
+            "carmin": "Carmin / Vermillon",
+            "obsidien": "Obsidien"
         },
         "arme": {
             "label": "Weapon",
@@ -252,6 +261,27 @@
             "enduranceDispo": "Ava. Stamina",
             "enduranceMax": "Max. stamina",
             "descriptionLabel": "Dancer description"
+        },
+        "sort": {
+            "label": "Spell",
+            "resonance": "Resonance",
+            "dureeDanse": "Dance duration",
+            "dureeSort": "Spell duration",
+            "descriptionLabel": "Spell description"
+        },
+        "oeuvre": {
+            "label": "Work",
+            "artMagique": "Magical art",
+            "tempsPreparation": "Preparation duration",
+            "dureeOeuvre": "Work duration",
+            "descriptionLabel": "Work description"
+        },
+        "connivence": {
+            "label": "Connivance",
+            "termes": "Terms",
+            "cercleDemon": "Demon circle",
+            "nomDemon": "Demon name",
+            "nomAdvocatus": "Advocatus Diaboli name"
         }
     }
 }

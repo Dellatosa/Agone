@@ -1,0 +1,29 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.common.name'}}"/></h1>
+    </header>
+    <div class="sheet-content">
+        <div class="grid-connivence">
+            <label class="grid-titre">{{localize "agone.connivence.cercleDemon"}}</label>
+            <label class="grid-titre">{{localize "agone.connivence.nomDemon"}}</label>
+            <label class="grid-titre">{{localize "agone.connivence.nomAdvocatus"}}</label>
+            <div>
+                <select name="data.cercleDemon">
+                    {{#select data.cercleDemon}}
+                        {{#each config.cerclesDemon as |name type|}}
+                            <option value="{{type}}">{{localize name}}</option>
+                        {{/each}}
+                    {{/select}}
+                </select>
+            </div>
+            <div><input name="data.nomDemon" type="text" value="{{data.nomDemon}}" placeholder="{{localize 'agone.connivence.nomDemon'}}"/></div>
+            <div><input name="data.nomAdvocatus" type="text" value="{{data.nomAdvocatus}}" placeholder="{{localize 'agone.connivence.nomAdvocatus'}}"/></div>
+        </div>
+         <div>{{localize "agone.connivence.termes"}}</div> 
+         {{editor content=data.termes target="data.termes" button=true owner=true editable=true}}
+    </div>
+    <footer class="sheet-footer">
+        <div>{{localize "agone.common.type"}} : <span>{{localize "agone.connivence.label"}}</span></div>
+    </footer>
+</form>

@@ -2,6 +2,16 @@ import { agone } from "./config.js";
 import AgoneItemSheet from "./sheets/AgoneItemSheet.js";
 import AgoneActorSheet from "./sheets/AgoneActorSheet.js";
 
+async function preloadHandlebarsTemplates() {
+    const templatePaths = [
+        "systems/agone/templates/partials/bloc-aspect-personnage.hbs",
+        "systems/agone/templates/partials/bloc-infos-personnage.hbs",
+        "systems/agone/templates/partials/bloc-caracSec-personnage.hbs"
+    ];
+
+    return loadTemplates(templatePaths);
+};
+
 Hooks.once("init", function(){
     console.log("Agone | Initialisation du système Agone RPG");
 
@@ -13,4 +23,5 @@ Hooks.once("init", function(){
     Items.unregisterSheet("core", ItemSheet);
     Items.registerSheet("agone", AgoneItemSheet, {makeDefault: true});
 
+    preloadHandlebarsTemplates();
 });

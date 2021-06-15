@@ -4,35 +4,26 @@
         <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.common.name'}}"/></h1>
     </header>
     <div class="sheet-content">
-        <table>
-            <tr>
-                <th>{{localize "agone.common.saison"}}</th>
-                <th>{{localize "agone.pouvoirSaison.coutHeroisme"}}</th>
-            </tr>
-            <tr>
-                <td>
-                    <select name="data.saison">
-                        {{#select data.saison}}
+        <div class="grid-pvsaison">
+            <label class="grid-titre">{{localize "agone.common.saison"}}</label>
+            <label class="grid-titre">{{localize "agone.pouvoirSaison.coutHeroisme"}}</label>
+            <div>
+                <select name="data.saison">
+                    {{#select data.saison}}
                         {{#each config.saisons as |name type|}}
-                        <option value="{{type}}">{{localize name}}</option>
+                            <option value="{{type}}">{{localize name}}</option>
                         {{/each}}
-                        {{/select}} 
-                    </select>
-                </td>
-                 <td>
-                     <input name="data.coutHeroisme" type="text" value="{{data.coutHeroisme}}" data-dtype="Number" placeholder="0"/>
-                 </td>
-            </tr>
-        </table>
+                    {{/select}} 
+                </select>
+            </div>
+            <div><input name="data.coutHeroisme" type="text" value="{{data.coutHeroisme}}" data-dtype="Number" placeholder="0"/></div>
+        </div>
         <div>
             <span>{{localize "agone.pouvoirSaison.descriptionLabel"}}</span>
         </div>
         {{editor content=data.description target="data.description" button=true owner=true editable=true}}
     </div>
     <footer class="sheet-footer">
-        <div>
-            <hr>
-            <p>{{localize "agone.common.type"}} : <span>{{localize "agone.pouvoirSaison.label"}}</span></p>
-        </div>
+        <div>{{localize "agone.common.type"}} : <span>{{localize "agone.pouvoirSaison.label"}}</span></div>
     </footer>
 </form>

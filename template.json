@@ -878,7 +878,7 @@
     }
   },
   "Item": {
-    "types": [ "Avantage", "Defaut", "Peine", "Bienfait", "PouvoirFlamme", "PouvoirSaison", "Manoeuvre", "Armure", "Arme", "Danseur", "Spell", "Work", "Connivance", "Ecole", "item" ],
+    "types": [ "Avantage", "Defaut", "Peine", "Bienfait", "PouvoirFlamme", "PouvoirSaison", "Manoeuvre", "Armure", "Arme", "Danseur", "Sort", "Oeuvre", "Connivence", "Ecole", "item" ],
     "templates": {
       "base": {
         "description": ""
@@ -959,29 +959,28 @@
       },
       "sortsConnus": []
     },
-    "Spell": {
+    "Sort": {
       "templates": [ "base" ],
-      "spellBranch": "",
-      "threshold": 0,
-      "range": "",
-      "danceDuration": "",
-      "spellDuration": ""
+      "resonance": "",
+      "seuil": 0,
+      "portee": "",
+      "dureeDanse": "",
+      "dureeSort": ""
     },
-    "Work": {
+    "Oeuvre": {
       "templates": [ "base" ],
-      "art": "",
-      "season": "",
-      "threshold": 0,
-      "range": "",
-      "preparationDuration": "",
-      "workDuration": ""
+      "artMagique": "",
+      "saison": "",
+      "seuil": 0,
+      "portee": "",
+      "tempsPreparation": "",
+      "dureeOeuvre": ""
     },
-    "Connivance": {
-      "templates": [ "base" ],
-      "terms": "",
-      "demonCircle": 0,
-      "demonName": "",
-      "advocatusName": ""
+    "Connivence": {
+      "termes": "",
+      "cercleDemon": "",
+      "nomDemon": "",
+      "nomAdvocatus": ""
     },
     "Ecole": {
       "templates": [ "base" ],

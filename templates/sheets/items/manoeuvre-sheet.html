@@ -4,30 +4,18 @@
         <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.common.name'}}"/></h1>
     </header>
     <div class="sheet-content">
-        <table>
-            <tr>
-                <th>{{localize "agone.arme.modifInit"}}</th>
-                <th>{{localize "agone.arme.modifAttaque"}}</th>
-                <th>{{localize "agone.arme.modifDefense"}}</th>
-                <th>{{localize "agone.arme.modifDommages"}}</th>
-                <!-- <th>{{localize "agone.ecole.label"}}</th> -->
-            </tr>
-            <tr>
-                <td>
-                    <input name="data.modifInit" type="text" value="{{data.modifInit}}" data-dtype="Number" placeholder="0"/>
-                </td>
-                <td>
-                    <input name="data.modifAttaque" type="text" value="{{data.modifAttaque}}" data-dtype="Number" placeholder="0"/>
-                </td>
-                <td>
-                    <input name="data.modifDefense" type="text" value="{{data.modifDefense}}" data-dtype="Number" placeholder="0"/>
-                </td>
-                <td>
-                    <input name="data.modifDommages" type="text" value="{{data.modifDommages}}" data-dtype="Number" placeholder="0"/>
-                </td>
-                <!-- <td></td> récupérer l'école' par glisser déposer -->
-            </tr>
-        </table>
+        <div class="grid-manoeuvre">
+            <label class="grid-titre">{{localize "agone.arme.modifInit"}}</label>
+            <label class="grid-titre">{{localize "agone.arme.modifAttaque"}}</label>
+            <label class="grid-titre">{{localize "agone.arme.modifDefense"}}</label>
+            <label class="grid-titre">{{localize "agone.arme.modifDommages"}}</label>
+            <!-- <th>{{localize "agone.ecole.label"}}</th> -->
+            <div><input name="data.modifInit" type="text" value="{{data.modifInit}}" data-dtype="Number" placeholder="0"/></div>
+            <div><input name="data.modifAttaque" type="text" value="{{data.modifAttaque}}" data-dtype="Number" placeholder="0"/></div>
+            <div><input name="data.modifDefense" type="text" value="{{data.modifDefense}}" data-dtype="Number" placeholder="0"/></div>
+            <div><input name="data.modifDommages" type="text" value="{{data.modifDommages}}" data-dtype="Number" placeholder="0"/></div>
+            <!-- <td></td> récupérer l'école' par glisser déposer -->
+        </div>
          <div>{{localize "agone.manoeuvre.descriptionLabel"}}</div> 
             {{editor content=data.description target="data.description" button=true owner=true editable=true}}
         </div>
@@ -36,9 +24,6 @@
             <input name="data.prerequis" type="text" value="{{data.prerequis}}" placeholder="{{localize 'agone.manoeuvre.prerequis'}}"/>
         </div>
     <footer class="sheet-footer">
-        <div>
-            <hr>
-            <p>{{localize "agone.common.type"}} : <span>{{localize "agone.manoeuvre.label"}}</span></p>
-        </div>
+        <div>{{localize "agone.common.type"}} : <span>{{localize "agone.manoeuvre.label"}}</span></div>
     </footer>
 </form>

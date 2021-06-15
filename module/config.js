@@ -216,13 +216,13 @@ agone.typesArmure = {
 agone.typesAvantageDefaut = {
     aucun: "",
     chargeSociete: "agone.typesAvantageDefaut.chargeSociete",
-    ame: "agone.caracteristiques.aspects.ame",
-    esprit: "agone.caracteristiques.aspects.esprit",
-    corps: "agone.caracteristiques.aspects.corps",
+    ame: "agone.aspects.ame",
+    esprit: "agone.aspects.esprit",
+    corps: "agone.aspects.corps",
     arts: "agone.common.arts",
-    emprise: "agone.caracteristiques.secondaires.emprise",
+    emprise: "agone.caracteristiques.emprise",
     saisons: "agone.common.saisons",
-    flamme: "agone.caracteristiques.aspects.flamme"
+    flamme: "agone.aspects.flamme"
 }
 
 agone.typesPeine = {
@@ -237,4 +237,28 @@ agone.saisons = {
     ete: "agone.common.ete",
     automne: "agone.common.automne",
     hiver: "agone.common.hiver"
+}
+
+agone.resonances = {
+    aucun: "",
+    jorniste: "agone.common.jorniste",
+    eclipsiste: "agone.common.eclipsiste",
+    obscurantiste: "agone.common.obscurantiste"
+}
+
+agone.arts = {
+    aucun: "",
+    accord: "agone.competences.accord",
+    cyse: "agone.competences.cyse",
+    decorum: "agone.competences.decorum",
+    geste: "agone.competences.geste"
+}
+
+agone.cerclesDemon = {
+    aucun: "",
+    opalin: "agone.cerclesDemon.opalin",
+    azurin: "agone.cerclesDemon.azurin",
+    safran: "agone.cerclesDemon.safran",
+    carmin: "agone.cerclesDemon.carmin",
+    obsidien: "agone.cerclesDemon.obsidien"
 }

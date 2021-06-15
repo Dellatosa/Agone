@@ -1,0 +1,56 @@
+<!-- Bloc des données de l'onglet caractéristiques secondaires -->
+<div class="actor-caracSec">
+    <div class="actor-caracSec-block">
+        <h3>{{localize "agone.common.combat"}}</h3>
+        <div class="actor-caracSec-grid">
+            <label>{{localize "agone.caracteristiques.melee"}}</label>
+            <div class="small-size"><input name="data.aspects.corps.caracteristiques.melee.valeur" type="number" value="{{data.aspects.corps.caracteristiques.melee.valeur}}" placeholder="0" readonly/></div>
+            <label>{{localize "agone.caracteristiques.tir"}}</label>
+            <div class="small-size"><input name="data.aspects.corps.caracteristiques.tir.valeur" type="number" value="{{data.aspects.corps.caracteristiques.tir.valeur}}" placeholder="0" readonly/></div>
+            <label>{{localize "agone.caracteristiques.bonusDommages"}}</label>
+            <div class="small-size"><input name="data.caracSecondaires.bonusDommages" type="number" value="{{data.caracSecondaires.bonusDommages}}" placeholder="0" readonly/></div>
+        </div>
+    </div>
+    <div class="actor-caracSec-block">
+        <h3>{{localize "agone.common.sante"}}</h3>
+        <div class="actor-caracSec-grid">
+            <label>{{localize "agone.caracteristiques.pdv"}}</label>
+            <div class="small-size"><input name="data.caracSecondaires.pdv.max" type="number" value="{{data.caracSecondaires.pdv.max}}" placeholder="0"/></div>
+            <label>{{localize "agone.caracteristiques.seuilBlessureGrave"}}</label>
+            <div class="small-size"><input name="data.caracSecondaires.seuilBlessureGrave" type="number" value="{{data.caracSecondaires.seuilBlessureGrave}}" placeholder="0" readonly/></div>
+            <label>{{localize "agone.caracteristiques.seuilBlessureCritique"}}</label>
+            <div class="small-size"><input name="data.caracSecondaires.seuilBlessureCritique" type="number" value="{{data.caracSecondaires.seuilBlessureCritique}}" placeholder="0" readonly/></div>
+        </div>
+    </div>
+    <div class="actor-caracSec-block">
+        <h3>{{localize "agone.common.poidsPortable"}}</h3>
+        <div class="actor-caracSec-grid">
+            <label>{{localize "agone.caracteristiques.chargeMax"}}</label>
+            <div class="small-size"><input name="data.caracSecondaires.chargeMax" type="number" value="{{data.caracSecondaires.chargeMax}}" placeholder="0" readonly/></div>
+            <label>{{localize "agone.caracteristiques.demiCharge"}}</label>
+            <div class="small-size"><input name="data.caracSecondaires.demiCharge" type="number" value="{{data.caracSecondaires.demiCharge}}" placeholder="0" readonly/></div>
+            <label>{{localize "agone.caracteristiques.chargeQuotidienne"}}</label>
+            <div class="small-size"><input name="data.caracSecondaires.chargeQuotidienne" type="number" value="{{data.caracSecondaires.chargeQuotidienne}}" placeholder="0" readonly/></div>
+        </div>
+    </div>
+</div>
+<div class="actor-caracSec">
+    <div class="actor-caracSec-block">
+        <h3>{{localize "agone.common.magie"}}</h3>
+        <div class="actor-caracSec-grid">
+            <label>{{localize "agone.caracteristiques.emprise"}}</label>
+            <div class="small-size"><input name="data.aspects.esprit.caracteristiques.emprise.valeur" type="number" value="{{data.aspects.esprit.caracteristiques.emprise.valeur}}" placeholder="0" readonly/></div>
+            <label>{{localize "agone.caracteristiques.art"}}</label>
+                <div class="small-size"><input name="data.aspects.ame.caracteristiques.art.valeur" type="number" value="{{data.aspects.ame.caracteristiques.art.valeur}}" placeholder="0" readonly/></div>
+        </div>
+    </div>
+    <div class="actor-caracSec-block">
+        <h3>{{localize "agone.common.corruption"}}</h3>
+        <div class="actor-caracSec-grid">
+            <label>{{localize "agone.caracteristiques.tenebre"}}</label>
+            <div class="small-size"><input name="data.caracSecondaires.tenebre" type="number" value="{{data.caracSecondaires.tenebre}}" placeholder="0"/></div>
+            <label>{{localize "agone.caracteristiques.perfidie"}}</label>
+            <div class="small-size"><input name="data.caracSecondaires.perfidie" type="number" value="{{data.caracSecondaires.perfidie}}" placeholder="0" readonly/></div>
+        </div>
+    </div>
+</div>

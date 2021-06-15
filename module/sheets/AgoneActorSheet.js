@@ -17,10 +17,32 @@ export default class AgoneActorSheet extends ActorSheet {
     getData() {
         const data = super.getData();
         data.config = CONFIG.agone;
-
         const actorData = data.data;
 
-        console.log(actorData);
+        /* ----------------------------------------------------
+        ---- Création des listes d'items filtrées par type ----
+        -----------------------------------------------------*/
+
+        data.armes = data.items.filter(function (item) { return item.type == "Arme"});
+        data.armures = data.items.filter(function (item) { return item.type == "Armure"});
+        data.manoeuvres = data.items.filter(function (item) { return item.type == "Manoeuvre"});
+
+        data.danseurs = data.items.filter(function (item) { return item.type == "Danseur"});
+        data.sorts = data.items.filter(function (item) { return item.type == "Sort"});
+        data.oeuvres = data.items.filter(function (item) { return item.type == "Oeuvre"});
+        data.connivences = data.items.filter(function (item) { return item.type == "Connivence"});
+
+        data.avantages = data.items.filter(function (item) { return item.type == "Avantage"});
+        data.defauts = data.items.filter(function (item) { return item.type == "Defaut"});
+        data.pouvoirsFlamme = data.items.filter(function (item) { return item.type == "PouvoirFlamme"});
+        data.pouvoirsSaison = data.items.filter(function (item) { return item.type == "PouvoirSaison"});
+
+        data.peines = data.items.filter(function (item) { return item.type == "Peine"});
+        data.bienfaits = data.items.filter(function (item) { return item.type == "Bienfait"});
+
+        /* --------------------------------------------------------
+        ---- Calculs de caractéristiques et scores secondaires ----
+        ---------------------------------------------------------*/
 
         // Calcul des scores de bonus d'aspects
         if(actorData.aspects.corps.bonus == null) {
@@ -68,6 +90,13 @@ export default class AgoneActorSheet extends ActorSheet {
             actorData.caracSecondaires.bonusDommages = 0;
         }
         
+
+
+        /* ---------------------------------------------------------
+        ---- Récupération des données de traduction en fonction ----
+        ---- de la langue sélectionnée                          ----
+        ----------------------------------------------------------*/
+
         // Récupération des traductions pour les caractéristiques
         for (let [key, carac] of Object.entries(actorData.aspects.corps.caracteristiques)) {
             carac.label = game.i18n.localize(CONFIG.agone.caracteristiques[key]);
@@ -112,6 +141,13 @@ export default class AgoneActorSheet extends ActorSheet {
                 }
             } 
         }
+
+
+
+        /* ---------------------------------------------------------
+        ---- Répartition équilibrée des compétences en fonction ----
+        ---- du nombre de colonnes d'affichage sélectionné      ----
+        ----------------------------------------------------------*/
 
         // Calcul de répartition des compétences dans 4 colonnes
         const nbColonnes = 4;
@@ -193,9 +229,10 @@ export default class AgoneActorSheet extends ActorSheet {
                 label = dataset.label ? dataset.label : '';
                 label = labCarac ? `<b>${label} + ${labCarac}</b>` : label;
 
+                // Ajout de la spécialisation si elle existe
                 if(dataset.spe) {
                     if(dataset.spe == "true") {
-                        label = `${label}<br>Spécialisation <b>${dataset.spelabel}</b>`
+                        label = `${label}<br>Spécialisation <b>${dataset.spelabel}</b>`;
                     }
                 }
 
@@ -212,6 +249,7 @@ export default class AgoneActorSheet extends ActorSheet {
             }
             else if(dataset.rolltype == "caracteristique") {
                 let aspectRoll;
+
                 if(dataset.aspect) {
                     // Si un aspect est précisé, on récupère du bonus d'aspect
                     aspectRoll = `+@aspects.${dataset.aspect}.bonus.valeur`;
@@ -222,6 +260,7 @@ export default class AgoneActorSheet extends ActorSheet {
                 roll = new Roll(`1d10x + ${rolldata}`, this.actor.getRollData());
                 roll.roll();
 
+                // Construction du label
                 label = dataset.label ? `<b>${dataset.label} x 2</b>` : '';
 
                 // Si le dé donne un résultat de 1, on recontruit un roll avec 1d10 explosif retranché au résultat
@@ -238,10 +277,10 @@ export default class AgoneActorSheet extends ActorSheet {
             else {
                 roll = new Roll(dataset.roll, this.actor.getRollData());
                 roll.roll();
-                label = dataset.label ? `Jet '${dataset.label}'` : '';
+                label = dataset.label ? `Jet par défaut '${dataset.label}'` : '';
             }
         
-            roll./*roll().*/toMessage({
+            roll.toMessage({
                 speaker: ChatMessage.getSpeaker({ actor: this.actor }),
                 flavor: label
             });
