@@ -75,6 +75,11 @@
         </div>
         <div class="tab" data-group="principal" data-tab="combat">
             <h2>TODO : combat</h2>
+            <div class="liste-armes">
+                {{#each armes as |arme id|}}
+                {{> "systems/agone/templates/partials/bloc-listearmes-personnage.hbs" arme}}
+                {{/each}}
+            </div>
         </div>
         <div class="tab" data-group="principal" data-tab="magie">
             <h2>TODO : magie</h2>

@@ -6,7 +6,8 @@ async function preloadHandlebarsTemplates() {
     const templatePaths = [
         "systems/agone/templates/partials/bloc-aspect-personnage.hbs",
         "systems/agone/templates/partials/bloc-infos-personnage.hbs",
-        "systems/agone/templates/partials/bloc-caracSec-personnage.hbs"
+        "systems/agone/templates/partials/bloc-caracSec-personnage.hbs",
+        "systems/agone/templates/partials/bloc-listearmes-personnage.hbs"
     ];
 
     return loadTemplates(templatePaths);
