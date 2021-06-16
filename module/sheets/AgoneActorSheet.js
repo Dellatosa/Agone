@@ -176,7 +176,7 @@ export default class AgoneActorSheet extends ActorSheet {
             } 
         }
 
-        console.log(actorData);
+        console.log(data);
 
         return data;
     }
@@ -184,13 +184,69 @@ export default class AgoneActorSheet extends ActorSheet {
     activateListeners(html) {
         super.activateListeners(html);
     
-        // Everything below here is only needed if the sheet is editable
+        // Tout ce qui suit nécessite que la feuille soit éditable
         if (!this.options.editable) return;
 
-            // Rollable
-            if(this.actor.owner) {
+        
+        if(this.actor.owner) {
+            // Rollable - jet de dés
             html.find('.rollable').click(this._onRoll.bind(this));
+
+            // Création d'un item
+            html.find('.creer-item').click(this._onCreerItem.bind(this));
+
+            // Edition d'un item
+            html.find('.editer-item').click(this._onEditerItem.bind(this));
+
+            // Edition d'un item - directement en ligne (champ Competence)
+            html.find('.inline-edit').change(this._onEditerCompArme.bind(this));
+
+            //Suppression d'un item
+            html.find('.supprimer-item').click(this._onSupprimerItem.bind(this));
         }
+    }
+
+    _onCreerItem(event) {
+        event.preventDefault();
+        const element = event.currentTarget;
+        
+        let itemData = {
+            name: game.i18n.localize("agone.common.nouveau"),
+            type: element.dataset.type,
+            img: "icons/svg/mystery-man.svg"
+        };
+
+        return this.actor.createOwnedItem(itemData);
+    }
+
+    _onEditerItem(event) {
+        event.preventDefault();
+        const element = event.currentTarget;
+
+        let itemId = element.closest(".item").dataset.itemId;
+        let item = this.actor.getOwnedItem(itemId);
+
+        item.sheet.render(true);
+    }
+
+    _onEditerCompArme(event) {
+        event.preventDefault();
+        const element = event.currentTarget;
+
+        let itemId = element.closest(".item").dataset.itemId;
+        let item = this.actor.getOwnedItem(itemId);
+        let field = element.dataset.field;
+
+        return item.update({ [field]: element.value });
+    }
+
+    _onSupprimerItem(event) {
+        event.preventDefault();
+        const element = event.currentTarget;
+
+        let itemId = element.closest(".item").dataset.itemId;
+
+        return this.actor.deleteOwnedItem(itemId);
     }
 
     _onRoll(event) {

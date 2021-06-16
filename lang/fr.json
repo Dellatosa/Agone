@@ -29,7 +29,10 @@
             "opacite": "Opacité",
             "seuilInvocation": "Seuil d'invocation",
             "experience": "Expérience",
+            "competence": "Compétence",
             "competences": "Compétences",
+            "caracteristique": "Caractéristique",
+            "caracteristiques": "Caractéristiques",
             "caracsSecondaires": "Carac. secondaires",
             "avantagesDefauts": "Avantages / Défauts",
             "corruption": "Corruption",
@@ -39,7 +42,13 @@
             "poidsPortable" : "Poids portable",
             "domaine": "Domaine",
             "seuil": "Seuil",
-            "portee": "Portée"
+            "portee": "Portée",
+            "ajouter": "Ajouter",
+            "supprimer": "Supprimer",
+            "editer": "Editer",
+            "nouveau": "Nouveau",
+            "jetComp": "Jet de compétence",
+            "jetCarac": "Jet de caractéristique"
         },
         "caracteristiques": {    
             "force": "Force",
@@ -193,7 +202,6 @@
         },
         "arme": {
             "label": "Arme",
-            "competence": "Compétence",
             "style": "Style",
             "tai": "TAI",
             "modifInit": "Init.",

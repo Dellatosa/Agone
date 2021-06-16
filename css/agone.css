@@ -102,6 +102,16 @@ select.auto-size {
 .sheet-fixed-content label {
   padding: 7px 0;
 }
+.agone.sheet.actor .fas {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+.agone.sheet.actor .fas:hover,
+.fas:focus {
+  color: #000;
+  text-shadow: 0 0 10px red;
+  cursor: pointer;
+}
 .actor-infos-line {
   display: flex;
   flex-flow: row wrap;
@@ -130,16 +140,6 @@ select.auto-size {
 }
 .actor-aspects-and-caracs .actor-aspect h3 {
   text-align: center;
-}
-.actor-aspects-and-caracs .actor-aspect .rollable {
-  padding-top: 6px;
-  padding-bottom: 6px;
-}
-.actor-aspects-and-caracs .actor-aspect .rollable:hover,
-.actor-aspects-and-caracs .actor-aspect .rollable:focus {
-  color: #000;
-  text-shadow: 0 0 10px red;
-  cursor: pointer;
 }
 .actor-aspects-and-caracs .actor-aspect .actor-aspect-line {
   display: flex;
@@ -191,6 +191,9 @@ select.auto-size {
   overflow-y: scroll;
   overflow-x: hidden;
 }
+.tab h3 {
+  text-align: center;
+}
 .actor-fam-comp {
   display: flex;
 }
@@ -224,16 +227,6 @@ select.auto-size {
   padding-top: 2px;
   padding-bottom: 2px;
 }
-.actor-fam-comp .actor-comp-grid .rollable {
-  padding-top: 6px;
-  padding-bottom: 6px;
-}
-.actor-fam-comp .actor-comp-grid .rollable:hover,
-.actor-fam-comp .actor-comp-grid .rollable:focus {
-  color: #000;
-  text-shadow: 0 0 10px red;
-  cursor: pointer;
-}
 .actor-fam-comp .actor-comp-grid .chk-spe {
   padding-top: 2px;
   padding-bottom: 2px;
@@ -246,4 +239,27 @@ select.auto-size {
   padding-top: 2px;
   padding-bottom: 2px;
   text-align: center;
+}
+.liste-armes {
+  display: flex;
+  flex-direction: column;
+}
+.ligne-arme {
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr repeat(4, 1fr) 2fr 2.5fr repeat(3, 1fr) 2em;
+  padding: 3px;
+  text-align: center;
+}
+.ligne-arme > * {
+  padding: 3px;
+}
+.ligne-arme img {
+  border: none;
+}
+.ligne-arme.titre {
+  font-weight: bold;
+  text-align: center;
+  background-color: rgba(82, 77, 77, 0.075);
+  border-top: solid thin #777777;
+  padding: 3px;
 }

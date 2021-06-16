@@ -29,7 +29,10 @@
             "opacite": "Opacity",
             "seuilInvocation": "Invoking threshold",
             "experience": "Experience",
+            "competence": "Skill",
             "competences": "Skills",
+            "caracteristique": "Attribute",
+            "caracteristiques": "Attributes",
             "caracsSecondaires": "Sec. attributes",
             "avantagesDefauts": "Assets / Faults",
             "corruption": "Corruption",
@@ -39,7 +42,13 @@
             "poidsPortable" : "Load",
             "domaine": "Field",
             "seuil": "Threshold",
-            "portee": "Range"
+            "portee": "Range",
+            "ajouter": "Create",
+            "supprimer": "Delete",
+            "editer": "Edit",
+            "nouveau": "New",
+            "jetComp": "Skill roll",
+            "jetCarac": "Attribute roll"
         },
         "caracteristiques": {
             "force": "Strength",
@@ -193,7 +202,6 @@
         },
         "arme": {
             "label": "Weapon",
-            "competence": "Skill",
             "style": "Style",
             "tai": "SIZ",
             "modifInit": "Init.",

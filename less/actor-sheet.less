@@ -30,6 +30,17 @@ select.auto-size {
     }
 }
 
+.agone.sheet.actor .fas {
+    padding-top : 6px;
+    padding-bottom : 6px;
+}
+
+.agone.sheet.actor .fas:hover, .fas:focus {        
+    color: #000;
+    text-shadow: 0 0 10px red;
+    cursor: pointer;
+}
+
 .actor-infos-line {
     display: flex;
     flex-flow: row wrap;
@@ -62,17 +73,6 @@ select.auto-size {
 
         h3 {
             text-align: center;
-        }
-
-        .rollable {
-            padding-top : 6px;
-            padding-bottom : 6px;
-        }
-
-        .rollable:hover, .rollable:focus {
-            color: #000;
-            text-shadow: 0 0 10px red;
-            cursor: pointer;
         }
 
         .actor-aspect-line {
@@ -137,6 +137,10 @@ select.auto-size {
     overflow-x: hidden;
 }
 
+.tab h3 {
+    text-align: center;
+}
+
 .actor-fam-comp {
     display: flex;
     
@@ -175,17 +179,6 @@ select.auto-size {
             padding-bottom : 2px;
         }
 
-        .rollable {
-            padding-top : 6px;
-            padding-bottom : 6px;
-        }
-
-        .rollable:hover, .rollable:focus {
-            color: #000;
-            text-shadow: 0 0 10px red;
-            cursor: pointer;
-        }
-
         .chk-spe {
             padding-top : 2px;
             padding-bottom : 2px;
@@ -203,4 +196,32 @@ select.auto-size {
             text-align: center;
         }
     }
+}
+
+.liste-armes {
+    display: flex;
+    flex-direction: column;
+}
+
+.ligne-arme {
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr repeat(4, 1fr) 2fr 2.5fr repeat(3, 1fr) 2em;
+    padding: 3px;
+    text-align: center;
+
+    > * {
+        padding: 3px;
+    }
+
+    img {
+        border: none;
+    }
+}
+
+.ligne-arme.titre {
+    font-weight: bold;
+    text-align: center;
+    background-color: rgba(82, 77, 77, 0.075);
+    border-top: solid thin rgb(119, 119, 119);
+    padding: 3px;
 }

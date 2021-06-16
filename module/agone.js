@@ -25,4 +25,8 @@ Hooks.once("init", function(){
     Items.registerSheet("agone", AgoneItemSheet, {makeDefault: true});
 
     preloadHandlebarsTemplates();
+
+    Handlebars.registerHelper("configLocalize", function(liste, val) {
+        return game.i18n.localize(agone[liste][val]);
+    });
 });

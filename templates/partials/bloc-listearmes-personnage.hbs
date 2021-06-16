@@ -1,4 +1,43 @@
-<div class="grid-arme-liste">
-    <div>{{name}}</div>
-    <div>{{style}}</div>
+<div class="ligne-arme titre">
+    <label></label>
+    <label>{{localize "agone.common.name"}}</label>
+    <label>{{localize "agone.arme.style"}}</label>
+    <label>{{localize "agone.arme.modifInit"}}</label>
+    <label>{{localize "agone.arme.modifAttaque"}}</label>
+    <label>{{localize "agone.arme.modifDefense"}}</label>
+    <label>{{localize "agone.arme.modifDommages"}}</label>
+    <label>{{localize "agone.common.competence"}}</label>
+    <label>{{localize "agone.common.type"}}</label>
+    <label>{{localize "agone.arme.minForce"}}</label>
+    <label>{{localize "agone.arme.minAgilite"}}</label>
+    <label>{{localize "agone.arme.tai"}}</label>
+    <a class="creer-item" data-type="Arme" title="{{localize 'agone.common.ajouter'}}"><i class="fas fa-plus"></i></a>
 </div>
+{{#each armes as |arme id|}}
+<div class="ligne-arme item" data-item-id="{{arme._id}}">
+    <a class="editer-item"><img src="{{img}}" title="{{localize 'agone.common.editer'}}" height="32" width="32"/></a>
+    <div>{{name}}</div>
+    <div>{{configLocalize "stylesArme" data.style}}</div>
+    <div>{{data.modifInit}}</div>
+    <div>{{data.modifAttaque}}</div>
+    <div>{{data.modifDefense}}</div>
+    <div>{{data.modifDommages}}</div>
+    <div>
+        <select class="inline-edit" data-field="data.competence">
+            {{#select data.competence}}
+                <option value="aucun"></option>
+                {{#each ../actor.data.familleCompetences.epreuves.competences.armes.domaines as |domaine keyDom|}}
+                    {{#if domaine.label}}
+                        <option value="{{keyDom}}">{{localize domaine.label}}</option>
+                    {{/if}}
+                {{/each}}
+            {{/select}}
+        </select>
+    </div>
+    <div>{{configLocalize "typesArme" data.type}}</div>
+    <div>{{data.minForce}}</div>
+    <div>{{data.minAgilite}}</div>
+    <div>{{data.tai}}</div>
+    <a class="supprimer-item" title="{{localize 'agone.common.supprimer'}}"><i class="fas fa-trash"></i></a>
+</div>            
+{{/each}}

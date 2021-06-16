@@ -53,7 +53,7 @@
                                             {{/if}}
                                             <div class="val-comp"><input name="data.familleCompetences.{{keyFam}}.competences.{{keyComp}}.domaines.{{keyDom}}.rang" type="number" value="{{domaine.rang}}" placeholder="0"/></div>
                                             <div class="chk-spe"><input name="data.familleCompetences.{{keyFam}}.competences.{{keyComp}}.domaines.{{keyDom}}.specialisation" type="checkbox" data-dtype="Boolean" {{checked domaine.specialisation}}/></div>
-                                            <i class="fas fa-dice rollable" data-rolltype="competence" data-roll="@familleCompetences.{{keyFam}}.competences.{{keyComp}}.domaines.{{keyDom}}.rang" data-carac="{{domaine.caracteristique}}" data-label="{{domaine.label}}" data-spe="{{domaine.specialisation}}" data-spelabel="{{domaine.labelSpecialisation}}"></i>
+                                            <a class="rollable" title="{{localize 'agone.common.jetComp'}}" data-rolltype="competence" data-roll="@familleCompetences.{{keyFam}}.competences.{{keyComp}}.domaines.{{keyDom}}.rang" data-carac="{{domaine.caracteristique}}" data-label="{{domaine.label}}" data-spe="{{domaine.specialisation}}" data-spelabel="{{domaine.labelSpecialisation}}"><i class="fas fa-dice" ></i></a>
                                         {{/if}}      
                                     {{/each}}
                                 {{else}}
@@ -61,7 +61,7 @@
                                         <label class="lbl-comp">{{competence.label}}</label>     
                                         <div class="val-comp"><input name="data.familleCompetences.{{keyFam}}.competences.{{keyComp}}.rang" type="number" value="{{competence.rang}}" placeholder="0"/></div>
                                         <div class="chk-spe"><input name="data.familleCompetences.{{keyFam}}.competences.{{keyComp}}.specialisation" type="checkbox" data-dtype="Boolean" {{checked competence.specialisation}}/></div>
-                                        <i class="fas fa-dice rollable" data-rolltype="competence" data-roll="@familleCompetences.{{keyFam}}.competences.{{keyComp}}.rang" data-carac="{{competence.caracteristique}}" data-label="{{competence.label}}" data-spe="{{competence.specialisation}}" data-spelabel="{{competence.labelSpecialisation}}"></i>
+                                        <a class="rollable" title="{{localize 'agone.common.jetComp'}}" data-rolltype="competence" data-roll="@familleCompetences.{{keyFam}}.competences.{{keyComp}}.rang" data-carac="{{competence.caracteristique}}" data-label="{{competence.label}}" data-spe="{{competence.specialisation}}" data-spelabel="{{competence.labelSpecialisation}}"><i class="fas fa-dice"></i></a>
                                     {{/if}}    
                                 {{/if}}
                             {{/each}}
@@ -74,11 +74,9 @@
             {{> "systems/agone/templates/partials/bloc-caracSec-personnage.hbs"}}
         </div>
         <div class="tab" data-group="principal" data-tab="combat">
-            <h2>TODO : combat</h2>
+            <h3>Armes</h3>
             <div class="liste-armes">
-                {{#each armes as |arme id|}}
-                {{> "systems/agone/templates/partials/bloc-listearmes-personnage.hbs" arme}}
-                {{/each}}
+                {{> "systems/agone/templates/partials/bloc-listearmes-personnage.hbs"}}
             </div>
         </div>
         <div class="tab" data-group="principal" data-tab="magie">
