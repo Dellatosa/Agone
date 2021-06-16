@@ -206,7 +206,7 @@
             "tai": "TAI",
             "modifInit": "Init.",
             "modifAttaque": "Att.",
-            "modifDefense": "Def.",
+            "modifParade": "Par.",
             "modifDommages": "Dom.",
             "minAgilite": "AGI min.",
             "minForce": "FOR min.",
@@ -249,6 +249,7 @@
         "manoeuvre": {
             "label": "Manoeuvre",
             "prerequis": "Prérequis",
+            "modifDefense": "Def.",
             "descriptionLabel": "Description de la manoeuvre"
         },
         "armure": {
