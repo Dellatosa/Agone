@@ -127,6 +127,10 @@ select.auto-size {
             display: grid;
             justify-content: center;
             grid-template-columns: max-content 3.5em;
+
+            label {
+                padding: 7px 0;
+            }
         }
     }
 }
@@ -198,14 +202,38 @@ select.auto-size {
     }
 }
 
+.recap {
+    display: flex;
+    flex-direction: row;
+    padding: 3px; 
+    justify-content: center;
+    margin-bottom: 0.5rem;
+
+    div {
+        display: flex;
+        flex: 1;
+        justify-content: center;
+
+        label {
+            margin: 3px;
+        }
+
+        div {
+            margin: 3px;
+            flex: 0 1 3em;
+        }    
+    }
+}
+
 .liste-armes {
     display: flex;
     flex-direction: column;
+    margin-bottom: 0.5rem;
 }
 
 .ligne-arme {
     display: grid;
-    grid-template-columns: 1fr 2fr 2fr repeat(4, 1fr) 2fr 2.5fr repeat(3, 1fr) 2em;
+    grid-template-columns: 2.5em 2fr 1.5fr repeat(5, 1fr) 2fr 2.5fr repeat(3, 1fr) 2em;
     padding: 3px;
     text-align: center;
 

@@ -29,7 +29,7 @@
 }
 .grid-arme {
   display: grid;
-  grid-template-columns: 2fr repeat(4, 1fr) 2.5fr repeat(3, 1fr);
+  grid-template-columns: 2fr repeat(5, 1fr) 2.5fr repeat(3, 1fr);
   padding: 3px;
 }
 .grid-danseur {
@@ -186,6 +186,9 @@ select.auto-size {
   justify-content: center;
   grid-template-columns: max-content 3.5em;
 }
+.actor-caracSec .actor-caracSec-block .actor-caracSec-grid label {
+  padding: 7px 0;
+}
 .sheet-body {
   height: 100%;
   overflow-y: scroll;
@@ -240,13 +243,33 @@ select.auto-size {
   padding-bottom: 2px;
   text-align: center;
 }
+.recap {
+  display: flex;
+  flex-direction: row;
+  padding: 3px;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+.recap div {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+}
+.recap div label {
+  margin: 3px;
+}
+.recap div div {
+  margin: 3px;
+  flex: 0 1 3em;
+}
 .liste-armes {
   display: flex;
   flex-direction: column;
+  margin-bottom: 0.5rem;
 }
 .ligne-arme {
   display: grid;
-  grid-template-columns: 1fr 2fr 2fr repeat(4, 1fr) 2fr 2.5fr repeat(3, 1fr) 2em;
+  grid-template-columns: 2.5em 2fr 1.5fr repeat(5, 1fr) 2fr 2.5fr repeat(3, 1fr) 2em;
   padding: 3px;
   text-align: center;
 }

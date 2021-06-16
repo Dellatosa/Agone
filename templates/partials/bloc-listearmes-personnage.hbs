@@ -6,6 +6,7 @@
     <label>{{localize "agone.arme.modifAttaque"}}</label>
     <label>{{localize "agone.arme.modifParade"}}</label>
     <label>{{localize "agone.arme.modifDommages"}}</label>
+    <label>{{localize "agone.common.portee"}}</label>
     <label>{{localize "agone.common.competence"}}</label>
     <label>{{localize "agone.common.type"}}</label>
     <label>{{localize "agone.arme.minForce"}}</label>
@@ -22,6 +23,7 @@
     <div>{{data.modifAttaque}}</div>
     <div>{{data.modifParade}}</div>
     <div>{{data.modifDommages}}</div>
+    <div>{{data.portee}}</div>
     <div>
         <select class="inline-edit" data-field="data.competence">
             {{#select data.competence}}
@@ -41,3 +43,4 @@
     <a class="supprimer-item" title="{{localize 'agone.common.supprimer'}}"><i class="fas fa-trash"></i></a>
 </div>            
 {{/each}}
+<!-- TODO : Ajouter une couleur rouge aux valeurs FOR min, AGI min et TAI si le peros ne respecte pas les prérequis) -->

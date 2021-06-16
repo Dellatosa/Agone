@@ -74,13 +74,39 @@
             {{> "systems/agone/templates/partials/bloc-caracSec-personnage.hbs"}}
         </div>
         <div class="tab" data-group="principal" data-tab="combat">
+            <div class="recap">
+                <div>
+                    <label>{{localize "agone.caracteristiques.melee"}}</label>
+                    <div>{{data.aspects.corps.caracteristiques.melee.valeur}}</div>
+                </div>
+                <div>
+                    <label>{{localize "agone.caracteristiques.tir"}}</label>
+                    <div>{{data.aspects.corps.caracteristiques.tir.valeur}}</div>
+                </div>
+                <div>
+                    <label>{{localize "agone.caracteristiques.bonusDommages"}}</label>
+                    <div>{{data.caracSecondaires.bonusDommages}}</div>
+                </div>
+            </div>
             <h3>Armes</h3>
             <div class="liste-armes">
                 {{> "systems/agone/templates/partials/bloc-listearmes-personnage.hbs"}}
             </div>
+            <h3>Armures</h3>
         </div>
         <div class="tab" data-group="principal" data-tab="magie">
-            <h2>TODO : magie</h2>
+            <div class="recap">
+                <div>
+                    <label>{{localize "agone.caracteristiques.emprise"}}</label>
+                    <div>{{data.aspects.esprit.caracteristiques.emprise.valeur}}</div>
+                </div>
+                <div>
+                    <label>{{localize "agone.caracteristiques.art"}}</label>
+                    <div>{{data.aspects.ame.caracteristiques.art.valeur}}</div>
+                </div>
+            </div>    
+            <h3>Sorts</h3>
+            <h3>Oeuvres</h3>
         </div>
         <div class="tab" data-group="principal" data-tab="avantagesDefauts">
             <h2>TODO : avantagesDefauts</h2>

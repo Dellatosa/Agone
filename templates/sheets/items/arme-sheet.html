@@ -10,11 +10,11 @@
             <label class="grid-titre">{{localize "agone.arme.modifAttaque"}}</label>
             <label class="grid-titre">{{localize "agone.arme.modifParade"}}</label>
             <label class="grid-titre">{{localize "agone.arme.modifDommages"}}</label>
+            <label class="grid-titre">{{localize "agone.common.portee"}}</label>
             <label class="grid-titre">{{localize "agone.common.type"}}</label>
             <label class="grid-titre">{{localize "agone.arme.minForce"}}</label>
             <label class="grid-titre">{{localize "agone.arme.minAgilite"}}</label>
             <label class="grid-titre">{{localize "agone.arme.tai"}}</label>
-            <!-- <label>{{localize "agone.weapon.skillname"}}</lable> -->
             <div>
                 <select name="data.style">
                     {{#select data.style}}
@@ -28,6 +28,7 @@
             <div><input name="data.modifAttaque" type="text" value="{{data.modifAttaque}}" data-dtype="Number" placeholder="0"/></div>
             <div><input name="data.modifParade" type="text" value="{{data.modifParade}}" data-dtype="Number" placeholder="0"/></div>
             <div><input name="data.modifDommages" type="text" value="{{data.modifDommages}}" data-dtype="Number" placeholder="0"/></div>
+            <div><input name="data.portee" type="text" value="{{data.portee}}" data-dtype="Number" placeholder="0"/></div>
             <div>
                 <select name="data.type">
                     {{#select data.type}}
@@ -40,7 +41,6 @@
             <div><input name="data.minForce" type="text" value="{{data.minForce}}" data-dtype="Number" placeholder="0"/></div>
             <div><input name="data.minAgilite" type="text" value="{{data.minAgilite}}" data-dtype="Number" placeholder="0"/></div>
             <div><input name="data.tai" type="text" value="{{data.tai}}" data-dtype="Number" placeholder="0"/></div>
-            <!-- récupérer la compétence selon l'acteur -->
         </div>
          <div>{{localize "agone.arme.descriptionLabel"}}</div> 
          {{editor content=data.description target="data.description" button=true owner=true editable=true}}
