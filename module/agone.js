@@ -12,7 +12,9 @@ async function preloadHandlebarsTemplates() {
         "systems/agone/templates/partials/bloc-liste-danseurs-personnage.hbs",
         "systems/agone/templates/partials/bloc-liste-sorts-personnage.hbs",
         "systems/agone/templates/partials/bloc-liste-connivences-personnage.hbs",
-        "systems/agone/templates/partials/bloc-liste-oeuvres-personnage.hbs"
+        "systems/agone/templates/partials/bloc-liste-oeuvres-personnage.hbs",
+        "systems/agone/templates/partials/bloc-liste-defauts-personnage.hbs",
+        "systems/agone/templates/partials/bloc-liste-avantages-personnage.hbs"
     ];
 
     return loadTemplates(templatePaths);

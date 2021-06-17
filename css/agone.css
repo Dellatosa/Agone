@@ -272,7 +272,9 @@ nav.magie-tabs {
 .liste-danseurs,
 .liste-sorts,
 .liste-oeuvres,
-.liste-connivences {
+.liste-connivences,
+.liste-avantages,
+.liste-defauts {
   display: flex;
   flex-direction: column;
   margin-bottom: 0.5rem;
@@ -349,12 +351,29 @@ nav.magie-tabs {
 .ligne-connivence img {
   border: none;
 }
+.ligne-avantage,
+.ligne-defaut {
+  display: grid;
+  grid-template-columns: 2.5em 1fr 1fr 0.5fr 3fr 2em;
+  padding: 3px;
+  text-align: center;
+}
+.ligne-avantage > *,
+.ligne-defaut > * {
+  padding: 3px;
+}
+.ligne-avantage img,
+.ligne-defaut img {
+  border: none;
+}
 .ligne-arme.titre,
 .ligne-armure.titre,
 .ligne-danseur.titre,
 .ligne-sort.titre,
 .ligne-oeuvre.titre,
-.ligne-connivence.titre {
+.ligne-connivence.titre,
+.ligne-avantage.titre,
+.ligne-defaut.titre {
   font-weight: bold;
   text-align: center;
   background-color: rgba(82, 77, 77, 0.075);

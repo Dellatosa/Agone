@@ -28,7 +28,7 @@
         <a class="item" data-tab="caracSecondaires">{{localize "agone.common.caracsSecondaires"}}</a>
         <a class="item" data-tab="combat">{{localize "agone.common.combat"}}</a>
         <a class="item" data-tab="magie">{{localize "agone.common.magie"}}</a>
-        <a class="item" data-tab="avantagesDefauts">{{localize "agone.common.avantagesDefauts"}}</a>
+        <a class="item" data-tab="avantagesDefauts">{{localize "agone.common.avantages"}} / {{localize "agone.common.defauts"}}</a>
     </nav>
     <section class="sheet-body">
         <div class="tab" data-group="principal" data-tab="competences">
@@ -155,7 +155,14 @@
             </div>
         </div>
         <div class="tab" data-group="principal" data-tab="avantagesDefauts">
-            <h2>TODO : avantagesDefauts</h2>
+            <h3>{{localize "agone.common.avantages"}}</h3>
+            <div class="liste-avantages">
+                {{> "systems/agone/templates/partials/bloc-liste-avantages-personnage.hbs"}}
+            </div>
+            <h3>{{localize "agone.common.defauts"}}</h3>
+            <div class="liste-defauts">
+                {{> "systems/agone/templates/partials/bloc-liste-defauts-personnage.hbs"}}
+            </div>
         </div>
     </section>
     <!-- <footer class="sheet-footer">    
