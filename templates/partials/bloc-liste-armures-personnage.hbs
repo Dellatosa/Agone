@@ -1,0 +1,20 @@
+<div class="ligne-armure titre">
+    <label></label>
+    <label>{{localize "agone.common.name"}}</label>
+    <label>{{localize "agone.common.type"}}</label>
+    <label>{{localize "agone.armure.protection"}}</label>
+    <label>{{localize "agone.armure.malus"}}</label>
+    <label>{{localize "agone.armure.malusPerception"}}</label>
+    <a class="creer-item" data-type="Armure" title="{{localize 'agone.common.ajouter'}}"><i class="fas fa-plus"></i></a>
+</div>
+{{#each armures as |armure id|}}
+<div class="ligne-armure item" data-item-id="{{armure._id}}">
+    <a class="editer-item"><img src="{{img}}" title="{{localize 'agone.common.editer'}}" height="32" width="32"/></a>
+    <div>{{name}}</div>
+    <div>{{configLocalize "typesArmure" data.type}}</div>
+    <div>{{data.protection}}</div>
+    <div>{{data.malus}}</div>
+    <div>{{data.malusPerception}}</div>
+    <a class="supprimer-item" title="{{localize 'agone.common.supprimer'}}"><i class="fas fa-trash"></i></a>
+</div>            
+{{/each}}

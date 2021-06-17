@@ -1,0 +1,18 @@
+<div class="ligne-connivence titre">
+    <label></label>
+    <label>{{localize "agone.common.name"}}</label>
+    <label>{{localize "agone.connivence.cercleDemon"}}</label>
+    <label>{{localize "agone.connivence.nomDemon"}}</label>
+    <label>{{localize "agone.connivence.nomAdvocatus"}}</label>
+    <a class="creer-item" data-type="Connivence" title="{{localize 'agone.common.ajouter'}}"><i class="fas fa-plus"></i></a>
+</div>
+{{#each connivences as |connivence id|}}
+<div class="ligne-connivence item" data-item-id="{{connivence._id}}">
+    <a class="editer-item"><img src="{{img}}" title="{{localize 'agone.common.editer'}}" height="32" width="32"/></a>
+    <div>{{name}}</div>
+    <div>{{configLocalize "cerclesDemon" data.cercleDemon}}</div>
+    <div>{{data.nomDemon}}</div>
+    <div>{{data.nomAdvocatus}}</div>
+    <a class="supprimer-item" title="{{localize 'agone.common.supprimer'}}"><i class="fas fa-trash"></i></a>
+</div>            
+{{/each}}

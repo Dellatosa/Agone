@@ -112,6 +112,11 @@ select.auto-size {
   text-shadow: 0 0 10px red;
   cursor: pointer;
 }
+nav.magie-tabs {
+  height: 26px;
+  line-height: 26px;
+  border-bottom: 1px solid #b5b3a4;
+}
 .actor-infos-line {
   display: flex;
   flex-flow: row wrap;
@@ -262,7 +267,12 @@ select.auto-size {
   margin: 3px;
   flex: 0 1 3em;
 }
-.liste-armes {
+.liste-armes,
+.liste-armures,
+.liste-danseurs,
+.liste-sorts,
+.liste-oeuvres,
+.liste-connivences {
   display: flex;
   flex-direction: column;
   margin-bottom: 0.5rem;
@@ -279,7 +289,72 @@ select.auto-size {
 .ligne-arme img {
   border: none;
 }
-.ligne-arme.titre {
+.ligne-armure {
+  display: grid;
+  grid-template-columns: 2.5em 2fr repeat(4, 1fr) 2em;
+  padding: 3px;
+  text-align: center;
+}
+.ligne-armure > * {
+  padding: 3px;
+}
+.ligne-armure img {
+  border: none;
+}
+.ligne-danseur {
+  display: grid;
+  grid-template-columns: 2.5em 2fr repeat(7, 1fr) 2em;
+  padding: 3px;
+  text-align: center;
+}
+.ligne-danseur > * {
+  padding: 3px;
+}
+.ligne-danseur img {
+  border: none;
+}
+.ligne-sort {
+  display: grid;
+  grid-template-columns: 2.5em 2fr 2fr repeat(4, 1fr) 2em;
+  padding: 3px;
+  text-align: center;
+}
+.ligne-sort > * {
+  padding: 3px;
+}
+.ligne-sort img {
+  border: none;
+}
+.ligne-oeuvre {
+  display: grid;
+  grid-template-columns: 2.5em 2fr 2fr 2fr repeat(4, 1fr) 2em;
+  padding: 3px;
+  text-align: center;
+}
+.ligne-oeuvre > * {
+  padding: 3px;
+}
+.ligne-oeuvre img {
+  border: none;
+}
+.ligne-connivence {
+  display: grid;
+  grid-template-columns: 2.5em repeat(4, 1fr) 2em;
+  padding: 3px;
+  text-align: center;
+}
+.ligne-connivence > * {
+  padding: 3px;
+}
+.ligne-connivence img {
+  border: none;
+}
+.ligne-arme.titre,
+.ligne-armure.titre,
+.ligne-danseur.titre,
+.ligne-sort.titre,
+.ligne-oeuvre.titre,
+.ligne-connivence.titre {
   font-weight: bold;
   text-align: center;
   background-color: rgba(82, 77, 77, 0.075);

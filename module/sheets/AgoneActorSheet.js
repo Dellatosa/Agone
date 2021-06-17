@@ -5,7 +5,8 @@ export default class AgoneActorSheet extends ActorSheet {
             width: 760,
             height: 870,
             classes: ["agone", "sheet", "actor"],
-            tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "competences" }]
+            tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "competences" },
+                    { navSelector: ".magie-tabs", contentSelector: ".magie-content", initial: "emprise" }]
         });
     }
 
@@ -68,8 +69,22 @@ export default class AgoneActorSheet extends ActorSheet {
         // Calcul des caractéristiques secondaires
         actorData.aspects.corps.caracteristiques.melee.valeur = Math.floor((actorData.aspects.corps.caracteristiques.force.valeur + actorData.aspects.corps.caracteristiques.agilite.valeur * 2) / 3);
         actorData.aspects.corps.caracteristiques.tir.valeur = Math.floor((actorData.aspects.corps.caracteristiques.perception.valeur + actorData.aspects.corps.caracteristiques.agilite.valeur) / 2);
-        actorData.aspects.esprit.caracteristiques.emprise.valeur = 0;
         actorData.aspects.ame.caracteristiques.art.valeur = Math.floor((actorData.aspects.ame.caracteristiques.charisme.valeur + actorData.aspects.ame.caracteristiques.creativite.valeur) / 2); 
+        actorData.caracSecondaires.noirceur =  Math.floor(actorData.caracSecondaires.tenebre / 10);
+
+        switch(actorData.caracSecondaires.resonance) {
+            case "jorniste":
+                actorData.aspects.esprit.caracteristiques.emprise.valeur = actorData.aspects.esprit.caracteristiques.intelligence.valeur;
+                break;
+            case "eclipsiste":
+                actorData.aspects.esprit.caracteristiques.emprise.valeur = Math.floor((actorData.aspects.esprit.caracteristiques.intelligence.valeur + actorData.aspects.esprit.caracteristiques.volonte.valeur) / 2);
+                break;
+            case "obscurantiste":
+                actorData.aspects.esprit.caracteristiques.emprise.valeur = actorData.aspects.esprit.caracteristiques.volonte.valeur;
+                break;
+            default:
+                actorData.aspects.esprit.caracteristiques.emprise.valeur = 0;
+        }
 
         actorData.caracSecondaires.seuilBlessureGrave = Math.floor(actorData.caracSecondaires.pdv.max / 3);
         actorData.caracSecondaires.seuilBlessureCritique = Math.floor(actorData.caracSecondaires.pdv.max / 2);
@@ -89,8 +104,8 @@ export default class AgoneActorSheet extends ActorSheet {
             actorData.caracSecondaires.chargeQuotidienne = 0;
             actorData.caracSecondaires.bonusDommages = 0;
         }
-        
 
+                
 
         /* ---------------------------------------------------------
         ---- Récupération des données de traduction en fonction ----

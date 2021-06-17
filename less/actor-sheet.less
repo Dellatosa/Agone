@@ -41,6 +41,12 @@ select.auto-size {
     cursor: pointer;
 }
 
+nav.magie-tabs {
+    height: 26px;
+    line-height: 26px;
+    border-bottom: 1px solid #b5b3a4;
+}
+
 .actor-infos-line {
     display: flex;
     flex-flow: row wrap;
@@ -225,7 +231,7 @@ select.auto-size {
     }
 }
 
-.liste-armes {
+.liste-armes, .liste-armures, .liste-danseurs, .liste-sorts, .liste-oeuvres, .liste-connivences {
     display: flex;
     flex-direction: column;
     margin-bottom: 0.5rem;
@@ -246,10 +252,87 @@ select.auto-size {
     }
 }
 
-.ligne-arme.titre {
+.ligne-armure {
+    display: grid;
+    grid-template-columns: 2.5em 2fr repeat(4, 1fr) 2em;
+    padding: 3px;
+    text-align: center;
+
+    > * {
+        padding: 3px;
+    }
+
+    img {
+        border: none;
+    }
+}
+
+.ligne-danseur {
+    display: grid;
+    grid-template-columns: 2.5em 2fr repeat(7, 1fr) 2em;
+    padding: 3px;
+    text-align: center;
+
+    > * {
+        padding: 3px;
+    }
+
+    img {
+        border: none;
+    }
+}
+
+.ligne-sort {
+    display: grid;
+    grid-template-columns: 2.5em 2fr 2fr repeat(4, 1fr) 2em;
+    padding: 3px;
+    text-align: center;
+
+    > * {
+        padding: 3px;
+    }
+
+    img {
+        border: none;
+    }
+}
+
+.ligne-oeuvre {
+    display: grid;
+    grid-template-columns: 2.5em 2fr 2fr 2fr repeat(4, 1fr) 2em;
+    padding: 3px;
+    text-align: center;
+
+    > * {
+        padding: 3px;
+    }
+
+    img {
+        border: none;
+    }
+}
+
+.ligne-connivence {
+    display: grid;
+    grid-template-columns: 2.5em repeat(4, 1fr) 2em;
+    padding: 3px;
+    text-align: center;
+
+    > * {
+        padding: 3px;
+    }
+
+    img {
+        border: none;
+    }
+}
+
+.ligne-arme.titre, .ligne-armure.titre, .ligne-danseur.titre, .ligne-sort.titre, .ligne-oeuvre.titre, .ligne-connivence.titre {
     font-weight: bold;
     text-align: center;
     background-color: rgba(82, 77, 77, 0.075);
     border-top: solid thin rgb(119, 119, 119);
     padding: 3px;
 }
+
+

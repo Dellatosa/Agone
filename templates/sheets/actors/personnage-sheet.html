@@ -88,25 +88,71 @@
                     <div>{{data.caracSecondaires.bonusDommages}}</div>
                 </div>
             </div>
-            <h3>Armes</h3>
+            <h3>{{localize "agone.competences.armes"}}</h3>
             <div class="liste-armes">
-                {{> "systems/agone/templates/partials/bloc-listearmes-personnage.hbs"}}
+                {{> "systems/agone/templates/partials/bloc-liste-armes-personnage.hbs"}}
             </div>
-            <h3>Armures</h3>
+            <h3>{{localize "agone.common.armures"}}</h3>
+            <div class="liste-armures">
+                {{> "systems/agone/templates/partials/bloc-liste-armures-personnage.hbs"}}
+            </div>
         </div>
-        <div class="tab" data-group="principal" data-tab="magie">
-            <div class="recap">
-                <div>
-                    <label>{{localize "agone.caracteristiques.emprise"}}</label>
-                    <div>{{data.aspects.esprit.caracteristiques.emprise.valeur}}</div>
+        <div class="tab magie-content" data-group="principal" data-tab="magie">
+            <nav class="magie-tabs tabs" data-group="magie">
+                <a class="item" data-tab="emprise">{{localize "agone.caracteristiques.emprise"}}</a>
+                <a class="item" data-tab="artsMagiques">{{localize "agone.competences.artsMagiques"}}</a>
+                <a class="item" data-tab="conjuration">{{localize "agone.common.conjuration"}}</a>
+            </nav>
+            <div class="tab" data-group="magie" data-tab="emprise">
+                <div class="recap">
+                    <div>
+                        <label>{{localize "agone.competences.resonance"}}</label>
+                        <select name="data.caracSecondaires.resonance">
+                            {{#select data.caracSecondaires.resonance}}
+                                {{#each config.resonances as |name type|}}
+                                    <option value="{{type}}">{{localize name}}</option>
+                                {{/each}}
+                            {{/select}} 
+                        </select>
+                    </div>
+                    <div>
+                        <label>{{localize "agone.caracteristiques.emprise"}}</label>
+                        <div>{{data.aspects.esprit.caracteristiques.emprise.valeur}}</div>
+                    </div>
                 </div>
-                <div>
-                    <label>{{localize "agone.caracteristiques.art"}}</label>
-                    <div>{{data.aspects.ame.caracteristiques.art.valeur}}</div>
+                <h3>{{localize "agone.common.danseurs"}}</h3>
+                <div class="liste-danseurs">
+                    {{> "systems/agone/templates/partials/bloc-liste-danseurs-personnage.hbs"}}
                 </div>
-            </div>    
-            <h3>Sorts</h3>
-            <h3>Oeuvres</h3>
+                <h3>{{localize "agone.common.sorts"}}</h3>
+                <div class="liste-sorts">
+                    {{> "systems/agone/templates/partials/bloc-liste-sorts-personnage.hbs"}}
+                </div>
+            </div>
+            <div class="tab" data-group="magie" data-tab="artsMagiques">
+                <div class="recap">
+                    <div>
+                        <label>{{localize "agone.caracteristiques.art"}}</label>
+                        <div>{{data.aspects.ame.caracteristiques.art.valeur}}</div>
+                    </div>
+                </div>
+                <h3>{{localize "agone.common.oeuvres"}}</h3>
+                <div class="liste-oeuvres">
+                    {{> "systems/agone/templates/partials/bloc-liste-oeuvres-personnage.hbs"}}
+                </div>
+            </div>
+            <div class="tab" data-group="magie" data-tab="conjuration">
+                <div class="recap">
+                    <div>
+                        <label>{{localize "agone.caracteristiques.noirceur"}}</label>
+                        <div>{{data.caracSecondaires.noirceur}}</div>
+                    </div>
+                </div>
+                <h3>{{localize "agone.common.connivences"}}</h3>
+                <div class="liste-connivences">
+                    {{> "systems/agone/templates/partials/bloc-liste-connivences-personnage.hbs"}}
+                </div>
+            </div>
         </div>
         <div class="tab" data-group="principal" data-tab="avantagesDefauts">
             <h2>TODO : avantagesDefauts</h2>

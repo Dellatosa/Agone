@@ -1,0 +1,24 @@
+<div class="ligne-oeuvre titre">
+    <label></label>
+    <label>{{localize "agone.common.name"}}</label>
+    <label>{{localize "agone.oeuvre.artMagique"}}</label>
+    <label>{{localize "agone.common.saison"}}</label>
+    <label>{{localize "agone.common.seuil"}}</label>
+    <label>{{localize "agone.common.portee"}}</label>
+    <label>{{localize "agone.oeuvre.tempsPreparation"}}</label>
+    <label>{{localize "agone.oeuvre.dureeOeuvre"}}</label>
+    <a class="creer-item" data-type="Oeuvre" title="{{localize 'agone.common.ajouter'}}"><i class="fas fa-plus"></i></a>
+</div>
+{{#each oeuvres as |oeuvre id|}}
+<div class="ligne-oeuvre item" data-item-id="{{oeuvre._id}}">
+    <a class="editer-item"><img src="{{img}}" title="{{localize 'agone.common.editer'}}" height="32" width="32"/></a>
+    <div>{{name}}</div>
+    <div>{{configLocalize "arts" data.artMagique}}</div>
+    <div>{{configLocalize "saisons" data.saison}}</div>
+    <div>{{data.seuil}}</div>
+    <div>{{data.portee}}</div>
+    <div>{{data.tempsPreparation}}</div>
+    <div>{{data.dureeOeuvre}}</div>
+    <a class="supprimer-item" title="{{localize 'agone.common.supprimer'}}"><i class="fas fa-trash"></i></a>
+</div>            
+{{/each}}

@@ -16,6 +16,11 @@
             "jorniste": "Jornist",
             "eclipsiste": "Eclipsist",
             "obscurantiste": "Obscurantist",
+            "conjuration": "Conjuration",
+            "sorts": "Spells",
+            "oeuvres": "Works",
+            "connivences": "Connivances",
+            "danseurs": "Dancers",
             "apparence": "Appearance",      
             "nbBlessureGrave": "Serious wound",
             "origine": "Birthplace",
@@ -165,7 +170,8 @@
             "cryptogramme": "Cypher sorcery",
             "demonologie": "Demonology",
             "harmonie": "Concord",
-            "resonance": "Resonance"
+            "resonance": "Resonance",
+            "armures": "Armour"
         },
         "typesAvantageDefaut":{
             "chargeSociete": "Charge and Society"
@@ -253,7 +259,7 @@
             "descriptionLabel": "Description de la manoeuvre"
         },
         "armure": {
-            "label": "Armor",
+            "label": "Armour",
             "protection": "Protection",
             "malus": "Penalty",
             "malusPerception": "Perception penalty",

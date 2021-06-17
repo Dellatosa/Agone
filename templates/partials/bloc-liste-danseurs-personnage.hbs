@@ -1,0 +1,26 @@
+<div class="ligne-danseur titre">
+    <label></label>
+    <label>{{localize "agone.common.name"}}</label>
+    <label>{{localize "agone.danseur.memoireDispo"}}</label>
+    <label>{{localize "agone.danseur.memoireMax"}}</label>
+    <label>{{localize "agone.danseur.bonusEmprise"}}</label>
+    <label>{{localize "agone.danseur.empathie"}}</label>
+    <label>{{localize "agone.danseur.enduranceDispo"}}</label>
+    <label>{{localize "agone.danseur.enduranceMax"}}</label>
+    <label>{{localize "agone.common.experience"}}</label> 
+    <a class="creer-item" data-type="Danseur" title="{{localize 'agone.common.ajouter'}}"><i class="fas fa-plus"></i></a>
+</div>
+{{#each danseurs as |danseur id|}}
+<div class="ligne-danseur item" data-item-id="{{danseur._id}}">
+    <a class="editer-item"><img src="{{img}}" title="{{localize 'agone.common.editer'}}" height="32" width="32"/></a>
+    <div>{{name}}</div>
+    <div>{{data.memoire.value}}</div>
+    <div>{{data.memoire.max}}</div>
+    <div>{{data.bonusEmprise}}</div>
+    <div>{{data.empathie}}</div>
+    <div>{{data.endurance.value}}</div>
+    <div>{{data.endurance.max}}</div>
+    <div>{{data.experience}}</div>
+    <a class="supprimer-item" title="{{localize 'agone.common.supprimer'}}"><i class="fas fa-trash"></i></a>
+</div>            
+{{/each}}

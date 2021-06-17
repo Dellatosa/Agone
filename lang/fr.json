@@ -16,6 +16,11 @@
             "jorniste": "Jorniste",
             "eclipsiste": "Eclipsiste",
             "obscurantiste": "Obscurantiste",
+            "conjuration": "Conjuration",
+            "sorts": "Sorts",
+            "oeuvres": "Oeuvres",
+            "connivences": "Connivences",
+            "danseurs": "Danseurs",
             "apparence": "Apparence",
             "nbBlessureGrave": "Blessure grave",
             "origine": "Origine",
@@ -48,7 +53,8 @@
             "editer": "Editer",
             "nouveau": "Nouveau",
             "jetComp": "Jet de compétence",
-            "jetCarac": "Jet de caractéristique"
+            "jetCarac": "Jet de caractéristique",
+            "armures": "Armures"
         },
         "caracteristiques": {    
             "force": "Force",

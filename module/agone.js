@@ -7,7 +7,12 @@ async function preloadHandlebarsTemplates() {
         "systems/agone/templates/partials/bloc-aspect-personnage.hbs",
         "systems/agone/templates/partials/bloc-infos-personnage.hbs",
         "systems/agone/templates/partials/bloc-caracSec-personnage.hbs",
-        "systems/agone/templates/partials/bloc-listearmes-personnage.hbs"
+        "systems/agone/templates/partials/bloc-liste-armes-personnage.hbs",
+        "systems/agone/templates/partials/bloc-liste-armures-personnage.hbs",
+        "systems/agone/templates/partials/bloc-liste-danseurs-personnage.hbs",
+        "systems/agone/templates/partials/bloc-liste-sorts-personnage.hbs",
+        "systems/agone/templates/partials/bloc-liste-connivences-personnage.hbs",
+        "systems/agone/templates/partials/bloc-liste-oeuvres-personnage.hbs"
     ];
 
     return loadTemplates(templatePaths);

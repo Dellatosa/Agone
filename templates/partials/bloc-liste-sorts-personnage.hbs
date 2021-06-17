@@ -1,0 +1,22 @@
+<div class="ligne-sort titre">
+    <label></label>
+    <label>{{localize "agone.common.name"}}</label>
+    <label>{{localize "agone.sort.resonance"}}</label>
+    <label>{{localize "agone.common.seuil"}}</label>
+    <label>{{localize "agone.common.portee"}}</label>
+    <label>{{localize "agone.sort.dureeDanse"}}</label>
+    <label>{{localize "agone.sort.dureeSort"}}</label>
+    <a class="creer-item" data-type="Sort" title="{{localize 'agone.common.ajouter'}}"><i class="fas fa-plus"></i></a>
+</div>
+{{#each sorts as |sort id|}}
+<div class="ligne-sort item" data-item-id="{{sort._id}}">
+    <a class="editer-item"><img src="{{img}}" title="{{localize 'agone.common.editer'}}" height="32" width="32"/></a>
+    <div>{{name}}</div>
+    <div>{{configLocalize "resonances" data.resonance}}</div>
+    <div>{{data.seuil}}</div>
+    <div>{{data.portee}}</div>
+    <div>{{data.dureeDanse}}</div>
+    <div>{{data.dureeSort}}</div>
+    <a class="supprimer-item" title="{{localize 'agone.common.supprimer'}}"><i class="fas fa-trash"></i></a>
+</div>            
+{{/each}}
