@@ -32,43 +32,7 @@
     </nav>
     <section class="sheet-body">
         <div class="tab" data-group="principal" data-tab="competences">
-            <div class="actor-fam-comp">
-                {{#each data.colonnes as |col|}}
-                    <div class="actor-comp-grid">
-                        {{#each ../data.familleCompetences as |famille keyFam|}} 
-                            {{#if (eq famille.numcol col)}}
-                                <label class="titre-fam">{{famille.label}}</label>
-                            {{/if}}
-                            {{#each famille.competences as |competence keyComp|}}
-                                {{#if domaine}}
-                                    {{#if (eq competence.numcol col)}}
-                                        <label class="titre-comp">{{competence.label}}</label>
-                                    {{/if}}
-                                    {{#each domaines as |domaine keyDom|}}
-                                        {{#if (eq domaine.numcol col)}}
-                                            {{#if domPerso}}
-                                                <div class="dom-perso"><input name="data.familleCompetences.{{keyFam}}.competences.{{keyComp}}.domaines.{{keyDom}}.label" type="text" value="{{domaine.label}}" placeholder="{{localize 'agone.common.domaine'}}"/></div>
-                                            {{else}}
-                                                <label class="dom-fixe">{{domaine.label}}</label>
-                                            {{/if}}
-                                            <div class="val-comp"><input name="data.familleCompetences.{{keyFam}}.competences.{{keyComp}}.domaines.{{keyDom}}.rang" type="number" value="{{domaine.rang}}" placeholder="0"/></div>
-                                            <div class="chk-spe"><input name="data.familleCompetences.{{keyFam}}.competences.{{keyComp}}.domaines.{{keyDom}}.specialisation" type="checkbox" data-dtype="Boolean" {{checked domaine.specialisation}}/></div>
-                                            <a class="rollable" title="{{localize 'agone.common.jetComp'}}" data-rolltype="competence" data-roll="@familleCompetences.{{keyFam}}.competences.{{keyComp}}.domaines.{{keyDom}}.rang" data-carac="{{domaine.caracteristique}}" data-label="{{domaine.label}}" data-spe="{{domaine.specialisation}}" data-spelabel="{{domaine.labelSpecialisation}}"><i class="fas fa-dice" ></i></a>
-                                        {{/if}}      
-                                    {{/each}}
-                                {{else}}
-                                    {{#if (eq competence.numcol col)}}
-                                        <label class="lbl-comp">{{competence.label}}</label>     
-                                        <div class="val-comp"><input name="data.familleCompetences.{{keyFam}}.competences.{{keyComp}}.rang" type="number" value="{{competence.rang}}" placeholder="0"/></div>
-                                        <div class="chk-spe"><input name="data.familleCompetences.{{keyFam}}.competences.{{keyComp}}.specialisation" type="checkbox" data-dtype="Boolean" {{checked competence.specialisation}}/></div>
-                                        <a class="rollable" title="{{localize 'agone.common.jetComp'}}" data-rolltype="competence" data-roll="@familleCompetences.{{keyFam}}.competences.{{keyComp}}.rang" data-carac="{{competence.caracteristique}}" data-label="{{competence.label}}" data-spe="{{competence.specialisation}}" data-spelabel="{{competence.labelSpecialisation}}"><i class="fas fa-dice"></i></a>
-                                    {{/if}}    
-                                {{/if}}
-                            {{/each}}
-                        {{/each}}
-                    </div> 
-                {{/each}}
-            </div>
+            {{> "systems/agone/templates/partials/bloc-competences-personnage.hbs"}}
         </div>
         <div class="tab" data-group="principal" data-tab="caracSecondaires">
             {{> "systems/agone/templates/partials/bloc-caracSec-personnage.hbs"}}
@@ -106,6 +70,10 @@
             <div class="tab" data-group="magie" data-tab="emprise">
                 <div class="recap">
                     <div>
+                        <label>{{localize "agone.caracteristiques.emprise"}}</label>
+                        <div>{{data.aspects.esprit.caracteristiques.emprise.valeur}}</div>
+                    </div>
+                    <div>
                         <label>{{localize "agone.competences.resonance"}}</label>
                         <select name="data.caracSecondaires.resonance">
                             {{#select data.caracSecondaires.resonance}}
@@ -115,9 +83,19 @@
                             {{/select}} 
                         </select>
                     </div>
+                    <div> 
+                        {{#with data as | dt | }}
+                            {{#each dt.familleCompetences.occulte.competences.resonance.domaines as |reso keyReso|}}
+                                {{#if (eq keyReso dt.caracSecondaires.resonance )}}
+                                    <label>Rang</label>
+                                    <div>{{reso.rang}}</div>
+                                {{/if}}
+                            {{/each}}
+                        {{/with}}
+                    </div>
                     <div>
-                        <label>{{localize "agone.caracteristiques.emprise"}}</label>
-                        <div>{{data.aspects.esprit.caracteristiques.emprise.valeur}}</div>
+                        <label>{{localize "agone.competences.connDanseurs"}}</label>
+                        <div>{{data.familleCompetences.occulte.competences.connDanseurs.rang}}</div>
                     </div>
                 </div>
                 <h3>{{localize "agone.common.danseurs"}}</h3>
@@ -146,6 +124,10 @@
                     <div>
                         <label>{{localize "agone.caracteristiques.noirceur"}}</label>
                         <div>{{data.caracSecondaires.noirceur}}</div>
+                    </div>
+                    <div>
+                        <label>{{localize "agone.competences.demonologie"}}</label>
+                        <div>{{data.familleCompetences.occulte.competences.demonologie.rang}}</div>
                     </div>
                 </div>
                 <h3>{{localize "agone.common.connivences"}}</h3>

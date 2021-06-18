@@ -1,0 +1,36 @@
+<div class="actor-fam-comp">
+    {{#each data.colonnes as |col|}}
+        <div class="actor-comp-grid">
+            {{#each ../data.familleCompetences as |famille keyFam|}} 
+                {{#if (eq famille.numcol col)}}
+                    <label class="titre-fam">{{famille.label}}</label>
+                {{/if}}
+                {{#each famille.competences as |competence keyComp|}}
+                    {{#if domaine}}
+                        {{#if (eq competence.numcol col)}}
+                            <label class="titre-comp">{{competence.label}}</label>
+                        {{/if}}
+                            {{#each domaines as |domaine keyDom|}}
+                                {{#if (eq domaine.numcol col)}}                                        
+                                    {{#if domPerso}}
+                                        <div class="dom-perso"><input name="data.familleCompetences.{{keyFam}}.competences.{{keyComp}}.domaines.{{keyDom}}.label" type="text" value="{{domaine.label}}" placeholder="{{localize 'agone.common.domaine'}}"/></div>
+                                    {{else}}
+                                        <label class="dom-fixe">{{domaine.label}}</label>
+                                    {{/if}}
+                                    <div class="val-comp"><input name="data.familleCompetences.{{keyFam}}.competences.{{keyComp}}.domaines.{{keyDom}}.rang" type="number" value="{{domaine.rang}}" placeholder="0"/></div>
+                                    <div class="chk-spe"><input name="data.familleCompetences.{{keyFam}}.competences.{{keyComp}}.domaines.{{keyDom}}.specialisation" type="checkbox" data-dtype="Boolean" {{checked domaine.specialisation}}/></div>
+                                    <a class="rollable" title="{{localize 'agone.common.jetComp'}}" data-rolltype="competence" data-roll="@familleCompetences.{{keyFam}}.competences.{{keyComp}}.domaines.{{keyDom}}.rang" data-carac="{{domaine.caracteristique}}" data-label="{{domaine.label}}" data-spe="{{domaine.specialisation}}" data-spelabel="{{domaine.labelSpecialisation}}"><i class="fas fa-dice" ></i></a>
+                                {{/if}}      
+                            {{/each}}
+                        {{else}}
+                        {{#if (eq competence.numcol col)}}
+                            <label class="lbl-comp">{{competence.label}}</label>     
+                            <div class="val-comp"><input name="data.familleCompetences.{{keyFam}}.competences.{{keyComp}}.rang" type="number" value="{{competence.rang}}" placeholder="0"/></div>                                <div class="chk-spe"><input name="data.familleCompetences.{{keyFam}}.competences.{{keyComp}}.specialisation" type="checkbox" data-dtype="Boolean" {{checked competence.specialisation}}/></div>
+                            <a class="rollable" title="{{localize 'agone.common.jetComp'}}" data-rolltype="competence" data-roll="@familleCompetences.{{keyFam}}.competences.{{keyComp}}.rang" data-carac="{{competence.caracteristique}}" data-label="{{competence.label}}" data-spe="{{competence.specialisation}}" data-spelabel="{{competence.labelSpecialisation}}"><i class="fas fa-dice"></i></a>
+                        {{/if}}    
+                    {{/if}}
+                {{/each}}
+            {{/each}}
+        </div> 
+    {{/each}}
+</div>
