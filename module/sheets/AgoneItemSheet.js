@@ -17,9 +17,6 @@ export default class AgoneItemSheet extends ItemSheet {
         const data = super.getData();
         data.config = CONFIG.agone;
 
-        //console.log(game);
-        //console.log(data);
-
         return data;
     }
 }

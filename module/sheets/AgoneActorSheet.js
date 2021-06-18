@@ -1,3 +1,5 @@
+import * as Dice from "../dice.js";
+
 export default class AgoneActorSheet extends ActorSheet {
      
     static get defaultOptions() {
@@ -41,6 +43,7 @@ export default class AgoneActorSheet extends ActorSheet {
         data.peines = data.items.filter(function (item) { return item.type == "Peine"});
         data.bienfaits = data.items.filter(function (item) { return item.type == "Bienfait"});
 
+        data.listeSorts = Object.assign({}, ...data.sorts.map((x) => ({[x._id]: x.name})));
         /* --------------------------------------------------------
         ---- Calculs de caractéristiques et scores secondaires ----
         ---------------------------------------------------------*/
@@ -204,8 +207,14 @@ export default class AgoneActorSheet extends ActorSheet {
 
         
         if(this.actor.owner) {
-            // Rollable - jet de dés
-            html.find('.rollable').click(this._onRoll.bind(this));
+            // roll-carac - jet de caractéritiques
+            html.find('.roll-carac').click(this._onRollCarac.bind(this));
+
+            // roll-comp - jet de compétence
+            html.find('.roll-comp').click(this._onRollComp.bind(this));
+
+            // item-roll - jet de dés depuis un item
+            html.find('.item-roll').click(this._onItemRoll.bind(this));
 
             // Création d'un item
             html.find('.creer-item').click(this._onCreerItem.bind(this));
@@ -213,7 +222,7 @@ export default class AgoneActorSheet extends ActorSheet {
             // Edition d'un item
             html.find('.editer-item').click(this._onEditerItem.bind(this));
 
-            // Edition d'un item - directement en ligne (champ Competence)
+            // Edition d'un champ d'item directement en ligne (champ Competence)
             html.find('.inline-edit').change(this._onEditerCompArme.bind(this));
 
             //Suppression d'un item
@@ -228,7 +237,7 @@ export default class AgoneActorSheet extends ActorSheet {
         let itemData = {
             name: game.i18n.localize("agone.common.nouveau"),
             type: element.dataset.type,
-            img: "icons/svg/mystery-man.svg"
+            img: "icons/svg/mystery-man-black.svg"
         };
 
         return this.actor.createOwnedItem(itemData);
@@ -264,6 +273,42 @@ export default class AgoneActorSheet extends ActorSheet {
         return this.actor.deleteOwnedItem(itemId);
     }
 
+    _onItemRoll(event) {
+        event.preventDefault();
+        const element = event.currentTarget;
+
+        let itemId = element.closest(".item").dataset.itemId;
+        let item = this.actor.getOwnedItem(itemId);
+
+        item.roll();
+    }
+
+    _onRollComp(event) {
+        event.preventDefault();
+        const dataset = event.currentTarget.dataset;
+
+        Dice.jetCompetence({
+            actorId: this.actor,
+            actorData: this.actor.data.data,
+            famille: dataset.famille,
+            competence: dataset.competence,
+            domaine: dataset.domaine,
+            caracteristique: dataset.carac
+        });
+    }
+
+    _onRollCarac(event) {
+        event.preventDefault();
+        const dataset = event.currentTarget.dataset;
+
+        Dice.jetCaracteristique({
+            actorId: this.actor,
+            actorData: this.actor.data.data,
+            aspect: dataset.aspect,
+            caracteristique: dataset.carac
+        });
+    }
+
     _onRoll(event) {
         event.preventDefault();
         const element = event.currentTarget;
@@ -272,53 +317,8 @@ export default class AgoneActorSheet extends ActorSheet {
         let roll;
         let label;
         if (dataset.roll) {
-            if(dataset.rolltype == "competence") {
-                let caracRoll;
-                let labCarac;
-                
-                // Si une caractéristique est précisée en data, on récupère sa valeur et son label, et son bonus d'aspect
-                if(dataset.carac)
-                {
-                    if(this.actor.getRollData().aspects.corps.caracteristiques.hasOwnProperty(dataset.carac)) {
-                        caracRoll = `+@aspects.corps.caracteristiques.${dataset.carac}.valeur +@aspects.corps.bonus.valeur`;
-                        labCarac = this.actor.getRollData().aspects.corps.caracteristiques[dataset.carac].label;
-                    } else if(this.actor.getRollData().aspects.esprit.caracteristiques.hasOwnProperty(dataset.carac)) {
-                        caracRoll = `+@aspects.esprit.caracteristiques.${dataset.carac}.valeur +@aspects.esprit.bonus.valeur`;
-                        labCarac = this.actor.getRollData().aspects.esprit.caracteristiques[dataset.carac].label;
-                    } else if(this.actor.getRollData().aspects.ame.caracteristiques.hasOwnProperty(dataset.carac)) {
-                        caracRoll = `+@aspects.ame.caracteristiques.${dataset.carac}.valeur +@aspects.ame.bonus.valeur`;
-                        labCarac = this.actor.getRollData().aspects.ame.caracteristiques[dataset.carac].label;
-                    }
-                }
-
-                // Construction de notre roll de base 1d10 explosif + compétence + carac + bonus d'aspect
-                let rolldata = caracRoll ? `${dataset.roll} ${caracRoll}`: dataset.roll;
-                roll = new Roll(`1d10x + ${rolldata}`, this.actor.getRollData());
-                roll.roll();
-                
-                // Construction du label
-                label = dataset.label ? dataset.label : '';
-                label = labCarac ? `<b>${label} + ${labCarac}</b>` : label;
-
-                // Ajout de la spécialisation si elle existe
-                if(dataset.spe) {
-                    if(dataset.spe == "true") {
-                        label = `${label}<br>Spécialisation <b>${dataset.spelabel}</b>`;
-                    }
-                }
-
-                // Si le dé donne un résultat de 1, on recontruit un roll avec 1d10 explosif retranché au résultat
-                // Le +1 conrrespond au résultat du dé sur le roll initial
-                if(roll.dice[0].results[0].result == 1) {
-                    roll = new Roll(`(1d10x * -1) + 1 + ${rolldata}`, this.actor.getRollData());
-                    roll.roll();
-                    // Le jet est un Fumble !
-                    label = `${label} <br><b style="color: red">FUMBLE !!!</b>`;
-                }
-                
-                label = label != '' ? `Jet de compétence ${label}` : '';
-            }
-            else if(dataset.rolltype == "caracteristique") {
+            
+            if(dataset.rolltype == "caracteristique") {
                 let aspectRoll;
 
                 if(dataset.aspect) {

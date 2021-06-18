@@ -13,6 +13,10 @@ select.auto-size {
     margin: 3px;
 }
 
+/* .alerte {
+    color: red;
+} */
+
 .agone.sheet.actor form {
     display: flex;
     flex-direction: column;
@@ -231,6 +235,15 @@ nav.magie-tabs {
     }
 }
 
+.carte {
+    display: flex;
+    span {
+        padding: 3px;
+        padding-top: 6px;
+        padding-bottom: 6px;
+    }
+}
+
 .liste-armes, .liste-armures, .liste-danseurs, .liste-sorts, .liste-oeuvres, .liste-connivences, .liste-avantages, .liste-defauts {
     display: flex;
     flex-direction: column;
@@ -239,7 +252,7 @@ nav.magie-tabs {
 
 .ligne-arme {
     display: grid;
-    grid-template-columns: 2.5em 2fr 1.5fr repeat(5, 1fr) 2fr 2.5fr repeat(3, 1fr) 2em;
+    grid-template-columns: 2.5em 2fr 1.5fr repeat(5, 1fr) 2fr 2.5fr repeat(3, 1fr) 2em 2em;
     padding: 3px;
     text-align: center;
 
@@ -254,7 +267,7 @@ nav.magie-tabs {
 
 .ligne-armure {
     display: grid;
-    grid-template-columns: 2.5em 2fr repeat(4, 1fr) 2em;
+    grid-template-columns: 2.5em 2fr repeat(4, 1fr) 2em 2em;
     padding: 3px;
     text-align: center;
 
@@ -269,7 +282,7 @@ nav.magie-tabs {
 
 .ligne-danseur {
     display: grid;
-    grid-template-columns: 2.5em 2fr repeat(7, 1fr) 2em;
+    grid-template-columns: 2.5em 2fr repeat(7, 1fr) 2em 2em;
     padding: 3px;
     text-align: center;
 
@@ -284,7 +297,7 @@ nav.magie-tabs {
 
 .ligne-sort {
     display: grid;
-    grid-template-columns: 2.5em 2fr 2fr repeat(4, 1fr) 2em;
+    grid-template-columns: 2.5em 2fr 2fr repeat(4, 1fr) 2em 2em;
     padding: 3px;
     text-align: center;
 
@@ -299,7 +312,7 @@ nav.magie-tabs {
 
 .ligne-oeuvre {
     display: grid;
-    grid-template-columns: 2.5em 2fr 2fr 2fr repeat(4, 1fr) 2em;
+    grid-template-columns: 2.5em 2fr 2fr 2fr repeat(4, 1fr) 2em 2em;
     padding: 3px;
     text-align: center;
 

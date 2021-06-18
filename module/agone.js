@@ -1,6 +1,7 @@
 import { agone } from "./config.js";
 import AgoneItemSheet from "./sheets/AgoneItemSheet.js";
 import AgoneActorSheet from "./sheets/AgoneActorSheet.js";
+import AgoneItem from "./AgoneItem.js";
 
 async function preloadHandlebarsTemplates() {
     const templatePaths = [
@@ -15,7 +16,8 @@ async function preloadHandlebarsTemplates() {
         "systems/agone/templates/partials/bloc-liste-connivences-personnage.hbs",
         "systems/agone/templates/partials/bloc-liste-oeuvres-personnage.hbs",
         "systems/agone/templates/partials/bloc-liste-defauts-personnage.hbs",
-        "systems/agone/templates/partials/bloc-liste-avantages-personnage.hbs"
+        "systems/agone/templates/partials/bloc-liste-avantages-personnage.hbs",
+        "templates/dice/roll.html"
     ];
 
     return loadTemplates(templatePaths);
@@ -25,6 +27,7 @@ Hooks.once("init", function(){
     console.log("Agone | Initialisation du système Agone RPG");
 
     CONFIG.agone = agone;
+    CONFIG.Item.entityClass = AgoneItem;
 
     Actors.unregisterSheet("core", ActorSheet);
     Actors.registerSheet("agone", AgoneActorSheet, {makeDefault: true});

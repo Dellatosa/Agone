@@ -12,11 +12,12 @@
     <label>{{localize "agone.arme.minForce"}}</label>
     <label>{{localize "agone.arme.minAgilite"}}</label>
     <label>{{localize "agone.arme.tai"}}</label>
+    <label></label>
     <a class="creer-item" data-type="Arme" title="{{localize 'agone.common.ajouter'}}"><i class="fas fa-plus"></i></a>
 </div>
 {{#each armes as |arme id|}}
 <div class="ligne-arme item" data-item-id="{{arme._id}}">
-    <a class="editer-item"><img src="{{img}}" title="{{localize 'agone.common.editer'}}" height="32" width="32"/></a>
+    <a class="item-roll"><img src="{{img}}" title="Jet de dés" height="32" width="32"/></a>
     <div>{{name}}</div>
     <div>{{configLocalize "stylesArme" data.style}}</div>
     <div>{{data.modifInit}}</div>
@@ -40,6 +41,7 @@
     <div>{{data.minForce}}</div>
     <div>{{data.minAgilite}}</div>
     <div>{{data.tai}}</div>
+    <a class="editer-item" title="{{localize 'agone.common.editer'}}"><i class="fas fa-edit"></i></a>
     <a class="supprimer-item" title="{{localize 'agone.common.supprimer'}}"><i class="fas fa-trash"></i></a>
 </div>            
 {{/each}}
