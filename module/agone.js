@@ -3,6 +3,7 @@ import AgoneItemSheet from "./sheets/AgoneItemSheet.js";
 import AgoneActorSheet from "./sheets/AgoneActorSheet.js";
 import AgoneItem from "./AgoneItem.js";
 import AgoneActor from "./AgoneActor.js";
+import * as Chat from "./chat.js";
 
 async function preloadHandlebarsTemplates() {
     const templatePaths = [
@@ -43,3 +44,5 @@ Hooks.once("init", function(){
         return game.i18n.localize(agone[liste][val]);
     });
 });
+
+Hooks.on("renderChatLog", (app, html, data) => Chat.addChatListeners(html));

@@ -73,6 +73,79 @@ export default class AgoneActor extends Actor {
             }
         }
     }
+
+    getCompData(famille, competence, domaine) {
+        let data = this.data.data;
+
+        let result = {rangComp: null, labelComp: null, spe: null, labelSpe: null};
+
+        if(domaine) {
+            result.rangComp = data.familleCompetences[famille].competences[competence].domaines[domaine].rang;
+            result.labelComp = data.familleCompetences[famille].competences[competence].domaines[domaine].label;
+            result.spe = data.familleCompetences[famille].competences[competence].domaines[domaine].specialisation;
+            result.labelSpe = data.familleCompetences[famille].competences[competence].domaines[domaine].labelSpecialisation;
+        }
+        else {
+            result.rangComp = data.familleCompetences[famille].competences[competence].rang;
+            result.labelComp = data.familleCompetences[famille].competences[competence].label;
+            result.spe = data.familleCompetences[famille].competences[competence].specialisation;
+            result.labelSpe = data.familleCompetences[famille].competences[competence].labelSpecialisation;
+        }
+
+        return result;
+    }
+
+    getCaracData(caracteristique) {
+        let data = this.data.data;
+        let result = {rangCarac: null, labelCarac: null, bonusAspect: null}
+
+        if(caracteristique) {
+            let aspect = this.getAspect(caracteristique);
+
+            result.bonusAspect = data.aspects[aspect].bonus.valeur;
+            result.rangCarac = data.aspects[aspect].caracteristiques[caracteristique].valeur;
+            result.labelCarac = data.aspects[aspect].caracteristiques[caracteristique].label;
+        
+            return result;
+        }
+
+        return null;
+    }
+
+    getAspect(caracteristique) {
+        let data = this.data.data;
+
+        if(data.aspects.corps.caracteristiques.hasOwnProperty(caracteristique)) {
+            return "corps";
+        }
+        else if (data.aspects.esprit.caracteristiques.hasOwnProperty(caracteristique)) {
+            return "esprit";
+        }
+        else if (data.aspects.ame.caracteristiques.hasOwnProperty(caracteristique)) {
+            return "ame";
+        }
+
+        return null;
+    }
+
+    getStatsAttaque(compArme) {
+        let data = this.data.data;
+
+        if(compArme) {
+            let result = {rangComp: null, labelComp: null, rangCarac: null, labelCarac: null, bonusAspect: null};
+            result.rangComp = data.familleCompetences.epreuves.competences.armes.domaines[compArme].rang;
+            result.labelComp = data.familleCompetences.epreuves.competences.armes.domaines[compArme].label;
+
+            let caracData = this.getCaracData(data.familleCompetences.epreuves.competences.armes.domaines[compArme].caracteristique);
+            result.rangCarac = caracData.rangCarac;
+            result.labelCarac = caracData.labelCarac;
+            result.bonusAspect = caracData.bonusAspect;
+
+            return result;
+        }
+
+        return null;
+    }
 }
 
 function calcBonusDommages(force, tai) {

@@ -225,8 +225,7 @@ export default class AgoneActorSheet extends ActorSheet {
         const dataset = event.currentTarget.dataset;
 
         Dice.jetCompetence({
-            actorId: this.actor,
-            actorData: this.actor.data.data,
+            actor: this.actor,
             famille: dataset.famille,
             competence: dataset.competence,
             domaine: dataset.domaine,
@@ -239,59 +238,8 @@ export default class AgoneActorSheet extends ActorSheet {
         const dataset = event.currentTarget.dataset;
 
         Dice.jetCaracteristique({
-            actorId: this.actor,
-            actorData: this.actor.data.data,
-            aspect: dataset.aspect,
+            actor: this.actor,
             caracteristique: dataset.carac
         });
-    }
-
-    _onRoll(event) {
-        event.preventDefault();
-        const element = event.currentTarget;
-        const dataset = element.dataset;
-    
-        let roll;
-        let label;
-        if (dataset.roll) {
-            
-            if(dataset.rolltype == "caracteristique") {
-                let aspectRoll;
-
-                if(dataset.aspect) {
-                    // Si un aspect est précisé, on récupère du bonus d'aspect
-                    aspectRoll = `+@aspects.${dataset.aspect}.bonus.valeur`;
-                }
-
-                // Construction de notre roll de base 1d10 explosif + (carac x2) + bonus d'aspect
-                let rolldata = aspectRoll ? `${dataset.roll} ${aspectRoll}`: dataset.roll;
-                roll = new Roll(`1d10x + ${rolldata}`, this.actor.getRollData());
-                roll.roll();
-
-                // Construction du label
-                label = dataset.label ? `<b>${dataset.label} x 2</b>` : '';
-
-                // Si le dé donne un résultat de 1, on recontruit un roll avec 1d10 explosif retranché au résultat
-                // Le +1 conrrespond au résultat du dé sur le roll initial
-                if(roll.dice[0].results[0].result == 1) {
-                    roll = new Roll(`(1d10x * -1) + 1 + ${rolldata}`, this.actor.getRollData());
-                    roll.roll();
-                    // Le jet est un Fumble !
-                    label = `${label} <br><b style="color: red">FUMBLE !!!</b>`;
-                }
-
-                label = label != '' ? `Jet de caractéristique ${label}` : '';
-            }
-            else {
-                roll = new Roll(dataset.roll, this.actor.getRollData());
-                roll.roll();
-                label = dataset.label ? `Jet par défaut '${dataset.label}'` : '';
-            }
-        
-            roll.toMessage({
-                speaker: ChatMessage.getSpeaker({ actor: this.actor }),
-                flavor: label
-            });
-        }
     }
 }

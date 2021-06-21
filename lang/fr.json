@@ -57,6 +57,10 @@
             "jetCarac": "Jet de caractéristique",
             "armures": "Armures"
         },
+        "chat": {
+            "attaque": "Attaque",
+            "attaqueTitre": "Attaque ({arme})"   
+        },
         "caracteristiques": {    
             "force": "Force",
             "for": "FOR",

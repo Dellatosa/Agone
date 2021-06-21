@@ -1,9 +1,9 @@
-<div class="carte" data-item-id="{{_id}}" data-owner-id="{{owner}}">
+<div class="carte arme" data-item-id="{{_id}}" data-owner-id="{{owner}}">
     <div class="entete">
         <img src="{{img}}" title="{{name}}" height="32" width="32"/>
         <span>{{name}}</span>
     </div>
-    <div class="arme">
+    <div class="grid">
         <label>{{localize "agone.arme.modifInit"}}</label>
         <label>{{localize "agone.arme.modifAttaque"}}</label>
         <label>{{localize "agone.arme.modifParade"}}</label>
@@ -14,6 +14,6 @@
         <div>{{data.modifDommages}}</div>
     </div>
     <div class="boutons-carte">
-        <button class="attaque"></button>
+        <button class="attaque">{{localize "agone.chat.attaque"}}</button>
     </div>
 </div>

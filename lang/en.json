@@ -56,6 +56,10 @@
             "jetComp": "Skill roll",
             "jetCarac": "Attribute roll"
         },
+        "chat": {
+            "attaque": "Attack",
+            "attaqueTitre": "Attack ({arme})"     
+        },
         "caracteristiques": {
             "force": "Strength",
             "for": "STR",
