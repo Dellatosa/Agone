@@ -2,6 +2,7 @@ import { agone } from "./config.js";
 import AgoneItemSheet from "./sheets/AgoneItemSheet.js";
 import AgoneActorSheet from "./sheets/AgoneActorSheet.js";
 import AgoneItem from "./AgoneItem.js";
+import AgoneActor from "./AgoneActor.js";
 
 async function preloadHandlebarsTemplates() {
     const templatePaths = [
@@ -28,6 +29,7 @@ Hooks.once("init", function(){
 
     CONFIG.agone = agone;
     CONFIG.Item.entityClass = AgoneItem;
+    CONFIG.Actor.entityClass = AgoneActor;
 
     Actors.unregisterSheet("core", ActorSheet);
     Actors.registerSheet("agone", AgoneActorSheet, {makeDefault: true});

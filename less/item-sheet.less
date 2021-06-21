@@ -90,3 +90,26 @@
     padding: 3px;
 }
 
+.carte {
+    display: flex;
+    flex-direction: column;
+    
+    .entete {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 0.25rem;
+
+        span {
+            padding: 3px;
+            padding-top: 6px;
+            padding-bottom: 6px;
+        }
+    }
+
+    .arme {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        padding: 3px;
+        text-align: center;
+    }
+}

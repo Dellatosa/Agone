@@ -42,7 +42,11 @@ export async function jetCompetence({actorId =null,
 
     let rollData = {
         rangComp: rangComp,
+        //labelComp: labelComp,
+        //spe: spe,
+        //labelSpe: labelSpe,
         rangCarac: rangCarac,
+        //labelCarac: labelCarac,
         bonusAspect: bonusAspect
     };
 
@@ -57,7 +61,9 @@ export async function jetCompetence({actorId =null,
         labelMsg = `${labelMsg} <br><b style="color: red">FUMBLE !!!</b>`;
     }
 
-    const messageTemplate = "systems/agone/templates/dice/jet-competence.hbs";
+    console.log(rollResult);
+
+    const messageTemplate = "systems/agone/templates/dice/jet-competence.hbs"; 
     let renderedRoll = await rollResult.render({template: messageTemplate});
 
     let messageData = {
@@ -66,7 +72,6 @@ export async function jetCompetence({actorId =null,
         content: renderedRoll
     }
 
-    //console.log(rollResult);
     rollResult.toMessage(messageData);
 }
 
@@ -84,6 +89,7 @@ export function jetCaracteristique({actorId =null,
 
     let rollData = {
         rangCarac: rangCarac,
+        //labelCarac: labelCarac,
         bonusAspect: bonusAspect
     };
 

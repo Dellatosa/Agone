@@ -44,71 +44,8 @@ export default class AgoneActorSheet extends ActorSheet {
         data.bienfaits = data.items.filter(function (item) { return item.type == "Bienfait"});
 
         data.listeSorts = Object.assign({}, ...data.sorts.map((x) => ({[x._id]: x.name})));
-        /* --------------------------------------------------------
-        ---- Calculs de caractéristiques et scores secondaires ----
-        ---------------------------------------------------------*/
-
-        // Calcul des scores de bonus d'aspects
-        if(actorData.aspects.corps.bonus == null) {
-            actorData.aspects.corps.bonus = {};
-        }
-        actorData.aspects.corps.bonus.valeur = actorData.aspects.corps.positif.valeur - actorData.aspects.corps.negatif.valeur;
-
-        if(actorData.aspects.esprit.bonus == null) {
-            actorData.aspects.esprit.bonus = {};
-        }
-        actorData.aspects.esprit.bonus.valeur = actorData.aspects.esprit.positif.valeur - actorData.aspects.esprit.negatif.valeur;
-
-        if(actorData.aspects.ame.bonus == null) {
-            actorData.aspects.ame.bonus = {};
-        }
-        actorData.aspects.ame.bonus.valeur = actorData.aspects.ame.positif.valeur - actorData.aspects.ame.negatif.valeur;
-
-        // Calcul des scores de Flamme, Flamme noire et de points d'heroisme
-        actorData.caracSecondaires.flamme = Math.min(actorData.aspects.corps.positif.valeur, actorData.aspects.esprit.positif.valeur, actorData.aspects.ame.positif.valeur);
-        actorData.caracSecondaires.flammeNoire = Math.min(actorData.aspects.corps.negatif.valeur, actorData.aspects.esprit.negatif.valeur, actorData.aspects.ame.negatif.valeur);
-        actorData.caracSecondaires.heroisme.max = actorData.caracSecondaires.flamme * 2;
-
-        // Calcul des caractéristiques secondaires
-        actorData.aspects.corps.caracteristiques.melee.valeur = Math.floor((actorData.aspects.corps.caracteristiques.force.valeur + actorData.aspects.corps.caracteristiques.agilite.valeur * 2) / 3);
-        actorData.aspects.corps.caracteristiques.tir.valeur = Math.floor((actorData.aspects.corps.caracteristiques.perception.valeur + actorData.aspects.corps.caracteristiques.agilite.valeur) / 2);
-        actorData.aspects.ame.caracteristiques.art.valeur = Math.floor((actorData.aspects.ame.caracteristiques.charisme.valeur + actorData.aspects.ame.caracteristiques.creativite.valeur) / 2); 
-        actorData.caracSecondaires.noirceur =  Math.floor(actorData.caracSecondaires.tenebre / 10);
-
-        switch(actorData.caracSecondaires.resonance) {
-            case "jorniste":
-                actorData.aspects.esprit.caracteristiques.emprise.valeur = actorData.aspects.esprit.caracteristiques.intelligence.valeur;
-                break;
-            case "eclipsiste":
-                actorData.aspects.esprit.caracteristiques.emprise.valeur = Math.floor((actorData.aspects.esprit.caracteristiques.intelligence.valeur + actorData.aspects.esprit.caracteristiques.volonte.valeur) / 2);
-                break;
-            case "obscurantiste":
-                actorData.aspects.esprit.caracteristiques.emprise.valeur = actorData.aspects.esprit.caracteristiques.volonte.valeur;
-                break;
-            default:
-                actorData.aspects.esprit.caracteristiques.emprise.valeur = 0;
-        }
-
-        actorData.caracSecondaires.seuilBlessureGrave = Math.floor(actorData.caracSecondaires.pdv.max / 3);
-        actorData.caracSecondaires.seuilBlessureCritique = Math.floor(actorData.caracSecondaires.pdv.max / 2);
-        if(actorData.peuple != "aucun" && actorData.peuple != "" && actorData.peuple != null)
-        {
-            actorData.caracSecondaires.tai = CONFIG.agone.peuple[actorData.peuple].tai;
-            actorData.caracSecondaires.mouvement = CONFIG.agone.peuple[actorData.peuple].mv;
-            actorData.caracSecondaires.chargeMax = (actorData.aspects.corps.caracteristiques.force.valeur + actorData.aspects.corps.caracteristiques.resistance.valeur) * CONFIG.agone.peuple[actorData.peuple].mpoids;
-            actorData.caracSecondaires.demiCharge = Math.floor(actorData.caracSecondaires.chargeMax / 2);
-            actorData.caracSecondaires.chargeQuotidienne = Math.floor(actorData.caracSecondaires.chargeMax / 4);
-            actorData.caracSecondaires.bonusDommages = calcBonusDommages(actorData.aspects.corps.caracteristiques.force.valeur, actorData.caracSecondaires.tai);
-        } else {
-            actorData.caracSecondaires.tai = 0;
-            actorData.caracSecondaires.mouvement = 0;
-            actorData.caracSecondaires.chargeMax = 0;
-            actorData.caracSecondaires.demiCharge = 0;
-            actorData.caracSecondaires.chargeQuotidienne = 0;
-            actorData.caracSecondaires.bonusDommages = 0;
-        }
-
-                
+        
+       
 
         /* ---------------------------------------------------------
         ---- Récupération des données de traduction en fonction ----
@@ -194,7 +131,7 @@ export default class AgoneActorSheet extends ActorSheet {
             } 
         }
 
-        console.log(data);
+        //console.log(data);
 
         return data;
     }
@@ -356,58 +293,5 @@ export default class AgoneActorSheet extends ActorSheet {
                 flavor: label
             });
         }
-    }
-}
-
-function calcBonusDommages(force, tai) {
-    let total = force + tai;
-    switch(total) {
-        case -1:
-            return -6;
-        case 0:   
-            return -4; 
-        case 1:   
-            return -2; 
-        case 2:
-        case 3:   
-            return -1; 
-        case 4:
-        case 5:
-        case 6:   
-            return 0; 
-        case 7:
-        case 8:
-            return 1;
-        case 9:
-            return 2;
-        case 10:
-            return 4;
-        case 11:
-            return 6;
-        case 12:
-            return 8;
-        case 13:
-            return 10;
-        case 14:
-            return 12;
-        case 15:
-            return 15;
-        case 16:
-            return 18;
-        case 17:
-            return 21;
-        case 18:
-            return 24;
-        case 19:
-            return 27;
-        case 20:
-            return 31;
-        case 21:
-            return 35;
-        case 22:
-            return 39;
-        case 23:
-            return 43;
-             
     }
 }

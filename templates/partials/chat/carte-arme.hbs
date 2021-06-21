@@ -1,4 +1,19 @@
-<div class="carte">
-    <img src="{{img}}" title="{{name}}" height="32" width="32"/>
-    <span>{{name}}</span>
+<div class="carte" data-item-id="{{_id}}" data-owner-id="{{owner}}">
+    <div class="entete">
+        <img src="{{img}}" title="{{name}}" height="32" width="32"/>
+        <span>{{name}}</span>
+    </div>
+    <div class="arme">
+        <label>{{localize "agone.arme.modifInit"}}</label>
+        <label>{{localize "agone.arme.modifAttaque"}}</label>
+        <label>{{localize "agone.arme.modifParade"}}</label>
+        <label>{{localize "agone.arme.modifDommages"}}</label>
+        <div>{{data.modifInit}}</div>
+        <div>{{data.modifAttaque}}</div>
+        <div>{{data.modifParade}}</div>
+        <div>{{data.modifDommages}}</div>
+    </div>
+    <div class="boutons-carte">
+        <button class="attaque"></button>
+    </div>
 </div>
