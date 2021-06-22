@@ -197,6 +197,8 @@ export default class AgoneActorSheet extends ActorSheet {
             labelCarac: caracData.labelCarac,
             bonusAspect: caracData.bonusAspect,
             labelAspect: caracData.labelAspect,
+            defCarac: compData.defCarac
+            //difficulte: 15
         });
     }
 

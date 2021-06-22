@@ -7,10 +7,33 @@ export async function jetCompetence({actor = null,
     labelCarac = null,
     bonusAspect = null,
     labelAspect = null,
+    defCarac = null,
+    difficulte = null,
     modifAttaque = null,
     modifParade = null,
+    afficherDialog = true,
     envoiMessage = true} = {}) {
     
+    let utiliseHeroisme;
+
+    if(afficherDialog) {
+        let dialogOptions = await getJetCompetenceOptions({cfgData: CONFIG.agone, defCarac: defCarac});
+
+        if(dialogOptions.annule) {
+            return;
+        }
+
+        let carac = dialogOptions.caracteristique;
+        let carData = actor.getCaracData(carac);
+        rangCarac = carData.rangCarac;
+        labelCarac = carData.labelCarac;
+        bonusAspect = carData.bonusAspect;
+        labelAspect = carData.labelAspect;
+        difficulte = dialogOptions.difficulte;
+        utiliseHeroisme = dialogOptions.utiliseHeroisme;
+
+    }
+
     let rollFormula = "1d10x + ";
     let rollFumbleFormula = "(1d10x * -1) + 1 + ";
     let baseFormula = "@rangComp + @rangCarac + @bonusAspect";
@@ -29,6 +52,16 @@ export async function jetCompetence({actor = null,
     if(modifParade) {
         rollData.modifParade = modifParade;
         baseFormula += " + @modifParade"; 
+    }
+
+    if(utiliseHeroisme) {
+        if(actor.depenserHeroisme()) {
+            baseFormula += " + 5";
+        }
+        else {
+            utiliseHeroisme = false;
+        }
+        
     }
 
     rollFormula += baseFormula;
@@ -63,6 +96,15 @@ export async function jetCompetence({actor = null,
             rollStats.labelModifParade = game.i18n.localize("agone.arme.modifParade");
         }
 
+        if(utiliseHeroisme) {
+            rollStats.utiliseHeroisme = true;
+        }
+
+        if(difficulte) {
+            rollStats.difficulte = difficulte;
+            rollStats.marge = rollResult.total - difficulte;
+        }
+
         let templateContext = {
             stats : rollStats,
             roll: renderedRoll
@@ -81,6 +123,39 @@ export async function jetCompetence({actor = null,
     }
 
     return rollResult;
+}
+
+async function getJetCompetenceOptions({cfgData = null, defCarac = null}) {
+    const template = "systems/agone/templates/partials/dialog/dialog-jet-competence.hbs";
+    const html = await renderTemplate(template, {data: cfgData, defCarac: defCarac});
+
+    return new Promise( resolve => {
+        const data = {
+            title: "Jet de compétence",
+            content: html,
+            buttons: {
+                normal: {
+                    label: "jet normal",
+                    callback: html => resolve(_processJetCompetenceOptions(html[0].querySelector("form")))
+                },
+                annuler: {
+                    label: "Annuler",
+                    callback: html => resolve({annule: true})
+                }
+            },
+            default: "normal",
+            close: () => resolve({annule: true})
+        }
+        new Dialog(data, null).render(true);
+    });
+}
+
+function _processJetCompetenceOptions(form) {
+    return {
+        caracteristique: form.caracteristique.value,
+        difficulte: parseInt(form.difficulte.value),
+        utiliseHeroisme : form.utiliseHeroisme.checked
+    }
 }
 
 export function jetCaracteristique({actor =null, 
@@ -141,7 +216,6 @@ export async function attaque(attaquant, arme) {
         ...statsAttaque
     }
 
-    console.log(rollResult);
     if(rollResult.terms[0] == "-") {
         rollStats.isFumble = true;
     }
@@ -151,8 +225,6 @@ export async function attaque(attaquant, arme) {
         arme : arme.data,
         roll: renderedRoll
     }
-
-    console.log("Temp Arme", templateContext);
 
     let chatData = {
         user: game.user._id,

@@ -1,0 +1,24 @@
+<form>
+    <div class="form-group">
+        <label>Caractéristique {{defCarac}}</label>
+        <select name="caracteristique">
+        {{#select caracteristique}}
+            {{#each data.caracteristiques as |name key|}}
+                {{#if (eq key ../defCarac)}}
+                    <option value="{{key}}" selected>{{localize name}}</option>
+                {{else}}
+                    <option value="{{key}}">{{localize name}}</option>
+                {{/if}}
+            {{/each}}
+        {{/select}}
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Difficulté</label>
+        <input type="text" name="difficulte"/>
+    </div>
+    <div class="form-group">
+        <label>Utiliser héroisme</label>
+        <input type="checkbox" name="utiliseHeroisme"/>
+    </div>
+</form>

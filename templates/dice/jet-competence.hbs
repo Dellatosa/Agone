@@ -1,5 +1,11 @@
 <div class="jet-comp">
-    <div class="txt-small">Jet de compétence <span class="bold">{{stats.labelComp}} ({{stats.rangComp}}) + {{stats.labelCarac}} ({{stats.rangCarac}}) + {{stats.labelAspect}} ({{stats.bonusAspect}})</span></div>
+    <div class="txt-small">Jet de compétence 
+        {{#if stats.marge}}
+        <span>de </span><span class="bold">difficulté {{stats.difficulte}}</span>
+        <div></div>
+        {{/if}}
+    </div>
+    <div class="txt-small bold">{{stats.labelComp}} ({{stats.rangComp}}) + {{stats.labelCarac}} ({{stats.rangCarac}}) + {{stats.labelAspect}} ({{stats.bonusAspect}})</div>
     {{#if stats.specialisation}}
         <div class="txt-small">Spécialisation <span class="bold">{{stats.labelSpecialisation}}</span></div>
     {{/if}}
@@ -7,9 +13,13 @@
         <div class="dice-tooltip"><div class="dice-rolls fumble"><span class="fumble">FUMBLE !!!</span><div class="roll die d10 min">1</div></div></div>
     {{/if}}
     <div>{{{roll}}}</div>
+    <div>{{roll.formula}}</div>
+    {{#if stats.marge}}
+        <h3 class="resultat">Marge de réussite {{stats.marge}}</h3>
+        {{#if (gte stats.marge 0)}}
+            <h3 class="resultat">Succès !</h3>
+        {{else}}
+            <h3 class="resultat">Echec !</h3>
+        {{/if}}
+    {{/if}}
 </div>
-{{#if (gte total 0)}}
-<h2>Succès !!</h2>
-{{else}}
-<h2>Echec !!</h2>
-{{/if}}

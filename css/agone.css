@@ -96,6 +96,9 @@
   padding: 3px;
   text-align: center;
 }
+.boutons-carte {
+  display: flex;
+}
 .small-size {
   flex: 0 1 3.5em;
   padding: 3px;
@@ -413,4 +416,7 @@ nav.magie-tabs {
   color: #aa0200;
   text-align: center;
   line-height: 24px;
+}
+.resultat {
+  text-align: center;
 }

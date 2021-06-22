@@ -121,19 +121,24 @@ export default class AgoneActor extends Actor {
     getCompData(famille, competence, domaine) {
         let data = this.data.data;
 
-        let result = {rangComp: 0, labelComp: "ND", specialisation: false, labelSpecialisation: "ND"};
+        let result = {rangComp: 0, labelComp: "ND", specialisation: false, labelSpecialisation: "ND", defCarac: null};
 
         if(domaine) {
-            result.rangComp = data.familleCompetences[famille].competences[competence].domaines[domaine].rang;
-            result.labelComp = data.familleCompetences[famille].competences[competence].domaines[domaine].label;
-            result.specialisation = data.familleCompetences[famille].competences[competence].domaines[domaine].specialisation;
-            result.labelSpecialisation = data.familleCompetences[famille].competences[competence].domaines[domaine].labelSpecialisation;
+            const domComp = data.familleCompetences[famille].competences[competence].domaines[domaine];
+            result.rangComp = domComp.rang;
+            result.labelComp = domComp.label;
+            result.specialisation = domComp.specialisation;
+            result.labelSpecialisation = domComp.labelSpecialisation;
+            if(domComp.caracteristique != "") { result.defCarac = domComp.caracteristique; }
+
         }
         else {
-            result.rangComp = data.familleCompetences[famille].competences[competence].rang;
-            result.labelComp = data.familleCompetences[famille].competences[competence].label;
-            result.specialisation = data.familleCompetences[famille].competences[competence].specialisation;
-            result.labelSpecialisation = data.familleCompetences[famille].competences[competence].labelSpecialisation;
+            const comp = data.familleCompetences[famille].competences[competence];
+            result.rangComp = comp.rang;
+            result.labelComp = comp.label;
+            result.specialisation = comp.specialisation;
+            result.labelSpecialisation = comp.labelSpecialisation;
+            if(comp.caracteristique != "") { result.defCarac = comp.caracteristique; }
         }
 
         return result;
@@ -193,6 +198,19 @@ export default class AgoneActor extends Actor {
         }
 
         return null;
+    }
+
+    depenserHeroisme() {
+        let data = this.data.data;
+
+        if(data.caracSecondaires.heroisme.value > 0) {
+            let nouvelleVal = data.caracSecondaires.heroisme.value -1;
+            this.update({"data.caracSecondaires.heroisme.value": nouvelleVal});
+            return true;
+        }
+        else {
+            return false;
+        }
     }
 }
 
