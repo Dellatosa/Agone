@@ -90,7 +90,7 @@
   padding-top: 6px;
   padding-bottom: 6px;
 }
-.carte .arme {
+.carte .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   padding: 3px;
@@ -402,4 +402,15 @@ nav.magie-tabs {
   background-color: rgba(82, 77, 77, 0.075);
   border-top: solid thin #777777;
   padding: 3px;
+}
+.txt-small {
+  font-size: smaller;
+}
+.bold {
+  font-weight: bold;
+}
+.fumble {
+  color: #aa0200;
+  text-align: center;
+  line-height: 24px;
 }

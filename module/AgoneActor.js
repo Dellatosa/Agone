@@ -71,25 +71,69 @@ export default class AgoneActor extends Actor {
                 data.caracSecondaires.chargeQuotidienne = 0;
                 data.caracSecondaires.bonusDommages = 0;
             }
+
+
+            /* ---------------------------------------------------------
+            ---- Récupération des données de traduction en fonction ----
+            ---- de la langue sélectionnée                          ----
+            ----------------------------------------------------------*/
+
+            // Récupération des traductions pour les caractéristiques
+            for (let [key, carac] of Object.entries(data.aspects.corps.caracteristiques)) {
+                carac.label = game.i18n.localize(CONFIG.agone.caracteristiques[key]);
+                carac.abrev = game.i18n.localize(CONFIG.agone.caracAbrev[key]);
+            }
+        
+            for (let [key, carac] of Object.entries(data.aspects.esprit.caracteristiques)) {
+                carac.label = game.i18n.localize(CONFIG.agone.caracteristiques[key]);
+                carac.abrev = game.i18n.localize(CONFIG.agone.caracAbrev[key]);
+            }
+        
+            for (let [key, carac] of Object.entries(data.aspects.ame.caracteristiques)) {
+                carac.label = game.i18n.localize(CONFIG.agone.caracteristiques[key]);
+                carac.abrev = game.i18n.localize(CONFIG.agone.caracAbrev[key]);
+            }
+
+            // Récupération des traductions pour les aspects
+            for (let [key, aspect] of Object.entries(data.aspects)) {
+                aspect.positif.label = game.i18n.localize(CONFIG.agone.aspects[key]);
+                let keyNoir = key + "N";
+                aspect.negatif.label = game.i18n.localize(CONFIG.agone.aspects[keyNoir]);
+                let keyBonus = "B" + key;
+                aspect.bonus.label = game.i18n.localize(CONFIG.agone.aspects[keyBonus]);
+            }
+
+            // Récupération des traductions pour les compétences
+            for(let[keyFam, famille] of Object.entries(data.familleCompetences)) {
+                famille.label = game.i18n.localize(CONFIG.agone.typesCompetence[keyFam]);
+                for(let[keyComp, competence] of Object.entries(famille.competences)) {
+                    competence.label = game.i18n.localize(CONFIG.agone.competences[keyComp]);
+                    if(competence.domaine == true) {
+                        for(let[keyDom, domaine] of Object.entries(competence.domaines)) {
+                            if(domaine.domPerso == false) domaine.label = game.i18n.localize(CONFIG.agone.competences[keyDom]);
+                        }
+                    }
+                } 
+            }
         }
     }
 
     getCompData(famille, competence, domaine) {
         let data = this.data.data;
 
-        let result = {rangComp: null, labelComp: null, spe: null, labelSpe: null};
+        let result = {rangComp: 0, labelComp: "ND", specialisation: false, labelSpecialisation: "ND"};
 
         if(domaine) {
             result.rangComp = data.familleCompetences[famille].competences[competence].domaines[domaine].rang;
             result.labelComp = data.familleCompetences[famille].competences[competence].domaines[domaine].label;
-            result.spe = data.familleCompetences[famille].competences[competence].domaines[domaine].specialisation;
-            result.labelSpe = data.familleCompetences[famille].competences[competence].domaines[domaine].labelSpecialisation;
+            result.specialisation = data.familleCompetences[famille].competences[competence].domaines[domaine].specialisation;
+            result.labelSpecialisation = data.familleCompetences[famille].competences[competence].domaines[domaine].labelSpecialisation;
         }
         else {
             result.rangComp = data.familleCompetences[famille].competences[competence].rang;
             result.labelComp = data.familleCompetences[famille].competences[competence].label;
-            result.spe = data.familleCompetences[famille].competences[competence].specialisation;
-            result.labelSpe = data.familleCompetences[famille].competences[competence].labelSpecialisation;
+            result.specialisation = data.familleCompetences[famille].competences[competence].specialisation;
+            result.labelSpecialisation = data.familleCompetences[famille].competences[competence].labelSpecialisation;
         }
 
         return result;
@@ -97,19 +141,20 @@ export default class AgoneActor extends Actor {
 
     getCaracData(caracteristique) {
         let data = this.data.data;
-        let result = {rangCarac: null, labelCarac: null, bonusAspect: null}
+        let result = {rangCarac: 0, labelCarac: "ND", bonusAspect: 0, labelAspect: "ND"}
 
         if(caracteristique) {
             let aspect = this.getAspect(caracteristique);
 
             result.bonusAspect = data.aspects[aspect].bonus.valeur;
+            result.labelAspect = data.aspects[aspect].bonus.label;
             result.rangCarac = data.aspects[aspect].caracteristiques[caracteristique].valeur;
             result.labelCarac = data.aspects[aspect].caracteristiques[caracteristique].label;
-        
+            
             return result;
         }
 
-        return null;
+        return result;
     }
 
     getAspect(caracteristique) {
@@ -132,14 +177,17 @@ export default class AgoneActor extends Actor {
         let data = this.data.data;
 
         if(compArme) {
-            let result = {rangComp: null, labelComp: null, rangCarac: null, labelCarac: null, bonusAspect: null};
+            let result = {rangComp: 0, labelComp: "ND", specialisation: false, labelSpecialisation: "ND", rangCarac: 0, labelCarac: "ND", bonusAspect: 0, labelAspect: "ND"};
             result.rangComp = data.familleCompetences.epreuves.competences.armes.domaines[compArme].rang;
             result.labelComp = data.familleCompetences.epreuves.competences.armes.domaines[compArme].label;
+            result.specialisation = data.familleCompetences.epreuves.competences.armes.domaines[compArme].specialisation;
+            result.labelSpecialisation = data.familleCompetences.epreuves.competences.armes.domaines[compArme].labelSpecialisation;
 
             let caracData = this.getCaracData(data.familleCompetences.epreuves.competences.armes.domaines[compArme].caracteristique);
             result.rangCarac = caracData.rangCarac;
             result.labelCarac = caracData.labelCarac;
             result.bonusAspect = caracData.bonusAspect;
+            result.labelAspect = caracData.labelAspect;
 
             return result;
         }

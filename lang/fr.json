@@ -59,7 +59,9 @@
         },
         "chat": {
             "attaque": "Attaque",
-            "attaqueTitre": "Attaque ({arme})"   
+            "attaqueTitre": "Attaque ({arme})",
+            "parade": "Parade",
+            "paradeTitre": "Parade ({arme})"
         },
         "caracteristiques": {    
             "force": "Force",

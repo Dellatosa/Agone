@@ -44,58 +44,6 @@ export default class AgoneActorSheet extends ActorSheet {
         data.bienfaits = data.items.filter(function (item) { return item.type == "Bienfait"});
 
         data.listeSorts = Object.assign({}, ...data.sorts.map((x) => ({[x._id]: x.name})));
-        
-       
-
-        /* ---------------------------------------------------------
-        ---- Récupération des données de traduction en fonction ----
-        ---- de la langue sélectionnée                          ----
-        ----------------------------------------------------------*/
-
-        // Récupération des traductions pour les caractéristiques
-        for (let [key, carac] of Object.entries(actorData.aspects.corps.caracteristiques)) {
-            carac.label = game.i18n.localize(CONFIG.agone.caracteristiques[key]);
-            carac.abrev = game.i18n.localize(CONFIG.agone.caracAbrev[key]);
-        }
-        
-        for (let [key, carac] of Object.entries(actorData.aspects.esprit.caracteristiques)) {
-               carac.label = game.i18n.localize(CONFIG.agone.caracteristiques[key]);
-            carac.abrev = game.i18n.localize(CONFIG.agone.caracAbrev[key]);
-        }
-        
-        for (let [key, carac] of Object.entries(actorData.aspects.ame.caracteristiques)) {
-            carac.label = game.i18n.localize(CONFIG.agone.caracteristiques[key]);
-            carac.abrev = game.i18n.localize(CONFIG.agone.caracAbrev[key]);
-        }
-
-         // Récupération des traductions pour les aspects
-         for (let [key, aspect] of Object.entries(actorData.aspects)) {
-            aspect.positif.label = game.i18n.localize(CONFIG.agone.aspects[key]);
-            let keyNoir = key + "N";
-            aspect.negatif.label = game.i18n.localize(CONFIG.agone.aspects[keyNoir]);
-            let keyBonus = "B" + key;
-            aspect.bonus.label = game.i18n.localize(CONFIG.agone.aspects[keyBonus]);
-        }
-
-        // Récupération des traductions pour les compétences
-        // Et décompte du nombre de compétences pour les répartir équitablement dans les colonnes
-        let nbElemsGridComp = 0;
-        for(let[keyFam, famille] of Object.entries(actorData.familleCompetences)) {
-            famille.label = game.i18n.localize(CONFIG.agone.typesCompetence[keyFam]);
-            nbElemsGridComp += 1;
-            
-            for(let[keyComp, competence] of Object.entries(famille.competences)) {
-                competence.label = game.i18n.localize(CONFIG.agone.competences[keyComp]);
-                nbElemsGridComp += 1;
-                
-                if(competence.domaine == true) {
-                    for(let[keyDom, domaine] of Object.entries(competence.domaines)) {
-                        nbElemsGridComp += 1;
-                        if(domaine.domPerso == false) domaine.label = game.i18n.localize(CONFIG.agone.competences[keyDom]);
-                    }
-                }
-            } 
-        }
 
 
 
@@ -103,6 +51,20 @@ export default class AgoneActorSheet extends ActorSheet {
         ---- Répartition équilibrée des compétences en fonction ----
         ---- du nombre de colonnes d'affichage sélectionné      ----
         ----------------------------------------------------------*/
+
+        // Décompte du nombre de compétences pour les répartir équitablement dans les colonnes
+        let nbElemsGridComp = 0;
+        for(let[keyFam, famille] of Object.entries(actorData.familleCompetences)) {
+            nbElemsGridComp += 1;
+            for(let[keyComp, competence] of Object.entries(famille.competences)) {
+                nbElemsGridComp += 1;
+                if(competence.domaine == true) {
+                    for(let[keyDom, domaine] of Object.entries(competence.domaines)) {
+                        nbElemsGridComp += 1;
+                    }
+                }
+            } 
+        }
 
         // Calcul de répartition des compétences dans 4 colonnes
         const nbColonnes = 4;
@@ -130,8 +92,6 @@ export default class AgoneActorSheet extends ActorSheet {
                 }
             } 
         }
-
-        //console.log(data);
 
         return data;
     }
@@ -224,18 +184,27 @@ export default class AgoneActorSheet extends ActorSheet {
         event.preventDefault();
         const dataset = event.currentTarget.dataset;
 
+        let caracData = this.actor.getCaracData(dataset.carac);
+        let compData = this.actor.getCompData(dataset.famille, dataset.competence, dataset.domaine);
+
         Dice.jetCompetence({
             actor: this.actor,
-            famille: dataset.famille,
-            competence: dataset.competence,
-            domaine: dataset.domaine,
-            caracteristique: dataset.carac
+            rangComp: compData.rangComp,
+            labelComp: compData.labelComp,
+            specialisation: compData.specialisation,
+            labelSpecialisation: compData.labelSpecialisation,
+            rangCarac: caracData.rangCarac,
+            labelCarac: caracData.labelCarac,
+            bonusAspect: caracData.bonusAspect,
+            labelAspect: caracData.labelAspect,
         });
     }
 
     _onRollCarac(event) {
         event.preventDefault();
         const dataset = event.currentTarget.dataset;
+
+        let caracData = this.actor.getCaracData(dataset.carac);
 
         Dice.jetCaracteristique({
             actor: this.actor,

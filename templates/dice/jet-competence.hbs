@@ -1,4 +1,13 @@
-{{> "templates/dice/roll.html"}}
+<div class="jet-comp">
+    <div class="txt-small">Jet de compétence <span class="bold">{{stats.labelComp}} ({{stats.rangComp}}) + {{stats.labelCarac}} ({{stats.rangCarac}}) + {{stats.labelAspect}} ({{stats.bonusAspect}})</span></div>
+    {{#if stats.specialisation}}
+        <div class="txt-small">Spécialisation <span class="bold">{{stats.labelSpecialisation}}</span></div>
+    {{/if}}
+    {{#if stats.isFumble}}
+        <div class="dice-tooltip"><div class="dice-rolls fumble"><span class="fumble">FUMBLE !!!</span><div class="roll die d10 min">1</div></div></div>
+    {{/if}}
+    <div>{{{roll}}}</div>
+</div>
 {{#if (gte total 0)}}
 <h2>Succès !!</h2>
 {{else}}

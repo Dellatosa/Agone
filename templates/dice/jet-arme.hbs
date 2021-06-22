@@ -1,3 +1,10 @@
 <div class="jet-comp attaque" data-arme-dommages={{arme.data.modifDommages}}>
     <h2>{{localize "agone.chat.attaqueTitre" arme=arme.name}}</h2>
+    {{#if stats.specialisation}}
+        <div class="txt-small">Spécialisation <span class="bold">{{stats.labelSpecialisation}}</span></div>
+    {{/if}}
+    {{#if stats.isFumble}}
+        <div class="dice-tooltip"><div class="dice-rolls fumble"><span class="fumble">FUMBLE !!!</span><div class="roll die d10 min">1</div></div></div>
+    {{/if}}
+    {{{roll}}}
 </div>
