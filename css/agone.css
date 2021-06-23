@@ -258,8 +258,13 @@ nav.magie-tabs {
   top: 7px;
 }
 .actor-fam-comp .actor-comp-grid .dom-perso {
-  padding-top: 2px;
-  padding-bottom: 2px;
+  margin: 2px;
+  background-color: #bebdb8;
+}
+.actor-fam-comp .actor-comp-grid .dom-perso label {
+  position: relative;
+  top: 6px;
+  left: 2px;
 }
 .actor-fam-comp .actor-comp-grid .chk-spe {
   padding-top: 2px;

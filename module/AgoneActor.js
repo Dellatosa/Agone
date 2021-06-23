@@ -121,7 +121,6 @@ export default class AgoneActor extends Actor {
     getCompetences(famille) {
         let data = this.data.data;
 
-        console.log("fam", data.familleCompetences[famille]);
         return data.familleCompetences[famille];
     }
 
@@ -218,6 +217,13 @@ export default class AgoneActor extends Actor {
         else {
             return false;
         }
+    }
+
+    updateFamilleComps(famille, listeComps) {
+        let data = this.data.data;
+        Object.assign(data.familleCompetences[famille], listeComps);
+        this.update(this.data);
+        //console.log(this.data);
     }
 }
 

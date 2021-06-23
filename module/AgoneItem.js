@@ -19,7 +19,7 @@ export default class AgoneItem extends Item {
             owner: this.actor.id
         };
 
-        console.log(cardData);
+        //console.log(cardData);
         
         chatData.content = await renderTemplate(this.chatTemplate[this.type], cardData);
         chatData.roll = true;

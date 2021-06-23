@@ -180,7 +180,7 @@ export default class AgoneActorSheet extends ActorSheet {
         const dataset = event.currentTarget.dataset;
         const lstComps = this.actor.getCompetences(dataset.famille);
 
-        new EditCompFormApplication(lstComps, CONFIG.agone).render(true);
+        new EditCompFormApplication(this.actor, dataset.famille, lstComps).render(true);
     }
 
     _onItemRoll(event) {
