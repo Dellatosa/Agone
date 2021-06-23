@@ -1,5 +1,7 @@
 import * as Dice from "../dice.js";
 
+import EditCompFormApplication from "../EditCompFormApplication.js";
+
 export default class AgoneActorSheet extends ActorSheet {
      
     static get defaultOptions() {
@@ -110,6 +112,9 @@ export default class AgoneActorSheet extends ActorSheet {
             // roll-comp - jet de compétence
             html.find('.roll-comp').click(this._onRollComp.bind(this));
 
+            // edit-comp - edition des compétences d'une famille
+            html.find('.edit-comp').click(this._onEditComp.bind(this));
+
             // item-roll - jet de dés depuis un item
             html.find('.item-roll').click(this._onItemRoll.bind(this));
 
@@ -168,6 +173,14 @@ export default class AgoneActorSheet extends ActorSheet {
         let itemId = element.closest(".item").dataset.itemId;
 
         return this.actor.deleteOwnedItem(itemId);
+    }
+
+    _onEditComp(event) {
+        event.preventDefault();
+        const dataset = event.currentTarget.dataset;
+        const lstComps = this.actor.getCompetences(dataset.famille);
+
+        new EditCompFormApplication(lstComps, CONFIG.agone).render(true);
     }
 
     _onItemRoll(event) {

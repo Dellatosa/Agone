@@ -1,0 +1,51 @@
+<form>
+    <div class="edit-comp-grid">
+      {{#each famille.competences as |competence keyComp|}}
+        {{#if domaine}}
+          <label class="titre-comp">{{competence.label}}</label>              
+            {{#each domaines as |domaine keyDom|}}
+              {{#if domPerso}}
+                <div class="dom-perso"><input name="{{keyComp}}.domaines.{{keyDom}}.label" type="text" value="{{domaine.label}}" placeholder="{{localize 'agone.actors.domaine'}}"/></div>
+              {{else}}
+                <label class="dom-fixe">{{domaine.label}}</label>
+              {{/if}}
+              <div class="val-comp"><input name="{{keyComp}}.domaines.{{keyDom}}.rang" type="number" value="{{domaine.rang}}" placeholder="0"/></div>
+              <div class="chk-spe"><input name="{{keyComp}}.domaines.{{keyDom}}.specialisation" type="checkbox" data-dtype="Boolean" {{checked domaine.specialisation}}/></div>
+              <div class="val-spe"><input name="{{keyComp}}.domaines.{{keyDom}}.labelSpecialisation" type="text" value="{{domaine.labelSpecialisation}}" placeholder="{{localize 'agone.actors.specialisation'}}"/></div>
+              <select name="{{keyComp}}.domaines.{{keyDom}}.caracteristique">
+                {{#select caracteristique}}
+                  {{#each ../../configData.caracteristiques as |name key|}}
+                    {{#if (eq key caracteristique)}}
+                      <option value="{{key}}" selected>{{localize name}}</option>
+                    {{else}}
+                      <option value="{{key}}">{{localize name}}</option>
+                    {{/if}}
+                  {{/each}}
+                {{/select}}
+              </select>
+            {{/each}}
+        {{else}}
+          <label class="lbl-comp">{{competence.label}}</label>     
+          <div class="val-comp"><input name="{{keyComp}}.rang" type="number" value="{{competence.rang}}" placeholder="0"/></div>                                
+          <div class="chk-spe"><input name="{{keyComp}}.specialisation" type="checkbox" data-dtype="Boolean" {{checked competence.specialisation}}/></div>
+          <div class="val-spe"><input name="{{keyComp}}.labelSpecialisation" type="text" value="{{competence.labelSpecialisation}}" placeholder="{{localize 'agone.actors.specialisation'}}"/></div>
+          <select name="{{keyComp}}.caracteristique">
+            {{#select caracteristique}}
+              {{#each ../configData.caracteristiques as |name key|}}
+                {{#if (eq key caracteristique)}}
+                  <option value="{{key}}" selected>{{localize name}}</option>
+                {{else}}
+                  <option value="{{key}}">{{localize name}}</option>
+                {{/if}}
+              {{/each}}
+            {{/select}}
+          </select>
+        {{/if}}
+      {{/each}}
+    </div>
+    <footer class="sheet-footer flexrow">
+      <button type="submit" name="submit">
+          <i class="fa fa-check"></i> OK
+      </button>
+    </footer>
+  </form>

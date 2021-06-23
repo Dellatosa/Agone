@@ -4,6 +4,7 @@
             {{#each ../data.familleCompetences as |famille keyFam|}} 
                 {{#if (eq famille.numcol col)}}
                     <label class="titre-fam">{{famille.label}}</label>
+                    <a class="edit-comp" title="{{localize 'agone.actors.editComp'}}" data-famille="{{keyFam}}"><i class="fas fa-edit" ></i></a> 
                 {{/if}}
                 {{#each famille.competences as |competence keyComp|}}
                     {{#if domaine}}

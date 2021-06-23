@@ -1,6 +1,7 @@
 export const agone = {};
 
 agone.caracteristiques = {
+    aucun: "",
     agilite: "agone.actors.agilite",
     force: "agone.actors.force",
     perception: "agone.actors.perception",
@@ -79,7 +80,7 @@ agone.competences = {
     intendance: "agone.actors.intendance",
     musique: "agone.actors.musique",
     negoce: "agone.actors.negoce",
-    einture: "agone.actors.peinture",
+    peinture: "agone.actors.peinture",
     poesie: "agone.actors.poesie",
     savoirFaire: "agone.actors.savoirFaire",
     sculpture: "agone.actors.sculpture",
@@ -90,7 +91,7 @@ agone.competences = {
     cultes: "agone.actors.cultes",
     geographie: "agone.actors.geographie",
     herboristerie: "agone.actors.herboristerie",
-    histoireLegendes: "agone.actors.histoireLegendes",
+    histoiresLegendes: "agone.actors.histoireLegendes",
     langues: "agone.actors.langues",
     loi: "agone.actors.loi",
     medecine: "agone.actors.medecine",

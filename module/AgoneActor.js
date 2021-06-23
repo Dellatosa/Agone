@@ -118,6 +118,13 @@ export default class AgoneActor extends Actor {
         }
     }
 
+    getCompetences(famille) {
+        let data = this.data.data;
+
+        console.log("fam", data.familleCompetences[famille]);
+        return data.familleCompetences[famille];
+    }
+
     getCompData(famille, competence, domaine) {
         let data = this.data.data;
 
