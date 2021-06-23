@@ -3,15 +3,15 @@
 <div class="actor-infos">
     <h2><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'agone.common.name'}}"/></h2>
     <div class="actor-infos-line">
-        <label>{{localize "agone.common.occupation"}}</label>
-        <div class="auto-size"><input name="data.occupation" type="text" value="{{data.occupation}}" placeholder="{{localize 'agone.common.occupation'}}"/></div>
-        <label>{{localize "agone.common.origine"}}</label>
-        <div class="auto-size"><input name="data.origine" type="text" value="{{data.origine}}" placeholder="{{localize 'agone.common.origine'}}"/></div>
+        <label>{{localize "agone.actors.occupation"}}</label>
+        <div class="auto-size"><input name="data.occupation" type="text" value="{{data.occupation}}" placeholder="{{localize 'agone.actors.occupation'}}"/></div>
+        <label>{{localize "agone.actors.origine"}}</label>
+        <div class="auto-size"><input name="data.origine" type="text" value="{{data.origine}}" placeholder="{{localize 'agone.actors.origine'}}"/></div>
     </div>
     <div class="actor-infos-line">
-        <label>{{localize "agone.common.sexe"}}</label>
-        <div class="small-size"><input name="data.sexe" type="text" value="{{data.sexe}}" placeholder="{{localize 'agone.common.sexe'}}"/></div>
-        <label>{{localize "agone.common.peuple"}}</label>
+        <label>{{localize "agone.actors.sexe"}}</label>
+        <div class="small-size"><input name="data.sexe" type="text" value="{{data.sexe}}" placeholder="{{localize 'agone.actors.sexe'}}"/></div>
+        <label>{{localize "agone.actors.peuple"}}</label>
         <select class="auto-size" name="data.peuple">
             {{#select data.peuple}}
             {{#each config.peuple as |peuple keyPeuple|}}
@@ -19,21 +19,21 @@
             {{/each}}
             {{/select}} 
         </select>
-        <label>{{localize "agone.caracteristiques.diffJetVieillesse.abbr"}}</label>
-        <div class="small-size"><input name="data.caracSecondaires.diffJetVieillesse" type="number" value="{{data.caracSecondaires.diffJetVieillesse}}" placeholder="{{localize 'agone.caracteristiques.diffJetVieillesse.abbr'}}"/></div>
-        <label>{{localize "agone.common.age"}}</label>
-        <div class="small-size"><input name="data.age" type="number" value="{{data.age}}" placeholder="{{localize 'agone.common.age'}}"/></div>
+        <label>{{localize "agone.actors.JetVieilAbbr"}}</label>
+        <div class="small-size"><input name="data.caracSecondaires.diffJetVieillesse" type="number" value="{{data.caracSecondaires.diffJetVieillesse}}" placeholder="{{localize 'agone.actors.JetVieilAbbr'}}"/></div>
+        <label>{{localize "agone.actors.age"}}</label>
+        <div class="small-size"><input name="data.age" type="number" value="{{data.age}}" placeholder="{{localize 'agone.actors.age'}}"/></div>
     </div>
     <div class="actor-infos-line">
-        <label>{{localize "agone.common.taille"}}</label>
-        <div class="small-size"><input name="data.taille" type="number" value="{{data.taille}}" placeholder="{{localize 'agone.common.taille'}}"/></div>
-        <label >{{localize "agone.caracteristiques.tai"}}</label>
-        <div class="small-size"><input name="data.caracSecondaires.tai" type="number" value="{{data.caracSecondaires.tai}}" placeholder="{{localize 'agone.caracteristiques.tai'}}" readonly/></div>
-        <label>{{localize "agone.common.poids"}}</label>
-        <div class="small-size"><input name="data.poids" type="number" value="{{data.poids}}" placeholder="{{localize 'agone.common.poids'}}"/></div>
-        <label>{{localize "agone.caracteristiques.mouvement.abbr"}}</label>
-        <div class="small-size"><input name="data.caracSecondaires.mouvement" type="number" value="{{data.caracSecondaires.mouvement}}" placeholder="{{localize 'agone.caracteristiques.mouvement.abbr'}}"/></div>
-        <label>{{localize "agone.caracteristiques.pdv"}}</label>
+        <label>{{localize "agone.actors.taille"}}</label>
+        <div class="small-size"><input name="data.taille" type="number" value="{{data.taille}}" placeholder="{{localize 'agone.actors.taille'}}"/></div>
+        <label >{{localize "agone.actors.tai"}}</label>
+        <div class="small-size"><input name="data.caracSecondaires.tai" type="number" value="{{data.caracSecondaires.tai}}" placeholder="{{localize 'agone.actors.tai'}}" readonly/></div>
+        <label>{{localize "agone.actors.poids"}}</label>
+        <div class="small-size"><input name="data.poids" type="number" value="{{data.poids}}" placeholder="{{localize 'agone.actors.poids'}}"/></div>
+        <label>{{localize "agone.actors.mouvementAbbr"}}</label>
+        <div class="small-size"><input name="data.caracSecondaires.mouvement" type="number" value="{{data.caracSecondaires.mouvement}}" placeholder="{{localize 'agone.actors.mouvementAbbr'}}"/></div>
+        <label>{{localize "agone.actors.pdv"}}</label>
         <div class="small-size"><input name="data.caracSecondaires.pdv.value" type="number" value="{{data.caracSecondaires.pdv.value}}" placeholder="0"/></div>
         <label> / </label>
         <div class="small-size"><input name="data.caracSecondaires.pdv.max-ro" type="number" value="{{data.caracSecondaires.pdv.max}}" placeholder="0" readonly/></div>

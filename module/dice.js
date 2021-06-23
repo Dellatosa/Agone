@@ -75,7 +75,7 @@ export async function jetCompetence({actor = null,
     }
 
     if(envoiMessage) {
-        const messageTemplate = "systems/agone/templates/dice/jet-competence.hbs"; 
+        const messageTemplate = "systems/agone/templates/partials/dice/jet-competence.hbs"; 
         let renderedRoll = await rollResult.render();
 
         let rollStats = {
@@ -89,11 +89,11 @@ export async function jetCompetence({actor = null,
         }
 
         if(modifAttaque) {
-            rollStats.labelModifAttaque = game.i18n.localize("agone.arme.modifAttaque");
+            rollStats.labelModifAttaque = game.i18n.localize("agone.items.modifAttaque");
         }
 
         if(modifParade) {
-            rollStats.labelModifParade = game.i18n.localize("agone.arme.modifParade");
+            rollStats.labelModifParade = game.i18n.localize("agone.items.modifParade");
         }
 
         if(utiliseHeroisme) {
@@ -126,7 +126,7 @@ export async function jetCompetence({actor = null,
 }
 
 async function getJetCompetenceOptions({cfgData = null, defCarac = null}) {
-    const template = "systems/agone/templates/partials/dialog/dialog-jet-competence.hbs";
+    const template = "systems/agone/templates/partials/dice/dialog-jet-competence.hbs";
     const html = await renderTemplate(template, {data: cfgData, defCarac: defCarac});
 
     return new Promise( resolve => {
@@ -134,8 +134,8 @@ async function getJetCompetenceOptions({cfgData = null, defCarac = null}) {
             title: "Jet de compétence",
             content: html,
             buttons: {
-                normal: {
-                    label: "jet normal",
+                jet: {
+                    label: "Jet",
                     callback: html => resolve(_processJetCompetenceOptions(html[0].querySelector("form")))
                 },
                 annuler: {
@@ -143,7 +143,7 @@ async function getJetCompetenceOptions({cfgData = null, defCarac = null}) {
                     callback: html => resolve({annule: true})
                 }
             },
-            default: "normal",
+            default: "jet",
             close: () => resolve({annule: true})
         }
         new Dialog(data, null).render(true);
@@ -209,7 +209,7 @@ export async function attaque(attaquant, arme) {
         envoiMessage: false
         });
 
-    const messageTemplate = "systems/agone/templates/dice/jet-arme.hbs";
+    const messageTemplate = "systems/agone/templates/partials/dice/jet-arme.hbs";
     let renderedRoll = await rollResult.render();
 
     let rollStats = {

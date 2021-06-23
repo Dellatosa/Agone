@@ -6,9 +6,9 @@
     <div class="sheet-content">
         <div class="grid-armure">
             <label class="grid-titre">{{localize "agone.common.type"}}</label>
-            <label class="grid-titre">{{localize "agone.armure.protection"}}</label>
-            <label class="grid-titre">{{localize "agone.armure.malus"}}</label>
-            <label class="grid-titre">{{localize "agone.armure.malusPerception"}}</label>
+            <label class="grid-titre">{{localize "agone.items.protection"}}</label>
+            <label class="grid-titre">{{localize "agone.items.malus"}}</label>
+            <label class="grid-titre">{{localize "agone.items.malusPerception"}}</label>
             <div>
                 <select name="data.type">
                     {{#select data.type}}
@@ -22,10 +22,10 @@
             <div><input name="data.malus" type="text" value="{{data.malus}}" data-dtype="Number" placeholder="0"/></div>
             <div><input name="data.malusPerception" type="text" value="{{data.malusPerception}}" data-dtype="Number" placeholder="0"/></div>
         </div>
-         <div>{{localize "agone.armure.descriptionLabel"}}</div> 
+         <div>{{localize "agone.items.armureDesc"}}</div> 
          {{editor content=data.description target="data.description" button=true owner=true editable=true}}
     </div>
     <footer class="sheet-footer">
-        <div>{{localize "agone.common.type"}} : <span>{{localize "agone.armure.label"}}</span></div>
+        <div>{{localize "agone.common.type"}} : <span>{{localize "agone.items.armureLabel"}}</span></div>
     </footer>
 </form>

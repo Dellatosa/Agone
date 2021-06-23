@@ -5,9 +5,9 @@
     </header>
     <div class="sheet-content">
         <div class="grid-connivence">
-            <label class="grid-titre">{{localize "agone.connivence.cercleDemon"}}</label>
-            <label class="grid-titre">{{localize "agone.connivence.nomDemon"}}</label>
-            <label class="grid-titre">{{localize "agone.connivence.nomAdvocatus"}}</label>
+            <label class="grid-titre">{{localize "agone.items.cercleDemon"}}</label>
+            <label class="grid-titre">{{localize "agone.items.nomDemon"}}</label>
+            <label class="grid-titre">{{localize "agone.items.nomAdvocatus"}}</label>
             <div>
                 <select name="data.cercleDemon">
                     {{#select data.cercleDemon}}
@@ -17,13 +17,13 @@
                     {{/select}}
                 </select>
             </div>
-            <div><input name="data.nomDemon" type="text" value="{{data.nomDemon}}" placeholder="{{localize 'agone.connivence.nomDemon'}}"/></div>
-            <div><input name="data.nomAdvocatus" type="text" value="{{data.nomAdvocatus}}" placeholder="{{localize 'agone.connivence.nomAdvocatus'}}"/></div>
+            <div><input name="data.nomDemon" type="text" value="{{data.nomDemon}}" placeholder="{{localize 'agone.items.nomDemon'}}"/></div>
+            <div><input name="data.nomAdvocatus" type="text" value="{{data.nomAdvocatus}}" placeholder="{{localize 'agone.items.nomAdvocatus'}}"/></div>
         </div>
-         <div>{{localize "agone.connivence.termes"}}</div> 
+         <div>{{localize "agone.items.connivence.termes"}}</div> 
          {{editor content=data.termes target="data.termes" button=true owner=true editable=true}}
     </div>
     <footer class="sheet-footer">
-        <div>{{localize "agone.common.type"}} : <span>{{localize "agone.connivence.label"}}</span></div>
+        <div>{{localize "agone.common.type"}} : <span>{{localize "agone.items.connivenceLabel"}}</span></div>
     </footer>
 </form>

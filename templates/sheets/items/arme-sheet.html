@@ -5,16 +5,16 @@
     </header>
     <div class="sheet-content">
         <div class="grid-arme">
-            <label class="grid-titre">{{localize "agone.arme.style"}}</label>
-            <label class="grid-titre">{{localize "agone.arme.modifInit"}}</label>
-            <label class="grid-titre">{{localize "agone.arme.modifAttaque"}}</label>
-            <label class="grid-titre">{{localize "agone.arme.modifParade"}}</label>
-            <label class="grid-titre">{{localize "agone.arme.modifDommages"}}</label>
-            <label class="grid-titre">{{localize "agone.common.portee"}}</label>
+            <label class="grid-titre">{{localize "agone.items.style"}}</label>
+            <label class="grid-titre">{{localize "agone.items.modifInit"}}</label>
+            <label class="grid-titre">{{localize "agone.items.modifAttaque"}}</label>
+            <label class="grid-titre">{{localize "agone.items.modifParade"}}</label>
+            <label class="grid-titre">{{localize "agone.items.modifDommages"}}</label>
+            <label class="grid-titre">{{localize "agone.items.portee"}}</label>
             <label class="grid-titre">{{localize "agone.common.type"}}</label>
-            <label class="grid-titre">{{localize "agone.arme.minForce"}}</label>
-            <label class="grid-titre">{{localize "agone.arme.minAgilite"}}</label>
-            <label class="grid-titre">{{localize "agone.arme.tai"}}</label>
+            <label class="grid-titre">{{localize "agone.items.minForce"}}</label>
+            <label class="grid-titre">{{localize "agone.items.minAgilite"}}</label>
+            <label class="grid-titre">{{localize "agone.items.tai"}}</label>
             <div>
                 <select name="data.style">
                     {{#select data.style}}
@@ -42,10 +42,10 @@
             <div><input name="data.minAgilite" type="text" value="{{data.minAgilite}}" data-dtype="Number" placeholder="0"/></div>
             <div><input name="data.tai" type="text" value="{{data.tai}}" data-dtype="Number" placeholder="0"/></div>
         </div>
-         <div>{{localize "agone.arme.descriptionLabel"}}</div> 
+         <div>{{localize "agone.items.armeDesc"}}</div> 
          {{editor content=data.description target="data.description" button=true owner=true editable=true}}
     </div>
     <footer class="sheet-footer">
-        <div>{{localize "agone.common.type"}} : <span>{{localize "agone.arme.label"}}</span></div>
+        <div>{{localize "agone.common.type"}} : <span>{{localize "agone.items.armeLabel"}}</span></div>
     </footer>
 </form>

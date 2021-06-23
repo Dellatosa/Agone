@@ -5,12 +5,12 @@
     </header>
     <div class="sheet-content">
         <div class="grid-oeuvre">
-            <label class="grid-titre">{{localize "agone.oeuvre.artMagique"}}</label>
-            <label class="grid-titre">{{localize "agone.common.saison"}}</label>
-            <label class="grid-titre">{{localize "agone.common.seuil"}}</label>
-            <label class="grid-titre">{{localize "agone.common.portee"}}</label>
-            <label class="grid-titre">{{localize "agone.oeuvre.tempsPreparation"}}</label>
-            <label class="grid-titre">{{localize "agone.oeuvre.dureeOeuvre"}}</label>
+            <label class="grid-titre">{{localize "agone.items.artMagique"}}</label>
+            <label class="grid-titre">{{localize "agone.actors.saison"}}</label>
+            <label class="grid-titre">{{localize "agone.items.seuil"}}</label>
+            <label class="grid-titre">{{localize "agone.items.portee"}}</label>
+            <label class="grid-titre">{{localize "agone.items.tempsPreparation"}}</label>
+            <label class="grid-titre">{{localize "agone.items.dureeOeuvre"}}</label>
             <div>
                 <select name="data.artMagique">
                     {{#select data.artMagique}}
@@ -30,14 +30,14 @@
                 </select>
             </div>
             <div><input name="data.seuil" type="text" value="{{data.seuil}}" data-dtype="Number" placeholder="0"/></div>
-            <div><input name="data.portee" type="text" value="{{data.portee}}" placeholder="{{localize 'agone.common.portee'}}"/></div>
-            <div><input name="data.tempsPreparation" type="text" value="{{data.tempsPreparation}}" placeholder="{{localize 'agone.oeuvre.tempsPreparation'}}"/></div>
-            <div><input name="data.dureeOeuvre" type="text" value="{{data.dureeOeuvre}}" placeholder="{{localize 'agone.oeuvre.dureeOeuvre'}}"/></div>
+            <div><input name="data.portee" type="text" value="{{data.portee}}" placeholder="{{localize 'agone.items.portee'}}"/></div>
+            <div><input name="data.tempsPreparation" type="text" value="{{data.tempsPreparation}}" placeholder="{{localize 'agone.items.tempsPreparation'}}"/></div>
+            <div><input name="data.dureeOeuvre" type="text" value="{{data.dureeOeuvre}}" placeholder="{{localize 'agone.items.dureeOeuvre'}}"/></div>
         </div>
-         <div>{{localize "agone.oeuvre.descriptionLabel"}}</div> 
+         <div>{{localize "agone.items.oeuvreDesc"}}</div> 
          {{editor content=data.description target="data.description" button=true owner=true editable=true}}
     </div>
     <footer class="sheet-footer">
-        <div>{{localize "agone.common.type"}} : <span>{{localize "agone.oeuvre.label"}}</span></div>
+        <div>{{localize "agone.common.type"}} : <span>{{localize "agone.items.oeuvreLabel"}}</span></div>
     </footer>
 </form>

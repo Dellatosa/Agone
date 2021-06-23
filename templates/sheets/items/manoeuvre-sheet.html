@@ -5,10 +5,10 @@
     </header>
     <div class="sheet-content">
         <div class="grid-manoeuvre">
-            <label class="grid-titre">{{localize "agone.arme.modifInit"}}</label>
-            <label class="grid-titre">{{localize "agone.arme.modifAttaque"}}</label>
-            <label class="grid-titre">{{localize "agone.manoeuvre.modifDefense"}}</label>
-            <label class="grid-titre">{{localize "agone.arme.modifDommages"}}</label>
+            <label class="grid-titre">{{localize "agone.items.modifInit"}}</label>
+            <label class="grid-titre">{{localize "agone.items.modifAttaque"}}</label>
+            <label class="grid-titre">{{localize "agone.items.modifDefense"}}</label>
+            <label class="grid-titre">{{localize "agone.items.modifDommages"}}</label>
             <!-- <th>{{localize "agone.ecole.label"}}</th> -->
             <div><input name="data.modifInit" type="text" value="{{data.modifInit}}" data-dtype="Number" placeholder="0"/></div>
             <div><input name="data.modifAttaque" type="text" value="{{data.modifAttaque}}" data-dtype="Number" placeholder="0"/></div>
@@ -16,14 +16,14 @@
             <div><input name="data.modifDommages" type="text" value="{{data.modifDommages}}" data-dtype="Number" placeholder="0"/></div>
             <!-- <td></td> récupérer l'école' par glisser déposer -->
         </div>
-         <div>{{localize "agone.manoeuvre.descriptionLabel"}}</div> 
+         <div>{{localize "agone.items.manoeuvreDesc"}}</div> 
             {{editor content=data.description target="data.description" button=true owner=true editable=true}}
         </div>
         <div>
-            <span>{{localize "agone.manoeuvre.prerequis"}}</span>
-            <input name="data.prerequis" type="text" value="{{data.prerequis}}" placeholder="{{localize 'agone.manoeuvre.prerequis'}}"/>
+            <span>{{localize "agone.items.prerequis"}}</span>
+            <input name="data.prerequis" type="text" value="{{data.prerequis}}" placeholder="{{localize 'agone.items.prerequis'}}"/>
         </div>
     <footer class="sheet-footer">
-        <div>{{localize "agone.common.type"}} : <span>{{localize "agone.manoeuvre.label"}}</span></div>
+        <div>{{localize "agone.common.type"}} : <span>{{localize "agone.items.manoeuvreLabel"}}</span></div>
     </footer>
 </form>

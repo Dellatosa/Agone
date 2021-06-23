@@ -1,13 +1,18 @@
 {
     "agone":{
-        "common":{
-            "biographie": "Biographie",
-            "parrain": "parrain",
+        "common": {
+            "ajouter": "Ajouter",
+            "supprimer": "Supprimer",
+            "editer": "Editer",
+            "nouveau": "Nouveau",
             "name": "Nom",
             "type": "Type",
-            "cout": "Coût",
+            "cout": "Coût"
+        },
+        "actors": {
+            "biographie": "Biographie",
+            "parrain": "parrain",
             "arts": "Arts",
-            "saisons": "Saisons",
             "saison": "Saison",
             "printemps": "Printemps",
             "ete": "Eté",
@@ -47,49 +52,31 @@
             "sante": "Santé",
             "poidsPortable" : "Poids portable",
             "domaine": "Domaine",
-            "seuil": "Seuil",
-            "portee": "Portée",
-            "ajouter": "Ajouter",
-            "supprimer": "Supprimer",
-            "editer": "Editer",
-            "nouveau": "Nouveau",
             "jetComp": "Jet de compétence",
             "jetCarac": "Jet de caractéristique",
-            "armures": "Armures"
-        },
-        "chat": {
-            "attaque": "Attaque",
-            "attaqueTitre": "Attaque ({arme})",
-            "parade": "Parade",
-            "paradeTitre": "Parade ({arme})"
-        },
-        "caracteristiques": {    
+            "armures": "Armures",
             "force": "Force",
-            "for": "FOR",
+            "FOR": "FOR",
             "agilite": "Agilité",
-            "agi": "AGI",
+            "AGI": "AGI",
             "resistance": "Résistance",
-            "res": "RES",
+            "RES": "RES",
             "perception": "Perception",
-            "per": "PER",
+            "PER": "PER",
             "intelligence": "Intelligence",
-            "int": "INT",
+            "INT": "INT",
             "volonte": "Volonté",
-            "vol": "VOL",
+            "VOL": "VOL",
             "charisme": "Charisme",
-            "cha": "CHA",
+            "CHA": "CHA",
             "creativite": "Créativité",
-            "cre": "CRE",
+            "CRE": "CRE",
             "pdv": "Points de vie",
             "tai": "TAI",
-            "mouvement": { 
-                "label": "Mouvement",
-                "abbr": "Mouv."
-            },
-            "diffJetVieillesse": {
-                "label": "Difficulté du jet de vieillesse",
-                "abbr": "Diff. jet vieil."
-            },
+            "mouvement":  "Mouvement",
+            "mouvementAbbr": "Mouv.",
+            "JetVieillesse": "Difficulté du jet de vieillesse",
+            "JetVieilAbbr": "Diff. jet vieil.",
             "seuilBlessureGrave": "Seuil de blessure grave",
             "seuilBlessureCritique": "Seuil de blessure critique",
             "bonusDommages": "Bonus de dommages",
@@ -99,17 +86,15 @@
             "emprise": "Emprise",
             "emp": "EMP",
             "melee": "Mélée",
-            "mel": "MEL",
+            "MEL": "MEL",
             "tir": "Tir",
-            "tirA": "TIR",
+            "TIR": "TIR",
             "art": "Art",
-            "artA": "ART",
+            "ART": "ART",
             "tenebre": "Ténèbre",
             "perfidie": "Perfidie",
             "noirceur": "Noirceur",
-            "heroisme": "Points d'héroïsme"
-        },
-        "aspects": {
+            "heroisme": "Points d'héroïsme",
             "ame": "Ame",
             "ameNoire": "Ame noire",
             "bonusAme": "Bonus d'âme",
@@ -120,9 +105,7 @@
             "corpsNoir": "Corps noir",
             "bonusCorps": "Bonus de corps",
             "flamme": "Flamme",
-            "flammeNoire": "Flamme noire"
-        },
-        "competences": {
+            "flammeNoire": "Flamme noire",
             "vigilance": "Vigilance",
             "athletisme": "Athlétisme",
             "escalade": "Escalade",
@@ -178,43 +161,59 @@
             "cryptogramme": "Cryptogramme",
             "demonologie": "Démonologie",
             "harmonie": "Harmonie",
-            "resonance": "Résonance"
-        },
-        "typesAvantageDefaut":{
-            "chargeSociete": "Charge et Société"
-        },
-        "typesArme":{
-            "perforante": "Perforante",
-            "tranchante": "Tranchante",
-            "perftranch": "Perforante/Tranchante",
-            "contondante": "Contondante"
-        },
-        "stylesArme": {
-            "melee": "Mélée",
-            "jet": "Jet",
-            "trait": "Trait"
-        },
-        "typesArmure": {
-            "vesteSeule" : "Veste seule",
-            "partielle": "Partielle",
-            "complete": "Complète"
-        },
-        "typesCompetence": {
+            "resonance": "Résonance",
             "epreuves": "Epreuves",
             "maraude": "Maraude",
             "societe": "Société",
             "savoir": "Savoir",
             "occulte": "Occulte"
         },
-        "cerclesDemon": {
+        "items":{
+            "armeLabel": "Arme",          
+            "armeDesc": "Description de l'arme",
+            "avantageLabel": "Avantage",           
+            "avantageDesc": "Description de l'Avantage",
+            "defautLabel": "Défaut",
+            "defautDesc": "Description du Défaut",
+            "peineLabel": "Peine",
+            "peineDesc": "Description de la Peine",
+            "bienfaitLabel": "Bienfait",
+            "bienfaitDesc": "Description du Bienfait",
+            "pouvoirFlammeLabel": "Pouvoir de Flamme",
+            "pouvoirFlammeDesc": "Description du Pouvoir de Flamme",
+            "pouvoirSaisonLabel": "Pouvoir de Saison",           
+            "pouvoirSaisonDesc": "Description du pouvoir de Saison",
+            "ecoleLabel": "Ecole",
+            "ecoleDesc": "Description de l'école",
+            "manoeuvreLabel": "Manoeuvre",
+            "manoeuvreDesc": "Description de la manoeuvre",
+            "armureLabel": "Armure",
+            "armureDesc": "Description de l'armure",
+            "danseurLabel": "Danseur",
+            "danseurDesc": "Description du danseur",
+            "sortLabel": "Sort",
+            "sortDesc": "Description du sort",
+            "oeuvreLabel": "Oeuvre",
+            "oeuvreDesc": "Description de l'oeuvre",
+            "connivenceLabel": "Connivence",
+            "seuil": "Seuil",
+            "portee": "Portée",
+            "chargeSociete": "Charge et Société",
+            "perforante": "Perforante",
+            "tranchante": "Tranchante",
+            "perftranch": "Perforante/Tranchante",
+            "contondante": "Contondante",
+            "melee": "Mélée",
+            "jet": "Jet",
+            "trait": "Trait",
+            "vesteSeule" : "Veste seule",
+            "partielle": "Partielle",
+            "complete": "Complète",
             "opalin": "Opalin",
             "azurin": "Azurin / Saphirin",
             "safran": "Ambré / Safran",
             "carmin": "Carmin / Vermillon",
-            "obsidien": "Obsidien"
-        },
-        "arme": {
-            "label": "Arme",
+            "obsidien": "Obsidien",
             "style": "Style",
             "tai": "TAI",
             "modifInit": "Init.",
@@ -223,57 +222,15 @@
             "modifDommages": "Dom.",
             "minAgilite": "AGI min.",
             "minForce": "FOR min.",
-            "descriptionLabel": "Description de l'arme"
-        },
-        "avantage": {
-            "label": "Avantage",
-            "descBonus": "Description du Bonus",
+            "descBonus": "Description du bonus",
             "prerequis": "Prérequis",
-            "descriptionLabel": "Description de l'Avantage"
-        },
-        "defaut": {
-            "label": "Défaut",
             "descMalus": "Description du malus",
-            "descriptionLabel": "Description du Défaut"
-        },
-        "peine": {
-            "label": "Peine",
             "palier": "Palier",
-            "descriptionLabel": "Description de la Peine"
-        },
-        "bienfait": {
-            "label": "Bienfait",
-            "descriptionLabel": "Description du Bienfait"
-        },
-        "pouvoirFlamme": {
-            "label": "Pouvoir de Flamme",
-            "coutHeroisme": "Coût en point d'Héroïsme",
-            "descriptionLabel": "Description du Pouvoir de Flamme"
-        },
-        "pouvoirSaison": {
-            "label": "Pouvoir de Saison",
             "coutHeroisme": "Coût en point d'héroïsme",
-            "descriptionLabel": "Description du pouvoir de Saison"
-        },
-        "ecole": {
-            "label": "Ecole",
-            "descriptionLabel": "Description de l'école"
-        },
-        "manoeuvre": {
-            "label": "Manoeuvre",
-            "prerequis": "Prérequis",
             "modifDefense": "Def.",
-            "descriptionLabel": "Description de la manoeuvre"
-        },
-        "armure": {
-            "label": "Armure",
             "protection": "Protection",
             "malus": "Malus",
             "malusPerception": "Malus de perception",
-            "descriptionLabel": "Description de l'armure"
-        },
-        "danseur": {
-            "label": "Danseur",
             "memoire": "Mémoire",
             "memoireDispo": "Mémoire disp.",
             "memoireMax": "Mémoire max.",
@@ -282,28 +239,23 @@
             "endurance": "Endurance",
             "enduranceDispo": "Endurance disp.",
             "enduranceMax": "Endurance max.",
-            "descriptionLabel": "Description du danseur"
-        },
-        "sort": {
-            "label": "Sort",
             "resonance": "Résonance",
             "dureeDanse": "Durée de la danse",
             "dureeSort": "Durée du sort",
-            "descriptionLabel": "Description du sort"
-        },
-        "oeuvre": {
-            "label": "Oeuvre",
             "artMagique": "Art magique",
             "tempsPreparation": "Temps de préparation",
             "dureeOeuvre": "Durée de l'oeuvre",
-            "descriptionLabel": "Description de l'oeuvre"
-        },
-        "connivence": {
-            "label": "Connivence",
             "termes": "Termes de la connivence",
             "cercleDemon": "Cercle du démon",
             "nomDemon": "Nom du démon",
             "nomAdvocatus": "Nom de l'Advocatus Diaboli"
+        },
+        "chat": {
+            "attaque": "Attaque",
+            "attaqueTitre": "Attaque ({arme})",
+            "parade": "Parade",
+            "paradeTitre": "Parade ({arme})",
+            "difficulte": "Difficulté"
         }
     }
 }

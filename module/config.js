@@ -1,120 +1,120 @@
 export const agone = {};
 
 agone.caracteristiques = {
-    agilite: "agone.caracteristiques.agilite",
-    force: "agone.caracteristiques.force",
-    perception: "agone.caracteristiques.perception",
-    resistance: "agone.caracteristiques.resistance",
-    intelligence: "agone.caracteristiques.intelligence",
-    volonte: "agone.caracteristiques.volonte",
-    charisme: "agone.caracteristiques.charisme",
-    creativite: "agone.caracteristiques.creativite",
-    melee: "agone.caracteristiques.melee",
-    tir: "agone.caracteristiques.tir",
-    emprise: "agone.caracteristiques.emprise",
-    art: "agone.caracteristiques.art"
+    agilite: "agone.actors.agilite",
+    force: "agone.actors.force",
+    perception: "agone.actors.perception",
+    resistance: "agone.actors.resistance",
+    intelligence: "agone.actors.intelligence",
+    volonte: "agone.actors.volonte",
+    charisme: "agone.actors.charisme",
+    creativite: "agone.actors.creativite",
+    melee: "agone.actors.melee",
+    tir: "agone.actors.tir",
+    emprise: "agone.actors.emprise",
+    art: "agone.actors.art"
 }
 
 agone.caracAbrev = {
-    agilite: "agone.caracteristiques.agi",
-    force: "agone.caracteristiques.for",
-    perception: "agone.caracteristiques.per",
-    resistance: "agone.caracteristiques.res",
-    intelligence: "agone.caracteristiques.int",
-    volonte: "agone.caracteristiques.vol",
-    charisme: "agone.caracteristiques.cha",
-    creativite: "agone.caracteristiques.cre",
-    melee: "agone.caracteristiques.mel",
-    tir: "agone.caracteristiques.tirA",
-    emprise: "agone.caracteristiques.emp",
-    art: "agone.caracteristiques.artA"
+    agilite: "agone.actors.AGI",
+    force: "agone.actors.FOR",
+    perception: "agone.actors.PER",
+    resistance: "agone.actors.RES",
+    intelligence: "agone.actors.INT",
+    volonte: "agone.actors.VOL",
+    charisme: "agone.actors.CHA",
+    creativite: "agone.actors.CRE",
+    melee: "agone.actors.MEL",
+    tir: "agone.actors.TIR",
+    emprise: "agone.actors.EMP",
+    art: "agone.actors.ART"
 }
 
 agone.aspects = {
-    corps: "agone.aspects.corps",
-    corpsN: "agone.aspects.corpsNoir",
-    Bcorps: "agone.aspects.bonusCorps",
-    esprit: "agone.aspects.esprit",
-    espritN: "agone.aspects.espritNoir",
-    Besprit: "agone.aspects.bonusEsprit",
-    ame: "agone.aspects.ame",
-    ameN: "agone.aspects.ameNoire",
-    Bame: "agone.aspects.bonusAme"
+    corps: "agone.actors.corps",
+    corpsN: "agone.actors.corpsNoir",
+    Bcorps: "agone.actors.bonusCorps",
+    esprit: "agone.actors.esprit",
+    espritN: "agone.actors.espritNoir",
+    Besprit: "agone.actors.bonusEsprit",
+    ame: "agone.actors.ame",
+    ameN: "agone.actors.ameNoire",
+    Bame: "agone.actors.bonusAme"
 }
 
 agone.typesCompetence = {
     aucun: "",
-    epreuves: "agone.typesCompetence.epreuves",
-    maraude: "agone.typesCompetence.maraude",
-    societe: "agone.typesCompetence.societe",
-    savoir: "agone.typesCompetence.savoir",
-    occulte: "agone.typesCompetence.occulte"
+    epreuves: "agone.actors.epreuves",
+    maraude: "agone.actors.maraude",
+    societe: "agone.actors.societe",
+    savoir: "agone.actors.savoir",
+    occulte: "agone.actors.occulte"
 }
 
 agone.competences = {
-    vigilance: "agone.competences.vigilance",
-    athletisme: "agone.competences.athletisme",
-    escalade: "agone.competences.escalade",
-    equitation: "agone.competences.equitation",
-    esquive: "agone.competences.esquive",
-    natation: "agone.competences.natation",
-    premiersSoins: "agone.competences.premiersSoins",
-    survie: "agone.competences.survie",
-    armes: "agone.competences.armes",
-    acrobatie : "agone.competences.acrobatie",
-    camouflage: "agone.competences.camouflage",
-    chasse: "agone.competences.chasse",
-    deguisement: "agone.competences.deguisement",
-    discretion: "agone.competences.discretion",
-    fouille: "agone.competences.fouille",
-    intrigue: "agone.competences.intrigue",
-    jeu: "agone.competences.jeu",
-    passePasse: "agone.competences.passePasse",
-    poisons: "agone.competences.poisons",
-    serrurerie: "agone.competences.serrurerie",
-    baratin: "agone.competences.baratin",
-    diplomatie: "agone.competences.diplomatie",
-    eloquence: "agone.competences.eloquence",
-    etiquette: "agone.competences.etiquette",
-    intendance: "agone.competences.intendance",
-    musique: "agone.competences.musique",
-    negoce: "agone.competences.negoce",
-    einture: "agone.competences.peinture",
-    poesie: "agone.competences.poesie",
-    savoirFaire: "agone.competences.savoirFaire",
-    sculpture: "agone.competences.sculpture",
-    usCoutumes: "agone.competences.usCoutumes",
-    alphabets: "agone.competences.alphabets",
-    astronomie: "agone.competences.astronomie",
-    chirurgie: "agone.competences.chirurgie",
-    cultes: "agone.competences.cultes",
-    geographie: "agone.competences.geographie",
-    herboristerie: "agone.competences.herboristerie",
-    histoireLegendes: "agone.competences.histoireLegendes",
-    langues: "agone.competences.langues",
-    loi: "agone.competences.loi",
-    medecine: "agone.competences.medecine",
-    navigation: "agone.competences.navigation",
-    saisons: "agone.competences.saisons",
-    strategie: "agone.competences.strategie",
-    zoologie: "agone.competences.zoologie",
-    artsMagiques: "agone.competences.artsMagiques",
-    accord: "agone.competences.accord",
-    cyse: "agone.competences.cyse",
-    decorum: "agone.competences.decorum",
-    geste: "agone.competences.geste",
-    connDanseurs: "agone.competences.connDanseurs",
-    cryptogramme: "agone.competences.cryptogramme",
-    demonologie: "agone.competences.demonologie",
-    harmonie: "agone.competences.harmonie",
-    resonance: "agone.competences.resonance",
-    printemps: "agone.common.printemps",
-    ete: "agone.common.ete",
-    automne: "agone.common.automne",
-    hiver: "agone.common.hiver",
-    jorniste: "agone.common.jorniste",
-    eclipsiste: "agone.common.eclipsiste",
-    obscurantiste: "agone.common.obscurantiste"
+    vigilance: "agone.actors.vigilance",
+    athletisme: "agone.actors.athletisme",
+    escalade: "agone.actors.escalade",
+    equitation: "agone.actors.equitation",
+    esquive: "agone.actors.esquive",
+    natation: "agone.actors.natation",
+    premiersSoins: "agone.actors.premiersSoins",
+    survie: "agone.actors.survie",
+    armes: "agone.actors.armes",
+    acrobatie : "agone.actors.acrobatie",
+    camouflage: "agone.actors.camouflage",
+    chasse: "agone.actors.chasse",
+    deguisement: "agone.actors.deguisement",
+    discretion: "agone.actors.discretion",
+    fouille: "agone.actors.fouille",
+    intrigue: "agone.actors.intrigue",
+    jeu: "agone.actors.jeu",
+    passePasse: "agone.actors.passePasse",
+    poisons: "agone.actors.poisons",
+    serrurerie: "agone.actors.serrurerie",
+    baratin: "agone.actors.baratin",
+    diplomatie: "agone.actors.diplomatie",
+    eloquence: "agone.actors.eloquence",
+    etiquette: "agone.actors.etiquette",
+    intendance: "agone.actors.intendance",
+    musique: "agone.actors.musique",
+    negoce: "agone.actors.negoce",
+    einture: "agone.actors.peinture",
+    poesie: "agone.actors.poesie",
+    savoirFaire: "agone.actors.savoirFaire",
+    sculpture: "agone.actors.sculpture",
+    usCoutumes: "agone.actors.usCoutumes",
+    alphabets: "agone.actors.alphabets",
+    astronomie: "agone.actors.astronomie",
+    chirurgie: "agone.actors.chirurgie",
+    cultes: "agone.actors.cultes",
+    geographie: "agone.actors.geographie",
+    herboristerie: "agone.actors.herboristerie",
+    histoireLegendes: "agone.actors.histoireLegendes",
+    langues: "agone.actors.langues",
+    loi: "agone.actors.loi",
+    medecine: "agone.actors.medecine",
+    navigation: "agone.actors.navigation",
+    saisons: "agone.actors.saisons",
+    strategie: "agone.actors.strategie",
+    zoologie: "agone.actors.zoologie",
+    artsMagiques: "agone.actors.artsMagiques",
+    accord: "agone.actors.accord",
+    cyse: "agone.actors.cyse",
+    decorum: "agone.actors.decorum",
+    geste: "agone.actors.geste",
+    connDanseurs: "agone.actors.connDanseurs",
+    cryptogramme: "agone.actors.cryptogramme",
+    demonologie: "agone.actors.demonologie",
+    harmonie: "agone.actors.harmonie",
+    resonance: "agone.actors.resonance",
+    printemps: "agone.actors.printemps",
+    ete: "agone.actors.ete",
+    automne: "agone.actors.automne",
+    hiver: "agone.actors.hiver",
+    jorniste: "agone.actors.jorniste",
+    eclipsiste: "agone.actors.eclipsiste",
+    obscurantiste: "agone.actors.obscurantiste"
 }
 
 agone.peuple = {
@@ -193,72 +193,72 @@ agone.peuple = {
 
 agone.typesArme = {
     aucun: "",
-    perforante: "agone.typesArme.perforante",
-    tranchante: "agone.typesArme.tranchante",
-    perftranch: "agone.typesArme.perftranch",
-    contondante: "agone.typesArme.contondante"
+    perforante: "agone.items.perforante",
+    tranchante: "agone.items.tranchante",
+    perftranch: "agone.items.perftranch",
+    contondante: "agone.items.contondante"
 }
 
 agone.stylesArme = {
     aucun: "",
-    melee: "agone.stylesArme.melee",
-    jet: "agone.stylesArme.jet",
-    trait: "agone.stylesArme.trait"
+    melee: "agone.items.melee",
+    jet: "agone.items.jet",
+    trait: "agone.items.trait"
 }
 
 agone.typesArmure = {
     aucun: "",
-    vesteSeule: "agone.typesArmure.vesteSeule",
-    partielle: "agone.typesArmure.partielle",
-    complete: "agone.typesArmure.complete"
+    vesteSeule: "agone.items.vesteSeule",
+    partielle: "agone.items.partielle",
+    complete: "agone.items.complete"
 }
 
 agone.typesAvantageDefaut = {
     aucun: "",
-    chargeSociete: "agone.typesAvantageDefaut.chargeSociete",
-    ame: "agone.aspects.ame",
-    esprit: "agone.aspects.esprit",
-    corps: "agone.aspects.corps",
-    arts: "agone.common.arts",
-    emprise: "agone.caracteristiques.emprise",
-    saisons: "agone.common.saisons",
-    flamme: "agone.aspects.flamme"
+    chargeSociete: "agone.items.chargeSociete",
+    ame: "agone.actors.ame",
+    esprit: "agone.actors.esprit",
+    corps: "agone.actors.corps",
+    arts: "agone.actors.arts",
+    emprise: "agone.actors.emprise",
+    saisons: "agone.actors.saisons",
+    flamme: "agone.actors.flamme"
 }
 
 agone.typesPeine = {
     aucun: "",
-    tenebre: "agone.caracteristiques.aspects.tenebre",
-    perfidie: "agone.caracteristiques.aspects.perfidie",
+    tenebre: "agone.actors.aspects.tenebre",
+    perfidie: "agone.actors.aspects.perfidie",
 }
 
 agone.saisons = {
     aucun: "",
-    printemps: "agone.common.printemps",
-    ete: "agone.common.ete",
-    automne: "agone.common.automne",
-    hiver: "agone.common.hiver"
+    printemps: "agone.actors.printemps",
+    ete: "agone.actors.ete",
+    automne: "agone.actors.automne",
+    hiver: "agone.actors.hiver"
 }
 
 agone.resonances = {
     aucun: "",
-    jorniste: "agone.common.jorniste",
-    eclipsiste: "agone.common.eclipsiste",
-    obscurantiste: "agone.common.obscurantiste"
+    jorniste: "agone.actors.jorniste",
+    eclipsiste: "agone.actors.eclipsiste",
+    obscurantiste: "agone.actors.obscurantiste"
 }
 
 agone.arts = {
     aucun: "",
-    accord: "agone.competences.accord",
-    cyse: "agone.competences.cyse",
-    decorum: "agone.competences.decorum",
-    geste: "agone.competences.geste"
+    accord: "agone.actors.accord",
+    cyse: "agone.actors.cyse",
+    decorum: "agone.actors.decorum",
+    geste: "agone.actors.geste"
 }
 
 agone.cerclesDemon = {
     aucun: "",
-    opalin: "agone.cerclesDemon.opalin",
-    azurin: "agone.cerclesDemon.azurin",
-    safran: "agone.cerclesDemon.safran",
-    carmin: "agone.cerclesDemon.carmin",
-    obsidien: "agone.cerclesDemon.obsidien"
+    opalin: "agone.items.opalin",
+    azurin: "agone.items.azurin",
+    safran: "agone.items.safran",
+    carmin: "agone.items.carmin",
+    obsidien: "agone.items.obsidien"
 }

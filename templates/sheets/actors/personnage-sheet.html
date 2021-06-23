@@ -5,15 +5,15 @@
     <div class="sheet-fixed-content">
         <div class="actor-flamme">
             <div>
-                <label>{{localize "agone.aspects.flamme"}}</label>
+                <label>{{localize "agone.actors.flamme"}}</label>
                 <div class="small-size"><input name="data.caracSecondaires.flamme" type="number" value="{{data.caracSecondaires.flamme}}" placeholder="0" readonly/></div>
             </div>
             <div>
-                <label>{{localize "agone.aspects.flammeNoire"}}</label>
+                <label>{{localize "agone.actors.flammeNoire"}}</label>
                 <div class="small-size"><input name="data.caracSecondaires.flammeNoire" type="number" value="{{data.caracSecondaires.flammeNoire}}" placeholder="0" readonly/></div>
             </div>
             <div>
-                <label>{{localize "agone.caracteristiques.heroisme"}}</label>
+                <label>{{localize "agone.actors.heroisme"}}</label>
                 <div class="small-size"><input name="data.caracSecondaires.heroisme.value" type="number" value="{{data.caracSecondaires.heroisme.value}}" placeholder="0"/></div>
                 <label> / </label>
                 <div class="small-size"><input name="data.caracSecondaires.heroisme.max" type="number" value="{{data.caracSecondaires.heroisme.max}}" placeholder="0" readonly/></div>
@@ -24,11 +24,11 @@
         </div>
     </div>
     <nav class="sheet-tabs tabs" data-group="principal">
-        <a class="item" data-tab="competences">{{localize "agone.common.competences"}}</a>
-        <a class="item" data-tab="caracSecondaires">{{localize "agone.common.caracsSecondaires"}}</a>
-        <a class="item" data-tab="combat">{{localize "agone.common.combat"}}</a>
-        <a class="item" data-tab="magie">{{localize "agone.common.magie"}}</a>
-        <a class="item" data-tab="avantagesDefauts">{{localize "agone.common.avantages"}} / {{localize "agone.common.defauts"}}</a>
+        <a class="item" data-tab="competences">{{localize "agone.actors.competences"}}</a>
+        <a class="item" data-tab="caracSecondaires">{{localize "agone.actors.caracsSecondaires"}}</a>
+        <a class="item" data-tab="combat">{{localize "agone.actors.combat"}}</a>
+        <a class="item" data-tab="magie">{{localize "agone.actors.magie"}}</a>
+        <a class="item" data-tab="avantagesDefauts">{{localize "agone.actors.avantages"}} / {{localize "agone.actors.defauts"}}</a>
     </nav>
     <section class="sheet-body">
         <div class="tab" data-group="principal" data-tab="competences">
@@ -40,41 +40,41 @@
         <div class="tab" data-group="principal" data-tab="combat">
             <div class="recap">
                 <div>
-                    <label>{{localize "agone.caracteristiques.melee"}}</label>
+                    <label>{{localize "agone.actors.melee"}}</label>
                     <div>{{data.aspects.corps.caracteristiques.melee.valeur}}</div>
                 </div>
                 <div>
-                    <label>{{localize "agone.caracteristiques.tir"}}</label>
+                    <label>{{localize "agone.actors.tir"}}</label>
                     <div>{{data.aspects.corps.caracteristiques.tir.valeur}}</div>
                 </div>
                 <div>
-                    <label>{{localize "agone.caracteristiques.bonusDommages"}}</label>
+                    <label>{{localize "agone.actors.bonusDommages"}}</label>
                     <div>{{data.caracSecondaires.bonusDommages}}</div>
                 </div>
             </div>
-            <h3>{{localize "agone.competences.armes"}}</h3>
+            <h3>{{localize "agone.actors.armes"}}</h3>
             <div class="liste-armes">
                 {{> "systems/agone/templates/partials/bloc-liste-armes-personnage.hbs"}}
             </div>
-            <h3>{{localize "agone.common.armures"}}</h3>
+            <h3>{{localize "agone.actors.armures"}}</h3>
             <div class="liste-armures">
                 {{> "systems/agone/templates/partials/bloc-liste-armures-personnage.hbs"}}
             </div>
         </div>
         <div class="tab magie-content" data-group="principal" data-tab="magie">
             <nav class="magie-tabs tabs" data-group="magie">
-                <a class="item" data-tab="emprise">{{localize "agone.caracteristiques.emprise"}}</a>
-                <a class="item" data-tab="artsMagiques">{{localize "agone.competences.artsMagiques"}}</a>
-                <a class="item" data-tab="conjuration">{{localize "agone.common.conjuration"}}</a>
+                <a class="item" data-tab="emprise">{{localize "agone.actors.emprise"}}</a>
+                <a class="item" data-tab="artsMagiques">{{localize "agone.actors.artsMagiques"}}</a>
+                <a class="item" data-tab="conjuration">{{localize "agone.actors.conjuration"}}</a>
             </nav>
             <div class="tab" data-group="magie" data-tab="emprise">
                 <div class="recap">
                     <div>
-                        <label>{{localize "agone.caracteristiques.emprise"}}</label>
+                        <label>{{localize "agone.actors.emprise"}}</label>
                         <div>{{data.aspects.esprit.caracteristiques.emprise.valeur}}</div>
                     </div>
                     <div>
-                        <label>{{localize "agone.competences.resonance"}}</label>
+                        <label>{{localize "agone.actors.resonance"}}</label>
                         <select name="data.caracSecondaires.resonance">
                             {{#select data.caracSecondaires.resonance}}
                                 {{#each config.resonances as |name type|}}
@@ -94,15 +94,15 @@
                         {{/with}}
                     </div>
                     <div>
-                        <label>{{localize "agone.competences.connDanseurs"}}</label>
+                        <label>{{localize "agone.actors.connDanseurs"}}</label>
                         <div>{{data.familleCompetences.occulte.competences.connDanseurs.rang}}</div>
                     </div>
                 </div>
-                <h3>{{localize "agone.common.danseurs"}}</h3>
+                <h3>{{localize "agone.actors.danseurs"}}</h3>
                 <div class="liste-danseurs">
                     {{> "systems/agone/templates/partials/bloc-liste-danseurs-personnage.hbs"}}
                 </div>
-                <h3>{{localize "agone.common.sorts"}}</h3>
+                <h3>{{localize "agone.actors.sorts"}}</h3>
                 <div class="liste-sorts">
                     {{> "systems/agone/templates/partials/bloc-liste-sorts-personnage.hbs"}}
                 </div>
@@ -110,11 +110,11 @@
             <div class="tab" data-group="magie" data-tab="artsMagiques">
                 <div class="recap">
                     <div>
-                        <label>{{localize "agone.caracteristiques.art"}}</label>
+                        <label>{{localize "agone.actors.art"}}</label>
                         <div>{{data.aspects.ame.caracteristiques.art.valeur}}</div>
                     </div>
                 </div>
-                <h3>{{localize "agone.common.oeuvres"}}</h3>
+                <h3>{{localize "agone.actors.oeuvres"}}</h3>
                 <div class="liste-oeuvres">
                     {{> "systems/agone/templates/partials/bloc-liste-oeuvres-personnage.hbs"}}
                 </div>
@@ -122,26 +122,26 @@
             <div class="tab" data-group="magie" data-tab="conjuration">
                 <div class="recap">
                     <div>
-                        <label>{{localize "agone.caracteristiques.noirceur"}}</label>
+                        <label>{{localize "agone.actors.noirceur"}}</label>
                         <div>{{data.caracSecondaires.noirceur}}</div>
                     </div>
                     <div>
-                        <label>{{localize "agone.competences.demonologie"}}</label>
+                        <label>{{localize "agone.actors.demonologie"}}</label>
                         <div>{{data.familleCompetences.occulte.competences.demonologie.rang}}</div>
                     </div>
                 </div>
-                <h3>{{localize "agone.common.connivences"}}</h3>
+                <h3>{{localize "agone.actors.connivences"}}</h3>
                 <div class="liste-connivences">
                     {{> "systems/agone/templates/partials/bloc-liste-connivences-personnage.hbs"}}
                 </div>
             </div>
         </div>
         <div class="tab" data-group="principal" data-tab="avantagesDefauts">
-            <h3>{{localize "agone.common.avantages"}}</h3>
+            <h3>{{localize "agone.actors.avantages"}}</h3>
             <div class="liste-avantages">
                 {{> "systems/agone/templates/partials/bloc-liste-avantages-personnage.hbs"}}
             </div>
-            <h3>{{localize "agone.common.defauts"}}</h3>
+            <h3>{{localize "agone.actors.defauts"}}</h3>
             <div class="liste-defauts">
                 {{> "systems/agone/templates/partials/bloc-liste-defauts-personnage.hbs"}}
             </div>

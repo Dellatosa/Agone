@@ -1,13 +1,18 @@
 {
     "agone":{
         "common": {
-            "biographie": "Biography",
-            "parrain": "godfather",
+            "ajouter": "Create",
+            "supprimer": "Delete",
+            "editer": "Edit",
+            "nouveau": "New",
             "name": "Name",
             "type": "Type",
-            "cout": "Cost",
+            "cout": "Cost"
+        },
+        "actors": {
+            "biographie": "Biography",
+            "parrain": "godfather",
             "arts": "Arts",
-            "saisons": "Seasons",
             "saison": "Season",
             "printemps": "Spring",
             "ete": "Summer",
@@ -47,48 +52,31 @@
             "sante": "Health",
             "poidsPortable" : "Load",
             "domaine": "Field",
-            "seuil": "Threshold",
-            "portee": "Range",
-            "ajouter": "Create",
-            "supprimer": "Delete",
-            "editer": "Edit",
-            "nouveau": "New",
             "jetComp": "Skill roll",
-            "jetCarac": "Attribute roll"
-        },
-        "chat": {
-            "attaque": "Attack",
-            "attaqueTitre": "Attack ({arme})",
-            "parade": "Parry",
-            "paradeTitre": "Parry ({arme})"     
-        },
-        "caracteristiques": {
+            "jetCarac": "Attribute roll",
+            "armures": "Armour",
             "force": "Strength",
-            "for": "STR",
+            "FOR": "STR",
             "agilite": "Agility",
-            "agi": "AGI",
+            "AGI": "AGI",
             "resistance": "Stamina",
-            "res": "STA",
+            "RES": "STA",
             "perception": "Perception",
-            "per": "PER",
+            "PER": "PER",
             "intelligence": "Intelligence",
-            "int": "INT",
+            "INT": "INT",
             "volonte": "Will",
-            "vol": "WIL",
+            "VOL": "WIL",
             "charisme": "Charisma",
-            "cha": "CHA",
+            "CHA": "CHA",
             "creativite": "Creativity",
-            "cre": "CRE",
+            "CRE": "CRE",
             "pdv": "Hit points",
             "tai": "SIZ",
-            "mouvement": { 
-                "label": "Movement",
-                "abbr": "Mov."
-            },
-            "diffJetVieillesse": {
-              "label":  "Old age difficulty roll",
-              "abbr": "Old age diff."
-            },
+            "mouvement": "Movement",
+            "mouvementAbbr": "Mov.",
+            "JetVieillesse":  "Old age difficulty roll",
+            "JetVieilAbbr": "Old age diff.",
             "seuilBlessureGrave": "Serious wound threshold",
             "seuilBlessureCritique": "Critical wound threshold",
             "bonusDommages": "Damages bonus",
@@ -96,19 +84,17 @@
             "demiCharge": "Half load",
             "chargeQuotidienne": "Daily load",
             "emprise": "Ascendancy",
-            "emp": "ASC",
+            "EMP": "ASC",
             "melee": "Melee",
-            "mel": "MEL",
+            "MEL": "MEL",
             "tir": "Aim",
-            "tirA": "AIM",
+            "TIR": "AIM",
             "art": "Art",
-            "artA": "ART",
+            "ART": "ART",
             "tenebre": "Darkness",
             "perfidie": "Perfidy",
             "noirceur": "Blackness",
-            "heroisme": "Fortune points"
-        },
-        "aspects": {
+            "heroisme": "Fortune points",
             "ame": "Soul",
             "ameNoire": "Dark soul",
             "bonusAme": "Soul bonus",
@@ -119,9 +105,7 @@
             "corpsNoir": "Dark body",
             "bonusCorps": "Body bonus",
             "flamme": "Flame",
-            "flammeNoire": "Dark flame"
-        },
-        "competences": {
+            "flammeNoire": "Dark flame",
             "vigilance": "Alterness",
             "athletisme": "Athletics",
             "escalade": "Climb",
@@ -178,43 +162,58 @@
             "demonologie": "Demonology",
             "harmonie": "Concord",
             "resonance": "Resonance",
-            "armures": "Armour"
-        },
-        "typesAvantageDefaut":{
-            "chargeSociete": "Charge and Society"
-        },
-        "typesArme":{
-            "perforante": "Pierce",
-            "tranchante": "Sharp",
-            "perftranch": "Pierce/Sharp",
-            "contondante": "Blunt"
-        },
-        "stylesArme": {
-            "melee": "Melee",
-            "jet": "Thrown",
-            "trait": "Archery"
-        },
-        "typesArmure": {
-            "vesteSeule" : "Chest only",
-            "partielle": "Intermediate",
-            "complete": "Full"
-        },
-        "typesCompetence": {
             "epreuves": "Trials",
             "maraude": "Rogue",
             "societe": "Courtly",
             "savoir": "Knowledge",
             "occulte": "Occult"
         },
-        "cerclesDemon": {
+        "items":{
+            "armeLabel": "Weapon",
+            "armeDesc": "Weapon description",
+            "avantageLabel": "Asset",
+            "avantageDesc": "Asset description",
+            "defautLabel": "Fault",
+            "defautDesc": "Fault description",
+            "peineLabel": "Trouble",
+            "peineDesc": "Trouble description",
+            "bienfaitLabel": "Gift",
+            "bienfaitDesc": "Gift description",
+            "pouvoirFlammeLabel": "Flame power",       
+            "pouvoirFlammeDesc": "Flame power description",
+            "pouvoirSaisonLabel": "Season power",
+            "pouvoirSaisonDesc": "Season power description",
+            "ecoleLabel": "School",
+            "ecoleDesc": "School description",
+            "manoeuvreLabel": "Manoeuvre",
+            "manoeuvreDesc": "Description de la manoeuvre",
+            "armureLabel": "Armour",
+            "armureDesc": "Armour description",
+            "danseurLabel": "Dancer",
+            "danseurDesc": "Dancer description",
+            "sortLabel": "Spell",
+            "sortDesc": "Spell description",
+            "oeuvreLabel": "Work",
+            "oeuvreDesc": "Work description",
+            "connivenceLabel": "Connivance",
+            "seuil": "Threshold",
+            "portee": "Range",
+            "chargeSociete": "Charge and Society",
+            "perforante": "Pierce",
+            "tranchante": "Sharp",
+            "perftranch": "Pierce/Sharp",
+            "contondante": "Blunt",
+            "melee": "Melee",
+            "jet": "Thrown",
+            "trait": "Archery",
+            "vesteSeule" : "Chest only",
+            "partielle": "Intermediate",
+            "complete": "Full",
             "opalin": "Opalin",
             "azurin": "Azurin / Saphirin",
             "safran": "Ambré / Safran",
             "carmin": "Carmin / Vermillon",
-            "obsidien": "Obsidien"
-        },
-        "arme": {
-            "label": "Weapon",
+            "obsidien": "Obsidien",
             "style": "Style",
             "tai": "SIZ",
             "modifInit": "Init.",
@@ -223,57 +222,15 @@
             "modifDommages": "Dam.",
             "minAgilite": "min. AGI",
             "minForce": "min. STR",
-            "descriptionLabel": "Weapon description"
-        },
-        "avantage": {
-            "label": "Asset",
             "descBonus": "Bonus description",
             "prerequis": "Prerequisite",
-            "descriptionLabel": "Asset description"
-        },
-        "defaut": {
-            "label": "Fault",
             "descMalus": "Penalty description",
-            "descriptionLabel": "Fault description"
-        },
-        "peine": {
-            "label": "Trouble",
             "palier": "Level",
-            "descriptionLabel": "Trouble description"
-        },
-        "bienfait": {
-            "label": "Gift",
-            "descriptionLabel": "Gift description"
-        },
-        "pouvoirFlamme": {
-            "label": "Flame power",
             "coutHeroisme": "Fortune cost",
-            "descriptionLabel": "Flame power description"
-        },
-        "pouvoirSaison": {
-            "label": "Season power",
-            "coutHeroisme": "Fortune cost",
-            "descriptionLabel": "Season power description"
-        },
-        "ecole": {
-            "label": "School",
-            "descriptionLabel": "School description"
-        },
-        "manoeuvre": {
-            "label": "Manoeuvre",
-            "prerequis": "Prerequisite",
             "modifDefense": "Def.",
-            "descriptionLabel": "Description de la manoeuvre"
-        },
-        "armure": {
-            "label": "Armour",
             "protection": "Protection",
             "malus": "Penalty",
             "malusPerception": "Perception penalty",
-            "descriptionLabel": "Armor description"
-        },
-        "danseur": {
-            "label": "Dancer",
             "memoire": "Memory",
             "memoireDispo": "Ava. memory",
             "memoireMax": "Max. memory",
@@ -282,28 +239,23 @@
             "endurance": "Stamina",
             "enduranceDispo": "Ava. Stamina",
             "enduranceMax": "Max. stamina",
-            "descriptionLabel": "Dancer description"
-        },
-        "sort": {
-            "label": "Spell",
             "resonance": "Resonance",
             "dureeDanse": "Dance duration",
             "dureeSort": "Spell duration",
-            "descriptionLabel": "Spell description"
-        },
-        "oeuvre": {
-            "label": "Work",
             "artMagique": "Magical art",
             "tempsPreparation": "Preparation duration",
             "dureeOeuvre": "Work duration",
-            "descriptionLabel": "Work description"
-        },
-        "connivence": {
-            "label": "Connivance",
             "termes": "Terms",
             "cercleDemon": "Demon circle",
             "nomDemon": "Demon name",
             "nomAdvocatus": "Advocatus Diaboli name"
+        },
+        "chat": {
+            "attaque": "Attack",
+            "attaqueTitre": "Attack ({arme})",
+            "parade": "Parry",
+            "paradeTitre": "Parry ({arme})",
+            "difficulte": "Difficulty"   
         }
     }
 }

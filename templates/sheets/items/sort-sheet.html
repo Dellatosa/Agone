@@ -5,11 +5,11 @@
     </header>
     <div class="sheet-content">
         <div class="grid-sort">
-            <label class="grid-titre">{{localize "agone.sort.resonance"}}</label>
-            <label class="grid-titre">{{localize "agone.common.seuil"}}</label>
-            <label class="grid-titre">{{localize "agone.common.portee"}}</label>
-            <label class="grid-titre">{{localize "agone.sort.dureeDanse"}}</label>
-            <label class="grid-titre">{{localize "agone.sort.dureeSort"}}</label>
+            <label class="grid-titre">{{localize "agone.items.resonance"}}</label>
+            <label class="grid-titre">{{localize "agone.items.seuil"}}</label>
+            <label class="grid-titre">{{localize "agone.items.portee"}}</label>
+            <label class="grid-titre">{{localize "agone.items.dureeDanse"}}</label>
+            <label class="grid-titre">{{localize "agone.items.dureeSort"}}</label>
             <div>
                 <select name="data.resonance">
                     {{#select data.resonance}}
@@ -20,14 +20,14 @@
                 </select>
             </div>
             <div><input name="data.seuil" type="text" value="{{data.seuil}}" data-dtype="Number" placeholder="0"/></div>
-            <div><input name="data.portee" type="text" value="{{data.portee}}" placeholder="{{localize 'agone.common.portee'}}"/></div>
-            <div><input name="data.dureeDanse" type="text" value="{{data.dureeDanse}}" placeholder="{{localize 'agone.sort.dureeDanse'}}"/></div>
-            <div><input name="data.dureeSort" type="text" value="{{data.dureeSort}}" placeholder="{{localize 'agone.sort.dureeSort'}}"/></div>
+            <div><input name="data.portee" type="text" value="{{data.portee}}" placeholder="{{localize 'agone.items.portee'}}"/></div>
+            <div><input name="data.dureeDanse" type="text" value="{{data.dureeDanse}}" placeholder="{{localize 'agone.items.dureeDanse'}}"/></div>
+            <div><input name="data.dureeSort" type="text" value="{{data.dureeSort}}" placeholder="{{localize 'agone.items.dureeSort'}}"/></div>
         </div>
-         <div>{{localize "agone.sort.descriptionLabel"}}</div> 
+         <div>{{localize "agone.items.sortDesc"}}</div> 
          {{editor content=data.description target="data.description" button=true owner=true editable=true}}
     </div>
     <footer class="sheet-footer">
-        <div>{{localize "agone.common.type"}} : <span>{{localize "agone.sort.label"}}</span></div>
+        <div>{{localize "agone.common.type"}} : <span>{{localize "agone.items.sortLabel"}}</span></div>
     </footer>
 </form>

@@ -1,6 +1,6 @@
 <form>
     <div class="form-group">
-        <label>Caractéristique {{defCarac}}</label>
+        <label>{{ localize "agone.actors.caracteristique"}}</label>
         <select name="caracteristique">
         {{#select caracteristique}}
             {{#each data.caracteristiques as |name key|}}
@@ -14,7 +14,7 @@
         </select>
     </div>
     <div class="form-group">
-        <label>Difficulté</label>
+        <label>{{ localize "agone.chat.difficulte"}}</label>
         <input type="text" name="difficulte"/>
     </div>
     <div class="form-group">

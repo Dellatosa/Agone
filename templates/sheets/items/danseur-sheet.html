@@ -5,14 +5,14 @@
     </header>
     <div class="sheet-content">
         <div class="grid-danseur">
-            <label class="grid-titre">{{localize "agone.danseur.memoireDispo"}}</label>
-            <label class="grid-titre">{{localize "agone.danseur.memoireMax"}}</label>
-            <label class="grid-titre">{{localize "agone.danseur.bonusEmprise"}}</label>
-            <label class="grid-titre">{{localize "agone.danseur.empathie"}}</label>
-            <label class="grid-titre">{{localize "agone.danseur.enduranceDispo"}}</label>
-            <label class="grid-titre">{{localize "agone.danseur.enduranceMax"}}</label>
-            <label class="grid-titre">{{localize "agone.common.experience"}}</label>
-            <!-- {{localize "agone.danseur.sortsConnus"}} -->
+            <label class="grid-titre">{{localize "agone.items.memoireDispo"}}</label>
+            <label class="grid-titre">{{localize "agone.items.memoireMax"}}</label>
+            <label class="grid-titre">{{localize "agone.items.bonusEmprise"}}</label>
+            <label class="grid-titre">{{localize "agone.items.empathie"}}</label>
+            <label class="grid-titre">{{localize "agone.items.enduranceDispo"}}</label>
+            <label class="grid-titre">{{localize "agone.items.enduranceMax"}}</label>
+            <label class="grid-titre">{{localize "agone.actors.experience"}}</label>
+            <!-- {{localize "agone.items.sortsConnus"}} -->
             <div><input name="data.memoire.value" type="text" value="{{data.memoire.value}}" data-dtype="Number" placeholder="0"/></div>
             <div><input name="data.memoire.max" type="text" value="{{data.memoire.max}}" data-dtype="Number" placeholder="0"/></div>
             <div><input name="data.bonusEmprise" type="text" value="{{data.bonusEmprise}}" data-dtype="Number" placeholder="0"/></div>
@@ -22,10 +22,10 @@
             <div><input name="data.experience" type="text" value="{{data.experience}}" data-dtype="Number" placeholder="0"/></div>
             <!-- brancher la liste des sorts connus -->
         </div>
-         <div>{{localize "agone.danseur.descriptionLabel"}}</div> 
+         <div>{{localize "agone.items.danseurDesc"}}</div> 
          {{editor content=data.description target="data.description" button=true owner=true editable=true}}
     </div>
     <footer class="sheet-footer">
-        <div>{{localize "agone.common.type"}} : <span>{{localize "agone.danseur.label"}}</span></div>
+        <div>{{localize "agone.common.type"}} : <span>{{localize "agone.items.danseurLabel"}}</span></div>
     </footer>
 </form>
