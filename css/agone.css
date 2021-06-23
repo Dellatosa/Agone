@@ -239,7 +239,7 @@ nav.magie-tabs {
   font-size: 0.8em;
 }
 .actor-fam-comp .actor-comp-grid .titre-fam {
-  grid-column-start: span 4;
+  grid-column-start: span 3;
   font-size: 1.2em;
   font-weight: bold;
   text-align: center;
@@ -419,4 +419,14 @@ nav.magie-tabs {
 }
 .resultat {
   text-align: center;
+}
+.edit-comp-grid {
+  display: grid;
+  padding: 3px;
+  align-content: start;
+  grid-template-columns: 1fr 2.5em 2em 1fr 1fr;
+}
+.edit-comp-grid .titre-comp {
+  grid-column-start: span 5;
+  font-weight: bold;
 }
