@@ -256,7 +256,7 @@
         },
         "chat": {
             "attaque": "Attaque",
-            "attaqueTitre": "Attaque ({arme})",
+            "actionTitre": "{type} ({arme})",
             "parade": "Parade",
             "paradeTitre": "Parade ({arme})",
             "difficulte": "Difficulté",

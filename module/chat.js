@@ -10,7 +10,7 @@ function onAttaque(event) {
     let attaquant = game.actors.get(card.dataset.ownerId);
     let arme = attaquant.getOwnedItem(card.dataset.itemId); 
 
-    Dice.attaque(attaquant, arme);
+    Dice.actionArme(attaquant, arme, "Attaque");
 }
 
 function onParade(event) {
@@ -18,7 +18,7 @@ function onParade(event) {
     let defenseur = game.actors.get(card.dataset.ownerId);
     let arme = defenseur.getOwnedItem(card.dataset.itemId);
 
-    Dice.parade(defenseur, arme);
+    Dice.actionArme(defenseur, arme, "Parade");
 }
 
 // Pour test
@@ -40,7 +40,4 @@ export function addChatMessageContextOptions(html, options) {
 async function Test(attaque) {
     const dommagesArme = parseInt(attaque.find(".attaque").attr("data-arme-dommages"));
     const rollResult = parseInt(attaque.find(".dice-total").text());
-
-    console.log("TEST dommagesArme", dommagesArme);
-    console.log("TEST rollResult", rollResult);
 }

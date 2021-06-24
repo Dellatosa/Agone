@@ -160,6 +160,7 @@ async function getJetCompetenceOptions({cfgData = null, defCarac = null}) {
             content: html,
             buttons: {
                 jet: {
+                    icon: '<i class="fas fa-dice"></i>',
                     label: "Jet",
                     callback: html => resolve(_processJetCompetenceOptions(html[0].querySelector("form")))
                 },
@@ -212,16 +213,26 @@ export function jetCaracteristique({actor =null,
     rollResult.toMessage(messageData);
 }
 
-export async function attaque(attaquant, arme) {
-    let statsAttaque = attaquant.getStatsAttaque(arme.data.data.competence);
+export async function actionArme(actor, arme, type) {
+    let statsAttaque = actor.getStatsAttaque(arme.data.data.competence);
 
     if(statsAttaque === null) {
         ui.notifications.error(`Impossible de retrouver les statistiques d'attaque pour l'arme ${arme.data.name}.`)
         return;
     }
 
+    let modAtt;
+    let modPar;
+
+    if(type == "Attaque") {
+         modAtt = arme.data.data.modifAttaque;
+    }
+    else if(type == "Parade") {
+        modPar = arme.data.data.modifParade;
+    }
+
     let rollResult = await jetCompetence({
-        actor: attaquant,
+        actor: actor,
         rangComp: statsAttaque.rangComp,
         labelComp: statsAttaque.labelComp,
         specialisation: statsAttaque.specialisation,
@@ -231,10 +242,11 @@ export async function attaque(attaquant, arme) {
         labelCarac: statsAttaque.labelCarac,
         bonusAspect: statsAttaque.bonusAspect,
         labelAspect: statsAttaque.labelAspect,
-        modifAttaque: arme.data.data.modifAttaque,
+        modifAttaque: modAtt,
+        modifParade: modPar,
         afficherDialog: false,
         envoiMessage: false
-        });
+    });
 
     const messageTemplate = "systems/agone/templates/partials/dice/jet-arme.hbs";
     let renderedRoll = await rollResult.render();
@@ -248,14 +260,15 @@ export async function attaque(attaquant, arme) {
     }
 
     let templateContext = {
-        stats : rollStats,
-        arme : arme.data,
+        stats: rollStats,
+        arme: arme.data,
+        type: type,
         roll: renderedRoll
     }
 
     let chatData = {
         user: game.user._id,
-        speaker: ChatMessage.getSpeaker({ actor: attaquant }),
+        speaker: ChatMessage.getSpeaker({ actor: actor }),
         roll: rollResult,
         content: await renderTemplate(messageTemplate, templateContext),
         sound: CONFIG.sounds.dice,
