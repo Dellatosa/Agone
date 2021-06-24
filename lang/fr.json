@@ -41,6 +41,8 @@
             "experience": "Expérience",
             "competence": "Compétence",
             "competences": "Compétences",
+            "rang": "Rang",
+            "spe": "Spe.",
             "specialisation": "Specialisation",
             "caracteristique": "Caractéristique",
             "caracteristiques": "Caractéristiques",
@@ -257,7 +259,8 @@
             "attaqueTitre": "Attaque ({arme})",
             "parade": "Parade",
             "paradeTitre": "Parade ({arme})",
-            "difficulte": "Difficulté"
+            "difficulte": "Difficulté",
+            "caracDefaut": "Caractéristique par défaut"
         }
     }
 }

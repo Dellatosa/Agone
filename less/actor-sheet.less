@@ -39,11 +39,16 @@ select.auto-size {
     padding-bottom : 6px;
 }
 
-.agone.sheet.actor .fas:hover, .fas:focus {        
+.agone.sheet.actor a.nohlight {
+    text-shadow: none;
+    cursor: default;
+}
+
+/*.agone.sheet.actor .fas:hover, .fas:focus {        
     color: #000;
     text-shadow: 0 0 10px red;
     cursor: pointer;
-}
+}*/
 
 nav.magie-tabs {
     height: 26px;
@@ -162,11 +167,13 @@ nav.magie-tabs {
         display: grid;
         padding: 3px;
         align-content: start;
-        grid-template-columns: 1fr 2.5em 2em 2em;
-        font-size: 0.8em;
+        grid-template-columns: 2em 1fr 2.5em 2em;
+        font-size: 0.9em;
 
         .titre-fam {
             grid-column-start: span 3;
+            padding-top: 6px;
+            padding-bottom: 6px;
             font-size: 1.2em;
             font-weight: bold;
             text-align: center;
@@ -190,30 +197,33 @@ nav.magie-tabs {
 
         .dom-perso {
             margin: 2px;
-            background-color: #bebdb8;
+            background-color: rgba(82, 77, 77, 0.075);
 
             label {
                 position: relative;
-                top: 6px;
+                top: 5px;
                 left: 2px;
-            };
-        }
-
-        .chk-spe {
-            padding-top : 2px;
-            padding-bottom : 2px;
-            
-            input[type="checkbox"] {
-                width: 16px;
-                height: 16px;
             }
-
         }
 
         .val-comp {
-            padding-top : 2px;
-            padding-bottom : 2px;
+            background-color: rgba(82, 77, 77, 0.075);
+            margin: 2px;
             text-align: center;
+
+            label {
+                position: relative;
+                top: 5px;
+            }
+        }
+
+        a {
+            text-align: center;
+            font-size: 1.2em;
+        }
+
+        a.spec {
+            font-size: 1.4em;
         }
     }
 }
@@ -351,7 +361,6 @@ nav.magie-tabs {
     }
 }
 
-
 .ligne-arme.titre, .ligne-armure.titre, .ligne-danseur.titre, .ligne-sort.titre, .ligne-oeuvre.titre, .ligne-connivence.titre, .ligne-avantage.titre, .ligne-defaut.titre {
     font-weight: bold;
     text-align: center;
@@ -359,5 +368,3 @@ nav.magie-tabs {
     border-top: solid thin rgb(119, 119, 119);
     padding: 3px;
 }
-
-

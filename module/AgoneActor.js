@@ -127,7 +127,11 @@ export default class AgoneActor extends Actor {
     getCompData(famille, competence, domaine) {
         let data = this.data.data;
 
-        let result = {rangComp: 0, labelComp: "ND", specialisation: false, labelSpecialisation: "ND", defCarac: null};
+        let result = {rangComp: 0, labelComp: "ND", specialisation: false, labelSpecialisation: "ND", defCarac: null, jetDefautInterdit: false};
+
+        if(famille == "savoir" || famille == "occulte") {
+            result.jetDefautInterdit = true;
+        }
 
         if(domaine) {
             const domComp = data.familleCompetences[famille].competences[competence].domaines[domaine];

@@ -22,8 +22,39 @@
     align-content: start;
     grid-template-columns: 1fr 2.5em 2em 1fr 1fr;
 
+    .ed-grid-titre {
+        font-weight: bold;
+        text-align: center;
+        background-color: rgba(82, 77, 77, 0.075);
+        padding: 3px;
+        margin-bottom: 0.5rem;
+    }
+
     .titre-comp {
         grid-column-start: span 5;
         font-weight: bold;
+        margin: 2px;
+    }
+
+    .lbl-comp {
+        position: relative;
+        top: 7px;
+        margin: 2px;
+    }
+
+    .dom-fixe {
+        text-indent: 1em;
+        position: relative;
+        top: 7px;
+        margin: 2px;
+    }
+
+    .dom-perso {
+        margin: 2px;
+    }
+
+    .val-comp {
+        text-align: center;
+        margin: 2px;
     }
 }

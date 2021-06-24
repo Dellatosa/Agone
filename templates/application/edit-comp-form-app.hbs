@@ -1,5 +1,10 @@
 <form>
     <div class="edit-comp-grid">
+      <label class="ed-grid-titre">{{localize "agone.actors.competence"}}</label>
+      <label class="ed-grid-titre">{{localize "agone.actors.rang"}}</label>
+      <label class="ed-grid-titre">{{localize "agone.actors.spe"}}</label>
+      <label class="ed-grid-titre">{{localize "agone.actors.specialisation"}}</label>
+      <label class="ed-grid-titre">{{localize "agone.chat.caracDefaut"}}</label>
       {{#each famille.competences as |competence keyComp|}}
         {{#if domaine}}
           <label class="titre-comp">{{competence.label}}</label>              
@@ -9,7 +14,7 @@
               {{else}}
                 <label class="dom-fixe">{{domaine.label}}</label>
               {{/if}}
-              <div class="val-comp"><input name="{{keyComp}}.domaines.{{keyDom}}.rang" type="number" value="{{domaine.rang}}" placeholder="0"/></div>
+              <div class="val-comp"><input name="{{keyComp}}.domaines.{{keyDom}}.rang" type="number" value="{{domaine.rang}}" placeholder="0" min="0" max="10"/></div>
               <div class="chk-spe"><input name="{{keyComp}}.domaines.{{keyDom}}.specialisation" type="checkbox" data-dtype="Boolean" {{checked domaine.specialisation}}/></div>
               <div class="val-spe"><input name="{{keyComp}}.domaines.{{keyDom}}.labelSpecialisation" type="text" value="{{domaine.labelSpecialisation}}" placeholder="{{localize 'agone.actors.specialisation'}}"/></div>
               <select name="{{keyComp}}.domaines.{{keyDom}}.caracteristique">
@@ -26,7 +31,7 @@
             {{/each}}
         {{else}}
           <label class="lbl-comp">{{competence.label}}</label>     
-          <div class="val-comp"><input name="{{keyComp}}.rang" type="number" value="{{competence.rang}}" placeholder="0"/></div>                                
+          <div class="val-comp"><input name="{{keyComp}}.rang" type="number" value="{{competence.rang}}" placeholder="0" min="0" max="10"/></div>                                
           <div class="chk-spe"><input name="{{keyComp}}.specialisation" type="checkbox" data-dtype="Boolean" {{checked competence.specialisation}}/></div>
           <div class="val-spe"><input name="{{keyComp}}.labelSpecialisation" type="text" value="{{competence.labelSpecialisation}}" placeholder="{{localize 'agone.actors.specialisation'}}"/></div>
           <select name="{{keyComp}}.caracteristique">

@@ -12,7 +12,7 @@ export default class EditCompFormApplication extends FormApplication {
         popOut: true,
         template: "systems/agone/templates/application/edit-comp-form-app.hbs",
         id: "edit-comp-app",
-        title: "Formulaire d'édition des compétences",
+        title: "Edition des compétences",
         height: 500,
         width: 600,
         resizable: true

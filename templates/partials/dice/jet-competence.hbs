@@ -1,5 +1,8 @@
 <div class="jet-comp">
     <div class="txt-small">Jet de compétence 
+        {{#if stats.isJetDefaut}}
+        <span> par défaut </span>
+        {{/if}}
         {{#if stats.marge}}
         <span>de </span><span class="bold">difficulté {{stats.difficulte}}</span>
         <div></div>

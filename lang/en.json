@@ -41,6 +41,8 @@
             "experience": "Experience",
             "competence": "Skill",
             "competences": "Skills",
+            "rang": "Rank",
+            "spe": "Spe.",
             "specialisation": "Specialisation",
             "caracteristique": "Attribute",
             "caracteristiques": "Attributes",
@@ -257,7 +259,8 @@
             "attaqueTitre": "Attack ({arme})",
             "parade": "Parry",
             "paradeTitre": "Parry ({arme})",
-            "difficulte": "Difficulty"   
+            "difficulte": "Difficulty",
+            "caracDefaut": "Default attribute"
         }
     }
 }

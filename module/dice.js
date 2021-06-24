@@ -3,6 +3,7 @@ export async function jetCompetence({actor = null,
     labelComp = null,
     specialisation = null,
     labelSpecialisation = null,
+    jetDefautInterdit = null,
     rangCarac = null,
     labelCarac = null,
     bonusAspect = null,
@@ -16,13 +17,22 @@ export async function jetCompetence({actor = null,
     
     let utiliseHeroisme;
 
+    // Si la famille de la compétence n'autorise pas le jet par défaut (Savoir et Occulte), on gènere le message d'erreur et on annule le jet
+    if(jetDefautInterdit && rangComp == 0) {
+        ui.notifications.error(`Le jet par défaut (rang de compétence à zéro) n'est pas autorisé pour cette famille de compétences.`)
+        return;
+    }
+
+    // Affichage de la fenêtre de dialogue (vrai par défaut)
     if(afficherDialog) {
         let dialogOptions = await getJetCompetenceOptions({cfgData: CONFIG.agone, defCarac: defCarac});
 
+        // On annule le jet sur les boutons 'Annuler' ou 'Fermeture'
         if(dialogOptions.annule) {
             return;
         }
 
+        // Récupération des données de la fenêtre de dialogue pour ce jet 
         let carac = dialogOptions.caracteristique;
         let carData = actor.getCaracData(carac);
         rangCarac = carData.rangCarac;
@@ -31,39 +41,52 @@ export async function jetCompetence({actor = null,
         labelAspect = carData.labelAspect;
         difficulte = dialogOptions.difficulte;
         utiliseHeroisme = dialogOptions.utiliseHeroisme;
-
     }
 
+    // Définition de la formule de base du jet, et de sa version fumble (avec 1d10 explosif retranché au 1 du dé initial)
     let rollFormula = "1d10x + ";
     let rollFumbleFormula = "(1d10x * -1) + 1 + ";
     let baseFormula = "@rangComp + @rangCarac + @bonusAspect";
 
+    // On alimente ensuite la formule de base avec les différentes options
+    // Si la compétence à le rang 0, il s'agit d'un jet par défaut avec un malus de -3
+    let isJetDefaut = false;
+    if(rangComp == 0) {
+        rangComp = -3;
+        isJetDefaut = true;
+    }
+
+    // Données de base du jet
     let rollData = {
         rangComp: rangComp,
         rangCarac: rangCarac,
         bonusAspect: bonusAspect
     };
 
+    // Modificateur d'attaque (jet d'arme)
     if(modifAttaque) {
         rollData.modifAttaque = modifAttaque;
         baseFormula += " + @modifAttaque"; 
     }
 
+    // Modificateur de parade (jet d'arme)
     if(modifParade) {
         rollData.modifParade = modifParade;
         baseFormula += " + @modifParade"; 
     }
 
+    // Utilisation d'un point d'héroïsme
     if(utiliseHeroisme) {
+        // On teste s'il reste des points d'héroïsme sur l'Actor
         if(actor.depenserHeroisme()) {
             baseFormula += " + 5";
         }
         else {
             utiliseHeroisme = false;
-        }
-        
+        }    
     }
 
+    // Construction des formules de jets définitives (jet initial et fumble)
     rollFormula += baseFormula;
     rollFumbleFormula += baseFormula;
 
@@ -85,8 +108,10 @@ export async function jetCompetence({actor = null,
             specialisation: specialisation,
             labelSpecialisation: labelSpecialisation,
             labelAspect: labelAspect,
-            isFumble: fumble
+            isFumble: fumble,
+            isJetDefaut: isJetDefaut
         }
+
 
         if(modifAttaque) {
             rollStats.labelModifAttaque = game.i18n.localize("agone.items.modifAttaque");
@@ -201,11 +226,13 @@ export async function attaque(attaquant, arme) {
         labelComp: statsAttaque.labelComp,
         specialisation: statsAttaque.specialisation,
         labelSpecialisation: statsAttaque.labelSpecialisation,
+        jetDefautInterdit: false,
         rangCarac: statsAttaque.rangCarac,
         labelCarac: statsAttaque.labelCarac,
         bonusAspect: statsAttaque.bonusAspect,
         labelAspect: statsAttaque.labelAspect,
         modifAttaque: arme.data.data.modifAttaque,
+        afficherDialog: false,
         envoiMessage: false
         });
 

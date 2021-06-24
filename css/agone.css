@@ -132,12 +132,15 @@ select.auto-size {
   padding-top: 6px;
   padding-bottom: 6px;
 }
-.agone.sheet.actor .fas:hover,
-.fas:focus {
-  color: #000;
-  text-shadow: 0 0 10px red;
-  cursor: pointer;
+.agone.sheet.actor a.nohlight {
+  text-shadow: none;
+  cursor: default;
 }
+/*.agone.sheet.actor .fas:hover, .fas:focus {        
+    color: #000;
+    text-shadow: 0 0 10px red;
+    cursor: pointer;
+}*/
 nav.magie-tabs {
   height: 26px;
   line-height: 26px;
@@ -235,11 +238,13 @@ nav.magie-tabs {
   display: grid;
   padding: 3px;
   align-content: start;
-  grid-template-columns: 1fr 2.5em 2em 2em;
-  font-size: 0.8em;
+  grid-template-columns: 2em 1fr 2.5em 2em;
+  font-size: 0.9em;
 }
 .actor-fam-comp .actor-comp-grid .titre-fam {
   grid-column-start: span 3;
+  padding-top: 6px;
+  padding-bottom: 6px;
   font-size: 1.2em;
   font-weight: bold;
   text-align: center;
@@ -259,25 +264,28 @@ nav.magie-tabs {
 }
 .actor-fam-comp .actor-comp-grid .dom-perso {
   margin: 2px;
-  background-color: #bebdb8;
+  background-color: rgba(82, 77, 77, 0.075);
 }
 .actor-fam-comp .actor-comp-grid .dom-perso label {
   position: relative;
-  top: 6px;
+  top: 5px;
   left: 2px;
 }
-.actor-fam-comp .actor-comp-grid .chk-spe {
-  padding-top: 2px;
-  padding-bottom: 2px;
-}
-.actor-fam-comp .actor-comp-grid .chk-spe input[type="checkbox"] {
-  width: 16px;
-  height: 16px;
-}
 .actor-fam-comp .actor-comp-grid .val-comp {
-  padding-top: 2px;
-  padding-bottom: 2px;
+  background-color: rgba(82, 77, 77, 0.075);
+  margin: 2px;
   text-align: center;
+}
+.actor-fam-comp .actor-comp-grid .val-comp label {
+  position: relative;
+  top: 5px;
+}
+.actor-fam-comp .actor-comp-grid a {
+  text-align: center;
+  font-size: 1.2em;
+}
+.actor-fam-comp .actor-comp-grid a.spec {
+  font-size: 1.4em;
 }
 .recap {
   display: flex;
@@ -431,7 +439,33 @@ nav.magie-tabs {
   align-content: start;
   grid-template-columns: 1fr 2.5em 2em 1fr 1fr;
 }
+.edit-comp-grid .ed-grid-titre {
+  font-weight: bold;
+  text-align: center;
+  background-color: rgba(82, 77, 77, 0.075);
+  padding: 3px;
+  margin-bottom: 0.5rem;
+}
 .edit-comp-grid .titre-comp {
   grid-column-start: span 5;
   font-weight: bold;
+  margin: 2px;
+}
+.edit-comp-grid .lbl-comp {
+  position: relative;
+  top: 7px;
+  margin: 2px;
+}
+.edit-comp-grid .dom-fixe {
+  text-indent: 1em;
+  position: relative;
+  top: 7px;
+  margin: 2px;
+}
+.edit-comp-grid .dom-perso {
+  margin: 2px;
+}
+.edit-comp-grid .val-comp {
+  text-align: center;
+  margin: 2px;
 }

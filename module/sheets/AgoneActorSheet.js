@@ -206,6 +206,7 @@ export default class AgoneActorSheet extends ActorSheet {
             labelComp: compData.labelComp,
             specialisation: compData.specialisation,
             labelSpecialisation: compData.labelSpecialisation,
+            jetDefautInterdit: compData.jetDefautInterdit,
             rangCarac: caracData.rangCarac,
             labelCarac: caracData.labelCarac,
             bonusAspect: caracData.bonusAspect,
