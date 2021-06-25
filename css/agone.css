@@ -76,6 +76,18 @@
   grid-template-columns: 1fr;
   padding: 3px;
 }
+.grid-sort-disp {
+  display: grid;
+  grid-template-columns: 2.5em 2fr 2fr 1fr 1fr;
+  padding: 3px;
+  text-align: center;
+}
+.grid-sort-disp > * {
+  padding: 3px;
+}
+.grid-sort-disp img {
+  border: none;
+}
 .carte {
   display: flex;
   flex-direction: column;

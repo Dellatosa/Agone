@@ -17,6 +17,12 @@ export default class AgoneItemSheet extends ItemSheet {
         const data = super.getData();
         data.config = CONFIG.agone;
 
+        if(this.item.data.type == "Danseur") {
+            if(this.actor != null) {
+                data.data.sortsDispo = this.actor.data.items.filter(function (item) { return item.type == "Sort"});
+            }
+        }
+
         console.log(data);
 
         return data;

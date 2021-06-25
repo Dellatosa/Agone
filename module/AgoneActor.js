@@ -227,7 +227,6 @@ export default class AgoneActor extends Actor {
         let data = this.data.data;
         Object.assign(data.familleCompetences[famille], listeComps);
         this.update(this.data);
-        //console.log(this.data);
     }
 }
 

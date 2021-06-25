@@ -22,8 +22,27 @@
             <div><input name="data.experience" type="text" value="{{data.experience}}" data-dtype="Number" placeholder="0"/></div>
             <!-- brancher la liste des sorts connus -->
         </div>
-         <div>{{localize "agone.items.danseurDesc"}}</div> 
-         {{editor content=data.description target="data.description" button=true owner=true editable=true}}
+        <div>{{localize "agone.items.danseurDesc"}}</div> 
+        {{editor content=data.description target="data.description" button=true owner=true editable=true}}
+        {{#with data as | dt | }}
+        {{#if dt.sortsDispo}}
+            <h3>Sorts disponibles</h3>
+            <div class="grid-sort-disp">
+                <label class="grid-titre"></label>
+                <label class="grid-titre">{{localize "agone.common.name"}}</label>
+                <label class="grid-titre">{{localize "agone.items.resonance"}}</label>
+                <label class="grid-titre">{{localize "agone.items.seuil"}}</label>
+                <label class="grid-titre">{{localize "agone.items.sortConnu"}}</label>
+                {{#each dt.sortsDispo as | sort | }}
+                    <img src="{{sort.img}}" title="{{sort.name}}" height="32" width="32"/>
+                    <label>{{sort.name}} {{dt.sortsConnus}}</label>
+                    <label>{{sort.data.resonance}}</label>
+                    <label>{{sort.data.seuil}}</label>
+                    <div class="check"><input type="checkbox" name="data.sortsConnus.{{sort._id}}" data-dtype="Boolean" {{checked dt.sortsConnus._id }}></div>
+                {{/each}}
+            </div>
+        {{/if}}
+        {{/with}}
     </div>
     <footer class="sheet-footer">
         <div>{{localize "agone.common.type"}} : <span>{{localize "agone.items.danseurLabel"}}</span></div>
