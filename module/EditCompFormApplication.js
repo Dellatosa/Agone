@@ -50,6 +50,6 @@ export default class EditCompFormApplication extends FormApplication {
 
         this.actor.updateFamilleComps(this.famille, this.familleComp);
     }
-  }
+}
   
   window.EditCompFormApplication = EditCompFormApplication;

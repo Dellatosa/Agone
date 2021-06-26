@@ -1,5 +1,6 @@
 <div class="ligne-danseur titre">
     <label></label>
+    <!-- <label></label> -->
     <label>{{localize "agone.common.name"}}</label>
     <label>{{localize "agone.items.memoireDispo"}}</label>
     <label>{{localize "agone.items.memoireMax"}}</label>
@@ -14,6 +15,7 @@
 {{#each danseurs as |danseur id|}}
 <div class="ligne-danseur item" data-item-id="{{danseur._id}}">
     <a class="item-roll"><img src="{{img}}" title="Jet de dés" height="32" width="32"/></a>
+    <!-- <a class="sorts-danseur" title="{{localize 'agone.items.sortsDanseur'}}"><i class="fas fa-hand-sparkles"></i></a> -->
     <div>{{name}}</div>
     <div>{{data.memoire.value}}</div>
     <div>{{data.memoire.max}}</div>

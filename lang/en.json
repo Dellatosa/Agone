@@ -253,7 +253,8 @@
             "termes": "Terms",
             "cercleDemon": "Demon circle",
             "nomDemon": "Demon name",
-            "nomAdvocatus": "Advocatus Diaboli name"
+            "nomAdvocatus": "Advocatus Diaboli name",
+            "sortsDanseur": "Dancer spells"
         },
         "chat": {
             "attaque": "Attack",

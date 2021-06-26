@@ -253,7 +253,8 @@
             "termes": "Termes de la connivence",
             "cercleDemon": "Cercle du démon",
             "nomDemon": "Nom du démon",
-            "nomAdvocatus": "Nom de l'Advocatus Diaboli"
+            "nomAdvocatus": "Nom de l'Advocatus Diaboli",
+            "sortsDanseur": "Sorts du danseur"
         },
         "chat": {
             "attaque": "Attaque",

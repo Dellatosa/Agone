@@ -356,7 +356,7 @@ nav.magie-tabs {
 }
 .ligne-danseur {
   display: grid;
-  grid-template-columns: 2.5em 2fr repeat(7, 1fr) 2em 2em;
+  grid-template-columns: 2.5em /*2em*/ 2fr repeat(7, 1fr) 2em 2em;
   padding: 3px;
   text-align: center;
 }
