@@ -1,6 +1,7 @@
 import * as Dice from "../dice.js";
 
 import EditCompFormApplication from "../EditCompFormApplication.js";
+import AgoneActiveEffectConfig from "./AgoneActiveEffectConfig.js";
 
 export default class AgoneActorSheet extends ActorSheet {
      
@@ -95,6 +96,8 @@ export default class AgoneActorSheet extends ActorSheet {
             } 
         }
 
+        console.log(this);
+
         return data;
     }
 
@@ -129,7 +132,28 @@ export default class AgoneActorSheet extends ActorSheet {
 
             //Suppression d'un item
             html.find('.supprimer-item').click(this._onSupprimerItem.bind(this));
+
+            // test activeEffect
+            html.find('.activeEffect').click(this._onActiveEffect.bind(this));
         }
+    }
+
+    _onActiveEffect(event) {
+        event.preventDefault();
+        const element = event.currentTarget;
+
+        let effectData = {
+            _id: "myActEffect",
+            label: "nouvel effet",
+            parent: this.actor,
+            changes: []
+        }
+        //let activeEffect = new ActiveEffect(effectData, this.actor);
+        //let actEffCfg = new ActiveEffectConfig(activeEffect).render();
+
+        let activeEffect = ActiveEffect.create(effectData, this.actor);
+        activeEffect.sheet.render(true);
+        console.log(activeEffect);
     }
 
     _onCreerItem(event) {
