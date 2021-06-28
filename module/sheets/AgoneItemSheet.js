@@ -23,8 +23,6 @@ export default class AgoneItemSheet extends ItemSheet {
             if(this.actor)
             {
                 myItemData.sortsDispo = this.actor.data.items.filter(function (item) { return item.type == "Sort"});
-                console.log(data.data.sortsDispo);
-                console.log(data);
                 myItemData.sortsDispo.forEach( sortDisp => {
                     let sc = myItemData.data.sortsConnus.find( id => id == sortDisp._id);
                     sortDisp.connu = (sc !== undefined) 
@@ -79,10 +77,9 @@ export default class AgoneItemSheet extends ItemSheet {
         let sortsConnus = this.item.data.data.sortsConnus;
 
         let sortId = element.closest(".sort").dataset.itemId;
-        console.log("Ajout", sortId);
-
         sortsConnus.push(sortId);
-        this.item.update(this.item.data);
+
+        this.item.update({"data.sortsConnus": sortsConnus});
     }
 
     _onSupprSortDanseur(event) {
@@ -91,9 +88,8 @@ export default class AgoneItemSheet extends ItemSheet {
         let sortsConnus = this.item.data.data.sortsConnus;
 
         let sortId = element.closest(".sort").dataset.itemId;
-        console.log("Suppr", sortId);
-
         sortsConnus.splice(sortsConnus.indexOf(sortId), 1);
-        this.item.update(this.item.data);
+
+        this.item.update({"data.sortsConnus": sortsConnus});
     }
 }

@@ -136,7 +136,7 @@ export async function jetCompetence({actor = null,
         }
 
         let chatData = {
-            user: game.user._id,
+            user: game.user.id,
             speaker: ChatMessage.getSpeaker({ actor: actor }),
             roll: rollResult,
             content: await renderTemplate(messageTemplate, templateContext),
@@ -184,33 +184,58 @@ function _processJetCompetenceOptions(form) {
     }
 }
 
-export function jetCaracteristique({actor =null, 
-    caracteristique = null} = {}) {
+export async function jetCaracteristique({actor = null, 
+    rangCarac = null,
+    labelCarac = null,
+    bonusAspect = null,
+    labelAspect = null,
+    difficulte = null} = {}) {
 
     let rollFormula = "1d10x + (@rangCarac * 2) + @bonusAspect";
     let rollFumbleFormula = "(1d10x * -1) + 1 + (@rangCarac * 2) + @bonusAspect";
 
-    let caracteristiqueData = actor.getCaracData(caracteristique);
-
     let rollData = {
-        rangCarac: caracteristiqueData.rangCarac,
-        bonusAspect: caracteristiqueData.bonusAspect
+        rangCarac: rangCarac,
+        bonusAspect: bonusAspect
     };
 
-    let labelMsg = `Jet de caractéristique <b>${caracteristiqueData.labelCarac} x 2</b>`;
-
+    let fumble = false;
     let rollResult = new Roll(rollFormula, rollData).roll();
     if(rollResult.dice[0].results[0].result == 1) {
         rollResult = new Roll(rollFumbleFormula, rollData).roll();
-        labelMsg = `${labelMsg} <br><b style="color: red">FUMBLE !!!</b>`;
+        fumble = true;
     }
 
-    let messageData = {
+    const messageTemplate = "systems/agone/templates/partials/dice/jet-caracteristique.hbs"; 
+    let renderedRoll = await rollResult.render();
+
+    let rollStats = {
+        ...rollData,
+        labelCarac: labelCarac,
+        labelAspect: labelAspect,
+        isFumble: fumble
+    }
+
+    if(difficulte) {
+        rollStats.difficulte = difficulte;
+        rollStats.marge = rollResult.total - difficulte;
+    }
+
+    let templateContext = {
+        stats : rollStats,
+        roll: renderedRoll
+    }
+
+    let chatData = {
+        user: game.user.id,
         speaker: ChatMessage.getSpeaker({ actor: actor }),
-        flavor: labelMsg
+        roll: rollResult,
+        content: await renderTemplate(messageTemplate, templateContext),
+        sound: CONFIG.sounds.dice,
+        type: CONST.CHAT_MESSAGE_TYPES.ROLL
     }
 
-    rollResult.toMessage(messageData);
+    ChatMessage.create(chatData);
 }
 
 export async function actionArme(actor, arme, type) {
@@ -267,7 +292,7 @@ export async function actionArme(actor, arme, type) {
     }
 
     let chatData = {
-        user: game.user._id,
+        user: game.user.id,
         speaker: ChatMessage.getSpeaker({ actor: actor }),
         roll: rollResult,
         content: await renderTemplate(messageTemplate, templateContext),

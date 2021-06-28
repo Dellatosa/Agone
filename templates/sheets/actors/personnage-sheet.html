@@ -25,10 +25,12 @@
     </div>
     <nav class="sheet-tabs tabs" data-group="principal">
         <a class="item" data-tab="competences">{{localize "agone.actors.competences"}}</a>
-        <a class="item" data-tab="caracSecondaires">{{localize "agone.actors.caracsSecondaires"}}</a>
+        <!-- <a class="item" data-tab="caracSecondaires">{{localize "agone.actors.caracsSecondaires"}}</a> -->
         <a class="item" data-tab="combat">{{localize "agone.actors.combat"}}</a>
         <a class="item" data-tab="magie">{{localize "agone.actors.magie"}}</a>
         <a class="item" data-tab="avantagesDefauts">{{localize "agone.actors.avantages"}} / {{localize "agone.actors.defauts"}}</a>
+        <a class="item" data-tab="equipement">{{localize "agone.actors.equipement"}}</a>
+        <a class="item" data-tab="histoire">{{localize "agone.actors.histoire"}}</a>
     </nav>
     <section class="sheet-body">
         <div class="tab" data-group="principal" data-tab="competences">
@@ -41,15 +43,23 @@
             <div class="recap">
                 <div>
                     <label>{{localize "agone.actors.melee"}}</label>
-                    <div>{{data.data.aspects.corps.caracteristiques.melee.valeur}}</div>
+                    <div class="fixed-val">{{data.data.aspects.corps.caracteristiques.melee.valeur}}</div>
                 </div>
                 <div>
                     <label>{{localize "agone.actors.tir"}}</label>
-                    <div>{{data.data.aspects.corps.caracteristiques.tir.valeur}}</div>
+                    <div class="fixed-val">{{data.data.aspects.corps.caracteristiques.tir.valeur}}</div>
                 </div>
                 <div>
                     <label>{{localize "agone.actors.bonusDommages"}}</label>
-                    <div>{{data.data.caracSecondaires.bonusDommages}}</div>
+                    <div class="fixed-val">{{data.data.caracSecondaires.bonusDommages}}</div>
+                </div>
+                <div>
+                    <label>{{localize "agone.actors.seuilBlessureGrave"}}</label>
+                    <div class="fixed-val">{{data.data.caracSecondaires.seuilBlessureGrave}}</div>
+                </div>
+                <div>
+                    <label>{{localize "agone.actors.seuilBlessureCritique"}}</label>
+                    <div class="fixed-val">{{data.data.caracSecondaires.seuilBlessureCritique}}</div>
                 </div>
             </div>
             <h3>{{localize "agone.actors.armes"}}</h3>
@@ -71,7 +81,7 @@
                 <div class="recap">
                     <div>
                         <label>{{localize "agone.actors.emprise"}}</label>
-                        <div>{{data.data.aspects.esprit.caracteristiques.emprise.valeur}}</div>
+                        <div class="fixed-val">{{data.data.aspects.esprit.caracteristiques.emprise.valeur}}</div>
                     </div>
                     <div>
                         <label>{{localize "agone.actors.resonance"}}</label>
@@ -88,14 +98,14 @@
                             {{#each dt.familleCompetences.occulte.competences.resonance.domaines as |reso keyReso|}}
                                 {{#if (eq keyReso dt.caracSecondaires.resonance )}}
                                     <label>Rang</label>
-                                    <div>{{reso.rang}}</div>
+                                    <div class="fixed-val">{{reso.rang}}</div>
                                 {{/if}}
                             {{/each}}
                         {{/with}}
                     </div>
                     <div>
                         <label>{{localize "agone.actors.connDanseurs"}}</label>
-                        <div>{{data.data.familleCompetences.occulte.competences.connDanseurs.rang}}</div>
+                        <div class="fixed-val">{{data.data.familleCompetences.occulte.competences.connDanseurs.rang}}</div>
                     </div>
                 </div>
                 <h3>{{localize "agone.actors.danseurs"}}</h3>
@@ -111,7 +121,23 @@
                 <div class="recap">
                     <div>
                         <label>{{localize "agone.actors.art"}}</label>
-                        <div>{{data.data.aspects.ame.caracteristiques.art.valeur}}</div>
+                        <div class="fixed-val">{{data.data.aspects.ame.caracteristiques.art.valeur}}</div>
+                    </div>
+                    <div>
+                        <label>{{localize "agone.actors.accord"}}</label>
+                        <div class="fixed-val">{{data.data.familleCompetences.occulte.competences.artsMagiques.domaines.accord.rang}}</div>
+                    </div>
+                    <div>
+                        <label>{{localize "agone.actors.cyse"}}</label>
+                        <div class="fixed-val">{{data.data.familleCompetences.occulte.competences.artsMagiques.domaines.cyse.rang}}</div>
+                    </div>
+                    <div>
+                        <label>{{localize "agone.actors.decorum"}}</label>
+                        <div class="fixed-val">{{data.data.familleCompetences.occulte.competences.artsMagiques.domaines.decorum.rang}}</div>
+                    </div>
+                    <div>
+                        <label>{{localize "agone.actors.geste"}}</label>
+                        <div class="fixed-val">{{data.data.familleCompetences.occulte.competences.artsMagiques.domaines.geste.rang}}</div>
                     </div>
                 </div>
                 <h3>{{localize "agone.actors.oeuvres"}}</h3>
@@ -123,11 +149,11 @@
                 <div class="recap">
                     <div>
                         <label>{{localize "agone.actors.noirceur"}}</label>
-                        <div>{{data.data.caracSecondaires.noirceur}}</div>
+                        <div class="fixed-val">{{data.data.caracSecondaires.noirceur}}</div>
                     </div>
                     <div>
                         <label>{{localize "agone.actors.demonologie"}}</label>
-                        <div>{{data.data.familleCompetences.occulte.competences.demonologie.rang}}</div>
+                        <div class="fixed-val">{{data.data.familleCompetences.occulte.competences.demonologie.rang}}</div>
                     </div>
                 </div>
                 <h3>{{localize "agone.actors.connivences"}}</h3>
@@ -145,6 +171,36 @@
             <div class="liste-defauts">
                 {{> "systems/agone/templates/partials/bloc-liste-defauts-personnage.hbs"}}
             </div>
+        </div>
+        <div class="tab" data-group="principal" data-tab="equipement">
+            <div class="recap">
+                <div>
+                    <label>{{localize "agone.actors.chargeMax"}}</label>
+                    <div class="fixed-val">{{data.data.caracSecondaires.chargeMax}}</div>
+                </div>
+                <div>
+                    <label>{{localize "agone.actors.demiCharge"}}</label>
+                    <div class="fixed-val">{{data.data.caracSecondaires.demiCharge}}</div>
+                </div>
+                <div>
+                    <label>{{localize "agone.actors.chargeQuotidienne"}}</label>
+                    <div class="fixed-val">{{data.data.caracSecondaires.chargeQuotidienne}}</div>
+                </div>
+            </div>
+        </div>
+        <div class="tab fullheight" data-group="principal" data-tab="histoire">
+            <div class="recap">
+                <div>
+                    <label>{{localize "agone.actors.tenebre"}}</label>
+                    <div class="small-size"><input name="data.caracSecondaires.tenebre" type="number" value="{{data.data.caracSecondaires.tenebre}}" placeholder="0" min="0"/></div>
+                </div>
+                <div>
+                    <label>{{localize "agone.actors.perfidie"}}</label>
+                    <div class="small-size"><input name="data.caracSecondaires.perfidie" type="number" value="{{data.data.caracSecondaires.perfidie}}" placeholder="0" min="0"/></div>
+                </div>
+            </div>
+            <div>{{localize "agone.actors.apparence"}}</div> 
+            {{editor content=data.data.apparence target="data.apparence" button=true owner=true editable=true}}    
         </div>
     </section>
     <!-- <footer class="sheet-footer">    

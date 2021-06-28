@@ -229,7 +229,10 @@ export default class AgoneActorSheet extends ActorSheet {
 
         Dice.jetCaracteristique({
             actor: this.actor,
-            caracteristique: dataset.carac
+            rangCarac: caracData.rangCarac,
+            labelCarac: caracData.labelCarac,
+            bonusAspect: caracData.bonusAspect,
+            labelAspect: caracData.labelAspect
         });
     }
 }

@@ -126,6 +126,11 @@ select.auto-size {
 /* .alerte {
     color: red;
 } */
+.fixed-val {
+  background-color: rgba(82, 77, 77, 0.075);
+  margin: 2px;
+  text-align: center;
+}
 .agone.sheet.actor form {
   display: flex;
   flex-direction: column;
@@ -153,6 +158,12 @@ select.auto-size {
     text-shadow: 0 0 10px red;
     cursor: pointer;
 }*/
+.agone.sheet.actor .fullheight {
+  height: 100%;
+}
+.agone.sheet.actor .fullheight .editor {
+  height: 200px;
+}
 nav.magie-tabs {
   height: 26px;
   line-height: 26px;
