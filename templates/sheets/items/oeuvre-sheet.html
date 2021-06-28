@@ -13,7 +13,7 @@
             <label class="grid-titre">{{localize "agone.items.dureeOeuvre"}}</label>
             <div>
                 <select name="data.artMagique">
-                    {{#select data.artMagique}}
+                    {{#select data.data.artMagique}}
                         {{#each config.arts as |name type|}}
                             <option value="{{type}}">{{localize name}}</option>
                         {{/each}}
@@ -22,20 +22,20 @@
             </div>
             <div>
                 <select name="data.saison">
-                    {{#select data.saison}}
+                    {{#select data.data.saison}}
                         {{#each config.saisons as |name type|}}
                             <option value="{{type}}">{{localize name}}</option>
                         {{/each}}
                     {{/select}}
                 </select>
             </div>
-            <div><input name="data.seuil" type="text" value="{{data.seuil}}" data-dtype="Number" placeholder="0"/></div>
-            <div><input name="data.portee" type="text" value="{{data.portee}}" placeholder="{{localize 'agone.items.portee'}}"/></div>
-            <div><input name="data.tempsPreparation" type="text" value="{{data.tempsPreparation}}" placeholder="{{localize 'agone.items.tempsPreparation'}}"/></div>
-            <div><input name="data.dureeOeuvre" type="text" value="{{data.dureeOeuvre}}" placeholder="{{localize 'agone.items.dureeOeuvre'}}"/></div>
+            <div><input name="data.seuil" type="text" value="{{data.data.seuil}}" data-dtype="Number" placeholder="0"/></div>
+            <div><input name="data.portee" type="text" value="{{data.data.portee}}" placeholder="{{localize 'agone.items.portee'}}"/></div>
+            <div><input name="data.tempsPreparation" type="text" value="{{data.data.tempsPreparation}}" placeholder="{{localize 'agone.items.tempsPreparation'}}"/></div>
+            <div><input name="data.dureeOeuvre" type="text" value="{{data.data.dureeOeuvre}}" placeholder="{{localize 'agone.items.dureeOeuvre'}}"/></div>
         </div>
          <div>{{localize "agone.items.oeuvreDesc"}}</div> 
-         {{editor content=data.description target="data.description" button=true owner=true editable=true}}
+         {{editor content=data.data.description target="data.description" button=true owner=true editable=true}}
     </div>
     <footer class="sheet-footer">
         <div>{{localize "agone.common.type"}} : <span>{{localize "agone.items.oeuvreLabel"}}</span></div>

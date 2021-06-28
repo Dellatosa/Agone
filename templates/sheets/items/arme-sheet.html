@@ -17,35 +17,36 @@
             <label class="grid-titre">{{localize "agone.items.tai"}}</label>
             <div>
                 <select name="data.style">
-                    {{#select data.style}}
+                    {{#select data.data.style}}
                         {{#each config.stylesArme as |name type|}}
                             <option value="{{type}}">{{localize name}}</option>
                         {{/each}}
                     {{/select}}
                 </select>
             </div>
-            <div><input name="data.modifInit" type="text" value="{{data.modifInit}}" data-dtype="Number" placeholder="0"/></div>
-            <div><input name="data.modifAttaque" type="text" value="{{data.modifAttaque}}" data-dtype="Number" placeholder="0"/></div>
-            <div><input name="data.modifParade" type="text" value="{{data.modifParade}}" data-dtype="Number" placeholder="0"/></div>
-            <div><input name="data.modifDommages" type="text" value="{{data.modifDommages}}" data-dtype="Number" placeholder="0"/></div>
-            <div><input name="data.portee" type="text" value="{{data.portee}}" data-dtype="Number" placeholder="0"/></div>
+            <div><input name="data.modifInit" type="text" value="{{data.data.modifInit}}" data-dtype="Number" placeholder="0"/></div>
+            <div><input name="data.modifAttaque" type="text" value="{{data.data.modifAttaque}}" data-dtype="Number" placeholder="0"/></div>
+            <div><input name="data.modifParade" type="text" value="{{data.data.modifParade}}" data-dtype="Number" placeholder="0"/></div>
+            <div><input name="data.modifDommages" type="text" value="{{data.data.modifDommages}}" data-dtype="Number" placeholder="0"/></div>
+            <div><input name="data.portee" type="text" value="{{data.data.portee}}" data-dtype="Number" placeholder="0"/></div>
             <div>
                 <select name="data.type">
-                    {{#select data.type}}
+                    {{#select data.data.type}}
                         {{#each config.typesArme as |name type|}}
                             <option value="{{type}}">{{localize name}}</option>
                         {{/each}}
                     {{/select}} 
                 </select>
             </div>
-            <div><input name="data.minForce" type="text" value="{{data.minForce}}" data-dtype="Number" placeholder="0"/></div>
-            <div><input name="data.minAgilite" type="text" value="{{data.minAgilite}}" data-dtype="Number" placeholder="0"/></div>
-            <div><input name="data.tai" type="text" value="{{data.tai}}" data-dtype="Number" placeholder="0"/></div>
+            <div><input name="data.minForce" type="text" value="{{data.data.minForce}}" data-dtype="Number" placeholder="0"/></div>
+            <div><input name="data.minAgilite" type="text" value="{{data.data.minAgilite}}" data-dtype="Number" placeholder="0"/></div>
+            <div><input name="data.tai" type="text" value="{{data.data.tai}}" data-dtype="Number" placeholder="0"/></div>
         </div>
          <div>{{localize "agone.items.armeDesc"}}</div> 
-         {{editor content=data.description target="data.description" button=true owner=true editable=true}}
+         {{editor content=data.data.description target="data.description" button=true owner=true editable=true}}
     </div>
     <footer class="sheet-footer">
         <div>{{localize "agone.common.type"}} : <span>{{localize "agone.items.armeLabel"}}</span></div>
+        <div><a class="activeEffect"><i class="fas fa-hand-sparkles"></a></i></div>
     </footer>
 </form>

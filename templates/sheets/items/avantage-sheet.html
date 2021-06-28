@@ -9,24 +9,24 @@
             <label class="grid-titre">{{localize "agone.common.cout"}}</label>
             <div>
                 <select name="data.type">
-                    {{#select data.type}}
+                    {{#select data.data.type}}
                         {{#each config.typesAvantageDefaut as |name type|}}
                             <option value="{{type}}">{{localize name}}</option>
                         {{/each}}
                     {{/select}} 
                 </select>
             </div>
-            <div><input name="data.cout" type="text" value="{{data.cout}}" data-dtype="Number" placeholder="0"/></div>
+            <div><input name="data.cout" type="text" value="{{data.data.cout}}" data-dtype="Number" placeholder="0"/></div>
         </div>
         <div>{{localize "agone.items.avantageDesc"}}</div>
-        {{editor content=data.description target="data.description" button=true owner=true editable=true}}
+        {{editor content=data.data.description target="data.description" button=true owner=true editable=true}}
         <div>
             <span>{{localize "agone.items.descBonus"}}</span>
-            <textarea name="data.descBonus" placeholder="{{localize 'agone.items.descBonus'}}">{{data.descBonus}}</textarea>
+            <textarea name="data.descBonus" placeholder="{{localize 'agone.items.descBonus'}}">{{data.data.descBonus}}</textarea>
         </div> 
         <div>
             <span>{{localize "agone.items.prerequis"}}</span>
-            <input name="data.prerequis" type="text" value="{{data.prerequis}}" placeholder="{{localize 'agone.items.prerequis'}}"/>
+            <input name="data.prerequis" type="text" value="{{data.data.prerequis}}" placeholder="{{localize 'agone.items.prerequis'}}"/>
         </div> 
     </div>
     <footer class="sheet-footer">

@@ -6,17 +6,17 @@
         <div class="actor-flamme">
             <div>
                 <label>{{localize "agone.actors.flamme"}}</label>
-                <div class="small-size"><input name="data.caracSecondaires.flamme" type="number" value="{{data.caracSecondaires.flamme}}" placeholder="0" readonly/></div>
+                <div class="small-size"><input name="data.caracSecondaires.flamme" type="number" value="{{data.data.caracSecondaires.flamme}}" placeholder="0" readonly/></div>
             </div>
             <div>
                 <label>{{localize "agone.actors.flammeNoire"}}</label>
-                <div class="small-size"><input name="data.caracSecondaires.flammeNoire" type="number" value="{{data.caracSecondaires.flammeNoire}}" placeholder="0" readonly/></div>
+                <div class="small-size"><input name="data.caracSecondaires.flammeNoire" type="number" value="{{data.data.caracSecondaires.flammeNoire}}" placeholder="0" readonly/></div>
             </div>
             <div>
                 <label>{{localize "agone.actors.heroisme"}}</label>
-                <div class="small-size"><input name="data.caracSecondaires.heroisme.value" type="number" value="{{data.caracSecondaires.heroisme.value}}" placeholder="0"/></div>
+                <div class="small-size"><input name="data.caracSecondaires.heroisme.value" type="number" value="{{data.data.caracSecondaires.heroisme.value}}" placeholder="0"/></div>
                 <label> / </label>
-                <div class="small-size"><input name="data.caracSecondaires.heroisme.max" type="number" value="{{data.caracSecondaires.heroisme.max}}" placeholder="0" readonly/></div>
+                <div class="small-size"><input name="data.caracSecondaires.heroisme.max" type="number" value="{{data.data.caracSecondaires.heroisme.max}}" placeholder="0" readonly/></div>
             </div>
         </div>
         <div class="actor-aspects-and-caracs">    
@@ -41,15 +41,15 @@
             <div class="recap">
                 <div>
                     <label>{{localize "agone.actors.melee"}}</label>
-                    <div>{{data.aspects.corps.caracteristiques.melee.valeur}}</div>
+                    <div>{{data.data.aspects.corps.caracteristiques.melee.valeur}}</div>
                 </div>
                 <div>
                     <label>{{localize "agone.actors.tir"}}</label>
-                    <div>{{data.aspects.corps.caracteristiques.tir.valeur}}</div>
+                    <div>{{data.data.aspects.corps.caracteristiques.tir.valeur}}</div>
                 </div>
                 <div>
                     <label>{{localize "agone.actors.bonusDommages"}}</label>
-                    <div>{{data.caracSecondaires.bonusDommages}}</div>
+                    <div>{{data.data.caracSecondaires.bonusDommages}}</div>
                 </div>
             </div>
             <h3>{{localize "agone.actors.armes"}}</h3>
@@ -71,12 +71,12 @@
                 <div class="recap">
                     <div>
                         <label>{{localize "agone.actors.emprise"}}</label>
-                        <div>{{data.aspects.esprit.caracteristiques.emprise.valeur}}</div>
+                        <div>{{data.data.aspects.esprit.caracteristiques.emprise.valeur}}</div>
                     </div>
                     <div>
                         <label>{{localize "agone.actors.resonance"}}</label>
                         <select name="data.caracSecondaires.resonance">
-                            {{#select data.caracSecondaires.resonance}}
+                            {{#select data.data.caracSecondaires.resonance}}
                                 {{#each config.resonances as |name type|}}
                                     <option value="{{type}}">{{localize name}}</option>
                                 {{/each}}
@@ -84,7 +84,7 @@
                         </select>
                     </div>
                     <div> 
-                        {{#with data as | dt | }}
+                        {{#with data.data as | dt | }}
                             {{#each dt.familleCompetences.occulte.competences.resonance.domaines as |reso keyReso|}}
                                 {{#if (eq keyReso dt.caracSecondaires.resonance )}}
                                     <label>Rang</label>
@@ -95,7 +95,7 @@
                     </div>
                     <div>
                         <label>{{localize "agone.actors.connDanseurs"}}</label>
-                        <div>{{data.familleCompetences.occulte.competences.connDanseurs.rang}}</div>
+                        <div>{{data.data.familleCompetences.occulte.competences.connDanseurs.rang}}</div>
                     </div>
                 </div>
                 <h3>{{localize "agone.actors.danseurs"}}</h3>
@@ -111,7 +111,7 @@
                 <div class="recap">
                     <div>
                         <label>{{localize "agone.actors.art"}}</label>
-                        <div>{{data.aspects.ame.caracteristiques.art.valeur}}</div>
+                        <div>{{data.data.aspects.ame.caracteristiques.art.valeur}}</div>
                     </div>
                 </div>
                 <h3>{{localize "agone.actors.oeuvres"}}</h3>
@@ -123,11 +123,11 @@
                 <div class="recap">
                     <div>
                         <label>{{localize "agone.actors.noirceur"}}</label>
-                        <div>{{data.caracSecondaires.noirceur}}</div>
+                        <div>{{data.data.caracSecondaires.noirceur}}</div>
                     </div>
                     <div>
                         <label>{{localize "agone.actors.demonologie"}}</label>
-                        <div>{{data.familleCompetences.occulte.competences.demonologie.rang}}</div>
+                        <div>{{data.data.familleCompetences.occulte.competences.demonologie.rang}}</div>
                     </div>
                 </div>
                 <h3>{{localize "agone.actors.connivences"}}</h3>

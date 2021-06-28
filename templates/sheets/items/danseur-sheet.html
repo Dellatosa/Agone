@@ -12,18 +12,16 @@
             <label class="grid-titre">{{localize "agone.items.enduranceDispo"}}</label>
             <label class="grid-titre">{{localize "agone.items.enduranceMax"}}</label>
             <label class="grid-titre">{{localize "agone.actors.experience"}}</label>
-            <!-- {{localize "agone.items.sortsConnus"}} -->
-            <div><input name="data.memoire.value" type="text" value="{{data.memoire.value}}" data-dtype="Number" placeholder="0"/></div>
-            <div><input name="data.memoire.max" type="text" value="{{data.memoire.max}}" data-dtype="Number" placeholder="0"/></div>
-            <div><input name="data.bonusEmprise" type="text" value="{{data.bonusEmprise}}" data-dtype="Number" placeholder="0"/></div>
-            <div><input name="data.empathie" type="text" value="{{data.empathie}}" data-dtype="Number" placeholder="0"/></div>
-            <div><input name="data.endurance.value" type="text" value="{{data.endurance.value}}" data-dtype="Number" placeholder="0"/></div>
-            <div><input name="data.endurance.max" type="text" value="{{data.endurance.max}}" data-dtype="Number" placeholder="0"/></div>
-            <div><input name="data.experience" type="text" value="{{data.experience}}" data-dtype="Number" placeholder="0"/></div>
-            <!-- brancher la liste des sorts connus -->
+            <div><input name="data.memoire.value" type="text" value="{{data.data.memoire.value}}" data-dtype="Number" placeholder="0"/></div>
+            <div><input name="data.memoire.max" type="text" value="{{data.data.memoire.max}}" data-dtype="Number" placeholder="0"/></div>
+            <div><input name="data.bonusEmprise" type="text" value="{{data.data.bonusEmprise}}" data-dtype="Number" placeholder="0"/></div>
+            <div><input name="data.empathie" type="text" value="{{data.data.empathie}}" data-dtype="Number" placeholder="0"/></div>
+            <div><input name="data.endurance.value" type="text" value="{{data.data.endurance.value}}" data-dtype="Number" placeholder="0"/></div>
+            <div><input name="data.endurance.max" type="text" value="{{data.data.endurance.max}}" data-dtype="Number" placeholder="0"/></div>
+            <div><input name="data.experience" type="text" value="{{data.data.experience}}" data-dtype="Number" placeholder="0"/></div>
         </div>
         <div>{{localize "agone.items.danseurDesc"}}</div> 
-        {{editor content=data.description target="data.description" button=true owner=true editable=true}}
+        {{editor content=data.data.description target="data.description" button=true owner=true editable=true}}
         {{#if data.sortsDispo}}
             <h3>Sorts disponibles</h3>
             <div class="grid-sort-disp">
@@ -34,13 +32,13 @@
                 <label class="grid-titre">{{localize "agone.items.sortConnu"}}</label>
                 {{#each data.sortsDispo as | sort | }}
                     <img src="{{sort.img}}" title="{{sort.name}}" height="32" width="32"/>
-                    <label>{{sort.name}}</label>
-                    <label>{{sort.data.resonance}}</label>
-                    <label>{{sort.data.seuil}}</label>
+                    <label>{{sort.data.name}}</label>
+                    <label>{{sort.data.data.resonance}}</label>
+                    <label>{{sort.data.data.seuil}}</label>
                     {{#if sort.connu }}
-                        <div class="uncheck-sort-connu sort" data-item-id="{{sort._id}}"><i class="far fa-check-square"></i></div>
+                        <div class="uncheck-sort-connu sort" data-item-id="{{sort.id}}"><i class="far fa-check-square"></i></div>
                     {{else}}
-                        <div class="check-sort-connu sort" data-item-id="{{sort._id}}"><i class="far fa-square"></i></div>
+                        <div class="check-sort-connu sort" data-item-id="{{sort.id}}"><i class="far fa-square"></i></div>
                     {{/if}}
                     
                 {{/each}}

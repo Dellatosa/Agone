@@ -9,19 +9,19 @@
             <label class="grid-titre">{{localize "agone.items.palier"}}</label>
             <div>
                 <select name="data.type">
-                    {{#select data.type}}
+                    {{#select data.data.type}}
                         {{#each config.typesPeine as |name type|}}
                             <option value="{{type}}">{{localize name}}</option>
                         {{/each}}
                     {{/select}} 
                 </select>
             </div>
-            <div><input name="data.palier" type="text" value="{{data.palier}}" data-dtype="Number" placeholder="0"/></div>
+            <div><input name="data.palier" type="text" value="{{data.data.palier}}" data-dtype="Number" placeholder="0"/></div>
         </div>
         <div>
             <span>{{localize "agone.items.peineDesc"}}</span>
         </div>
-        {{editor content=data.description target="data.description" button=true owner=true editable=true}}
+        {{editor content=data.data.description target="data.description" button=true owner=true editable=true}}
         <!-- Gérer la sélection du bienfait associé -->
     </div>
     <footer class="sheet-footer">

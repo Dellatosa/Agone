@@ -16,16 +16,17 @@ export default class AgoneItemSheet extends ItemSheet {
     getData() {
         const data = super.getData();
         data.config = CONFIG.agone;
+        const myItemData = data.data;
 
         if(this.item.type == "Danseur")
         {
             if(this.actor)
             {
-                data.data.sortsDispo = this.actor.data.items.filter(function (item) { return item.type == "Sort"});
+                myItemData.sortsDispo = this.actor.data.items.filter(function (item) { return item.type == "Sort"});
                 console.log(data.data.sortsDispo);
                 console.log(data);
-                data.data.sortsDispo.forEach( sortDisp => {
-                    let sc = data.data.sortsConnus.find( id => id == sortDisp._id);
+                myItemData.sortsDispo.forEach( sortDisp => {
+                    let sc = myItemData.data.sortsConnus.find( id => id == sortDisp._id);
                     sortDisp.connu = (sc !== undefined) 
                     console.log(sortDisp.name, sortDisp.connu);
                 });
@@ -41,14 +42,35 @@ export default class AgoneItemSheet extends ItemSheet {
         if (!this.options.editable) return;
 
         
-        if(this.actor.owner) {
-            // Ajouter un sort connu au danseur
-            html.find('.check-sort-connu').click(this._onAjoutSortDanseur.bind(this));
+        if(this.actor) {
+            if(this.actor.isOwner) {
+                // Ajouter un sort connu au danseur
+                html.find('.check-sort-connu').click(this._onAjoutSortDanseur.bind(this));
 
-            // Enlever un sort connu du danseur
-            html.find('.uncheck-sort-connu').click(this._onSupprSortDanseur.bind(this));
+                // Enlever un sort connu du danseur
+                html.find('.uncheck-sort-connu').click(this._onSupprSortDanseur.bind(this));
 
+                // test activeEffect
+                html.find('.activeEffect').click(this._onActiveEffect.bind(this));
+            }
         }
+    }
+
+    _onActiveEffect(event) {
+        event.preventDefault();
+        const element = event.currentTarget;
+
+        let effectData = {
+            _id: "myActEffect",
+            label: "nouvel effet",
+            changes: []
+        }
+        //let activeEffect = new ActiveEffect(effectData, this.actor);
+        //let actEffCfg = new ActiveEffectConfig(activeEffect).render();
+
+        let activeEffect = ActiveEffect.create(effectData, this.item);
+        activeEffect.sheet.render(true);
+        console.log(activeEffect);
     }
 
     _onAjoutSortDanseur(event) {

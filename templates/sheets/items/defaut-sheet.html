@@ -9,20 +9,20 @@
             <label class="grid-titre">{{localize "agone.common.cout"}}</label>
             <div>
                 <select name="data.type">
-                    {{#select data.type}}
+                    {{#select data.data.type}}
                         {{#each config.typesAvantageDefaut as |name type|}}
                             <option value="{{type}}">{{localize name}}</option>
                         {{/each}}
                     {{/select}} 
                 </select>
             </div>
-            <div><input name="data.cout" type="text" value="{{data.cout}}" data-dtype="Number" placeholder="0"/></div>
+            <div><input name="data.cout" type="text" value="{{data.data.cout}}" data-dtype="Number" placeholder="0"/></div>
         </div>
         <div>{{localize "agone.items.defautDesc"}}</div>
-        {{editor content=data.description target="data.description" button=true owner=true editable=true}}
+        {{editor content=data.data.description target="data.description" button=true owner=true editable=true}}
         <div>
             <span>{{localize "agone.items.descMalus"}}</span>
-            <textarea name="data.descMalus" placeholder="{{localize 'agone.items.descMalus'}}">{{data.descMalus}}</textarea>
+            <textarea name="data.descMalus" placeholder="{{localize 'agone.items.descMalus'}}">{{data.data.descMalus}}</textarea>
         </div>
     </div>
     <footer class="sheet-footer">

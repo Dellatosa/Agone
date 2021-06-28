@@ -1,7 +1,6 @@
 import * as Dice from "../dice.js";
 
 import EditCompFormApplication from "../EditCompFormApplication.js";
-import AgoneActiveEffectConfig from "./AgoneActiveEffectConfig.js";
 
 export default class AgoneActorSheet extends ActorSheet {
      
@@ -23,7 +22,10 @@ export default class AgoneActorSheet extends ActorSheet {
     getData() {
         const data = super.getData();
         data.config = CONFIG.agone;
-        const actorData = data.data;
+        const actorData = data.data.data;
+
+        //console.log(data);
+        //console.log(actorData);
 
         /* ----------------------------------------------------
         ---- Création des listes d'items filtrées par type ----
@@ -96,7 +98,7 @@ export default class AgoneActorSheet extends ActorSheet {
             } 
         }
 
-        console.log(this);
+        console.log(data);
 
         return data;
     }
@@ -108,7 +110,7 @@ export default class AgoneActorSheet extends ActorSheet {
         if (!this.options.editable) return;
 
         
-        if(this.actor.owner) {
+        if(this.actor.isOwner) {
             // roll-carac - jet de caractéritiques
             html.find('.roll-carac').click(this._onRollCarac.bind(this));
 
@@ -132,41 +134,20 @@ export default class AgoneActorSheet extends ActorSheet {
 
             //Suppression d'un item
             html.find('.supprimer-item').click(this._onSupprimerItem.bind(this));
-
-            // test activeEffect
-            html.find('.activeEffect').click(this._onActiveEffect.bind(this));
         }
-    }
-
-    _onActiveEffect(event) {
-        event.preventDefault();
-        const element = event.currentTarget;
-
-        let effectData = {
-            _id: "myActEffect",
-            label: "nouvel effet",
-            parent: this.actor,
-            changes: []
-        }
-        //let activeEffect = new ActiveEffect(effectData, this.actor);
-        //let actEffCfg = new ActiveEffectConfig(activeEffect).render();
-
-        let activeEffect = ActiveEffect.create(effectData, this.actor);
-        activeEffect.sheet.render(true);
-        console.log(activeEffect);
     }
 
     _onCreerItem(event) {
         event.preventDefault();
         const element = event.currentTarget;
         
-        let itemData = {
+        let itemData = [{
             name: game.i18n.localize("agone.common.nouveau"),
             type: element.dataset.type,
             img: "icons/svg/mystery-man-black.svg"
-        };
+        }];
 
-        return this.actor.createOwnedItem(itemData);
+        return this.actor.createEmbeddedDocuments("Item", itemData, {parent: this.actor});
     }
 
     _onEditerItem(event) {
@@ -174,7 +155,7 @@ export default class AgoneActorSheet extends ActorSheet {
         const element = event.currentTarget;
 
         let itemId = element.closest(".item").dataset.itemId;
-        let item = this.actor.getOwnedItem(itemId);
+        let item = this.actor.items.get(itemId);
 
         item.sheet.render(true);
     }
@@ -184,7 +165,7 @@ export default class AgoneActorSheet extends ActorSheet {
         const element = event.currentTarget;
 
         let itemId = element.closest(".item").dataset.itemId;
-        let item = this.actor.getOwnedItem(itemId);
+        let item = this.actor.items.get(itemId);
         let field = element.dataset.field;
 
         return item.update({ [field]: element.value });
@@ -194,9 +175,9 @@ export default class AgoneActorSheet extends ActorSheet {
         event.preventDefault();
         const element = event.currentTarget;
 
-        let itemId = element.closest(".item").dataset.itemId;
-
-        return this.actor.deleteOwnedItem(itemId);
+        let itemId = [element.closest(".item").dataset.itemId];
+        
+        return this.actor.deleteEmbeddedDocuments("Item", itemId);
     }
 
     _onEditComp(event) {
@@ -212,7 +193,7 @@ export default class AgoneActorSheet extends ActorSheet {
         const element = event.currentTarget;
 
         let itemId = element.closest(".item").dataset.itemId;
-        let item = this.actor.getOwnedItem(itemId);
+        let item = this.actor.items.get(itemId);
 
         item.roll();
     }

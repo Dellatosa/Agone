@@ -1,7 +1,7 @@
 <div class="actor-fam-comp">
-    {{#each data.colonnes as |col|}}
+    {{#each data.data.colonnes as |col|}}
         <div class="actor-comp-grid">
-            {{#each ../data.familleCompetences as |famille keyFam|}} 
+            {{#each ../data.data.familleCompetences as |famille keyFam|}} 
                 {{#if (eq famille.numcol col)}}
                     <label class="titre-fam">{{famille.label}}</label>
                     <a class="edit-comp" title="{{localize 'agone.actors.editComp'}}" data-famille="{{keyFam}}"><i class="fas fa-edit" ></i></a> 

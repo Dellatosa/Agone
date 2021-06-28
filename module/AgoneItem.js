@@ -10,8 +10,9 @@ export default class AgoneItem extends Item {
 
     async roll() {
         let chatData = {
-            user: game.user._id,
-            speaker: ChatMessage.getSpeaker()
+            user: game.user.id,
+            //speaker: ChatMessage.getSpeaker()
+            speaker: ChatMessage.getSpeaker({ actor: this.actor })
         };
 
         let cardData = {

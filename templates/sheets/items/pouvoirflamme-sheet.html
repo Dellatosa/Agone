@@ -6,12 +6,12 @@
     <div class="sheet-content">
         <div class="grid-pvflamme">
             <label class="grid-titre">{{localize "agone.items.coutHeroisme"}}</label>
-            <div><input name="data.coutHeroisme" type="text" value="{{data.coutHeroisme}}" data-dtype="Number" placeholder="0"/></div>
+            <div><input name="data.coutHeroisme" type="text" value="{{data.data.coutHeroisme}}" data-dtype="Number" placeholder="0"/></div>
         </div>
         <div>
             <span>{{localize "agone.items.pouvoirFlammeDesc"}}</span>
         </div>
-        {{editor content=data.description target="data.description" button=true owner=true editable=true}}
+        {{editor content=data.data.description target="data.description" button=true owner=true editable=true}}
     </div>
     <footer class="sheet-footer">
         <div>{{localize "agone.common.type"}} : <span>{{localize "agone.items.pouvoirFlammeLabel"}}</span></div>

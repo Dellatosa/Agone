@@ -8,7 +8,7 @@
             <label class="grid-titre">{{localize "agone.common.type"}}</label>
             <div>
                 <select name="data.type">
-                    {{#select data.type}}
+                    {{#select data.data.type}}
                         {{#each config.typesCompetence as |name type|}}
                             <option value="{{type}}">{{localize name}}</option>
                         {{/each}}
@@ -17,7 +17,7 @@
             </div>
         </div>
         <div>{{localize "agone.items.ecoleDesc"}}</div>
-        {{editor content=data.description target="data.description" button=true owner=true editable=true}}
+        {{editor content=data.data.description target="data.description" button=true owner=true editable=true}}
     </div>
     <footer class="sheet-footer">
         <div>{{localize "agone.common.type"}} : <span>{{localize "agone.items.ecoleLabel"}}</span></div>

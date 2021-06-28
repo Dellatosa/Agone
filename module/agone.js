@@ -29,8 +29,8 @@ Hooks.once("init", function(){
     console.log("Agone | Initialisation du système Agone RPG");
 
     CONFIG.agone = agone;
-    CONFIG.Item.entityClass = AgoneItem;
-    CONFIG.Actor.entityClass = AgoneActor;
+    CONFIG.Item.documentClass = AgoneItem;
+    CONFIG.Actor.documentClass = AgoneActor;
 
     Actors.unregisterSheet("core", ActorSheet);
     Actors.registerSheet("agone", AgoneActorSheet, {makeDefault: true});
