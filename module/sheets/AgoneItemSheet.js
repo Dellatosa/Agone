@@ -24,7 +24,7 @@ export default class AgoneItemSheet extends ItemSheet {
             {
                 myItemData.sortsDispo = this.actor.data.items.filter(function (item) { return item.type == "Sort"});
                 myItemData.sortsDispo.forEach( sortDisp => {
-                    let sc = myItemData.data.sortsConnus.find( id => id == sortDisp._id);
+                    let sc = myItemData.data.sortsConnus.find( id => id == sortDisp.id);
                     sortDisp.connu = (sc !== undefined) 
                     console.log(sortDisp.name, sortDisp.connu);
                 });
@@ -74,22 +74,57 @@ export default class AgoneItemSheet extends ItemSheet {
     _onAjoutSortDanseur(event) {
         event.preventDefault();
         const element = event.currentTarget;
-        let sortsConnus = this.item.data.data.sortsConnus;
-
+        
         let sortId = element.closest(".sort").dataset.itemId;
-        sortsConnus.push(sortId);
+        const coutMemoire = this.getCoutMemoire(sortId);
+        if(coutMemoire) {
+            let memoireDispo = typeof(this.item.data.data.memoire.value) == "number" ? this.item.data.data.memoire.value : 0;
+            if(memoireDispo >= coutMemoire) {
+                let sortsConnus = this.item.data.data.sortsConnus;
+                sortsConnus.push(sortId);
+                this.item.update({"data.sortsConnus": sortsConnus});
 
-        this.item.update({"data.sortsConnus": sortsConnus});
+                memoireDispo -= coutMemoire;
+                this.item.update({"data.memoire.value": memoireDispo});
+            }
+            else {
+                ui.notifications.warn("Le danseur ne dispose pas d'assez de mémoire pour apprendre ce sort.")    
+            }
+        } 
+        else {
+            ui.notifications.error(`Impossible de retrouver les données du sort sélectionné.`);
+        }
     }
 
     _onSupprSortDanseur(event) {
         event.preventDefault();
         const element = event.currentTarget;
-        let sortsConnus = this.item.data.data.sortsConnus;
 
         let sortId = element.closest(".sort").dataset.itemId;
-        sortsConnus.splice(sortsConnus.indexOf(sortId), 1);
+        const coutMemoire = this.getCoutMemoire(sortId);
+        if(coutMemoire) {
+            let memoireDispo = typeof(this.item.data.data.memoire.value) == "number" ? this.item.data.data.memoire.value : 0;
 
-        this.item.update({"data.sortsConnus": sortsConnus});
+            let sortsConnus = this.item.data.data.sortsConnus;
+            sortsConnus.splice(sortsConnus.indexOf(sortId), 1);
+            this.item.update({"data.sortsConnus": sortsConnus});
+
+            memoireDispo += coutMemoire;
+            this.item.update({"data.memoire.value": memoireDispo});
+        }
+        else {
+            ui.notifications.error(`Impossible de retrouver les données du sort sélectionné.`);
+        }
+    }
+
+    getCoutMemoire(sortId) {
+        const sort = this.actor.items.get(sortId);
+        if(sort) {
+            const seuil = typeof(sort.data.data.seuil) == "number" ? sort.data.data.seuil : 0;
+            return Math.floor(seuil / 5);
+        }
+        else {
+            return null;
+        }
     }
 }

@@ -1,26 +1,13 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
-        {{> "systems/agone/templates/partials/bloc-infos-personnage.hbs"}}
+        {{> "systems/agone/templates/partials/actors/bloc-infos-personnage.hbs"}}
     </header>
     <div class="sheet-fixed-content">
         <div class="actor-flamme">
-            <div>
-                <label>{{localize "agone.actors.flamme"}}</label>
-                <div class="small-size"><input name="data.caracSecondaires.flamme" type="number" value="{{data.data.caracSecondaires.flamme}}" placeholder="0" readonly/></div>
-            </div>
-            <div>
-                <label>{{localize "agone.actors.flammeNoire"}}</label>
-                <div class="small-size"><input name="data.caracSecondaires.flammeNoire" type="number" value="{{data.data.caracSecondaires.flammeNoire}}" placeholder="0" readonly/></div>
-            </div>
-            <div>
-                <label>{{localize "agone.actors.heroisme"}}</label>
-                <div class="small-size"><input name="data.caracSecondaires.heroisme.value" type="number" value="{{data.data.caracSecondaires.heroisme.value}}" placeholder="0"/></div>
-                <label> / </label>
-                <div class="small-size"><input name="data.caracSecondaires.heroisme.max" type="number" value="{{data.data.caracSecondaires.heroisme.max}}" placeholder="0" readonly/></div>
-            </div>
+            {{> "systems/agone/templates/partials/actors/bloc-flamme-personnage.hbs"}}
         </div>
         <div class="actor-aspects-and-caracs">    
-            {{> "systems/agone/templates/partials/bloc-aspect-personnage.hbs"}}
+            {{> "systems/agone/templates/partials/actors/bloc-aspect-personnage.hbs"}}
         </div>
     </div>
     <nav class="sheet-tabs tabs" data-group="principal">
@@ -34,41 +21,20 @@
     </nav>
     <section class="sheet-body">
         <div class="tab" data-group="principal" data-tab="competences">
-            {{> "systems/agone/templates/partials/bloc-competences-personnage.hbs"}}
+            {{> "systems/agone/templates/partials/actors/bloc-competences-personnage.hbs"}}
         </div>
         <div class="tab" data-group="principal" data-tab="caracSecondaires">
-            {{> "systems/agone/templates/partials/bloc-caracSec-personnage.hbs"}}
+            {{> "systems/agone/templates/partials/actors/bloc-caracSec-personnage.hbs"}}
         </div>
         <div class="tab" data-group="principal" data-tab="combat">
-            <div class="recap">
-                <div>
-                    <label>{{localize "agone.actors.melee"}}</label>
-                    <div class="fixed-val">{{data.data.aspects.corps.caracteristiques.melee.valeur}}</div>
-                </div>
-                <div>
-                    <label>{{localize "agone.actors.tir"}}</label>
-                    <div class="fixed-val">{{data.data.aspects.corps.caracteristiques.tir.valeur}}</div>
-                </div>
-                <div>
-                    <label>{{localize "agone.actors.bonusDommages"}}</label>
-                    <div class="fixed-val">{{data.data.caracSecondaires.bonusDommages}}</div>
-                </div>
-                <div>
-                    <label>{{localize "agone.actors.seuilBlessureGrave"}}</label>
-                    <div class="fixed-val">{{data.data.caracSecondaires.seuilBlessureGrave}}</div>
-                </div>
-                <div>
-                    <label>{{localize "agone.actors.seuilBlessureCritique"}}</label>
-                    <div class="fixed-val">{{data.data.caracSecondaires.seuilBlessureCritique}}</div>
-                </div>
-            </div>
+            {{> "systems/agone/templates/partials/actors/bloc-recap-combat-personnage.hbs"}}
             <h3>{{localize "agone.actors.armes"}}</h3>
             <div class="liste-armes">
-                {{> "systems/agone/templates/partials/bloc-liste-armes-personnage.hbs"}}
+                {{> "systems/agone/templates/partials/actors/bloc-liste-armes-personnage.hbs"}}
             </div>
             <h3>{{localize "agone.actors.armures"}}</h3>
             <div class="liste-armures">
-                {{> "systems/agone/templates/partials/bloc-liste-armures-personnage.hbs"}}
+                {{> "systems/agone/templates/partials/actors/bloc-liste-armures-personnage.hbs"}}
             </div>
         </div>
         <div class="tab magie-content" data-group="principal" data-tab="magie">
@@ -78,115 +44,43 @@
                 <a class="item" data-tab="conjuration">{{localize "agone.actors.conjuration"}}</a>
             </nav>
             <div class="tab" data-group="magie" data-tab="emprise">
-                <div class="recap">
-                    <div>
-                        <label>{{localize "agone.actors.emprise"}}</label>
-                        <div class="fixed-val">{{data.data.aspects.esprit.caracteristiques.emprise.valeur}}</div>
-                    </div>
-                    <div>
-                        <label>{{localize "agone.actors.resonance"}}</label>
-                        <select name="data.caracSecondaires.resonance">
-                            {{#select data.data.caracSecondaires.resonance}}
-                                {{#each config.resonances as |name type|}}
-                                    <option value="{{type}}">{{localize name}}</option>
-                                {{/each}}
-                            {{/select}} 
-                        </select>
-                    </div>
-                    <div> 
-                        {{#with data.data as | dt | }}
-                            {{#each dt.familleCompetences.occulte.competences.resonance.domaines as |reso keyReso|}}
-                                {{#if (eq keyReso dt.caracSecondaires.resonance )}}
-                                    <label>Rang</label>
-                                    <div class="fixed-val">{{reso.rang}}</div>
-                                {{/if}}
-                            {{/each}}
-                        {{/with}}
-                    </div>
-                    <div>
-                        <label>{{localize "agone.actors.connDanseurs"}}</label>
-                        <div class="fixed-val">{{data.data.familleCompetences.occulte.competences.connDanseurs.rang}}</div>
-                    </div>
-                </div>
+                {{> "systems/agone/templates/partials/actors/bloc-recap-emprise-personnage.hbs"}}
                 <h3>{{localize "agone.actors.danseurs"}}</h3>
                 <div class="liste-danseurs">
-                    {{> "systems/agone/templates/partials/bloc-liste-danseurs-personnage.hbs"}}
+                    {{> "systems/agone/templates/partials/actors/bloc-liste-danseurs-personnage.hbs"}}
                 </div>
                 <h3>{{localize "agone.actors.sorts"}}</h3>
                 <div class="liste-sorts">
-                    {{> "systems/agone/templates/partials/bloc-liste-sorts-personnage.hbs"}}
+                    {{> "systems/agone/templates/partials/actors/bloc-liste-sorts-personnage.hbs"}}
                 </div>
             </div>
             <div class="tab" data-group="magie" data-tab="artsMagiques">
-                <div class="recap">
-                    <div>
-                        <label>{{localize "agone.actors.art"}}</label>
-                        <div class="fixed-val">{{data.data.aspects.ame.caracteristiques.art.valeur}}</div>
-                    </div>
-                    <div>
-                        <label>{{localize "agone.actors.accord"}}</label>
-                        <div class="fixed-val">{{data.data.familleCompetences.occulte.competences.artsMagiques.domaines.accord.rang}}</div>
-                    </div>
-                    <div>
-                        <label>{{localize "agone.actors.cyse"}}</label>
-                        <div class="fixed-val">{{data.data.familleCompetences.occulte.competences.artsMagiques.domaines.cyse.rang}}</div>
-                    </div>
-                    <div>
-                        <label>{{localize "agone.actors.decorum"}}</label>
-                        <div class="fixed-val">{{data.data.familleCompetences.occulte.competences.artsMagiques.domaines.decorum.rang}}</div>
-                    </div>
-                    <div>
-                        <label>{{localize "agone.actors.geste"}}</label>
-                        <div class="fixed-val">{{data.data.familleCompetences.occulte.competences.artsMagiques.domaines.geste.rang}}</div>
-                    </div>
-                </div>
+                {{> "systems/agone/templates/partials/actors/bloc-recap-artsmagiques-personnage.hbs"}}
                 <h3>{{localize "agone.actors.oeuvres"}}</h3>
                 <div class="liste-oeuvres">
-                    {{> "systems/agone/templates/partials/bloc-liste-oeuvres-personnage.hbs"}}
+                    {{> "systems/agone/templates/partials/actors/bloc-liste-oeuvres-personnage.hbs"}}
                 </div>
             </div>
             <div class="tab" data-group="magie" data-tab="conjuration">
-                <div class="recap">
-                    <div>
-                        <label>{{localize "agone.actors.noirceur"}}</label>
-                        <div class="fixed-val">{{data.data.caracSecondaires.noirceur}}</div>
-                    </div>
-                    <div>
-                        <label>{{localize "agone.actors.demonologie"}}</label>
-                        <div class="fixed-val">{{data.data.familleCompetences.occulte.competences.demonologie.rang}}</div>
-                    </div>
-                </div>
+                {{> "systems/agone/templates/partials/actors/bloc-recap-conjuration-personnage.hbs"}}
                 <h3>{{localize "agone.actors.connivences"}}</h3>
                 <div class="liste-connivences">
-                    {{> "systems/agone/templates/partials/bloc-liste-connivences-personnage.hbs"}}
+                    {{> "systems/agone/templates/partials/actors/bloc-liste-connivences-personnage.hbs"}}
                 </div>
             </div>
         </div>
         <div class="tab" data-group="principal" data-tab="avantagesDefauts">
             <h3>{{localize "agone.actors.avantages"}}</h3>
             <div class="liste-avantages">
-                {{> "systems/agone/templates/partials/bloc-liste-avantages-personnage.hbs"}}
+                {{> "systems/agone/templates/partials/actors/bloc-liste-avantages-personnage.hbs"}}
             </div>
             <h3>{{localize "agone.actors.defauts"}}</h3>
             <div class="liste-defauts">
-                {{> "systems/agone/templates/partials/bloc-liste-defauts-personnage.hbs"}}
+                {{> "systems/agone/templates/partials/actors/bloc-liste-defauts-personnage.hbs"}}
             </div>
         </div>
         <div class="tab" data-group="principal" data-tab="equipement">
-            <div class="recap">
-                <div>
-                    <label>{{localize "agone.actors.chargeMax"}}</label>
-                    <div class="fixed-val">{{data.data.caracSecondaires.chargeMax}}</div>
-                </div>
-                <div>
-                    <label>{{localize "agone.actors.demiCharge"}}</label>
-                    <div class="fixed-val">{{data.data.caracSecondaires.demiCharge}}</div>
-                </div>
-                <div>
-                    <label>{{localize "agone.actors.chargeQuotidienne"}}</label>
-                    <div class="fixed-val">{{data.data.caracSecondaires.chargeQuotidienne}}</div>
-                </div>
-            </div>
+            {{> "systems/agone/templates/partials/actors/bloc-recap-equipement-personnage.hbs"}}
         </div>
         <div class="tab fullheight" data-group="principal" data-tab="histoire">
             <div class="recap">

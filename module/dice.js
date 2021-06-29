@@ -19,7 +19,7 @@ export async function jetCompetence({actor = null,
 
     // Si la famille de la compétence n'autorise pas le jet par défaut (Savoir et Occulte), on gènere le message d'erreur et on annule le jet
     if(jetDefautInterdit && rangComp == 0) {
-        ui.notifications.error(`Le jet par défaut (rang de compétence à zéro) n'est pas autorisé pour cette famille de compétences.`)
+        ui.notifications.warn(`Le jet par défaut (rang de compétence à zéro) n'est pas autorisé pour cette famille de compétences.`)
         return;
     }
 
@@ -91,9 +91,9 @@ export async function jetCompetence({actor = null,
     rollFumbleFormula += baseFormula;
 
     let fumble = false;
-    let rollResult = new Roll(rollFormula, rollData).roll();
+    let rollResult = await new Roll(rollFormula, rollData).roll({async: true});
     if(rollResult.dice[0].results[0].result == 1) {
-        rollResult = new Roll(rollFumbleFormula, rollData).roll();
+        rollResult = await new Roll(rollFumbleFormula, rollData).roll({async: true});
         fumble = true;
     }
 
@@ -200,9 +200,9 @@ export async function jetCaracteristique({actor = null,
     };
 
     let fumble = false;
-    let rollResult = new Roll(rollFormula, rollData).roll();
+    let rollResult = await new Roll(rollFormula, rollData).roll({async: true});
     if(rollResult.dice[0].results[0].result == 1) {
-        rollResult = new Roll(rollFumbleFormula, rollData).roll();
+        rollResult = await new Roll(rollFumbleFormula, rollData).roll({async: true});
         fumble = true;
     }
 

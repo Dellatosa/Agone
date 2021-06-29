@@ -48,7 +48,7 @@ export default class AgoneActorSheet extends ActorSheet {
         data.peines = data.items.filter(function (item) { return item.type == "Peine"});
         data.bienfaits = data.items.filter(function (item) { return item.type == "Bienfait"});
 
-        data.listeSorts = Object.assign({}, ...data.sorts.map((x) => ({[x._id]: x.name})));
+        //data.listeSorts = Object.assign({}, ...data.sorts.map((x) => ({[x._id]: x.name})));
 
 
 
@@ -129,8 +129,8 @@ export default class AgoneActorSheet extends ActorSheet {
             // Edition d'un item
             html.find('.editer-item').click(this._onEditerItem.bind(this));
 
-            // Edition d'un champ d'item directement en ligne (champ Competence)
-            html.find('.inline-edit').change(this._onEditerCompArme.bind(this));
+            // Edition d'un champ d'item directement en ligne
+            html.find('.inline-edit').change(this._onEditerInline.bind(this));
 
             //Suppression d'un item
             html.find('.supprimer-item').click(this._onSupprimerItem.bind(this));
@@ -160,7 +160,24 @@ export default class AgoneActorSheet extends ActorSheet {
         item.sheet.render(true);
     }
 
-    _onEditerCompArme(event) {
+    _onSupprimerItem(event) {
+        event.preventDefault();
+        const element = event.currentTarget;
+
+        let itemId = element.closest(".item").dataset.itemId;
+        let item = this.actor.items.get(itemId);
+        
+        let content = `<p>${game.i18n.localize("agone.common.objet")} : ${item.data.name}<br>${game.i18n.localize("agone.common.confirmSupprText")}<p>`
+        let dlg = Dialog.confirm({
+            title: game.i18n.localize("agone.common.confirmSuppr"),
+            content: content,
+            yes: () => item.delete(),
+            //no: () =>, On ne fait rien sur le 'Non'
+            defaultYes: false
+           });
+    }
+
+    _onEditerInline(event) {
         event.preventDefault();
         const element = event.currentTarget;
 
@@ -169,15 +186,6 @@ export default class AgoneActorSheet extends ActorSheet {
         let field = element.dataset.field;
 
         return item.update({ [field]: element.value });
-    }
-
-    _onSupprimerItem(event) {
-        event.preventDefault();
-        const element = event.currentTarget;
-
-        let itemId = [element.closest(".item").dataset.itemId];
-        
-        return this.actor.deleteEmbeddedDocuments("Item", itemId);
     }
 
     _onEditComp(event) {

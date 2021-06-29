@@ -4,6 +4,7 @@
     <label>{{localize "agone.items.cercleDemon"}}</label>
     <label>{{localize "agone.items.nomDemon"}}</label>
     <label>{{localize "agone.items.nomAdvocatus"}}</label>
+    <label></label>
     <a class="creer-item" data-type="Connivence" title="{{localize 'agone.common.ajouter'}}"><i class="fas fa-plus"></i></a>
 </div>
 {{#each connivences as |connivence id|}}
@@ -13,6 +14,7 @@
     <div>{{configLocalize "cerclesDemon" data.cercleDemon}}</div>
     <div>{{data.nomDemon}}</div>
     <div>{{data.nomAdvocatus}}</div>
+    <a class="editer-item" title="{{localize 'agone.common.editer'}}"><i class="fas fa-edit"></i></a>
     <a class="supprimer-item" title="{{localize 'agone.common.supprimer'}}"><i class="fas fa-trash"></i></a>
 </div>            
 {{/each}}

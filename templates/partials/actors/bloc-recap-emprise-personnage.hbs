@@ -1,0 +1,30 @@
+<div class="recap">
+    <div>
+        <label>{{localize "agone.actors.emprise"}}</label>
+        <div class="fixed-val">{{data.data.aspects.esprit.caracteristiques.emprise.valeur}}</div>
+    </div>
+    <div>
+        <label>{{localize "agone.actors.resonance"}}</label>
+        <select name="data.caracSecondaires.resonance">
+            {{#select data.data.caracSecondaires.resonance}}
+                {{#each config.resonances as |name type|}}
+                    <option value="{{type}}">{{localize name}}</option>
+                {{/each}}
+            {{/select}} 
+        </select>
+    </div>
+    <div> 
+        {{#with data.data as | dt | }}
+            {{#each dt.familleCompetences.occulte.competences.resonance.domaines as |reso keyReso|}}
+                {{#if (eq keyReso dt.caracSecondaires.resonance )}}
+                    <label>Rang</label>
+                    <div class="fixed-val">{{reso.rang}}</div>
+                {{/if}}
+            {{/each}}
+        {{/with}}
+    </div>
+    <div>
+        <label>{{localize "agone.actors.connDanseurs"}}</label>
+        <div class="fixed-val">{{data.data.familleCompetences.occulte.competences.connDanseurs.rang}}</div>
+    </div>
+</div>

@@ -23,7 +23,7 @@ function onParade(event) {
 
 // Pour test
 export function addChatMessageContextOptions(html, options) {
-    let condOK = li => li.find(".jet-comp.attaque").length;
+    let condOK = li => li.find(".jet-arme.dommages").length;
 
     options.push( 
         {
@@ -38,6 +38,6 @@ export function addChatMessageContextOptions(html, options) {
 }
 
 async function Test(attaque) {
-    const dommagesArme = parseInt(attaque.find(".attaque").attr("data-arme-dommages"));
+    const dommagesArme = parseInt(attaque.find(".dommages").attr("data-arme-dommages"));
     const rollResult = parseInt(attaque.find(".dice-total").text());
 }

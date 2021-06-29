@@ -7,18 +7,24 @@ import * as Chat from "./chat.js";
 
 async function preloadHandlebarsTemplates() {
     const templatePaths = [
-        "systems/agone/templates/partials/bloc-aspect-personnage.hbs",
-        "systems/agone/templates/partials/bloc-infos-personnage.hbs",
-        "systems/agone/templates/partials/bloc-caracSec-personnage.hbs",
-        "systems/agone/templates/partials/bloc-competences-personnage.hbs",
-        "systems/agone/templates/partials/bloc-liste-armes-personnage.hbs",
-        "systems/agone/templates/partials/bloc-liste-armures-personnage.hbs",
-        "systems/agone/templates/partials/bloc-liste-danseurs-personnage.hbs",
-        "systems/agone/templates/partials/bloc-liste-sorts-personnage.hbs",
-        "systems/agone/templates/partials/bloc-liste-connivences-personnage.hbs",
-        "systems/agone/templates/partials/bloc-liste-oeuvres-personnage.hbs",
-        "systems/agone/templates/partials/bloc-liste-defauts-personnage.hbs",
-        "systems/agone/templates/partials/bloc-liste-avantages-personnage.hbs",
+        "systems/agone/templates/partials/actors/bloc-aspect-personnage.hbs",
+        "systems/agone/templates/partials/actors/bloc-infos-personnage.hbs",
+        "systems/agone/templates/partials/actors/bloc-flamme-personnage.hbs",
+        "systems/agone/templates/partials/actors/bloc-caracSec-personnage.hbs",
+        "systems/agone/templates/partials/actors/bloc-competences-personnage.hbs",
+        "systems/agone/templates/partials/actors/bloc-recap-combat-personnage.hbs",
+        "systems/agone/templates/partials/actors/bloc-liste-armes-personnage.hbs",
+        "systems/agone/templates/partials/actors/bloc-liste-armures-personnage.hbs",
+        "systems/agone/templates/partials/actors/bloc-recap-emprise-personnage.hbs",
+        "systems/agone/templates/partials/actors/bloc-liste-danseurs-personnage.hbs",
+        "systems/agone/templates/partials/actors/bloc-liste-sorts-personnage.hbs",
+        "systems/agone/templates/partials/actors/bloc-recap-artsmagiques-personnage.hbs",
+        "systems/agone/templates/partials/actors/bloc-liste-oeuvres-personnage.hbs",
+        "systems/agone/templates/partials/actors/bloc-recap-conjuration-personnage.hbs",
+        "systems/agone/templates/partials/actors/bloc-liste-connivences-personnage.hbs",
+        "systems/agone/templates/partials/actors/bloc-liste-defauts-personnage.hbs",
+        "systems/agone/templates/partials/actors/bloc-liste-avantages-personnage.hbs",
+        "systems/agone/templates/partials/actors/bloc-recap-equipement-personnage.hbs",
         "templates/dice/roll.html"
     ];
 

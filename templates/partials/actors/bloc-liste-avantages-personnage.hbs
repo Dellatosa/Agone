@@ -1,18 +1,20 @@
-<div class="ligne-defaut titre">
+<div class="ligne-avantage titre">
     <label></label>
     <label>{{localize "agone.common.name"}}</label>
     <label>{{localize "agone.common.type"}}</label>
     <label>{{localize "agone.common.cout"}}</label>
-    <label>{{localize "agone.items.descMalus"}}</label>
-    <a class="creer-item" data-type="Defaut" title="{{localize 'agone.common.ajouter'}}"><i class="fas fa-plus"></i></a>
+    <label>{{localize "agone.items.descBonus"}}</label>
+    <label></label>
+    <a class="creer-item" data-type="Avantage" title="{{localize 'agone.common.ajouter'}}"><i class="fas fa-plus"></i></a>
 </div>
-{{#each defauts as |defaut id|}}
-<div class="ligne-defaut item" data-item-id="{{defaut._id}}">
+{{#each avantages as |avantage id|}}
+<div class="ligne-avantage item" data-item-id="{{avantage._id}}">
     <a class="editer-item"><img src="{{img}}" title="{{localize 'agone.common.editer'}}" height="32" width="32"/></a>
     <div>{{name}}</div>
     <div>{{configLocalize "typesAvantageDefaut" data.type}}</div>
     <div>{{data.cout}}</div>
-    <div>{{data.descMalus}}</div>
+    <div>{{data.descBonus}}</div>
+    <a class="editer-item" title="{{localize 'agone.common.editer'}}"><i class="fas fa-edit"></i></a>
     <a class="supprimer-item" title="{{localize 'agone.common.supprimer'}}"><i class="fas fa-trash"></i></a>
 </div>            
 {{/each}}

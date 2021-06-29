@@ -7,7 +7,10 @@
             "nouveau": "New",
             "name": "Name",
             "type": "Type",
-            "cout": "Cost"
+            "cout": "Cost",
+            "objet": "Item",
+            "confirmSuppr" : "Deletion confirmation",
+            "confirmSupprText": "Are you sure you want to delete this item ?"
         },
         "actors": {
             "biographie": "Biography",
