@@ -102,14 +102,35 @@
   padding-top: 6px;
   padding-bottom: 6px;
 }
-.carte .grid {
+.carte .grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 3px;
+  text-align: center;
+}
+.carte .grid-4 {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   padding: 3px;
   text-align: center;
 }
 .boutons-carte {
-  display: flex;
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+.boutons-carte .ligne-bouton {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2em 1fr;
+  text-align: center;
+  margin: 1px;
+}
+.boutons-carte a {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+.boutons-carte button {
+  margin: 1px;
 }
 .small-size {
   flex: 0 1 3.5em;

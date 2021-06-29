@@ -1,0 +1,22 @@
+<form>
+    <div>Vous souhaitez lancer le sort {{sort.name}} avec {{nomDanseur}}</div>
+    <div>Votre potentiel d'Emprise est de {{potEmprise}} pour un seuil de {{sort.data.seuilTotal}}</div>
+    <div class="form-group">
+        <label>Magie instantanée (seuil x 2)</label>
+        <input type="checkbox" name="magieInstantanee"/>
+    </div>
+    <div class="form-group">
+        <label>Danseur invisible (pot EMP -2)</label>
+        <input type="checkbox" name="danseurInvisible"/>
+    </div>
+    {{#if (eq resonance "jorniste")}}
+        <div class="form-group">
+            <label>Mouvements imperceptibles (pot EMP -3)</label>
+            <input type="checkbox" name="mouvImperceptibles"/>
+        </div>
+    {{/if}}
+    <div class="form-group">
+        <label>Utiliser héroisme</label>
+        <input type="checkbox" name="utiliseHeroisme"/>
+    </div>
+</form>

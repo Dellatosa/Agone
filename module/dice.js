@@ -1,3 +1,57 @@
+export async function jetCaracteristique({actor = null, 
+    rangCarac = null,
+    labelCarac = null,
+    bonusAspect = null,
+    labelAspect = null,
+    difficulte = null} = {}) {
+
+    let rollFormula = "1d10x + (@rangCarac * 2) + @bonusAspect";
+    let rollFumbleFormula = "(1d10x * -1) + 1 + (@rangCarac * 2) + @bonusAspect";
+
+    let rollData = {
+        rangCarac: rangCarac,
+        bonusAspect: bonusAspect
+    };
+
+    let fumble = false;
+    let rollResult = await new Roll(rollFormula, rollData).roll({async: true});
+    if(rollResult.dice[0].results[0].result == 1) {
+        rollResult = await new Roll(rollFumbleFormula, rollData).roll({async: true});
+        fumble = true;
+    }
+
+    const messageTemplate = "systems/agone/templates/partials/dice/jet-caracteristique.hbs"; 
+    let renderedRoll = await rollResult.render();
+
+    let rollStats = {
+        ...rollData,
+        labelCarac: labelCarac,
+        labelAspect: labelAspect,
+        isFumble: fumble
+    }
+
+    if(difficulte) {
+        rollStats.difficulte = difficulte;
+        rollStats.marge = rollResult.total - difficulte;
+    }
+
+    let templateContext = {
+        stats : rollStats,
+        roll: renderedRoll
+    }
+
+    let chatData = {
+        user: game.user.id,
+        speaker: ChatMessage.getSpeaker({ actor: actor }),
+        roll: rollResult,
+        content: await renderTemplate(messageTemplate, templateContext),
+        sound: CONFIG.sounds.dice,
+        type: CONST.CHAT_MESSAGE_TYPES.ROLL
+    }
+
+    ChatMessage.create(chatData);
+}
+
 export async function jetCompetence({actor = null,
     rangComp = null,
     labelComp = null,
@@ -184,60 +238,6 @@ function _processJetCompetenceOptions(form) {
     }
 }
 
-export async function jetCaracteristique({actor = null, 
-    rangCarac = null,
-    labelCarac = null,
-    bonusAspect = null,
-    labelAspect = null,
-    difficulte = null} = {}) {
-
-    let rollFormula = "1d10x + (@rangCarac * 2) + @bonusAspect";
-    let rollFumbleFormula = "(1d10x * -1) + 1 + (@rangCarac * 2) + @bonusAspect";
-
-    let rollData = {
-        rangCarac: rangCarac,
-        bonusAspect: bonusAspect
-    };
-
-    let fumble = false;
-    let rollResult = await new Roll(rollFormula, rollData).roll({async: true});
-    if(rollResult.dice[0].results[0].result == 1) {
-        rollResult = await new Roll(rollFumbleFormula, rollData).roll({async: true});
-        fumble = true;
-    }
-
-    const messageTemplate = "systems/agone/templates/partials/dice/jet-caracteristique.hbs"; 
-    let renderedRoll = await rollResult.render();
-
-    let rollStats = {
-        ...rollData,
-        labelCarac: labelCarac,
-        labelAspect: labelAspect,
-        isFumble: fumble
-    }
-
-    if(difficulte) {
-        rollStats.difficulte = difficulte;
-        rollStats.marge = rollResult.total - difficulte;
-    }
-
-    let templateContext = {
-        stats : rollStats,
-        roll: renderedRoll
-    }
-
-    let chatData = {
-        user: game.user.id,
-        speaker: ChatMessage.getSpeaker({ actor: actor }),
-        roll: rollResult,
-        content: await renderTemplate(messageTemplate, templateContext),
-        sound: CONFIG.sounds.dice,
-        type: CONST.CHAT_MESSAGE_TYPES.ROLL
-    }
-
-    ChatMessage.create(chatData);
-}
-
 export async function actionArme(actor, arme, type) {
     let statsAttaque = actor.getStatsAttaque(arme.data.data.competence);
 
@@ -301,4 +301,66 @@ export async function actionArme(actor, arme, type) {
     }
 
     ChatMessage.create(chatData);
+}
+
+export async function sortEmprise(mage, danseur, sort) {
+    let statsEmprise = mage.getStatsEmprise();
+
+    if(danseur.data.data.endurance.value <= 0) {
+        ui.notifications.warn(`Le danseur ${danseur.data.name} est épuisé. Il ne peut pas lancer de sort jusqu'à demain.`);
+        return;
+    }
+
+    let potEmprise = statsEmprise.emprise + Math.min(statsEmprise.rangResonance, statsEmprise.connDanseurs) + statsEmprise.bonusEsprit + danseur.data.data.bonusEmprise;
+    //console.log("Pot Emprise", potEmprise);
+
+    if(sort.data.data.resonance != statsEmprise.resonance) {
+        sort.data.data.diffObedience = true;
+        sort.data.data.seuilTotal = sort.data.data.seuil + 5;
+    }
+    else {
+        sort.data.data.seuilTotal = sort.data.data.seuil;
+    }
+    //console.log("Sort", sort);
+
+    let dialogOptions = await getJetSortEmpriseOptions({potEmprise: potEmprise, resonance: statsEmprise.resonance, nomDanseur: danseur.data.name, sort: sort.data});
+
+    // On annule le jet sur les boutons 'Annuler' ou 'Fermeture'
+    if(dialogOptions.annule) {
+        return;
+    }
+}
+
+async function getJetSortEmpriseOptions({potEmprise = null, resonance = null, nomDanseur = null, sort = null}) {
+    const template = "systems/agone/templates/partials/dice/dialog-jet-sort-emprise.hbs";
+    const html = await renderTemplate(template, {potEmprise: potEmprise, resonance: resonance, nomDanseur: nomDanseur, sort: sort});
+
+    return new Promise( resolve => {
+        const data = {
+            title: "Jet de sort",
+            content: html,
+            buttons: {
+                jet: {
+                    icon: '<i class="fas fa-dice"></i>',
+                    label: "Jet",
+                    callback: html => resolve(_processJetSortEmpriseOptions(html[0].querySelector("form")))
+                },
+                annuler: {
+                    label: "Annuler",
+                    callback: html => resolve({annule: true})
+                }
+            },
+            default: "jet",
+            close: () => resolve({annule: true})
+        }
+        new Dialog(data, null).render(true);
+    });
+}
+
+function _processJetSortEmpriseOptions(form) {
+    return {
+        caracteristique: form.caracteristique.value,
+        difficulte: parseInt(form.difficulte.value),
+        utiliseHeroisme : form.utiliseHeroisme.checked
+    }
 }

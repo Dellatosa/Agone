@@ -210,6 +210,20 @@ export default class AgoneActor extends Actor {
         return null;
     }
 
+    getStatsEmprise() {
+        let data = this.data.data;
+
+        let result = {emprise: 0, resonance: "ND", rangResonance: 0, connDanseurs: 0, bonusEsprit: 0, labelEsprit: "ND"};
+        result.emprise = data.aspects.esprit.caracteristiques.emprise.valeur;
+        result.resonance = data.caracSecondaires.resonance;
+        result.rangResonance = data.familleCompetences.occulte.competences.resonance.domaines[data.caracSecondaires.resonance].rang;
+        result.connDanseurs = data.familleCompetences.occulte.competences.connDanseurs.rang;
+        result.bonusEsprit = data.aspects.esprit.bonus.valeur;
+        result.labelEsprit = data.aspects.esprit.bonus.label;
+
+        return result;
+    }
+
     depenserHeroisme() {
         let data = this.data.data;
 

@@ -11,7 +11,6 @@ export default class AgoneItem extends Item {
     async roll() {
         let chatData = {
             user: game.user.id,
-            //speaker: ChatMessage.getSpeaker()
             speaker: ChatMessage.getSpeaker({ actor: this.actor })
         };
 
@@ -20,7 +19,20 @@ export default class AgoneItem extends Item {
             owner: this.actor.id
         };
 
-        //console.log(cardData);
+        if(this.type == "Danseur") {
+            let sorts = [];
+            this.data.data.sortsConnus.forEach(id => {
+                let sort = this.actor.items.get(id);
+                if(sort.data.data.resonance != this.actor.data.data.caracSecondaires.resonance) {
+                    sort.data.data.diffObedience = true;
+                }
+                sorts.push(sort);
+            });
+
+            cardData.data.sorts = sorts;
+        }
+
+        console.log("cardData", cardData);
         
         chatData.content = await renderTemplate(this.chatTemplate[this.type], cardData);
         chatData.roll = true;

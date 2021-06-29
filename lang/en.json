@@ -10,7 +10,8 @@
             "cout": "Cost",
             "objet": "Item",
             "confirmSuppr" : "Deletion confirmation",
-            "confirmSupprText": "Are you sure you want to delete this item ?"
+            "confirmSupprText": "Are you sure you want to delete this item ?",
+            "details": "Details"
         },
         "actors": {
             "biographie": "Biography",

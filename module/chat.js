@@ -3,12 +3,33 @@ import * as Dice from "./dice.js";
 export function addChatListeners(html) {
     html.on('click', 'button.attaque', onAttaque);
     html.on('click', 'button.parade', onParade);
+    html.on('click', 'button.jet-sort', onSort);
+    html.on('click', 'a.editer-item', onEditItem)
+}
+
+function onSort(event) {
+    const card = event.currentTarget.closest(".danseur");
+    const sortCard = event.currentTarget.closest(".sort");
+    let mage = game.actors.get(card.dataset.ownerId)
+    let danseur = mage.items.get(card.dataset.itemId);
+    let sort = mage.items.get(sortCard.dataset.sortId);
+
+    Dice.sortEmprise(mage, danseur, sort);
+}
+
+function onEditItem(event) {
+    const card = event.currentTarget.closest(".danseur");
+    const sortCard = event.currentTarget.closest(".sort");
+    let mage = game.actors.get(card.dataset.ownerId);
+    let sortItem = mage.items.get(sortCard.dataset.sortId);
+
+    sortItem.sheet.render(true);
 }
 
 function onAttaque(event) {
     const card = event.currentTarget.closest(".arme");
     let attaquant = game.actors.get(card.dataset.ownerId);
-    let arme = attaquant.getOwnedItem(card.dataset.itemId); 
+    let arme = attaquant.items.get(card.dataset.itemId); 
 
     Dice.actionArme(attaquant, arme, "Attaque");
 }
@@ -16,7 +37,7 @@ function onAttaque(event) {
 function onParade(event) {
     const card = event.currentTarget.closest(".arme");
     let defenseur = game.actors.get(card.dataset.ownerId);
-    let arme = defenseur.getOwnedItem(card.dataset.itemId);
+    let arme = defenseur.items.get(card.dataset.itemId);
 
     Dice.actionArme(defenseur, arme, "Parade");
 }
