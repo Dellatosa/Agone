@@ -26,7 +26,6 @@ export default class AgoneItemSheet extends ItemSheet {
                 myItemData.sortsDispo.forEach( sortDisp => {
                     let sc = myItemData.data.sortsConnus.find( id => id == sortDisp.id);
                     sortDisp.connu = (sc !== undefined) 
-                    console.log(sortDisp.name, sortDisp.connu);
                 });
             }
         }

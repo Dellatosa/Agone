@@ -1,13 +1,9 @@
-<div class="jet-comp">
-    <div class="txt-small">Jet de compétence 
-        {{#if stats.isJetDefaut}}
-        <span> par défaut </span>
-        {{/if}}
-        {{#if stats.marge}}
-        <span>de </span><span class="bold">difficulté {{stats.difficulte}}</span>
-        {{/if}}
+<div class="jet-sort">
+    <div class="txt-small"><span class="bold">{{danseur.nomDanseur}}</span> lance le sort <span class="bold">{{sort.name}}</span> (difficulté <span class="bold">{{stats.difficulte}}</span>)</div>
+    <div class="txt-small bold">Potentiel d'Emprise ({{mage.potEmprise}})
+        {{#if stats.danseurInvisible}}<span> + danseur invisible (-2)</span>{{/if}}
+        {{#if stats.mouvImperceptibles}}<span> + mouvements imperceptibles (-3)</span>{{/if}}
     </div>
-    <div class="txt-small bold">{{stats.labelComp}} ({{stats.rangComp}}) + {{stats.labelCarac}} ({{stats.rangCarac}}) + {{stats.labelAspect}} ({{stats.bonusAspect}})</div>
     {{#if stats.specialisation}}
         <div class="txt-small">Spécialisation <span class="bold">{{stats.labelSpecialisation}}</span></div>
     {{/if}}

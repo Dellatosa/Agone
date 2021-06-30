@@ -2,11 +2,9 @@ export default class AgoneActor extends Actor {
 
     prepareData() {
         super.prepareData();
+        let data = this.data.data;
 
-        let actorData = this.data;
-        let data = actorData.data;
-
-        if(actorData.type != "demon") {
+        if(this.type != "demon") {
 
             /* --------------------------------------------------------
             ---- Calculs de caractéristiques et scores secondaires ----
@@ -32,6 +30,9 @@ export default class AgoneActor extends Actor {
             data.caracSecondaires.flamme = Math.min(data.aspects.corps.positif.valeur, data.aspects.esprit.positif.valeur, data.aspects.ame.positif.valeur);
             data.caracSecondaires.flammeNoire = Math.min(data.aspects.corps.negatif.valeur, data.aspects.esprit.negatif.valeur, data.aspects.ame.negatif.valeur);
             data.caracSecondaires.heroisme.max = data.caracSecondaires.flamme * 2;
+            if(data.caracSecondaires.heroisme.value > data.caracSecondaires.heroisme.max) {
+                data.caracSecondaires.heroisme.value = data.caracSecondaires.heroisme.max;
+            }
 
             // Calcul des caractéristiques secondaires
             data.aspects.corps.caracteristiques.melee.valeur = Math.floor((data.aspects.corps.caracteristiques.force.valeur + data.aspects.corps.caracteristiques.agilite.valeur * 2) / 3);
@@ -53,8 +54,13 @@ export default class AgoneActor extends Actor {
                     data.aspects.esprit.caracteristiques.emprise.valeur = 0;
             }
 
+
             data.caracSecondaires.seuilBlessureGrave = Math.floor(data.caracSecondaires.pdv.max / 3);
             data.caracSecondaires.seuilBlessureCritique = Math.floor(data.caracSecondaires.pdv.max / 2);
+            if(data.caracSecondaires.pdv.value > data.caracSecondaires.pdv.max) {
+                data.caracSecondaires.pdv.value = data.caracSecondaires.pdv.max;
+            }
+
             if(data.peuple != "aucun" && data.peuple != "" && data.peuple != null)
             {
                 data.caracSecondaires.tai = CONFIG.agone.peuple[data.peuple].tai;
@@ -188,7 +194,7 @@ export default class AgoneActor extends Actor {
         return null;
     }
 
-    getStatsAttaque(compArme) {
+    getStatsCombat(compArme) {
         let data = this.data.data;
 
         if(compArme) {
@@ -213,10 +219,12 @@ export default class AgoneActor extends Actor {
     getStatsEmprise() {
         let data = this.data.data;
 
-        let result = {emprise: 0, resonance: "ND", rangResonance: 0, connDanseurs: 0, bonusEsprit: 0, labelEsprit: "ND"};
+        let result = {emprise: 0, resonance: "ND", specialisation: false, labelSpecialisation: "ND", rangResonance: 0, connDanseurs: 0, bonusEsprit: 0, labelEsprit: "ND"};
         result.emprise = data.aspects.esprit.caracteristiques.emprise.valeur;
         result.resonance = data.caracSecondaires.resonance;
         result.rangResonance = data.familleCompetences.occulte.competences.resonance.domaines[data.caracSecondaires.resonance].rang;
+        result.specialisation = data.familleCompetences.occulte.competences.resonance.domaines[data.caracSecondaires.resonance].specialisation;
+        result.labelSpecialisation = data.familleCompetences.occulte.competences.resonance.domaines[data.caracSecondaires.resonance].labelSpecialisation;
         result.connDanseurs = data.familleCompetences.occulte.competences.connDanseurs.rang;
         result.bonusEsprit = data.aspects.esprit.bonus.valeur;
         result.labelEsprit = data.aspects.esprit.bonus.label;
@@ -238,10 +246,6 @@ export default class AgoneActor extends Actor {
     }
 
     updateFamilleComps(famille, listeComps) {
-        let data = this.data.data;
-        console.log(listeComps);
-        //Object.assign(data.familleCompetences[famille], listeComps);
-        //console.log(data.familleCompetences[famille]);
         this.update({[`data.familleCompetences.${famille}`]: listeComps});
     }
 }

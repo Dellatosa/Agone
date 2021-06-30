@@ -34,6 +34,8 @@ async function preloadHandlebarsTemplates() {
 Hooks.once("init", function(){
     console.log("Agone | Initialisation du système Agone RPG");
 
+    //CONFIG.debug.hooks = true;
+
     CONFIG.agone = agone;
     CONFIG.Item.documentClass = AgoneItem;
     CONFIG.Actor.documentClass = AgoneActor;
@@ -53,3 +55,5 @@ Hooks.once("init", function(){
 
 Hooks.on("renderChatLog", (app, html, data) => Chat.addChatListeners(html));
 Hooks.on("getChatLogEntryContext", Chat.addChatMessageContextOptions);
+
+Hooks.on("updateItem", (item, modif, info, id) => console.log(item, modif));

@@ -24,9 +24,6 @@ export default class AgoneActorSheet extends ActorSheet {
         data.config = CONFIG.agone;
         const actorData = data.data.data;
 
-        //console.log(data);
-        //console.log(actorData);
-
         /* ----------------------------------------------------
         ---- Création des listes d'items filtrées par type ----
         -----------------------------------------------------*/
@@ -98,7 +95,7 @@ export default class AgoneActorSheet extends ActorSheet {
             } 
         }
 
-        console.log(data);
+        //console.log(data);
 
         return data;
     }
@@ -225,7 +222,6 @@ export default class AgoneActorSheet extends ActorSheet {
             bonusAspect: caracData.bonusAspect,
             labelAspect: caracData.labelAspect,
             defCarac: compData.defCarac
-            //difficulte: 15
         });
     }
 

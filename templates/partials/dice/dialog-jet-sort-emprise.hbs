@@ -1,22 +1,23 @@
 <form>
-    <div>Vous souhaitez lancer le sort {{sort.name}} avec {{nomDanseur}}</div>
-    <div>Votre potentiel d'Emprise est de {{potEmprise}} pour un seuil de {{sort.data.seuilTotal}}</div>
+    <div>Jeter le sort <span class="bold">{{sortData.nomSort}}</span> avec le danseur <span class="bold">{{danseurData.nomDanseur}}</span></div>
+    <div>Potentiel d'Emprise de <span class="bold">{{mageData.potEmprise}}</span> pour un seuil de <span class="bold">{{sortData.seuilTotal}}</span></div>
+    {{#if sortData.diffObedience}}<div class="txt-small">Détails du seuil : {{sortData.seuil}} de base + 5 pour la différence d'obédience</div>{{/if}}
     <div class="form-group">
         <label>Magie instantanée (seuil x 2)</label>
         <input type="checkbox" name="magieInstantanee"/>
     </div>
     <div class="form-group">
-        <label>Danseur invisible (pot EMP -2)</label>
+        <label>Danseur invisible (-2 au jet)</label>
         <input type="checkbox" name="danseurInvisible"/>
     </div>
-    {{#if (eq resonance "jorniste")}}
+    {{#if (eq mageData.resonance "jorniste")}}
         <div class="form-group">
-            <label>Mouvements imperceptibles (pot EMP -3)</label>
+            <label>Mouvements imperceptibles (-3 au jet)</label>
             <input type="checkbox" name="mouvImperceptibles"/>
         </div>
     {{/if}}
     <div class="form-group">
-        <label>Utiliser héroisme</label>
+        <label>Utiliser 1 point d'Héroisme (+5 au jet)</label>
         <input type="checkbox" name="utiliseHeroisme"/>
     </div>
 </form>

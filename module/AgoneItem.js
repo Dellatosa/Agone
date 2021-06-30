@@ -8,6 +8,19 @@ export default class AgoneItem extends Item {
         "Oeuvre": "systems/agone/templates/partials/chat/carte-oeuvre.hbs"        
     }
 
+    prepareData() {
+        super.prepareData();
+        let data = this.data.data;
+
+        // if(this.type == "Danseur") {
+        //     if(data.memoire.value > data.memoire.max) {
+        //         data.memoire.value = data.memoire.max;
+        //     }
+        // }     
+        
+        //console.log(this);
+    }
+
     async roll() {
         let chatData = {
             user: game.user.id,
@@ -31,8 +44,6 @@ export default class AgoneItem extends Item {
 
             cardData.data.sorts = sorts;
         }
-
-        console.log("cardData", cardData);
         
         chatData.content = await renderTemplate(this.chatTemplate[this.type], cardData);
         chatData.roll = true;
