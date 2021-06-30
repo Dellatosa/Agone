@@ -51,9 +51,15 @@ Hooks.once("init", function(){
     Handlebars.registerHelper("configLocalize", function(liste, val) {
         return game.i18n.localize(agone[liste][val]);
     });
+
+    Handlebars.registerHelper("toHTML", function(val) {
+        var span = document.createElement('span');
+        span.innerHTML = val;
+        return  span.textContent || span.innerText ;
+    });
 });
 
 Hooks.on("renderChatLog", (app, html, data) => Chat.addChatListeners(html));
 Hooks.on("getChatLogEntryContext", Chat.addChatMessageContextOptions);
 
-Hooks.on("updateItem", (item, modif, info, id) => console.log(item, modif));
+//Hooks.on("updateItem", (item, modif, info, id) => console.log(item, modif));

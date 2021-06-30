@@ -930,7 +930,8 @@
       "type": "",
       "protection": 0,
       "malus": 0,
-      "malusPerception": 0
+      "malusPerception": 0,
+      "equipee": false
     },
     "Arme": {
       "templates": [ "base" ],

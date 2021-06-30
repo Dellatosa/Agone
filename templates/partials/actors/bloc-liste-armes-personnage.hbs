@@ -26,8 +26,8 @@
     <div>{{data.modifDommages}}</div>
     <div>{{data.portee}}</div>
     <div>
-        <select class="inline-edit" data-field="data.data.competence">
-            {{#select data.data.competence}}
+        <select class="inline-edit" data-field="data.competence">
+            {{#select data.competence}}
                 <option value="aucun"></option>
                 {{#each ../actor.data.data.familleCompetences.epreuves.competences.armes.domaines as |domaine keyDom|}}
                     {{#if domaine.label}}

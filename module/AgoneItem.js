@@ -51,3 +51,5 @@ export default class AgoneItem extends Item {
         return ChatMessage.create(chatData);
     }
 }
+
+Hooks.on("updateItem", (item, modif, info, id) => console.log(item, modif));

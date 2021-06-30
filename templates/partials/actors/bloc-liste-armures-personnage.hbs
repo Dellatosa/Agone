@@ -1,5 +1,6 @@
 <div class="ligne-armure titre">
     <label></label>
+    <label>Equipée</label>
     <label>{{localize "agone.common.name"}}</label>
     <label>{{localize "agone.common.type"}}</label>
     <label>{{localize "agone.items.protection"}}</label>
@@ -11,6 +12,7 @@
 {{#each armures as |armure id|}}
 <div class="ligne-armure item" data-item-id="{{armure._id}}">
     <a class="item-roll"><img src="{{img}}" title="Jet de dés" height="32" width="32"/></a>
+    <div><input class="inline-chk" data-field="data.equipee" name="data.equipee" type="checkbox" data-type="Boolean" {{checked data.equipee}}/></div>
     <div>{{name}}</div>
     <div>{{configLocalize "typesArmure" data.type}}</div>
     <div>{{data.protection}}</div>

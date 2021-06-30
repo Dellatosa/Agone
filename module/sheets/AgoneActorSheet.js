@@ -129,6 +129,9 @@ export default class AgoneActorSheet extends ActorSheet {
             // Edition d'un champ d'item directement en ligne
             html.find('.inline-edit').change(this._onEditerInline.bind(this));
 
+            // Edition d'un chk d'item directement en ligne
+            html.find('.inline-chk').change(this._onEditerInlineCheck.bind(this));
+
             //Suppression d'un item
             html.find('.supprimer-item').click(this._onSupprimerItem.bind(this));
         }
@@ -183,6 +186,20 @@ export default class AgoneActorSheet extends ActorSheet {
         let field = element.dataset.field;
 
         return item.update({ [field]: element.value });
+    }
+
+    _onEditerInlineCheck(event) {
+        event.preventDefault();
+        const element = event.currentTarget;
+
+        let itemId = element.closest(".item").dataset.itemId;
+        let item = this.actor.items.get(itemId);
+        let field = element.dataset.field;
+
+        let dtField = field.split(".");
+        let val = !item.data[dtField[0]][dtField[1]];
+
+        return item.update({ [field]: val });
     }
 
     _onEditComp(event) {
