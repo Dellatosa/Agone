@@ -242,7 +242,7 @@
             "coutHeroisme": "Fortune cost",
             "modifDefense": "Def.",
             "protection": "Protection",
-            "malus": "Penalty",
+            "malusAgilite": "Agility penalty",
             "malusPerception": "Perception penalty",
             "memoire": "Memory",
             "memoireDispo": "Ava. memory",

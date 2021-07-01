@@ -374,7 +374,7 @@ export async function sortEmprise(mage, danseur, sort) {
 
     // Pas de jet de sort si le Danseur n'a plus d'endurance
     if(danseur.data.data.endurance.value <= 0) {
-        ui.notifications.warn(`Le danseur ${danseur.data.name} est épuisé. Il ne peut plus lancer de sort tant qu'il n'aura pas récupéré son endurance.`);
+        ui.notifications.warn(`Le danseur ${danseur.data.name} est épuisé. Il ne peut plus lancer de sort jusqu'à ce qu'il récupère son endurance.`);
         return;
     }
 
@@ -431,6 +431,10 @@ export async function sortEmprise(mage, danseur, sort) {
         afficherDialog: false,
         envoiMessage: false
     });
+
+    // On baisse l'endurance du danseur d'un point
+    let valEndurance = danseur.data.data.endurance.value -1;
+    danseur.update({"data.endurance.value": valEndurance});
 
     // Recupération du template
     const messageTemplate = "systems/agone/templates/partials/dice/jet-sort-emprise.hbs";

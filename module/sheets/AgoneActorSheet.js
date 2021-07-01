@@ -129,7 +129,7 @@ export default class AgoneActorSheet extends ActorSheet {
             // Edition d'un champ d'item directement en ligne
             html.find('.inline-edit').change(this._onEditerInline.bind(this));
 
-            // Edition d'un chk d'item directement en ligne
+            // Edition d'une checkbox d'item directement en ligne
             html.find('.inline-chk').change(this._onEditerInlineCheck.bind(this));
 
             //Suppression d'un item

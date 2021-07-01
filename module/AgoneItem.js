@@ -52,4 +52,41 @@ export default class AgoneItem extends Item {
     }
 }
 
-Hooks.on("updateItem", (item, modif, info, id) => console.log(item, modif));
+Hooks.on("updateItem", (item, modif, info, id) => onUpdateItem(item, modif));
+
+function onUpdateItem(item, modif) {
+    if(item.type == "Danseur") {
+        for(let[keyData, valData] of Object.entries(modif.data))
+        {
+            // Modification de la mémoire max
+            if(keyData == "memoire") {
+                for(let[keyValue, newVal] of Object.entries(valData)) {
+                    if(keyValue == "max") {
+                        let memVal = newVal;    // Calcul de la memoire disponible
+                        if(item.data.data.sortsConnus.length > 0) {
+                            // Le danseur a des sorts connus. On déduit leur valeur de la memoire max.
+                            if(item.actor) {
+                                // Le danseur est lié à un personnage, on cherche dans les sorts du personnage
+                                let sortsPerso = item.actor.data.items.filter(function (item) { return item.type == "Sort"});
+                                sortsPerso.forEach( sort => {
+                                    let sc = item.data.data.sortsConnus.find( id => id == sort.id)
+                                    if(sc !== undefined) memVal -= Math.floor(sort.data.data.seuil / 5);
+                                });  
+                            }
+                        }
+                        item.update({"data.memoire.value": memVal });
+                    }
+                }
+            }
+
+            // Modification de l'endurance max
+            if(keyData == "endurance") {
+                for(let[keyValue, newVal] of Object.entries(valData)) {
+                    if(keyValue == "max") {
+                        item.update({"data.endurance.value": newVal });
+                    }
+                }
+            }
+        }          
+    }
+}
