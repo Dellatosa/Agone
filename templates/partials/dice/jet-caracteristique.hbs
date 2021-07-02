@@ -1,21 +1,25 @@
 <div class="jet-carac">
-    <div class="txt-small">Jet de caractéristique 
+    <div class="txt-small">{{localize "agone.actors.jetCarac"}} 
         {{#if stats.marge}}
-        <span>de </span><span class="bold">difficulté {{stats.difficulte}}</span>
+        <span>- </span><span class="bold">{{localize "agone.chat.difficulte"}} {{stats.difficulte}}</span>
         {{/if}}
     </div>
     <div class="txt-small bold">{{stats.labelCarac}} ({{stats.rangCarac}}) x 2 + {{stats.labelAspect}} ({{stats.bonusAspect}})</div>
     {{#if stats.isFumble}}
-        <div class="dice-tooltip"><div class="dice-rolls fumble"><span class="fumble">FUMBLE !!!</span><div class="roll die d10 min">1</div></div></div>
+        <div class="dice-tooltip"><div class="dice-rolls fumble"><span class="fumble">{{localize "agone.chat.fumble"}}</span><div class="roll die d10 min">1</div></div></div>
     {{/if}}
     <div>{{{roll}}}</div>
     <div>{{roll.formula}}</div>
     {{#if stats.marge}}
-        <h3 class="resultat">Marge de réussite {{stats.marge}}</h3>
+        <h3 class="resultat">{{localize "agone.chat.marge"}} {{stats.marge}}</h3>
         {{#if (gte stats.marge 0)}}
-            <h3 class="resultat">Succès !</h3>
+            <h3 class="resultat">{{localize "agone.chat.succes"}}</h3>
         {{else}}
-            <h3 class="resultat">Echec !</h3>
+            {{#if stats.isEchecCritique}}
+                <h3 class="resultat fumble">{{localize "agone.chat.echecCritique"}}</h3>
+            {{else}}
+                <h3 class="resultat">{{localize "agone.chat.echec"}}</h3>
+            {{/if}}
         {{/if}}
     {{/if}}
 </div>

@@ -11,14 +11,6 @@ export default class AgoneItem extends Item {
     prepareData() {
         super.prepareData();
         let data = this.data.data;
-
-        // if(this.type == "Danseur") {
-        //     if(data.memoire.value > data.memoire.max) {
-        //         data.memoire.value = data.memoire.max;
-        //     }
-        // }     
-        
-        //console.log(this);
     }
 
     async roll() {
@@ -44,6 +36,14 @@ export default class AgoneItem extends Item {
 
             cardData.data.sorts = sorts;
         }
+
+        if(this.type == "Arme") {
+            let diff = this.data.data.tai - this.actor.data.data.caracSecondaires.tai;
+            if(diff < -1 || diff > 1) {
+                cardData.data.warnTaiArme = true;
+            }
+
+        }
         
         chatData.content = await renderTemplate(this.chatTemplate[this.type], cardData);
         chatData.roll = true;
@@ -55,6 +55,8 @@ export default class AgoneItem extends Item {
 Hooks.on("updateItem", (item, modif, info, id) => onUpdateItem(item, modif));
 
 function onUpdateItem(item, modif) {
+
+    // Modification sur un Danseur
     if(item.type == "Danseur") {
         for(let[keyData, valData] of Object.entries(modif.data))
         {
@@ -88,5 +90,16 @@ function onUpdateItem(item, modif) {
                 }
             }
         }          
+    }
+
+    // Modification sur une armure
+    if(item.type == "Armure") {
+        for(let[keyData, valData] of Object.entries(modif.data))
+        {
+            // Le malus de perception dépend du type d'armure
+            if(keyData == "type") {
+                item.update({"data.malusPerception": CONFIG.agone.typesArmureMalusPer[valData]});
+            }
+        }
     }
 }

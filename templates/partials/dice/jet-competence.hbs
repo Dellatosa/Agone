@@ -1,33 +1,33 @@
 <div class="jet-comp">
-    <div class="txt-small">Jet de compétence 
+    <div class="txt-small">{{localize "agone.actors.jetComp"}} 
         {{#if stats.isJetDefaut}}
         <span> par défaut </span>
         {{/if}}
         {{#if stats.marge}}
-        <span>de </span><span class="bold">difficulté {{stats.difficulte}}</span>
+        <span>- </span><span class="bold">{{localize "agone.chat.difficulte"}} {{stats.difficulte}}</span>
         {{/if}}
     </div>
     <div class="txt-small bold">{{stats.labelComp}} ({{stats.rangComp}}) + {{stats.labelCarac}} ({{stats.rangCarac}}) + {{stats.labelAspect}} ({{stats.bonusAspect}})</div>
     {{#if stats.specialisation}}
-        <div class="txt-small">Spécialisation <span class="bold">{{stats.labelSpecialisation}}</span></div>
+        <div class="txt-small">{{localize "agone.actors.specialisation"}} <span class="bold">{{stats.labelSpecialisation}}</span></div>
     {{/if}}
     {{#if stats.utiliseHeroisme}}
-        <div class="txt-small bold">Utilisation d'un point d'Héroïsme</div>
+        <div class="txt-small bold">{{localize "agone.chat.utilisationHeroisme"}}</div>
     {{/if}}
     {{#if stats.isFumble}}
-        <div class="dice-tooltip"><div class="dice-rolls fumble"><span class="fumble">FUMBLE !!!</span><div class="roll die d10 min">1</div></div></div>
+        <div class="dice-tooltip"><div class="dice-rolls fumble"><span class="fumble">{{localize "agone.chat.fumble"}}</span><div class="roll die d10 min">1</div></div></div>
     {{/if}}
     <div>{{{roll}}}</div>
     <div>{{roll.formula}}</div>
     {{#if stats.marge}}
-        <h3 class="resultat">Marge de réussite {{#if stats.isEchecCritique}}<span class="fumble">{{stats.marge}}</span>{{else}}{{stats.marge}}{{/if}}</h3>
+        <h3 class="resultat">{{localize "agone.chat.marge"}} {{#if stats.isEchecCritique}}<span class="fumble">{{stats.marge}}</span>{{else}}{{stats.marge}}{{/if}}</h3>
         {{#if (gte stats.marge 0)}}
-            <h3 class="resultat">Succès !</h3>
+            <h3 class="resultat">{{localize "agone.chat.succes"}}</h3>
         {{else}}
             {{#if stats.isEchecCritique}}
-                <h3 class="resultat fumble">Echec Critique !!!</h3>
+                <h3 class="resultat fumble">{{localize "agone.chat.echecCritique"}}</h3>
             {{else}}
-                <h3 class="resultat">Echec !</h3>
+                <h3 class="resultat">{{localize "agone.chat.echec"}}</h3>
             {{/if}}
         {{/if}}
     {{/if}}

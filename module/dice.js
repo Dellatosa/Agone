@@ -90,6 +90,7 @@ export async function jetCompetence({actor = null,
     difficulte = null,
     modifAttaque = null,
     modifParade = null,
+    malusManiement = null,
     utiliseHeroisme = null,
     bonusEmprise = null,
     danseurInvisible = null,
@@ -155,6 +156,12 @@ export async function jetCompetence({actor = null,
         baseFormula += " + @modifParade"; 
     }
 
+    // Malus de maniement si Agilite ou Force insuffisante (jet d'arme)
+    if(malusManiement) {
+        rollData.malusManiement = malusManiement;
+        baseFormula += " + @malusManiement";
+    }
+
     // Bonus d'emprise du Danseur
     if(bonusEmprise) {
         rollData.bonusEmprise = bonusEmprise;
@@ -181,7 +188,7 @@ export async function jetCompetence({actor = null,
             baseFormula += " + 5";
         }
         else {
-            ui.notifications.warn("Le personnage n'a plus de point d'héroïsme disponible. Le jet se fera sans bonus.");
+            ui.notifications.warn(game.i18n.localize("agone.notifications.warnHeroismeEpuise"));
         }    
     }
 
@@ -221,14 +228,6 @@ export async function jetCompetence({actor = null,
             isFumble: fumble,
             isEchecCritique: echecCritique,
             isJetDefaut: isJetDefaut
-        }
-
-        if(modifAttaque) {
-            rollStats.labelModifAttaque = game.i18n.localize("agone.items.modifAttaque");
-        }
-
-        if(modifParade) {
-            rollStats.labelModifParade = game.i18n.localize("agone.items.modifParade");
         }
 
         if(difficulte) {
@@ -271,16 +270,16 @@ async function getJetCompetenceOptions({cfgData = null, defCarac = null}) {
 
     return new Promise( resolve => {
         const data = {
-            title: "Jet de compétence",
+            title: game.i18n.localize("agone.actors.jetComp"),
             content: html,
             buttons: {
                 jet: { // Bouton qui lance le jet de dé
                     icon: '<i class="fas fa-dice"></i>',
-                    label: "Jet",
+                    label: game.i18n.localize("agone.common.jet"),
                     callback: html => resolve(_processJetCompetenceOptions(html[0].querySelector("form")))
                 },
                 annuler: { // Bouton d'annulation
-                    label: "Annuler",
+                    label: game.i18n.localize("agone.common.annuler"),
                     callback: html => resolve({annule: true})
                 }
             },
@@ -303,21 +302,21 @@ function _processJetCompetenceOptions(form) {
 }
 
 export async function actionArme(actor, arme, type) {
-    let statsCombat = actor.getStatsCombat(arme.data.data.competence);
+    let statsCombat = actor.getStatsCombat(arme.data.data.competence, arme.data.data.minForce, arme.data.data.minAgilite);
 
     if(statsCombat === null) {
-        ui.notifications.error(`Impossible de retrouver les statistiques de combat pour l'arme ${arme.data.name}.`)
+        ui.notifications.error(`${game.i18n.localize("agone.notifications.errorDonnesArme")} ${arme.data.name}.`)
         return;
     }
 
-    let modAtt;
-    let modPar;
+    //let modAtt;
+    //let modPar;
 
     if(type == "Attaque") {
-        modAtt = arme.data.data.modifAttaque;
+        statsCombat.modifAttaque = arme.data.data.modifAttaque;
     }
     else if(type == "Parade") {
-        modPar = arme.data.data.modifParade;
+        statsCombat.modifParade = arme.data.data.modifParade;
     }
 
     let rollResult = await jetCompetence({
@@ -329,8 +328,9 @@ export async function actionArme(actor, arme, type) {
         labelCarac: statsCombat.labelCarac,
         bonusAspect: statsCombat.bonusAspect,
         labelAspect: statsCombat.labelAspect,
-        modifAttaque: modAtt,
-        modifParade: modPar,
+        modifAttaque: statsCombat.modifAttaque,
+        modifParade: statsCombat.modifParade,
+        malusManiement: statsCombat.malusManiement,
         afficherDialog: false,
         envoiMessage: false
     });
@@ -356,6 +356,8 @@ export async function actionArme(actor, arme, type) {
         roll: renderedRoll
     }
 
+    console.log(templateContext);
+
     let chatData = {
         user: game.user.id,
         speaker: ChatMessage.getSpeaker({ actor: actor }),
@@ -374,7 +376,7 @@ export async function sortEmprise(mage, danseur, sort) {
 
     // Pas de jet de sort si le Danseur n'a plus d'endurance
     if(danseur.data.data.endurance.value <= 0) {
-        ui.notifications.warn(`Le danseur ${danseur.data.name} est épuisé. Il ne peut plus lancer de sort jusqu'à ce qu'il récupère son endurance.`);
+        ui.notifications.warn(`${danseur.data.name} ${game.i18n.localize("agone.notifications.warnDanseurEpuise")}`);
         return;
     }
 
@@ -492,16 +494,16 @@ async function getJetSortEmpriseOptions({mageData = null, danseurData = null, so
 
     return new Promise( resolve => {
         const data = {
-            title: "Jet de sort d'Emprise",
+            title: game.i18n.localize("agone.actors.jetEmprise"),
             content: html,
             buttons: {
                 jet: { // Bouton qui lance le jet de dé
                     icon: '<i class="fas fa-dice"></i>',
-                    label: "Jet",
+                    label: game.i18n.localize("agone.common.jet"),
                     callback: html => resolve(_processJetSortEmpriseOptions(html[0].querySelector("form")))
                 },
                 annuler: { // Bouton d'annulation
-                    label: "Annuler",
+                    label: game.i18n.localize("agone.common.annuler"),
                     callback: html => resolve({annule: true})
                 }
             },

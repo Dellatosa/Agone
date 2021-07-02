@@ -17,7 +17,7 @@
         {{#with data.data as | dt | }}
             {{#each dt.familleCompetences.occulte.competences.resonance.domaines as |reso keyReso|}}
                 {{#if (eq keyReso dt.caracSecondaires.resonance )}}
-                    <label>Rang</label>
+                    <label>{{localize "agone.actors.rang"}}</label>
                     <div class="fixed-val">{{reso.rang}}</div>
                 {{/if}}
             {{/each}}

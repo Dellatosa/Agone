@@ -21,10 +21,14 @@
         {{/if}}
         <div>{{data.modifDommages}}</div>
     </div>
-    <div class="boutons-carte">
-        <button class="attaque">{{localize "agone.chat.attaque"}}</button>
-        {{#if (eq data.style "melee")}}
-            <button class="parade">{{localize "agone.chat.parade"}}</button>
-        {{/if}}
-    </div>
+    {{#if data.warnTaiArme}}
+        <div class="fumble">{{localize "agone.chat.warnTaiArmeMsg"}}</div>
+    {{else}}
+        <div class="boutons-carte">
+            <button class="attaque">{{localize "agone.chat.attaque"}}</button>
+            {{#if (eq data.style "melee")}}
+                <button class="parade">{{localize "agone.chat.parade"}}</button>
+            {{/if}}
+        </div>
+    {{/if}}
 </div>

@@ -1,23 +1,23 @@
 <form>
     <div>Jeter le sort <span class="bold">{{sortData.nomSort}}</span> avec le danseur <span class="bold">{{danseurData.nomDanseur}}</span></div>
     <div>Potentiel d'Emprise de <span class="bold">{{mageData.potEmprise}}</span> pour un seuil de <span class="bold">{{sortData.seuilTotal}}</span></div>
-    {{#if sortData.diffObedience}}<div class="txt-small">Détails du seuil : {{sortData.seuil}} de base + 5 pour la différence d'obédience</div>{{/if}}
+    {{#if sortData.diffObedience}}<div class="txt-small">{{localize "agone.chat.seuilDetail" seuil=sortData.seuil }}</div>{{/if}}
     <div class="form-group">
-        <label>Magie instantanée (seuil x 2)</label>
+        <label>{{ localize "agone.chat.magieInstantanee"}}</label>
         <input type="checkbox" name="magieInstantanee"/>
     </div>
     <div class="form-group">
-        <label>Danseur invisible (-2 au jet)</label>
+        <label>{{ localize "agone.chat.danseurInvisible"}}</label>
         <input type="checkbox" name="danseurInvisible"/>
     </div>
     {{#if (eq mageData.resonance "jorniste")}}
         <div class="form-group">
-            <label>Mouvements imperceptibles (-3 au jet)</label>
+            <label>{{ localize "agone.chat.mouvImperceptibles"}}</label>
             <input type="checkbox" name="mouvImperceptibles"/>
         </div>
     {{/if}}
     <div class="form-group">
-        <label>Utiliser 1 point d'Héroisme (+5 au jet)</label>
+        <label>{{ localize "agone.chat.utiliseHeroisme"}}</label>
         <input type="checkbox" name="utiliseHeroisme"/>
     </div>
 </form>

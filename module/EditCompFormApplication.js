@@ -12,7 +12,7 @@ export default class EditCompFormApplication extends FormApplication {
         popOut: true,
         template: "systems/agone/templates/application/edit-comp-form-app.hbs",
         id: "edit-comp-app",
-        title: "Edition des compétences",
+        title: game.i18n.localize("agone.common.editerComp"),
         height: 500,
         width: 600,
         resizable: true

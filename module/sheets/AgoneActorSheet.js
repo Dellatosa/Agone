@@ -95,7 +95,7 @@ export default class AgoneActorSheet extends ActorSheet {
             } 
         }
 
-        //console.log(data);
+        console.log(data);
 
         return data;
     }

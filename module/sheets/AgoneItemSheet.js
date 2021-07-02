@@ -87,11 +87,11 @@ export default class AgoneItemSheet extends ItemSheet {
                 this.item.update({"data.memoire.value": memoireDispo});
             }
             else {
-                ui.notifications.warn("Le danseur ne dispose pas d'assez de mémoire pour apprendre ce sort.")    
+                ui.notifications.warn(game.i18n.localize("agone.notifications.warnMemoireDanseur"));
             }
         } 
         else {
-            ui.notifications.error(`Impossible de retrouver les données du sort sélectionné.`);
+            ui.notifications.error(game.i18n.localize("agone.notifications.errorDonneesSort"));
         }
     }
 
@@ -112,7 +112,7 @@ export default class AgoneItemSheet extends ItemSheet {
             this.item.update({"data.memoire.value": memoireDispo});
         }
         else {
-            ui.notifications.error(`Impossible de retrouver les données du sort sélectionné.`);
+            ui.notifications.error(game.i18n.localize("agone.notifications.errorDonneesSort"));
         }
     }
 

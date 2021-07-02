@@ -38,11 +38,12 @@
         </select>
     </div>
     <div>{{configLocalize "typesArme" data.type}}</div>
-    <div>{{data.minForce}}</div>
-    <div>{{data.minAgilite}}</div>
-    <div>{{data.tai}}</div>
+    <div>{{#if (gt data.minForce ../actor.data.data.aspects.corps.caracteristiques.force.valeur )}}<span class="warn">{{data.minForce}}</span>{{else}}<span>{{data.minForce}}</span>{{/if}}</div>
+    <div>{{#if (gt data.minAgilite ../actor.data.data.aspects.corps.caracteristiques.agilite.valeur )}}<span class="warn">{{data.minAgilite}}</span>{{else}}<span>{{data.minAgilite}}</span>{{/if}}</div>
+    <div>{{#WarnTaiArme data.tai ../actor.data.data.caracSecondaires.tai }}<span class="warn">{{data.tai}}</span>{{else}}<span>{{data.tai}}</span>{{/WarnTaiArme}}</div>
     <a class="editer-item" title="{{localize 'agone.common.editer'}}"><i class="fas fa-edit"></i></a>
     <a class="supprimer-item" title="{{localize 'agone.common.supprimer'}}"><i class="fas fa-trash"></i></a>
 </div>            
 {{/each}}
-<!-- TODO : Ajouter une couleur rouge aux valeurs FOR min, AGI min et TAI si le peros ne respecte pas les prérequis) -->
+<!-- TODO : Ajouter une couleur rouge aux valeurs FOR min, AGI min et TAI si le peros ne respecte pas les prérequis) 
+ -->

@@ -11,7 +11,10 @@
             "objet": "Item",
             "confirmSuppr" : "Deletion confirmation",
             "confirmSupprText": "Are you sure you want to delete this item ?",
-            "details": "Details"
+            "details": "Details",
+            "jet": "Roll",
+            "annuler": "Cancel",
+            "editerComp": "Edit skills"
         },
         "actors": {
             "biographie": "Biography",
@@ -61,6 +64,7 @@
             "domaine": "Field",
             "jetComp": "Skill roll",
             "jetCarac": "Attribute roll",
+            "jetEmprise": "Ascendancy roll",
             "editComp": "Edit skills",
             "armures": "Armour",
             "force": "Strength",
@@ -266,12 +270,32 @@
             "sortsDanseur": "Dancer spells"
         },
         "chat": {
+            "succes": "Success !",
+            "echec": "Failure !",
+            "echecCritique": "Critical failure !!!",
+            "fumble": "FUMBLE !!!",
             "attaque": "Attack",
             "actionTitre": "{type} ({arme})",
             "parade": "Parry",
             "paradeTitre": "Parry ({arme})",
             "difficulte": "Difficulty",
-            "caracDefaut": "Default attribute"
+            "marge": "NO TRAD - Marge de réussite",
+            "caracDefaut": "Default attribute",
+            "malusManiement": "Handling penalty",
+            "warnTaiArmeMsg": "NO TRAD - La taille de cette arme ne vous permet pas de l'utiliser.",
+            "utiliseHeroisme": "Use 1 Fortune point (+5)",
+            "danseurInvisible": "NO TRAD - Danseur invisible (-2)",
+            "mouvImperceptibles": "NO TRAD - Mouvements imperceptibles (-3)",
+            "magieInstantanee": "NO TRAD - Magie instantanée (seuil x 2)",
+            "seuilDetail": "NO TRAD - Détails du seuil : {seuil} de base + 5 pour la différence d'obédience",
+            "utilisationHeroisme": "NO TRAD - Utilisation d'un point d'Héroïsme"
+        },
+        "notifications": {
+            "warnMemoireDanseur": "NO TRAD - Le danseur ne dispose pas d'assez de mémoire pour apprendre ce sort.",
+            "errorDonneesSort": "NO TRAD - Impossible de retrouver les données du sort sélectionné.",
+            "warnHeroismeEpuise": "NO TRAD - Le personnage n'a plus de point d'héroïsme disponible. Le jet se fera sans bonus.",
+            "errorDonnesArme": "NO TRAD - Impossible de retrouver les statistiques de combat pour l'arme",
+            "warnDanseurEpuise": "NO TRAD - est épuisé. Il ne peut plus lancer de sort jusqu'à ce qu'il récupère son endurance."
         }
     }
 }

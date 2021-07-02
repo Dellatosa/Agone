@@ -214,6 +214,12 @@ agone.typesArmure = {
     complete: "agone.items.complete"
 }
 
+agone.typesArmureMalusPer = {
+    vesteSeule: 0,
+    partielle: -1,
+    complete: -3
+}
+
 agone.typesAvantageDefaut = {
     aucun: "",
     chargeSociete: "agone.items.chargeSociete",

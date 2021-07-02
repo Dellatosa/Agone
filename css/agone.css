@@ -102,6 +102,12 @@
   padding-top: 6px;
   padding-bottom: 6px;
 }
+.carte .grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 3px;
+  text-align: center;
+}
 .carte .grid-3 {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -148,6 +154,9 @@ select.auto-size {
   background-color: rgba(82, 77, 77, 0.075);
   margin: 2px;
   text-align: center;
+}
+.warn {
+  color: #aa0200;
 }
 .agone.sheet.actor form {
   display: flex;

@@ -194,15 +194,21 @@ export default class AgoneActor extends Actor {
         return null;
     }
 
-    getStatsCombat(compArme) {
+    getStatsCombat(compArme, minForce, minAgilite) {
         let data = this.data.data;
 
         if(compArme) {
-            let result = {rangComp: 0, labelComp: "ND", specialisation: false, labelSpecialisation: "ND", rangCarac: 0, labelCarac: "ND", bonusAspect: 0, labelAspect: "ND"};
+            let result = {rangComp: 0, labelComp: "ND", specialisation: false, labelSpecialisation: "ND", rangCarac: 0, labelCarac: "ND", bonusAspect: 0, labelAspect: "ND", malusManiement: null};
             result.rangComp = data.familleCompetences.epreuves.competences.armes.domaines[compArme].rang;
             result.labelComp = data.familleCompetences.epreuves.competences.armes.domaines[compArme].label;
             result.specialisation = data.familleCompetences.epreuves.competences.armes.domaines[compArme].specialisation;
             result.labelSpecialisation = data.familleCompetences.epreuves.competences.armes.domaines[compArme].labelSpecialisation;
+
+            let malusAgilite = Math.min(data.aspects.corps.caracteristiques.agilite.valeur - minAgilite, 0);
+            let malusForce = Math.min(data.aspects.corps.caracteristiques.force.valeur - minForce, 0);
+            if(malusAgilite + malusForce < 0) {
+                result.malusManiement = malusAgilite + malusForce;
+            }
 
             let caracData = this.getCaracData(data.familleCompetences.epreuves.competences.armes.domaines[compArme].caracteristique);
             result.rangCarac = caracData.rangCarac;

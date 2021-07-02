@@ -20,7 +20,7 @@
             </div>
             <div><input name="data.protection" type="text" value="{{data.data.protection}}" data-dtype="Number" placeholder="0"/></div>
             <div><input name="data.malus" type="text" value="{{data.data.malus}}" data-dtype="Number" placeholder="0"/></div>
-            <div><input name="data.malusPerception" type="text" value="{{data.data.malusPerception}}" data-dtype="Number" placeholder="0"/></div>
+            <div><input name="data.malusPerception" type="text" value="{{data.data.malusPerception}}" data-dtype="Number" placeholder="0" readonly/></div>
         </div>
          <div>{{localize "agone.items.armureDesc"}}</div> 
          {{editor content=data.data.description target="data.description" button=true owner=true editable=true}}

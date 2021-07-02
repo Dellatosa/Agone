@@ -52,10 +52,12 @@ Hooks.once("init", function(){
         return game.i18n.localize(agone[liste][val]);
     });
 
-    Handlebars.registerHelper("toHTML", function(val) {
-        var span = document.createElement('span');
-        span.innerHTML = val;
-        return  span.textContent || span.innerText ;
+    Handlebars.registerHelper("WarnTaiArme", function(taiArme, taiPerso, options) {
+        let diff = taiArme - taiPerso;
+        if(diff < -1 || diff > 1)
+            return options.fn(this);
+        else
+            return options.inverse(this);
     });
 });
 
