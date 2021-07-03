@@ -572,3 +572,72 @@ function _processJetSortEmpriseOptions(form) {
         utiliseHeroisme : form.utiliseHeroisme.checked
     }
 }
+
+// Jet de Contre-magie, avec affichage du messsage dans la chat
+export async function contreMagie(mage, danseur) {
+    let statsEmprise = mage.getStatsEmprise();
+
+    // Construction des strutures de données pour l'affichage de la boite de dialogue
+    let mageData = {
+        potEmprise: statsEmprise.emprise + Math.min(statsEmprise.rangResonance, statsEmprise.connDanseurs) + statsEmprise.bonusEsprit + danseur.data.data.bonusEmprise,
+        resonance: statsEmprise.resonance
+    };
+
+    let danseurData = {
+        nomDanseur: danseur.data.name
+    };
+
+    // On lance le jet de dé depuis la fonction de jet de compétence 
+    // On récupère le rollResult
+    let rollResult = await jetCompetence({
+        actor: mage,
+        rangComp:  Math.min(statsEmprise.rangResonance, statsEmprise.connDanseurs),
+        jetDefautInterdit: true,
+        rangCarac: statsEmprise.emprise,
+        bonusAspect: statsEmprise.bonusEsprit,
+        bonusEmprise: danseur.data.data.bonusEmprise,
+        //utiliseHeroisme: dialogOptions.utiliseHeroisme,
+        afficherDialog: false,
+        envoiMessage: false
+    });
+
+    // Recupération du template
+    const messageTemplate = "systems/agone/templates/partials/dice/jet-contre-magie.hbs";
+    let renderedRoll = await rollResult.render();
+
+    // Construction du jeu de données pour alimenter le template
+    let rollStats = {
+        ...rollResult.data,
+        specialisation: statsEmprise.specialisation,
+        labelSpecialisation: statsEmprise.labelSpecialisation
+    }
+
+    // Gestion du Fumble et de l'échec critique
+    if(rollResult.result[0] == "-") {
+        rollStats.isFumble = true;
+        if(rollResult.dice[0].results[0].result == 10) {
+            rollStats.isEchecCritique = true;
+        }
+    }
+
+    // Assignation des données au template
+    let templateContext = {
+        stats: rollStats,
+        mage: mageData,
+        danseur: danseurData,
+        roll: renderedRoll
+    }
+
+    // Construction du message
+    let chatData = {
+        user: game.user.id,
+        speaker: ChatMessage.getSpeaker({ actor: mage }),
+        roll: rollResult,
+        content: await renderTemplate(messageTemplate, templateContext),
+        sound: CONFIG.sounds.dice,
+        type: CONST.CHAT_MESSAGE_TYPES.ROLL
+    }
+
+    // Affichage du message
+    ChatMessage.create(chatData);
+}

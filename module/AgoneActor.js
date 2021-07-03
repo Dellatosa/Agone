@@ -254,6 +254,10 @@ export default class AgoneActor extends Actor {
         return null;
     }
 
+    getDanseurs() {
+        return this.data.items.filter(function (item) { return item.type == "Danseur"});
+    }
+
     depenserHeroisme() {
         let data = this.data.data;
 

@@ -356,6 +356,9 @@ nav.magie-tabs {
   margin: 3px;
   flex: 0 1 3em;
 }
+.recap button {
+  flex: 0 0 200px;
+}
 .liste-armes,
 .liste-armures,
 .liste-danseurs,

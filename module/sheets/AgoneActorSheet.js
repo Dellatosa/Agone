@@ -95,7 +95,7 @@ export default class AgoneActorSheet extends ActorSheet {
             } 
         }
 
-        console.log(data);
+        //console.log(data);
 
         return data;
     }
@@ -121,6 +121,7 @@ export default class AgoneActorSheet extends ActorSheet {
             // Boutons de l'onglet Emprise
             html.find('button.reconnSort').click(this._onReconnSort.bind(this));
             html.find('button.resistMagie').click(this._onResistMagie.bind(this));
+            html.find('button.contreMagie').click(this._onContreMagie.bind(this));
 
             // edit-comp - edition des compétences d'une famille
             html.find('.edit-comp').click(this._onEditComp.bind(this));
@@ -331,7 +332,6 @@ export default class AgoneActorSheet extends ActorSheet {
 
     _onResistMagie(event) {
         event.preventDefault();
-        const dataset = event.currentTarget.dataset;
 
         let caracData = this.actor.getCaracData("emprise");
 
@@ -344,5 +344,22 @@ export default class AgoneActorSheet extends ActorSheet {
             difficulte: 15,
             titrePersonnalise: "Jet de résistance magique"
         });
+    }
+
+    _onContreMagie(event) {
+        event.preventDefault();
+
+        let danseurs = this.actor.getDanseurs();
+        if(danseurs.length == 0) {
+            ui.notifications.warn(`Vous ne pouvez pas pratiquer la Contre-magie sans Danseur.`);
+            return;
+        }
+        else if(danseurs.length == 1) {
+            // Jet de Contre-magie avec ce danseur
+            Dice.contreMagie(this.actor, danseurs[0]);
+        }
+        else {
+            // Carte dans le chat de sélection du danseur
+        }
     }
 }
