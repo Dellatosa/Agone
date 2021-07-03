@@ -974,6 +974,7 @@
       "templates": [ "base" ],
       "artMagique": "",
       "saison": "",
+      "instrument": "",
       "seuil": 0,
       "portee": "",
       "tempsPreparation": "",

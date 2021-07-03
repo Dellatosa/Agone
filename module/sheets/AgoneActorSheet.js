@@ -114,6 +114,14 @@ export default class AgoneActorSheet extends ActorSheet {
             // roll-comp - jet de compétence
             html.find('.roll-comp').click(this._onRollComp.bind(this));
 
+            // Boutons de l'onglet Combat
+            html.find('button.esquive').click(this._onEsquive.bind(this));
+            html.find('button.defenseNat').click(this._onDefenseNat.bind(this));
+
+            // Boutons de l'onglet Emprise
+            html.find('button.reconnSort').click(this._onReconnSort.bind(this));
+            html.find('button.resistMagie').click(this._onResistMagie.bind(this));
+
             // edit-comp - edition des compétences d'une famille
             html.find('.edit-comp').click(this._onEditComp.bind(this));
 
@@ -254,6 +262,87 @@ export default class AgoneActorSheet extends ActorSheet {
             labelCarac: caracData.labelCarac,
             bonusAspect: caracData.bonusAspect,
             labelAspect: caracData.labelAspect
+        });
+    }
+
+    _onEsquive(event) {
+        event.preventDefault();
+
+        let caracData = this.actor.getCaracData("agilite");
+        let compData = this.actor.getCompData("epreuves", "esquive", null);
+
+        Dice.jetCompetence({
+            actor: this.actor,
+            rangComp: compData.rangComp,
+            labelComp: compData.labelComp,
+            specialisation: compData.specialisation,
+            labelSpecialisation: compData.labelSpecialisation,
+            jetDefautInterdit: compData.jetDefautInterdit,
+            rangCarac: caracData.rangCarac,
+            labelCarac: caracData.labelCarac,
+            bonusAspect: caracData.bonusAspect,
+            labelAspect: caracData.labelAspect,
+            titrePersonnalise: "Jet d'esquive",
+            afficherDialog: false
+        })
+    }
+
+    _onDefenseNat(event) {
+        event.preventDefault();
+
+        let caracData = this.actor.getCaracData("agilite");
+        let compData = this.actor.getCompData("epreuves", "esquive", null);
+
+        Dice.jetCompetence({
+            actor: this.actor,
+            specialisation: compData.specialisation,
+            labelSpecialisation: compData.labelSpecialisation,
+            jetDefautInterdit: compData.jetDefautInterdit,
+            rangCarac: caracData.rangCarac,
+            labelCarac: caracData.labelCarac,
+            bonusAspect: caracData.bonusAspect,
+            labelAspect: caracData.labelAspect,
+            titrePersonnalise: "Jet de défense naturelle",
+            afficherDialog: false
+        })
+    }
+
+    _onReconnSort(event){
+        event.preventDefault();
+
+        let caracData = this.actor.getCaracData("emprise");
+        let compData = this.actor.getCompData("occulte", "connDanseurs", null);
+
+        Dice.jetCompetence({
+            actor: this.actor,
+            rangComp: compData.rangComp,
+            labelComp: compData.labelComp,
+            specialisation: compData.specialisation,
+            labelSpecialisation: compData.labelSpecialisation,
+            jetDefautInterdit: compData.jetDefautInterdit,
+            rangCarac: caracData.rangCarac,
+            labelCarac: caracData.labelCarac,
+            bonusAspect: caracData.bonusAspect,
+            labelAspect: caracData.labelAspect,
+            titrePersonnalise: "Jet de reconnaissance de sort",
+            afficherDialog: false
+        })
+    }
+
+    _onResistMagie(event) {
+        event.preventDefault();
+        const dataset = event.currentTarget.dataset;
+
+        let caracData = this.actor.getCaracData("emprise");
+
+        Dice.jetCaracteristique({
+            actor: this.actor,
+            rangCarac: caracData.rangCarac,
+            labelCarac: caracData.labelCarac,
+            bonusAspect: caracData.bonusAspect,
+            labelAspect: caracData.labelAspect,
+            difficulte: 15,
+            titrePersonnalise: "Jet de résistance magique"
         });
     }
 }

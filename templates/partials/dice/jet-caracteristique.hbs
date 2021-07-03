@@ -1,7 +1,12 @@
 <div class="jet-carac">
-    <div class="txt-small">{{localize "agone.actors.jetCarac"}} 
-        {{#if stats.marge}}
-        <span>- </span><span class="bold">{{localize "agone.chat.difficulte"}} {{stats.difficulte}}</span>
+    <div class="txt-small">
+        {{#if stats.titrePersonnalise}} 
+            {{stats.titrePersonnalise}} 
+        {{else}}
+            {{localize "agone.actors.jetCarac"}} 
+            {{#if stats.marge}}
+                <span> - </span><span class="bold">{{localize "agone.chat.difficulte"}} {{stats.difficulte}}</span>
+            {{/if}}
         {{/if}}
     </div>
     <div class="txt-small bold">{{stats.labelCarac}} ({{stats.rangCarac}}) x 2 + {{stats.labelAspect}} ({{stats.bonusAspect}})</div>

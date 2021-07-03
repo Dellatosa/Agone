@@ -246,6 +246,15 @@ agone.saisons = {
     hiver: "agone.actors.hiver"
 }
 
+agone.instruments = {
+    aucun: "",
+    cistre: "agone.items.cistre",
+    tambour: "agone.items.tambour",
+    flute: "agone.items.flute",
+    harpe: "agone.items.harpe",
+    viole: "agone.items.viole"
+}
+
 agone.resonances = {
     aucun: "",
     jorniste: "agone.actors.jorniste",

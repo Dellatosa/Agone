@@ -4,7 +4,8 @@ export async function jetCaracteristique({actor = null,
     labelCarac = null,
     bonusAspect = null,
     labelAspect = null,
-    difficulte = null} = {}) {
+    difficulte = null,
+    titrePersonnalise = null} = {}) {
 
     // Définition de la formule de base du jet, et de sa version fumble (avec 1d10 explosif retranché au 1 du dé initial)
     let rollFormula = "1d10x + (@rangCarac * 2) + @bonusAspect";
@@ -44,6 +45,10 @@ export async function jetCaracteristique({actor = null,
         isEchecCritique: echecCritique
     }
 
+    if(titrePersonnalise) {
+        rollStats.titrePersonnalise = titrePersonnalise;
+    }
+    
     if(difficulte) {
         rollStats.difficulte = difficulte;
         rollStats.marge = rollResult.total - difficulte;
@@ -95,6 +100,7 @@ export async function jetCompetence({actor = null,
     bonusEmprise = null,
     danseurInvisible = null,
     mouvImperceptibles = null,
+    titrePersonnalise = null,
     afficherDialog = true,
     envoiMessage = true} = {}) {
 
@@ -127,22 +133,52 @@ export async function jetCompetence({actor = null,
     // Définition de la formule de base du jet, et de sa version fumble (avec 1d10 explosif retranché au 1 du dé initial)
     let rollFormula = "1d10x + ";
     let rollFumbleFormula = "(1d10x * -1) + 1 + ";
-    let baseFormula = "@rangComp + @rangCarac + @bonusAspect";
 
-    // On alimente ensuite la formule de base avec les différentes options
-    // Si la compétence à le rang 0, il s'agit d'un jet par défaut avec un malus de -3
+    let baseFormula;
     let isJetDefaut = false;
-    if(rangComp == 0) {
-        rangComp = -3;
-        isJetDefaut = true;
+
+    // La formule de base varie
+    // Jet avec (jet classique) ou sans rang de compétence (ex: défense naturelle)
+    if(rangComp) {
+        baseFormula = "@rangComp + @rangCarac + @bonusAspect";
+
+        // Si la compétence à le rang 0, il s'agit d'un jet par défaut avec un malus de -3
+        if(rangComp == 0) {
+            rangComp = -3;
+            isJetDefaut = true;
+        }
+    }
+    else {
+        baseFormula = "@rangCarac + @bonusAspect";
     }
 
-    // Données de base du jet
-    let rollData = {
+     // Données de base du jet
+     let rollData = {
         rangComp: rangComp,
         rangCarac: rangCarac,
         bonusAspect: bonusAspect
     };
+
+    // On alimente ensuite la formule de base avec les différentes options
+    // Malus d'armure sur les jets d'Agilité
+    if(labelCarac == game.i18n.localize(CONFIG.agone.caracteristiques.agilite))
+    {
+        let malusArmure = actor.getMalusArmure("agilite");
+        if(malusArmure) {
+            rollData.malusArmure = malusArmure;
+            baseFormula += " + @malusArmure"; 
+        }
+    }
+
+    // Malus d'armure sur les jets de Perception
+    if(labelCarac == game.i18n.localize(CONFIG.agone.caracteristiques.perception))
+    {
+        let malusArmure = actor.getMalusArmure("perception");
+        if(malusArmure) {
+            rollData.malusArmure = malusArmure;
+            baseFormula += " + @malusArmure"; 
+        }
+    }
 
     // Modificateur d'attaque (jet d'arme)
     if(modifAttaque) {
@@ -228,6 +264,10 @@ export async function jetCompetence({actor = null,
             isFumble: fumble,
             isEchecCritique: echecCritique,
             isJetDefaut: isJetDefaut
+        }
+
+        if(titrePersonnalise) {
+            rollStats.titrePersonnalise = titrePersonnalise;
         }
 
         if(difficulte) {

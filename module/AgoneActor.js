@@ -238,6 +238,22 @@ export default class AgoneActor extends Actor {
         return result;
     }
 
+    getMalusArmure(carac) {
+        let malusArmure = 0;
+        let armuresEquip = this.data.items.filter(function (item) { return item.type == "Armure" && item.data.data.equipee == true});
+        armuresEquip.forEach( armure => {
+            if(carac == "agilite")
+                malusArmure += armure.data.data.malus;
+            else if (carac == "perception")
+                malusArmure += armure.data.data.malusPerception;
+        });
+        
+        if(malusArmure < 0) 
+            return malusArmure;
+        else
+        return null;
+    }
+
     depenserHeroisme() {
         let data = this.data.data;
 

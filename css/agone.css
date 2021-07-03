@@ -39,7 +39,7 @@
 }
 .grid-oeuvre {
   display: grid;
-  grid-template-columns: 1.5fr 1.5fr repeat(4, 1fr);
+  grid-template-columns: 1.5fr 1.5fr 1.5fr repeat(4, 1fr);
   padding: 3px;
 }
 .grid-sort {
@@ -421,7 +421,7 @@ nav.magie-tabs {
 }
 .ligne-oeuvre {
   display: grid;
-  grid-template-columns: 2.5em 2fr 2fr 2fr repeat(4, 1fr) 2em 2em;
+  grid-template-columns: 2.5em 2fr 2fr 2fr 2fr repeat(4, 1fr) 2em 2em;
   padding: 3px;
   text-align: center;
 }
