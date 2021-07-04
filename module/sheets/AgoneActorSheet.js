@@ -115,6 +115,7 @@ export default class AgoneActorSheet extends ActorSheet {
             html.find('.roll-comp').click(this._onRollComp.bind(this));
 
             // Boutons de l'onglet Combat
+            html.find('button.initiative').click(this._onInitiativeRoll.bind(this));
             html.find('button.esquive').click(this._onEsquive.bind(this));
             html.find('button.defenseNat').click(this._onDefenseNat.bind(this));
 
@@ -360,6 +361,24 @@ export default class AgoneActorSheet extends ActorSheet {
         }
         else {
             // Carte dans le chat de sélection du danseur
+        }
+    }
+
+    _onInitiativeRoll(event) {
+        event.preventDefault();
+
+        let actorTrouve = false;
+        if(game.combat) {
+            game.combat.combatants.forEach(elem => {
+                if(elem.actor.id == this.actor.id) {
+                    this.actor.rollInitiative();
+                    actorTrouve = true;
+                }
+            });
+        }
+        
+        if(!actorTrouve) {
+            ui.notifications.warn("Votre personnage n'est actuellement impliqué dans aucun combat.")
         }
     }
 }

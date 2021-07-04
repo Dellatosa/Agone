@@ -183,7 +183,13 @@
             "savoir": "Savoir",
             "occulte": "Occulte",
             "histoire": "Histoire",
-            "equipement": "Equipement"
+            "equipement": "Equipement",
+            "defenseNat": "Défense naturelle",
+            "reconnSort" : "Reconnaître un sort",
+            "resistMagie": "Résistance magique",
+            "contreMagie": "Contre-magie",
+            "potEmprise": "Potentiel d'Emprise",
+            "initiative": "Initiative"
         },
         "items":{
             "armeLabel": "Arme",          
@@ -295,7 +301,8 @@
             "magieInstantanee": "Magie instantanée (seuil x 2)",
             "seuilDetail": "Détails du seuil : {seuil} de base + 5 pour la différence d'obédience",
             "utilisationHeroisme": "Utilisation d'un point d'Héroïsme",
-            "malusArmure": "Malus d'armure"
+            "malusArmure": "Malus d'armure",
+            "contrerMagieTitre": "Tente de contrer la magie avec"
         },
         "notifications": {
             "warnMemoireDanseur": "Le danseur ne dispose pas d'assez de mémoire pour apprendre ce sort.",

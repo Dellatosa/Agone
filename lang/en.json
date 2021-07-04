@@ -183,7 +183,13 @@
             "savoir": "Knowledge",
             "occulte": "Occult",
             "histoire": "Story",
-            "equipement": "Equipment"
+            "equipement": "Equipment",
+            "defenseNat": "NO TRAD - Défense naturelle",
+            "reconnSort" : "NO TRAD - Reconnaître un sort",
+            "resistMagie": "NO TRAD - Résistance magique",
+            "contreMagie": "NO TRAD - Contre-magie",
+            "potEmprise": "NO TRAD - Potentiel d'Emprise",
+            "initiative": "Initiative"
         },
         "items":{
             "armeLabel": "Weapon",
@@ -295,7 +301,8 @@
             "magieInstantanee": "NO TRAD - Magie instantanée (seuil x 2)",
             "seuilDetail": "NO TRAD - Détails du seuil : {seuil} de base + 5 pour la différence d'obédience",
             "utilisationHeroisme": "NO TRAD - Utilisation d'un point d'Héroïsme",
-            "malusArmure": "Armour penalty"
+            "malusArmure": "Armour penalty",
+            "contrerMagieTitre": "NO TRAD - Tente de contrer la magie avec"
         },
         "notifications": {
             "warnMemoireDanseur": "NO TRAD - Le danseur ne dispose pas d'assez de mémoire pour apprendre ce sort.",

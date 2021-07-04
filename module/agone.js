@@ -34,7 +34,7 @@ async function preloadHandlebarsTemplates() {
 Hooks.once("init", function(){
     console.log("Agone | Initialisation du système Agone RPG");
 
-    //CONFIG.debug.hooks = true;
+    CONFIG.debug.hooks = true;
 
     CONFIG.agone = agone;
     CONFIG.Item.documentClass = AgoneItem;
