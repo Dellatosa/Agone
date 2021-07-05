@@ -945,7 +945,8 @@
       "modifDommages": 0,
       "minForce": 0,
       "minAgilite": 0,
-      "portee": 0
+      "portee": 0,
+      "equipee": ""
     },
     "Danseur": {
       "templates": [ "base" ],

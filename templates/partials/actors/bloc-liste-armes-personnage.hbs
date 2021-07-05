@@ -1,6 +1,7 @@
 <div class="ligne-arme titre">
     <label></label>
     <label>{{localize "agone.common.name"}}</label>
+    <label>{{localize "agone.items.equipee"}}</label>
     <label>{{localize "agone.items.style"}}</label>
     <label>{{localize "agone.items.modifInit"}}</label>
     <label>{{localize "agone.items.modifAttaque"}}</label>
@@ -19,6 +20,34 @@
 <div class="ligne-arme item" data-item-id="{{arme._id}}">
     <a class="item-roll"><img src="{{img}}" title="Jet de dés" height="32" width="32"/></a>
     <div>{{name}}</div>
+    <div>
+        <select class="inline-edit" data-field="data.equipee">
+            {{#select data.equipee}}
+                <option value=""></option>
+                {{#if (eq data.style "melee") }}
+                    {{#if (eq data.diffTai -1)}}
+                        <option value="1main">1 m.</option>
+                    {{/if}}
+                    {{#if (eq data.diffTai 0)}}
+                        <option value="1main">1 m.</option>
+                        <option value="2mains">2 m.</option>
+                    {{/if}}
+                    {{#if (eq data.diffTai 1)}}
+                        <option value="2mains">2 m.</option>
+                    {{/if}}
+                {{/if}}
+                {{#if (eq data.style "trait") }}
+                    <option value="2mains">2 m.</option>
+                {{/if}}
+                {{#if (eq data.style "jet") }}
+                    <option value="1main">1 m.</option>
+                {{/if}}
+                {{#if (eq data.style "bouclier") }}
+                    <option value="secMain">2em m.</option>
+                {{/if}}
+            {{/select}}
+        </select>
+    </div>
     <div>{{configLocalize "stylesArme" data.style}}</div>
     <div>{{data.modifInit}}</div>
     <div>{{data.modifAttaque}}</div>
@@ -28,7 +57,7 @@
     <div>
         <select class="inline-edit" data-field="data.competence">
             {{#select data.competence}}
-                <option value="aucun"></option>
+                <option value=""></option>
                 {{#each ../actor.data.data.familleCompetences.epreuves.competences.armes.domaines as |domaine keyDom|}}
                     {{#if domaine.label}}
                         <option value="{{keyDom}}">{{localize domaine.label}}</option>
@@ -38,8 +67,8 @@
         </select>
     </div>
     <div>{{configLocalize "typesArme" data.type}}</div>
-    <div>{{#if (gt data.minForce ../actor.data.data.aspects.corps.caracteristiques.force.valeur )}}<span class="warn">{{data.minForce}}</span>{{else}}<span>{{data.minForce}}</span>{{/if}}</div>
-    <div>{{#if (gt data.minAgilite ../actor.data.data.aspects.corps.caracteristiques.agilite.valeur )}}<span class="warn">{{data.minAgilite}}</span>{{else}}<span>{{data.minAgilite}}</span>{{/if}}</div>
+    <div>{{#malusFOR data.minForce data.style data.equipee ../actor.data.data.aspects.corps.caracteristiques.force.valeur }}<span class="warn">{{data.minForce}}</span>{{else}}<span>{{data.minForce}}</span>{{/malusFOR}}</div>
+    <div>{{#malusAGI data.minAgilite data.style data.equipee ../actor.data.data.aspects.corps.caracteristiques.agilite.valeur }}<span class="warn">{{data.minAgilite}}</span>{{else}}<span>{{data.minAgilite}}</span>{{/malusAGI}}</div>
     <div>{{#if data.nonUtilisable }}<span class="warn">{{data.tai}}</span>{{else}}<span>{{data.tai}}</span>{{/if}}</div>
     <a class="editer-item" title="{{localize 'agone.common.editer'}}"><i class="fas fa-edit"></i></a>
     <a class="supprimer-item" title="{{localize 'agone.common.supprimer'}}"><i class="fas fa-trash"></i></a>

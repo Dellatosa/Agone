@@ -98,7 +98,7 @@ function onUpdateItem(item, modif) {
     }
 
     // Modification sur une arme
-    if(item.type == "Arme" && item.actor) {
+    if(item.type == "Arme" && item.actor && modif.data) {
         for(let[keyData, valData] of Object.entries(modif.data))
         {
             if(keyData == "tai" && valData != null) {
@@ -109,6 +109,10 @@ function onUpdateItem(item, modif) {
                 } else {
                     item.update({"data.nonUtilisable": false});
                 }
+            }
+
+            if(keyData == "equipee" && item.actor) {
+                item.actor.desequipeArmes(item.id, valData);
             }
         }
     }

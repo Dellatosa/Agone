@@ -285,7 +285,8 @@
             "tambour": "Tambour",
             "flute": "Flûte",
             "harpe": "Harpe",
-            "viole": "Viole"
+            "viole": "Viole",
+            "equipee": "Equipée"
         },
         "chat": {
             "succes": "Succès !",

@@ -52,13 +52,23 @@ Hooks.once("init", function(){
         return game.i18n.localize(agone[liste][val]);
     });
 
-/*     Handlebars.registerHelper("WarnTaiArme", function(taiArme, taiPerso, options) {
-        let diff = taiArme - taiPerso;
-        if(diff < -1 || diff > 1)
+    Handlebars.registerHelper("malusAGI", function(minArme, style, equipee, agi, options) {
+        let diff = minArme - agi;
+        if(equipee == "2mains" && style != "trait") diff -= 1;
+        if(diff > 0)
             return options.fn(this);
         else
             return options.inverse(this);
-    }); */
+    });
+    
+    Handlebars.registerHelper("malusFOR", function(minArme, style, equipee, agi, options) {
+        let diff = minArme - agi;
+        if(equipee == "2mains" && style != "trait") diff -= 2;
+        if(diff > 0)
+            return options.fn(this);
+        else
+            return options.inverse(this);
+    });
 });
 
 Hooks.on("renderChatLog", (app, html, data) => Chat.addChatListeners(html));

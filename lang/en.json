@@ -285,7 +285,8 @@
             "tambour": "NO TRAD - Tambour",
             "flute": "NO TRAD - Flûte",
             "harpe": "NO TRAD - Harpe",
-            "viole": "NO TRAD - Viole"
+            "viole": "NO TRAD - Viole",
+            "equipee": "Equipped"
         },
         "chat": {
             "succes": "Success !",

@@ -275,6 +275,34 @@ export default class AgoneActor extends Actor {
         this.update({[`data.familleCompetences.${famille}`]: listeComps});
     }
 
+    desequipeArmes(itemId, equipee) {
+        if(equipee == "") return;
+
+        if(equipee == "2mains") {
+            let autresArmesEquip = this.data.items.filter(function (item) { return item.type == "Arme" && item.id != itemId && item.data.data.equipee != ""});
+            autresArmesEquip.forEach(arme => {
+                console.log(arme);
+                arme.update({"data.equipee": ""});
+            });
+        }
+
+        if(equipee == "1main") {
+            let autresArmesEquip = this.data.items.filter(function (item) { return item.type == "Arme" && item.id != itemId && item.data.data.style != "bouclier" && item.data.data.equipee != ""});
+            autresArmesEquip.forEach(arme => {
+                console.log(arme);
+                arme.update({"data.equipee": ""});
+            });
+        }
+
+        if(equipee == "secMain") {
+            let autresArmesEquip = this.data.items.filter(function (item) { return item.type == "Arme" && item.id != itemId && item.data.data.equipee == "2mains"});
+            autresArmesEquip.forEach(arme => {
+                console.log(arme);
+                arme.update({"data.equipee": ""});
+            });
+        }
+    }
+
     rollInitiativePerso(arme = null) {
         // Données de base : AGI + PER + Bonus de Corps
         let initFormula = "1d10 + @aspects.corps.caracteristiques.agilite.valeur + @aspects.corps.caracteristiques.perception.valeur + @aspects.corps.bonus.valeur";
