@@ -124,10 +124,24 @@
   display: inline-flex;
   flex-wrap: wrap;
 }
-.boutons-carte .ligne-bouton {
+.boutons-carte .ligne-btn-sort {
   width: 100%;
   display: grid;
   grid-template-columns: 2em 1fr;
+  text-align: center;
+  margin: 1px;
+}
+.boutons-carte .ligne-btn-2 {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  text-align: center;
+  margin: 1px;
+}
+.boutons-carte .ligne-btn-3 {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
   text-align: center;
   margin: 1px;
 }

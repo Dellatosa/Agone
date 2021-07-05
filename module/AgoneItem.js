@@ -37,13 +37,13 @@ export default class AgoneItem extends Item {
             cardData.data.sorts = sorts;
         }
 
-        if(this.type == "Arme") {
+        /* if(this.type == "Arme") {
             let diff = this.data.data.tai - this.actor.data.data.caracSecondaires.tai;
             if(diff < -1 || diff > 1) {
                 cardData.data.warnTaiArme = true;
             }
 
-        }
+        } */
         
         chatData.content = await renderTemplate(this.chatTemplate[this.type], cardData);
         chatData.roll = true;
@@ -95,6 +95,22 @@ function onUpdateItem(item, modif) {
                 }
             }
         }          
+    }
+
+    // Modification sur une arme
+    if(item.type == "Arme" && item.actor) {
+        for(let[keyData, valData] of Object.entries(modif.data))
+        {
+            if(keyData == "tai" && valData != null) {
+                let diff = valData - item.actor.data.data.caracSecondaires.tai;
+                item.update({"data.diffTai": diff });
+                if(diff < -1 || diff > 1) {
+                    item.update({"data.nonUtilisable": true});
+                } else {
+                    item.update({"data.nonUtilisable": false});
+                }
+            }
+        }
     }
 
     // Modification sur une armure

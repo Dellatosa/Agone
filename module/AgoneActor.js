@@ -274,6 +274,41 @@ export default class AgoneActor extends Actor {
     updateFamilleComps(famille, listeComps) {
         this.update({[`data.familleCompetences.${famille}`]: listeComps});
     }
+
+    rollInitiativePerso(arme = null) {
+        // Données de base : AGI + PER + Bonus de Corps
+        let initFormula = "1d10 + @aspects.corps.caracteristiques.agilite.valeur + @aspects.corps.caracteristiques.perception.valeur + @aspects.corps.bonus.valeur";
+        
+        // Malus d'armure
+        let malusArmure = this.getMalusArmure("agilite");
+        if(malusArmure) {
+            initFormula += ` + ${malusArmure}`;
+        }
+
+        // Bonus de l'arme
+        if(arme) {
+            if(arme.data.data.modifInit) {
+                if(arme.data.data.modifInit != 0)
+                {
+                    initFormula += ` + ${arme.data.data.modifInit}`;
+                }
+            }
+        }
+
+        let combattantTrouve = false;
+        if(game.combat) {
+            game.combat.combatants.forEach(elem => {
+                if(elem.actor.id == this.id) {
+                    this.rollInitiative({initiativeOptions: {formula: initFormula}});
+                    combattantTrouve = true;
+                }
+            });
+        }
+        
+        if(!combattantTrouve) {
+            ui.notifications.warn(game.i18n.localize("agone.notifications.warnInitSansCombat"));
+        }
+    }
 }
 
 function calcBonusDommages(force, tai) {

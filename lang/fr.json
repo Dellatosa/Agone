@@ -64,7 +64,12 @@
             "domaine": "Domaine",
             "jetComp": "Jet de compétence",
             "jetCarac": "Jet de caractéristique",
+            "jetEsquive": "Jet d'esquive",
+            "jetDefensNat": "Jet de défense naturelle",
             "jetEmprise": "Jet de sort d'Emprise",
+            "jetReconnSort": "Jet de reconnaissance de sort",
+            "jetResistMagie" : "Jet de résistance magique",
+            "jetDefenseNat": "Jet de défense naturelle",
             "editComp": "Editer les compétences",
             "armures": "Armures",
             "force": "Force",
@@ -229,6 +234,7 @@
             "melee": "Mélée",
             "jet": "Jet",
             "trait": "Trait",
+            "bouclier": "Bouclier",
             "vesteSeule" : "Veste seule",
             "partielle": "Partielle",
             "complete": "Complète",
@@ -287,14 +293,13 @@
             "echecCritique": "Echec critique !!!",
             "fumble": "FUMBLE !!!",
             "attaque": "Attaque",
-            "actionTitre": "{type} ({arme})",
+            "combatArmeTitre": "{type} ({arme})",
             "parade": "Parade",
-            "paradeTitre": "Parade ({arme})",
             "difficulte": "Difficulté",
             "marge": "Marge de réussite",
             "caracDefaut": "Caractéristique par défaut",
             "malusManiement": "Malus de maniement",
-            "warnTaiArmeMsg": "La taille de cette arme ne vous permet pas de l'utiliser.",
+            "warnArmeNonUtilisableMsg": "La taille de cette arme ne vous permet pas de l'utiliser.",
             "utiliseHeroisme": "Utiliser 1 point d'Héroisme (+5)",
             "danseurInvisible": "Danseur invisible (-2)",
             "mouvImperceptibles": "Mouvements imperceptibles (-3)",
@@ -302,14 +307,17 @@
             "seuilDetail": "Détails du seuil : {seuil} de base + 5 pour la différence d'obédience",
             "utilisationHeroisme": "Utilisation d'un point d'Héroïsme",
             "malusArmure": "Malus d'armure",
-            "contrerMagieTitre": "Tente de contrer la magie avec"
+            "contrerMagieTitre": "Tente de contrer la magie avec",
+            "contreMagieSelDanseur": "Sélectionnez le danseur pour effectuer le test de Contre-magie"
         },
         "notifications": {
             "warnMemoireDanseur": "Le danseur ne dispose pas d'assez de mémoire pour apprendre ce sort.",
             "errorDonneesSort": "Impossible de retrouver les données du sort sélectionné.",
             "warnHeroismeEpuise": "Le personnage n'a plus de point d'héroïsme disponible. Le jet se fera sans bonus.",
             "errorDonnesArme": "Impossible de retrouver les statistiques de combat pour l'arme",
-            "warnDanseurEpuise": "est épuisé. Il ne peut plus lancer de sort jusqu'à ce qu'il récupère son endurance."
+            "warnDanseurEpuise": "est épuisé. Il ne peut plus lancer de sort jusqu'à ce qu'il récupère son endurance.",
+            "warnDanseurContreMagie": "Vous ne pouvez pas pratiquer la Contre-magie sans Danseur.",
+            "warnInitSansCombat": "Votre personnage n'est actuellement impliqué dans aucun combat."
         }
     }
 }

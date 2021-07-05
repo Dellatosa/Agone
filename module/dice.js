@@ -341,16 +341,13 @@ function _processJetCompetenceOptions(form) {
     }
 }
 
-export async function actionArme(actor, arme, type) {
+export async function combatArme(actor, arme, type) {
     let statsCombat = actor.getStatsCombat(arme.data.data.competence, arme.data.data.minForce, arme.data.data.minAgilite);
 
     if(statsCombat === null) {
         ui.notifications.error(`${game.i18n.localize("agone.notifications.errorDonnesArme")} ${arme.data.name}.`)
         return;
     }
-
-    //let modAtt;
-    //let modPar;
 
     if(type == "Attaque") {
         statsCombat.modifAttaque = arme.data.data.modifAttaque;

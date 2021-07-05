@@ -204,7 +204,8 @@ agone.stylesArme = {
     aucun: "",
     melee: "agone.items.melee",
     jet: "agone.items.jet",
-    trait: "agone.items.trait"
+    trait: "agone.items.trait",
+    bouclier: "agone.items.bouclier"
 }
 
 agone.typesArmure = {

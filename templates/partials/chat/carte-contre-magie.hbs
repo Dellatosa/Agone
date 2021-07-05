@@ -1,6 +1,15 @@
-<div class="carte">
+<div class="carte ctr-magie" data-owner-id="{{owner}}">
     <div class="entete">
         <!-- <img src="{{img}}" title="{{name}}" height="32" width="32"/> -->
-        <span>{{name}}</span>
+        <span>{{localize "agone.actors.contreMagie"}}</span>
+    </div>
+    <div>{{localize "agone.chat.contreMagieSelDanseur"}}</div>
+     <div class="boutons-carte">
+        {{#each danseurs as | danseur | }}
+            <div class="ligne-btn-sort danseur" data-danseur-id="{{danseur.id}}">
+                <a class="editer-item-ctr-magie" title="{{localize "agone.common.details"}}"><i class="fas fa-book-open"></i></a>
+                <button class="jet-contre-magie">{{danseur.data.name}} ({{danseur.data.data.bonusEmprise}})</button> <!-- <i class="fas fa-hand-sparkles"></i> -->
+            </div>
+        {{/each}}
     </div>
 </div>

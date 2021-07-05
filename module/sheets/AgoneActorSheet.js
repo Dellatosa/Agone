@@ -284,7 +284,7 @@ export default class AgoneActorSheet extends ActorSheet {
             labelCarac: caracData.labelCarac,
             bonusAspect: caracData.bonusAspect,
             labelAspect: caracData.labelAspect,
-            titrePersonnalise: "Jet d'esquive",
+            titrePersonnalise: game.i18n.localize("agone.actors.jetEsquive"),
             afficherDialog: false
         })
     }
@@ -304,7 +304,7 @@ export default class AgoneActorSheet extends ActorSheet {
             labelCarac: caracData.labelCarac,
             bonusAspect: caracData.bonusAspect,
             labelAspect: caracData.labelAspect,
-            titrePersonnalise: "Jet de défense naturelle",
+            titrePersonnalise: game.i18n.localize("agone.actors.jetDefenseNat"),
             afficherDialog: false
         })
     }
@@ -326,7 +326,7 @@ export default class AgoneActorSheet extends ActorSheet {
             labelCarac: caracData.labelCarac,
             bonusAspect: caracData.bonusAspect,
             labelAspect: caracData.labelAspect,
-            titrePersonnalise: "Jet de reconnaissance de sort",
+            titrePersonnalise: game.i18n.localize("agone.actors.jetReconnSort"),
             afficherDialog: false
         })
     }
@@ -343,16 +343,16 @@ export default class AgoneActorSheet extends ActorSheet {
             bonusAspect: caracData.bonusAspect,
             labelAspect: caracData.labelAspect,
             difficulte: 15,
-            titrePersonnalise: "Jet de résistance magique"
+            titrePersonnalise: game.i18n.localize("agone.actors.jetResistMagie")
         });
     }
 
-    _onContreMagie(event) {
+    async _onContreMagie(event) {
         event.preventDefault();
 
         let danseurs = this.actor.getDanseurs();
         if(danseurs.length == 0) {
-            ui.notifications.warn(`Vous ne pouvez pas pratiquer la Contre-magie sans Danseur.`);
+            ui.notifications.warn(game.i18n.localize("agone.notifications.warnDanseurContreMagie"));
             return;
         }
         else if(danseurs.length == 1) {
@@ -361,24 +361,26 @@ export default class AgoneActorSheet extends ActorSheet {
         }
         else {
             // Carte dans le chat de sélection du danseur
+            let chatData = {
+                user: game.user.id,
+                speaker: ChatMessage.getSpeaker({ actor: this.actor })
+            };
+    
+            let cardData = {
+                danseurs: danseurs,
+                owner: this.actor.id
+            };
+
+            chatData.content = await renderTemplate("systems/agone/templates/partials/chat/carte-contre-magie.hbs", cardData);
+            chatData.roll = true;
+
+            return ChatMessage.create(chatData);
         }
     }
 
     _onInitiativeRoll(event) {
         event.preventDefault();
-
-        let actorTrouve = false;
-        if(game.combat) {
-            game.combat.combatants.forEach(elem => {
-                if(elem.actor.id == this.actor.id) {
-                    this.actor.rollInitiative();
-                    actorTrouve = true;
-                }
-            });
-        }
         
-        if(!actorTrouve) {
-            ui.notifications.warn("Votre personnage n'est actuellement impliqué dans aucun combat.")
-        }
+        this.actor.rollInitiativePerso();
     }
 }

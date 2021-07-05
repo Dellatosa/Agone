@@ -34,7 +34,7 @@ async function preloadHandlebarsTemplates() {
 Hooks.once("init", function(){
     console.log("Agone | Initialisation du système Agone RPG");
 
-    CONFIG.debug.hooks = true;
+    //CONFIG.debug.hooks = true;
 
     CONFIG.agone = agone;
     CONFIG.Item.documentClass = AgoneItem;
@@ -52,13 +52,13 @@ Hooks.once("init", function(){
         return game.i18n.localize(agone[liste][val]);
     });
 
-    Handlebars.registerHelper("WarnTaiArme", function(taiArme, taiPerso, options) {
+/*     Handlebars.registerHelper("WarnTaiArme", function(taiArme, taiPerso, options) {
         let diff = taiArme - taiPerso;
         if(diff < -1 || diff > 1)
             return options.fn(this);
         else
             return options.inverse(this);
-    });
+    }); */
 });
 
 Hooks.on("renderChatLog", (app, html, data) => Chat.addChatListeners(html));

@@ -13,8 +13,8 @@
     </div>
     <div class="boutons-carte">
         {{#each data.sorts as | sort | }}
-            <div class="ligne-bouton sort" data-sort-id="{{sort.id}}">
-                <a class="editer-item" title="{{localize "agone.common.details"}}"><i class="fas fa-book-open"></i></a>
+            <div class="ligne-btn-sort sort" data-sort-id="{{sort.id}}">
+                <a class="editer-item-sort" title="{{localize "agone.common.details"}}"><i class="fas fa-book-open"></i></a>
                 <button class="jet-sort">{{sort.data.name}} ({{sort.data.data.seuil}}{{#if sort.data.data.diffObedience}} + 5{{/if}})</button> <!-- <i class="fas fa-hand-sparkles"></i> -->
             </div>
         {{/each}}

@@ -3,11 +3,14 @@ import * as Dice from "./dice.js";
 export function addChatListeners(html) {
     html.on('click', 'button.attaque', onAttaque);
     html.on('click', 'button.parade', onParade);
-    html.on('click', 'button.jet-sort', onSort);
-    html.on('click', 'a.editer-item', onEditItem)
+    html.on('click', 'button.initiative', onInitiative);
+    html.on('click', 'button.jet-sort', onJetSort);
+    html.on('click', 'a.editer-item-sort', onEditItemSort)
+    html.on('click', 'button.jet-contre-magie', onJetContreMagie);
+    html.on('click', 'a.editer-item-ctr-magie', onEditItemContreMagie)
 }
 
-function onSort(event) {
+function onJetSort(event) {
     const card = event.currentTarget.closest(".danseur");
     const sortCard = event.currentTarget.closest(".sort");
     let mage = game.actors.get(card.dataset.ownerId)
@@ -17,7 +20,16 @@ function onSort(event) {
     Dice.sortEmprise(mage, danseur, sort);
 }
 
-function onEditItem(event) {
+function onJetContreMagie(event) {
+    const card = event.currentTarget.closest(".ctr-magie");
+    const danseurCard = event.currentTarget.closest(".danseur");
+    let mage = game.actors.get(card.dataset.ownerId)
+    let danseur = mage.items.get(danseurCard.dataset.danseurId);
+
+    Dice.contreMagie(mage, danseur);
+}
+
+function onEditItemSort(event) {
     const card = event.currentTarget.closest(".danseur");
     const sortCard = event.currentTarget.closest(".sort");
     let mage = game.actors.get(card.dataset.ownerId);
@@ -26,12 +38,21 @@ function onEditItem(event) {
     sortItem.sheet.render(true);
 }
 
+function onEditItemContreMagie(event) {
+    const card = event.currentTarget.closest(".ctr-magie");
+    const danseurCard = event.currentTarget.closest(".danseur");
+    let mage = game.actors.get(card.dataset.ownerId);
+    let danseurItem = mage.items.get(danseurCard.dataset.danseurId);
+
+    danseurItem.sheet.render(true);
+}
+
 function onAttaque(event) {
     const card = event.currentTarget.closest(".arme");
     let attaquant = game.actors.get(card.dataset.ownerId);
     let arme = attaquant.items.get(card.dataset.itemId); 
 
-    Dice.actionArme(attaquant, arme, "Attaque");
+    Dice.combatArme(attaquant, arme, "Attaque");
 }
 
 function onParade(event) {
@@ -39,7 +60,15 @@ function onParade(event) {
     let defenseur = game.actors.get(card.dataset.ownerId);
     let arme = defenseur.items.get(card.dataset.itemId);
 
-    Dice.actionArme(defenseur, arme, "Parade");
+    Dice.combatArme(defenseur, arme, "Parade");
+}
+
+function onInitiative(event) {
+    const card = event.currentTarget.closest(".arme");
+    let combattant = game.actors.get(card.dataset.ownerId);
+    let arme = combattant.items.get(card.dataset.itemId);
+
+    combattant.rollInitiativePerso(arme);
 }
 
 // Pour test

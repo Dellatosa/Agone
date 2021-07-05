@@ -64,7 +64,12 @@
             "domaine": "Field",
             "jetComp": "Skill roll",
             "jetCarac": "Attribute roll",
+            "jetEsquive": "Dodge roll",
+            "jetDefensNat": "NO TRAD - Jet de défense naturelle",
             "jetEmprise": "Ascendancy roll",
+            "jetReconnSort": "NO TRAD - Jet de reconnaissance de sort",
+            "jetResistMagie" : "NO TRAD - Jet de résistance magique",
+            "jetDefenseNat": "NO TRAD - Jet de défense naturelle",
             "editComp": "Edit skills",
             "armures": "Armour",
             "force": "Strength",
@@ -229,6 +234,7 @@
             "melee": "Melee",
             "jet": "Thrown",
             "trait": "Archery",
+            "bouclier": "Shield",
             "vesteSeule" : "Chest only",
             "partielle": "Intermediate",
             "complete": "Full",
@@ -287,14 +293,13 @@
             "echecCritique": "Critical failure !!!",
             "fumble": "FUMBLE !!!",
             "attaque": "Attack",
-            "actionTitre": "{type} ({arme})",
+            "combatArmeTitre": "{type} ({arme})",
             "parade": "Parry",
-            "paradeTitre": "Parry ({arme})",
             "difficulte": "Difficulty",
             "marge": "NO TRAD - Marge de réussite",
             "caracDefaut": "Default attribute",
             "malusManiement": "Handling penalty",
-            "warnTaiArmeMsg": "NO TRAD - La taille de cette arme ne vous permet pas de l'utiliser.",
+            "warnArmeNonUtilisableMsg": "NO TRAD - La taille de cette arme ne vous permet pas de l'utiliser.",
             "utiliseHeroisme": "Use 1 Fortune point (+5)",
             "danseurInvisible": "NO TRAD - Danseur invisible (-2)",
             "mouvImperceptibles": "NO TRAD - Mouvements imperceptibles (-3)",
@@ -302,14 +307,17 @@
             "seuilDetail": "NO TRAD - Détails du seuil : {seuil} de base + 5 pour la différence d'obédience",
             "utilisationHeroisme": "NO TRAD - Utilisation d'un point d'Héroïsme",
             "malusArmure": "Armour penalty",
-            "contrerMagieTitre": "NO TRAD - Tente de contrer la magie avec"
+            "contrerMagieTitre": "NO TRAD - Tente de contrer la magie avec",
+            "contreMagieSelDanseur": "NO TRAD - Sélectionnez le danseur pour effectuer le test de Contre-magie"
         },
         "notifications": {
             "warnMemoireDanseur": "NO TRAD - Le danseur ne dispose pas d'assez de mémoire pour apprendre ce sort.",
             "errorDonneesSort": "NO TRAD - Impossible de retrouver les données du sort sélectionné.",
             "warnHeroismeEpuise": "NO TRAD - Le personnage n'a plus de point d'héroïsme disponible. Le jet se fera sans bonus.",
             "errorDonnesArme": "NO TRAD - Impossible de retrouver les statistiques de combat pour l'arme",
-            "warnDanseurEpuise": "NO TRAD - est épuisé. Il ne peut plus lancer de sort jusqu'à ce qu'il récupère son endurance."
+            "warnDanseurEpuise": "NO TRAD - est épuisé. Il ne peut plus lancer de sort jusqu'à ce qu'il récupère son endurance.",
+            "warnDanseurContreMagie": "NO TRAD - Vous ne pouvez pas pratiquer la Contre-magie sans Danseur.",
+            "warnInitSansCombat": "NO TRAD - Votre personnage n'est actuellement impliqué dans aucun combat."
         }
     }
 }
