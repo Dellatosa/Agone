@@ -7,7 +7,8 @@ export function addChatListeners(html) {
     html.on('click', 'button.jet-sort', onJetSort);
     html.on('click', 'a.editer-item-sort', onEditItemSort)
     html.on('click', 'button.jet-contre-magie', onJetContreMagie);
-    html.on('click', 'a.editer-item-ctr-magie', onEditItemContreMagie)
+    html.on('click', 'a.editer-item-ctr-magie', onEditItemContreMagie);
+    html.on('click', 'button.jet-reconn-oeuvre', onJetReconnOeuvre);
 }
 
 function onJetSort(event) {
@@ -27,6 +28,33 @@ function onJetContreMagie(event) {
     let danseur = mage.items.get(danseurCard.dataset.danseurId);
 
     Dice.contreMagie(mage, danseur);
+}
+
+function onJetReconnOeuvre(event) {
+    const card = event.currentTarget.closest(".reconn-oeuvre");
+    const artCard = event.currentTarget.closest(".jet-reconn-oeuvre");
+    let artiste = game.actors.get(card.dataset.ownerId);
+    let artId =  artCard.dataset.artId;
+
+    console.log("Artiste", artiste, "artId", artId);
+
+    let caracData = artiste.getCaracData("art");
+    let compData = artiste.getCompData("occulte", "artsMagiques", artId);
+
+    Dice.jetCompetence({
+        actor: artiste,
+        rangComp: compData.rangComp,
+        labelComp: compData.labelComp,
+        specialisation: compData.specialisation,
+        labelSpecialisation: compData.labelSpecialisation,
+        jetDefautInterdit: compData.jetDefautInterdit,
+        rangCarac: caracData.rangCarac,
+        labelCarac: caracData.labelCarac,
+        bonusAspect: caracData.bonusAspect,
+        labelAspect: caracData.labelAspect,
+        titrePersonnalise: game.i18n.localize("agone.actors.jetReconnOeuvre"),
+        afficherDialog: false
+    });
 }
 
 function onEditItemSort(event) {
@@ -69,6 +97,40 @@ function onInitiative(event) {
     let arme = combattant.items.get(card.dataset.itemId);
 
     combattant.rollInitiativePerso(arme);
+}
+
+export async function selDanseurContreMagie(actor, danseurs) {
+    let chatData = {
+        user: game.user.id,
+        speaker: ChatMessage.getSpeaker({ actor: actor })
+    };
+
+    let cardData = {
+        danseurs: danseurs,
+        owner: actor.id
+    };
+
+    chatData.content = await renderTemplate("systems/agone/templates/partials/chat/carte-contre-magie.hbs", cardData);
+    chatData.roll = true;
+
+    return ChatMessage.create(chatData);
+}
+
+export async function selArtMagiqueReconnOeuvre(actor, arts) {
+    let chatData = {
+        user: game.user.id,
+        speaker: ChatMessage.getSpeaker({ actor: actor })
+    };
+
+    let cardData = {
+        arts: arts,
+        owner: actor.id
+    };
+
+    chatData.content = await renderTemplate("systems/agone/templates/partials/chat/carte-reconn-oeuvre.hbs", cardData);
+    chatData.roll = true;
+
+    return ChatMessage.create(chatData);
 }
 
 // Pour test

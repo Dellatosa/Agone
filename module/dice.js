@@ -574,7 +574,7 @@ function _processJetSortEmpriseOptions(form) {
 export async function contreMagie(mage, danseur) {
     let statsEmprise = mage.getStatsEmprise();
 
-    // Construction des strutures de données pour l'affichage de la boite de dialogue
+    // Construction des strutures de données pour l'affichage du message
     let mageData = {
         potEmprise: statsEmprise.emprise + Math.min(statsEmprise.rangResonance, statsEmprise.connDanseurs) + statsEmprise.bonusEsprit + danseur.data.data.bonusEmprise,
         resonance: statsEmprise.resonance
@@ -629,6 +629,74 @@ export async function contreMagie(mage, danseur) {
     let chatData = {
         user: game.user.id,
         speaker: ChatMessage.getSpeaker({ actor: mage }),
+        roll: rollResult,
+        content: await renderTemplate(messageTemplate, templateContext),
+        sound: CONFIG.sounds.dice,
+        type: CONST.CHAT_MESSAGE_TYPES.ROLL
+    }
+
+    // Affichage du message
+    ChatMessage.create(chatData);
+}
+
+export async function desaccord(artiste, instrument) {
+    
+    let statsAccord = artiste.getStatsArtMagique("accord", instrument);
+
+     // Construction des strutures de données pour l'affichage du message
+     let artisteData = {
+        potAccord: statsAccord.art + Math.min(statsAccord.rangArtMagique, statsAccord.rangCompetence) + statsAccord.bonusAme,
+        instrument: statsAccord.labelCompetence
+    };
+
+    // On lance le jet de dé depuis la fonction de jet de compétence 
+    // On récupère le rollResult
+    let rollResult = await Dice.jetCompetence({
+        actor: artiste,
+        rangComp: Math.min(statsAccord.rangArtMagique, statsAccord.rangCompetence),
+        //labelComp: statsAccord.labelComp,
+        //specialisation: statsAccord.specialisation,
+        //labelSpecialisation: statsAccord.labelSpecialisation,
+        jetDefautInterdit: true,
+        rangCarac: statsAccord.art,
+        //labelCarac: game.i18n.localize("agone.actors.art"),
+        bonusAspect: statsAccord.bonusAme,
+        //labelAspect: statsAccord.labelAme,
+        //titrePersonnalise: game.i18n.localize("agone.actors.jetDesaccord"),
+        afficherDialog: false,
+        envoiMessage: false
+    });
+
+    // Recupération du template
+    const messageTemplate = "systems/agone/templates/partials/dice/A CREER.hbs";
+    let renderedRoll = await rollResult.render();
+
+    // Construction du jeu de données pour alimenter le template
+    let rollStats = {
+        ...rollResult.data,
+        specialisation: statsAccord.specialisation,
+        labelSpecialisation: statsAccord.labelSpecialisation
+    }
+
+    // Gestion du Fumble et de l'échec critique
+    if(rollResult.result[0] == "-") {
+        rollStats.isFumble = true;
+        if(rollResult.dice[0].results[0].result == 10) {
+            rollStats.isEchecCritique = true;
+        }
+    }
+
+    // Assignation des données au template
+    let templateContext = {
+        stats: rollStats,
+        artiste: artisteData,
+        roll: renderedRoll
+    }
+
+    // Construction du message
+    let chatData = {
+        user: game.user.id,
+        speaker: ChatMessage.getSpeaker({ actor: artiste }),
         roll: rollResult,
         content: await renderTemplate(messageTemplate, templateContext),
         sound: CONFIG.sounds.dice,

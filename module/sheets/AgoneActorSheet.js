@@ -1,4 +1,5 @@
 import * as Dice from "../dice.js";
+import * as Chat from "../chat.js";
 
 import EditCompFormApplication from "../EditCompFormApplication.js";
 
@@ -44,8 +45,6 @@ export default class AgoneActorSheet extends ActorSheet {
 
         data.peines = data.items.filter(function (item) { return item.type == "Peine"});
         data.bienfaits = data.items.filter(function (item) { return item.type == "Bienfait"});
-
-        //data.listeSorts = Object.assign({}, ...data.sorts.map((x) => ({[x._id]: x.name})));
 
 
 
@@ -108,33 +107,24 @@ export default class AgoneActorSheet extends ActorSheet {
 
         
         if(this.actor.isOwner) {
-            // roll-carac - jet de caractéritiques
-            html.find('.roll-carac').click(this._onRollCarac.bind(this));
+            // edit-comp - edition des compétences d'une famille
+            html.find('.edit-comp').click(this._onEditComp.bind(this));
 
             // roll-comp - jet de compétence
             html.find('.roll-comp').click(this._onRollComp.bind(this));
 
-            // Boutons de l'onglet Combat
-            html.find('button.initiative').click(this._onInitiativeRoll.bind(this));
-            html.find('button.esquive').click(this._onEsquive.bind(this));
-            html.find('button.defenseNat').click(this._onDefenseNat.bind(this));
+            // roll-carac - jet de caractéritiques
+            html.find('.roll-carac').click(this._onRollCarac.bind(this));
 
-            // Boutons de l'onglet Emprise
-            html.find('button.reconnSort').click(this._onReconnSort.bind(this));
-            html.find('button.resistMagie').click(this._onResistMagie.bind(this));
-            html.find('button.contreMagie').click(this._onContreMagie.bind(this));
-
-            // edit-comp - edition des compétences d'une famille
-            html.find('.edit-comp').click(this._onEditComp.bind(this));
-
-            // item-roll - jet de dés depuis un item
-            html.find('.item-roll').click(this._onItemRoll.bind(this));
-
+            // Liste d'items dans la feuille
             // Création d'un item
             html.find('.creer-item').click(this._onCreerItem.bind(this));
 
             // Edition d'un item
             html.find('.editer-item').click(this._onEditerItem.bind(this));
+
+            //Suppression d'un item
+            html.find('.supprimer-item').click(this._onSupprimerItem.bind(this));
 
             // Edition d'un champ d'item directement en ligne
             html.find('.inline-edit').change(this._onEditerInline.bind(this));
@@ -142,11 +132,43 @@ export default class AgoneActorSheet extends ActorSheet {
             // Edition d'une checkbox d'item directement en ligne
             html.find('.inline-chk').change(this._onEditerInlineCheck.bind(this));
 
-            //Suppression d'un item
-            html.find('.supprimer-item').click(this._onSupprimerItem.bind(this));
+            // item-roll - jet de dés depuis un item
+            html.find('.item-roll').click(this._onItemRoll.bind(this));
+
+            // Boutons de l'onglet Combat
+            // Initiative
+            html.find('button.initiative').click(this._onInitiativeRoll.bind(this));
+
+            // Esquive
+            html.find('button.esquive').click(this._onEsquive.bind(this));
+
+            // Défense naturelle
+            html.find('button.defenseNat').click(this._onDefenseNat.bind(this));
+
+            // Resistance magique - profane
+            html.find('button.resistMagieNat').click(this._onResistMagieNat.bind(this));
+
+            // Boutons de l'onglet Emprise
+            // Reconnaitre un sort
+            html.find('button.reconnSort').click(this._onReconnSort.bind(this));
+
+            // Resistance magique
+            html.find('button.resistMagie').click(this._onResistMagie.bind(this));
+
+            // Contre-magie
+            html.find('button.contreMagie').click(this._onContreMagie.bind(this));
+
+            // Boutons de l'onglet Arts
+            // Reconnaitre une oeuvre
+            html.find('button.reconnOeuvre').click(this._onReconnOeuvre.bind(this));
+
+            // Désaccord
+            html.find('button.desaccord').click(this._onDesaccord.bind(this));
         }
     }
 
+    // Gestionnaire d'événements pour les listes d'items
+     // Création d'un item
     _onCreerItem(event) {
         event.preventDefault();
         const element = event.currentTarget;
@@ -160,6 +182,7 @@ export default class AgoneActorSheet extends ActorSheet {
         return this.actor.createEmbeddedDocuments("Item", itemData, {parent: this.actor});
     }
 
+    // Edition d'un item
     _onEditerItem(event) {
         event.preventDefault();
         const element = event.currentTarget;
@@ -170,6 +193,7 @@ export default class AgoneActorSheet extends ActorSheet {
         item.sheet.render(true);
     }
 
+    //Suppression d'un item
     _onSupprimerItem(event) {
         event.preventDefault();
         const element = event.currentTarget;
@@ -187,6 +211,7 @@ export default class AgoneActorSheet extends ActorSheet {
            });
     }
 
+    // Edition d'un champ d'item directement en ligne
     _onEditerInline(event) {
         event.preventDefault();
         const element = event.currentTarget;
@@ -198,6 +223,7 @@ export default class AgoneActorSheet extends ActorSheet {
         return item.update({ [field]: element.value });
     }
 
+    // Edition d'une checkbox d'item directement en ligne
     _onEditerInlineCheck(event) {
         event.preventDefault();
         const element = event.currentTarget;
@@ -212,14 +238,7 @@ export default class AgoneActorSheet extends ActorSheet {
         return item.update({ [field]: val });
     }
 
-    _onEditComp(event) {
-        event.preventDefault();
-        const dataset = event.currentTarget.dataset;
-        const lstComps = this.actor.getCompetences(dataset.famille);
-
-        new EditCompFormApplication(this.actor, dataset.famille, lstComps).render(true);
-    }
-
+    // item-roll - jet de dés depuis un item
     _onItemRoll(event) {
         event.preventDefault();
         const element = event.currentTarget;
@@ -230,6 +249,16 @@ export default class AgoneActorSheet extends ActorSheet {
         item.roll();
     }
 
+    // edit-comp - edition des compétences d'une famille
+    _onEditComp(event) {
+        event.preventDefault();
+        const dataset = event.currentTarget.dataset;
+        const lstComps = this.actor.getCompetences(dataset.famille);
+
+        new EditCompFormApplication(this.actor, dataset.famille, lstComps).render(true);
+    }
+
+    // roll-comp - jet de compétence
     _onRollComp(event) {
         event.preventDefault();
         const dataset = event.currentTarget.dataset;
@@ -252,6 +281,7 @@ export default class AgoneActorSheet extends ActorSheet {
         });
     }
 
+    // roll-carac - jet de caractéritiques
     _onRollCarac(event) {
         event.preventDefault();
         const dataset = event.currentTarget.dataset;
@@ -267,6 +297,15 @@ export default class AgoneActorSheet extends ActorSheet {
         });
     }
 
+    // Gestionnaire d'événements de l'onglet Combat
+    // Initiative
+    _onInitiativeRoll(event) {
+        event.preventDefault();
+        
+        this.actor.rollInitiativePerso();
+    }
+
+    // Esquive
     _onEsquive(event) {
         event.preventDefault();
 
@@ -286,9 +325,10 @@ export default class AgoneActorSheet extends ActorSheet {
             labelAspect: caracData.labelAspect,
             titrePersonnalise: game.i18n.localize("agone.actors.jetEsquive"),
             afficherDialog: false
-        })
+        });
     }
 
+    // Défense naturelle
     _onDefenseNat(event) {
         event.preventDefault();
 
@@ -306,9 +346,36 @@ export default class AgoneActorSheet extends ActorSheet {
             labelAspect: caracData.labelAspect,
             titrePersonnalise: game.i18n.localize("agone.actors.jetDefenseNat"),
             afficherDialog: false
-        })
+        });
     }
 
+    // Resistance magique naturelle -
+    _onResistMagieNat(event) {
+        event.preventDefault();
+
+        let selectCaracData;
+        let caracDataVOL = this.actor.getCaracData("volonte");
+        let caracDataCRE = this.actor.getCaracData("creativite");
+
+        if((caracDataVOL.rangCarac * 2 + caracDataVOL.bonusAspect) > (caracDataCRE.rangCarac * 2 + caracDataCRE.bonusAspect)) {
+            selectCaracData = caracDataVOL;
+        }
+        else {
+            selectCaracData = caracDataCRE;
+        }
+
+        Dice.jetCaracteristique({
+            actor: this.actor,
+            rangCarac: selectCaracData.rangCarac,
+            labelCarac: selectCaracData.labelCarac,
+            bonusAspect: selectCaracData.bonusAspect,
+            labelAspect: selectCaracData.labelAspect,
+            titrePersonnalise: game.i18n.localize("agone.actors.jetResistMagieNat")
+        });
+    }
+
+    // Gestionnaire d'événements de l'onglet Emprise
+    // Reconnaitre un sort
     _onReconnSort(event){
         event.preventDefault();
 
@@ -328,9 +395,10 @@ export default class AgoneActorSheet extends ActorSheet {
             labelAspect: caracData.labelAspect,
             titrePersonnalise: game.i18n.localize("agone.actors.jetReconnSort"),
             afficherDialog: false
-        })
+        });
     }
 
+    // Resistance magique - Pratiquant de l'Emprise
     _onResistMagie(event) {
         event.preventDefault();
 
@@ -347,6 +415,7 @@ export default class AgoneActorSheet extends ActorSheet {
         });
     }
 
+    // Contre-magie
     async _onContreMagie(event) {
         event.preventDefault();
 
@@ -360,27 +429,42 @@ export default class AgoneActorSheet extends ActorSheet {
             Dice.contreMagie(this.actor, danseurs[0]);
         }
         else {
-            // Carte dans le chat de sélection du danseur
-            let chatData = {
-                user: game.user.id,
-                speaker: ChatMessage.getSpeaker({ actor: this.actor })
-            };
-    
-            let cardData = {
-                danseurs: danseurs,
-                owner: this.actor.id
-            };
-
-            chatData.content = await renderTemplate("systems/agone/templates/partials/chat/carte-contre-magie.hbs", cardData);
-            chatData.roll = true;
-
-            return ChatMessage.create(chatData);
+            // Carte de sélection du danseur à afficher dans le chat
+            Chat.selDanseurContreMagie(this.actor, danseurs);
         }
     }
 
-    _onInitiativeRoll(event) {
+    // Reconnaitre une oeuvre
+    _onReconnOeuvre(event) {
         event.preventDefault();
-        
-        this.actor.rollInitiativePerso();
+
+        // Carte de sélection de l'art magique à afficher dans le chat
+        Chat.selArtMagiqueReconnOeuvre(this.actor, this.actor.data.data.familleCompetences.occulte.competences.artsMagiques.domaines);
+    }
+
+    // Désaccord
+    _onDesaccord(event) {
+        event.preventDefault();
+
+        let nbDomaines = 0;
+        let instrument;
+        let domainesMusique = this.actor.data.data.familleCompetences.societe.competences.musique.domaines;
+        for(let[keyDom, domaine] of Object.entries(domainesMusique)) {
+            if(domaine.rang > 0) {
+                nbDomaines += 1;
+                instrument = keyDom;
+            }
+        }
+
+        if(nbDomaines == 0) {
+            ui.notifications.warn('Aucune comprétence de musique trouvée');
+            return;
+        }
+        else if(nbDomaines == 1) {
+            Dice.desaccord(this.actor, instrument);
+        }
+        else {
+            // Selection de l'instrument
+        }
     }
 }

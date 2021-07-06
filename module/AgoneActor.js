@@ -238,6 +238,45 @@ export default class AgoneActor extends Actor {
         return result;
     }
 
+    getStatsArtMagique(artMagique, domaine = null) {
+        let data = this.data.data;
+
+        let compId;
+        switch(artMagique) {
+            case "geste":
+                compId = "poesie";
+                break;
+            case "cyse":
+                compId = "sculpture";
+                break;
+            case "decorum":
+                compId = "peinture";
+                break;
+            case "accord":
+                compId = "musique";
+                break;
+        }
+
+        let result = {art: 0, rangArtMagique: 0, labelArtMagique: "", specialisation: false, labelSpecialisation: "ND", rangCompetence: 0, labelCompetence: 0, bonusAme: 0, labelAme: "ND"};
+        result.art = data.aspects.ame.caracteristiques.art.valeur;
+        result.rangArtMagique = data.familleCompetences.occulte.competences.artsMagiques.domaines[artMagique].rang;
+        result.labelArtMagique = data.familleCompetences.occulte.competences.artsMagiques.domaines[artMagique].label;
+        result.specialisation = data.familleCompetences.occulte.competences.artsMagiques.domaines[artMagique].specialisation;
+        result.labelSpecialisation = data.familleCompetences.occulte.competences.artsMagiques.domaines[artMagique].labelSpecialisation;
+        if(artMagique != "accord") {
+            result.rangCompetence = data.familleCompetences.societe.competences[compId].rang;
+            result.labelCompetence = data.familleCompetences.societe.competences[compId].label;
+        }
+        else {
+            result.rangCompetence = data.familleCompetences.societe.competences[compId].domaines[domaine].rang;
+            result.labelCompetence = data.familleCompetences.societe.competences[compId].domaines[domaine].label;
+        }
+        result.bonusAme = data.aspects.ame.bonus.valeur;
+        result.labelAme = data.aspects.ame.bonus.label;
+
+        return result;
+    }
+
     getMalusArmure(carac) {
         let malusArmure = 0;
         let armuresEquip = this.data.items.filter(function (item) { return item.type == "Armure" && item.data.data.equipee == true});

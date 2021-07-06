@@ -452,6 +452,15 @@
                     "specialisation": false, 
                     "labelSpecialisation": "",
                     "caracteristique": ""
+                  },
+                  "d3": {
+                    "domPerso": true,
+                    "label": "",
+                    "rang": 0,
+                    "max": 10,
+                    "specialisation": false, 
+                    "labelSpecialisation": "",
+                    "caracteristique": ""
                   }
                 }
               },
