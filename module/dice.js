@@ -98,6 +98,7 @@ export async function jetCompetence({actor = null,
     malusManiement = null,
     utiliseHeroisme = null,
     bonusEmprise = null,
+    modificateurs = null,
     danseurInvisible = null,
     mouvImperceptibles = null,
     titrePersonnalise = null,
@@ -196,6 +197,12 @@ export async function jetCompetence({actor = null,
     if(malusManiement) {
         rollData.malusManiement = malusManiement;
         baseFormula += " + @malusManiement";
+    }
+
+    // Somme des modificateurs d'art magique
+    if(modificateurs) {
+        rollData.modificateurs = modificateurs;
+        baseFormula += " + @modificateurs";
     }
 
     // Bonus d'emprise du Danseur
@@ -582,6 +589,8 @@ export async function oeuvre(artiste, oeuvre) {
         statsArtMagique = artiste.getStatsArtMagique(artMagique);
     }
 
+    oeuvre.data.data.seuilTotal = oeuvre.data.data.seuil;
+
      // Construction des strutures de données pour l'affichage de la boite de dialogue
      let artisteData = {
         potArtMagique: statsArtMagique.art + Math.min(statsArtMagique.rangArtMagique, statsArtMagique.rangCompetence) + statsArtMagique.bonusAme
@@ -589,26 +598,191 @@ export async function oeuvre(artiste, oeuvre) {
 
     let oeuvreData = {
         nomOeuvre: oeuvre.data.name,
-        seuil: oeuvre.data.data.seuil
+        seuil: oeuvre.data.data.seuil,
+        //seuil: oeuvre.data.data.seuilTotal,
+        artMagique: oeuvre.data.data.artMagique,
+        saison: oeuvre.data.data.saison
     };
 
-    let dialogOptions = await getJetOeuvreOptions({artisteData: artisteData, oeuvreData: oeuvreData});
+    let dialogOptions = await getJetOeuvreOptions({artisteData: artisteData, oeuvreData: oeuvreData, cfgData: CONFIG.agone});
 
     // On annule le jet sur les boutons 'Annuler' ou 'Fermeture'
     if(dialogOptions.annule) {
         return;
     }
 
+    // Récupération des données de la fenêtre de dialogue pour ce jet 
+    if(dialogOptions.magieInstantanee) {
+        oeuvre.data.data.seuilTotal = oeuvre.data.data.seuil * 2;
+    }
+
+    oeuvre.data.data.seuilTotal += dialogOptions.margeQualite;
+    let qualite = getNiveauQualite(dialogOptions.margeQualite);
+
+    let modificateurs = 0;
+    let resistance = 0;
+    switch(oeuvre.data.data.artMagique) {
+        case "accord":
+            modificateurs += dialogOptions.qualiteInstrument;
+            break;
+        case "decorum":
+            modificateurs += dialogOptions.saisonOeuvre;
+            break;
+        case "geste":
+            modificateurs += dialogOptions.bruitEnviron;
+            break;
+        case "cyse":
+            resistance = dialogOptions.materiaux;
+            break;
+    }
+
+    // On lance le jet de dé depuis la fonction de jet de compétence 
+    // On récupère le rollResult
+    let rollResult = await jetCompetence({
+        actor: artiste,
+        rangComp:  Math.min(statsArtMagique.rangArtMagique, statsArtMagique.rangCompetence),
+        jetDefautInterdit: true,
+        rangCarac: statsArtMagique.art,
+        bonusAspect: statsArtMagique.bonusAme,
+        modificateurs: modificateurs,
+        utiliseHeroisme: dialogOptions.utiliseHeroisme,
+        afficherDialog: false,
+        envoiMessage: false
+    });
+
+    // Recupération du template
+    const messageTemplate = "systems/agone/templates/partials/dice/jet-oeuvre.hbs";
+    let renderedRoll = await rollResult.render();
+
+    // Construction du jeu de données pour alimenter le template
+    let rollStats = {
+        ...rollResult.data,
+        specialisation: statsArtMagique.specialisation,
+        labelSpecialisation: statsArtMagique.labelSpecialisation,
+        difficulte: oeuvre.data.data.seuilTotal,
+        qualite: qualite
+    }
+
+    // Gestion du Fumble et de l'échec critique
+    if(rollResult.result[0] == "-") {
+        rollStats.isFumble = true;
+        if(rollResult.dice[0].results[0].result == 10) {
+            rollStats.isEchecCritique = true;
+        }
+    }
+
+    rollStats.marge = rollResult.total - oeuvre.data.data.seuilTotal;
+    if(rollStats.marge <= -15) {
+        rollStats.isEchecCritique = true;
+    }
+
+    // Assignation des données au template
+    let templateContext = {
+        stats: rollStats,
+        artiste: artisteData,
+        oeuvre: oeuvre.data,
+        roll: renderedRoll
+    }
+
+    // Construction du message
+    let chatData = {
+        user: game.user.id,
+        speaker: ChatMessage.getSpeaker({ actor: artiste }),
+        roll: rollResult,
+        content: await renderTemplate(messageTemplate, templateContext),
+        sound: CONFIG.sounds.dice,
+        type: CONST.CHAT_MESSAGE_TYPES.ROLL
+    }
+
+    // Affichage du message
+    ChatMessage.create(chatData);
 }
 
 // Fonction de construction de la boite de dialogue de jet d'une oeuvre
-async function getJetOeuvreOptions({artisteData = null, oeuvreData = null}) {
+async function getJetOeuvreOptions({artisteData = null, oeuvreData = null, cfgData = null}) {
+    // Recupération du template
+    const template = "systems/agone/templates/partials/dice/dialog-jet-oeuvre.hbs";
+    const html = await renderTemplate(template, {artisteData: artisteData, oeuvreData: oeuvreData, cfgData: cfgData});
 
+    return new Promise( resolve => {
+        const data = {
+            title: game.i18n.localize("agone.actors.jetOeuvre"),
+            content: html,
+            buttons: {
+                jet: { // Bouton qui lance le jet de dé
+                    icon: '<i class="fas fa-dice"></i>',
+                    label: game.i18n.localize("agone.common.jet"),
+                    callback: html => resolve(_processJetOeuvreOptions(html[0].querySelector("form")))
+                },
+                annuler: { // Bouton d'annulation
+                    label: game.i18n.localize("agone.common.annuler"),
+                    callback: html => resolve({annule: true})
+                }
+            },
+            default: "jet",
+            close: () => resolve({annule: true}) // Annulation sur fermeture de la boite de dialogue
+        }
+
+        // Affichage de la boite de dialogue
+        new Dialog(data, null).render(true);
+    });
 }
 
 // Gestion des données renseignées dans la boite de dialogue de jet d'oeuvre d'art magique
-function _processJetSortEmpriseOptions(form) {
+function _processJetOeuvreOptions(form) {
+    // L'affichage des options suivantes dépend de l'Art Magique de l'oeuvre
+    // On récupère la valeur des options si elles sont affichées 
+    let qualiteInstrument = 0;
+    let bruitEnviron = 0
+    let saisonOeuvre = 0;
+    let materiaux = 0;
 
+    if(form.qualiteInstrument) {
+        qualiteInstrument = parseInt(form.qualiteInstrument.value);
+    }
+    
+    if(form.bruitEnviron) {
+        bruitEnviron = parseInt(form.bruitEnviron.value);
+    }
+
+    if(form.saisonOeuvre) {
+        saisonOeuvre = parseInt(form.saisonOeuvre.value);
+    }
+
+    if(form.materiaux) {
+        materiaux = parseInt(form.materiaux.value);
+    }
+
+    return {
+        magieInstantanee: form.magieInstantanee.checked,
+        qualiteInstrument: qualiteInstrument,
+        bruitEnviron: bruitEnviron,
+        saisonOeuvre: saisonOeuvre,
+        materiaux: materiaux,
+        margeQualite: parseInt(form.margeQualite.value),
+        utiliseHeroisme : form.utiliseHeroisme.checked
+    }
+}
+
+function getNiveauQualite(margeQualite) {
+    if(margeQualite == 0) {
+        return 1;
+    }
+    else if(margeQualite <= 4) {
+        return 2;
+    }
+    else if(margeQualite <= 9) {
+        return 5;
+    }
+    else if(margeQualite <= 15) {
+        return 10;
+    }
+    else if(margeQualite <= 20) {
+        return 30;
+    }
+    else if(margeQualite >= 21) {
+        return 100;
+    }
 }
 
 // Jet de Contre-magie, avec affichage du messsage dans la chat

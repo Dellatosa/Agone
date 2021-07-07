@@ -4,7 +4,7 @@
             {{stats.titrePersonnalise}} 
         {{else}}
             {{localize "agone.actors.jetCarac"}} 
-            {{#if stats.marge}}
+            {{#if stats.difficulte}}
                 <span> - </span><span class="bold">{{localize "agone.chat.difficulte"}} {{stats.difficulte}}</span>
             {{/if}}
         {{/if}}
@@ -15,7 +15,7 @@
     {{/if}}
     <div>{{{roll}}}</div>
     <div>{{roll.formula}}</div>
-    {{#if stats.marge}}
+    {{#if stats.difficulte}}
         <h3 class="resultat">{{localize "agone.chat.marge"}} {{stats.marge}}</h3>
         {{#if (gte stats.marge 0)}}
             <h3 class="resultat">{{localize "agone.chat.succes"}}</h3>
@@ -25,6 +25,6 @@
             {{else}}
                 <h3 class="resultat">{{localize "agone.chat.echec"}}</h3>
             {{/if}}
-        {{/if}}
+        {{/if}} 
     {{/if}}
 </div>

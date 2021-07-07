@@ -259,20 +259,73 @@ agone.instruments = {
 agone.qualiteInstrument = {
     normal: {
         label: "",
-        malus: 0
+        modif: 0
     },
     peuAdapte: {
         label: "agone.items.peuAdapte",
-        malus: -2
+        modif: -2
     },
     tresPeuAdapte: {
         label: "agone.items.tresPeuAdapte",
-        malus: -4
+        modif: -4
     },
     sansInstrument: {
         label: "agone.items.sansInstrument",
-        malus: -8
+        modif: -8
     }
+}
+
+agone.bruitEnviron = {
+    normal: {
+        label: "",
+        modif: 0
+    },
+    silence: {
+        label: "agone.items.silence",
+        modif: 2
+    },
+    beaucoupBruit: {
+        label: "agone.items.beaucoupBruit",
+        modif: -2
+    }
+}
+
+agone.saisonOeuvre = {
+    normal: {
+        label: "",
+        modif: 0
+    },
+    saisonOpposee: {
+        label: "agone.items.saisonOpposee",
+        modif: 2
+    },
+    saisonIdentique: {
+        label: "agone.items.saisonIdentique",
+        modif: -2
+    }
+}
+
+agone.materiaux = {
+    tissuPapier: {
+        label: "agone.items.tissuPapier",
+        resistance: 2
+    },
+    verreSable: {
+        label: "agone.items.verreSable",
+        resistance: 3
+    },
+    boisTerre: {
+        label: "agone.items.boisTerre",
+        resistance: 4
+    },
+    metal: {
+        label: "agone.items.metal",
+        resistance: 5
+    },
+    pierre: {
+        label: "agone.items.pierre",
+        resistance: 6
+    },
 }
 
 agone.resonances = {

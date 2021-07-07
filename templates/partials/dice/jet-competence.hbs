@@ -7,7 +7,7 @@
             {{#if stats.isJetDefaut}}
                 <span> par défaut </span>
             {{/if}}
-            {{#if stats.marge}}
+            {{#if stats.difficulte}}
                 <span>- </span><span class="bold">{{localize "agone.chat.difficulte"}} {{stats.difficulte}}</span>
             {{/if}}
         {{/if}}
@@ -26,7 +26,7 @@
     {{/if}}
     <div>{{{roll}}}</div>
     <div>{{roll.formula}}</div>
-    {{#if stats.marge}}
+    {{#if stats.difficulte}}
         <h3 class="resultat">{{localize "agone.chat.marge"}} {{#if stats.isEchecCritique}}<span class="fumble">{{stats.marge}}</span>{{else}}{{stats.marge}}{{/if}}</h3>
         {{#if (gte stats.marge 0)}}
             <h3 class="resultat">{{localize "agone.chat.succes"}}</h3>

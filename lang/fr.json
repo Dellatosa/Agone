@@ -73,6 +73,7 @@
             "jetResistMagieNat" : "Jet de résistance magique - Profane",
             "jetDefenseNat": "Jet de défense naturelle",
             "jetDesaccord": "Jet de désaccord",
+            "jetOeuvre": "Jet d'exécution d'oeuvre",
             "editComp": "Editer les compétences",
             "armures": "Armures",
             "force": "Force",
@@ -296,7 +297,16 @@
             "peuAdapte": "Peu adapté",
             "tresPeuAdapte": "Très peu adpaté",
             "sansInstrument": "Pas d'instrument",
-            "equipee": "Equipée"
+            "equipee": "Equipée",
+            "silence": "Silence",
+            "beaucoupBruit": "Beaucoup de bruit",
+            "saisonOpposee": "Saison opposée à l'oeuvre",
+            "saisonIdentique": "Saison identique à l'oeuvre",
+            "tissuPapier": "Tissu & papier",
+            "verreSable": "Verre & sable",
+            "boisTerre": "Bois & terre",
+            "metal": "Métal",
+            "pierre": "Pierre"
         },
         "chat": {
             "succes": "Succès !",
@@ -321,7 +331,13 @@
             "contrerMagieTitre": "Tente de contrer la magie avec",
             "contreMagieSelDanseur": "Sélectionnez le danseur pour effectuer le test de Contre-magie",
             "executerOeuvre": "Exécuter cette oeuvre",
-            "margeQualite": "Marge de qualité"
+            "margeQualite": "Marge de qualité",
+            "qualiteOeuvre": "Qualité de l'oeuvre",
+            "qualiteInstrument": "Qualité de l'instrument",
+            "bruitEnviron": "Bruit environnant",
+            "saisonOeuvre": "Saison de l'oeuvre : {saison}",
+            "materiaux": "Matériaux",
+            "modificateurs": "Modificateurs"
         },
         "notifications": {
             "warnMemoireDanseur": "Le danseur ne dispose pas d'assez de mémoire pour apprendre ce sort.",

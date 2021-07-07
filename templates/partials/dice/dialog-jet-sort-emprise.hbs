@@ -1,6 +1,6 @@
 <form>
     <div>Jeter le sort <span class="bold">{{sortData.nomSort}}</span> avec le danseur <span class="bold">{{danseurData.nomDanseur}}</span></div>
-    <div>{{ localize "agone.actors.potEmprise"}} <span class="bold">{{mageData.potEmprise}}</span> - {{ localize "agone.chat.seuil"}} <span class="bold">{{sortData.seuilTotal}}</span></div>
+    <div>{{ localize "agone.actors.potEmprise"}} <span class="bold">{{mageData.potEmprise}}</span> - {{ localize "agone.items.seuil"}} <span class="bold">{{sortData.seuilTotal}}</span></div>
     {{#if sortData.diffObedience}}<div class="txt-small">{{localize "agone.chat.seuilDetail" seuil=sortData.seuil }}</div>{{/if}}
     <div class="form-group">
         <label>{{ localize "agone.chat.magieInstantanee"}}</label>
