@@ -9,16 +9,26 @@ export function addChatListeners(html) {
     html.on('click', 'button.jet-contre-magie', onJetContreMagie);
     html.on('click', 'a.editer-item-ctr-magie', onEditItemContreMagie);
     html.on('click', 'button.jet-reconn-oeuvre', onJetReconnOeuvre);
+    html.on('click', 'button.jet-desaccord', onJetDesaccord);
+    html.on('click', 'button.jet-oeuvre', onJetOeuvre);
 }
 
 function onJetSort(event) {
     const card = event.currentTarget.closest(".danseur");
     const sortCard = event.currentTarget.closest(".sort");
-    let mage = game.actors.get(card.dataset.ownerId)
+    let mage = game.actors.get(card.dataset.ownerId);
     let danseur = mage.items.get(card.dataset.itemId);
     let sort = mage.items.get(sortCard.dataset.sortId);
 
     Dice.sortEmprise(mage, danseur, sort);
+}
+
+function onJetOeuvre(event) {
+    const card = event.currentTarget.closest(".oeuvre");
+    let artiste = game.actors.get(card.dataset.ownerId);
+    let oeuvre = artiste.items.get(card.dataset.itemId);
+
+    Dice.oeuvre(artiste, oeuvre);
 }
 
 function onJetContreMagie(event) {
@@ -55,6 +65,15 @@ function onJetReconnOeuvre(event) {
         titrePersonnalise: game.i18n.localize("agone.actors.jetReconnOeuvre"),
         afficherDialog: false
     });
+}
+
+function onJetDesaccord(event) {
+    const card = event.currentTarget.closest(".instrument-desaccord");
+    const instrumentCard = event.currentTarget.closest(".jet-desaccord");
+    let artiste = game.actors.get(card.dataset.ownerId);
+    let instrument =  instrumentCard.dataset.instrument;
+
+    Dice.desaccord(artiste, instrument);
 }
 
 function onEditItemSort(event) {
@@ -128,6 +147,23 @@ export async function selArtMagiqueReconnOeuvre(actor, arts) {
     };
 
     chatData.content = await renderTemplate("systems/agone/templates/partials/chat/carte-reconn-oeuvre.hbs", cardData);
+    chatData.roll = true;
+
+    return ChatMessage.create(chatData);
+}
+
+export async function selInstrumentDesaccord(actor, instruments) {
+    let chatData = {
+        user: game.user.id,
+        speaker: ChatMessage.getSpeaker({ actor: actor })
+    };
+
+    let cardData = {
+        instruments: instruments,
+        owner: actor.id
+    };
+
+    chatData.content = await renderTemplate("systems/agone/templates/partials/chat/carte-instrument-desaccord.hbs", cardData);
     chatData.roll = true;
 
     return ChatMessage.create(chatData);

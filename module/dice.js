@@ -407,7 +407,7 @@ export async function combatArme(actor, arme, type) {
     ChatMessage.create(chatData);
 }
 
-// Jet de sort d'Emprise, avec affichage du messsage dans la chat
+// Jet de sort d'Emprise, avec affichage du message dans le chat
 export async function sortEmprise(mage, danseur, sort) {
     let statsEmprise = mage.getStatsEmprise();
 
@@ -570,6 +570,47 @@ function _processJetSortEmpriseOptions(form) {
     }
 }
 
+// Jet d'une oeuvre d'Art magique, avec affichage du message dans le chat
+export async function oeuvre(artiste, oeuvre) {
+    const artMagique = oeuvre.data.data.artMagique;
+    let statsArtMagique;
+    
+    if(artMagique == "accord") {
+        statsArtMagique = artiste.getStatsArtMagique(artMagique, oeuvre.data.data.instrument);
+    }
+    else {
+        statsArtMagique = artiste.getStatsArtMagique(artMagique);
+    }
+
+     // Construction des strutures de données pour l'affichage de la boite de dialogue
+     let artisteData = {
+        potArtMagique: statsArtMagique.art + Math.min(statsArtMagique.rangArtMagique, statsArtMagique.rangCompetence) + statsArtMagique.bonusAme
+    };
+
+    let oeuvreData = {
+        nomOeuvre: oeuvre.data.name,
+        seuil: oeuvre.data.data.seuil
+    };
+
+    let dialogOptions = await getJetOeuvreOptions({artisteData: artisteData, oeuvreData: oeuvreData});
+
+    // On annule le jet sur les boutons 'Annuler' ou 'Fermeture'
+    if(dialogOptions.annule) {
+        return;
+    }
+
+}
+
+// Fonction de construction de la boite de dialogue de jet d'une oeuvre
+async function getJetOeuvreOptions({artisteData = null, oeuvreData = null}) {
+
+}
+
+// Gestion des données renseignées dans la boite de dialogue de jet d'oeuvre d'art magique
+function _processJetSortEmpriseOptions(form) {
+
+}
+
 // Jet de Contre-magie, avec affichage du messsage dans la chat
 export async function contreMagie(mage, danseur) {
     let statsEmprise = mage.getStatsEmprise();
@@ -651,24 +692,18 @@ export async function desaccord(artiste, instrument) {
 
     // On lance le jet de dé depuis la fonction de jet de compétence 
     // On récupère le rollResult
-    let rollResult = await Dice.jetCompetence({
+    let rollResult = await jetCompetence({
         actor: artiste,
         rangComp: Math.min(statsAccord.rangArtMagique, statsAccord.rangCompetence),
-        //labelComp: statsAccord.labelComp,
-        //specialisation: statsAccord.specialisation,
-        //labelSpecialisation: statsAccord.labelSpecialisation,
         jetDefautInterdit: true,
         rangCarac: statsAccord.art,
-        //labelCarac: game.i18n.localize("agone.actors.art"),
         bonusAspect: statsAccord.bonusAme,
-        //labelAspect: statsAccord.labelAme,
-        //titrePersonnalise: game.i18n.localize("agone.actors.jetDesaccord"),
         afficherDialog: false,
         envoiMessage: false
     });
 
     // Recupération du template
-    const messageTemplate = "systems/agone/templates/partials/dice/A CREER.hbs";
+    const messageTemplate = "systems/agone/templates/partials/dice/jet-desaccord.hbs";
     let renderedRoll = await rollResult.render();
 
     // Construction du jeu de données pour alimenter le template

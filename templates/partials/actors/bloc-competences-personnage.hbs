@@ -15,7 +15,11 @@
                                 {{#if (eq domaine.numcol col)}}                                        
                                     <a class="roll-comp" title="{{localize 'agone.actors.jetComp'}}" data-famille="{{keyFam}}" data-competence="{{keyComp}}" data-domaine="{{keyDom}}" data-carac="{{domaine.caracteristique}}"><i class="fas fa-dice" ></i></a> 
                                     {{#if domPerso}}
-                                        <div class="dom-perso"><label>{{domaine.label}}</label></div>
+                                        {{#if (eq keyComp "musique")}}
+                                            <div class="dom-perso"><label>{{configLocalize "instruments" domaine.label}}</label></div>
+                                        {{else}}
+                                            <div class="dom-perso"><label>{{domaine.label}}</label></div>
+                                        {{/if}}
                                     {{else}}
                                         <label class="dom-fixe">{{domaine.label}}</label>
                                     {{/if}}

@@ -199,6 +199,8 @@
             "contreMagie": "Contre-magie",
             "desaccord": "Désaccord",
             "potEmprise": "Potentiel d'Emprise",
+            "potAccord": "Potentiel d'Accord",
+            "potArtMagique": "Potentiel d'Art magique",
             "initiative": "Initiative"
         },
         "items":{
@@ -291,6 +293,9 @@
             "flute": "Flûte",
             "harpe": "Harpe",
             "viole": "Viole",
+            "peuAdapte": "Peu adapté",
+            "tresPeuAdapte": "Très peu adpaté",
+            "sansInstrument": "Pas d'instrument",
             "equipee": "Equipée"
         },
         "chat": {
@@ -314,7 +319,9 @@
             "utilisationHeroisme": "Utilisation d'un point d'Héroïsme",
             "malusArmure": "Malus d'armure",
             "contrerMagieTitre": "Tente de contrer la magie avec",
-            "contreMagieSelDanseur": "Sélectionnez le danseur pour effectuer le test de Contre-magie"
+            "contreMagieSelDanseur": "Sélectionnez le danseur pour effectuer le test de Contre-magie",
+            "executerOeuvre": "Exécuter cette oeuvre",
+            "margeQualite": "Marge de qualité"
         },
         "notifications": {
             "warnMemoireDanseur": "Le danseur ne dispose pas d'assez de mémoire pour apprendre ce sort.",

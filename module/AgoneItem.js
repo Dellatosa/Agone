@@ -28,10 +28,12 @@ export default class AgoneItem extends Item {
             let sorts = [];
             this.data.data.sortsConnus.forEach(id => {
                 let sort = this.actor.items.get(id);
-                if(sort.data.data.resonance != this.actor.data.data.caracSecondaires.resonance) {
-                    sort.data.data.diffObedience = true;
+                if(sort) {
+                    if(sort.data.data.resonance != this.actor.data.data.caracSecondaires.resonance) {
+                        sort.data.data.diffObedience = true;
+                    }
+                    sorts.push(sort);
                 }
-                sorts.push(sort);
             });
 
             cardData.data.sorts = sorts;
@@ -134,8 +136,9 @@ function onDeleteItem(item) {
     if(item.type == "Sort" && item.actor) {
         let lstDanseurs = item.actor.data.items.filter(function (item) { return item.type == "Danseur" });
         lstDanseurs.forEach(danseur => {
-            console.log(danseur.data.data.memoire.max);
             danseur.updateMemoireDispo(danseur.data.data.memoire.max)
+            danseur.data.data.sortsConnus.splice(danseur.data.data.sortsConnus.indexOf(item.id), 1);
+            danseur.update({"data.sortsConnus": danseur.data.data.sortsConnus});
         });
     }
 }

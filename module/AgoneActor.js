@@ -178,6 +178,17 @@ export default class AgoneActor extends Actor {
         return result;
     }
 
+    getDomaineInstrument(instrument) {
+        let data = this.data.data;
+        let result;
+
+        for (let [key, domaine] of Object.entries(data.familleCompetences.societe.competences.musique.domaines)) {
+            if(domaine.label == instrument) {
+                return key;
+            }
+        } 
+    }
+
     getAspect(caracteristique) {
         let data = this.data.data;
 
@@ -238,7 +249,7 @@ export default class AgoneActor extends Actor {
         return result;
     }
 
-    getStatsArtMagique(artMagique, domaine = null) {
+    getStatsArtMagique(artMagique, instrument = null) {
         let data = this.data.data;
 
         let compId;
@@ -255,6 +266,11 @@ export default class AgoneActor extends Actor {
             case "accord":
                 compId = "musique";
                 break;
+        }
+
+        let domaine;
+        if(instrument) {
+            domaine = this.getDomaineInstrument(instrument);
         }
 
         let result = {art: 0, rangArtMagique: 0, labelArtMagique: "", specialisation: false, labelSpecialisation: "ND", rangCompetence: 0, labelCompetence: 0, bonusAme: 0, labelAme: "ND"};

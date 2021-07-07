@@ -447,24 +447,29 @@ export default class AgoneActorSheet extends ActorSheet {
         event.preventDefault();
 
         let nbDomaines = 0;
-        let instrument;
+        let instruments = [];
         let domainesMusique = this.actor.data.data.familleCompetences.societe.competences.musique.domaines;
         for(let[keyDom, domaine] of Object.entries(domainesMusique)) {
             if(domaine.rang > 0) {
                 nbDomaines += 1;
-                instrument = keyDom;
+                //instruments.push({id: keyDom, instrument: domaine});
+                instruments.push(domaine);
             }
         }
+
+        console.log(instruments);
+        console.log(instruments[0].label);
 
         if(nbDomaines == 0) {
             ui.notifications.warn('Aucune comprétence de musique trouvée');
             return;
         }
         else if(nbDomaines == 1) {
-            Dice.desaccord(this.actor, instrument);
+            Dice.desaccord(this.actor, instruments[0].label);
         }
         else {
             // Selection de l'instrument
+            Chat.selInstrumentDesaccord(this.actor, instruments);
         }
     }
 }

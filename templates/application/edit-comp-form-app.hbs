@@ -10,7 +10,17 @@
           <label class="titre-comp">{{competence.label}}</label>              
             {{#each domaines as |domaine keyDom|}}
               {{#if domPerso}}
-                <div class="dom-perso"><input name="{{keyComp}}.domaines.{{keyDom}}.label" type="text" value="{{domaine.label}}" placeholder="{{localize 'agone.actors.domaine'}}"/></div>
+                {{#if (eq keyComp "musique")}}
+                  <select name="{{keyComp}}.domaines.{{keyDom}}.label">
+                    {{#select domaine.label}}
+                        {{#each ../../configData.instruments as |name type|}}
+                            <option value="{{type}}">{{localize name}}</option>
+                        {{/each}}
+                    {{/select}}
+                  </select>
+                {{else}}
+                  <div class="dom-perso"><input name="{{keyComp}}.domaines.{{keyDom}}.label" type="text" value="{{domaine.label}}" placeholder="{{localize 'agone.actors.domaine'}}"/></div>
+                {{/if}}
               {{else}}
                 <label class="dom-fixe">{{domaine.label}}</label>
               {{/if}}

@@ -1,0 +1,27 @@
+<form>
+    <div>Exécuter l'oeuvre <span class="bold">{{oeuvreData.nomOeuvre}}</span></span></div>
+    <div>{{ localize "agone.actors.potArtMagique"}} <span class="bold">{{artisteData.potArtMagique}}</span> - {{ localize "agone.chat.seuil"}} <span class="bold">{{oeuvreData.seuil}}</span></div>
+    <div class="form-group">
+        <label>{{ localize "agone.chat.magieInstantanee"}}</label>
+        <input type="checkbox" name="magieInstantanee"/>
+    </div>
+    <div class="form-group">
+        <label>{{ localize "agone.chat.margeQualite"}}</label>
+        <input type="number" name="margeQualite" value="0" min="0"/>
+    </div>
+    {{#if (eq oeuvreData.artMagique "accord")}}
+        <div class="form-group">
+            <select name="qualiteInstrument">
+                {{#select qualiteInstrument}}
+                    {{#each config.qualiteInstrument as | qualInst |}}
+                        <option value="{{qualInst.malus}}">{{localize qualInst.label}}</option>
+                    {{/each}}
+                {{/select}}
+            </select>
+        </div>
+    {{/if}}
+    <div class="form-group">
+        <label>{{ localize "agone.chat.utiliseHeroisme"}}</label>
+        <input type="checkbox" name="utiliseHeroisme"/>
+    </div>
+</form>

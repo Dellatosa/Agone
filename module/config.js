@@ -256,6 +256,25 @@ agone.instruments = {
     viole: "agone.items.viole"
 }
 
+agone.qualiteInstrument = {
+    normal: {
+        label: "",
+        malus: 0
+    },
+    peuAdapte: {
+        label: "agone.items.peuAdapte",
+        malus: -2
+    },
+    tresPeuAdapte: {
+        label: "agone.items.tresPeuAdapte",
+        malus: -4
+    },
+    sansInstrument: {
+        label: "agone.items.sansInstrument",
+        malus: -8
+    }
+}
+
 agone.resonances = {
     aucun: "",
     jorniste: "agone.actors.jorniste",

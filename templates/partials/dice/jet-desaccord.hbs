@@ -1,0 +1,15 @@
+<div class="jet-desaccord">
+    <div class="txt-small">{{localize "agone.actors.jetDesaccord"}} - <span class="bold">{{configLocalize "instruments" artiste.instrument}}</span></div>
+    <div class="txt-small bold">{{ localize "agone.actors.potAccord"}} ({{artiste.potAccord}})</div>
+    {{#if stats.specialisation}}
+        <div class="txt-small">{{localize "agone.actors.specialisation"}} <span class="bold">{{stats.labelSpecialisation}}</span></div>
+    {{/if}}
+    {{#if stats.utiliseHeroisme}}
+        <div class="txt-small bold">{{localize "agone.chat.utilisationHeroisme"}}</div>
+    {{/if}}
+    {{#if stats.isFumble}}
+        <div class="dice-tooltip"><div class="dice-rolls fumble"><span class="fumble">{{localize "agone.chat.fumble"}}</span><div class="roll die d10 min">1</div></div></div>
+    {{/if}}
+    <div>{{{roll}}}</div>
+    <div>{{roll.formula}}</div>
+</div>
