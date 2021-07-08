@@ -20,6 +20,11 @@ function onJetSort(event) {
     let danseur = mage.items.get(card.dataset.itemId);
     let sort = mage.items.get(sortCard.dataset.sortId);
 
+    if(sort.data.data.resonance == "" || sort.data.data.resonance == "aucun" || sort.data.data.seuil <= 0) {
+        ui.notifications.warn(game.i18n.localize("agone.notifications.errorDonneesSort"));
+        return;
+    }
+
     Dice.sortEmprise(mage, danseur, sort);
 }
 
@@ -27,6 +32,11 @@ function onJetOeuvre(event) {
     const card = event.currentTarget.closest(".oeuvre");
     let artiste = game.actors.get(card.dataset.ownerId);
     let oeuvre = artiste.items.get(card.dataset.itemId);
+
+    if(oeuvre.data.data.artMagique == "" || oeuvre.data.data.artMagique == "aucun" || oeuvre.data.data.seuil <= 0) {
+        ui.notifications.warn(game.i18n.localize("agone.notifications.errorDonneesOeuvre"));
+        return;
+    }
 
     Dice.oeuvre(artiste, oeuvre);
 }

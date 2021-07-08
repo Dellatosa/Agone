@@ -108,7 +108,7 @@ export async function jetCompetence({actor = null,
     // Si la famille de la compétence n'autorise pas le jet par défaut (Savoir et Occulte), on gènere le message d'erreur et on annule le jet
     if(jetDefautInterdit && rangComp == 0) {
         ui.notifications.warn(`Le jet par défaut (rang de compétence à zéro) n'est pas autorisé pour cette famille de compétences.`)
-        return;
+        return null;
     }
 
     // Affichage de la fenêtre de dialogue (vrai par défaut)
@@ -117,7 +117,7 @@ export async function jetCompetence({actor = null,
 
         // On annule le jet sur les boutons 'Annuler' ou 'Fermeture'
         if(dialogOptions.annule) {
-            return;
+            return null;
         }
 
         // Récupération des données de la fenêtre de dialogue pour ce jet 
@@ -478,6 +478,9 @@ export async function sortEmprise(mage, danseur, sort) {
         envoiMessage: false
     });
 
+    // Si le jet de compétence est annulé, on arrête le jet de sort (ex: compétence par défaut non autorisée)
+    if(rollResult == null) return;
+
     // On baisse l'endurance du danseur d'un point
     let valEndurance = danseur.data.data.endurance.value -1;
     danseur.update({"data.endurance.value": valEndurance});
@@ -650,6 +653,9 @@ export async function oeuvre(artiste, oeuvre) {
         envoiMessage: false
     });
 
+    // Si le jet de compétence est annulé, on arrête le jet d'art magique (ex: compétence par défaut non autorisée)
+    if(rollResult == null) return;
+
     // Recupération du template
     const messageTemplate = "systems/agone/templates/partials/dice/jet-oeuvre.hbs";
     let renderedRoll = await rollResult.render();
@@ -674,6 +680,15 @@ export async function oeuvre(artiste, oeuvre) {
     rollStats.marge = rollResult.total - oeuvre.data.data.seuilTotal;
     if(rollStats.marge <= -15) {
         rollStats.isEchecCritique = true;
+    }
+
+    // Dans le cas de la Cyse, gestion de la résistance des matériaux
+    if(oeuvre.data.data.artMagique == "cyse") {
+        let rollResistance = await new Roll("1d10 + @resistance", {resistance: resistance}).roll({async: true});
+        if(rollResistance.total >= artisteData.potArtMagique) {
+            rollStats.echecResistance = true;
+            rollStats.rollResistance = await rollResistance.render();
+        }
     }
 
     // Assignation des données au template

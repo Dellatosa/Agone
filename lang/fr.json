@@ -337,11 +337,13 @@
             "bruitEnviron": "Bruit environnant",
             "saisonOeuvre": "Saison de l'oeuvre : {saison}",
             "materiaux": "Matériaux",
-            "modificateurs": "Modificateurs"
+            "modificateurs": "Modificateurs",
+            "echecResistance": "La matière résiste à sa manipulation"
         },
         "notifications": {
             "warnMemoireDanseur": "Le danseur ne dispose pas d'assez de mémoire pour apprendre ce sort.",
-            "errorDonneesSort": "Impossible de retrouver les données du sort sélectionné.",
+            "errorDonneesSort": "Veuillez renseigner à minima la résonance et le seuil de sort.",
+            "errorDonneesOeuvre": "Veuillez renseigner à minima l'art magique et le seuil de sort.",
             "warnHeroismeEpuise": "Le personnage n'a plus de point d'héroïsme disponible. Le jet se fera sans bonus.",
             "errorDonnesArme": "Impossible de retrouver les statistiques de combat pour l'arme",
             "warnDanseurEpuise": "est épuisé. Il ne peut plus lancer de sort jusqu'à ce qu'il récupère son endurance.",

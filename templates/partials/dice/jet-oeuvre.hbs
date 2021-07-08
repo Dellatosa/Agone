@@ -1,4 +1,4 @@
-<div class="jet-sort">
+<div class="jet-oeuvre">
     <div class="txt-small">Exécution de l'oeuvre <span class="bold">{{oeuvre.name}}</span> (difficulté <span class="bold">{{stats.difficulte}}</span>)</div>
     <div class="txt-small bold">{{localize "agone.actors.potArtMagique"}} ({{artiste.potArtMagique}})
         {{#if stats.modificateurs}}<span> + {{localize "agone.chat.modificateurs"}} ({{stats.modificateurs}})</span>{{/if}}
@@ -14,17 +14,22 @@
     {{/if}}
     <div>{{{roll}}}</div>
     <div>{{roll.formula}}</div>
-    {{#if stats.difficulte}}
-        <h3 class="resultat">{{localize "agone.chat.marge"}} {{#if stats.isEchecCritique}}<span class="fumble">{{stats.marge}}</span>{{else}}{{stats.marge}}{{/if}}</h3>
-        {{#if (gte stats.marge 0)}}
-            <h3 class="resultat">{{localize "agone.chat.succes"}}</h3>
-            <h3 class="resultat">{{localize "agone.chat.qualiteOeuvre"}} {{stats.qualite}}</h3>
-        {{else}}
-            {{#if stats.isEchecCritique}}
-                <h3 class="resultat fumble">{{localize "agone.chat.echecCritique"}}</h3>
+    {{#if stats.echecResistance}}
+        <div class="resultat">{{localize "agone.chat.echecResistance"}}</div>
+        <div>{{{stats.rollResistance}}}</div>
+    {{else}}
+        {{#if stats.difficulte}}
+            <h3 class="resultat">{{localize "agone.chat.marge"}} {{#if stats.isEchecCritique}}<span class="fumble">{{stats.marge}}</span>{{else}}{{stats.marge}}{{/if}}</h3>
+            {{#if (gte stats.marge 0)}}
+                <h3 class="resultat">{{localize "agone.chat.succes"}}</h3>
+                <h3 class="resultat">{{localize "agone.chat.qualiteOeuvre"}} {{stats.qualite}}</h3>
             {{else}}
-                <h3 class="resultat">{{localize "agone.chat.echec"}}</h3>
-            {{/if}}
-        {{/if}} 
+                {{#if stats.isEchecCritique}}
+                    <h3 class="resultat fumble">{{localize "agone.chat.echecCritique"}}</h3>
+                {{else}}
+                    <h3 class="resultat">{{localize "agone.chat.echec"}}</h3>
+                {{/if}}
+            {{/if}} 
+        {{/if}}
     {{/if}}
 </div>
