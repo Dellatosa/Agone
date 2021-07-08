@@ -16,8 +16,14 @@ export default class AgoneActorSheet extends ActorSheet {
     }
 
     get template() {
-        console.log(`Agone | chargement du template systems/agone/templates/sheets/actors/${this.actor.data.type}-sheet.html`);
-        return `systems/agone/templates/sheets/actors/${this.actor.data.type}-sheet.html`
+        if(this.actor.data.type == "Personnage" || this.actor.data.type == "Damne") {
+            console.log(`Agone | type : ${this.actor.data.type} | chargement du template systems/agone/templates/sheets/actors/personnage-sheet.html`);
+            return `systems/agone/templates/sheets/actors/personnage-sheet.html`
+        } 
+        else {
+            console.log(`Agone | chargement du template systems/agone/templates/sheets/actors/${this.actor.data.type}-sheet.html`);
+            return `systems/agone/templates/sheets/actors/${this.actor.data.type}-sheet.html`
+        }
     }
 
     getData() {

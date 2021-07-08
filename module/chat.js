@@ -3,7 +3,6 @@ import * as Dice from "./dice.js";
 export function addChatListeners(html) {
     html.on('click', 'button.attaque', onAttaque);
     html.on('click', 'button.parade', onParade);
-    html.on('click', 'button.initiative', onInitiative);
     html.on('click', 'button.jet-sort', onJetSort);
     html.on('click', 'a.editer-item-sort', onEditItemSort)
     html.on('click', 'button.jet-contre-magie', onJetContreMagie);
@@ -118,14 +117,6 @@ function onParade(event) {
     let arme = defenseur.items.get(card.dataset.itemId);
 
     Dice.combatArme(defenseur, arme, "Parade");
-}
-
-function onInitiative(event) {
-    const card = event.currentTarget.closest(".arme");
-    let combattant = game.actors.get(card.dataset.ownerId);
-    let arme = combattant.items.get(card.dataset.itemId);
-
-    combattant.rollInitiativePerso(arme);
 }
 
 export async function selDanseurContreMagie(actor, danseurs) {

@@ -4,27 +4,46 @@ export default class AgoneActor extends Actor {
         super.prepareData();
         let data = this.data.data;
 
-        if(this.type != "demon") {
+        if(this.type != "Demon") {
 
             /* --------------------------------------------------------
             ---- Calculs de caractéristiques et scores secondaires ----
             ---------------------------------------------------------*/
 
             // Calcul des scores de bonus d'aspects
-            if(data.aspects.corps.bonus == null) {
-                data.aspects.corps.bonus = {};
+            if(this.type == "Personnage") {
+                if(data.aspects.corps.bonus == null) {
+                    data.aspects.corps.bonus = {};
+                }
+                data.aspects.corps.bonus.valeur = data.aspects.corps.positif.valeur - data.aspects.corps.negatif.valeur;
+    
+                if(data.aspects.esprit.bonus == null) {
+                    data.aspects.esprit.bonus = {};
+                }
+                data.aspects.esprit.bonus.valeur = data.aspects.esprit.positif.valeur - data.aspects.esprit.negatif.valeur;
+    
+                if(data.aspects.ame.bonus == null) {
+                    data.aspects.ame.bonus = {};
+                }
+                data.aspects.ame.bonus.valeur = data.aspects.ame.positif.valeur - data.aspects.ame.negatif.valeur;
             }
-            data.aspects.corps.bonus.valeur = data.aspects.corps.positif.valeur - data.aspects.corps.negatif.valeur;
-
-            if(data.aspects.esprit.bonus == null) {
-                data.aspects.esprit.bonus = {};
+            else if(this.type == "Damne") {
+                if(data.aspects.corps.bonus == null) {
+                    data.aspects.corps.bonus = {};
+                }
+                data.aspects.corps.bonus.valeur = data.aspects.corps.negatif.valeur - data.aspects.corps.positif.valeur;
+    
+                if(data.aspects.esprit.bonus == null) {
+                    data.aspects.esprit.bonus = {};
+                }
+                data.aspects.esprit.bonus.valeur = data.aspects.esprit.negatif.valeur - data.aspects.esprit.positif.valeur;
+    
+                if(data.aspects.ame.bonus == null) {
+                    data.aspects.ame.bonus = {};
+                }
+                data.aspects.ame.bonus.valeur = data.aspects.ame.negatif.valeur - data.aspects.ame.positif.valeur;
             }
-            data.aspects.esprit.bonus.valeur = data.aspects.esprit.positif.valeur - data.aspects.esprit.negatif.valeur;
-
-            if(data.aspects.ame.bonus == null) {
-                data.aspects.ame.bonus = {};
-            }
-            data.aspects.ame.bonus.valeur = data.aspects.ame.positif.valeur - data.aspects.ame.negatif.valeur;
+            
 
             // Calcul des scores de Flamme, Flamme noire et de points d'heroisme
             data.caracSecondaires.flamme = Math.min(data.aspects.corps.positif.valeur, data.aspects.esprit.positif.valeur, data.aspects.ame.positif.valeur);
@@ -358,24 +377,28 @@ export default class AgoneActor extends Actor {
         }
     }
 
-    rollInitiativePerso(arme = null) {
+    rollInitiativePerso() {
         // Données de base : AGI + PER + Bonus de Corps
         let initFormula = "1d10 + @aspects.corps.caracteristiques.agilite.valeur + @aspects.corps.caracteristiques.perception.valeur + @aspects.corps.bonus.valeur";
-        
+        let modInit = 0;
+
         // Malus d'armure
         let malusArmure = this.getMalusArmure("agilite");
         if(malusArmure) {
-            initFormula += ` + ${malusArmure}`;
+            modInit += malusArmure;
         }
 
         // Bonus de l'arme
-        if(arme) {
-            if(arme.data.data.modifInit) {
-                if(arme.data.data.modifInit != 0)
-                {
-                    initFormula += ` + ${arme.data.data.modifInit}`;
-                }
+        let armesEquipees = this.items.filter(function (item) { return item.type == "Arme" && item.data.data.equipee != ""});
+        
+        armesEquipees.forEach(armeEq => {
+            if(armeEq.data.data.modifInit) {
+                modInit += armeEq.data.data.modifInit;
             }
+        });
+
+        if(modInit != 0) {
+            initFormula += ` + ${modInit}`;
         }
 
         let combattantTrouve = false;
