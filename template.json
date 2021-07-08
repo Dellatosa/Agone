@@ -1,6 +1,6 @@
 {
   "Actor": {
-    "types": [ "Personnage", "Nemesis", "Demon" ],
+    "types": [ "Personnage", "Damne", "Demon" ],
     "templates": {
       "base": {
         "apparence": ""
@@ -876,7 +876,7 @@
         "totale": 0
       }
     },
-    "Nemesis": {
+    "Damne": {
       "templates": [ "base", "informations", "caracsAspects", "competences" ]
     },
     "Demon": {
