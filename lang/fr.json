@@ -208,6 +208,8 @@
             "experienceTotale": "Expérience totale"
         },
         "items":{
+            "description": "Description",
+            "effets": "Effets",
             "armeLabel": "Arme",          
             "armeDesc": "Description de l'arme",
             "avantageLabel": "Avantage",           

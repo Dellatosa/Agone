@@ -235,8 +235,8 @@ agone.typesAvantageDefaut = {
 
 agone.typesPeine = {
     aucun: "",
-    tenebre: "agone.actors.aspects.tenebre",
-    perfidie: "agone.actors.aspects.perfidie",
+    tenebre: "agone.actors.tenebre",
+    perfidie: "agone.actors.perfidie",
 }
 
 agone.saisons = {

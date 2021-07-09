@@ -23,6 +23,24 @@
     }
 }
 
+.agone.sheet.item .sheet-body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+    select {
+        width: 100%;
+    }
+
+    .editor {
+        height: 50%;
+    }
+
+    div {
+        padding: 1px;
+    }
+}
+
 .agone.sheet.item .sheet-footer {
     border-top: solid thin rgb(119, 119, 119);
     padding: 3px;  
@@ -186,4 +204,27 @@
     button {
         margin: 1px;
     }
+}
+
+.ligne-effet {
+    display: grid;
+    grid-template-columns: 2.5em 1fr 2em 2em;
+    padding: 3px;
+    text-align: center;
+
+    > * {
+        padding: 3px;
+    }
+
+    img {
+        border: none;
+    }
+}
+
+.ligne-effet.titre {
+    font-weight: bold;
+    text-align: center;
+    background-color: rgba(82, 77, 77, 0.075);
+    border-top: solid thin rgb(119, 119, 119);
+    padding: 3px;
 }

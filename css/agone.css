@@ -16,6 +16,20 @@
 .agone.sheet.item .sheet-content div {
   padding: 1px;
 }
+.agone.sheet.item .sheet-body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.agone.sheet.item .sheet-body select {
+  width: 100%;
+}
+.agone.sheet.item .sheet-body .editor {
+  height: 50%;
+}
+.agone.sheet.item .sheet-body div {
+  padding: 1px;
+}
 .agone.sheet.item .sheet-footer {
   border-top: solid thin #777777;
   padding: 3px;
@@ -157,6 +171,25 @@
 }
 .boutons-carte button {
   margin: 1px;
+}
+.ligne-effet {
+  display: grid;
+  grid-template-columns: 2.5em 1fr 2em 2em;
+  padding: 3px;
+  text-align: center;
+}
+.ligne-effet > * {
+  padding: 3px;
+}
+.ligne-effet img {
+  border: none;
+}
+.ligne-effet.titre {
+  font-weight: bold;
+  text-align: center;
+  background-color: rgba(82, 77, 77, 0.075);
+  border-top: solid thin #777777;
+  padding: 3px;
 }
 .small-size {
   flex: 0 1 3.5em;

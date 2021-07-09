@@ -208,6 +208,8 @@
             "experienceTotale": "NO TRAD - Expérience totale"
         },
         "items":{
+            "description": "Description",
+            "effets": "Effects",
             "armeLabel": "Weapon",
             "armeDesc": "Weapon description",
             "avantageLabel": "Asset",

@@ -4,7 +4,8 @@ export default class AgoneItemSheet extends ItemSheet {
         return mergeObject(super.defaultOptions, {
             width: 550,
             height: 370,
-            classes: ["agone", "sheet", "item"]
+            classes: ["agone", "sheet", "item"],
+            tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }]
         });
     }
 
@@ -46,28 +47,48 @@ export default class AgoneItemSheet extends ItemSheet {
 
                 // Enlever un sort connu du danseur
                 html.find('.uncheck-sort-connu').click(this._onSupprSortDanseur.bind(this));
-
-                // test activeEffect
-                html.find('.activeEffect').click(this._onActiveEffect.bind(this));
             }
         }
+
+        // Liste d'items dans la feuille
+        // Création d'un item
+        html.find('.creer-effet').click(this._onCreerEffet.bind(this));
+        
+        // Edition d'un item
+        html.find('.editer-effet').click(this._onEditerEffet.bind(this));
+
+        //Suppression d'un item
+        html.find('.supprimer-effet').click(this._onSupprimerEffet.bind(this));
     }
 
-    _onActiveEffect(event) {
+    _onCreerEffet(event) {
+        event.preventDefault();
+
+        return this.item.createEmbeddedDocuments("ActiveEffect", [{
+            label: "Nouvel effet",
+            icon: "icons/svg/aura.svg",
+            origin: this.item.uuid
+          }]);
+    }
+
+    _onEditerEffet(event) {
         event.preventDefault();
         const element = event.currentTarget;
 
-        let effectData = {
-            _id: "myActEffect",
-            label: "nouvel effet",
-            changes: []
-        }
-        //let activeEffect = new ActiveEffect(effectData, this.actor);
-        //let actEffCfg = new ActiveEffectConfig(activeEffect).render();
+        let effectId = element.closest(".effet").dataset.effectId;
+        let effet = this.item.effects.get(effectId);
 
-        let activeEffect = ActiveEffect.create(effectData, this.item);
-        activeEffect.sheet.render(true);
-        console.log(activeEffect);
+        effet.sheet.render(true);
+    }
+
+    _onSupprimerEffet(event) {
+        event.preventDefault();
+        const element = event.currentTarget;
+
+        let effectId = element.closest(".effet").dataset.effectId;
+        let effet = this.item.effects.get(effectId);
+
+        effet.delete();
     }
 
     _onAjoutSortDanseur(event) {
