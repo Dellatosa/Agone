@@ -888,7 +888,7 @@
     }
   },
   "Item": {
-    "types": [ "Avantage", "Defaut", "Peine", "Bienfait", "PouvoirFlamme", "PouvoirSaison", "Manoeuvre", "Armure", "Arme", "Danseur", "Sort", "Oeuvre", "Connivence", "Ecole", "item" ],
+    "types": [ "Avantage", "Defaut", "Peine", "Bienfait", "PouvoirFlamme", "PouvoirSaison", "Manoeuvre", "Armure", "Arme", "Danseur", "Sort", "Oeuvre", "Connivence", "Ecole", "Equipement" ],
     "templates": {
       "base": {
         "description": ""
@@ -1000,7 +1000,7 @@
       "templates": [ "base" ],
       "type": ""
     },
-    "item": {
+    "Equipement": {
       "templates": [ "base" ],
       "quantite": 1,
       "poids": 0

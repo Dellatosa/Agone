@@ -228,11 +228,12 @@ export default class AgoneActor extends Actor {
         let data = this.data.data;
 
         if(compArme) {
-            let result = {rangComp: 0, labelComp: "ND", specialisation: false, labelSpecialisation: "ND", rangCarac: 0, labelCarac: "ND", bonusAspect: 0, labelAspect: "ND", malusManiement: null};
+            let result = {rangComp: 0, labelComp: "ND", specialisation: false, labelSpecialisation: "ND", rangCarac: 0, labelCarac: "ND", bonusAspect: 0, labelAspect: "ND", malusManiement: null, malusBlessureGrave: null};
             result.rangComp = data.familleCompetences.epreuves.competences.armes.domaines[compArme].rang;
             result.labelComp = data.familleCompetences.epreuves.competences.armes.domaines[compArme].label;
             result.specialisation = data.familleCompetences.epreuves.competences.armes.domaines[compArme].specialisation;
             result.labelSpecialisation = data.familleCompetences.epreuves.competences.armes.domaines[compArme].labelSpecialisation;
+            result.malusBlessureGrave = this.getMalusBlessureGrave(data.caracSecondaires.nbBlessureGrave);
 
             let malusAgilite = Math.min(data.aspects.corps.caracteristiques.agilite.valeur - minAgilite, 0);
             let malusForce = Math.min(data.aspects.corps.caracteristiques.force.valeur - minForce, 0);
@@ -255,7 +256,7 @@ export default class AgoneActor extends Actor {
     getStatsEmprise() {
         let data = this.data.data;
 
-        let result = {emprise: 0, resonance: "ND", specialisation: false, labelSpecialisation: "ND", rangResonance: 0, connDanseurs: 0, bonusEsprit: 0, labelEsprit: "ND"};
+        let result = {emprise: 0, resonance: "ND", specialisation: false, labelSpecialisation: "ND", rangResonance: 0, connDanseurs: 0, bonusEsprit: 0, labelEsprit: "ND", malusBlessureGrave: null};
         result.emprise = data.aspects.esprit.caracteristiques.emprise.valeur;
         result.resonance = data.caracSecondaires.resonance;
         result.rangResonance = data.familleCompetences.occulte.competences.resonance.domaines[data.caracSecondaires.resonance].rang;
@@ -264,6 +265,7 @@ export default class AgoneActor extends Actor {
         result.connDanseurs = data.familleCompetences.occulte.competences.connDanseurs.rang;
         result.bonusEsprit = data.aspects.esprit.bonus.valeur;
         result.labelEsprit = data.aspects.esprit.bonus.label;
+        result.malusBlessureGrave = this.getMalusBlessureGrave(data.caracSecondaires.nbBlessureGrave);
 
         return result;
     }
@@ -292,7 +294,7 @@ export default class AgoneActor extends Actor {
             domaine = this.getDomaineInstrument(instrument);
         }
 
-        let result = {art: 0, rangArtMagique: 0, labelArtMagique: "", specialisation: false, labelSpecialisation: "ND", rangCompetence: 0, labelCompetence: 0, bonusAme: 0, labelAme: "ND"};
+        let result = {art: 0, rangArtMagique: 0, labelArtMagique: "", specialisation: false, labelSpecialisation: "ND", rangCompetence: 0, labelCompetence: 0, bonusAme: 0, labelAme: "ND", malusBlessureGrave: null};
         result.art = data.aspects.ame.caracteristiques.art.valeur;
         result.rangArtMagique = data.familleCompetences.occulte.competences.artsMagiques.domaines[artMagique].rang;
         result.labelArtMagique = data.familleCompetences.occulte.competences.artsMagiques.domaines[artMagique].label;
@@ -308,6 +310,7 @@ export default class AgoneActor extends Actor {
         }
         result.bonusAme = data.aspects.ame.bonus.valeur;
         result.labelAme = data.aspects.ame.bonus.label;
+        result.malusBlessureGrave = this.getMalusBlessureGrave(data.caracSecondaires.nbBlessureGrave);
 
         return result;
     }
@@ -326,6 +329,19 @@ export default class AgoneActor extends Actor {
             return malusArmure;
         else
         return null;
+    }
+
+    getMalusBlessureGrave(nbBlessureGrave) {
+        switch(nbBlessureGrave) {
+            case 0:
+                return 0;
+            case 1:
+                return -2;
+            case 2:
+                return -6;
+            case 3:
+                return -12;
+        }
     }
 
     getDanseurs() {

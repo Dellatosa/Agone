@@ -19,6 +19,34 @@ export async function jetCaracteristique({actor = null,
         bonusAspect: bonusAspect
     };
 
+    // On alimente ensuite la formule de base avec les différentes options
+    // Malus d'armure sur les jets d'Agilité
+    if(labelCarac == game.i18n.localize(CONFIG.agone.caracteristiques.agilite))
+    {
+        let malusArmure = actor.getMalusArmure("agilite");
+        if(malusArmure) {
+            rollData.malusArmure = malusArmure;
+            baseFormula += " + @malusArmure"; 
+        }
+    }
+
+    // Malus d'armure sur les jets de Perception
+    if(labelCarac == game.i18n.localize(CONFIG.agone.caracteristiques.perception))
+    {
+        let malusArmure = actor.getMalusArmure("perception");
+        if(malusArmure) {
+            rollData.malusArmure = malusArmure;
+            baseFormula += " + @malusArmure"; 
+        }
+    }
+    
+    // Malus de blessures graves
+    let malusBlessureGrave = actor.getMalusBlessureGrave(actor.data.data.caracSecondaires.nbBlessureGrave);
+    if(malusBlessureGrave < 0) {
+        rollData.malusBlessureGrave = malusBlessureGrave;
+        baseFormula += " + @malusBlessureGrave";
+    }
+
     // Utilisation d'un point d'héroïsme
     if(utiliseHeroisme) {
         // On teste s'il reste des points d'héroïsme sur l'Actor
@@ -198,6 +226,13 @@ export async function jetCompetence({actor = null,
             rollData.malusArmure = malusArmure;
             baseFormula += " + @malusArmure"; 
         }
+    }
+
+    // Malus de blessures graves
+    let malusBlessureGrave = actor.getMalusBlessureGrave(actor.data.data.caracSecondaires.nbBlessureGrave);
+    if(malusBlessureGrave < 0) {
+        rollData.malusBlessureGrave = malusBlessureGrave;
+        baseFormula += " + @malusBlessureGrave";
     }
 
     // Modificateur d'attaque (jet d'arme)

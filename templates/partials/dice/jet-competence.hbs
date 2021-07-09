@@ -14,6 +14,7 @@
     </div>
     <div class="txt-small bold">{{#if stats.rangComp}}{{stats.labelComp}} ({{stats.rangComp}}) + {{/if}}{{stats.labelCarac}} ({{stats.rangCarac}}) + {{stats.labelAspect}} ({{stats.bonusAspect}})
         {{#if stats.malusArmure}} + {{localize "agone.chat.malusArmure"}} ({{stats.malusArmure}}){{/if}}
+        {{#if stats.malusBlessureGrave}} + {{localize "agone.chat.malusBlessureGrave"}} ({{stats.malusBlessureGrave}}){{/if}}
     </div>
     {{#if stats.specialisation}}
         <div class="txt-small">{{localize "agone.actors.specialisation"}} <span class="bold">{{stats.labelSpecialisation}}</span></div>

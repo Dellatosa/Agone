@@ -92,6 +92,14 @@
                     <label>{{localize "agone.actors.perfidie"}}</label>
                     <div class="small-size"><input name="data.caracSecondaires.perfidie" type="number" value="{{data.data.caracSecondaires.perfidie}}" placeholder="0" min="0"/></div>
                 </div>
+                <div>
+                    <label>{{localize "agone.actors.experienceDisponible"}}</label>
+                    <div class="small-size"><input name="data.experience.disponible" type="number" value="{{data.data.experience.disponible}}" placeholder="0" min="0"/></div>
+                </div>
+                <div>
+                    <label>{{localize "agone.actors.experienceTotale"}}</label>
+                    <div class="small-size"><input name="data.experience.totale" type="number" value="{{data.data.experience.totale}}" placeholder="0" min="0"/></div>
+                </div>
             </div>
             <div>{{localize "agone.actors.apparence"}}</div>
             {{editor content=data.data.apparence target="data.apparence" button=true owner=true editable=true}}

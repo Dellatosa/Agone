@@ -210,6 +210,7 @@ select.auto-size {
 }
 .agone.sheet.actor .fullheight .editor {
   height: 170px;
+  background-color: rgba(82, 77, 77, 0.075);
 }
 nav.magie-tabs {
   height: 26px;

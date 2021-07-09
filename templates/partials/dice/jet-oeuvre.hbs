@@ -1,6 +1,7 @@
 <div class="jet-oeuvre">
     <div class="txt-small">Exécution de l'oeuvre <span class="bold">{{oeuvre.name}}</span> (difficulté <span class="bold">{{stats.difficulte}}</span>)</div>
     <div class="txt-small bold">{{localize "agone.actors.potArtMagique"}} ({{artiste.potArtMagique}})
+        {{#if stats.malusBlessureGrave}} + {{localize "agone.chat.malusBlessureGrave"}} ({{stats.malusBlessureGrave}}){{/if}}
         {{#if stats.modificateurs}}<span> + {{localize "agone.chat.modificateurs"}} ({{stats.modificateurs}})</span>{{/if}}
     </div>
     {{#if stats.specialisation}}

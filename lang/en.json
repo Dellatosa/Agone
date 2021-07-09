@@ -35,6 +35,7 @@
             "danseurs": "Dancers",
             "apparence": "Appearance",      
             "nbBlessureGrave": "Serious wound",
+            "nbBlGrAbrev": "Ser. wound",
             "origine": "Birthplace",
             "occupation": "Occupation",
             "sexe": "Sex",
@@ -202,7 +203,9 @@
             "potEmprise": "NO TRAD - Potentiel d'Emprise",
             "potAccord": "NO TRAD - Potentiel d'Accord",
             "potArtMagique": "NO TRAD - Potentiel d'Art magique",
-            "initiative": "Initiative"
+            "initiative": "Initiative",
+            "experienceDisponible": "NO TRAD - Expérience disponible",
+            "experienceTotale": "NO TRAD - Expérience totale"
         },
         "items":{
             "armeLabel": "Weapon",
@@ -338,7 +341,8 @@
             "saisonOeuvre": "Season of the work : {saison}",
             "materiaux": "Materials",
             "modificateurs": "Modifiers",
-            "echecResistance": "NO TRAD - La matière résiste à sa manipulation"
+            "echecResistance": "NO TRAD - La matière résiste à sa manipulation",
+            "malusBlessureGrave": "Wounds penalty"
         },
         "notifications": {
             "warnMemoireDanseur": "NO TRAD - Le danseur ne dispose pas d'assez de mémoire pour apprendre ce sort.",

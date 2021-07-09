@@ -34,7 +34,8 @@
             "connivences": "Connivences",
             "danseurs": "Danseurs",
             "apparence": "Apparence",
-            "nbBlessureGrave": "Blessure grave",
+            "nbBlessureGrave": "Blessure(s) grave(s)",
+            "nbBlGrAbrev": "Nb bless. G",
             "origine": "Origine",
             "occupation": "Occupation",
             "sexe": "Sexe",
@@ -202,7 +203,9 @@
             "potEmprise": "Potentiel d'Emprise",
             "potAccord": "Potentiel d'Accord",
             "potArtMagique": "Potentiel d'Art magique",
-            "initiative": "Initiative"
+            "initiative": "Initiative",
+            "experienceDisponible": "Expérience disponible",
+            "experienceTotale": "Expérience totale"
         },
         "items":{
             "armeLabel": "Arme",          
@@ -338,7 +341,8 @@
             "saisonOeuvre": "Saison de l'oeuvre : {saison}",
             "materiaux": "Matériaux",
             "modificateurs": "Modificateurs",
-            "echecResistance": "La matière résiste à sa manipulation"
+            "echecResistance": "La matière résiste à sa manipulation",
+            "malusBlessureGrave": "Malus de blessures"
         },
         "notifications": {
             "warnMemoireDanseur": "Le danseur ne dispose pas d'assez de mémoire pour apprendre ce sort.",
