@@ -10,6 +10,9 @@
         {{/if}}
     </div>
     <div class="txt-small bold">{{stats.labelCarac}} ({{stats.rangCarac}}) x 2 + {{stats.labelAspect}} ({{stats.bonusAspect}})</div>
+    {{#if stats.utiliseHeroisme}}
+        <div class="txt-small bold">{{localize "agone.chat.utilisationHeroisme"}}</div>
+    {{/if}}
     {{#if stats.isFumble}}
         <div class="dice-tooltip"><div class="dice-rolls fumble"><span class="fumble">{{localize "agone.chat.fumble"}}</span><div class="roll die d10 min">1</div></div></div>
     {{/if}}

@@ -4,17 +4,36 @@ export async function jetCaracteristique({actor = null,
     labelCarac = null,
     bonusAspect = null,
     labelAspect = null,
+    utiliseHeroisme = null,
     difficulte = null,
     titrePersonnalise = null} = {}) {
 
     // Définition de la formule de base du jet, et de sa version fumble (avec 1d10 explosif retranché au 1 du dé initial)
-    let rollFormula = "1d10x + (@rangCarac * 2) + @bonusAspect";
-    let rollFumbleFormula = "(1d10x * -1) + 1 + (@rangCarac * 2) + @bonusAspect";
+    let rollFormula = "1d10x";
+    let rollFumbleFormula = "(1d10x * -1) + 1";
+
+    let baseFormula = "  + (@rangCarac * 2) + @bonusAspect";
 
     let rollData = {
         rangCarac: rangCarac,
         bonusAspect: bonusAspect
     };
+
+    // Utilisation d'un point d'héroïsme
+    if(utiliseHeroisme) {
+        // On teste s'il reste des points d'héroïsme sur l'Actor
+        if(actor.depenserHeroisme()) {
+            rollData.utiliseHeroisme = true,
+            baseFormula += " + 5";
+        }
+        else {
+            ui.notifications.warn(game.i18n.localize("agone.notifications.warnHeroismeEpuise"));
+        }    
+    }
+
+     // Construction des formules de jets définitives (jet initial et fumble)
+     rollFormula += baseFormula;
+     rollFumbleFormula += baseFormula;
 
     // Variables de gestion des fumbles (1 au dé) // TODO : et des échecs critiques (1 au dé suivi de 10, ou MR <= -15)
     let fumble = false;
@@ -132,8 +151,8 @@ export async function jetCompetence({actor = null,
     }
 
     // Définition de la formule de base du jet, et de sa version fumble (avec 1d10 explosif retranché au 1 du dé initial)
-    let rollFormula = "1d10x + ";
-    let rollFumbleFormula = "(1d10x * -1) + 1 + ";
+    let rollFormula = "1d10x";
+    let rollFumbleFormula = "(1d10x * -1) + 1";
 
     let baseFormula;
     let isJetDefaut = false;
@@ -141,7 +160,7 @@ export async function jetCompetence({actor = null,
     // La formule de base varie
     // Jet avec (jet classique) ou sans rang de compétence (ex: défense naturelle)
     if(rangComp) {
-        baseFormula = "@rangComp + @rangCarac + @bonusAspect";
+        baseFormula = " + @rangComp + @rangCarac + @bonusAspect";
 
         // Si la compétence à le rang 0, il s'agit d'un jet par défaut avec un malus de -3
         if(rangComp == 0) {
@@ -150,7 +169,7 @@ export async function jetCompetence({actor = null,
         }
     }
     else {
-        baseFormula = "@rangCarac + @bonusAspect";
+        baseFormula = " + @rangCarac + @bonusAspect";
     }
 
      // Données de base du jet
@@ -348,7 +367,7 @@ function _processJetCompetenceOptions(form) {
     }
 }
 
-export async function combatArme(actor, arme, type) {
+export async function combatArme(actor, arme, type, utiliseHeroisme) {
     let statsCombat = actor.getStatsCombat(arme.data.data.competence, arme.data.data.minForce, arme.data.data.minAgilite);
 
     if(statsCombat === null) {
@@ -375,6 +394,7 @@ export async function combatArme(actor, arme, type) {
         modifAttaque: statsCombat.modifAttaque,
         modifParade: statsCombat.modifParade,
         malusManiement: statsCombat.malusManiement,
+        utiliseHeroisme: utiliseHeroisme,
         afficherDialog: false,
         envoiMessage: false
     });
@@ -383,7 +403,8 @@ export async function combatArme(actor, arme, type) {
     let renderedRoll = await rollResult.render();
 
     let rollStats = {
-        ...statsCombat
+        ...statsCombat,
+        utiliseHeroisme: utiliseHeroisme
     }
 
     if(rollResult.result[0] == "-") {
@@ -801,7 +822,7 @@ function getNiveauQualite(margeQualite) {
 }
 
 // Jet de Contre-magie, avec affichage du messsage dans la chat
-export async function contreMagie(mage, danseur) {
+export async function contreMagie(mage, danseur, utiliseHeroisme) {
     let statsEmprise = mage.getStatsEmprise();
 
     // Construction des strutures de données pour l'affichage du message
@@ -823,10 +844,13 @@ export async function contreMagie(mage, danseur) {
         rangCarac: statsEmprise.emprise,
         bonusAspect: statsEmprise.bonusEsprit,
         bonusEmprise: danseur.data.data.bonusEmprise,
-        //utiliseHeroisme: dialogOptions.utiliseHeroisme,
+        utiliseHeroisme: utiliseHeroisme,
         afficherDialog: false,
         envoiMessage: false
     });
+
+    // Si le jet de compétence est annulé, on arrête le jet de contre magie (ex: compétence par défaut non autorisée)
+    if(rollResult == null) return;
 
     // Recupération du template
     const messageTemplate = "systems/agone/templates/partials/dice/jet-contre-magie.hbs";
@@ -869,7 +893,7 @@ export async function contreMagie(mage, danseur) {
     ChatMessage.create(chatData);
 }
 
-export async function desaccord(artiste, instrument) {
+export async function desaccord(artiste, instrument, utiliseHeroisme) {
     
     let statsAccord = artiste.getStatsArtMagique("accord", instrument);
 
@@ -887,9 +911,13 @@ export async function desaccord(artiste, instrument) {
         jetDefautInterdit: true,
         rangCarac: statsAccord.art,
         bonusAspect: statsAccord.bonusAme,
+        utiliseHeroisme: utiliseHeroisme,
         afficherDialog: false,
         envoiMessage: false
     });
+
+    // Si le jet de compétence est annulé, on arrête le jet de désaccord (ex: compétence par défaut non autorisée)
+    if(rollResult == null) return;
 
     // Recupération du template
     const messageTemplate = "systems/agone/templates/partials/dice/jet-desaccord.hbs";

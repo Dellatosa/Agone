@@ -43,15 +43,17 @@ function onJetOeuvre(event) {
 function onJetContreMagie(event) {
     const card = event.currentTarget.closest(".ctr-magie");
     const danseurCard = event.currentTarget.closest(".danseur");
+    let utiliseHeroisme = event.currentTarget.ownerDocument.getElementsByClassName('util-hero').utiliseHeroisme.checked;
     let mage = game.actors.get(card.dataset.ownerId)
     let danseur = mage.items.get(danseurCard.dataset.danseurId);
 
-    Dice.contreMagie(mage, danseur);
+    Dice.contreMagie(mage, danseur, utiliseHeroisme);
 }
 
 function onJetReconnOeuvre(event) {
     const card = event.currentTarget.closest(".reconn-oeuvre");
     const artCard = event.currentTarget.closest(".jet-reconn-oeuvre");
+    let utiliseHeroisme = event.currentTarget.ownerDocument.getElementsByClassName('util-hero').utiliseHeroisme.checked;
     let artiste = game.actors.get(card.dataset.ownerId);
     let artId =  artCard.dataset.artId;
 
@@ -71,6 +73,7 @@ function onJetReconnOeuvre(event) {
         labelCarac: caracData.labelCarac,
         bonusAspect: caracData.bonusAspect,
         labelAspect: caracData.labelAspect,
+        utiliseHeroisme: utiliseHeroisme,
         titrePersonnalise: game.i18n.localize("agone.actors.jetReconnOeuvre"),
         afficherDialog: false
     });
@@ -79,10 +82,11 @@ function onJetReconnOeuvre(event) {
 function onJetDesaccord(event) {
     const card = event.currentTarget.closest(".instrument-desaccord");
     const instrumentCard = event.currentTarget.closest(".jet-desaccord");
+    let utiliseHeroisme = event.currentTarget.ownerDocument.getElementsByClassName('util-hero').utiliseHeroisme.checked;
     let artiste = game.actors.get(card.dataset.ownerId);
     let instrument =  instrumentCard.dataset.instrument;
 
-    Dice.desaccord(artiste, instrument);
+    Dice.desaccord(artiste, instrument, utiliseHeroisme);
 }
 
 function onEditItemSort(event) {
@@ -105,18 +109,20 @@ function onEditItemContreMagie(event) {
 
 function onAttaque(event) {
     const card = event.currentTarget.closest(".arme");
+    let utiliseHeroisme = event.currentTarget.ownerDocument.getElementsByClassName('util-hero').utiliseHeroisme.checked;
     let attaquant = game.actors.get(card.dataset.ownerId);
     let arme = attaquant.items.get(card.dataset.itemId); 
 
-    Dice.combatArme(attaquant, arme, "Attaque");
+    Dice.combatArme(attaquant, arme, "Attaque", utiliseHeroisme);
 }
 
 function onParade(event) {
     const card = event.currentTarget.closest(".arme");
+    let utiliseHeroisme = event.currentTarget.ownerDocument.getElementsByClassName('util-hero').utiliseHeroisme.checked;
     let defenseur = game.actors.get(card.dataset.ownerId);
     let arme = defenseur.items.get(card.dataset.itemId);
 
-    Dice.combatArme(defenseur, arme, "Parade");
+    Dice.combatArme(defenseur, arme, "Parade", utiliseHeroisme);
 }
 
 export async function selDanseurContreMagie(actor, danseurs) {

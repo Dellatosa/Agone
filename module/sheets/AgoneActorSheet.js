@@ -329,6 +329,7 @@ export default class AgoneActorSheet extends ActorSheet {
             labelCarac: caracData.labelCarac,
             bonusAspect: caracData.bonusAspect,
             labelAspect: caracData.labelAspect,
+            utiliseHeroisme: event.shiftKey,
             titrePersonnalise: game.i18n.localize("agone.actors.jetEsquive"),
             afficherDialog: false
         });
@@ -350,6 +351,7 @@ export default class AgoneActorSheet extends ActorSheet {
             labelCarac: caracData.labelCarac,
             bonusAspect: caracData.bonusAspect,
             labelAspect: caracData.labelAspect,
+            utiliseHeroisme: event.shiftKey,
             titrePersonnalise: game.i18n.localize("agone.actors.jetDefenseNat"),
             afficherDialog: false
         });
@@ -376,6 +378,7 @@ export default class AgoneActorSheet extends ActorSheet {
             labelCarac: selectCaracData.labelCarac,
             bonusAspect: selectCaracData.bonusAspect,
             labelAspect: selectCaracData.labelAspect,
+            utiliseHeroisme: event.shiftKey,
             titrePersonnalise: game.i18n.localize("agone.actors.jetResistMagieNat")
         });
     }
@@ -399,6 +402,7 @@ export default class AgoneActorSheet extends ActorSheet {
             labelCarac: caracData.labelCarac,
             bonusAspect: caracData.bonusAspect,
             labelAspect: caracData.labelAspect,
+            utiliseHeroisme: event.shiftKey,
             titrePersonnalise: game.i18n.localize("agone.actors.jetReconnSort"),
             afficherDialog: false
         });
@@ -416,6 +420,7 @@ export default class AgoneActorSheet extends ActorSheet {
             labelCarac: caracData.labelCarac,
             bonusAspect: caracData.bonusAspect,
             labelAspect: caracData.labelAspect,
+            utiliseHeroisme: event.shiftKey,
             difficulte: 15,
             titrePersonnalise: game.i18n.localize("agone.actors.jetResistMagie")
         });
@@ -432,7 +437,7 @@ export default class AgoneActorSheet extends ActorSheet {
         }
         else if(danseurs.length == 1) {
             // Jet de Contre-magie avec ce danseur
-            Dice.contreMagie(this.actor, danseurs[0]);
+            Dice.contreMagie(this.actor, danseurs[0], event.shiftKey);
         }
         else {
             // Carte de sélection du danseur à afficher dans le chat
@@ -458,20 +463,19 @@ export default class AgoneActorSheet extends ActorSheet {
         for(let[keyDom, domaine] of Object.entries(domainesMusique)) {
             if(domaine.rang > 0) {
                 nbDomaines += 1;
-                //instruments.push({id: keyDom, instrument: domaine});
                 instruments.push(domaine);
             }
         }
 
-        console.log(instruments);
-        console.log(instruments[0].label);
+        //console.log(instruments);
+        //console.log(instruments[0].label);
 
         if(nbDomaines == 0) {
             ui.notifications.warn('Aucune comprétence de musique trouvée');
             return;
         }
         else if(nbDomaines == 1) {
-            Dice.desaccord(this.actor, instruments[0].label);
+            Dice.desaccord(this.actor, instruments[0].label, event.shiftKey);
         }
         else {
             // Selection de l'instrument

@@ -24,6 +24,10 @@
     {{#if data.nonUtilisable}}
         <div class="fumble">{{localize "agone.chat.warnArmeNonUtilisableMsg"}}</div>
     {{else}}
+        <div class="grid-2-chk">
+            <label>{{ localize "agone.chat.utiliseHeroisme"}}</label>
+            <input class="util-hero" type="checkbox" name="utiliseHeroisme"/>
+        </div>
         <div class="boutons-carte">
             {{#if (eq data.style "melee")}}
                 <div class="ligne-btn-2">
