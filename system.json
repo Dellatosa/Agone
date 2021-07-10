@@ -2,7 +2,7 @@
   "name": "agone",
   "title": "Agone RPG",
   "description": "A system for playing Agone JDR",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "minimumCoreVersion": "0.8.8",
   "compatibleCoreVersion": "0.8.8",
   "templateVersion": 2,
@@ -26,5 +26,8 @@
   "gridDistance": 1.5,
   "gridUnits": "m",
   "initiative": "1d10 + @aspects.corps.caracteristiques.agilite.valeur + @aspects.corps.caracteristiques.perception.valeur + @aspects.corps.bonus.valeur",
-  "primaryTokenAttribute": "caracSecondaires.pdv"
+  "primaryTokenAttribute": "caracSecondaires.pdv",
+  "url": "https://github.com/Dellatosa/Agone",
+  "manifest": "https://raw.githubusercontent.com/Dellatosa/Agone/main/system.json",
+  "download": "https://github.com/Dellatosa/Agone/archive/refs/tags/v0.1.0.zip"
 }
