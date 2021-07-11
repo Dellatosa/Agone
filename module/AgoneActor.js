@@ -43,14 +43,37 @@ export default class AgoneActor extends Actor {
                 }
                 data.aspects.ame.bonus.valeur = data.aspects.ame.negatif.valeur - data.aspects.ame.positif.valeur;
             }
+            else {
+                if(data.aspects.corps.bonus == null) {
+                    data.aspects.corps.bonus = {};
+                }
+                data.aspects.corps.bonus.valeur = 0;
+
+                if(data.aspects.esprit.bonus == null) {
+                    data.aspects.esprit.bonus = {};
+                }
+                data.aspects.esprit.bonus.valeur = 0;
+
+                if(data.aspects.ame.bonus == null) {
+                    data.aspects.ame.bonus = {};
+                }
+                data.aspects.ame.bonus.valeur = 0;
+            }
             
 
             // Calcul des scores de Flamme, Flamme noire et de points d'heroisme
-            data.caracSecondaires.flamme = Math.min(data.aspects.corps.positif.valeur, data.aspects.esprit.positif.valeur, data.aspects.ame.positif.valeur);
-            data.caracSecondaires.flammeNoire = Math.min(data.aspects.corps.negatif.valeur, data.aspects.esprit.negatif.valeur, data.aspects.ame.negatif.valeur);
-            data.caracSecondaires.heroisme.max = data.caracSecondaires.flamme * 2;
-            if(data.caracSecondaires.heroisme.value > data.caracSecondaires.heroisme.max) {
-                data.caracSecondaires.heroisme.value = data.caracSecondaires.heroisme.max;
+            if(this.type == "Personnage" || this.type == "Damne") {
+                data.caracSecondaires.flamme = Math.min(data.aspects.corps.positif.valeur, data.aspects.esprit.positif.valeur, data.aspects.ame.positif.valeur);
+                data.caracSecondaires.flammeNoire = Math.min(data.aspects.corps.negatif.valeur, data.aspects.esprit.negatif.valeur, data.aspects.ame.negatif.valeur);
+                data.caracSecondaires.heroisme.max = data.caracSecondaires.flamme * 2;
+                if(data.caracSecondaires.heroisme.value > data.caracSecondaires.heroisme.max) {
+                    data.caracSecondaires.heroisme.value = data.caracSecondaires.heroisme.max;
+                }
+            } 
+            else {
+                data.caracSecondaires.flamme = 0;
+                data.caracSecondaires.flammeNoire = 0;
+                data.caracSecondaires.heroisme.max = 0;
             }
 
             // Calcul des caractéristiques secondaires

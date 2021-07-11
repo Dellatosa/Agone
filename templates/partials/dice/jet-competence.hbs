@@ -12,7 +12,9 @@
             {{/if}}
         {{/if}}
     </div>
-    <div class="txt-small bold">{{#if stats.rangComp}}{{stats.labelComp}} ({{stats.rangComp}}) + {{/if}}{{stats.labelCarac}} ({{stats.rangCarac}}) + {{stats.labelAspect}} ({{stats.bonusAspect}})
+    <div class="txt-small bold">{{#if stats.rangComp}}{{stats.labelComp}} ({{stats.rangComp}}) + {{/if}}
+        {{stats.labelCarac}} ({{stats.rangCarac}}) 
+        {{#if stats.labelAspect}} + {{stats.labelAspect}} ({{stats.bonusAspect}}){{/if}}
         {{#if stats.malusArmure}} + {{localize "agone.chat.malusArmure"}} ({{stats.malusArmure}}){{/if}}
         {{#if stats.malusBlessureGrave}} + {{localize "agone.chat.malusBlessureGrave"}} ({{stats.malusBlessureGrave}}){{/if}}
     </div>

@@ -8,16 +8,24 @@ export async function jetCaracteristique({actor = null,
     difficulte = null,
     titrePersonnalise = null} = {}) {
 
+    let gererBonusAspect = actor.type == "Personnage" || actor.type == "Damne";
+
     // Définition de la formule de base du jet, et de sa version fumble (avec 1d10 explosif retranché au 1 du dé initial)
     let rollFormula = "1d10x";
     let rollFumbleFormula = "(1d10x * -1) + 1";
 
-    let baseFormula = "  + (@rangCarac * 2) + @bonusAspect";
-
     let rollData = {
-        rangCarac: rangCarac,
-        bonusAspect: bonusAspect
+        rangCarac: rangCarac
     };
+
+    let baseFormula;
+    if(gererBonusAspect) {
+        baseFormula = "  + (@rangCarac * 2) + @bonusAspect";
+        rollData.bonusAspect = bonusAspect;
+    }
+    else {
+        baseFormula = "  + (@rangCarac * 2)";
+    }
 
     // On alimente ensuite la formule de base avec les différentes options
     // Malus d'armure sur les jets d'Agilité
@@ -87,9 +95,12 @@ export async function jetCaracteristique({actor = null,
     let rollStats = {
         ...rollData,
         labelCarac: labelCarac,
-        labelAspect: labelAspect,
         isFumble: fumble,
         isEchecCritique: echecCritique
+    }
+
+    if(gererBonusAspect) {
+        rollStats.labelAspect = labelAspect;
     }
 
     if(titrePersonnalise) {
@@ -158,6 +169,8 @@ export async function jetCompetence({actor = null,
         return null;
     }
 
+    let gererBonusAspect = actor.type == "Personnage" || actor.type == "Damne";
+
     // Affichage de la fenêtre de dialogue (vrai par défaut)
     if(afficherDialog) {
         let dialogOptions = await getJetCompetenceOptions({cfgData: CONFIG.agone, defCarac: defCarac});
@@ -187,8 +200,8 @@ export async function jetCompetence({actor = null,
 
     // La formule de base varie
     // Jet avec (jet classique) ou sans rang de compétence (ex: défense naturelle)
-    if(rangComp) {
-        baseFormula = " + @rangComp + @rangCarac + @bonusAspect";
+    if(rangComp != null) {
+        baseFormula = " + @rangComp + @rangCarac";
 
         // Si la compétence à le rang 0, il s'agit d'un jet par défaut avec un malus de -3
         if(rangComp == 0) {
@@ -197,15 +210,19 @@ export async function jetCompetence({actor = null,
         }
     }
     else {
-        baseFormula = " + @rangCarac + @bonusAspect";
+        baseFormula = " + @rangCarac";
     }
 
-     // Données de base du jet
-     let rollData = {
+    // Données de base du jet
+    let rollData = {
         rangComp: rangComp,
-        rangCarac: rangCarac,
-        bonusAspect: bonusAspect
+        rangCarac: rangCarac
     };
+
+    if(gererBonusAspect) {
+        baseFormula += " + @bonusAspect";
+        rollData.bonusAspect = bonusAspect;
+    }
 
     // On alimente ensuite la formule de base avec les différentes options
     // Malus d'armure sur les jets d'Agilité
@@ -321,7 +338,6 @@ export async function jetCompetence({actor = null,
             labelComp: labelComp,
             specialisation: specialisation,
             labelSpecialisation: labelSpecialisation,
-            labelAspect: labelAspect,
             isFumble: fumble,
             isEchecCritique: echecCritique,
             isJetDefaut: isJetDefaut
@@ -329,6 +345,10 @@ export async function jetCompetence({actor = null,
 
         if(titrePersonnalise) {
             rollStats.titrePersonnalise = titrePersonnalise;
+        }
+
+        if(gererBonusAspect) {
+            rollStats.labelAspect = labelAspect;
         }
 
         if(difficulte) {
@@ -403,6 +423,8 @@ function _processJetCompetenceOptions(form) {
 }
 
 export async function combatArme(actor, arme, type, utiliseHeroisme) {
+    let gererBonusAspect = actor.type == "Personnage" || actor.type == "Damne";
+
     let statsCombat = actor.getStatsCombat(arme.data.data.competence, arme.data.data.minForce, arme.data.data.minAgilite);
 
     if(statsCombat === null) {
@@ -424,8 +446,8 @@ export async function combatArme(actor, arme, type, utiliseHeroisme) {
         jetDefautInterdit: false,
         rangCarac: statsCombat.rangCarac,
         labelCarac: statsCombat.labelCarac,
-        bonusAspect: statsCombat.bonusAspect,
-        labelAspect: statsCombat.labelAspect,
+        bonusAspect: gererBonusAspect ? statsCombat.bonusAspect : null,
+        labelAspect: gererBonusAspect ? statsCombat.labelAspect: null,
         modifAttaque: statsCombat.modifAttaque,
         modifParade: statsCombat.modifParade,
         malusManiement: statsCombat.malusManiement,
@@ -440,6 +462,10 @@ export async function combatArme(actor, arme, type, utiliseHeroisme) {
     let rollStats = {
         ...statsCombat,
         utiliseHeroisme: utiliseHeroisme
+    }
+
+    if(!gererBonusAspect) {
+        rollStats.labelAspect = null;
     }
 
     if(rollResult.result[0] == "-") {

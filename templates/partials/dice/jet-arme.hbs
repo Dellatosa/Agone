@@ -1,6 +1,7 @@
 <div class="jet-arme dommages" data-arme-dommages={{arme.data.modifDommages}}>
     <h2>{{localize "agone.chat.combatArmeTitre" type=type arme=arme.name}}</h2>
-    <div class="txt-small bold">{{stats.labelComp}} ({{stats.rangComp}}) + {{stats.labelCarac}} ({{stats.rangCarac}}) + {{stats.labelAspect}} ({{stats.bonusAspect}})
+    <div class="txt-small bold">{{stats.labelComp}} ({{stats.rangComp}}) + {{stats.labelCarac}} ({{stats.rangCarac}})
+        {{#if stats.labelAspect}} + {{stats.labelAspect}} ({{stats.bonusAspect}}){{/if}}
         {{#if stats.malusBlessureGrave}} + {{localize "agone.chat.malusBlessureGrave"}} ({{stats.malusBlessureGrave}}){{/if}}
         {{#if stats.modifAttaque}}<span> + {{localize "agone.items.modifAttaque"}} ({{stats.modifAttaque}})</span>{{/if}}
         {{#if stats.modifParade}}<span> + {{localize "agone.items.modifParade"}} ({{stats.modifParade}})</span>{{/if}}
