@@ -74,6 +74,8 @@ Hooks.on("deleteItem", (item, render, id) => onDeleteItem(item));
 
 function onUpdateItem(item, modif) {
 
+    if(item.parent.isToken) return;
+
     // Modification sur un Danseur
     if(item.type == "Danseur") {
         for(let[keyData, valData] of Object.entries(modif.data))
@@ -132,6 +134,8 @@ function onUpdateItem(item, modif) {
 }
 
 function onDeleteItem(item) {
+    //if(item.parent.isToken) return;
+
     // TODO - en cas de suppression d'un sort, recalcul de la memoire des danseurs
     if(item.type == "Sort" && item.actor) {
         let lstDanseurs = item.actor.data.items.filter(function (item) { return item.type == "Danseur" });

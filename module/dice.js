@@ -482,8 +482,6 @@ export async function combatArme(actor, arme, type, utiliseHeroisme) {
         roll: renderedRoll
     }
 
-    console.log(templateContext);
-
     let chatData = {
         user: game.user.id,
         speaker: ChatMessage.getSpeaker({ actor: actor }),

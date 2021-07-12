@@ -394,7 +394,6 @@ export default class AgoneActor extends Actor {
         if(equipee == "2mains") {
             let autresArmesEquip = this.data.items.filter(function (item) { return item.type == "Arme" && item.id != itemId && item.data.data.equipee != ""});
             autresArmesEquip.forEach(arme => {
-                console.log(arme);
                 arme.update({"data.equipee": ""});
             });
         }
@@ -402,7 +401,6 @@ export default class AgoneActor extends Actor {
         if(equipee == "1main") {
             let autresArmesEquip = this.data.items.filter(function (item) { return item.type == "Arme" && item.id != itemId && item.data.data.style != "bouclier" && item.data.data.equipee != ""});
             autresArmesEquip.forEach(arme => {
-                console.log(arme);
                 arme.update({"data.equipee": ""});
             });
         }
@@ -410,7 +408,6 @@ export default class AgoneActor extends Actor {
         if(equipee == "secMain") {
             let autresArmesEquip = this.data.items.filter(function (item) { return item.type == "Arme" && item.id != itemId && item.data.data.equipee == "2mains"});
             autresArmesEquip.forEach(arme => {
-                console.log(arme);
                 arme.update({"data.equipee": ""});
             });
         }

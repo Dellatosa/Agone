@@ -100,8 +100,6 @@ export default class AgoneActorSheet extends ActorSheet {
             } 
         }
 
-        //console.log(data);
-
         return data;
     }
 
@@ -466,9 +464,6 @@ export default class AgoneActorSheet extends ActorSheet {
                 instruments.push(domaine);
             }
         }
-
-        //console.log(instruments);
-        //console.log(instruments[0].label);
 
         if(nbDomaines == 0) {
             ui.notifications.warn('Aucune comprétence de musique trouvée');

@@ -57,8 +57,6 @@ function onJetReconnOeuvre(event) {
     let artiste = game.actors.get(card.dataset.ownerId);
     let artId =  artCard.dataset.artId;
 
-    console.log("Artiste", artiste, "artId", artId);
-
     let caracData = artiste.getCaracData("art");
     let compData = artiste.getCompData("occulte", "artsMagiques", artId);
 
