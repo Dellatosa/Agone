@@ -110,7 +110,7 @@ export default class AgoneActor extends Actor {
                 data.caracSecondaires.chargeMax = (data.aspects.corps.caracteristiques.force.valeur + data.aspects.corps.caracteristiques.resistance.valeur) * CONFIG.agone.peuple[data.peuple].mpoids;
                 data.caracSecondaires.demiCharge = Math.floor(data.caracSecondaires.chargeMax / 2);
                 data.caracSecondaires.chargeQuotidienne = Math.floor(data.caracSecondaires.chargeMax / 4);
-                data.caracSecondaires.bonusDommages = calcBonusDommages(data.aspects.corps.caracteristiques.force.valeur, data.caracSecondaires.tai);
+                data.caracSecondaires.bonusDommages = this.calcBonusDommages(data.aspects.corps.caracteristiques.force.valeur, data.caracSecondaires.tai);
             } else {
                 data.caracSecondaires.tai = 0;
                 data.caracSecondaires.mouvement = 0;
@@ -163,6 +163,59 @@ export default class AgoneActor extends Actor {
                     }
                 } 
             }
+        }
+    }
+
+    calcBonusDommages(force, tai) {
+        let total = force + tai;
+        switch(total) {
+            case -1:
+                return -6;
+            case 0:   
+                return -4; 
+            case 1:   
+                return -2; 
+            case 2:
+            case 3:   
+                return -1; 
+            case 4:
+            case 5:
+            case 6:   
+                return 0; 
+            case 7:
+            case 8:
+                return 1;
+            case 9:
+                return 2;
+            case 10:
+                return 4;
+            case 11:
+                return 6;
+            case 12:
+                return 8;
+            case 13:
+                return 10;
+            case 14:
+                return 12;
+            case 15:
+                return 15;
+            case 16:
+                return 18;
+            case 17:
+                return 21;
+            case 18:
+                return 24;
+            case 19:
+                return 27;
+            case 20:
+                return 31;
+            case 21:
+                return 35;
+            case 22:
+                return 39;
+            case 23:
+                return 43;
+                 
         }
     }
 
@@ -414,9 +467,16 @@ export default class AgoneActor extends Actor {
     }
 
     rollInitiativePerso() {
+        let data = this.data.data;
+
         // Données de base : AGI + PER + Bonus de Corps
         let initFormula = "1d10 + @aspects.corps.caracteristiques.agilite.valeur + @aspects.corps.caracteristiques.perception.valeur + @aspects.corps.bonus.valeur";
         let modInit = 0;
+
+        // Bonus (ou malus) d'initiative lié aux avantages/défauts
+        if(data.caracSecondaires.bonusInitiative) {
+            modInit += data.caracSecondaires.bonusInitiative;
+        }
 
         // Malus d'armure
         let malusArmure = this.getMalusArmure("agilite");
@@ -450,58 +510,5 @@ export default class AgoneActor extends Actor {
         if(!combattantTrouve) {
             ui.notifications.warn(game.i18n.localize("agone.notifications.warnInitSansCombat"));
         }
-    }
-}
-
-function calcBonusDommages(force, tai) {
-    let total = force + tai;
-    switch(total) {
-        case -1:
-            return -6;
-        case 0:   
-            return -4; 
-        case 1:   
-            return -2; 
-        case 2:
-        case 3:   
-            return -1; 
-        case 4:
-        case 5:
-        case 6:   
-            return 0; 
-        case 7:
-        case 8:
-            return 1;
-        case 9:
-            return 2;
-        case 10:
-            return 4;
-        case 11:
-            return 6;
-        case 12:
-            return 8;
-        case 13:
-            return 10;
-        case 14:
-            return 12;
-        case 15:
-            return 15;
-        case 16:
-            return 18;
-        case 17:
-            return 21;
-        case 18:
-            return 24;
-        case 19:
-            return 27;
-        case 20:
-            return 31;
-        case 21:
-            return 35;
-        case 22:
-            return 39;
-        case 23:
-            return 43;
-             
     }
 }

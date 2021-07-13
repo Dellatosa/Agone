@@ -124,6 +124,7 @@
           },
           "tai": 0,
           "mouvement": 0,
+          "bonusInitiative": 0,
           "nbBlessureGrave": 0,
           "diffJetVieillesse": 0,
           "heroisme": {

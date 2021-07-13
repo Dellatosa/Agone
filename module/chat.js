@@ -174,7 +174,7 @@ export async function selInstrumentDesaccord(actor, instruments) {
     return ChatMessage.create(chatData);
 }
 
-// Pour test
+// Pour test Menu click droit sur Chat Message
 export function addChatMessageContextOptions(html, options) {
     let condOK = li => li.find(".jet-arme.dommages").length;
 

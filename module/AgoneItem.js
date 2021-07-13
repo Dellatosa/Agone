@@ -38,14 +38,6 @@ export default class AgoneItem extends Item {
 
             cardData.data.sorts = sorts;
         }
-
-        /* if(this.type == "Arme") {
-            let diff = this.data.data.tai - this.actor.data.data.caracSecondaires.tai;
-            if(diff < -1 || diff > 1) {
-                cardData.data.warnTaiArme = true;
-            }
-
-        } */
         
         chatData.content = await renderTemplate(this.chatTemplate[this.type], cardData);
         chatData.roll = true;
@@ -77,7 +69,7 @@ function onUpdateItem(item, modif) {
     if(item.parent.isToken) return;
 
     // Modification sur un Danseur
-    if(item.type == "Danseur") {
+    if(item.type == "Danseur" && modif.data) {
         for(let[keyData, valData] of Object.entries(modif.data))
         {
             // Modification de la mémoire max
@@ -122,7 +114,7 @@ function onUpdateItem(item, modif) {
     }
 
     // Modification sur une armure
-    if(item.type == "Armure") {
+    if(item.type == "Armure" && modif.data) {
         for(let[keyData, valData] of Object.entries(modif.data))
         {
             // Le malus de perception dépend du type d'armure

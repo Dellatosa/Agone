@@ -1,3 +1,5 @@
+import AgoneActiveEffectConfig from "./AgoneActiveEffectConfig.js";
+
 export default class AgoneItemSheet extends ItemSheet {
      
     static get defaultOptions() {
@@ -78,7 +80,7 @@ export default class AgoneItemSheet extends ItemSheet {
         let effectId = element.closest(".effet").dataset.effectId;
         let effet = this.item.effects.get(effectId);
 
-        effet.sheet.render(true);
+        new AgoneActiveEffectConfig(effet).render(true);
     }
 
     _onSupprimerEffet(event) {

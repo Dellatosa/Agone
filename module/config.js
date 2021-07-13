@@ -351,3 +351,30 @@ agone.cerclesDemon = {
     carmin: "agone.items.carmin",
     obsidien: "agone.items.obsidien"
 }
+
+agone.clefsEffets = {
+    "": "",
+    "data.aspects.ame.positif.valeur": "agone.actors.ame",
+    "data.aspects.ame.negatif.valeur": "agone.actors.ameNoire",
+    "data.aspects.corps.positif.valeur": "agone.actors.corps",
+    "data.aspects.corps.negatif.valeur": "agone.actors.corpsNoir",
+    "data.aspects.esprit.positif.valeur": "agone.actors.esprit",
+    "data.aspects.esprit.negatif.valeur": "agone.actors.espritNoir",
+    "data.aspects.corps.caracteristiques.force.valeur": "agone.actors.force",
+    "data.aspects.corps.caracteristiques.agilite.valeur": "agone.actors.agilite",
+    "data.aspects.corps.caracteristiques.resistance.valeur": "agone.actors.resistance",
+    "data.aspects.corps.caracteristiques.perception.valeur": "agone.actors.perception",
+    "data.aspects.corps.caracteristiques.melee.valeur": "agone.actors.melee",
+    "data.aspects.corps.caracteristiques.melee.tir": "agone.actors.tir",
+    "data.aspects.esprit.caracteristiques.intelligence.valeur": "agone.actors.intelligence",
+    "data.aspects.esprit.caracteristiques.volonte.valeur": "agone.actors.volonte",
+    "data.aspects.esprit.caracteristiques.emprise.valeur": "agone.actors.emprise",
+    "data.aspects.ame.caracteristiques.charisme.valeur": "agone.actors.charisme",
+    "data.aspects.ame.caracteristiques.creativite.valeur": "agone.actors.creativite",
+    "data.aspects.ame.caracteristiques.art.valeur": "agone.actors.art",
+    "data.caracSecondaires.tai": "agone.actors.tai",
+    "data.caracSecondaires.mouvement": "agone.actors.mouvement",
+    "data.caracSecondaires.bonusInitiative": "agone.actors.initiative",
+    "data.caracSecondaires.tenebre": "agone.actors.tenebre",
+    "data.caracSecondaires.perfidie": "agone.actors.perfidie",
+}
