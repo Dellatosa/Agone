@@ -109,7 +109,19 @@ export default class AgoneActorSheet extends ActorSheet {
         // Tout ce qui suit nécessite que la feuille soit éditable
         if (!this.options.editable) return;
 
-        
+        // Gestion du drag and drop pour les items
+        if (this.actor.isOwner) {
+            let handler = ev => this._onDragStart(ev);
+            // Find all items on the character sheet.
+            html.find('div.item').each((i, div) => {
+                // Ignore for the header row.
+                if (div.classList.contains("item-header")) return;
+                // Add draggable attribute and dragstart listener.
+                div.setAttribute("draggable", true);
+                div.addEventListener("dragstart", handler, false);
+            });
+        }
+
         if(this.actor.isOwner) {
             // edit-comp - edition des compétences d'une famille
             html.find('.edit-comp').click(this._onEditComp.bind(this));

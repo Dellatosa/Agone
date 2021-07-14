@@ -34,6 +34,12 @@ async function preloadHandlebarsTemplates() {
 Hooks.once("init", function(){
     console.log("Agone | Initialisation du système Agone RPG");
 
+    game.agone = {
+        AgoneActor,
+        AgoneItem,
+        rollItemMacro
+    };
+
     //CONFIG.debug.hooks = true;
 
     CONFIG.agone = agone;
@@ -71,5 +77,42 @@ Hooks.once("init", function(){
     });
 });
 
+Hooks.once("ready", async function() {
+    Hooks.on("hotbarDrop", (bar, data, slot) => createAgoneMacro(data, slot));
+});
+
 Hooks.on("renderChatLog", (app, html, data) => Chat.addChatListeners(html));
 Hooks.on("getChatLogEntryContext", Chat.addChatMessageContextOptions);
+
+async function createAgoneMacro(data, slot) {
+    if (data.type !== "Item") return;
+    if (!("data" in data)) return ui.notifications.warn("Vous pouvez créer des raccourçis de macros uniquement pour des objets liés à votre personnage");
+    const item = data.data;
+  
+    // Create the macro command
+    const command = `game.agone.rollItemMacro("${item.name}");`;
+    let macro = game.macros.entities.find(m => (m.name === item.name) && (m.command === command));
+    if (!macro) {
+      macro = await Macro.create({
+        name: item.name,
+        type: "script",
+        img: item.img,
+        command: command,
+        flags: { "agone.itemMacro": true }
+      });
+    }
+    game.user.assignHotbarMacro(macro, slot);
+    return false;
+  }
+
+  function rollItemMacro(itemName) {
+    const speaker = ChatMessage.getSpeaker();
+    let actor;
+    if (speaker.token) actor = game.actors.tokens[speaker.token];
+    if (!actor) actor = game.actors.get(speaker.actor);
+    const item = actor ? actor.items.find(i => i.name === itemName) : null;
+    if (!item) return ui.notifications.warn(`Votre personnage ne possède pas d'objet nommé ${itemName}`);
+  
+    // Trigger the item roll
+    return item.roll();
+  }
