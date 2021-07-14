@@ -31,7 +31,7 @@
     <div>{{roll.formula}}</div>
     {{#if stats.difficulte}}
         <h3 class="resultat">{{localize "agone.chat.marge"}} {{#if stats.isEchecCritique}}<span class="fumble">{{stats.marge}}</span>{{else}}{{stats.marge}}{{/if}}</h3>
-        {{#if (gte stats.marge 0)}}
+        {{#if (gt stats.marge 0)}}
             <h3 class="resultat">{{localize "agone.chat.succes"}}</h3>
         {{else}}
             {{#if stats.isEchecCritique}}
