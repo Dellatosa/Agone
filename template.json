@@ -28,32 +28,38 @@
             "caracteristiques" : {
               "agilite": {
                 "valeur": 0,
+                "max": 10,
                 "label": "Agilité",
                 "abrev": "AGI"
               },
               "force": {
                 "valeur": 0,
+                "max": 10,
                 "label": "Force",
                 "abrev": "FOR"
               },
               "perception": {
                 "valeur": 0,
+                "max": 10,
                 "label": "Perception",
                 "abrev": "PER"
               },
               "resistance": {
                 "valeur": 0,
+                "max": 10,
                 "label": "Résistance",
                 "abrev": "RES"
               },
               "melee": {
                 "valeur": 0,
+                "max": 10,
                 "label": "Melée",
                 "abrev": "MEL",
                 "secondaire": true
               },
               "tir": {
                 "valeur": 0,
+                "max": 10,
                 "label": "Tir",
                 "abrev": "TIR",
                 "secondaire": true
@@ -72,16 +78,19 @@
             "caracteristiques" : {
               "intelligence": {
                 "valeur": 0,
+                "max": 10,
                 "label": "Intelligence",
                 "abrev": "INT"
               },
               "volonte": {
                 "valeur": 0,
+                "max": 10,
                 "label": "Volonté",
                 "abrev": "VOL"
               },
               "emprise": {
                 "valeur": 0,
+                "max": 10,
                 "label": "Emprise", 
                 "abrev": "EMP",
                 "secondaire": true
@@ -100,16 +109,19 @@
             "caracteristiques" : {
               "charisme": {
                 "valeur": 0,
+                "max": 10,
                 "label": "Charisme",
                 "abrev": "CHA"
               },
               "creativite": {
                 "valeur": 0,
+                "max": 10,
                 "label": "Créativité",
                 "abrev": "CRE"
               },
               "art": {
                 "valeur": 0,
+                "max": 10,
                 "label": "Art", 
                 "abrev": "ART",
                 "secondaire": true
