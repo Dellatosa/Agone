@@ -208,6 +208,55 @@ agone.stylesArme = {
     bouclier: "agone.items.bouclier"
 }
 
+agone.mouvementCombat = {
+    aucun: {
+        label: "agone.common.aucun",
+        modif: 0
+    },
+    normal: {
+        label: "agone.items.mouvementNormal",
+        modif: -2
+    },
+    rapide: {
+        label: "agone.items.mouvementRapide",
+        modif: -4
+    }
+}
+
+agone.visibiliteCombat = {
+    complete: {
+        label: "agone.items.visibiliteComplete",
+        modif: 0
+    },
+    demi: {
+        label: "agone.items.visibiliteDemi",
+        modif: -2
+    },
+    minime: {
+        label: "agone.items.visibiliteMinime",
+        modif: -4
+    }
+}
+
+agone.distanceTir = {
+    courte: {
+        label: "agone.items.courte",
+        modif: 10
+    },
+    moyenne: {
+        label: "agone.items.moyenne",
+        modif: 15
+    },
+    longue: {
+        label: "agone.items.longue",
+        modif: 20
+    },
+    extreme: {
+        label: "agone.items.extreme",
+        modif: 25
+    }
+}
+
 agone.typesArmure = {
     aucun: "",
     vesteSeule: "agone.items.vesteSeule",

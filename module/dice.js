@@ -422,7 +422,7 @@ function _processJetCompetenceOptions(form) {
     }
 }
 
-export async function combatArme(actor, arme, type, utiliseHeroisme) {
+export async function combatArme(actor, arme, type/*, utiliseHeroisme*/) {
     let gererBonusAspect = actor.type == "Personnage" || actor.type == "Damne";
 
     let statsCombat = actor.getStatsCombat(arme.data.data.competence, arme.data.data.minForce, arme.data.data.minAgilite);
@@ -432,11 +432,69 @@ export async function combatArme(actor, arme, type, utiliseHeroisme) {
         return;
     }
 
+     // Construction des strutures de données pour l'affichage de la boite de dialogue
+     let attaquantData = {
+        potAttaque: statsCombat.rangCarac + statsCombat.rangComp + statsCombat.bonusAspect + statsCombat.malusManiement + arme.data.data.modifAttaque
+    };
+
+    let armeData = {
+        nomArme: arme.data.name,
+        distance: arme.data.data.style == "trait" || arme.data.data.style == "jet" ? "distance" : "contact"
+    };
+
+    console.log(armeData);
+
+    let dialogOptions;
     if(type == "Attaque") {
         statsCombat.modifAttaque = arme.data.data.modifAttaque;
+        dialogOptions = await getJetAttaqueOptions({attaquantData: attaquantData, armeData: armeData, cfgData: CONFIG.agone});
     }
     else if(type == "Parade") {
         statsCombat.modifParade = arme.data.data.modifParade;
+    }
+
+    
+    // On annule le jet sur les boutons 'Annuler' ou 'Fermeture'
+    if(dialogOptions.annule) {
+        return;
+    }
+
+    let modificateurs = 0;
+    let difficulte;
+    let utiliseHeroisme = false;
+    // Récupération des données de la fenêtre de dialogue pour ce jet 
+    if(type == "Attaque") {
+        if(armeData.distance == "contact") {
+            if(dialogOptions.mauvaiseMain) {
+                modificateurs += -5;
+            }
+            if(dialogOptions.armeNonPrete) {
+                modificateurs += -4;
+            }
+            if(dialogOptions.attaquantAuSol) {
+                modificateurs += -3;
+            }
+            if(dialogOptions.attaquantsSimultanes > 1) {
+                modificateurs += (dialogOptions.attaquantsSimultanes - 1) * 2;
+            }
+        }
+        else if(armeData.distance == "distance") {
+            if(dialogOptions.viser) {
+                modificateurs += 2;
+            }
+            if(dialogOptions.armeNonPreteDist) {
+                modificateurs += -5;
+            }
+            if(dialogOptions.tireurEnMelee) {
+                modificateurs += -4;
+            }
+            modificateurs += dialogOptions.mouvementTireur;
+            modificateurs += dialogOptions.taiCible;
+            modificateurs += dialogOptions.visibiliteCible;
+            modificateurs += dialogOptions.mouvementCible;
+            difficulte = dialogOptions.difficulte;
+        }
+        utiliseHeroisme = dialogOptions.utiliseHeroisme;
     }
 
     let rollResult = await jetCompetence({
@@ -451,6 +509,7 @@ export async function combatArme(actor, arme, type, utiliseHeroisme) {
         modifAttaque: statsCombat.modifAttaque,
         modifParade: statsCombat.modifParade,
         malusManiement: statsCombat.malusManiement,
+        modificateurs: modificateurs,
         utiliseHeroisme: utiliseHeroisme,
         afficherDialog: false,
         envoiMessage: false
@@ -461,6 +520,7 @@ export async function combatArme(actor, arme, type, utiliseHeroisme) {
 
     let rollStats = {
         ...statsCombat,
+        modificateurs: modificateurs,
         utiliseHeroisme: utiliseHeroisme
     }
 
@@ -473,6 +533,15 @@ export async function combatArme(actor, arme, type, utiliseHeroisme) {
         if(rollResult.dice[0].results[0].result == 10) {
             rollStats.isEchecCritique = true;
         }
+    }
+
+    if(difficulte) {
+        rollStats.difficulte = difficulte;
+    }
+
+    rollStats.marge = rollResult.total - difficulte;
+    if(rollStats.marge <= -15) {
+        rollStats.isEchecCritique = true;
     }
 
     let templateContext = {
@@ -493,6 +562,64 @@ export async function combatArme(actor, arme, type, utiliseHeroisme) {
 
     ChatMessage.create(chatData);
 }
+
+// Fonction de construction de la boite de dialogue de jet d'attaque
+async function getJetAttaqueOptions({attaquantData = null, armeData = null, cfgData = null}) {
+    // Recupération du template
+    const template = "systems/agone/templates/partials/dice/dialog-jet-combat-attaque.hbs";
+    const html = await renderTemplate(template, {attaquantData: attaquantData, armeData: armeData, cfgData: cfgData});
+
+    return new Promise( resolve => {
+        const data = {
+            title: game.i18n.localize("agone.actors.jetAttaque"),
+            content: html,
+            buttons: {
+                jet: { // Bouton qui lance le jet de dé
+                    icon: '<i class="fas fa-dice"></i>',
+                    label: game.i18n.localize("agone.common.jet"),
+                    callback: html => resolve(_processJetAttaqueOptions(html[0].querySelector("form"), armeData.distance))
+                },
+                annuler: { // Bouton d'annulation
+                    label: game.i18n.localize("agone.common.annuler"),
+                    callback: html => resolve({annule: true})
+                }
+            },
+            default: "jet",
+            close: () => resolve({annule: true}) // Annulation sur fermeture de la boite de dialogue
+        }
+
+        // Affichage de la boite de dialogue
+        new Dialog(data, null).render(true);
+    });
+}
+
+// Gestion des données renseignées dans la boite de dialogue de jet d'attaque
+function _processJetAttaqueOptions(form, distance) {
+    // On récupère les valeurs selon le type d'arme - au contact ou à distance 
+    if(distance == "contact") {
+        return {
+            mauvaiseMain: form.mauvaiseMain.checked,
+            armeNonPrete: form.armeNonPrete.checked,
+            attaquantAuSol: form.attaquantAuSol.checked,
+            attaquantsSimultanes: parseInt(form.attaquantsSimultanes.value),
+            utiliseHeroisme : form.utiliseHeroisme.checked
+        }
+    }
+    else if(distance == "distance") {
+        return {
+            viser: form.viser.checked,
+            armeNonPreteDist: form.armeNonPreteDist.checked,
+            tireurEnMelee: form.tireurEnMelee.checked,
+            mouvementTireur: parseInt(form.mouvementTireur.value),
+            taiCible: parseInt(form.taiCible.value),
+            visibiliteCible: parseInt(form.visibiliteCible.value),
+            mouvementCible: parseInt(form.mouvementCible.value),
+            difficulte: parseInt(form.difficulte.value),
+            utiliseHeroisme : form.utiliseHeroisme.checked
+        }
+    }
+}
+
 
 // Jet de sort d'Emprise, avec affichage du message dans le chat
 export async function sortEmprise(mage, danseur, sort) {

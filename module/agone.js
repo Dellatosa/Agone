@@ -103,9 +103,9 @@ async function createAgoneMacro(data, slot) {
     }
     game.user.assignHotbarMacro(macro, slot);
     return false;
-  }
+}
 
-  function rollItemMacro(itemName) {
+function rollItemMacro(itemName) {
     const speaker = ChatMessage.getSpeaker();
     let actor;
     if (speaker.token) actor = game.actors.tokens[speaker.token];
@@ -115,4 +115,4 @@ async function createAgoneMacro(data, slot) {
   
     // Trigger the item roll
     return item.roll();
-  }
+}

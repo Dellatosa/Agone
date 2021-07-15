@@ -14,6 +14,7 @@
             "details": "Détails",
             "jet": "Jet",
             "annuler": "Annuler",
+            "aucun": "Aucun",
             "editerComp": "Edition des compétences"
         },
         "actors": {
@@ -75,6 +76,7 @@
             "jetDefenseNat": "Jet de défense naturelle",
             "jetDesaccord": "Jet de désaccord",
             "jetOeuvre": "Jet d'exécution d'oeuvre",
+            "jetAttaque": "Jet d'attaque",
             "editComp": "Editer les compétences",
             "armures": "Armures",
             "force": "Force",
@@ -203,6 +205,7 @@
             "potEmprise": "Potentiel d'Emprise",
             "potAccord": "Potentiel d'Accord",
             "potArtMagique": "Potentiel d'Art magique",
+            "potAttaque": "Potentiel d'Attaque",
             "initiative": "Initiative",
             "experienceDisponible": "Expérience disponible",
             "experienceTotale": "Expérience totale"
@@ -311,7 +314,17 @@
             "verreSable": "Verre & sable",
             "boisTerre": "Bois & terre",
             "metal": "Métal",
-            "pierre": "Pierre"
+            "pierre": "Pierre",
+            "mouvementNormal": "Mouvement normal",
+            "mouvementRapide": "Mouvement rapide",
+            "visibiliteComplete": "Totalement visible",
+            "visibiliteDemi": "A moitié visible",
+            "visibiliteMinime": "A peine visible",
+            "courte": "Courte (0 - P/4)",
+            "moyenne": "Moyenne (P/4 - P/2)",
+            "longue": "Longue (P/2 - P)",
+            "extreme": "Extrême (P - Px2)"
+
         },
         "chat": {
             "succes": "Succès !",
@@ -319,7 +332,8 @@
             "echecCritique": "Echec critique !!!",
             "fumble": "FUMBLE !!!",
             "attaque": "Attaque",
-            "combatArmeTitre": "{type} ({arme})",
+            "attaqueAvec": "Jet d'attaque avec {arme}",
+            "paradeAvec": "Jet de parade avec {arme}",
             "parade": "Parade",
             "difficulte": "Difficulté",
             "marge": "Marge de réussite",
@@ -344,7 +358,19 @@
             "materiaux": "Matériaux",
             "modificateurs": "Modificateurs",
             "echecResistance": "La matière résiste à sa manipulation",
-            "malusBlessureGrave": "Malus de blessures"
+            "malusBlessureGrave": "Malus de blessures",
+            "mauvaiseMain": "Mauvaise main (-5)",
+            "armeNonPrete": "Arme non prête (-4)",
+            "attaquantAuSol": "Attaquant au sol (-3)",
+            "attaquantsSimultanes": "Attaquants simultanés",
+            "viser": "Viser - 1 tour (+2)",
+            "armeNonPreteDist": "Arme non prête (-5)",
+            "mouvementTireur": "Mouvement du tireur",
+            "tireurEnMelee": "Tireur engagé en melée (-4)",
+            "taiCible": "TAI de la cible",
+            "visibiliteCible": "Visibilité sur la cible",
+            "mouvementCible": "Mouvement de la cible",
+            "distanceTir": "Distance du tir"
         },
         "notifications": {
             "warnMemoireDanseur": "Le danseur ne dispose pas d'assez de mémoire pour apprendre ce sort.",

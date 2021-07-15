@@ -107,20 +107,18 @@ function onEditItemContreMagie(event) {
 
 function onAttaque(event) {
     const card = event.currentTarget.closest(".arme");
-    let utiliseHeroisme = event.currentTarget.ownerDocument.getElementsByClassName('util-hero').utiliseHeroisme.checked;
     let attaquant = game.actors.get(card.dataset.ownerId);
     let arme = attaquant.items.get(card.dataset.itemId); 
 
-    Dice.combatArme(attaquant, arme, "Attaque", utiliseHeroisme);
+    Dice.combatArme(attaquant, arme, "Attaque");
 }
 
 function onParade(event) {
     const card = event.currentTarget.closest(".arme");
-    let utiliseHeroisme = event.currentTarget.ownerDocument.getElementsByClassName('util-hero').utiliseHeroisme.checked;
     let defenseur = game.actors.get(card.dataset.ownerId);
     let arme = defenseur.items.get(card.dataset.itemId);
 
-    Dice.combatArme(defenseur, arme, "Parade", utiliseHeroisme);
+    Dice.combatArme(defenseur, arme, "Parade");
 }
 
 export async function selDanseurContreMagie(actor, danseurs) {

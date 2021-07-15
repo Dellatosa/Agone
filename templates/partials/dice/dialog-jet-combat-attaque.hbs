@@ -1,0 +1,84 @@
+<form>
+    <div>{{ localize "agone.actors.jetAttaque"}} - <span class="bold">{{armeData.distance}}</span> - {{ localize "agone.items.armeLabel"}} : <span class="bold">{{armeData.nomArme}}</span></div>
+    <div>{{ localize "agone.actors.potAttaque"}} <span class="bold">{{attaquantData.potAttaque}}</span></div>
+    {{#if (eq armeData.distance "contact")}}
+        <div class="form-group">
+            <label>{{ localize "agone.chat.mauvaiseMain"}}</label>
+            <input type="checkbox" name="mauvaiseMain"/>
+        </div>
+        <div class="form-group">
+            <label>{{ localize "agone.chat.armeNonPrete"}}</label>
+            <input type="checkbox" name="armeNonPrete"/>
+        </div>
+        <div class="form-group">
+            <label>{{ localize "agone.chat.attaquantAuSol"}}</label>
+            <input type="checkbox" name="attaquantAuSol"/>
+        </div>
+        <div class="form-group">
+            <label>{{ localize "agone.chat.attaquantsSimultanes"}}</label>
+            <input type="number" name="attaquantsSimultanes" min="1" value="1"/>
+        </div>
+    {{/if}}
+    {{#if (eq armeData.distance "distance")}}
+        <div class="form-group">
+            <label>{{ localize "agone.chat.viser"}}</label>
+            <input type="checkbox" name="viser"/>
+        </div>
+        <div class="form-group">
+            <label>{{ localize "agone.chat.armeNonPreteDist"}}</label>
+            <input type="checkbox" name="armeNonPreteDist"/>
+        </div>
+        <div class="form-group">
+            <label>{{ localize "agone.chat.tireurEnMelee"}}</label>
+            <input type="checkbox" name="tireurEnMelee"/>
+        </div>
+        <div class="form-group">
+            <label>{{ localize "agone.chat.mouvementTireur"}}</label>
+            <select name="mouvementTireur">
+                {{#select mouvementTireur}}
+                    {{#each cfgData.mouvementCombat as | mvtTireur |}}
+                        <option value="{{mvtTireur.modif}}">{{localize mvtTireur.label}}</option>
+                    {{/each}}
+                {{/select}}
+            </select>
+        </div>
+        <div class="form-group">
+            <label>{{ localize "agone.chat.taiCible"}}</label>
+            <input type="number" name="taiCible" min="-2" max="3" value="0"/>
+        </div>
+        <div class="form-group">
+            <label>{{ localize "agone.chat.visibiliteCible"}}</label>
+            <select name="visibiliteCible">
+                {{#select visibiliteCible}}
+                    {{#each cfgData.visibiliteCombat as | visibCible |}}
+                        <option value="{{visibCible.modif}}">{{localize visibCible.label}}</option>
+                    {{/each}}
+                {{/select}}
+            </select>
+        </div>
+        <div class="form-group">
+            <label>{{ localize "agone.chat.mouvementCible"}}</label>
+            <select name="mouvementCible">
+                {{#select mouvementCible}}
+                    {{#each cfgData.mouvementCombat as | mvtCible |}}
+                        <option value="{{mvtCible.modif}}">{{localize mvtCible.label}}</option>
+                    {{/each}}
+                {{/select}}
+            </select>
+        </div>
+        <div class="form-group">
+            <label>{{ localize "agone.chat.distanceTir"}}</label>
+            <select name="difficulte">
+                {{#select difficulte}}
+                    {{#each cfgData.distanceTir as | distTir |}}
+                        <option value="{{distTir.modif}}">{{localize distTir.label}}</option>
+                    {{/each}}
+                {{/select}}
+            </select>
+        </div>
+    {{/if}}
+    <div class="form-group">
+        <label>{{ localize "agone.chat.utiliseHeroisme"}}</label>
+        <input type="checkbox" name="utiliseHeroisme"/>
+    </div>
+</form>

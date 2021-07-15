@@ -485,7 +485,8 @@ export default class AgoneActor extends Actor {
         }
 
         // Bonus de l'arme
-        let armesEquipees = this.items.filter(function (item) { return item.type == "Arme" && item.data.data.equipee != ""});
+        // TODO - corriger le calcul pour n'inclure que l'arme utilisée en attaque. Pour l'instant on ignore modInit des boucliers
+        let armesEquipees = this.items.filter(function (item) { return item.type == "Arme" && item.data.data.type != "bouclier" && item.data.data.equipee != ""});
         
         armesEquipees.forEach(armeEq => {
             if(armeEq.data.data.modifInit) {

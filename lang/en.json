@@ -14,6 +14,7 @@
             "details": "Details",
             "jet": "Roll",
             "annuler": "Cancel",
+            "aucun": "None",
             "editerComp": "Edit skills"
         },
         "actors": {
@@ -75,6 +76,7 @@
             "jetDefenseNat": "NO TRAD - Jet de défense naturelle",
             "jetDesaccord": "NO TRAD - Jet de désaccord",
             "jetOeuvre": "NO TRAD - Jet d'exécution d'oeuvre",
+            "jetAttaque": "Attack roll",
             "editComp": "Edit skills",
             "armures": "Armour",
             "force": "Strength",
@@ -203,6 +205,7 @@
             "potEmprise": "NO TRAD - Potentiel d'Emprise",
             "potAccord": "NO TRAD - Potentiel d'Accord",
             "potArtMagique": "NO TRAD - Potentiel d'Art magique",
+            "potAttaque": "NO TRAD - Potentiel d'Attaque",
             "initiative": "Initiative",
             "experienceDisponible": "NO TRAD - Expérience disponible",
             "experienceTotale": "NO TRAD - Expérience totale"
@@ -311,7 +314,16 @@
             "verreSable": "Glass & sand",
             "boisTerre": "Wood & soil",
             "metal": "Metal",
-            "pierre": "Stone"
+            "pierre": "Stone",
+            "mouvementNormal": "Normal moves",
+            "mouvementRapide": "quick moves",
+            "visibiliteComplete": "NO TRAD - Totalement visible",
+            "visibiliteDemi": "NO TRAD - A moitié visible",
+            "visibiliteMinime": "NO TRAD - A peine visible",
+            "courte": "Short (0 - R/4)",
+            "moyenne": "Medium (R/4 - R/2)",
+            "longue": "Long (R/2 - R)",
+            "extreme": "Extreme (R - Rx2)"
         },
         "chat": {
             "succes": "Success !",
@@ -319,7 +331,8 @@
             "echecCritique": "Critical failure !!!",
             "fumble": "FUMBLE !!!",
             "attaque": "Attack",
-            "combatArmeTitre": "{type} ({arme})",
+            "attaqueAvec": "Attack roll with {arme}",
+            "paradeAvec": "Parry roll with {arme}",
             "parade": "Parry",
             "difficulte": "Difficulty",
             "marge": "NO TRAD - Marge de réussite",
@@ -344,7 +357,19 @@
             "materiaux": "Materials",
             "modificateurs": "Modifiers",
             "echecResistance": "NO TRAD - La matière résiste à sa manipulation",
-            "malusBlessureGrave": "Wounds penalty"
+            "malusBlessureGrave": "Wounds penalty",
+            "mauvaiseMain": "NO TRAD - Mauvaise main (-5)",
+            "armeNonPrete": "NO TRAD - Arme non prête (-4)",
+            "attaquantAuSol": "NO TRAD - Attaquant au sol (-3)",
+            "attaquantsSimultanes": "NO TRAD - Attaquants simultanés",
+            "viser": "Aim - 1 turn (+2)",
+            "armeNonPreteDist": "NO TRAD - Arme non prête (-5)",
+            "mouvementTireur": "NO TRAD - Mouvement du tireur",
+            "tireurEnMelee": "NO TRAD - Tireur engagé en melée (-4)",
+            "taiCible": "SIZ of the target",
+            "visibiliteCible": "NO TRAD - Visibilité sur la cible",
+            "mouvementCible": "NO TRAD - Mouvement de la cible",
+            "distanceTir": "NO TRAD - Distance du tir"
         },
         "notifications": {
             "warnMemoireDanseur": "NO TRAD - Le danseur ne dispose pas d'assez de mémoire pour apprendre ce sort.",
