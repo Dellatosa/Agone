@@ -67,7 +67,7 @@
             "jetComp": "Skill roll",
             "jetCarac": "Attribute roll",
             "jetEsquive": "Dodge roll",
-            "jetDefensNat": "NO TRAD - Jet de défense naturelle",
+            "jetDefense": "NO TRAD - Jet de défense",
             "jetEmprise": "Ascendancy roll",
             "jetReconnSort": "NO TRAD - Jet de reconnaissance de sort",
             "jetReconnOeuvre": "NO TRAD - Jet de reconnaissance d'oeuvre",
@@ -77,6 +77,7 @@
             "jetDesaccord": "NO TRAD - Jet de désaccord",
             "jetOeuvre": "NO TRAD - Jet d'exécution d'oeuvre",
             "jetAttaque": "Attack roll",
+            "jetParade": "Parry roll",
             "editComp": "Edit skills",
             "armures": "Armour",
             "force": "Strength",
@@ -206,6 +207,7 @@
             "potAccord": "NO TRAD - Potentiel d'Accord",
             "potArtMagique": "NO TRAD - Potentiel d'Art magique",
             "potAttaque": "NO TRAD - Potentiel d'Attaque",
+            "potDefense": "NO TRAD - Potentiel de Défense",
             "initiative": "Initiative",
             "experienceDisponible": "NO TRAD - Expérience disponible",
             "experienceTotale": "NO TRAD - Expérience totale"
@@ -263,7 +265,7 @@
             "tai": "SIZ",
             "modifInit": "Init.",
             "modifAttaque": "Att.",
-            "modifParade": "Dodge",
+            "modifParade": "Parry",
             "modifDommages": "Dam.",
             "minAgilite": "min. AGI",
             "minForce": "min. STR",
@@ -369,7 +371,13 @@
             "taiCible": "SIZ of the target",
             "visibiliteCible": "NO TRAD - Visibilité sur la cible",
             "mouvementCible": "NO TRAD - Mouvement de la cible",
-            "distanceTir": "NO TRAD - Distance du tir"
+            "distanceTir": "NO TRAD - Distance du tir",
+            "defenseurEnSelle": "NO TRAD - Défenseur en selle (-5)",
+            "AttParMemeArme": "NO TRAD - Attaque et parade même arme (-1)",
+            "defenseurAuSol": "NO TRAD - Défenseur au sol (-3)",
+            "attaqueCote": "NO TRAD - Attaque de coté (-1)",
+            "attaqueDos": "NO TRAD - Attaque de dos (-8)",
+            "defenseurSureleve": "NO TRAD - Défenseur surélevé (+2)"
         },
         "notifications": {
             "warnMemoireDanseur": "NO TRAD - Le danseur ne dispose pas d'assez de mémoire pour apprendre ce sort.",

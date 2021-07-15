@@ -190,7 +190,7 @@ export async function jetCompetence({actor = null,
         difficulte = dialogOptions.difficulte;
         utiliseHeroisme = dialogOptions.utiliseHeroisme;
     }
-
+    
     // Définition de la formule de base du jet, et de sa version fumble (avec 1d10 explosif retranché au 1 du dé initial)
     let rollFormula = "1d10x";
     let rollFumbleFormula = "(1d10x * -1) + 1";
@@ -366,6 +366,8 @@ export async function jetCompetence({actor = null,
             roll: renderedRoll
         }
 
+        console.log(templateContext);
+
         // Construction du message
         let chatData = {
             user: game.user.id,
@@ -422,7 +424,7 @@ function _processJetCompetenceOptions(form) {
     }
 }
 
-export async function combatArme(actor, arme, type/*, utiliseHeroisme*/) {
+export async function combatArme(actor, arme, type) {
     let gererBonusAspect = actor.type == "Personnage" || actor.type == "Damne";
 
     let statsCombat = actor.getStatsCombat(arme.data.data.competence, arme.data.data.minForce, arme.data.data.minAgilite);
@@ -433,24 +435,28 @@ export async function combatArme(actor, arme, type/*, utiliseHeroisme*/) {
     }
 
      // Construction des strutures de données pour l'affichage de la boite de dialogue
-     let attaquantData = {
-        potAttaque: statsCombat.rangCarac + statsCombat.rangComp + statsCombat.bonusAspect + statsCombat.malusManiement + arme.data.data.modifAttaque
-    };
-
     let armeData = {
-        nomArme: arme.data.name,
-        distance: arme.data.data.style == "trait" || arme.data.data.style == "jet" ? "distance" : "contact"
+        nomArme: arme.data.name
     };
-
-    console.log(armeData);
 
     let dialogOptions;
     if(type == "Attaque") {
         statsCombat.modifAttaque = arme.data.data.modifAttaque;
+        armeData.distance = arme.data.data.style == "trait" || arme.data.data.style == "jet" ? "distance" : "contact";
+        let attaquantData = {
+            potAttaque: statsCombat.rangCarac + statsCombat.rangComp + statsCombat.bonusAspect + statsCombat.malusManiement + arme.data.data.modifAttaque
+        };
+        
         dialogOptions = await getJetAttaqueOptions({attaquantData: attaquantData, armeData: armeData, cfgData: CONFIG.agone});
     }
     else if(type == "Parade") {
         statsCombat.modifParade = arme.data.data.modifParade;
+        let defenseurData = {
+            potDefense: statsCombat.rangCarac + statsCombat.rangComp + statsCombat.bonusAspect + statsCombat.malusManiement + arme.data.data.modifParade,
+            typeDefense: "parade"
+        };
+
+        dialogOptions = await getJetDefenseOptions({defenseurData: defenseurData, armeData: armeData});
     }
 
     
@@ -493,6 +499,30 @@ export async function combatArme(actor, arme, type/*, utiliseHeroisme*/) {
             modificateurs += dialogOptions.visibiliteCible;
             modificateurs += dialogOptions.mouvementCible;
             difficulte = dialogOptions.difficulte;
+        }
+        
+    }
+    else if(type == "Parade") {
+        if(dialogOptions.mauvaiseMain) {
+            modificateurs += -5;
+        }
+        if(dialogOptions.armeNonPreteDist) {
+            modificateurs += -5;
+        }
+        if(dialogOptions.AttParMemeArme) {
+            modificateurs += -1;
+        }
+        if(dialogOptions.defenseurAuSol) {
+            modificateurs += -3;
+        }
+        if(dialogOptions.attaqueCote) {
+            modificateurs += -1;
+        }
+        if(dialogOptions.attaqueDos) {
+            modificateurs += -8;
+        }
+        if(dialogOptions.defenseurSureleve) {
+            modificateurs += 2;
         }
         utiliseHeroisme = dialogOptions.utiliseHeroisme;
     }
@@ -620,6 +650,62 @@ function _processJetAttaqueOptions(form, distance) {
     }
 }
 
+// Fonction de construction de la boite de dialogue de jet de defense
+async function getJetDefenseOptions({defenseurData = null, armeData = null}) {
+    // Recupération du template
+    const template = "systems/agone/templates/partials/dice/dialog-jet-combat-defense.hbs";
+    const html = await renderTemplate(template, {defenseurData: defenseurData, armeData: armeData});
+
+    return new Promise( resolve => {
+        const data = {
+            title: game.i18n.localize("agone.actors.jetDefense"),
+            content: html,
+            buttons: {
+                jet: { // Bouton qui lance le jet de dé
+                    icon: '<i class="fas fa-dice"></i>',
+                    label: game.i18n.localize("agone.common.jet"),
+                    callback: html => resolve(_processJetDefenseOptions(html[0].querySelector("form"), defenseurData.typeDefense))
+                },
+                annuler: { // Bouton d'annulation
+                    label: game.i18n.localize("agone.common.annuler"),
+                    callback: html => resolve({annule: true})
+                }
+            },
+            default: "jet",
+            close: () => resolve({annule: true}) // Annulation sur fermeture de la boite de dialogue
+        }
+
+        // Affichage de la boite de dialogue
+        new Dialog(data, null).render(true);
+    });
+}
+
+// Gestion des données renseignées dans la boite de dialogue de jet d'attaque
+function _processJetDefenseOptions(form, typeDefense) {
+    // On récupère les valeurs selon le type d'arme - au contact ou à distance 
+    if(typeDefense == "parade") {
+        return {
+            mauvaiseMain: form.mauvaiseMain.checked,
+            armeNonPreteDist: form.armeNonPreteDist.checked,
+            AttParMemeArme: form.AttParMemeArme.checked,
+            defenseurAuSol: form.defenseurAuSol.checked,
+            attaqueCote: form.attaqueCote.checked,
+            attaqueDos: form.attaqueDos.checked,
+            defenseurSureleve: form.defenseurSureleve.checked,
+            utiliseHeroisme : form.utiliseHeroisme.checked
+        }
+    }
+    else if(typeDefense == "esquive") {
+        return {
+            defenseurEnSelle: form.defenseurEnSelle.checked,
+            defenseurAuSol: form.defenseurAuSol.checked,
+            attaqueCote: form.attaqueCote.checked,
+            attaqueDos: form.attaqueDos.checked,
+            defenseurSureleve: form.defenseurSureleve.checked,
+            utiliseHeroisme : form.utiliseHeroisme.checked
+        }
+    }
+}
 
 // Jet de sort d'Emprise, avec affichage du message dans le chat
 export async function sortEmprise(mage, danseur, sort) {
@@ -1142,5 +1228,129 @@ export async function desaccord(artiste, instrument, utiliseHeroisme) {
     }
 
     // Affichage du message
+    ChatMessage.create(chatData);
+}
+
+export async function jetDefense(defenseur, typeDef) {
+
+    let compData;
+    if(typeDef == "esquive") {
+        compData = defenseur.getCompData("epreuves", "esquive", null);
+    }
+    let caracData = defenseur.getCaracData("agilite");
+
+    let gererBonusAspect = defenseur.type == "Personnage" || defenseur.type == "Damne";
+
+    let defenseurData;
+    let titrePersonnalise;
+    if(typeDef == "esquive") {
+        titrePersonnalise = game.i18n.localize("agone.actors.jetEsquive");
+        defenseurData = {
+            potDefense: caracData.rangCarac + compData.rangComp + caracData.bonusAspect,
+            typeDefense: "esquive"
+        };
+    }
+    else if(typeDef == "defenseNat") {
+        titrePersonnalise = game.i18n.localize("agone.actors.jetDefenseNat");
+        defenseurData = {
+            potDefense: caracData.rangCarac + caracData.bonusAspect,
+            typeDefense: "esquive"
+        };
+    }
+
+    let dialogOptions = await getJetDefenseOptions({defenseurData: defenseurData, armeData: null});
+
+     // On annule le jet sur les boutons 'Annuler' ou 'Fermeture'
+     if(dialogOptions.annule) {
+        return;
+    }
+
+    
+    let modificateurs = 0;
+    if(dialogOptions.defenseurEnSelle) {
+        modificateurs += -5;
+    }
+    if(dialogOptions.defenseurAuSol) {
+        modificateurs += -3;
+    }
+    if(dialogOptions.attaqueCote) {
+        modificateurs += -1;
+    }
+    if(dialogOptions.attaqueDos) {
+        modificateurs += -8;
+    }
+    if(dialogOptions.defenseurSureleve) {
+        modificateurs += 2;
+    }
+
+    let utiliseHeroisme = dialogOptions.utiliseHeroisme;
+
+    let rollResult = await jetCompetence({
+        actor: defenseur,
+        rangComp: typeDef == "esquive" ? compData.rangComp : null,
+        labelComp: typeDef == "esquive" ? compData.labelComp: null,
+        specialisation: typeDef == "esquive" ? compData.specialisation : null,
+        labelSpecialisation: typeDef == "esquive" ? compData.labelSpecialisation : null,
+        jetDefautInterdit: typeDef == "esquive" ? compData.jetDefautInterdit : false,
+        rangCarac: caracData.rangCarac,
+        labelCarac: caracData.labelCarac,
+        bonusAspect: gererBonusAspect ? caracData.bonusAspect : null,
+        labelAspect: gererBonusAspect ? caracData.labelAspect: null,
+        modificateurs: modificateurs,
+        utiliseHeroisme: utiliseHeroisme,
+        afficherDialog: false,
+        envoiMessage: false
+    });
+
+    const messageTemplate = "systems/agone/templates/partials/dice/jet-competence.hbs";
+    let renderedRoll = await rollResult.render();
+
+    let rollStats = {
+        ...rollResult.data,
+        labelCarac: caracData.labelCarac,
+        labelAspect: caracData.labelAspect,
+        labelComp: typeDef == "esquive" ? compData.labelComp : null,
+        modificateurs: modificateurs,
+        utiliseHeroisme: utiliseHeroisme,
+        titrePersonnalise: titrePersonnalise
+    }
+
+    if(!gererBonusAspect) {
+        rollStats.labelAspect = null;
+    }
+
+    if(rollResult.result[0] == "-") {
+        rollStats.isFumble = true;
+        if(rollResult.dice[0].results[0].result == 10) {
+            rollStats.isEchecCritique = true;
+        }
+    }
+
+    /*if(difficulte) {
+        rollStats.difficulte = difficulte;
+    }
+
+    rollStats.marge = rollResult.total - difficulte;
+    if(rollStats.marge <= -15) {
+        rollStats.isEchecCritique = true;
+    }*/
+
+    
+    let templateContext = {
+        stats: rollStats,
+        roll: renderedRoll
+    }
+    
+    console.log(templateContext);
+
+    let chatData = {
+        user: game.user.id,
+        speaker: ChatMessage.getSpeaker({ actor: defenseur }),
+        roll: rollResult,
+        content: await renderTemplate(messageTemplate, templateContext),
+        sound: CONFIG.sounds.dice,
+        type: CONST.CHAT_MESSAGE_TYPES.ROLL
+    }
+
     ChatMessage.create(chatData);
 }

@@ -1,0 +1,49 @@
+<form>
+    {{#if (eq defenseurData.typeDefense "esquive")}}
+        <div>{{ localize "agone.actors.jetEsquive"}}</div>
+    {{/if}}
+    {{#if (eq defenseurData.typeDefense "parade")}}
+        <div>{{ localize "agone.actors.jetParade"}} - {{ localize "agone.items.armeLabel"}} : <span class="bold">{{armeData.nomArme}}</span></div>
+    {{/if}}
+    <div>{{ localize "agone.actors.potDefense"}} <span class="bold">{{defenseurData.potDefense}}</span></div>
+    {{#if (eq defenseurData.typeDefense "esquive")}}
+        <div class="form-group">
+            <label>{{ localize "agone.chat.defenseurEnSelle"}}</label>
+            <input type="checkbox" name="defenseurEnSelle"/>
+        </div>
+    {{/if}}
+    {{#if (eq defenseurData.typeDefense "parade")}}
+        <div class="form-group">
+            <label>{{ localize "agone.chat.mauvaiseMain"}}</label>
+            <input type="checkbox" name="mauvaiseMain"/>
+        </div>
+        <div class="form-group">
+            <label>{{ localize "agone.chat.armeNonPreteDist"}}</label>
+            <input type="checkbox" name="armeNonPreteDist"/>
+        </div>
+        <div class="form-group">
+            <label>{{ localize "agone.chat.AttParMemeArme"}}</label>
+            <input type="checkbox" name="AttParMemeArme"/>
+        </div>
+    {{/if}}
+    <div class="form-group">
+        <label>{{ localize "agone.chat.defenseurAuSol"}}</label>
+        <input type="checkbox" name="defenseurAuSol"/>
+    </div>
+    <div class="form-group">
+        <label>{{ localize "agone.chat.attaqueCote"}}</label>
+        <input type="checkbox" name="attaqueCote"/>
+    </div>
+    <div class="form-group">
+        <label>{{ localize "agone.chat.attaqueDos"}}</label>
+        <input type="checkbox" name="attaqueDos"/>
+    </div>
+    <div class="form-group">
+        <label>{{ localize "agone.chat.defenseurSureleve"}}</label>
+        <input type="checkbox" name="defenseurSureleve"/>
+    </div>
+    <div class="form-group">
+        <label>{{ localize "agone.chat.utiliseHeroisme"}}</label>
+        <input type="checkbox" name="utiliseHeroisme"/>
+    </div>
+</form>

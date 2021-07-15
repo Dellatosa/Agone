@@ -325,46 +325,14 @@ export default class AgoneActorSheet extends ActorSheet {
     _onEsquive(event) {
         event.preventDefault();
 
-        let caracData = this.actor.getCaracData("agilite");
-        let compData = this.actor.getCompData("epreuves", "esquive", null);
-
-        Dice.jetCompetence({
-            actor: this.actor,
-            rangComp: compData.rangComp,
-            labelComp: compData.labelComp,
-            specialisation: compData.specialisation,
-            labelSpecialisation: compData.labelSpecialisation,
-            jetDefautInterdit: compData.jetDefautInterdit,
-            rangCarac: caracData.rangCarac,
-            labelCarac: caracData.labelCarac,
-            bonusAspect: caracData.bonusAspect,
-            labelAspect: caracData.labelAspect,
-            utiliseHeroisme: event.shiftKey,
-            titrePersonnalise: game.i18n.localize("agone.actors.jetEsquive"),
-            afficherDialog: false
-        });
+        Dice.jetDefense(this.actor, "esquive");
     }
 
     // Défense naturelle
     _onDefenseNat(event) {
         event.preventDefault();
 
-        let caracData = this.actor.getCaracData("agilite");
-        let compData = this.actor.getCompData("epreuves", "esquive", null);
-
-        Dice.jetCompetence({
-            actor: this.actor,
-            specialisation: compData.specialisation,
-            labelSpecialisation: compData.labelSpecialisation,
-            jetDefautInterdit: compData.jetDefautInterdit,
-            rangCarac: caracData.rangCarac,
-            labelCarac: caracData.labelCarac,
-            bonusAspect: caracData.bonusAspect,
-            labelAspect: caracData.labelAspect,
-            utiliseHeroisme: event.shiftKey,
-            titrePersonnalise: game.i18n.localize("agone.actors.jetDefenseNat"),
-            afficherDialog: false
-        });
+        Dice.jetDefense(this.actor, "defenseNat");
     }
 
     // Resistance magique naturelle -

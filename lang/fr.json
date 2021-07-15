@@ -67,7 +67,7 @@
             "jetComp": "Jet de compétence",
             "jetCarac": "Jet de caractéristique",
             "jetEsquive": "Jet d'esquive",
-            "jetDefensNat": "Jet de défense naturelle",
+            "jetDefense": "Jet de défense",
             "jetEmprise": "Jet de sort d'Emprise",
             "jetReconnSort": "Jet de reconnaissance de sort",
             "jetReconnOeuvre": "Jet de reconnaissance d'oeuvre",
@@ -77,6 +77,7 @@
             "jetDesaccord": "Jet de désaccord",
             "jetOeuvre": "Jet d'exécution d'oeuvre",
             "jetAttaque": "Jet d'attaque",
+            "jetParade": "Jet de parade",
             "editComp": "Editer les compétences",
             "armures": "Armures",
             "force": "Force",
@@ -206,6 +207,7 @@
             "potAccord": "Potentiel d'Accord",
             "potArtMagique": "Potentiel d'Art magique",
             "potAttaque": "Potentiel d'Attaque",
+            "potDefense": "Potentiel de Défense",
             "initiative": "Initiative",
             "experienceDisponible": "Expérience disponible",
             "experienceTotale": "Expérience totale"
@@ -370,7 +372,13 @@
             "taiCible": "TAI de la cible",
             "visibiliteCible": "Visibilité sur la cible",
             "mouvementCible": "Mouvement de la cible",
-            "distanceTir": "Distance du tir"
+            "distanceTir": "Distance du tir",
+            "defenseurEnSelle": "Défenseur en selle (-5)",
+            "AttParMemeArme": "Attaque et parade même arme (-1)",
+            "defenseurAuSol": "Défenseur au sol (-3)",
+            "attaqueCote": "Attaque de coté (-1)",
+            "attaqueDos": "Attaque de dos (-8)",
+            "defenseurSureleve": "Défenseur surélevé (+2)"
         },
         "notifications": {
             "warnMemoireDanseur": "Le danseur ne dispose pas d'assez de mémoire pour apprendre ce sort.",
