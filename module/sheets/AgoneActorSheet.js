@@ -38,6 +38,7 @@ export default class AgoneActorSheet extends ActorSheet {
         data.armes = data.items.filter(function (item) { return item.type == "Arme"});
         data.armures = data.items.filter(function (item) { return item.type == "Armure"});
         data.manoeuvres = data.items.filter(function (item) { return item.type == "Manoeuvre"});
+        data.bottesSecretes = data.items.filter(function (item) { return item.type == "BotteSecrete"});
 
         data.danseurs = data.items.filter(function (item) { return item.type == "Danseur"});
         data.sorts = data.items.filter(function (item) { return item.type == "Sort"});
@@ -189,10 +190,12 @@ export default class AgoneActorSheet extends ActorSheet {
         event.preventDefault();
         const element = event.currentTarget;
         
+        let image = this.getData().config.itemDefImage[element.dataset.type] ? this.getData().config.itemDefImage[element.dataset.type] : "icons/svg/mystery-man-black.svg";
+
         let itemData = [{
             name: game.i18n.localize("agone.common.nouveau"),
             type: element.dataset.type,
-            img: "icons/svg/mystery-man-black.svg"
+            img: image
         }];
 
         return this.actor.createEmbeddedDocuments("Item", itemData, {parent: this.actor});

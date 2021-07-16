@@ -76,6 +76,11 @@
   grid-template-columns: repeat(3, 1fr);
   padding: 3px;
 }
+.grid-botteSecrete {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 3px;
+}
 .grid-avantage,
 .grid-defaut,
 .grid-peine,
@@ -420,7 +425,8 @@ nav.magie-tabs {
 .liste-oeuvres,
 .liste-connivences,
 .liste-avantages,
-.liste-defauts {
+.liste-defauts,
+.liste-manoeuvres {
   display: flex;
   flex-direction: column;
   margin-bottom: 0.5rem;
@@ -454,7 +460,7 @@ nav.magie-tabs {
 }
 .ligne-danseur {
   display: grid;
-  grid-template-columns: 2.5em /*2em*/ 2fr repeat(7, 1fr) 2em 2em;
+  grid-template-columns: 2.5em 2fr repeat(7, 1fr) 2em 2em;
   padding: 3px;
   text-align: center;
 }
@@ -500,6 +506,30 @@ nav.magie-tabs {
 .ligne-connivence img {
   border: none;
 }
+.ligne-manoeuvre {
+  display: grid;
+  grid-template-columns: 2.5em 2fr repeat(4, 1fr) 2em 2em;
+  padding: 3px;
+  text-align: center;
+}
+.ligne-manoeuvre > * {
+  padding: 3px;
+}
+.ligne-manoeuvre img {
+  border: none;
+}
+.ligne-botteSecrete {
+  display: grid;
+  grid-template-columns: 2.5em 2fr 2fr 1fr 2em 2em;
+  padding: 3px;
+  text-align: center;
+}
+.ligne-botteSecrete > * {
+  padding: 3px;
+}
+.ligne-botteSecrete img {
+  border: none;
+}
 .ligne-avantage,
 .ligne-defaut {
   display: grid;
@@ -522,7 +552,9 @@ nav.magie-tabs {
 .ligne-oeuvre.titre,
 .ligne-connivence.titre,
 .ligne-avantage.titre,
-.ligne-defaut.titre {
+.ligne-defaut.titre,
+.ligne-manoeuvre.titre,
+.ligne-botteSecrete.titre {
   font-weight: bold;
   text-align: center;
   background-color: rgba(82, 77, 77, 0.075);

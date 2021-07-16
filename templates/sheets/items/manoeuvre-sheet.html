@@ -9,19 +9,17 @@
             <label class="grid-titre">{{localize "agone.items.modifAttaque"}}</label>
             <label class="grid-titre">{{localize "agone.items.modifDefense"}}</label>
             <label class="grid-titre">{{localize "agone.items.modifDommages"}}</label>
-            <!-- <th>{{localize "agone.ecole.label"}}</th> -->
             <div><input name="data.modifInit" type="text" value="{{data.data.modifInit}}" data-dtype="Number" placeholder="0"/></div>
             <div><input name="data.modifAttaque" type="text" value="{{data.data.modifAttaque}}" data-dtype="Number" placeholder="0"/></div>
             <div><input name="data.modifDefense" type="text" value="{{data.data.modifDefense}}" data-dtype="Number" placeholder="0"/></div>
             <div><input name="data.modifDommages" type="text" value="{{data.data.modifDommages}}" data-dtype="Number" placeholder="0"/></div>
-            <!-- <td></td> récupérer l'école' par glisser déposer -->
         </div>
          <div>{{localize "agone.items.manoeuvreDesc"}}</div> 
             {{editor content=data.data.description target="data.description" button=true owner=true editable=true}}
         </div>
         <div>
-            <span>{{localize "agone.items.prerequis"}}</span>
-            <input name="data.prerequis" type="text" value="{{data.data.prerequis}}" placeholder="{{localize 'agone.items.prerequis'}}"/>
+            <span>{{localize "agone.items.condition"}}</span>
+            <textarea name="data.condition" placeholder="{{localize 'agone.items.condition'}}">{{data.data.condition}}</textarea>
         </div>
     <footer class="sheet-footer">
         <div>{{localize "agone.common.type"}} : <span>{{localize "agone.items.manoeuvreLabel"}}</span></div>

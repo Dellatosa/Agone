@@ -210,7 +210,9 @@
             "potDefense": "Potentiel de Défense",
             "initiative": "Initiative",
             "experienceDisponible": "Expérience disponible",
-            "experienceTotale": "Expérience totale"
+            "experienceTotale": "Expérience totale",
+            "manoeuvres": "Manoeuvres",
+            "bottesSecretes": "Bottes secrètes"
         },
         "items":{
             "description": "Description",
@@ -233,6 +235,8 @@
             "ecoleDesc": "Description de l'école",
             "manoeuvreLabel": "Manoeuvre",
             "manoeuvreDesc": "Description de la manoeuvre",
+            "botteSecreteLabel": "Botte secrète",
+            "botteSecreteDesc": "Description de la botte secrète",
             "armureLabel": "Armure",
             "armureDesc": "Description de l'armure",
             "danseurLabel": "Danseur",
@@ -243,7 +247,7 @@
             "oeuvreDesc": "Description de l'oeuvre",
             "connivenceLabel": "Connivence",
             "seuil": "Seuil",
-            "portee": "Portée",
+            "porteeZoneEffet": "Portée / Zone d'effet",
             "chargeSociete": "Charge et Société",
             "perforante": "Perforante",
             "tranchante": "Tranchante",
@@ -271,6 +275,7 @@
             "minForce": "FOR min.",
             "descBonus": "Description du bonus",
             "prerequis": "Prérequis",
+            "condition": "Condition",
             "descMalus": "Description du malus",
             "palier": "Palier",
             "coutHeroisme": "Coût en point d'héroïsme",
@@ -325,8 +330,8 @@
             "courte": "Courte (0 - P/4)",
             "moyenne": "Moyenne (P/4 - P/2)",
             "longue": "Longue (P/2 - P)",
-            "extreme": "Extrême (P - Px2)"
-
+            "extreme": "Extrême (P - Px2)",
+            "rarete": "Rareté"
         },
         "chat": {
             "succes": "Succès !",

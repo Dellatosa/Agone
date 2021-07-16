@@ -210,7 +210,9 @@
             "potDefense": "NO TRAD - Potentiel de Défense",
             "initiative": "Initiative",
             "experienceDisponible": "NO TRAD - Expérience disponible",
-            "experienceTotale": "NO TRAD - Expérience totale"
+            "experienceTotale": "NO TRAD - Expérience totale",
+            "manoeuvres": "NO TRAD - Manoeuvres",
+            "bottesSecretes": "NO TRAD - Bottes secrètes"
         },
         "items":{
             "description": "Description",
@@ -231,8 +233,10 @@
             "pouvoirSaisonDesc": "Season power description",
             "ecoleLabel": "School",
             "ecoleDesc": "School description",
-            "manoeuvreLabel": "Manoeuvre",
-            "manoeuvreDesc": "Description de la manoeuvre",
+            "manoeuvreLabel": "NO TRAD - Manoeuvre",
+            "manoeuvreDesc": "NO TRAD - Description de la manoeuvre",
+            "botteSecreteLabel": "NO TRAD - Botte secrète",
+            "botteSecreteDesc": "NO TRAD - Description de la botte secrète",
             "armureLabel": "Armour",
             "armureDesc": "Armour description",
             "danseurLabel": "Dancer",
@@ -271,6 +275,7 @@
             "minForce": "min. STR",
             "descBonus": "Bonus description",
             "prerequis": "Prerequisite",
+            "condition": "Condition",
             "descMalus": "Penalty description",
             "palier": "Level",
             "coutHeroisme": "Fortune cost",
@@ -325,7 +330,8 @@
             "courte": "Short (0 - R/4)",
             "moyenne": "Medium (R/4 - R/2)",
             "longue": "Long (R/2 - R)",
-            "extreme": "Extreme (R - Rx2)"
+            "extreme": "Extreme (R - Rx2)",
+            "rarete": "Rarity"
         },
         "chat": {
             "succes": "Success !",

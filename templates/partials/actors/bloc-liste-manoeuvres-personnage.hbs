@@ -1,0 +1,22 @@
+<div class="ligne-manoeuvre titre">
+    <label></label>
+    <label>{{localize "agone.common.name"}}</label>
+    <label>{{localize "agone.items.modifInit"}}</label>
+    <label>{{localize "agone.items.modifAttaque"}}</label>
+    <label>{{localize "agone.items.modifDefense"}}</label>
+    <label>{{localize "agone.items.modifDommages"}}</label>
+    <label></label>
+    <a class="creer-item" data-type="Manoeuvre" title="{{localize 'agone.common.ajouter'}}"><i class="fas fa-plus"></i></a>
+</div>
+{{#each manoeuvres as |manoeuvre id|}}
+<div class="ligne-manoeuvre item" data-item-id="{{manoeuvre._id}}">
+    <a class="editer-item"><img src="{{img}}" title="{{localize 'agone.common.editer'}}" height="32" width="32"/></a>
+    <div>{{name}}</div>
+    <div>{{data.modifInit}}</div>
+    <div>{{data.modifAttaque}}</div>
+    <div>{{data.modifDefense}}</div>
+    <div>{{data.modifDommages}}</div>
+    <a class="editer-item" title="{{localize 'agone.common.editer'}}"><i class="fas fa-edit"></i></a>
+    <a class="supprimer-item" title="{{localize 'agone.common.supprimer'}}"><i class="fas fa-trash"></i></a>
+</div>            
+{{/each}}

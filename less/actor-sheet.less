@@ -271,7 +271,7 @@ nav.magie-tabs {
 }
 
 
-.liste-armes, .liste-armures, .liste-danseurs, .liste-sorts, .liste-oeuvres, .liste-connivences, .liste-avantages, .liste-defauts {
+.liste-armes, .liste-armures, .liste-danseurs, .liste-sorts, .liste-oeuvres, .liste-connivences, .liste-avantages, .liste-defauts, .liste-manoeuvres {
     display: flex;
     flex-direction: column;
     margin-bottom: 0.5rem;
@@ -314,7 +314,7 @@ nav.magie-tabs {
 
 .ligne-danseur {
     display: grid;
-    grid-template-columns: 2.5em /*2em*/ 2fr repeat(7, 1fr) 2em 2em;
+    grid-template-columns: 2.5em 2fr repeat(7, 1fr) 2em 2em;
     padding: 3px;
     text-align: center;
 
@@ -372,6 +372,36 @@ nav.magie-tabs {
     }
 }
 
+.ligne-manoeuvre {
+    display: grid;
+    grid-template-columns: 2.5em 2fr repeat(4, 1fr) 2em 2em;
+    padding: 3px;
+    text-align: center;
+
+    > * {
+        padding: 3px;
+    }
+
+    img {
+        border: none;
+    }
+}
+
+.ligne-botteSecrete {
+    display: grid;
+    grid-template-columns: 2.5em 2fr 2fr 1fr 2em 2em;
+    padding: 3px;
+    text-align: center;
+
+    > * {
+        padding: 3px;
+    }
+
+    img {
+        border: none;
+    }
+}
+
 .ligne-avantage, .ligne-defaut {
     display: grid;
     grid-template-columns: 2.5em 1fr 1fr 0.5fr 3fr 2em 2em;
@@ -387,7 +417,8 @@ nav.magie-tabs {
     }
 }
 
-.ligne-arme.titre, .ligne-armure.titre, .ligne-danseur.titre, .ligne-sort.titre, .ligne-oeuvre.titre, .ligne-connivence.titre, .ligne-avantage.titre, .ligne-defaut.titre {
+.ligne-arme.titre, .ligne-armure.titre, .ligne-danseur.titre, .ligne-sort.titre, .ligne-oeuvre.titre, 
+.ligne-connivence.titre, .ligne-avantage.titre, .ligne-defaut.titre, .ligne-manoeuvre.titre, .ligne-botteSecrete.titre {
     font-weight: bold;
     text-align: center;
     background-color: rgba(82, 77, 77, 0.075);

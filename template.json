@@ -906,7 +906,7 @@
     }
   },
   "Item": {
-    "types": [ "Avantage", "Defaut", "Peine", "Bienfait", "PouvoirFlamme", "PouvoirSaison", "Manoeuvre", "Armure", "Arme", "Danseur", "Sort", "Oeuvre", "Connivence", "Ecole", "Equipement" ],
+    "types": [ "Avantage", "Defaut", "Peine", "Bienfait", "PouvoirFlamme", "PouvoirSaison", "Manoeuvre", "BotteSecrete", "Armure", "Arme", "Danseur", "Sort", "Oeuvre", "Connivence", "Ecole", "Equipement" ],
     "templates": {
       "base": {
         "description": ""
@@ -945,12 +945,17 @@
     },
     "Manoeuvre": {
       "templates": [ "base" ],
-      "ecole": [],
-      "prerequis": "",
+      "condition": "",
       "modifInit": 0,
       "modifAttaque": 0,
       "modifDefense": 0,
       "modifDommages": 0
+    },
+    "BotteSecrete": {
+      "templates": [ "base" ],
+      "ecole": "",
+      "condition": "",
+      "rarete": 0
     },
     "Armure": {
       "templates": [ "base" ],

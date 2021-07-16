@@ -15,6 +15,8 @@ async function preloadHandlebarsTemplates() {
         "systems/agone/templates/partials/actors/bloc-recap-combat-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-armes-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-armures-personnage.hbs",
+        "systems/agone/templates/partials/actors/bloc-liste-manoeuvres-personnage.hbs",
+        "systems/agone/templates/partials/actors/bloc-liste-bottesSecretes-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-recap-emprise-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-danseurs-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-sorts-personnage.hbs",
