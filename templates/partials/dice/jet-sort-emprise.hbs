@@ -15,21 +15,5 @@
         <div class="dice-tooltip"><div class="dice-rolls fumble"><span class="fumble">{{localize "agone.chat.fumble"}}</span><div class="roll die d10 min">1</div></div></div>
     {{/if}}
     <div>{{{roll}}}</div>
-    <div>{{roll.formula}}</div>
-    {{#if stats.difficulte}}
-        <h3 class="resultat">{{localize "agone.chat.marge"}} {{#if stats.isEchecCritique}}<span class="fumble">{{stats.marge}}</span>{{else}}{{stats.marge}}{{/if}}</h3>
-        {{#if (gt stats.marge 0)}}
-            <h3 class="resultat">{{localize "agone.chat.succes"}}</h3>
-        {{else}}
-            {{#if stats.isEchecCritique}}
-                <h3 class="resultat fumble">{{localize "agone.chat.echecCritique"}} ({{stats.valeurCritique}})</h3>
-            {{else}}
-                <h3 class="resultat">{{localize "agone.chat.echec"}}</h3>
-            {{/if}}
-        {{/if}}
-    {{else}}   
-        {{#if stats.isEchecCritique}}
-            <h3 class="resultat fumble">{{localize "agone.chat.echecCritique"}} ({{stats.valeurCritique}})</h3> 
-        {{/if}}    
-    {{/if}}
+    {{> "systems/agone/templates/partials/dice/jet-resultat.hbs"}}
 </div>

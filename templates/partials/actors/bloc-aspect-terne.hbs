@@ -2,16 +2,6 @@
 {{#each data.data.aspects as |aspect keyAsp|}}
     <div class="actor-aspect">
         <h3>{{aspect.positif.label}}</h3>
-        <!-- <div class="actor-aspect-line">
-            <label>{{aspect.positif.label}}</label>
-            <div class="small-size"><input name="data.aspects.{{keyAsp}}.positif.valeur" type="number" value="{{aspect.positif.valeur}}" placeholder="0" min="0" max="10"/></div>
-            <label>{{aspect.negatif.label}}</label>
-            <div class="small-size"><input name="data.aspects.{{keyAsp}}.negatif.valeur" type="number" value="{{aspect.negatif.valeur}}" placeholder="0" min="0" max="10"/></div>
-        </div>
-        <div class="actor-bonus-line">
-            <label>{{aspect.bonus.label}}</label>
-            <div class="small-size"><input name="data.aspects.{{keyAsp}}.bonus.valeur" type="number" value="{{aspect.bonus.valeur}}" placeholder="0" readonly/></div>
-        </div> -->
         <div class="actor-carac-line {{keyAsp}}">
             {{#each aspect.caracteristiques as |carac keyCarac|}}
                 {{#unless carac.secondaire}}

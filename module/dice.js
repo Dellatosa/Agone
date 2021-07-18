@@ -83,7 +83,7 @@ export async function jetCaracteristique({actor = null,
         rollData.isFumble = true;
         //Si le second dé donne 10, c'est un échec critique
         if(rollResult.dice[0].results[0].result == 10) {
-            rollData.isEchecCritique = true;
+            rollData.isEchecCritiqueJetDe = true;
             rollData.valeurCritique = rollResult.dice[0].total;
         }
     }
@@ -111,7 +111,7 @@ export async function jetCaracteristique({actor = null,
         rollStats.marge = rollResult.total - difficulte;
         //Si la marge est <= -15, c'est un échec critique
         if(rollStats.marge <= -15) {
-            rollStats.isEchecCritique = true;
+            rollStats.isEchecCritiqueMarge = true;
             rollStats.valeurCritique = rollStats.valeurCritique ? Math.max(rollStats.valeurCritique, rollStats.marge + 5) : rollStats.marge + 5;
         }
     }
@@ -327,7 +327,7 @@ export async function jetCompetence({actor = null,
         rollData.isFumble = true;
         //Si le second dé donne 10, c'est un échec critique
         if(rollResult.dice[0].results[0].result == 10) {
-            rollData.isEchecCritique = true;
+            rollData.isEchecCritiqueJetDe = true;
             rollData.valeurCritique = rollResult.dice[0].total;
         }
     }
@@ -356,7 +356,7 @@ export async function jetCompetence({actor = null,
             rollStats.marge = rollResult.total - difficulte;
             //Si la marge est <= -15, c'est un échec critique
             if(rollStats.marge <= -15) {
-                rollStats.isEchecCritique = true;
+                rollStats.isEchecCritiqueMarge = true;
                 rollStats.valeurCritique = rollStats.valeurCritique ? Math.max(rollStats.valeurCritique, rollStats.marge + 5) : rollStats.marge + 5;
             }
         }
@@ -564,7 +564,8 @@ export async function combatArme(actor, arme, type) {
 
     rollStats.marge = rollResult.total - difficulte;
     if(rollStats.marge <= -15) {
-        rollStats.isEchecCritique = true;
+        rollStats.isEchecCritiqueMarge = true;
+        rollStats.valeurCritique = rollStats.valeurCritique ? Math.max(rollStats.valeurCritique, rollStats.marge + 5) : rollStats.marge + 5;
     }
 
     // Recupération du template
@@ -788,7 +789,7 @@ export async function sortEmprise(mage, danseur, sort) {
 
     rollStats.marge = rollResult.total - sort.data.data.seuilTotal;
     if(rollStats.marge <= -15) {
-        rollStats.isEchecCritique = true;
+        rollStats.isEchecCritiqueMarge = true;
         rollStats.valeurCritique = rollStats.valeurCritique ? Math.max(rollStats.valeurCritique, rollStats.marge + 5) : rollStats.marge + 5;
     }
 
@@ -952,7 +953,7 @@ export async function oeuvre(artiste, oeuvre) {
 
     rollStats.marge = rollResult.total - oeuvre.data.data.seuilTotal;
     if(rollStats.marge <= -15) {
-        rollStats.isEchecCritique = true;
+        rollStats.isEchecCritiqueMarge = true;
         rollStats.valeurCritique = rollStats.valeurCritique ? Math.max(rollStats.valeurCritique, rollStats.marge + 5) : rollStats.marge + 5;
     }
 
