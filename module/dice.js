@@ -112,7 +112,7 @@ export async function jetCaracteristique({actor = null,
         //Si la marge est <= -15, c'est un échec critique
         if(rollStats.marge <= -15) {
             rollStats.isEchecCritique = true;
-            rollStats.valeurCritique = rollStats.valeurCritique ? Math.max(valeurCritique, rollStats.marge + 5) : rollStats.marge + 5;
+            rollStats.valeurCritique = rollStats.valeurCritique ? Math.max(rollStats.valeurCritique, rollStats.marge + 5) : rollStats.marge + 5;
         }
     }
 
@@ -357,7 +357,7 @@ export async function jetCompetence({actor = null,
             //Si la marge est <= -15, c'est un échec critique
             if(rollStats.marge <= -15) {
                 rollStats.isEchecCritique = true;
-                rollStats.valeurCritique = rollStats.valeurCritique ? Math.max(valeurCritique, rollStats.marge + 5) : rollStats.marge + 5;
+                rollStats.valeurCritique = rollStats.valeurCritique ? Math.max(rollStats.valeurCritique, rollStats.marge + 5) : rollStats.marge + 5;
             }
         }
 
@@ -789,7 +789,7 @@ export async function sortEmprise(mage, danseur, sort) {
     rollStats.marge = rollResult.total - sort.data.data.seuilTotal;
     if(rollStats.marge <= -15) {
         rollStats.isEchecCritique = true;
-        rollStats.valeurCritique = rollStats.valeurCritique ? Math.max(valeurCritique, rollStats.marge + 5) : rollStats.marge + 5;
+        rollStats.valeurCritique = rollStats.valeurCritique ? Math.max(rollStats.valeurCritique, rollStats.marge + 5) : rollStats.marge + 5;
     }
 
     // Recupération du template
@@ -953,7 +953,7 @@ export async function oeuvre(artiste, oeuvre) {
     rollStats.marge = rollResult.total - oeuvre.data.data.seuilTotal;
     if(rollStats.marge <= -15) {
         rollStats.isEchecCritique = true;
-        rollStats.valeurCritique = rollStats.valeurCritique ? Math.max(valeurCritique, rollStats.marge + 5) : rollStats.marge + 5;
+        rollStats.valeurCritique = rollStats.valeurCritique ? Math.max(rollStats.valeurCritique, rollStats.marge + 5) : rollStats.marge + 5;
     }
 
     // Dans le cas de la Cyse, gestion de la résistance des matériaux
