@@ -424,6 +424,10 @@ export default class AgoneActor extends Actor {
         return this.data.items.filter(function (item) { return item.type == "Danseur"});
     }
 
+    gererBonusAspect() {
+        return this.type == "Personnage" || this.type == "Damne";
+    }
+
     depenserHeroisme() {
         let data = this.data.data;
 

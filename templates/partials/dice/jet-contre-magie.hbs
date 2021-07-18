@@ -14,4 +14,7 @@
     {{/if}}
     <div>{{{roll}}}</div>
     <div>{{roll.formula}}</div>
+    {{#if stats.isEchecCritique}}
+            <h3 class="resultat fumble">{{localize "agone.chat.echecCritique"}} ({{stats.valeurCritique}})</h3> 
+    {{/if}}
 </div>

@@ -38,5 +38,9 @@
                 <h3 class="resultat">{{localize "agone.chat.echec"}}</h3>
             {{/if}}
         {{/if}}
+    {{else}}   
+        {{#if stats.isEchecCritique}}
+            <h3 class="resultat fumble">{{localize "agone.chat.echecCritique"}} ({{stats.valeurCritique}})</h3> 
+        {{/if}}    
     {{/if}}
 </div>

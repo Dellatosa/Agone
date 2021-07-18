@@ -8,11 +8,11 @@ export async function jetCaracteristique({actor = null,
     difficulte = null,
     titrePersonnalise = null} = {}) {
 
-    let gererBonusAspect = actor.type == "Personnage" || actor.type == "Damne";
+    let gererBonusAspect = actor.gererBonusAspect();
 
     // Définition de la formule de base du jet, et de sa version fumble (avec 1d10 explosif retranché au 1 du dé initial)
     let rollFormula = "1d10x";
-    let rollFumbleFormula = "(1d10x * -1) + 1";
+    let rollFumbleFormula = "-1d10x + 1";
 
     let rollData = {
         rangCarac: rangCarac
@@ -72,32 +72,31 @@ export async function jetCaracteristique({actor = null,
      rollFumbleFormula += baseFormula;
 
     // Variables de gestion des fumbles (1 au dé) // TODO : et des échecs critiques (1 au dé suivi de 10, ou MR <= -15)
-    let fumble = false;
-    let echecCritique = false;
+    rollData.isFumble = false;
+    rollData.isEchecCritique = false;
 
     // Jet du 1er dé
     let rollResult = await new Roll(rollFormula, rollData).roll({async: true});
     if(rollResult.dice[0].results[0].result == 1) {
         // Si le 1er dé donne 1, c'est un Fumble
         rollResult = await new Roll(rollFumbleFormula, rollData).roll({async: true});
-        fumble = true;
+        rollData.isFumble = true;
         //Si le second dé donne 10, c'est un échec critique
         if(rollResult.dice[0].results[0].result == 10) {
-            echecCritique = true;
+            rollData.isEchecCritique = true;
+            rollData.valeurCritique = rollResult.dice[0].total;
         }
     }
 
-    // Recupération du template
-    const messageTemplate = "systems/agone/templates/partials/dice/jet-caracteristique.hbs"; 
-    let renderedRoll = await rollResult.render();
+    console.log(rollData);
 
     // Construction du jeu de données pour alimenter le template
     let rollStats = {
         ...rollData,
-        labelCarac: labelCarac,
-        isFumble: fumble,
-        isEchecCritique: echecCritique
+        labelCarac: labelCarac
     }
+
+    console.log(rollStats);
 
     if(gererBonusAspect) {
         rollStats.labelAspect = labelAspect;
@@ -113,8 +112,13 @@ export async function jetCaracteristique({actor = null,
         //Si la marge est <= -15, c'est un échec critique
         if(rollStats.marge <= -15) {
             rollStats.isEchecCritique = true;
+            rollStats.valeurCritique = rollStats.valeurCritique ? Math.max(valeurCritique, rollStats.marge + 5) : rollStats.marge + 5;
         }
     }
+
+    // Recupération du template
+    const messageTemplate = "systems/agone/templates/partials/dice/jet-caracteristique.hbs"; 
+    let renderedRoll = await rollResult.render();
 
     // Assignation des données au template
     let templateContext = {
@@ -169,7 +173,7 @@ export async function jetCompetence({actor = null,
         return null;
     }
 
-    let gererBonusAspect = actor.type == "Personnage" || actor.type == "Damne";
+    let gererBonusAspect = actor.gererBonusAspect();
 
     // Affichage de la fenêtre de dialogue (vrai par défaut)
     if(afficherDialog) {
@@ -193,7 +197,7 @@ export async function jetCompetence({actor = null,
     
     // Définition de la formule de base du jet, et de sa version fumble (avec 1d10 explosif retranché au 1 du dé initial)
     let rollFormula = "1d10x";
-    let rollFumbleFormula = "(1d10x * -1) + 1";
+    let rollFumbleFormula = "-1d10x + 1";
 
     let baseFormula;
     let isJetDefaut = false;
@@ -311,26 +315,24 @@ export async function jetCompetence({actor = null,
     rollFumbleFormula += baseFormula;
 
     // Variables de gestion des fumbles (1 au dé) et des échecs critiques (1 au dé suivi de 10, ou MR <= -15)
-    let fumble = false;
-    let echecCritique = false;
+    rollData.isFumble = false;
+    rollData.isEchecCritique = false;
+    //let valeurCritique; 
 
     // Jet du 1er dé
     let rollResult = await new Roll(rollFormula, rollData).roll({async: true});
     if(rollResult.dice[0].results[0].result == 1) {
         // Si le 1er dé donne 1, c'est un Fumble
         rollResult = await new Roll(rollFumbleFormula, rollData).roll({async: true});
-        fumble = true;
+        rollData.isFumble = true;
         //Si le second dé donne 10, c'est un échec critique
         if(rollResult.dice[0].results[0].result == 10) {
-            echecCritique = true;
+            rollData.isEchecCritique = true;
+            rollData.valeurCritique = rollResult.dice[0].total;
         }
     }
 
     if(envoiMessage) {
-        // Recupération du template
-        const messageTemplate = "systems/agone/templates/partials/dice/jet-competence.hbs"; 
-        let renderedRoll = await rollResult.render();
-
         // Construction du jeu de données pour alimenter le template
         let rollStats = {
             ...rollData,
@@ -338,8 +340,6 @@ export async function jetCompetence({actor = null,
             labelComp: labelComp,
             specialisation: specialisation,
             labelSpecialisation: labelSpecialisation,
-            isFumble: fumble,
-            isEchecCritique: echecCritique,
             isJetDefaut: isJetDefaut
         }
 
@@ -357,16 +357,19 @@ export async function jetCompetence({actor = null,
             //Si la marge est <= -15, c'est un échec critique
             if(rollStats.marge <= -15) {
                 rollStats.isEchecCritique = true;
+                rollStats.valeurCritique = rollStats.valeurCritique ? Math.max(valeurCritique, rollStats.marge + 5) : rollStats.marge + 5;
             }
         }
+
+        // Recupération du template
+        const messageTemplate = "systems/agone/templates/partials/dice/jet-competence.hbs"; 
+        let renderedRoll = await rollResult.render();
 
         // Assignation des données au template
         let templateContext = {
             stats : rollStats,
             roll: renderedRoll
         }
-
-        console.log(templateContext);
 
         // Construction du message
         let chatData = {
@@ -425,7 +428,7 @@ function _processJetCompetenceOptions(form) {
 }
 
 export async function combatArme(actor, arme, type) {
-    let gererBonusAspect = actor.type == "Personnage" || actor.type == "Damne";
+    let gererBonusAspect = actor.gererBonusAspect();
 
     let statsCombat = actor.getStatsCombat(arme.data.data.competence, arme.data.data.minForce, arme.data.data.minAgilite);
 
@@ -545,9 +548,6 @@ export async function combatArme(actor, arme, type) {
         envoiMessage: false
     });
 
-    const messageTemplate = "systems/agone/templates/partials/dice/jet-arme.hbs";
-    let renderedRoll = await rollResult.render();
-
     let rollStats = {
         ...statsCombat,
         modificateurs: modificateurs,
@@ -556,13 +556,6 @@ export async function combatArme(actor, arme, type) {
 
     if(!gererBonusAspect) {
         rollStats.labelAspect = null;
-    }
-
-    if(rollResult.result[0] == "-") {
-        rollStats.isFumble = true;
-        if(rollResult.dice[0].results[0].result == 10) {
-            rollStats.isEchecCritique = true;
-        }
     }
 
     if(difficulte) {
@@ -574,6 +567,11 @@ export async function combatArme(actor, arme, type) {
         rollStats.isEchecCritique = true;
     }
 
+    // Recupération du template
+    const messageTemplate = "systems/agone/templates/partials/dice/jet-arme.hbs";
+    let renderedRoll = await rollResult.render();
+
+     // Assignation des données au template
     let templateContext = {
         stats: rollStats,
         arme: arme.data,
@@ -581,6 +579,7 @@ export async function combatArme(actor, arme, type) {
         roll: renderedRoll
     }
 
+     // Construction du message
     let chatData = {
         user: game.user.id,
         speaker: ChatMessage.getSpeaker({ actor: actor }),
@@ -590,6 +589,7 @@ export async function combatArme(actor, arme, type) {
         type: CONST.CHAT_MESSAGE_TYPES.ROLL
     }
 
+    // Affichage du message
     ChatMessage.create(chatData);
 }
 
@@ -778,10 +778,6 @@ export async function sortEmprise(mage, danseur, sort) {
     let valEndurance = danseur.data.data.endurance.value -1;
     danseur.update({"data.endurance.value": valEndurance});
 
-    // Recupération du template
-    const messageTemplate = "systems/agone/templates/partials/dice/jet-sort-emprise.hbs";
-    let renderedRoll = await rollResult.render();
-
     // Construction du jeu de données pour alimenter le template
     let rollStats = {
         ...rollResult.data,
@@ -790,18 +786,15 @@ export async function sortEmprise(mage, danseur, sort) {
         difficulte: sort.data.data.seuilTotal
     }
 
-    // Gestion du Fumble et de l'échec critique
-    if(rollResult.result[0] == "-") {
-        rollStats.isFumble = true;
-        if(rollResult.dice[0].results[0].result == 10) {
-            rollStats.isEchecCritique = true;
-        }
-    }
-
     rollStats.marge = rollResult.total - sort.data.data.seuilTotal;
     if(rollStats.marge <= -15) {
         rollStats.isEchecCritique = true;
+        rollStats.valeurCritique = rollStats.valeurCritique ? Math.max(valeurCritique, rollStats.marge + 5) : rollStats.marge + 5;
     }
+
+    // Recupération du template
+    const messageTemplate = "systems/agone/templates/partials/dice/jet-sort-emprise.hbs";
+    let renderedRoll = await rollResult.render();
 
     // Assignation des données au template
     let templateContext = {
@@ -895,7 +888,6 @@ export async function oeuvre(artiste, oeuvre) {
     let oeuvreData = {
         nomOeuvre: oeuvre.data.name,
         seuil: oeuvre.data.data.seuil,
-        //seuil: oeuvre.data.data.seuilTotal,
         artMagique: oeuvre.data.data.artMagique,
         saison: oeuvre.data.data.saison
     };
@@ -949,10 +941,6 @@ export async function oeuvre(artiste, oeuvre) {
     // Si le jet de compétence est annulé, on arrête le jet d'art magique (ex: compétence par défaut non autorisée)
     if(rollResult == null) return;
 
-    // Recupération du template
-    const messageTemplate = "systems/agone/templates/partials/dice/jet-oeuvre.hbs";
-    let renderedRoll = await rollResult.render();
-
     // Construction du jeu de données pour alimenter le template
     let rollStats = {
         ...rollResult.data,
@@ -962,17 +950,10 @@ export async function oeuvre(artiste, oeuvre) {
         qualite: qualite
     }
 
-    // Gestion du Fumble et de l'échec critique
-    if(rollResult.result[0] == "-") {
-        rollStats.isFumble = true;
-        if(rollResult.dice[0].results[0].result == 10) {
-            rollStats.isEchecCritique = true;
-        }
-    }
-
     rollStats.marge = rollResult.total - oeuvre.data.data.seuilTotal;
     if(rollStats.marge <= -15) {
         rollStats.isEchecCritique = true;
+        rollStats.valeurCritique = rollStats.valeurCritique ? Math.max(valeurCritique, rollStats.marge + 5) : rollStats.marge + 5;
     }
 
     // Dans le cas de la Cyse, gestion de la résistance des matériaux
@@ -983,6 +964,10 @@ export async function oeuvre(artiste, oeuvre) {
             rollStats.rollResistance = await rollResistance.render();
         }
     }
+
+    // Recupération du template
+    const messageTemplate = "systems/agone/templates/partials/dice/jet-oeuvre.hbs";
+    let renderedRoll = await rollResult.render();
 
     // Assignation des données au template
     let templateContext = {
@@ -1072,27 +1057,6 @@ function _processJetOeuvreOptions(form) {
     }
 }
 
-function getNiveauQualite(margeQualite) {
-    if(margeQualite == 0) {
-        return 1;
-    }
-    else if(margeQualite <= 4) {
-        return 2;
-    }
-    else if(margeQualite <= 9) {
-        return 5;
-    }
-    else if(margeQualite <= 15) {
-        return 10;
-    }
-    else if(margeQualite <= 20) {
-        return 30;
-    }
-    else if(margeQualite >= 21) {
-        return 100;
-    }
-}
-
 // Jet de Contre-magie, avec affichage du messsage dans la chat
 export async function contreMagie(mage, danseur, utiliseHeroisme) {
     let statsEmprise = mage.getStatsEmprise();
@@ -1124,10 +1088,6 @@ export async function contreMagie(mage, danseur, utiliseHeroisme) {
     // Si le jet de compétence est annulé, on arrête le jet de contre magie (ex: compétence par défaut non autorisée)
     if(rollResult == null) return;
 
-    // Recupération du template
-    const messageTemplate = "systems/agone/templates/partials/dice/jet-contre-magie.hbs";
-    let renderedRoll = await rollResult.render();
-
     // Construction du jeu de données pour alimenter le template
     let rollStats = {
         ...rollResult.data,
@@ -1135,13 +1095,9 @@ export async function contreMagie(mage, danseur, utiliseHeroisme) {
         labelSpecialisation: statsEmprise.labelSpecialisation
     }
 
-    // Gestion du Fumble et de l'échec critique
-    if(rollResult.result[0] == "-") {
-        rollStats.isFumble = true;
-        if(rollResult.dice[0].results[0].result == 10) {
-            rollStats.isEchecCritique = true;
-        }
-    }
+    // Recupération du template
+    const messageTemplate = "systems/agone/templates/partials/dice/jet-contre-magie.hbs";
+    let renderedRoll = await rollResult.render();
 
     // Assignation des données au template
     let templateContext = {
@@ -1191,10 +1147,6 @@ export async function desaccord(artiste, instrument, utiliseHeroisme) {
     // Si le jet de compétence est annulé, on arrête le jet de désaccord (ex: compétence par défaut non autorisée)
     if(rollResult == null) return;
 
-    // Recupération du template
-    const messageTemplate = "systems/agone/templates/partials/dice/jet-desaccord.hbs";
-    let renderedRoll = await rollResult.render();
-
     // Construction du jeu de données pour alimenter le template
     let rollStats = {
         ...rollResult.data,
@@ -1202,13 +1154,9 @@ export async function desaccord(artiste, instrument, utiliseHeroisme) {
         labelSpecialisation: statsAccord.labelSpecialisation
     }
 
-    // Gestion du Fumble et de l'échec critique
-    if(rollResult.result[0] == "-") {
-        rollStats.isFumble = true;
-        if(rollResult.dice[0].results[0].result == 10) {
-            rollStats.isEchecCritique = true;
-        }
-    }
+    // Recupération du template
+    const messageTemplate = "systems/agone/templates/partials/dice/jet-desaccord.hbs";
+    let renderedRoll = await rollResult.render();
 
     // Assignation des données au template
     let templateContext = {
@@ -1239,7 +1187,7 @@ export async function jetDefense(defenseur, typeDef) {
     }
     let caracData = defenseur.getCaracData("agilite");
 
-    let gererBonusAspect = defenseur.type == "Personnage" || defenseur.type == "Damne";
+    let gererBonusAspect = defenseur.gererBonusAspect();
 
     let defenseurData;
     let titrePersonnalise;
@@ -1302,9 +1250,6 @@ export async function jetDefense(defenseur, typeDef) {
         envoiMessage: false
     });
 
-    const messageTemplate = "systems/agone/templates/partials/dice/jet-competence.hbs";
-    let renderedRoll = await rollResult.render();
-
     let rollStats = {
         ...rollResult.data,
         labelCarac: caracData.labelCarac,
@@ -1318,30 +1263,14 @@ export async function jetDefense(defenseur, typeDef) {
     if(!gererBonusAspect) {
         rollStats.labelAspect = null;
     }
-
-    if(rollResult.result[0] == "-") {
-        rollStats.isFumble = true;
-        if(rollResult.dice[0].results[0].result == 10) {
-            rollStats.isEchecCritique = true;
-        }
-    }
-
-    /*if(difficulte) {
-        rollStats.difficulte = difficulte;
-    }
-
-    rollStats.marge = rollResult.total - difficulte;
-    if(rollStats.marge <= -15) {
-        rollStats.isEchecCritique = true;
-    }*/
-
     
+    const messageTemplate = "systems/agone/templates/partials/dice/jet-competence.hbs";
+    let renderedRoll = await rollResult.render();
+
     let templateContext = {
         stats: rollStats,
         roll: renderedRoll
     }
-    
-    console.log(templateContext);
 
     let chatData = {
         user: game.user.id,
@@ -1353,4 +1282,25 @@ export async function jetDefense(defenseur, typeDef) {
     }
 
     ChatMessage.create(chatData);
+}
+
+function getNiveauQualite(margeQualite) {
+    if(margeQualite == 0) {
+        return 1;
+    }
+    else if(margeQualite <= 4) {
+        return 2;
+    }
+    else if(margeQualite <= 9) {
+        return 5;
+    }
+    else if(margeQualite <= 15) {
+        return 10;
+    }
+    else if(margeQualite <= 20) {
+        return 30;
+    }
+    else if(margeQualite >= 21) {
+        return 100;
+    }
 }

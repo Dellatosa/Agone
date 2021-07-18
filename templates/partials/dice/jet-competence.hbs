@@ -36,10 +36,14 @@
             <h3 class="resultat">{{localize "agone.chat.succes"}}</h3>
         {{else}}
             {{#if stats.isEchecCritique}}
-                <h3 class="resultat fumble">{{localize "agone.chat.echecCritique"}}</h3>
+                <h3 class="resultat fumble">{{localize "agone.chat.echecCritique"}} ({{stats.valeurCritique}})</h3>
             {{else}}
                 <h3 class="resultat">{{localize "agone.chat.echec"}}</h3>
             {{/if}}
         {{/if}}
+    {{else}}   
+        {{#if stats.isEchecCritique}}
+            <h3 class="resultat fumble">{{localize "agone.chat.echecCritique"}} ({{stats.valeurCritique}})</h3> 
+        {{/if}}    
     {{/if}}
 </div>
