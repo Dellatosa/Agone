@@ -181,6 +181,10 @@ export default class AgoneActorSheet extends ActorSheet {
 
             // Désaccord
             html.find('button.desaccord').click(this._onDesaccord.bind(this));
+
+            // Liste Danseurs
+            // Régénérer l'endurance
+            html.find('.repos-danseurs').click(this._onReposDanseurs.bind(this));
         }
     }
 
@@ -459,5 +463,18 @@ export default class AgoneActorSheet extends ActorSheet {
             // Selection de l'instrument
             Chat.selInstrumentDesaccord(this.actor, instruments);
         }
+    }
+
+    // Regeneration de l'endurance des Danseurs
+    _onReposDanseurs(event) {
+        event.preventDefault();
+
+        let dlg = Dialog.confirm({
+            title: game.i18n.localize("agone.chat.regenEndDanseurs"),
+            content: game.i18n.localize("agone.chat.regenEndDanseursMsg"),
+            yes: () => this.actor.ReposDanseurs(),
+            //no: () =>, On ne fait rien sur le 'Non'
+            defaultYes: true
+        });
     }
 }

@@ -13,8 +13,6 @@ export default class AgoneActiveEffectConfig extends ActiveEffectConfig {
         const data = super.getData();
         data.config = CONFIG.agone;
 
-        console.log(data);
-
         return data;
     }
 }

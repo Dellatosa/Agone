@@ -382,7 +382,9 @@
             "defenseurAuSol": "NO TRAD - Défenseur au sol (-3)",
             "attaqueCote": "NO TRAD - Attaque de coté (-1)",
             "attaqueDos": "NO TRAD - Attaque de dos (-8)",
-            "defenseurSureleve": "NO TRAD - Défenseur surélevé (+2)"
+            "defenseurSureleve": "NO TRAD - Défenseur surélevé (+2)",
+            "regenEndDanseurs": "NO TRAD -  Régénérer l'endurance des Danseurs",
+            "regenEndDanseursMsg": "NO TRAD - Tous vos Danseurs vont retrouver leur niveau d'endurance maximum.<br>Confirmez-vous cette action ?"
         },
         "notifications": {
             "warnMemoireDanseur": "NO TRAD - Le danseur ne dispose pas d'assez de mémoire pour apprendre ce sort.",

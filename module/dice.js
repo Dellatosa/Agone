@@ -88,15 +88,11 @@ export async function jetCaracteristique({actor = null,
         }
     }
 
-    console.log(rollData);
-
     // Construction du jeu de données pour alimenter le template
     let rollStats = {
         ...rollData,
         labelCarac: labelCarac
     }
-
-    console.log(rollStats);
 
     if(gererBonusAspect) {
         rollStats.labelAspect = labelAspect;
@@ -317,7 +313,6 @@ export async function jetCompetence({actor = null,
     // Variables de gestion des fumbles (1 au dé) et des échecs critiques (1 au dé suivi de 10, ou MR <= -15)
     rollData.isFumble = false;
     rollData.isEchecCritique = false;
-    //let valeurCritique; 
 
     // Jet du 1er dé
     let rollResult = await new Roll(rollFormula, rollData).roll({async: true});
@@ -383,6 +378,11 @@ export async function jetCompetence({actor = null,
 
         // Affichage du message
         ChatMessage.create(chatData);
+
+        // TODO - trouver un moyen de référencer la bonne table selon le type de Crit
+        let rollValue = new Roll("@valCrit", {valCrit: (rollStats.valeurCritique * -1)}).evaluate({async: false});
+        let critTable = game.tables.contents[0];
+        critTable.draw({roll: rollValue});
     }
 
     return rollResult;

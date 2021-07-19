@@ -516,4 +516,11 @@ export default class AgoneActor extends Actor {
             ui.notifications.warn(game.i18n.localize("agone.notifications.warnInitSansCombat"));
         }
     }
+
+    ReposDanseurs() {
+
+        this.getDanseurs().forEach(danseur => {
+            danseur.update({"data.endurance.value": danseur.data.data.endurance.max });
+        });
+    }
 }
