@@ -52,6 +52,229 @@ agone.typesCompetence = {
     occulte: "agone.actors.occulte"
 }
 
+agone.critInfos = {
+    epreuves: {
+        1: {
+            nom: "agone.chat.critEprNom1",
+            description: "agone.chat.critEprDesc1"
+        },
+        2: {
+            nom: "agone.chat.critEprNom2",
+            description: "agone.chat.critEprDesc2"
+        },
+        3: {
+            nom: "agone.chat.critEprNom3",
+            description: "agone.chat.critEprDesc3"
+        },
+        4: {
+            nom: "agone.chat.critEprNom4",
+            description: "agone.chat.critEprDesc4"
+        },
+        5: {
+            nom: "agone.chat.critEprNom5",
+            description: "agone.chat.critEprDesc5"
+        }
+    },
+    maraude: {
+        1: {
+            nom: "agone.chat.critMarNom1",
+            description: "agone.chat.critMarDesc1"
+        },
+        2: {
+            nom: "agone.chat.critMarNom2",
+            description: "agone.chat.critMarDesc2"
+        },
+        3: {
+            nom: "agone.chat.critMarNom3",
+            description: "agone.chat.critMarDesc3"
+        },
+        4: {
+            nom: "agone.chat.critMarNom4",
+            description: "agone.chat.critMarDesc4"
+        },
+        5: {
+            nom: "agone.chat.critMarNom5",
+            description: "agone.chat.critMarDesc5"
+        }
+    },    
+    societe: {
+        1: {
+            nom: "agone.chat.critSocNom1",
+            description: "agone.chat.critSocDesc1"
+        },
+        2: {
+            nom: "agone.chat.critSocNom2",
+            description: "agone.chat.critSocDesc2"
+        },
+        3: {
+            nom: "agone.chat.critSocNom3",
+            description: "agone.chat.critSocDesc3"
+        },
+        4: {
+            nom: "agone.chat.critSocNom4",
+            description: "agone.chat.critSocDesc4"
+        },
+        5: {
+            nom: "agone.chat.critSocNom5",
+            description: "agone.chat.critSocDesc5"
+        }
+    },
+    savoir: {
+        1: {
+            nom: "agone.chat.critSavNom1",
+            description: "agone.chat.critSavDesc1"
+        },
+        2: {
+            nom: "agone.chat.critSavNom2",
+            description: "agone.chat.critSavDesc2"
+        },
+        3: {
+            nom: "agone.chat.critSavNom3",
+            description: "agone.chat.critSavDesc3"
+        },
+        4: {
+            nom: "agone.chat.critSavNom4",
+            description: "agone.chat.critSavDesc4"
+        },
+        5: {
+            nom: "agone.chat.critSavNom5",
+            description: "agone.chat.critSavDesc5"
+        }
+    },
+    occulte: {
+        1: {
+            nom: "agone.chat.critOccNom1",
+            description: "agone.chat.critOccDesc1"
+        },
+        2: {
+            nom: "agone.chat.critOccNom2",
+            description: "agone.chat.critOccDesc2"
+        },
+        3: {
+            nom: "agone.chat.critOccNom3",
+            description: "agone.chat.critOccDesc3"
+        },
+        4: {
+            nom: "agone.chat.critOccNom4",
+            description: "agone.chat.critOccDesc4"
+        },
+        5: {
+            nom: "agone.chat.critOccNom5",
+            description: "agone.chat.critOccDesc5"
+        }
+    },
+    emprise: {
+        1: {
+            nom: "agone.chat.critOccNom1",
+            description: "agone.chat.critEmpDesc1"
+        },
+        2: {
+            nom: "agone.chat.critOccNom2",
+            description: "agone.chat.critEmpDesc2"
+        },
+        3: {
+            nom: "agone.chat.critOccNom3",
+            description: "agone.chat.critEmpDesc3"
+        },
+        4: {
+            nom: "agone.chat.critOccNom4",
+            description: "agone.chat.critEmpDesc4"
+        },
+        5: {
+            nom: "agone.chat.critOccNom5",
+            description: "agone.chat.critEmpDesc5"
+        }
+    },
+    accord: {
+        1: {
+            nom: "agone.chat.critOccNom1",
+            description: "agone.chat.critAccDesc1"
+        },
+        2: {
+            nom: "agone.chat.critOccNom2",
+            description: "agone.chat.critAccDesc2"
+        },
+        3: {
+            nom: "agone.chat.critOccNom3",
+            description: "agone.chat.critAccDesc3"
+        },
+        4: {
+            nom: "agone.chat.critOccNom4",
+            description: "agone.chat.critAccDesc4"
+        },
+        5: {
+            nom: "agone.chat.critOccNom5",
+            description: "agone.chat.critAccDesc5"
+        }
+    },
+    geste: {
+        1: {
+            nom: "agone.chat.critOccNom1",
+            description: "agone.chat.critGesDesc1"
+        },
+        2: {
+            nom: "agone.chat.critOccNom2",
+            description: "agone.chat.critGesDesc2"
+        },
+        3: {
+            nom: "agone.chat.critOccNom3",
+            description: "agone.chat.critGesDesc3"
+        },
+        4: {
+            nom: "agone.chat.critOccNom4",
+            description: "agone.chat.critGesDesc4"
+        },
+        5: {
+            nom: "agone.chat.critOccNom5",
+            description: "agone.chat.critGesDesc5"
+        }
+    },
+    cyse: {
+        1: {
+            nom: "agone.chat.critOccNom1",
+            description: "agone.chat.critCysDesc1"
+        },
+        2: {
+            nom: "agone.chat.critOccNom2",
+            description: "agone.chat.critCysDesc2"
+        },
+        3: {
+            nom: "agone.chat.critOccNom3",
+            description: "agone.chat.critCysDesc3"
+        },
+        4: {
+            nom: "agone.chat.critOccNom4",
+            description: "agone.chat.critCysDesc4"
+        },
+        5: {
+            nom: "agone.chat.critOccNom5",
+            description: "agone.chat.critCysDesc5"
+        }
+    },
+    decorum: {
+        1: {
+            nom: "agone.chat.critOccNom1",
+            description: "agone.chat.critDecDesc1"
+        },
+        2: {
+            nom: "agone.chat.critOccNom2",
+            description: "agone.chat.critDecDesc2"
+        },
+        3: {
+            nom: "agone.chat.critOccNom3",
+            description: "agone.chat.critDecDesc3"
+        },
+        4: {
+            nom: "agone.chat.critOccNom4",
+            description: "agone.chat.critDecDesc4"
+        },
+        5: {
+            nom: "agone.chat.critOccNom5",
+            description: "agone.chat.critDecDesc5"
+        }
+    }  
+}
+
 agone.competences = {
     vigilance: "agone.actors.vigilance",
     athletisme: "agone.actors.athletisme",

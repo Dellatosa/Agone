@@ -108,7 +108,7 @@ export async function jetCaracteristique({actor = null,
         //Si la marge est <= -15, c'est un échec critique
         if(rollStats.marge <= -15) {
             rollStats.isEchecCritiqueMarge = true;
-            rollStats.valeurCritique = rollStats.valeurCritique ? Math.max(rollStats.valeurCritique, rollStats.marge + 5) : rollStats.marge + 5;
+            rollStats.valeurCritique = rollStats.valeurCritique ? Math.min(rollStats.valeurCritique, rollStats.marge + 5) : rollStats.marge + 5;
         }
     }
 
@@ -142,6 +142,7 @@ export async function jetCaracteristique({actor = null,
 export async function jetCompetence({actor = null,
     rangComp = null,
     labelComp = null,
+    familleComp = null,
     specialisation = null,
     labelSpecialisation = null,
     jetDefautInterdit = null,
@@ -352,8 +353,14 @@ export async function jetCompetence({actor = null,
             //Si la marge est <= -15, c'est un échec critique
             if(rollStats.marge <= -15) {
                 rollStats.isEchecCritiqueMarge = true;
-                rollStats.valeurCritique = rollStats.valeurCritique ? Math.max(rollStats.valeurCritique, rollStats.marge + 5) : rollStats.marge + 5;
+                rollStats.valeurCritique = rollStats.valeurCritique ? Math.min(rollStats.valeurCritique, rollStats.marge + 5) : rollStats.marge + 5;
             }
+        }
+
+        if(rollStats.valeurCritique) {
+            let critInfos = getCritInfos(familleComp, rollStats.valeurCritique);
+            rollStats.nomCritique = critInfos.nom;
+            rollStats.descCritique = critInfos.desc;
         }
 
         // Recupération du template
@@ -379,10 +386,15 @@ export async function jetCompetence({actor = null,
         // Affichage du message
         ChatMessage.create(chatData);
 
-        // TODO - trouver un moyen de référencer la bonne table selon le type de Crit
-        let rollValue = new Roll("@valCrit", {valCrit: (rollStats.valeurCritique * -1)}).evaluate({async: false});
-        let critTable = game.tables.contents[0];
-        critTable.draw({roll: rollValue});
+        // Message de suggestions si l'option est activée
+        if(rollStats.valeurCritique) {
+            let suggestCritData = {
+                valeurCritique: rollStats.valeurCritique,
+                nomCritique: rollStats.nomCritique,
+                descCritique: rollStats.descCritique
+            }
+            suggestCritChatMessage(actor, suggestCritData);
+        }
     }
 
     return rollResult;
@@ -512,7 +524,7 @@ export async function combatArme(actor, arme, type) {
         if(dialogOptions.armeNonPreteDist) {
             modificateurs += -5;
         }
-        if(dialogOptions.AttParMemeArme) {
+        if(dialogOptions.attParMemeArme) {
             modificateurs += -1;
         }
         if(dialogOptions.defenseurAuSol) {
@@ -560,12 +572,17 @@ export async function combatArme(actor, arme, type) {
 
     if(difficulte) {
         rollStats.difficulte = difficulte;
+        rollStats.marge = rollResult.total - difficulte;
+        if(rollStats.marge <= -15) {
+            rollStats.isEchecCritiqueMarge = true;
+            rollStats.valeurCritique = rollStats.valeurCritique ? Math.min(rollStats.valeurCritique, rollStats.marge + 5) : rollStats.marge + 5;
+        }
     }
 
-    rollStats.marge = rollResult.total - difficulte;
-    if(rollStats.marge <= -15) {
-        rollStats.isEchecCritiqueMarge = true;
-        rollStats.valeurCritique = rollStats.valeurCritique ? Math.max(rollStats.valeurCritique, rollStats.marge + 5) : rollStats.marge + 5;
+    if(rollStats.valeurCritique) {
+        let critInfos = getCritInfos("epreuves", rollStats.valeurCritique);
+        rollStats.nomCritique = critInfos.nom;
+        rollStats.descCritique = critInfos.desc;
     }
 
     // Recupération du template
@@ -592,6 +609,16 @@ export async function combatArme(actor, arme, type) {
 
     // Affichage du message
     ChatMessage.create(chatData);
+
+    // Message de suggestions si l'option est activée
+    if(rollStats.valeurCritique) {
+        let suggestCritData = {
+            valeurCritique: rollStats.valeurCritique,
+            nomCritique: rollStats.nomCritique,
+            descCritique: rollStats.descCritique
+        }
+        suggestCritChatMessage(actor, suggestCritData);
+    }
 }
 
 // Fonction de construction de la boite de dialogue de jet d'attaque
@@ -688,7 +715,7 @@ function _processJetDefenseOptions(form, typeDefense) {
         return {
             mauvaiseMain: form.mauvaiseMain.checked,
             armeNonPreteDist: form.armeNonPreteDist.checked,
-            AttParMemeArme: form.AttParMemeArme.checked,
+            attParMemeArme: form.attParMemeArme.checked,
             defenseurAuSol: form.defenseurAuSol.checked,
             attaqueCote: form.attaqueCote.checked,
             attaqueDos: form.attaqueDos.checked,
@@ -790,7 +817,13 @@ export async function sortEmprise(mage, danseur, sort) {
     rollStats.marge = rollResult.total - sort.data.data.seuilTotal;
     if(rollStats.marge <= -15) {
         rollStats.isEchecCritiqueMarge = true;
-        rollStats.valeurCritique = rollStats.valeurCritique ? Math.max(rollStats.valeurCritique, rollStats.marge + 5) : rollStats.marge + 5;
+        rollStats.valeurCritique = rollStats.valeurCritique ? Math.min(rollStats.valeurCritique, rollStats.marge + 5) : rollStats.marge + 5;
+    }
+
+    if(rollStats.valeurCritique) {
+        let critInfos = getCritInfos("emprise", rollStats.valeurCritique);
+        rollStats.nomCritique = critInfos.nom;
+        rollStats.descCritique = critInfos.desc;
     }
 
     // Recupération du template
@@ -818,6 +851,16 @@ export async function sortEmprise(mage, danseur, sort) {
 
     // Affichage du message
     ChatMessage.create(chatData);
+
+    // Message de suggestions si l'option est activée
+    if(rollStats.valeurCritique) {
+        let suggestCritData = {
+            valeurCritique: rollStats.valeurCritique,
+            nomCritique: rollStats.nomCritique,
+            descCritique: rollStats.descCritique
+        }
+        suggestCritChatMessage(mage, suggestCritData);
+    }
 }
 
 // Fonction de construction de la boite de dialogue de jet de sort d'Emprise
@@ -954,7 +997,13 @@ export async function oeuvre(artiste, oeuvre) {
     rollStats.marge = rollResult.total - oeuvre.data.data.seuilTotal;
     if(rollStats.marge <= -15) {
         rollStats.isEchecCritiqueMarge = true;
-        rollStats.valeurCritique = rollStats.valeurCritique ? Math.max(rollStats.valeurCritique, rollStats.marge + 5) : rollStats.marge + 5;
+        rollStats.valeurCritique = rollStats.valeurCritique ? Math.min(rollStats.valeurCritique, rollStats.marge + 5) : rollStats.marge + 5;
+    }
+
+    if(rollStats.valeurCritique) {
+        let critInfos = getCritInfos(oeuvre.data.data.artMagique, rollStats.valeurCritique);
+        rollStats.nomCritique = critInfos.nom;
+        rollStats.descCritique = critInfos.desc;
     }
 
     // Dans le cas de la Cyse, gestion de la résistance des matériaux
@@ -990,6 +1039,16 @@ export async function oeuvre(artiste, oeuvre) {
 
     // Affichage du message
     ChatMessage.create(chatData);
+
+    // Message de suggestions si l'option est activée
+    if(rollStats.valeurCritique) {
+        let suggestCritData = {
+            valeurCritique: rollStats.valeurCritique,
+            nomCritique: rollStats.nomCritique,
+            descCritique: rollStats.descCritique
+        }
+        suggestCritChatMessage(artiste, suggestCritData);
+    }
 }
 
 // Fonction de construction de la boite de dialogue de jet d'une oeuvre
@@ -1096,6 +1155,12 @@ export async function contreMagie(mage, danseur, utiliseHeroisme) {
         labelSpecialisation: statsEmprise.labelSpecialisation
     }
 
+    if(rollStats.valeurCritique) {
+        let critInfos = getCritInfos("emprise", rollStats.valeurCritique);
+        rollStats.nomCritique = critInfos.nom;
+        rollStats.descCritique = critInfos.desc;
+    }
+
     // Recupération du template
     const messageTemplate = "systems/agone/templates/partials/dice/jet-contre-magie.hbs";
     let renderedRoll = await rollResult.render();
@@ -1120,6 +1185,16 @@ export async function contreMagie(mage, danseur, utiliseHeroisme) {
 
     // Affichage du message
     ChatMessage.create(chatData);
+
+    // Message de suggestions si l'option est activée
+    if(rollStats.valeurCritique) {
+        let suggestCritData = {
+            valeurCritique: rollStats.valeurCritique,
+            nomCritique: rollStats.nomCritique,
+            descCritique: rollStats.descCritique
+        }
+        suggestCritChatMessage(mage, suggestCritData);
+    }
 }
 
 export async function desaccord(artiste, instrument, utiliseHeroisme) {
@@ -1155,6 +1230,12 @@ export async function desaccord(artiste, instrument, utiliseHeroisme) {
         labelSpecialisation: statsAccord.labelSpecialisation
     }
 
+    if(rollStats.valeurCritique) {
+        let critInfos = getCritInfos("accord", rollStats.valeurCritique);
+        rollStats.nomCritique = critInfos.nom;
+        rollStats.descCritique = critInfos.desc;
+    }
+
     // Recupération du template
     const messageTemplate = "systems/agone/templates/partials/dice/jet-desaccord.hbs";
     let renderedRoll = await rollResult.render();
@@ -1178,6 +1259,16 @@ export async function desaccord(artiste, instrument, utiliseHeroisme) {
 
     // Affichage du message
     ChatMessage.create(chatData);
+
+    // Message de suggestions si l'option est activée
+    if(rollStats.valeurCritique) {
+        let suggestCritData = {
+            valeurCritique: rollStats.valeurCritique,
+            nomCritique: rollStats.nomCritique,
+            descCritique: rollStats.descCritique
+        }
+        suggestCritChatMessage(artiste, suggestCritData);
+    }
 }
 
 export async function jetDefense(defenseur, typeDef) {
@@ -1265,6 +1356,12 @@ export async function jetDefense(defenseur, typeDef) {
         rollStats.labelAspect = null;
     }
     
+    if(rollStats.valeurCritique) {
+        let critInfos = getCritInfos("epreuves", rollStats.valeurCritique);
+        rollStats.nomCritique = critInfos.nom;
+        rollStats.descCritique = critInfos.desc;
+    }
+
     const messageTemplate = "systems/agone/templates/partials/dice/jet-competence.hbs";
     let renderedRoll = await rollResult.render();
 
@@ -1283,8 +1380,19 @@ export async function jetDefense(defenseur, typeDef) {
     }
 
     ChatMessage.create(chatData);
+
+    // Message de suggestions si l'option est activée
+    if(rollStats.valeurCritique) {
+        let suggestCritData = {
+            valeurCritique: rollStats.valeurCritique,
+            nomCritique: rollStats.nomCritique,
+            descCritique: rollStats.descCritique
+        }
+        suggestCritChatMessage(defenseur, suggestCritData);
+    }
 }
 
+// Renvoi le niveau de qualité d'une oeuvre en fonction du malus que s'impose l'artiste
 function getNiveauQualite(margeQualite) {
     if(margeQualite == 0) {
         return 1;
@@ -1304,4 +1412,51 @@ function getNiveauQualite(margeQualite) {
     else if(margeQualite >= 21) {
         return 100;
     }
+}
+
+// Renvoi le niveau de gravite de l'échec critique en fonction du résultat du dé ou de la marge
+function getCritInfos(familleComp, valeurCritique) {
+    let critInfos = {};
+
+    let gravite;
+    if(valeurCritique >= -14) {
+        gravite = 1;
+    }
+    else if(valeurCritique >= -19) {
+        gravite = 2;
+    }
+    else if(valeurCritique >= -24) {
+        gravite = 3;
+    }
+    else if(valeurCritique >= -29) {
+        gravite = 4;
+    }
+    else {
+        gravite = 5;
+    }
+
+    let elem = CONFIG.agone.critInfos[familleComp][gravite];
+    critInfos.nom = elem.nom;
+    critInfos.desc = elem.description;
+
+    return critInfos;
+}
+
+// Envoi d'un message à l'EG pour lui proposer une interprétation de l'échec critique en fonction de sa gravité
+async function suggestCritChatMessage(actor, suggestCritData) {
+    let suggestCritOption = game.settings.get("agone","suggestEchecCritEG");
+
+    // Si l'option n'est pas activée, on quitte la fonction
+    if(!suggestCritOption) return;
+
+    let chatCritData = {
+        user: game.user.id,
+        speaker: ChatMessage.getSpeaker({ actor: actor }),
+        blind: true,
+        whisper: game.users.filter(user => user.isGM == true), // Whisper à l'EG
+        content: await renderTemplate("systems/agone/templates/partials/dice/suggestion-critique.hbs", suggestCritData),
+        type: CONST.CHAT_MESSAGE_TYPES.OTHER
+    }
+
+    ChatMessage.create(chatCritData);  
 }

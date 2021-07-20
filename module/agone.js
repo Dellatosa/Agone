@@ -34,6 +34,17 @@ async function preloadHandlebarsTemplates() {
     return loadTemplates(templatePaths);
 };
 
+function registerSystemSettings() {
+    game.settings.register("agone","suggestEchecCritEG", {
+        config: true,
+        scope: "client",
+        name: "parametres.suggestEchecCritEG.nom",
+        hint: "parametres.suggestEchecCritEG.label",
+        type: Boolean,
+        default: true
+    });
+}
+
 Hooks.once("init", function(){
     console.log("Agone | Initialisation du système Agone RPG");
 
@@ -54,6 +65,8 @@ Hooks.once("init", function(){
 
     Items.unregisterSheet("core", ItemSheet);
     Items.registerSheet("agone", AgoneItemSheet, {makeDefault: true});
+
+    registerSystemSettings();
 
     preloadHandlebarsTemplates();
 

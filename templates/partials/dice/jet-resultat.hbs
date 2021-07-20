@@ -1,5 +1,7 @@
 {{#if stats.isEchecCritiqueJetDe}}
-    <h3 class="resultat fumble">{{localize "agone.chat.echecCritique"}} ({{stats.valeurCritique}})</h3> 
+    <h3 class="resultat fumble">{{localize "agone.chat.echecCritique"}}</h3>
+    <div>{{localize stats.nomCritique}}</div>
+    <div>{{localize stats.descCritique}}</div>
 {{else}}
     {{#if stats.difficulte}}
         <h3 class="resultat">{{localize "agone.chat.marge"}} {{#if stats.isEchecCritiqueMarge}}<span class="fumble">{{stats.marge}}</span>{{else}}{{stats.marge}}{{/if}}</h3>
@@ -8,6 +10,8 @@
         {{else}}
             {{#if stats.isEchecCritiqueMarge}}
                 <h3 class="resultat fumble">{{localize "agone.chat.echecCritique"}}</h3>
+                <div class="bold">{{localize stats.nomCritique}} ({{stats.valeurCritique}})</div>
+                <!-- <div>{{localize stats.descCritique}}</div> -->
             {{else}}
                 <h3 class="resultat">{{localize "agone.chat.echec"}}</h3>
             {{/if}}
