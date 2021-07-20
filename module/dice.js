@@ -393,7 +393,7 @@ export async function jetCompetence({actor = null,
                 nomCritique: rollStats.nomCritique,
                 descCritique: rollStats.descCritique
             }
-            suggestCritChatMessage(actor, suggestCritData);
+            await suggestCritChatMessage(actor, suggestCritData);
         }
     }
 
