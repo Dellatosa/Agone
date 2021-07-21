@@ -321,8 +321,9 @@ export default class AgoneActor extends Actor {
     getStatsEmprise() {
         let data = this.data.data;
 
-        let result = {emprise: 0, resonance: "ND", specialisation: false, labelSpecialisation: "ND", rangResonance: 0, connDanseurs: 0, bonusEsprit: 0, labelEsprit: "ND", malusBlessureGrave: null};
+        let result = {emprise: 0, creativite: 0, resonance: "ND", specialisation: false, labelSpecialisation: "ND", rangResonance: 0, connDanseurs: 0, bonusEsprit: 0, labelEsprit: "ND", bonusAme: 0, labelAme: "ND", malusBlessureGrave: null};
         result.emprise = data.aspects.esprit.caracteristiques.emprise.valeur;
+        result.creativite = data.aspects.ame.caracteristiques.creativite.valeur;
         result.resonance = data.caracSecondaires.resonance;
         result.rangResonance = data.familleCompetences.occulte.competences.resonance.domaines[data.caracSecondaires.resonance].rang;
         result.specialisation = data.familleCompetences.occulte.competences.resonance.domaines[data.caracSecondaires.resonance].specialisation;
@@ -330,6 +331,8 @@ export default class AgoneActor extends Actor {
         result.connDanseurs = data.familleCompetences.occulte.competences.connDanseurs.rang;
         result.bonusEsprit = data.aspects.esprit.bonus.valeur;
         result.labelEsprit = data.aspects.esprit.bonus.label;
+        result.bonusAme = data.aspects.ame.bonus.valeur;
+        result.labelAme = data.aspects.ame.bonus.label;
         result.malusBlessureGrave = this.getMalusBlessureGrave(data.caracSecondaires.nbBlessureGrave);
 
         return result;

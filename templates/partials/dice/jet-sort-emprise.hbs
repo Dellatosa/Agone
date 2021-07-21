@@ -1,6 +1,11 @@
 <div class="jet-sort">
-    <div class="txt-small"><span class="bold">{{danseur.nomDanseur}}</span> lance le sort <span class="bold">{{sort.name}}</span> (difficulté <span class="bold">{{stats.difficulte}}</span>)</div>
-    <div class="txt-small bold">{{localize "agone.actors.potEmprise"}} ({{mage.potEmprise}})
+    {{#if stats.isIntuitif}}
+        <div class="txt-small"><span class="bold">{{danseur.nomDanseur}}</span> lance un sort de magie intuitive (difficulté <span class="bold">{{stats.difficulte}}</span>)</div>
+        <div class="txt-small bold">{{localize "agone.actors.potEmpriseIntuitive"}} ({{mage.potEmprise}})
+    {{else}}
+        <div class="txt-small"><span class="bold">{{danseur.nomDanseur}}</span> lance le sort <span class="bold">{{sort.name}}</span> (difficulté <span class="bold">{{stats.difficulte}}</span>)</div>
+        <div class="txt-small bold">{{localize "agone.actors.potEmprise"}} ({{mage.potEmprise}})
+    {{/if}}
         {{#if stats.malusBlessureGrave}} + {{localize "agone.chat.malusBlessureGrave"}} ({{stats.malusBlessureGrave}}){{/if}}
         {{#if stats.danseurInvisible}}<span> + {{localize "agone.chat.danseurInvisible"}}</span>{{/if}}
         {{#if stats.mouvImperceptibles}}<span> + {{localize "agone.chat.mouvImperceptibles"}}</span>{{/if}}

@@ -384,7 +384,7 @@ export async function jetCompetence({actor = null,
         }
 
         // Affichage du message
-        ChatMessage.create(chatData);
+        await ChatMessage.create(chatData);
 
         // Message de suggestions si l'option est activée
         if(rollStats.valeurCritique) {
@@ -736,7 +736,7 @@ function _processJetDefenseOptions(form, typeDefense) {
 }
 
 // Jet de sort d'Emprise, avec affichage du message dans le chat
-export async function sortEmprise(mage, danseur, sort) {
+export async function sortEmprise(mage, danseur, sort, isIntuitif = false) {
     let statsEmprise = mage.getStatsEmprise();
 
     // Pas de jet de sort si le Danseur n'a plus d'endurance
@@ -745,18 +745,27 @@ export async function sortEmprise(mage, danseur, sort) {
         return;
     }
 
-    // Ajout sur le sort des données pour gérer le cas des sorts d'une obédience différente de celle du Mage
-    sort.data.data.diffObedience = false;
-    sort.data.data.seuilTotal = sort.data.data.seuil;
+    let potEmprise;
+    // Le sort est défini (magie non intuitive)
+    if(!isIntuitif) {
+        // Ajout sur le sort des données pour gérer le cas des sorts d'une obédience différente de celle du Mage
+        sort.data.data.diffObedience = false;
+        sort.data.data.seuilTotal = sort.data.data.seuil;
 
-    if(sort.data.data.resonance != statsEmprise.resonance) {
-        sort.data.data.diffObedience = true;
-        sort.data.data.seuilTotal += 5;
+        if(sort.data.data.resonance != statsEmprise.resonance) {
+            sort.data.data.diffObedience = true;
+            sort.data.data.seuilTotal += 5;
+        }
+
+        potEmprise = statsEmprise.emprise + Math.min(statsEmprise.rangResonance, statsEmprise.connDanseurs) + statsEmprise.bonusEsprit + danseur.data.data.bonusEmprise; 
+    }
+    else {
+        potEmprise = statsEmprise.creativite + Math.min(statsEmprise.rangResonance,  danseur.data.data.empathie) + statsEmprise.bonusAme; 
     }
 
     // Construction des strutures de données pour l'affichage de la boite de dialogue
     let mageData = {
-        potEmprise: statsEmprise.emprise + Math.min(statsEmprise.rangResonance, statsEmprise.connDanseurs) + statsEmprise.bonusEsprit + danseur.data.data.bonusEmprise,
+        potEmprise: potEmprise,
         resonance: statsEmprise.resonance
     };
 
@@ -764,14 +773,28 @@ export async function sortEmprise(mage, danseur, sort) {
         nomDanseur: danseur.data.name
     };
 
-    let sortData = {
-        nomSort: sort.data.name,
-        seuil: sort.data.data.seuil,
-        seuilTotal: sort.data.data.seuilTotal,
-        diffObedience: sort.data.data.diffObedience
-    };
+    let sortData = {};
 
-    let dialogOptions = await getJetSortEmpriseOptions({mageData: mageData, danseurData: danseurData, sortData: sortData});
+    if(isIntuitif) {
+        sortData = {
+            nomSort: game.i18n.localize("agone.items.sortIntuitif"),
+            seuil: 0,
+            seuilTotal: 0,
+            diffObedience: false,
+            isIntuitif: isIntuitif
+        };
+    }
+    else {
+        sortData = {
+            nomSort: sort.data.name,
+            seuil: sort.data.data.seuil,
+            seuilTotal: sort.data.data.seuilTotal,
+            diffObedience: sort.data.data.diffObedience,
+            isIntuitif: isIntuitif
+        };
+    }
+
+    let dialogOptions = await getJetSortEmpriseOptions({mageData: mageData, danseurData: danseurData, sortData: sortData, cfgData: CONFIG.agone});
 
     // On annule le jet sur les boutons 'Annuler' ou 'Fermeture'
     if(dialogOptions.annule) {
@@ -779,19 +802,35 @@ export async function sortEmprise(mage, danseur, sort) {
     }
 
     // Récupération des données de la fenêtre de dialogue pour ce jet 
-    if(dialogOptions.magieInstantanee) {
-        sort.data.data.seuilTotal = sort.data.data.diffObedience == true ? sort.data.data.seuil * 2 + 5 : (sort.data.data.seuil * 2);
+    let seuilTotalIntuitif;
+    if(isIntuitif) {
+        seuilTotalIntuitif = dialogOptions.seuilEstime * 2;
+        let modifObedience = dialogOptions.resonanceEstimee != statsEmprise.resonance ? 5 : 0;
+        seuilTotalIntuitif = dialogOptions.magieInstantanee ? seuilTotalIntuitif = (seuilTotalIntuitif * 2) + modifObedience : seuilTotalIntuitif = seuilTotalIntuitif + modifObedience;
+        /*if(dialogOptions.magieInstantanee) {
+            seuilTotalIntuitif = (seuilTotalIntuitif * 2) + modifObedience;
+        }
+        else {
+            seuilTotalIntuitif = seuilTotalIntuitif + modifObedience;
+        }*/
     }
+    else {
+        if(dialogOptions.magieInstantanee) {
+            sort.data.data.seuilTotal = sort.data.data.diffObedience == true ? sort.data.data.seuil * 2 + 5 : (sort.data.data.seuil * 2);
+        }
+    }
+    
+    
 
     // On lance le jet de dé depuis la fonction de jet de compétence 
     // On récupère le rollResult
     let rollResult = await jetCompetence({
         actor: mage,
-        rangComp:  Math.min(statsEmprise.rangResonance, statsEmprise.connDanseurs),
+        rangComp:  isIntuitif ? Math.min(statsEmprise.rangResonance, danseur.data.data.empathie) : Math.min(statsEmprise.rangResonance, statsEmprise.connDanseurs),
         jetDefautInterdit: true,
-        rangCarac: statsEmprise.emprise,
-        bonusAspect: statsEmprise.bonusEsprit,
-        bonusEmprise: danseur.data.data.bonusEmprise,
+        rangCarac: isIntuitif ? statsEmprise.creativite : statsEmprise.emprise,
+        bonusAspect: isIntuitif ? statsEmprise.bonusAme : statsEmprise.bonusEsprit,
+        bonusEmprise: isIntuitif ? null : danseur.data.data.bonusEmprise,
         danseurInvisible: dialogOptions.danseurInvisible,
         mouvImperceptibles: dialogOptions.mouvImperceptibles,
         utiliseHeroisme: dialogOptions.utiliseHeroisme,
@@ -811,10 +850,11 @@ export async function sortEmprise(mage, danseur, sort) {
         ...rollResult.data,
         specialisation: statsEmprise.specialisation,
         labelSpecialisation: statsEmprise.labelSpecialisation,
-        difficulte: sort.data.data.seuilTotal
+        difficulte: isIntuitif ? seuilTotalIntuitif : sort.data.data.seuilTotal,
+        isIntuitif: isIntuitif
     }
 
-    rollStats.marge = rollResult.total - sort.data.data.seuilTotal;
+    rollStats.marge = isIntuitif ? rollResult.total - seuilTotalIntuitif : rollResult.total - sort.data.data.seuilTotal;
     if(rollStats.marge <= -15) {
         rollStats.isEchecCritiqueMarge = true;
         rollStats.valeurCritique = rollStats.valeurCritique ? Math.min(rollStats.valeurCritique, rollStats.marge + 5) : rollStats.marge + 5;
@@ -864,10 +904,10 @@ export async function sortEmprise(mage, danseur, sort) {
 }
 
 // Fonction de construction de la boite de dialogue de jet de sort d'Emprise
-async function getJetSortEmpriseOptions({mageData = null, danseurData = null, sortData = null}) {
+async function getJetSortEmpriseOptions({mageData = null, danseurData = null, sortData = null, cfgData = null}) {
     // Recupération du template
     const template = "systems/agone/templates/partials/dice/dialog-jet-sort-emprise.hbs";
-    const html = await renderTemplate(template, {mageData: mageData, danseurData: danseurData, sortData: sortData});
+    const html = await renderTemplate(template, {mageData: mageData, danseurData: danseurData, sortData: sortData, cfgData: cfgData });
 
     return new Promise( resolve => {
         const data = {
@@ -902,11 +942,23 @@ function _processJetSortEmpriseOptions(form) {
         mouvImp = form.mouvImperceptibles.checked;
     }
 
+    let seuilEstime = 0;
+    if(form.seuilEstime) {
+        seuilEstime = parseInt(form.seuilEstime.value);
+    }
+
+    let resonanceEstimee = "";
+    if(form.resonanceEstimee) {
+        resonanceEstimee = form.resonanceEstimee.value;
+    }
+
     return {
         magieInstantanee: form.magieInstantanee.checked,
         danseurInvisible: form.danseurInvisible.checked,
         mouvImperceptibles: mouvImp,
-        utiliseHeroisme : form.utiliseHeroisme.checked
+        utiliseHeroisme : form.utiliseHeroisme.checked,
+        seuilEstime: seuilEstime,
+        resonanceEstimee: resonanceEstimee
     }
 }
 
@@ -1449,14 +1501,21 @@ async function suggestCritChatMessage(actor, suggestCritData) {
     // Si l'option n'est pas activée, on quitte la fonction
     if(!suggestCritOption) return;
 
+    // TODO trouver une méthode plus propre pour pousser le message au GM sans q'uil soit visible coté joueur
+    // Peux-être retravailler le template de blind roll
+    let roll = await new Roll("0", null).roll({async : true});
+
+    console.log(suggestCritData.isGM);
+
     let chatCritData = {
         user: game.user.id,
-        speaker: ChatMessage.getSpeaker({ actor: actor }),
+        roll: roll,
         blind: true,
+        speaker: ChatMessage.getSpeaker({ actor: actor }),
         whisper: game.users.filter(user => user.isGM == true), // Whisper à l'EG
         content: await renderTemplate("systems/agone/templates/partials/dice/suggestion-critique.hbs", suggestCritData),
-        type: CONST.CHAT_MESSAGE_TYPES.OTHER
+        type: CONST.CHAT_MESSAGE_TYPES.ROLL
     }
 
-    ChatMessage.create(chatCritData);  
+    await ChatMessage.create(chatCritData);  
 }

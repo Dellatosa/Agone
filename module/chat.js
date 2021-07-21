@@ -4,6 +4,7 @@ export function addChatListeners(html) {
     html.on('click', 'button.attaque', onAttaque);
     html.on('click', 'button.parade', onParade);
     html.on('click', 'button.jet-sort', onJetSort);
+    html.on('click', 'button.jet-sort-intuitif', onJetSortIntuitif);
     html.on('click', 'a.editer-item-sort', onEditItemSort)
     html.on('click', 'button.jet-contre-magie', onJetContreMagie);
     html.on('click', 'a.editer-item-ctr-magie', onEditItemContreMagie);
@@ -25,6 +26,14 @@ function onJetSort(event) {
     }
 
     Dice.sortEmprise(mage, danseur, sort);
+}
+
+function onJetSortIntuitif(event) {
+    const card = event.currentTarget.closest(".danseur");
+    let mage = game.actors.get(card.dataset.ownerId);
+    let danseur = mage.items.get(card.dataset.itemId);
+
+    Dice.sortEmprise(mage, danseur, null, true);
 }
 
 function onJetOeuvre(event) {
