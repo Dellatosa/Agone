@@ -362,8 +362,9 @@ export default class AgoneActor extends Actor {
             domaine = this.getDomaineInstrument(instrument);
         }
 
-        let result = {art: 0, rangArtMagique: 0, labelArtMagique: "", specialisation: false, labelSpecialisation: "ND", rangCompetence: 0, labelCompetence: 0, bonusAme: 0, labelAme: "ND", malusBlessureGrave: null};
+        let result = {art: 0, creativite:0, rangArtMagique: 0, labelArtMagique: "", specialisation: false, labelSpecialisation: "ND", rangCompetence: 0, labelCompetence: "ND", bonusAme: 0, labelAme: "ND", malusBlessureGrave: null};
         result.art = data.aspects.ame.caracteristiques.art.valeur;
+        result.creativite = data.aspects.ame.caracteristiques.creativite.valeur;
         result.rangArtMagique = data.familleCompetences.occulte.competences.artsMagiques.domaines[artMagique].rang;
         result.labelArtMagique = data.familleCompetences.occulte.competences.artsMagiques.domaines[artMagique].label;
         result.specialisation = data.familleCompetences.occulte.competences.artsMagiques.domaines[artMagique].specialisation;
@@ -372,7 +373,7 @@ export default class AgoneActor extends Actor {
             result.rangCompetence = data.familleCompetences.societe.competences[compId].rang;
             result.labelCompetence = data.familleCompetences.societe.competences[compId].label;
         }
-        else {
+        else if(instrument) {
             result.rangCompetence = data.familleCompetences.societe.competences[compId].domaines[domaine].rang;
             result.labelCompetence = data.familleCompetences.societe.competences[compId].domaines[domaine].label;
         }

@@ -11,6 +11,7 @@ export function addChatListeners(html) {
     html.on('click', 'button.jet-reconn-oeuvre', onJetReconnOeuvre);
     html.on('click', 'button.jet-desaccord', onJetDesaccord);
     html.on('click', 'button.jet-oeuvre', onJetOeuvre);
+    html.on('click', 'button.jet-art-improvise', onJetArtImprovise);
 }
 
 function onJetSort(event) {
@@ -96,6 +97,15 @@ function onJetDesaccord(event) {
     Dice.desaccord(artiste, instrument, utiliseHeroisme);
 }
 
+function onJetArtImprovise(event) {
+    const card = event.currentTarget.closest(".art-improvise");
+    const artCard = event.currentTarget.closest(".jet-art-improvise");
+    let artiste = game.actors.get(card.dataset.ownerId);
+    let artId =  artCard.dataset.artId;
+
+    Dice.oeuvre(artiste, null, artId, true);
+}
+
 function onEditItemSort(event) {
     const card = event.currentTarget.closest(".danseur");
     const sortCard = event.currentTarget.closest(".sort");
@@ -159,6 +169,23 @@ export async function selArtMagiqueReconnOeuvre(actor, arts) {
     };
 
     chatData.content = await renderTemplate("systems/agone/templates/partials/chat/carte-reconn-oeuvre.hbs", cardData);
+    chatData.roll = true;
+
+    return ChatMessage.create(chatData);
+}
+
+export async function selArtMagiqueImprovise(actor, arts) {
+    let chatData = {
+        user: game.user.id,
+        speaker: ChatMessage.getSpeaker({ actor: actor })
+    };
+
+    let cardData = {
+        arts: arts,
+        owner: actor.id
+    };
+
+    chatData.content = await renderTemplate("systems/agone/templates/partials/chat/carte-art-improvise.hbs", cardData);
     chatData.roll = true;
 
     return ChatMessage.create(chatData);

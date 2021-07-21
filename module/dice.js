@@ -773,26 +773,13 @@ export async function sortEmprise(mage, danseur, sort, isIntuitif = false) {
         nomDanseur: danseur.data.name
     };
 
-    let sortData = {};
-
-    if(isIntuitif) {
-        sortData = {
-            nomSort: game.i18n.localize("agone.items.sortIntuitif"),
-            seuil: 0,
-            seuilTotal: 0,
-            diffObedience: false,
-            isIntuitif: isIntuitif
-        };
-    }
-    else {
-        sortData = {
-            nomSort: sort.data.name,
-            seuil: sort.data.data.seuil,
-            seuilTotal: sort.data.data.seuilTotal,
-            diffObedience: sort.data.data.diffObedience,
-            isIntuitif: isIntuitif
-        };
-    }
+    let sortData = {
+        nomSort: isIntuitif ? game.i18n.localize("agone.items.sortIntuitif") : sort.data.name,
+        seuil: isIntuitif ? 0 : sort.data.data.seuil,
+        seuilTotal: isIntuitif ? 0 : sort.data.data.seuilTotal,
+        diffObedience: isIntuitif ? false : sort.data.data.diffObedience,
+        isIntuitif: isIntuitif
+    };
 
     let dialogOptions = await getJetSortEmpriseOptions({mageData: mageData, danseurData: danseurData, sortData: sortData, cfgData: CONFIG.agone});
 
@@ -807,12 +794,6 @@ export async function sortEmprise(mage, danseur, sort, isIntuitif = false) {
         seuilTotalIntuitif = dialogOptions.seuilEstime * 2;
         let modifObedience = dialogOptions.resonanceEstimee != statsEmprise.resonance ? 5 : 0;
         seuilTotalIntuitif = dialogOptions.magieInstantanee ? seuilTotalIntuitif = (seuilTotalIntuitif * 2) + modifObedience : seuilTotalIntuitif = seuilTotalIntuitif + modifObedience;
-        /*if(dialogOptions.magieInstantanee) {
-            seuilTotalIntuitif = (seuilTotalIntuitif * 2) + modifObedience;
-        }
-        else {
-            seuilTotalIntuitif = seuilTotalIntuitif + modifObedience;
-        }*/
     }
     else {
         if(dialogOptions.magieInstantanee) {
@@ -963,29 +944,43 @@ function _processJetSortEmpriseOptions(form) {
 }
 
 // Jet d'une oeuvre d'Art magique, avec affichage du message dans le chat
-export async function oeuvre(artiste, oeuvre) {
+export async function oeuvre(artiste, oeuvre, artMagiqueImpro = null, isArtImpro = false) {
     const artMagique = oeuvre.data.data.artMagique;
     let statsArtMagique;
     
-    if(artMagique == "accord") {
-        statsArtMagique = artiste.getStatsArtMagique(artMagique, oeuvre.data.data.instrument);
-    }
-    else {
+    if(isArtImpro) {
         statsArtMagique = artiste.getStatsArtMagique(artMagique);
     }
+    else {
+        if(artMagique == "accord") {
+            statsArtMagique = artiste.getStatsArtMagique(artMagique, oeuvre.data.data.instrument);
+        }
+        else {
+            statsArtMagique = artiste.getStatsArtMagique(artMagique);
+        }
+    
+        oeuvre.data.data.seuilTotal = oeuvre.data.data.seuil;
+    }
+    
+    // Construction des strutures de données pour l'affichage de la boite de dialogue
+    let potArtMagique;
+    if(isArtImpro) {
+        potArtMagique = statsArtMagique.creativite + Math.min(statsArtMagique.rangArtMagique, statsArtMagique.rangCompetence) + statsArtMagique.bonusAme;
+    }
+    else {
+        potArtMagique = statsArtMagique.art + Math.min(statsArtMagique.rangArtMagique, statsArtMagique.rangCompetence) + statsArtMagique.bonusAme;
+    }
 
-    oeuvre.data.data.seuilTotal = oeuvre.data.data.seuil;
-
-     // Construction des strutures de données pour l'affichage de la boite de dialogue
-     let artisteData = {
-        potArtMagique: statsArtMagique.art + Math.min(statsArtMagique.rangArtMagique, statsArtMagique.rangCompetence) + statsArtMagique.bonusAme
+    let artisteData = {
+        potArtMagique: potArtMagique
     };
 
     let oeuvreData = {
-        nomOeuvre: oeuvre.data.name,
-        seuil: oeuvre.data.data.seuil,
-        artMagique: oeuvre.data.data.artMagique,
-        saison: oeuvre.data.data.saison
+        nomOeuvre: isArtImpro ? game.i18n.localize("agone.actors.oeuvreImprovisee") : oeuvre.data.name,
+        seuil: isArtImpro ? 0 : oeuvre.data.data.seuil,
+        artMagique: isArtImpro ? artMagiqueImpro : oeuvre.data.data.artMagique,
+        saison: isArtImpro ? null : oeuvre.data.data.saison,
+        isArtImpro: isArtImpro
     };
 
     let dialogOptions = await getJetOeuvreOptions({artisteData: artisteData, oeuvreData: oeuvreData, cfgData: CONFIG.agone});

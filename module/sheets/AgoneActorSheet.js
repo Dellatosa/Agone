@@ -182,6 +182,9 @@ export default class AgoneActorSheet extends ActorSheet {
             // Désaccord
             html.find('button.desaccord').click(this._onDesaccord.bind(this));
 
+            // Art improvisé
+            html.find('button.artImprovise').click(this._onArtImprovise.bind(this));
+
             // Liste Danseurs
             // Régénérer l'endurance
             html.find('.repos-danseurs').click(this._onReposDanseurs.bind(this));
@@ -465,6 +468,14 @@ export default class AgoneActorSheet extends ActorSheet {
             // Selection de l'instrument
             Chat.selInstrumentDesaccord(this.actor, instruments);
         }
+    }
+
+    // Art improvisé
+    _onArtImprovise(event) {
+        event.preventDefault();
+
+        // Carte de sélection de l'art magique à afficher dans le chat
+        Chat.selArtMagiqueImprovise(this.actor, this.actor.data.data.familleCompetences.occulte.competences.artsMagiques.domaines);
     }
 
     // Regeneration de l'endurance des Danseurs
