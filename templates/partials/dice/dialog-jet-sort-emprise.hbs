@@ -1,12 +1,12 @@
 <form>
     {{#if sortData.isIntuitif}}
-        <div>Jeter un sort de magie intuitive avec le danseur <span class="bold">{{danseurData.nomDanseur}}</span></div>
+        <div>{{ localize "agone.chat.jetSortMagieIntuitiveDanseur"}} <span class="bold">{{danseurData.nomDanseur}}</span></div>
         <div>{{ localize "agone.actors.potEmpriseIntuitive"}} <span class="bold">{{mageData.potEmprise}}</span></div>
         <div class="form-group">
             <label>{{ localize "agone.chat.seuilEstime"}}</label>
             <input type="number" name="seuilEstime" value="0" min="0"/>
         </div>
-        <div>{{ localize "agone.chat.seuilEstimeMsg" }}</div>
+        <div>{{ localize "agone.chat.seuilEstimeMsg"}}</div>
         <div class="form-group">
             <label>{{localize "agone.chat.resonanceEstimee"}}</label>
             <select name="resonanceEstimee">
@@ -18,7 +18,7 @@
             </select>
         </div>
     {{else}}
-        <div>Jeter le sort <span class="bold">{{sortData.nomSort}}</span> avec le danseur <span class="bold">{{danseurData.nomDanseur}}</span></div>
+        <div>{{ localize "agone.chat.jetSort"}} <span class="bold">{{sortData.nomSort}}</span> {{ localize "agone.chat.avecDanseur"}} <span class="bold">{{danseurData.nomDanseur}}</span></div>
         <div>{{ localize "agone.actors.potEmprise"}} <span class="bold">{{mageData.potEmprise}}</span> - {{ localize "agone.items.seuil"}} <span class="bold">{{sortData.seuilTotal}}</span></div>
         {{#if sortData.diffObedience}}<div class="txt-small">{{localize "agone.chat.seuilDetail" seuil=sortData.seuil }}</div>{{/if}}
     {{/if}}

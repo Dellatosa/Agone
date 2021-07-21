@@ -7,7 +7,7 @@
         <label>{{ localize "agone.chat.utiliseHeroisme"}}</label>
         <input class="util-hero" type="checkbox" name="utiliseHeroisme"/>
     </div>
-    <div>Instrument utilisé pour le jet de désaccord</div>
+    <div>{{ localize "agone.chat.instrumentDesaccord" }}</div>
      <div class="boutons-carte">
         {{#each instruments as | instrument | }}
             <button class="jet-desaccord" data-instrument="{{instrument.label}}">{{configLocalize "instruments" instrument.label}}</button>

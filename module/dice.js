@@ -875,7 +875,7 @@ export async function sortEmprise(mage, danseur, sort, isIntuitif = false) {
         stats: rollStats,
         mage: mageData,
         danseur: danseurData,
-        sort: sort.data,
+        sort:  isIntuitif ? null : sort.data,
         roll: renderedRoll
     }
 

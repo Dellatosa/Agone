@@ -7,7 +7,7 @@
         <label>{{ localize "agone.chat.utiliseHeroisme"}}</label>
         <input class="util-hero" type="checkbox" name="utiliseHeroisme"/>
     </div>
-    <div>A quel art magique appartient cette oeuvre ?</div>
+    <div>{{ localize "agone.chat.reconnOeuvreMsg" }}</div>
      <div class="boutons-carte grid-2">
         {{#each arts as | art id | }}
             <button class="jet-reconn-oeuvre" data-art-id="{{id}}">{{art.label}}</button>
