@@ -143,7 +143,7 @@ export async function jetCompetence({actor = null,
     rangComp = null,
     labelComp = null,
     familleComp = null,
-    specialisation = null,
+    specialisation = false,
     labelSpecialisation = null,
     jetDefautInterdit = null,
     rangCarac = null,
@@ -155,6 +155,7 @@ export async function jetCompetence({actor = null,
     modifAttaque = null,
     modifParade = null,
     malusManiement = null,
+    utiliseSpecialisation = false,
     utiliseHeroisme = null,
     bonusEmprise = null,
     modificateurs = null,
@@ -174,7 +175,7 @@ export async function jetCompetence({actor = null,
 
     // Affichage de la fenêtre de dialogue (vrai par défaut)
     if(afficherDialog) {
-        let dialogOptions = await getJetCompetenceOptions({cfgData: CONFIG.agone, defCarac: defCarac});
+        let dialogOptions = await getJetCompetenceOptions({cfgData: CONFIG.agone, defCarac: defCarac, specialisation: specialisation, labelSpecialisation: labelSpecialisation});
 
         // On annule le jet sur les boutons 'Annuler' ou 'Fermeture'
         if(dialogOptions.annule) {
@@ -190,6 +191,7 @@ export async function jetCompetence({actor = null,
         labelAspect = carData.labelAspect;
         difficulte = dialogOptions.difficulte;
         utiliseHeroisme = dialogOptions.utiliseHeroisme;
+        utiliseSpecialisation = dialogOptions.utiliseSpecialisation;
     }
     
     // Définition de la formule de base du jet, et de sa version fumble (avec 1d10 explosif retranché au 1 du dé initial)
@@ -277,6 +279,11 @@ export async function jetCompetence({actor = null,
         baseFormula += " + @modificateurs";
     }
 
+    // Bonus de spécialisation
+    if(utiliseSpecialisation) {
+        baseFormula += " + 1";
+    }
+
     // Bonus d'emprise du Danseur
     if(bonusEmprise) {
         rollData.bonusEmprise = bonusEmprise;
@@ -334,7 +341,8 @@ export async function jetCompetence({actor = null,
             ...rollData,
             labelCarac: labelCarac,
             labelComp: labelComp,
-            specialisation: specialisation,
+            utiliseSpecialisation: utiliseSpecialisation,
+            //specialisation: specialisation,
             labelSpecialisation: labelSpecialisation,
             isJetDefaut: isJetDefaut
         }
@@ -401,10 +409,10 @@ export async function jetCompetence({actor = null,
 }
 
 // Fonction de contsruction de la boite de dialogue de jet de compétence
-async function getJetCompetenceOptions({cfgData = null, defCarac = null}) {
+async function getJetCompetenceOptions({cfgData = null, defCarac = null, specialisation = false, labelSpecialisation = null}) {
     // Recupération du template
     const template = "systems/agone/templates/partials/dice/dialog-jet-competence.hbs";
-    const html = await renderTemplate(template, {data: cfgData, defCarac: defCarac});
+    const html = await renderTemplate(template, {data: cfgData, defCarac: defCarac, specialisation: specialisation, labelSpecialisation: labelSpecialisation});
 
     return new Promise( resolve => {
         const data = {
@@ -432,10 +440,16 @@ async function getJetCompetenceOptions({cfgData = null, defCarac = null}) {
 
 // Gestion des données renseignées dans la boite de dialogue de jet de compétence
 function _processJetCompetenceOptions(form) {
+    let utiliseSpecialisation = false;
+    if(form.utiliseSpecialisation) {
+        utiliseSpecialisation = form.utiliseSpecialisation.checked;
+    }
+
     return {
         caracteristique: form.caracteristique.value,
         difficulte: parseInt(form.difficulte.value),
-        utiliseHeroisme : form.utiliseHeroisme.checked
+        utiliseHeroisme : form.utiliseHeroisme.checked,
+        utiliseSpecialisation: utiliseSpecialisation
     }
 }
 
@@ -459,7 +473,9 @@ export async function combatArme(actor, arme, type) {
         statsCombat.modifAttaque = arme.data.data.modifAttaque;
         armeData.distance = arme.data.data.style == "trait" || arme.data.data.style == "jet" ? "distance" : "contact";
         let attaquantData = {
-            potAttaque: statsCombat.rangCarac + statsCombat.rangComp + statsCombat.bonusAspect + statsCombat.malusManiement + arme.data.data.modifAttaque
+            potAttaque: statsCombat.rangCarac + statsCombat.rangComp + statsCombat.bonusAspect + statsCombat.malusManiement + arme.data.data.modifAttaque,
+            specialisation : statsCombat.specialisation,
+            labelSpecialisation: statsCombat.labelSpecialisation
         };
         
         dialogOptions = await getJetAttaqueOptions({attaquantData: attaquantData, armeData: armeData, cfgData: CONFIG.agone});
@@ -468,7 +484,9 @@ export async function combatArme(actor, arme, type) {
         statsCombat.modifParade = arme.data.data.modifParade;
         let defenseurData = {
             potDefense: statsCombat.rangCarac + statsCombat.rangComp + statsCombat.bonusAspect + statsCombat.malusManiement + arme.data.data.modifParade,
-            typeDefense: "parade"
+            typeDefense: "parade",
+            specialisation : statsCombat.specialisation,
+            labelSpecialisation: statsCombat.labelSpecialisation
         };
 
         dialogOptions = await getJetDefenseOptions({defenseurData: defenseurData, armeData: armeData});
@@ -483,6 +501,7 @@ export async function combatArme(actor, arme, type) {
     let modificateurs = 0;
     let difficulte;
     let utiliseHeroisme = false;
+    let utiliseSpecialisation = false;
     // Récupération des données de la fenêtre de dialogue pour ce jet 
     if(type == "Attaque") {
         if(armeData.distance == "contact") {
@@ -515,7 +534,6 @@ export async function combatArme(actor, arme, type) {
             modificateurs += dialogOptions.mouvementCible;
             difficulte = dialogOptions.difficulte;
         }
-        
     }
     else if(type == "Parade") {
         if(dialogOptions.mauvaiseMain) {
@@ -539,8 +557,10 @@ export async function combatArme(actor, arme, type) {
         if(dialogOptions.defenseurSureleve) {
             modificateurs += 2;
         }
-        utiliseHeroisme = dialogOptions.utiliseHeroisme;
     }
+
+    utiliseHeroisme = dialogOptions.utiliseHeroisme;
+    utiliseSpecialisation = dialogOptions.utiliseSpecialisation;
 
     let rollResult = await jetCompetence({
         actor: actor,
@@ -556,6 +576,7 @@ export async function combatArme(actor, arme, type) {
         malusManiement: statsCombat.malusManiement,
         modificateurs: modificateurs,
         utiliseHeroisme: utiliseHeroisme,
+        utiliseSpecialisation: utiliseSpecialisation,
         afficherDialog: false,
         envoiMessage: false
     });
@@ -563,7 +584,8 @@ export async function combatArme(actor, arme, type) {
     let rollStats = {
         ...statsCombat,
         modificateurs: modificateurs,
-        utiliseHeroisme: utiliseHeroisme
+        utiliseHeroisme: utiliseHeroisme,
+        utiliseSpecialisation: utiliseSpecialisation
     }
 
     if(!gererBonusAspect) {
@@ -653,6 +675,10 @@ async function getJetAttaqueOptions({attaquantData = null, armeData = null, cfgD
 
 // Gestion des données renseignées dans la boite de dialogue de jet d'attaque
 function _processJetAttaqueOptions(form, distance) {
+    let utiliseSpecialisation = false;
+    if(form.utiliseSpecialisation) {
+        utiliseSpecialisation = form.utiliseSpecialisation.checked;
+    }
     // On récupère les valeurs selon le type d'arme - au contact ou à distance 
     if(distance == "contact") {
         return {
@@ -660,7 +686,8 @@ function _processJetAttaqueOptions(form, distance) {
             armeNonPrete: form.armeNonPrete.checked,
             attaquantAuSol: form.attaquantAuSol.checked,
             attaquantsSimultanes: parseInt(form.attaquantsSimultanes.value),
-            utiliseHeroisme : form.utiliseHeroisme.checked
+            utiliseHeroisme : form.utiliseHeroisme.checked,
+            utiliseSpecialisation: utiliseSpecialisation
         }
     }
     else if(distance == "distance") {
@@ -673,7 +700,8 @@ function _processJetAttaqueOptions(form, distance) {
             visibiliteCible: parseInt(form.visibiliteCible.value),
             mouvementCible: parseInt(form.mouvementCible.value),
             difficulte: parseInt(form.difficulte.value),
-            utiliseHeroisme : form.utiliseHeroisme.checked
+            utiliseHeroisme : form.utiliseHeroisme.checked,
+            utiliseSpecialisation: utiliseSpecialisation
         }
     }
 }
@@ -710,6 +738,10 @@ async function getJetDefenseOptions({defenseurData = null, armeData = null}) {
 
 // Gestion des données renseignées dans la boite de dialogue de jet d'attaque
 function _processJetDefenseOptions(form, typeDefense) {
+    let utiliseSpecialisation = false;
+    if(form.utiliseSpecialisation) {
+        utiliseSpecialisation = form.utiliseSpecialisation.checked;
+    }
     // On récupère les valeurs selon le type d'arme - au contact ou à distance 
     if(typeDefense == "parade") {
         return {
@@ -720,7 +752,8 @@ function _processJetDefenseOptions(form, typeDefense) {
             attaqueCote: form.attaqueCote.checked,
             attaqueDos: form.attaqueDos.checked,
             defenseurSureleve: form.defenseurSureleve.checked,
-            utiliseHeroisme : form.utiliseHeroisme.checked
+            utiliseHeroisme : form.utiliseHeroisme.checked,
+            utiliseSpecialisation: utiliseSpecialisation
         }
     }
     else if(typeDefense == "esquive") {
@@ -730,7 +763,8 @@ function _processJetDefenseOptions(form, typeDefense) {
             attaqueCote: form.attaqueCote.checked,
             attaqueDos: form.attaqueDos.checked,
             defenseurSureleve: form.defenseurSureleve.checked,
-            utiliseHeroisme : form.utiliseHeroisme.checked
+            utiliseHeroisme : form.utiliseHeroisme.checked,
+            utiliseSpecialisation: utiliseSpecialisation
         }
     }
 }
@@ -766,7 +800,9 @@ export async function sortEmprise(mage, danseur, sort, isIntuitif = false) {
     // Construction des strutures de données pour l'affichage de la boite de dialogue
     let mageData = {
         potEmprise: potEmprise,
-        resonance: statsEmprise.resonance
+        resonance: statsEmprise.resonance,
+        specialisation: statsEmprise.specialisation,
+        labelSpecialisation: statsEmprise.labelSpecialisation
     };
 
     let danseurData = {
@@ -800,8 +836,6 @@ export async function sortEmprise(mage, danseur, sort, isIntuitif = false) {
             sort.data.data.seuilTotal = sort.data.data.diffObedience == true ? sort.data.data.seuil * 2 + 5 : (sort.data.data.seuil * 2);
         }
     }
-    
-    
 
     // On lance le jet de dé depuis la fonction de jet de compétence 
     // On récupère le rollResult
@@ -815,6 +849,7 @@ export async function sortEmprise(mage, danseur, sort, isIntuitif = false) {
         danseurInvisible: dialogOptions.danseurInvisible,
         mouvImperceptibles: dialogOptions.mouvImperceptibles,
         utiliseHeroisme: dialogOptions.utiliseHeroisme,
+        utiliseSpecialisation: dialogOptions.utiliseSpecialisation,
         afficherDialog: false,
         envoiMessage: false
     });
@@ -831,6 +866,7 @@ export async function sortEmprise(mage, danseur, sort, isIntuitif = false) {
         ...rollResult.data,
         specialisation: statsEmprise.specialisation,
         labelSpecialisation: statsEmprise.labelSpecialisation,
+        utiliseSpecialisation: dialogOptions.utiliseSpecialisation,
         difficulte: isIntuitif ? seuilTotalIntuitif : sort.data.data.seuilTotal,
         isIntuitif: isIntuitif
     }
@@ -933,44 +969,44 @@ function _processJetSortEmpriseOptions(form) {
         resonanceEstimee = form.resonanceEstimee.value;
     }
 
+    let utiliseSpecialisation = false;
+    if(form.utiliseSpecialisation) {
+        utiliseSpecialisation = form.utiliseSpecialisation.checked;
+    }
+
     return {
         magieInstantanee: form.magieInstantanee.checked,
         danseurInvisible: form.danseurInvisible.checked,
         mouvImperceptibles: mouvImp,
         utiliseHeroisme : form.utiliseHeroisme.checked,
         seuilEstime: seuilEstime,
-        resonanceEstimee: resonanceEstimee
+        resonanceEstimee: resonanceEstimee,
+        utiliseSpecialisation: utiliseSpecialisation
     }
 }
 
 // Jet d'une oeuvre d'Art magique, avec affichage du message dans le chat
 export async function oeuvre(artiste, oeuvre, artMagiqueImpro = null, isArtImpro = false) {
-    const artMagique = oeuvre.data.data.artMagique;
+    let artMagique = isArtImpro ? artMagiqueImpro : oeuvre.data.data.artMagique;
     let statsArtMagique;
-    
+    let potArtMagique;
+
     if(isArtImpro) {
         statsArtMagique = artiste.getStatsArtMagique(artMagique);
+        potArtMagique = statsArtMagique.creativite + Math.min(statsArtMagique.rangArtMagique, statsArtMagique.rangCompetence) + statsArtMagique.bonusAme;
     }
     else {
-        if(artMagique == "accord") {
+        if(oeuvre.data.data.artMagique == "accord") {
             statsArtMagique = artiste.getStatsArtMagique(artMagique, oeuvre.data.data.instrument);
         }
         else {
             statsArtMagique = artiste.getStatsArtMagique(artMagique);
         }
-    
+        potArtMagique = statsArtMagique.art + Math.min(statsArtMagique.rangArtMagique, statsArtMagique.rangCompetence) + statsArtMagique.bonusAme;
         oeuvre.data.data.seuilTotal = oeuvre.data.data.seuil;
     }
     
     // Construction des strutures de données pour l'affichage de la boite de dialogue
-    let potArtMagique;
-    if(isArtImpro) {
-        potArtMagique = statsArtMagique.creativite + Math.min(statsArtMagique.rangArtMagique, statsArtMagique.rangCompetence) + statsArtMagique.bonusAme;
-    }
-    else {
-        potArtMagique = statsArtMagique.art + Math.min(statsArtMagique.rangArtMagique, statsArtMagique.rangCompetence) + statsArtMagique.bonusAme;
-    }
-
     let artisteData = {
         potArtMagique: potArtMagique
     };
@@ -979,7 +1015,8 @@ export async function oeuvre(artiste, oeuvre, artMagiqueImpro = null, isArtImpro
         nomOeuvre: isArtImpro ? game.i18n.localize("agone.actors.oeuvreImprovisee") : oeuvre.data.name,
         seuil: isArtImpro ? 0 : oeuvre.data.data.seuil,
         artMagique: isArtImpro ? artMagiqueImpro : oeuvre.data.data.artMagique,
-        saison: isArtImpro ? null : oeuvre.data.data.saison,
+        saison: isArtImpro ? "" : oeuvre.data.data.saison,
+        instruments: isArtImpro ? artiste.getInstrumentsPratiques() : null,
         isArtImpro: isArtImpro
     };
 
@@ -990,17 +1027,33 @@ export async function oeuvre(artiste, oeuvre, artMagiqueImpro = null, isArtImpro
         return;
     }
 
-    // Récupération des données de la fenêtre de dialogue pour ce jet 
-    if(dialogOptions.magieInstantanee) {
-        oeuvre.data.data.seuilTotal = oeuvre.data.data.seuil * 2;
+     // Récupération des données de la fenêtre de dialogue pour ce jet 
+    let seuilTotalImpro;
+    if(isArtImpro) {
+        // Dans le cas d'une eouvre iprovisée d'Accord, on recalcule les stats
+        if(artMagiqueImpro == "accord") {
+            statsArtMagique = artiste.getStatsArtMagique(artMagiqueImpro,dialogOptions.instrumentSel);
+            artisteData.potArtMagique = statsArtMagique.creativite + Math.min(statsArtMagique.rangArtMagique, statsArtMagique.rangCompetence) + statsArtMagique.bonusAme;
+        }
+
+        seuilTotalImpro = dialogOptions.seuilEstime * 2;
+        if(dialogOptions.magieInstantanee) {
+            seuilTotalImpro = seuilTotalImpro * 2;
+        }
+        seuilTotalImpro += dialogOptions.margeQualite;
+    }
+    else {
+        if(dialogOptions.magieInstantanee) {
+            oeuvre.data.data.seuilTotal = oeuvre.data.data.seuil * 2;
+        }
+        oeuvre.data.data.seuilTotal += dialogOptions.margeQualite;
     }
 
-    oeuvre.data.data.seuilTotal += dialogOptions.margeQualite;
     let qualite = getNiveauQualite(dialogOptions.margeQualite);
 
     let modificateurs = 0;
     let resistance = 0;
-    switch(oeuvre.data.data.artMagique) {
+    switch(artMagique) {
         case "accord":
             modificateurs += dialogOptions.qualiteInstrument;
             break;
@@ -1021,7 +1074,7 @@ export async function oeuvre(artiste, oeuvre, artMagiqueImpro = null, isArtImpro
         actor: artiste,
         rangComp:  Math.min(statsArtMagique.rangArtMagique, statsArtMagique.rangCompetence),
         jetDefautInterdit: true,
-        rangCarac: statsArtMagique.art,
+        rangCarac: isArtImpro ? statsArtMagique.creativite : statsArtMagique.art,
         bonusAspect: statsArtMagique.bonusAme,
         modificateurs: modificateurs,
         utiliseHeroisme: dialogOptions.utiliseHeroisme,
@@ -1037,24 +1090,25 @@ export async function oeuvre(artiste, oeuvre, artMagiqueImpro = null, isArtImpro
         ...rollResult.data,
         specialisation: statsArtMagique.specialisation,
         labelSpecialisation: statsArtMagique.labelSpecialisation,
-        difficulte: oeuvre.data.data.seuilTotal,
-        qualite: qualite
+        difficulte: isArtImpro ? seuilTotalImpro : oeuvre.data.data.seuilTotal,
+        qualite: qualite,
+        isArtImpro: isArtImpro
     }
 
-    rollStats.marge = rollResult.total - oeuvre.data.data.seuilTotal;
+    rollStats.marge = isArtImpro ? rollResult.total - seuilTotalImpro : rollResult.total - oeuvre.data.data.seuilTotal;
     if(rollStats.marge <= -15) {
         rollStats.isEchecCritiqueMarge = true;
         rollStats.valeurCritique = rollStats.valeurCritique ? Math.min(rollStats.valeurCritique, rollStats.marge + 5) : rollStats.marge + 5;
     }
 
     if(rollStats.valeurCritique) {
-        let critInfos = getCritInfos(oeuvre.data.data.artMagique, rollStats.valeurCritique);
+        let critInfos = getCritInfos(artMagique, rollStats.valeurCritique);
         rollStats.nomCritique = critInfos.nom;
         rollStats.descCritique = critInfos.desc;
     }
 
     // Dans le cas de la Cyse, gestion de la résistance des matériaux
-    if(oeuvre.data.data.artMagique == "cyse") {
+    if(artMagique == "cyse") {
         let rollResistance = await new Roll("1d10 + @resistance", {resistance: resistance}).roll({async: true});
         if(rollResistance.total >= artisteData.potArtMagique) {
             rollStats.echecResistance = true;
@@ -1070,7 +1124,7 @@ export async function oeuvre(artiste, oeuvre, artMagiqueImpro = null, isArtImpro
     let templateContext = {
         stats: rollStats,
         artiste: artisteData,
-        oeuvre: oeuvre.data,
+        oeuvre: isArtImpro ? null : oeuvre.data,
         roll: renderedRoll
     }
 
@@ -1136,6 +1190,8 @@ function _processJetOeuvreOptions(form) {
     let bruitEnviron = 0
     let saisonOeuvre = 0;
     let materiaux = 0;
+    let seuilEstime = 0;
+    let instrumentSel = null;
 
     if(form.qualiteInstrument) {
         qualiteInstrument = parseInt(form.qualiteInstrument.value);
@@ -1153,12 +1209,22 @@ function _processJetOeuvreOptions(form) {
         materiaux = parseInt(form.materiaux.value);
     }
 
+    if(form.seuilEstime) {
+        seuilEstime = parseInt(form.seuilEstime.value);
+    }
+
+    if(form.instrumentSel) {
+        instrumentSel = form.instrumentSel.value;
+    }
+
     return {
         magieInstantanee: form.magieInstantanee.checked,
         qualiteInstrument: qualiteInstrument,
         bruitEnviron: bruitEnviron,
         saisonOeuvre: saisonOeuvre,
         materiaux: materiaux,
+        seuilEstime: seuilEstime,
+        instrumentSel: instrumentSel,
         margeQualite: parseInt(form.margeQualite.value),
         utiliseHeroisme : form.utiliseHeroisme.checked
     }
@@ -1499,8 +1565,6 @@ async function suggestCritChatMessage(actor, suggestCritData) {
     // TODO trouver une méthode plus propre pour pousser le message au GM sans q'uil soit visible coté joueur
     // Peux-être retravailler le template de blind roll
     let roll = await new Roll("0", null).roll({async : true});
-
-    console.log(suggestCritData.isGM);
 
     let chatCritData = {
         user: game.user.id,

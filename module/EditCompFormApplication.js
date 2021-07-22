@@ -40,10 +40,16 @@ export default class EditCompFormApplication extends FormApplication {
             if(value != "aucun") {
               this.familleComp.competences[splitArray[0]].domaines[splitArray[2]][splitArray[3]] = value;
             }
+            else {
+              this.familleComp.competences[splitArray[0]].domaines[splitArray[2]][splitArray[3]] = "";
+            }
           } 
           else {
             if(value != "aucun") {
               this.familleComp.competences[splitArray[0]][splitArray[1]] = value;
+            }
+            else {
+              this.familleComp.competences[splitArray[0]][splitArray[1]] = "";
             }
           } 
         }

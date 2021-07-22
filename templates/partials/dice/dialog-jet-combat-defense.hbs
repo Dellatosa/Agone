@@ -42,6 +42,12 @@
         <label>{{ localize "agone.chat.defenseurSureleve"}}</label>
         <input type="checkbox" name="defenseurSureleve"/>
     </div>
+    {{#if defenseurData.specialisation}}
+        <div class="form-group">
+            <div>{{ localize "agone.actors.specialisation"}}  <span class="bold">{{defenseurData.labelSpecialisation}}</span></div>
+            <input type="checkbox" name="utiliseSpecialisation"/>
+        </div>
+    {{/if}}
     <div class="form-group">
         <label>{{ localize "agone.chat.utiliseHeroisme"}}</label>
         <input type="checkbox" name="utiliseHeroisme"/>

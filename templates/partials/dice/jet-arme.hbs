@@ -16,10 +16,8 @@
         {{#if stats.modifParade}}<span> + {{localize "agone.items.modifParade"}} ({{stats.modifParade}})</span>{{/if}}
         {{#if stats.malusManiement}}<span> + {{localize "agone.chat.malusManiement"}} ({{stats.malusManiement}})</span>{{/if}}
         {{#if stats.modificateurs}}<span> + {{localize "agone.chat.modificateurs"}} ({{stats.modificateurs}})</span>{{/if}}
+        {{#if stats.utiliseSpecialisation}} + {{localize "agone.actors.specialisation"}} <span class="bold">{{stats.labelSpecialisation}} (1)</span>{{/if}}
     </div>
-    {{#if stats.specialisation}}
-        <div class="txt-small">{{localize "agone.actors.specialisation"}} <span class="bold">{{stats.labelSpecialisation}}</span></div>
-    {{/if}}
     {{#if stats.utiliseHeroisme}}
         <div class="txt-small bold">{{localize "agone.chat.utilisationHeroisme"}}</div>
     {{/if}}

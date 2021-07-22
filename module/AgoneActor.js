@@ -384,6 +384,25 @@ export default class AgoneActor extends Actor {
         return result;
     }
 
+    getInstrumentsPratiques() {
+        //let nbDomaines = 0;
+        let instruments = [];
+        let domainesMusique = this.data.data.familleCompetences.societe.competences.musique.domaines;
+        for(let[keyDom, domaine] of Object.entries(domainesMusique)) {
+            if(domaine.rang > 0) {
+                //nbDomaines += 1;
+                instruments.push(domaine);
+            }
+        }
+
+        if(instruments.length > 0) {
+            return instruments;
+        }
+        else {
+            return null;
+        }
+    }
+
     getMalusArmure(carac) {
         let malusArmure = 0;
         let armuresEquip = this.data.items.filter(function (item) { return item.type == "Armure" && item.data.data.equipee == true});

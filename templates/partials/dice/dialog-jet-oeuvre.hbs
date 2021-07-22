@@ -1,6 +1,28 @@
 <form>
-    <div>{{localize "agone.chat.executerOeuvre" }} <span class="bold">{{oeuvreData.nomOeuvre}}</span></span></div>
-    <div>{{ localize "agone.actors.potArtMagique"}} <span class="bold">{{artisteData.potArtMagique}}</span> - {{ localize "agone.items.seuil"}} <span class="bold">{{oeuvreData.seuil}}</span></div>
+    {{#if oeuvreData.isArtImpro}}
+        <div>{{localize "agone.chat.executerOeuvreArtImpro"}}</div>
+        <div>{{localize "agone.actors.potArtImpro"}} <span class="bold">{{artisteData.potArtMagique}}</div>
+        <div class="form-group">
+            <label>{{ localize "agone.chat.seuilEstime"}}</label>
+            <input type="number" name="seuilEstime" value="0" min="0"/>
+        </div>
+        <div class="txt-small">{{ localize "agone.chat.seuilEstimeMsg"}}</div>
+        {{#if (eq oeuvreData.artMagique "accord")}}
+            <div class="form-group">
+                <label>{{localize "agone.items.instrument"}}</label>
+                <select name="instrumentSel">
+                    {{#select instrumentSel}}
+                        {{#each oeuvreData.instruments as | instrument | }}
+                            <option value="{{instrument.label}}">{{configLocalize "instruments" instrument.label}}</option>
+                        {{/each}}
+                    {{/select}}
+                </select>
+            </div>    
+        {{/if}}    
+    {{else}}
+        <div>{{localize "agone.chat.executerOeuvre"}} <span class="bold">{{oeuvreData.nomOeuvre}}</span></span></div>
+        <div>{{localize "agone.actors.potArtMagique"}} <span class="bold">{{artisteData.potArtMagique}}</span> - {{localize "agone.items.seuil"}} <span class="bold">{{oeuvreData.seuil}}</span></div>
+    {{/if}}
     <div class="form-group">
         <label>{{ localize "agone.chat.magieInstantanee"}}</label>
         <input type="checkbox" name="magieInstantanee"/>
@@ -56,7 +78,13 @@
     <div class="form-group">
         <label>{{localize "agone.chat.margeQualite"}}</label>
         <input type="number" name="margeQualite" value="0" min="0"/>
-    </div> 
+    </div>
+    {{#if artisteData.specialisation}}
+        <div class="form-group">
+            <div>{{ localize "agone.actors.specialisation"}}  <span class="bold">{{artisteData.labelSpecialisation}}</span></div>
+            <input type="checkbox" name="utiliseSpecialisation"/>
+        </div>
+    {{/if}}
     <div class="form-group">
         <label>{{ localize "agone.chat.utiliseHeroisme"}}</label>
         <input type="checkbox" name="utiliseHeroisme"/>
