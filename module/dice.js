@@ -1008,7 +1008,9 @@ export async function oeuvre(artiste, oeuvre, artMagiqueImpro = null, isArtImpro
     
     // Construction des strutures de données pour l'affichage de la boite de dialogue
     let artisteData = {
-        potArtMagique: potArtMagique
+        potArtMagique: potArtMagique,
+        specialisation: statsArtMagique.specialisation,
+        labelSpecialisation: statsArtMagique.labelSpecialisation
     };
 
     let oeuvreData = {
@@ -1078,6 +1080,7 @@ export async function oeuvre(artiste, oeuvre, artMagiqueImpro = null, isArtImpro
         bonusAspect: statsArtMagique.bonusAme,
         modificateurs: modificateurs,
         utiliseHeroisme: dialogOptions.utiliseHeroisme,
+        utiliseSpecialisation: dialogOptions.utiliseSpecialisation,
         afficherDialog: false,
         envoiMessage: false
     });
@@ -1088,7 +1091,8 @@ export async function oeuvre(artiste, oeuvre, artMagiqueImpro = null, isArtImpro
     // Construction du jeu de données pour alimenter le template
     let rollStats = {
         ...rollResult.data,
-        specialisation: statsArtMagique.specialisation,
+        //specialisation: statsArtMagique.specialisation,
+        utiliseSpecialisation: dialogOptions.utiliseSpecialisation,
         labelSpecialisation: statsArtMagique.labelSpecialisation,
         difficulte: isArtImpro ? seuilTotalImpro : oeuvre.data.data.seuilTotal,
         qualite: qualite,
@@ -1217,6 +1221,11 @@ function _processJetOeuvreOptions(form) {
         instrumentSel = form.instrumentSel.value;
     }
 
+    let utiliseSpecialisation = false;
+    if(form.utiliseSpecialisation) {
+        utiliseSpecialisation = form.utiliseSpecialisation.checked;
+    }
+
     return {
         magieInstantanee: form.magieInstantanee.checked,
         qualiteInstrument: qualiteInstrument,
@@ -1226,7 +1235,8 @@ function _processJetOeuvreOptions(form) {
         seuilEstime: seuilEstime,
         instrumentSel: instrumentSel,
         margeQualite: parseInt(form.margeQualite.value),
-        utiliseHeroisme : form.utiliseHeroisme.checked
+        utiliseHeroisme : form.utiliseHeroisme.checked,
+        utiliseSpecialisation : utiliseSpecialisation
     }
 }
 
