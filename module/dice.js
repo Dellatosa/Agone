@@ -468,6 +468,28 @@ export async function combatArme(actor, arme, type) {
         nomArme: arme.data.name
     };
 
+    //Cibles
+    let ciblesData;
+    let nbCibles = 0;
+    if(game.user.targets.size > 0) {
+        nbCibles = game.user.targets.size;
+        let cibles = [];
+        game.user.targets.forEach(token => {
+            cibles.push({id: token.id, name: token.actor.data.name});
+        });
+
+        ciblesData = {
+            nbCibles: nbCibles,
+            cibles: cibles
+        }
+    }
+
+    let ciblesMulti = game.settings.get("agone","ciblesMultiSurAttaque");
+    if(nbCibles > 1 && !ciblesMulti) {
+        ui.notifications.warn(`${game.i18n.localize("agone.notifications.warnCibleUnique")}`);
+        return;
+    }
+
     let dialogOptions;
     if(type == "Attaque") {
         statsCombat.modifAttaque = arme.data.data.modifAttaque;
@@ -477,7 +499,7 @@ export async function combatArme(actor, arme, type) {
             specialisation : statsCombat.specialisation,
             labelSpecialisation: statsCombat.labelSpecialisation
         };
-        
+
         dialogOptions = await getJetAttaqueOptions({attaquantData: attaquantData, armeData: armeData, cfgData: CONFIG.agone});
     }
     else if(type == "Parade") {
@@ -515,7 +537,7 @@ export async function combatArme(actor, arme, type) {
                 modificateurs += -3;
             }
             if(dialogOptions.attaquantsSimultanes > 1) {
-                modificateurs += (dialogOptions.attaquantsSimultanes - 1) * 2;
+                modificateurs += dialogOptions.attaquantsSimultanes > 1 ? dialogOptions.attaquantsSimultanes * 2 : 0;
             }
         }
         else if(armeData.distance == "distance") {
@@ -616,6 +638,7 @@ export async function combatArme(actor, arme, type) {
         stats: rollStats,
         arme: arme.data,
         type: type,
+        ciblesData : type == "Attaque" ? ciblesData : null,
         roll: renderedRoll
     }
 

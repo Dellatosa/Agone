@@ -35,13 +35,24 @@ async function preloadHandlebarsTemplates() {
 };
 
 function registerSystemSettings() {
+    // Suggestions des échecs ctitiques envoyées à l'EG
     game.settings.register("agone","suggestEchecCritEG", {
         config: true,
-        scope: "client",
+        scope: "world",
         name: "parametres.suggestEchecCritEG.nom",
         hint: "parametres.suggestEchecCritEG.label",
         type: Boolean,
         default: true
+    });
+
+    // Autoriser la sélection de cibles multiples sur un jet d'Attaque
+    game.settings.register("agone","ciblesMultiSurAttaque", {
+        config: true,
+        scope: "world",
+        name: "parametres.ciblesMultiSurAttaque.nom",
+        hint: "parametres.ciblesMultiSurAttaque.label",
+        type: Boolean,
+        default: false
     });
 }
 

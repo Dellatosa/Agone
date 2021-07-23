@@ -488,13 +488,18 @@
             "errorDonnesArme": "Impossible de retrouver les statistiques de combat pour l'arme",
             "warnDanseurEpuise": "est épuisé. Il ne peut plus lancer de sort jusqu'à ce qu'il récupère son endurance.",
             "warnDanseurContreMagie": "Vous ne pouvez pas pratiquer la Contre-magie sans Danseur.",
-            "warnInitSansCombat": "Votre personnage n'est actuellement impliqué dans aucun combat."
+            "warnInitSansCombat": "Votre personnage n'est actuellement impliqué dans aucun combat.",
+            "warnCibleUnique": "Veuillez sélectionner une seule cible."
         }
     },
     "parametres": {
         "suggestEchecCritEG": {
             "nom": "Suggestions d'échec critique à l'EG",
             "label": "Affiche dans la chat une carte de suggestion des effets des échecs critiques à l'EG"
+        },
+        "ciblesMultiSurAttaque": {
+            "nom": "Cibles multiples sur les jets d'attaque",
+            "label": "Autoriser la sélection de plusieurs cibles sur les jets d'attaque"
         }
     }
 }

@@ -210,7 +210,8 @@ export async function selInstrumentDesaccord(actor, instruments) {
 
 // Pour test Menu click droit sur Chat Message
 export function addChatMessageContextOptions(html, options) {
-    let condOK = li => li.find(".jet-arme.dommages").length;
+
+    let condOK = li => li.find(".jet-arme.dommages").length && canvas.tokens.controlled.length;
 
     options.push( 
         {
@@ -227,4 +228,10 @@ export function addChatMessageContextOptions(html, options) {
 async function Test(attaque) {
     const dommagesArme = parseInt(attaque.find(".dommages").attr("data-arme-dommages"));
     const rollResult = parseInt(attaque.find(".dice-total").text());
+
+    const cibleId = attaque.find(".cible").attr("data-cible-id");
+    let res = canvas.tokens.controlled.find(elem => elem.id == cibleId);
+    console.log(canvas.tokens.controlled);
+    console.log(res, cibleId);
+
 }

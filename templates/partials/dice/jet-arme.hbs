@@ -1,4 +1,4 @@
-<div class="jet-arme dommages" data-arme-dommages={{arme.data.modifDommages}}>
+<div class="jet-arme dommages" data-arme-dommages="{{arme.data.modifDommages}}">
     <div>
         {{#if (eq type "Attaque")}} 
             {{localize "agone.chat.attaqueAvec" arme=arme.name}}
@@ -18,6 +18,11 @@
         {{#if stats.modificateurs}}<span> + {{localize "agone.chat.modificateurs"}} ({{stats.modificateurs}})</span>{{/if}}
         {{#if stats.utiliseSpecialisation}} + {{localize "agone.actors.specialisation"}} <span class="bold">{{stats.labelSpecialisation}} (1)</span>{{/if}}
     </div>
+    {{#if ciblesData.nbCibles}}
+        <div class="txt-small bold">{{#if (gt ciblesData.nbCibles 1)}}Cibles{{else}}Cible{{/if}} : 
+            {{#each ciblesData.cibles as | cible |}}<span class="cible" data-cible-id="{{cible.id}}">{{cible.name}} </span>{{/each}}
+        </div>
+    {{/if}}
     {{#if stats.utiliseHeroisme}}
         <div class="txt-small bold">{{localize "agone.chat.utilisationHeroisme"}}</div>
     {{/if}}
