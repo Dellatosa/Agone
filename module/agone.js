@@ -3,6 +3,9 @@ import AgoneItemSheet from "./sheets/AgoneItemSheet.js";
 import AgoneActorSheet from "./sheets/AgoneActorSheet.js";
 import AgoneItem from "./AgoneItem.js";
 import AgoneActor from "./AgoneActor.js";
+import AgoneCombat from "./combat/AgoneCombat.js";
+import AgoneCombatTracker from "./combat/AgoneCombatTracker.js";
+import AgoneCombatant from "./combat/AgoneCombatant.js";
 import * as Chat from "./chat.js";
 
 async function preloadHandlebarsTemplates() {
@@ -70,6 +73,9 @@ Hooks.once("init", function(){
     CONFIG.agone = agone;
     CONFIG.Item.documentClass = AgoneItem;
     CONFIG.Actor.documentClass = AgoneActor;
+    CONFIG.Combat.documentClass = AgoneCombat;
+    //CONFIG.ui.Combat = AgoneCombatTracker;
+    CONFIG.Combatant.documentClass = AgoneCombatant;
 
     Actors.unregisterSheet("core", ActorSheet);
     Actors.registerSheet("agone", AgoneActorSheet, {makeDefault: true});
