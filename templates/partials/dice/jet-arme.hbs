@@ -1,31 +1,35 @@
 <div class="jet-arme dommages" data-arme-dommages="{{arme.data.modifDommages}}">
-    <div>
-        {{#if (eq type "Attaque")}} 
-            {{localize "agone.chat.attaqueAvec" arme=arme.name}}
-        {{else}}
-            {{localize "agone.chat.paradeAvec" arme=arme.name}}
+    <details>
+        <summary>
+            <span>
+                {{#if (eq type "Attaque")}} 
+                    {{localize "agone.chat.attaqueAvec" arme=arme.name}}
+                {{else}}
+                    {{localize "agone.chat.paradeAvec" arme=arme.name}}
+                {{/if}}
+                {{#if stats.difficulte}}<span>▪ {{localize "agone.chat.difficulteAbrev"}} </span><span class="bold">{{stats.difficulte}} </span>{{/if}}
+                {{#if stats.utiliseSpecialisation}}<span>▪ <a class="nohlight spec" title="{{stats.labelSpecialisation}}"><i class="fas fa-award"></i></a></span>{{/if}}
+                {{#if stats.utiliseHeroisme}}<span>▪ <a class="nohlight spec" title="{{localize 'agone.chat.utilisationHeroisme'}}"><i class="fas fa-fire"></i></a></span>{{/if}}
+            </span>
+        </summary>
+        <div class="txt-small bold">{{stats.labelComp}} ({{stats.rangComp}}) + {{stats.labelCarac}} ({{stats.rangCarac}})
+            {{#if stats.labelAspect}} + {{stats.labelAspect}} ({{stats.bonusAspect}}){{/if}}
+            {{#if stats.malusBlessureGrave}} + {{localize "agone.chat.malusBlessureGrave"}} ({{stats.malusBlessureGrave}}){{/if}}
+            {{#if stats.modifAttaque}}<span> + {{localize "agone.items.modifAttaque"}} ({{stats.modifAttaque}})</span>{{/if}}
+            {{#if stats.modifParade}}<span> + {{localize "agone.items.modifParade"}} ({{stats.modifParade}})</span>{{/if}}
+            {{#if stats.malusManiement}}<span> + {{localize "agone.chat.malusManiement"}} ({{stats.malusManiement}})</span>{{/if}}
+            {{#if stats.modificateurs}}<span> + {{localize "agone.chat.modificateurs"}} ({{stats.modificateurs}})</span>{{/if}}
+            {{#if stats.utiliseSpecialisation}} + {{localize "agone.actors.specialisation"}} <span class="bold">{{stats.labelSpecialisation}} (1)</span>{{/if}}
+        </div>
+        {{#if stats.utiliseHeroisme}}
+            <div class="txt-small bold">{{localize "agone.chat.utilisationHeroisme"}}</div>
         {{/if}}
-        {{#if stats.difficulte}}
-                <span>- {{localize "agone.chat.difficulte"}} </span><span class="bold">{{stats.difficulte}}</span>
-        {{/if}}
-    </div>
-    <div class="txt-small bold">{{stats.labelComp}} ({{stats.rangComp}}) + {{stats.labelCarac}} ({{stats.rangCarac}})
-        {{#if stats.labelAspect}} + {{stats.labelAspect}} ({{stats.bonusAspect}}){{/if}}
-        {{#if stats.malusBlessureGrave}} + {{localize "agone.chat.malusBlessureGrave"}} ({{stats.malusBlessureGrave}}){{/if}}
-        {{#if stats.modifAttaque}}<span> + {{localize "agone.items.modifAttaque"}} ({{stats.modifAttaque}})</span>{{/if}}
-        {{#if stats.modifParade}}<span> + {{localize "agone.items.modifParade"}} ({{stats.modifParade}})</span>{{/if}}
-        {{#if stats.malusManiement}}<span> + {{localize "agone.chat.malusManiement"}} ({{stats.malusManiement}})</span>{{/if}}
-        {{#if stats.modificateurs}}<span> + {{localize "agone.chat.modificateurs"}} ({{stats.modificateurs}})</span>{{/if}}
-        {{#if stats.utiliseSpecialisation}} + {{localize "agone.actors.specialisation"}} <span class="bold">{{stats.labelSpecialisation}} (1)</span>{{/if}}
-    </div>
+    </details>
     {{#if ciblesData.nbCibles}}
         <div class="txt-small bold">{{#if (gt ciblesData.nbCibles 1)}}Cibles{{else}}Cible{{/if}} : 
             {{#each ciblesData.cibles as | cible |}}<span class="cible" data-cible-id="{{cible.id}}">{{cible.name}} </span>{{/each}}
         </div>
-    {{/if}}
-    {{#if stats.utiliseHeroisme}}
-        <div class="txt-small bold">{{localize "agone.chat.utilisationHeroisme"}}</div>
-    {{/if}}
+    {{/if}}   
     {{#if stats.isFumble}}
         <div class="dice-tooltip"><div class="dice-rolls fumble"><span class="fumble">FUMBLE !!!</span><div class="roll die d10 min">1</div></div></div>
     {{/if}}

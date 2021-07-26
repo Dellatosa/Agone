@@ -63,7 +63,7 @@ function onJetContreMagie(event) {
 function onJetReconnOeuvre(event) {
     const card = event.currentTarget.closest(".reconn-oeuvre");
     const artCard = event.currentTarget.closest(".jet-reconn-oeuvre");
-    let utiliseHeroisme = event.currentTarget.ownerDocument.getElementsByClassName('util-hero').utiliseHeroisme.checked;
+    let utiliseHeroisme = event.currentTarget.closest(".reconn-oeuvre").getElementsByClassName('util-hero').utiliseHeroisme.checked;
     let artiste = game.actors.get(card.dataset.ownerId);
     let artId =  artCard.dataset.artId;
 
@@ -90,7 +90,7 @@ function onJetReconnOeuvre(event) {
 function onJetDesaccord(event) {
     const card = event.currentTarget.closest(".instrument-desaccord");
     const instrumentCard = event.currentTarget.closest(".jet-desaccord");
-    let utiliseHeroisme = event.currentTarget.ownerDocument.getElementsByClassName('util-hero').utiliseHeroisme.checked;
+    let utiliseHeroisme = event.currentTarget.closest(".instrument-desaccord").getElementsByClassName('util-hero').utiliseHeroisme.checked;
     let artiste = game.actors.get(card.dataset.ownerId);
     let instrument =  instrumentCard.dataset.instrument;
 

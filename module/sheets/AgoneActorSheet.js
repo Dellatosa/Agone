@@ -320,7 +320,8 @@ export default class AgoneActorSheet extends ActorSheet {
             rangCarac: caracData.rangCarac,
             labelCarac: caracData.labelCarac,
             bonusAspect: caracData.bonusAspect,
-            labelAspect: caracData.labelAspect
+            labelAspect: caracData.labelAspect,
+            utiliseHeroisme: event.shiftKey
         });
     }
 

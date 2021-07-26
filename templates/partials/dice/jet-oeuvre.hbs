@@ -1,13 +1,20 @@
 <div class="jet-oeuvre">
-    <div class="txt-small">Exécution de l'oeuvre <span class="bold">{{oeuvre.name}}</span> (difficulté <span class="bold">{{stats.difficulte}}</span>)</div>
-    <div class="txt-small bold">{{localize "agone.actors.potArtMagique"}} ({{artiste.potArtMagique}})
-        {{#if stats.malusBlessureGrave}} + {{localize "agone.chat.malusBlessureGrave"}} ({{stats.malusBlessureGrave}}){{/if}}
-        {{#if stats.modificateurs}}<span> + {{localize "agone.chat.modificateurs"}} ({{stats.modificateurs}})</span>{{/if}}
-        {{#if stats.utiliseSpecialisation}} + {{localize "agone.actors.specialisation"}} <span class="bold">{{stats.labelSpecialisation}} (1)</span>{{/if}}
-    </div>
-    {{#if stats.utiliseHeroisme}}
-        <div class="txt-small bold">{{localize "agone.chat.utilisationHeroisme"}}</div>
-    {{/if}}
+    <div class="titre">{{localize "agone.chat.executionOeuvre"}} <span class="bold">{{oeuvre.name}}</span></div>
+    <details>
+        <summary>
+            <span>{{localize "agone.actors.potArtMagique"}} </span><span class="bold">{{artiste.potArtMagique}}</span><span> ▪ {{localize "agone.chat.difficulteAbrev"}} </span><span class="bold">{{stats.difficulte}}</span>
+            {{#if stats.utiliseSpecialisation}}<span>▪ <a class="nohlight spec" title="{{stats.labelSpecialisation}}"><i class="fas fa-award"></i></a></span>{{/if}}
+            {{#if stats.utiliseHeroisme}}<span>▪ <a class="nohlight spec" title="{{localize 'agone.chat.utilisationHeroisme'}}"><i class="fas fa-fire"></i></a></span>{{/if}}
+        </summary>
+        <div class="txt-small bold">{{localize "agone.actors.potArtMagique"}} ({{artiste.potArtMagique}})
+            {{#if stats.malusBlessureGrave}} + {{localize "agone.chat.malusBlessureGrave"}} ({{stats.malusBlessureGrave}}){{/if}}
+            {{#if stats.modificateurs}}<span> + {{localize "agone.chat.modificateurs"}} ({{stats.modificateurs}})</span>{{/if}}
+            {{#if stats.utiliseSpecialisation}} + {{localize "agone.actors.specialisation"}} <span class="bold">{{stats.labelSpecialisation}} (1)</span>{{/if}}
+        </div>
+        {{#if stats.utiliseHeroisme}}
+            <div class="txt-small bold">{{localize "agone.chat.utilisationHeroisme"}}</div>
+        {{/if}}
+    </details>
     {{#if stats.isFumble}}
         <div class="dice-tooltip"><div class="dice-rolls fumble"><span class="fumble">{{localize "agone.chat.fumble"}}</span><div class="roll die d10 min">1</div></div></div>
     {{/if}}

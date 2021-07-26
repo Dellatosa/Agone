@@ -18,7 +18,7 @@
 </div>
 {{#each armes as |arme id|}}
 <div class="ligne-arme item" data-item-id="{{arme._id}}">
-    <a class="item-roll"><img src="{{img}}" title="Jet de dés" height="32" width="32"/></a>
+    <a class="item-roll"><img src="{{img}}" title="{{localize 'agone.actors.voirArme'}}" height="32" width="32"/></a>
     <div>{{name}}</div>
     <div>
         <select class="inline-edit" data-field="data.equipee">

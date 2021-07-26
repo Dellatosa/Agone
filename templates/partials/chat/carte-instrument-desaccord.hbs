@@ -8,7 +8,7 @@
         <input class="util-hero" type="checkbox" name="utiliseHeroisme"/>
     </div>
     <div>{{ localize "agone.chat.instrumentDesaccord" }}</div>
-     <div class="boutons-carte">
+    <div class="boutons-carte">
         {{#each instruments as | instrument | }}
             <button class="jet-desaccord" data-instrument="{{instrument.label}}">{{configLocalize "instruments" instrument.label}}</button>
         {{/each}}

@@ -11,7 +11,7 @@
 </div>
 {{#each sorts as |sort id|}}
 <div class="ligne-sort item" data-item-id="{{sort._id}}">
-    <a class="item-roll"><img src="{{img}}" title="Jet de dés" height="32" width="32"/></a>
+    <a class="item-roll"><img src="{{img}}" title="{{localize 'agone.actors.voirSort'}}" height="32" width="32"/></a>
     <div>{{name}}</div>
     <div>{{configLocalize "resonances" data.resonance}}</div>
     <div>{{data.seuil}}</div>

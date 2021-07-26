@@ -234,7 +234,7 @@ select.auto-size {
   padding-top: 6px;
   padding-bottom: 6px;
 }
-.agone.sheet.actor a.nohlight {
+a.nohlight {
   text-shadow: none;
   cursor: default;
 }
@@ -574,6 +574,12 @@ nav.magie-tabs {
 }
 .resultat {
   text-align: center;
+}
+.titre {
+  margin-bottom: 0.25rem;
+}
+details {
+  margin-bottom: 0.25rem;
 }
 .edit-comp-grid {
   display: grid;

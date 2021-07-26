@@ -1,22 +1,25 @@
 <div class="jet-carac">
-    <div class="txt-small">
-        {{#if stats.titrePersonnalise}} 
-            {{stats.titrePersonnalise}} 
-        {{else}}
-            {{localize "agone.actors.jetCarac"}} 
-            {{#if stats.difficulte}}
-                <span> - {{localize "agone.chat.difficulte"}} </span><span class="bold">{{stats.difficulte}}</span>
-            {{/if}}
+    <details>
+        <summary>
+            <span>
+                {{#if stats.titrePersonnalise}} 
+                    {{stats.titrePersonnalise}} 
+                {{else}}
+                    {{stats.labelCarac}} x 2
+                    {{#if stats.difficulte}}<span> ▪ {{localize "agone.chat.difficulteAbrev"}} </span><span class="bold">{{stats.difficulte}}</span>{{/if}}
+                    {{#if stats.utiliseHeroisme}}<span>▪ <a class="nohlight spec" title="{{localize 'agone.chat.utilisationHeroisme'}}"><i class="fas fa-fire"></i></a></span>{{/if}}
+                {{/if}}
+            </span>
+        </summary>
+        <div class="txt-small bold">{{stats.labelCarac}} ({{stats.rangCarac}}) x 2 
+            {{#if stats.labelAspect}} + {{stats.labelAspect}} ({{stats.bonusAspect}}){{/if}}
+            {{#if stats.malusArmure}} + {{localize "agone.chat.malusArmure"}} ({{stats.malusArmure}}){{/if}}
+            {{#if stats.malusBlessureGrave}} + {{localize "agone.chat.malusBlessureGrave"}} ({{stats.malusBlessureGrave}}){{/if}}
+        </div>
+        {{#if stats.utiliseHeroisme}}
+            <div class="txt-small bold">{{localize "agone.chat.utilisationHeroisme"}}</div>
         {{/if}}
-    </div>
-    <div class="txt-small bold">{{stats.labelCarac}} ({{stats.rangCarac}}) x 2 
-        {{#if stats.labelAspect}} + {{stats.labelAspect}} ({{stats.bonusAspect}}){{/if}}
-        {{#if stats.malusArmure}} + {{localize "agone.chat.malusArmure"}} ({{stats.malusArmure}}){{/if}}
-        {{#if stats.malusBlessureGrave}} + {{localize "agone.chat.malusBlessureGrave"}} ({{stats.malusBlessureGrave}}){{/if}}
-    </div>
-    {{#if stats.utiliseHeroisme}}
-        <div class="txt-small bold">{{localize "agone.chat.utilisationHeroisme"}}</div>
-    {{/if}}
+    </details>
     {{#if stats.isFumble}}
         <div class="dice-tooltip"><div class="dice-rolls fumble"><span class="fumble">{{localize "agone.chat.fumble"}}</span><div class="roll die d10 min">1</div></div></div>
     {{/if}}

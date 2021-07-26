@@ -215,7 +215,12 @@
             "experienceDisponible": "NO TRAD - Expérience disponible",
             "experienceTotale": "NO TRAD - Expérience totale",
             "manoeuvres": "NO TRAD - Manoeuvres",
-            "bottesSecretes": "NO TRAD - Bottes secrètes"
+            "bottesSecretes": "NO TRAD - Bottes secrètes",
+            "voirSort": "Display spell card",
+            "voirDanseur": "Display dancer card",
+            "voirOeuvre": "Display work card",
+            "voirArme": "Display weapon card",
+            "voirArmure": "Display armour card"
         },
         "items":{
             "description": "Description",
@@ -347,6 +352,7 @@
             "paradeAvec": "Parry roll with {arme}",
             "parade": "Parry",
             "difficulte": "Difficulty",
+            "difficulteAbrev": "Diff.",
             "marge": "NO TRAD - Marge de réussite",
             "caracDefaut": "Default attribute",
             "malusManiement": "Handling penalty",
@@ -363,6 +369,7 @@
             "malusArmure": "Armour penalty",
             "contrerMagieTitre": "NO TRAD - Tente de contrer la magie avec",
             "contreMagieSelDanseur": "NO TRAD - Sélectionnez le danseur pour effectuer le test de Contre-magie",
+            "JetParDefaut": "NO TRAD - Jet par défaut",
             "jetSortMagieIntuitiveDanseur": "NO TRAD - Jeter un sort de magie intuitive avec le danseur",
             "jetSort": "NO TRAD - Jeter le sort",
             "avecDanseur": "NO TRAD - avec le danseur",
@@ -371,6 +378,7 @@
             "executerCetteOeuvre": "NO TRAD - Exécuter cette oeuvre",
             "executerOeuvre": "NO TRAD - Exécuter l'oeuvre",
             "executerOeuvreArtImpro": "NO TRAD - Exécuter une oeuvre d'Art improvisé",
+            "executionOeuvre": "NO TRAD - Exécution de l'oeuvre",
             "margeQualite": "NO TRAD - Marge de qualité",
             "qualiteOeuvre": "NO TRAD - Qualité de l'oeuvre",
             "qualiteInstrument": "NO TRAD - Qualité de l'instrument",

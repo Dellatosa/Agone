@@ -13,7 +13,7 @@
 </div>
 {{#each danseurs as |danseur id|}}
 <div class="ligne-danseur item" data-item-id="{{danseur._id}}">
-    <a class="item-roll"><img src="{{img}}" title="Jet de dés" height="32" width="32"/></a>
+    <a class="item-roll"><img src="{{img}}" title="{{localize 'agone.actors.voirDanseur'}}" height="32" width="32"/></a>
     <div>{{name}}</div>
     <div>{{data.memoire.value}}</div>
     <div>{{data.memoire.max}}</div>

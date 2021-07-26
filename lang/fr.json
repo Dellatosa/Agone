@@ -215,7 +215,12 @@
             "experienceDisponible": "Expérience disponible",
             "experienceTotale": "Expérience totale",
             "manoeuvres": "Manoeuvres",
-            "bottesSecretes": "Bottes secrètes"
+            "bottesSecretes": "Bottes secrètes",
+            "voirSort": "Voir le sort",
+            "voirDanseur": "Voir le danseur",
+            "voirOeuvre": "Voir l'oeuvre",
+            "voirArme": "Voir l'arme",
+            "voirArmure": "Voir l'armure"
         },
         "items":{
             "description": "Description",
@@ -347,6 +352,7 @@
             "paradeAvec": "Jet de parade avec {arme}",
             "parade": "Parade",
             "difficulte": "Difficulté",
+            "difficulteAbrev": "Diff.",
             "marge": "Marge de réussite",
             "caracDefaut": "Caractéristique par défaut",
             "malusManiement": "Malus de maniement",
@@ -363,6 +369,7 @@
             "malusArmure": "Malus d'armure",
             "contrerMagieTitre": "Tente de contrer la magie avec",
             "contreMagieSelDanseur": "Sélectionnez le danseur pour effectuer le test de Contre-magie",
+            "JetParDefaut": "Jet par défaut",
             "jetSortMagieIntuitiveDanseur": "Jeter un sort de magie intuitive avec le danseur",
             "jetSort": "Jeter le sort",
             "avecDanseur": "avec le danseur",
@@ -371,6 +378,7 @@
             "executerCetteOeuvre": "Exécuter cette oeuvre",
             "executerOeuvre": "Exécuter l'oeuvre",
             "executerOeuvreArtImpro": "Exécuter une oeuvre d'Art improvisé",
+            "executionOeuvre": "Exécution de l'oeuvre",
             "margeQualite": "Marge de qualité",
             "qualiteOeuvre": "Qualité de l'oeuvre",
             "qualiteInstrument": "Qualité de l'instrument",
