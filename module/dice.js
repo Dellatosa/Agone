@@ -1418,9 +1418,12 @@ export async function desaccord(artiste, instrument, utiliseHeroisme) {
 }
 
 export async function jetDefense(defenseur, typeDef) {
-
     let compData;
     if(typeDef == "esquive") {
+        if(defenseur.isReactionUtilisee()) {
+            ui.notifications.warn("Vous avez déjà utilisé votre Réaction à ce tour !"/*game.i18n.localize("agone.notifications.warnHeroismeEpuise")*/);
+            return;
+        }
         compData = defenseur.getCompData("epreuves", "esquive", null);
     }
     let caracData = defenseur.getCaracData("agilite");
@@ -1536,6 +1539,8 @@ export async function jetDefense(defenseur, typeDef) {
         }
         suggestCritChatMessage(defenseur, suggestCritData);
     }
+
+    defenseur.majDefenseCombattant(typeDef == "defenseNat" ? false : true, rollResult.total);
 }
 
 // Renvoi le niveau de qualité d'une oeuvre en fonction du malus que s'impose l'artiste

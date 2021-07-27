@@ -330,7 +330,7 @@ export default class AgoneActorSheet extends ActorSheet {
     _onInitiativeRoll(event) {
         event.preventDefault();
         
-        this.actor.rollInitiativePerso();
+        this.actor.rollInitiative({createCombatants: true});
     }
 
     // Esquive

@@ -492,12 +492,13 @@ export default class AgoneActor extends Actor {
         }
     }
 
-    rollInitiativePerso() {
+    getInitiativeMod() {
         let data = this.data.data;
 
-        // Données de base : AGI + PER + Bonus de Corps
-        let initFormula = "1d10 + @aspects.corps.caracteristiques.agilite.valeur + @aspects.corps.caracteristiques.perception.valeur + @aspects.corps.bonus.valeur";
         let modInit = 0;
+
+        // Malus de blessures
+        modInit += this.getMalusBlessureGrave(data.caracSecondaires.nbBlessureGrave);
 
         // Bonus (ou malus) d'initiative lié aux avantages/défauts
         if(data.caracSecondaires.bonusInitiative) {
@@ -511,7 +512,7 @@ export default class AgoneActor extends Actor {
         }
 
         // Bonus de l'arme
-        // TODO - corriger le calcul pour n'inclure que l'arme utilisée en attaque. Pour l'instant on ignore modInit des boucliers
+        // TODO - corriger le calcul pour n'inclure que l'arme utilisée en attaque.
         let armesEquipees = this.items.filter(function (item) { return item.type == "Arme" && item.data.data.type != "bouclier" && item.data.data.equipee != ""});
         
         armesEquipees.forEach(armeEq => {
@@ -520,23 +521,7 @@ export default class AgoneActor extends Actor {
             }
         });
 
-        if(modInit != 0) {
-            initFormula += ` + ${modInit}`;
-        }
-
-        let combattantTrouve = false;
-        if(game.combat) {
-            game.combat.combatants.forEach(elem => {
-                if(elem.actor.id == this.id) {
-                    this.rollInitiative({initiativeOptions: {formula: initFormula}});
-                    combattantTrouve = true;
-                }
-            });
-        }
-        
-        if(!combattantTrouve) {
-            ui.notifications.warn(game.i18n.localize("agone.notifications.warnInitSansCombat"));
-        }
+        return modInit;
     }
 
     ReposDanseurs() {
@@ -544,5 +529,44 @@ export default class AgoneActor extends Actor {
         this.getDanseurs().forEach(danseur => {
             danseur.update({"data.endurance.value": danseur.data.data.endurance.max });
         });
+    }
+
+    getCombatant() {
+        let combattant = null;
+
+        if(this.isToken) {
+            if(this.token.inCombat) {
+                combattant = this.token.combatant;
+            }
+        }
+        else {
+            if(game.combat) {
+                game.combat.combatants.forEach(cbtElem => {
+                    if(cbtElem.actor.id == this.id) {
+                        combattant = cbtElem;
+                    }
+                });
+            }
+        }
+
+        return combattant;
+    }
+
+    majDefenseCombattant(utiliserReaction, resultatJet) {
+        let combattant = this.getCombatant();
+
+        if(combattant) {
+            combattant.majDefenseCombattant(utiliserReaction, resultatJet);
+        }    
+    }
+
+    isReactionUtilisee() {
+        let combattant = this.getCombatant();
+
+        if(combattant) {
+            return combattant.isReactionUtilisee();
+        }
+
+        return false;
     }
 }
