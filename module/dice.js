@@ -463,6 +463,13 @@ export async function combatArme(actor, arme, type) {
         return;
     }
 
+    if(type == "Parade") {
+        if(actor.reactionUtilisee()) {
+            ui.notifications.warn(game.i18n.localize("agone.notifications.warnReactionUtilisee"));
+            return;
+        }
+    }
+
      // Construction des strutures de données pour l'affichage de la boite de dialogue
     let armeData = {
         nomArme: arme.data.name
@@ -475,7 +482,8 @@ export async function combatArme(actor, arme, type) {
         nbCibles = game.user.targets.size;
         let cibles = [];
         game.user.targets.forEach(token => {
-            cibles.push({id: token.id, name: token.actor.data.name});
+            console.log(token);
+            cibles.push({id: token.id, name: token.actor.data.name, combatant: token.combatant});
         });
 
         ciblesData = {
@@ -614,14 +622,32 @@ export async function combatArme(actor, arme, type) {
         rollStats.labelAspect = null;
     }
 
-    if(difficulte) {
+    if(actor.estAttaquer() && type == "Parade") {
+        rollStats.infosAttaque = actor.getInfosAttaque();
+        let diffTaiMR = actor.calcDiffTaiMR(rollStats.infosAttaque.taiAttaquant);
+        rollStats.marge = rollResult.total - rollStats.infosAttaque.resultatJet - rollStats.infosAttaque.bonusDommages;
+
+        if(rollStats.marge + diffTaiMR <= 0) {
+            rollStats.attaqueTouche = true;
+            rollStats.dommagesRecus = (rollStats.marge * -1) - actor.getProtectionArmure();
+
+            if(rollStats.dommagesRecus > statsCombat.seuilBlessureCritique) {
+                rollStats.blessureCritique = true;
+            }
+            else if (rollStats.dommagesRecus > statsCombat.seuilBlessureGrave) {
+                rollStats.blessureGrave = true;
+            }
+        }
+    }
+
+    /*if(difficulte) {
         rollStats.difficulte = difficulte;
         rollStats.marge = rollResult.total - difficulte;
         if(rollStats.marge <= -15) {
             rollStats.isEchecCritiqueMarge = true;
             rollStats.valeurCritique = rollStats.valeurCritique ? Math.min(rollStats.valeurCritique, rollStats.marge + 5) : rollStats.marge + 5;
         }
-    }
+    }*/
 
     if(rollStats.valeurCritique) {
         let critInfos = getCritInfos("epreuves", rollStats.valeurCritique);
@@ -663,6 +689,18 @@ export async function combatArme(actor, arme, type) {
             descCritique: rollStats.descCritique
         }
         suggestCritChatMessage(actor, suggestCritData);
+    }
+
+    if(type == "Attaque") {
+        let combattant = ciblesData.cibles[0].combatant;
+        if(combattant) {
+            let bd = statsCombat.bonusDommages + arme.data.data.modifDommages;
+            combattant.setAttaqueCombattant(actor.data.name, getStatsCombat.tai, rollResult.total, bd);
+        }
+    }
+
+    if(type == "Parade") {
+        actor.setDefense(true, rollResult.total);
     }
 }
 
@@ -1419,15 +1457,16 @@ export async function desaccord(artiste, instrument, utiliseHeroisme) {
 
 export async function jetDefense(defenseur, typeDef) {
     let compData;
+
     if(typeDef == "esquive") {
-        if(defenseur.isReactionUtilisee()) {
-            ui.notifications.warn("Vous avez déjà utilisé votre Réaction à ce tour !"/*game.i18n.localize("agone.notifications.warnHeroismeEpuise")*/);
+        if(defenseur.reactionUtilisee()) {
+            ui.notifications.warn(game.i18n.localize("agone.notifications.warnReactionUtilisee"));
             return;
         }
         compData = defenseur.getCompData("epreuves", "esquive", null);
     }
-    let caracData = defenseur.getCaracData("agilite");
 
+    let caracData = defenseur.getCaracData("agilite");
     let gererBonusAspect = defenseur.gererBonusAspect();
 
     let defenseurData;
@@ -1540,7 +1579,7 @@ export async function jetDefense(defenseur, typeDef) {
         suggestCritChatMessage(defenseur, suggestCritData);
     }
 
-    defenseur.majDefenseCombattant(typeDef == "defenseNat" ? false : true, rollResult.total);
+    defenseur.setDefense(typeDef == "defenseNat" ? false : true, rollResult.total);
 }
 
 // Renvoi le niveau de qualité d'une oeuvre en fonction du malus que s'impose l'artiste

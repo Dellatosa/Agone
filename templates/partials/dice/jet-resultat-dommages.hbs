@@ -1,0 +1,22 @@
+{{#if stats.isEchecCritiqueJetDe}}
+    <h3 class="resultat fumble">{{localize "agone.chat.echecCritique"}}</h3>
+    <div>{{localize stats.nomCritique}} ({{stats.valeurCritique}})</div>
+{{/if}}
+{{#if stats.infosAttaque}}
+    <h4 class="resultat">Pare l'attaque de {{stats.infosAttaque.nomAttaquant}}</h4>
+    {{#unless attaqueTouche}}
+        <h3 class="resultat">{{localize "agone.chat.succes"}}</h3>
+        <h3 class="resultat">{{localize "agone.chat.marge"}} {{stats.marge}}</h3>
+    {{else}}
+        <h3 class="resultat">{{localize "agone.chat.echec"}}</h3>
+        {{#if (gt stats.dommagesRecus 0)}}
+            <h4 class="resultat">Encaisse {{stats.dommagesRecus}} points de dommages</h4>
+            {{#if stats.blessureCritique}}<h3>Blessure Critique !!!</h3>{{/if}}
+            {{#if stats.blessureGrave}}<h3>Blessure Grave !</h3>{{/if}}
+        {{else}}
+            <h4 class="resultat">N'encaisse aucun dommages</h4>
+        {{/if}}    
+    {{/if}}        
+{{/if}}
+
+

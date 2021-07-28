@@ -5,7 +5,7 @@
     {{#if stats.difficulte}}
         <h3 class="resultat">{{localize "agone.chat.marge"}} {{#if stats.isEchecCritiqueMarge}}<span class="fumble">{{stats.marge}}</span>{{else}}{{stats.marge}}{{/if}}</h3>
         {{#if (gt stats.marge 0)}}
-            {{#if stats.qualite}}<h4 class="resultat">Qualité de l'oeuvre {{stats.qualite}}</h4>{{/if}}
+            {{#if stats.qualite}}<h4 class="resultat">{{localize "agone.chat.qualiteOeuvre"}} {{stats.qualite}}</h4>{{/if}}
             <h3 class="resultat">{{localize "agone.chat.succes"}}</h3>
         {{else}}
             {{#if stats.isEchecCritiqueMarge}}

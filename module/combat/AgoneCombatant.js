@@ -22,25 +22,51 @@ export default class AgoneCombatant extends Combatant {
     }
 
     async reinitFlags() {
-       await this.setFlag("agone", "reactionUtilisee", false);
-       await this.setFlag("agone", "defenseValeur", 0);
-       await this.setFlag("agone", "esquiveTotaleUtilisee", false);
-       await this.setFlag("agone", "esquiveTotaleValeur", 0);
+        await this.setFlag("agone", "estAttaquer", false);
+        await this.setFlag("agone", "infosAttaque", null);
 
-        console.log("ReinitFlag", this.data.flags.agone);
+        await this.setFlag("agone", "reactionUtilisee", false);
+        await this.setFlag("agone", "valeurDefense", 0);
+        
+        await this.setFlag("agone", "esquiveTotaleUtilisee", false);
+        await this.setFlag("agone", "valeurEsquiveTotale", 0);
+
+        console.log("ReinitFlags", this.data.flags.agone);
     }
 
-    async majDefenseCombattant(utiliserReaction, resultatJet) {
+    async setAttaqueCombattant(nomAttaquant, taiAttaquant, resultatJet, bonusDommages) {
+        await this.setFlag("agone", "estAttaquer", true);
+        await this.setFlag("agone", "infosAttaque", {nomAttaquant: nomAttaquant, taiAttaquant:taiAttaquant, resultatJet: resultatJet, bonusDommages: bonusDommages});
+
+        console.log("setAttaqueCombattant", this.data.flags.agone);
+    }
+
+    async reinitAttaque() {
+        await this.setFlag("agone", "estAttaquer", false);
+        await this.setFlag("agone", "infosAttaque", null);
+    }
+
+    estAttaquer() {
+        return this.getFlag("agone", "estAttaquer");
+    }
+
+    infosAttaque() {
+        return this.getFlag("agone", "infosAttaque");
+    }
+
+    async setDefenseCombattant(utiliserReaction, resultatJet) {
         let current = this.getFlag("agone", "reactionUtilisee");
-        console.log("current", current, "utilReact", utiliserReaction);
 
         await this.setFlag("agone", "reactionUtilisee", utiliserReaction || current);
-        await this.setFlag("agone", "defenseValeur", resultatJet);
+        await this.setFlag("agone", "valeurDefense", resultatJet);
 
-        console.log("majDefenseCombattant", this.data.flags.agone);
+        await this.reinitAttaque();
+
+        console.log("setDefenseCombattant", this.data.flags.agone);
     }
 
-    isReactionUtilisee() {
+    reactionUtilisee() {
         return this.getFlag("agone", "reactionUtilisee");
     }
+
 }

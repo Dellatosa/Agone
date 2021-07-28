@@ -219,6 +219,11 @@ export default class AgoneActor extends Actor {
         }
     }
 
+    calcDiffTaiMR(taiAttaquant) {
+        let diff = taiAttaquant - this.caracSecondaires.tai;
+        return diff * 2;
+    }
+
     getCompetences(famille) {
         let data = this.data.data;
 
@@ -228,7 +233,14 @@ export default class AgoneActor extends Actor {
     getCompData(famille, competence, domaine) {
         let data = this.data.data;
 
-        let result = {rangComp: 0, labelComp: "ND", specialisation: false, labelSpecialisation: "ND", defCarac: null, jetDefautInterdit: false};
+        let result = {
+            rangComp: 0, 
+            labelComp: "ND", 
+            specialisation: false, 
+            labelSpecialisation: "ND", 
+            defCarac: null, 
+            jetDefautInterdit: false
+        };
 
         if(famille == "savoir" || famille == "occulte") {
             result.jetDefautInterdit = true;
@@ -257,7 +269,12 @@ export default class AgoneActor extends Actor {
 
     getCaracData(caracteristique) {
         let data = this.data.data;
-        let result = {rangCarac: 0, labelCarac: "ND", bonusAspect: 0, labelAspect: "ND"}
+        let result = {
+            rangCarac: 0, 
+            labelCarac: "ND", 
+            bonusAspect: 0, 
+            labelAspect: "ND"
+        };
 
         if(caracteristique) {
             let aspect = this.getAspect(caracteristique);
@@ -293,13 +310,34 @@ export default class AgoneActor extends Actor {
         let data = this.data.data;
 
         if(compArme) {
-            let result = {rangComp: 0, labelComp: "ND", specialisation: false, labelSpecialisation: "ND", rangCarac: 0, labelCarac: "ND", bonusAspect: 0, labelAspect: "ND", malusManiement: null, malusBlessureGrave: null};
+            let result = {
+                rangComp: 0, 
+                labelComp: "ND", 
+                specialisation: false, 
+                labelSpecialisation: "ND", 
+                rangCarac: 0, 
+                labelCarac: "ND", 
+                bonusAspect: 0, 
+                labelAspect: "ND", 
+                bonusDommages: 0,
+                tai: 0,
+                malusManiement: null, 
+                malusBlessureGrave: null,
+                seuilBlessureGrave = null,
+                seuilBlessureCritique = null
+            };
+
             result.rangComp = data.familleCompetences.epreuves.competences.armes.domaines[compArme].rang;
             result.labelComp = data.familleCompetences.epreuves.competences.armes.domaines[compArme].label;
             result.specialisation = data.familleCompetences.epreuves.competences.armes.domaines[compArme].specialisation;
             result.labelSpecialisation = data.familleCompetences.epreuves.competences.armes.domaines[compArme].labelSpecialisation;
             result.malusBlessureGrave = this.getMalusBlessureGrave(data.caracSecondaires.nbBlessureGrave);
 
+            result.bonusDommages = data.caracSecondaires.bonusDommages;
+            result.tai = data.caracSecondaires.tai;
+            result.seuilBlessureGrave = data.caracSecondaires.seuilBlessureGrave;
+            result.seuilBlessureCritique = data.caracSecondaires.seuilBlessureCritique;
+            
             let malusAgilite = Math.min(data.aspects.corps.caracteristiques.agilite.valeur - minAgilite, 0);
             let malusForce = Math.min(data.aspects.corps.caracteristiques.force.valeur - minForce, 0);
             if(malusAgilite + malusForce < 0) {
@@ -417,6 +455,16 @@ export default class AgoneActor extends Actor {
             return malusArmure;
         else
         return null;
+    }
+
+    getProtectionArmure() {
+        let protectionArmure = 0;
+        let armuresEquip = this.data.items.filter(function (item) { return item.type == "Armure" && item.data.data.equipee == true});
+        armuresEquip.forEach( armure => {
+            protectionArmure += armure.data.data.protection;
+        });
+
+        return protectionArmure;
     }
 
     getMalusBlessureGrave(nbBlessureGrave) {
@@ -552,19 +600,39 @@ export default class AgoneActor extends Actor {
         return combattant;
     }
 
-    majDefenseCombattant(utiliserReaction, resultatJet) {
+    estAttaquer() {
         let combattant = this.getCombatant();
 
         if(combattant) {
-            combattant.majDefenseCombattant(utiliserReaction, resultatJet);
+            return combattant.estAttaquer();
+        }
+
+        return false;
+    }
+
+    getInfosAttaque() {
+        let combattant = this.getCombatant();
+
+        if(combattant) {
+            return combattant.infosAttaque();
+        }
+
+        return null;
+    }
+
+    setDefense(utiliserReaction, resultatJet) {
+        let combattant = this.getCombatant();
+
+        if(combattant) {
+            combattant.setDefenseCombattant(utiliserReaction, resultatJet);
         }    
     }
 
-    isReactionUtilisee() {
+    reactionUtilisee() {
         let combattant = this.getCombatant();
 
         if(combattant) {
-            return combattant.isReactionUtilisee();
+            return combattant.reactionUtilisee();
         }
 
         return false;

@@ -31,8 +31,8 @@
         </div>
     {{/if}}   
     {{#if stats.isFumble}}
-        <div class="dice-tooltip"><div class="dice-rolls fumble"><span class="fumble">FUMBLE !!!</span><div class="roll die d10 min">1</div></div></div>
+        <div class="dice-tooltip"><div class="dice-rolls fumble"><span class="fumble">{{localize "agone.chat.fumble"}}</span><div class="roll die d10 min">1</div></div></div>
     {{/if}}
     {{{roll}}}
-    {{> "systems/agone/templates/partials/dice/jet-resultat.hbs"}}
+    {{> "systems/agone/templates/partials/dice/jet-resultat-dommages.hbs"}}
 </div>
