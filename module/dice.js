@@ -455,9 +455,10 @@ function _processJetCompetenceOptions(form) {
 
 export async function combatArme(actor, arme, type) {
     let gererBonusAspect = actor.gererBonusAspect();
-
     let statsCombat = actor.getStatsCombat(arme.data.data.competence, arme.data.data.minForce, arme.data.data.minAgilite);
 
+    console.log(game.tables);
+    
     if(statsCombat === null) {
         ui.notifications.error(`${game.i18n.localize("agone.notifications.errorDonnesArme")} ${arme.data.name}.`)
         return;
@@ -475,10 +476,10 @@ export async function combatArme(actor, arme, type) {
         nomArme: arme.data.name
     };
 
-    //Cibles
+    //Cibles - uniquement si en combat
     let ciblesData;
     let nbCibles = 0;
-    if(game.user.targets.size > 0) {
+    if(game.user.targets.size > 0 && actor.getCombatant()) {
         nbCibles = game.user.targets.size;
         let cibles = [];
         game.user.targets.forEach(token => {
@@ -521,7 +522,6 @@ export async function combatArme(actor, arme, type) {
         dialogOptions = await getJetDefenseOptions({defenseurData: defenseurData, armeData: armeData});
     }
 
-    
     // On annule le jet sur les boutons 'Annuler' ou 'Fermeture'
     if(dialogOptions.annule) {
         return;
@@ -640,15 +640,6 @@ export async function combatArme(actor, arme, type) {
         }
     }
 
-    /*if(difficulte) {
-        rollStats.difficulte = difficulte;
-        rollStats.marge = rollResult.total - difficulte;
-        if(rollStats.marge <= -15) {
-            rollStats.isEchecCritiqueMarge = true;
-            rollStats.valeurCritique = rollStats.valeurCritique ? Math.min(rollStats.valeurCritique, rollStats.marge + 5) : rollStats.marge + 5;
-        }
-    }*/
-
     if(rollStats.valeurCritique) {
         let critInfos = getCritInfos("epreuves", rollStats.valeurCritique);
         rollStats.nomCritique = critInfos.nom;
@@ -702,6 +693,13 @@ export async function combatArme(actor, arme, type) {
     if(type == "Parade") {
         actor.setDefense(true, rollResult.total);
         // TODO - Retirer les dommages aux PV, et appliquer les blessures graves
+        if(rollStats.dommagesRecus) {
+            actor.subirDommages(rollStats.dommagesRecus);
+        }
+
+        if(rollStats.blessureGrave) {
+            actor.subirBlessureGrave();
+        }
     }
 }
 

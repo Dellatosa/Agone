@@ -513,6 +513,20 @@ export default class AgoneActor extends Actor {
         }
     }
 
+    subirDommages(nbDommages) {
+        let data = this.data.data;
+
+        let nouvelleVal = data.caracSecondaires.pdv.value - nbDommages;
+        this.update({"data.caracSecondaires.pdv.value": nouvelleVal});
+    }
+
+    subirBlessureGrave() {
+        let data = this.data.data;
+
+        let nouvelleVal = data.caracSecondaires.nbBlessureGrave +1;
+        this.update({"data.nbBlessureGrave": nouvelleVal});
+    }
+
     updateFamilleComps(famille, listeComps) {
         this.update({[`data.familleCompetences.${famille}`]: listeComps});
     }

@@ -509,6 +509,18 @@
         "ciblesMultiSurAttaque": {
             "nom": "Cibles multiples sur les jets d'attaque",
             "label": "Autoriser la sélection de plusieurs cibles sur les jets d'attaque"
+        },
+        "lienTableCritiquePerforation": {
+            "nom": "Lien table critiques de Perforation",
+            "label": "Lien vers la rolltable des dommages critiques de Perforation" 
+        },
+        "lienTableCritiqueTaille": {
+            "nom": "Lien table critiques de Taille",
+            "label": "Lien vers la rolltable des dommages critiques de Taille" 
+        },
+        "lienTableCritiqueContusion": {
+            "nom": "Lien table critiques de Contusion",
+            "label": "Lien vers la rolltable des dommages critiques de Contusion" 
         }
     }
 }

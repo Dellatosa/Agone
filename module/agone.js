@@ -58,6 +58,33 @@ function registerSystemSettings() {
         type: Boolean,
         default: false
     });
+
+    game.settings.register("agone","lienTableCritiqueContusion", {
+        config: true,
+        scope: "world",
+        name: "parametres.lienTableCritiqueContusion.nom",
+        hint: "parametres.lienTableCritiqueContusion.label",
+        type:String,
+        default: ""
+    });
+
+    game.settings.register("agone","lienTableCritiquePerforation", {
+        config: true,
+        scope: "world",
+        name: "parametres.lienTableCritiquePerforation.nom",
+        hint: "parametres.lienTableCritiquePerforation.label",
+        type:String,
+        default: ""
+    });
+
+    game.settings.register("agone","lienTableCritiqueTaille", {
+        config: true,
+        scope: "world",
+        name: "parametres.lienTableCritiqueTaille.nom",
+        hint: "parametres.lienTableCritiqueTaille.label",
+        type:String,
+        default: ""
+    });
 }
 
 Hooks.once("init", function(){
