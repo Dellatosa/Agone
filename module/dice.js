@@ -482,7 +482,6 @@ export async function combatArme(actor, arme, type) {
         nbCibles = game.user.targets.size;
         let cibles = [];
         game.user.targets.forEach(token => {
-            console.log(token);
             cibles.push({id: token.id, name: token.actor.data.name, combatant: token.combatant});
         });
 
@@ -612,6 +611,7 @@ export async function combatArme(actor, arme, type) {
     });
 
     let rollStats = {
+        ...rollResult.data,
         ...statsCombat,
         modificateurs: modificateurs,
         utiliseHeroisme: utiliseHeroisme,
@@ -691,16 +691,17 @@ export async function combatArme(actor, arme, type) {
         suggestCritChatMessage(actor, suggestCritData);
     }
 
-    if(type == "Attaque") {
+    if(type == "Attaque" && nbCibles > 0) {
         let combattant = ciblesData.cibles[0].combatant;
         if(combattant) {
             let bd = statsCombat.bonusDommages + arme.data.data.modifDommages;
-            combattant.setAttaqueCombattant(actor.data.name, getStatsCombat.tai, rollResult.total, bd);
+            combattant.setAttaqueCombattant(actor.data.name, statsCombat.tai, rollResult.total, bd);
         }
     }
 
     if(type == "Parade") {
         actor.setDefense(true, rollResult.total);
+        // TODO - Retirer les dommages aux PV, et appliquer les blessures graves
     }
 }
 

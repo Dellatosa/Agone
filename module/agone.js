@@ -31,6 +31,7 @@ async function preloadHandlebarsTemplates() {
         "systems/agone/templates/partials/actors/bloc-liste-avantages-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-recap-equipement-personnage.hbs",
         "systems/agone/templates/partials/dice/jet-resultat.hbs",
+        "systems/agone/templates/partials/dice/jet-resultat-dommages.hbs",
         "templates/dice/roll.html"
     ];
 

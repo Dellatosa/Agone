@@ -220,7 +220,9 @@ export default class AgoneActor extends Actor {
     }
 
     calcDiffTaiMR(taiAttaquant) {
-        let diff = taiAttaquant - this.caracSecondaires.tai;
+        let data = this.data.data;
+
+        let diff = taiAttaquant - data.caracSecondaires.tai;
         return diff * 2;
     }
 
@@ -323,8 +325,8 @@ export default class AgoneActor extends Actor {
                 tai: 0,
                 malusManiement: null, 
                 malusBlessureGrave: null,
-                seuilBlessureGrave = null,
-                seuilBlessureCritique = null
+                seuilBlessureGrave: null,
+                seuilBlessureCritique: null
             };
 
             result.rangComp = data.familleCompetences.epreuves.competences.armes.domaines[compArme].rang;

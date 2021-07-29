@@ -3,8 +3,9 @@
     <div>{{localize stats.nomCritique}} ({{stats.valeurCritique}})</div>
 {{/if}}
 {{#if stats.infosAttaque}}
-    <h4 class="resultat">Pare l'attaque de {{stats.infosAttaque.nomAttaquant}}</h4>
-    {{#unless attaqueTouche}}
+    <h4 class="resultat">Pare l'attaque de {{stats.infosAttaque.nomAttaquant}} <span class="small-text">[Jet {{stats.infosAttaque.resultatJet}}
+        {{#unless (eq stats.infosAttaque.bonusDommages 0)}} - BD {{stats.infosAttaque.bonusDommages}}{{/unless}}]</span></h4>
+    {{#unless stats.attaqueTouche}}
         <h3 class="resultat">{{localize "agone.chat.succes"}}</h3>
         <h3 class="resultat">{{localize "agone.chat.marge"}} {{stats.marge}}</h3>
     {{else}}
@@ -16,7 +17,7 @@
         {{else}}
             <h4 class="resultat">N'encaisse aucun dommages</h4>
         {{/if}}    
-    {{/if}}        
+    {{/unless}}        
 {{/if}}
 
 

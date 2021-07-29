@@ -21,7 +21,8 @@ export default class AgoneItem extends Item {
 
         let cardData = {
             ...this.data,
-            owner: this.actor.id
+            isToken: this.actor.isToken ? 1 : 0,
+            owner: this.actor.isToken ? this.actor.token.id : this.actor.id
         };
 
         if(this.type == "Danseur") {
@@ -61,15 +62,44 @@ export default class AgoneItem extends Item {
     }
 }
 
+Hooks.on("closeAgoneItemSheet", (itemSheet, html) => onCloseAgoneItemSheet(itemSheet));
 Hooks.on("updateItem", (item, modif, info, id) => onUpdateItem(item, modif));
 Hooks.on("deleteItem", (item, render, id) => onDeleteItem(item));
 
-function onUpdateItem(item, modif) {
+function onCloseAgoneItemSheet(itemSheet) {
 
-    if(item.parent.isToken) return;
+    // Modification sur une arme
+    if(itemSheet.item.type == "Arme" && itemSheet.actor) {
+        // Calcul de la différence de TAI entre l'arme et le personnage qui l'utilise
+        let diff = itemSheet.item.data.data.tai - itemSheet.actor.data.data.caracSecondaires.tai;
+        itemSheet.item.update({"data.diffTai": diff });
+        if(diff < -1 || diff > 1) {
+            itemSheet.item.update({"data.nonUtilisable": true});
+        } else {
+            itemSheet.item.update({"data.nonUtilisable": false});
+        }
+    }
 
     // Modification sur un Danseur
-    if(item.type == "Danseur" && modif.data) {
+    if(itemSheet.item.type == "Danseur") {
+        // Modification de la mémoire max
+        itemSheet.item.updateMemoireDispo(itemSheet.item.data.data.memoire.max);
+        // Modification de l'endurance max
+        itemSheet.item.update({"data.endurance.value": itemSheet.item.data.data.endurance.max});
+    }
+
+    // Modification sur une armure
+    if(itemSheet.item.type == "Armure") {
+        // Le malus de perception dépend du type d'armure
+        itemSheet.item.update({"data.malusPerception": CONFIG.agone.typesArmureMalusPer[itemSheet.item.data.data.type]});
+    }
+}
+
+function onUpdateItem(item, modif) {
+    //if(item.parent.isToken) return;
+
+    // Modification sur un Danseur
+    /* if(item.type == "Danseur" && modif.data) {
         for(let[keyData, valData] of Object.entries(modif.data))
         {
             // Modification de la mémoire max
@@ -91,13 +121,13 @@ function onUpdateItem(item, modif) {
                 }
             }
         }          
-    }
+    } */
 
     // Modification sur une arme
-    if(item.type == "Arme" && item.actor && modif.data) {
+     if(item.type == "Arme" && item.actor && modif.data) {
         for(let[keyData, valData] of Object.entries(modif.data))
         {
-            if(keyData == "tai" && valData != null) {
+            /*if(keyData == "tai" && valData != null) {
                 let diff = valData - item.actor.data.data.caracSecondaires.tai;
                 item.update({"data.diffTai": diff });
                 if(diff < -1 || diff > 1) {
@@ -105,8 +135,9 @@ function onUpdateItem(item, modif) {
                 } else {
                     item.update({"data.nonUtilisable": false});
                 }
-            }
+            }*/
 
+            // Si on equipe une arme, les autres ne doivent plus être équipées
             if(keyData == "equipee" && item.actor) {
                 item.actor.desequipeArmes(item.id, valData);
             }
@@ -114,7 +145,7 @@ function onUpdateItem(item, modif) {
     }
 
     // Modification sur une armure
-    if(item.type == "Armure" && modif.data) {
+    /* if(item.type == "Armure" && modif.data) {
         for(let[keyData, valData] of Object.entries(modif.data))
         {
             // Le malus de perception dépend du type d'armure
@@ -122,13 +153,11 @@ function onUpdateItem(item, modif) {
                 item.update({"data.malusPerception": CONFIG.agone.typesArmureMalusPer[valData]});
             }
         }
-    }
+    } */
 }
 
 function onDeleteItem(item) {
-    //if(item.parent.isToken) return;
-
-    // TODO - en cas de suppression d'un sort, recalcul de la memoire des danseurs
+    // En cas de suppression d'un sort, recalcul de la memoire des danseurs
     if(item.type == "Sort" && item.actor) {
         let lstDanseurs = item.actor.data.items.filter(function (item) { return item.type == "Danseur" });
         lstDanseurs.forEach(danseur => {
