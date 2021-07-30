@@ -29,5 +29,9 @@
         <div class="dice-tooltip"><div class="dice-rolls fumble"><span class="fumble">{{localize "agone.chat.fumble"}}</span><div class="roll die d10 min">1</div></div></div>
     {{/if}}
     <div>{{{roll}}}</div>
-    {{> "systems/agone/templates/partials/dice/jet-resultat.hbs"}}
+    {{#if stats.infosAttaque}}
+        {{> "systems/agone/templates/partials/dice/jet-resultat-dommages.hbs"}}
+    {{else}}
+        {{> "systems/agone/templates/partials/dice/jet-resultat.hbs"}}
+    {{/if}}
 </div>

@@ -12,7 +12,10 @@
         <h3 class="resultat">{{localize "agone.chat.echec"}}</h3>
         {{#if (gt stats.dommagesRecus 0)}}
             <h4 class="resultat">Encaisse {{stats.dommagesRecus}} points de dommages</h4>
-            {{#if stats.blessureCritique}}<h3>Blessure Critique !!!</h3>{{/if}}
+            {{#if stats.blessureCritique}}
+                <h3>Blessure Critique !!!</h3>
+                {{#if stats.lienTableCritique}}<div class="resultat">{{stats.lienTableCritique}}{Jet de blessure critique}</div>{{/if}}
+            {{/if}}
             {{#if stats.blessureGrave}}<h3>Blessure Grave !</h3>{{/if}}
         {{else}}
             <h4 class="resultat">N'encaisse aucun dommages</h4>

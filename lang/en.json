@@ -498,7 +498,8 @@
             "warnDanseurContreMagie": "NO TRAD - Vous ne pouvez pas pratiquer la Contre-magie sans Danseur.",
             "warnInitSansCombat": "NO TRAD - Votre personnage n'est actuellement impliqué dans aucun combat.",
             "warnCibleUnique": "Please select one target only.",
-            "warnReactionUtilisee": "NO TRAD - Vous avez déjà utilisé votre Réaction à ce tour !"
+            "warnReactionUtilisee": "NO TRAD - Vous avez déjà utilisé votre Réaction à ce tour !",
+            "warnAttqaueTourCombat": "NO TRAD - Vous ne pouvez attaquer que durant votre tour !"
         }
     },
     "parametres": {
