@@ -668,4 +668,11 @@ agone.clefsEffets = {
     "data.caracSecondaires.bonusInitiative": "agone.actors.initiative",
     "data.caracSecondaires.tenebre": "agone.actors.tenebre",
     "data.caracSecondaires.perfidie": "agone.actors.perfidie",
+    "data.familleCompetences.societe.competences.musique.domaines.d1.rang": "agone.actors.musiqueD1",
+    "data.familleCompetences.societe.competences.musique.domaines.d2.rang": "agone.actors.musiqueD2",
+    "data.familleCompetences.societe.competences.musique.domaines.d3.rang": "agone.actors.musiqueD3",
+    "data.familleCompetences.societe.competences.peinture.rang": "agone.actors.peinture",
+    "data.familleCompetences.societe.competences.poesie.rang": "agone.actors.poesie",
+    "data.familleCompetences.societe.competences.sculpture.rang": "agone.actors.sculpture"
+    
 }
