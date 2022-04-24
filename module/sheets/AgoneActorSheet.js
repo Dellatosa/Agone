@@ -481,7 +481,7 @@ export default class AgoneActorSheet extends ActorSheet {
         let dlg = Dialog.confirm({
             title: game.i18n.localize("agone.chat.regenEndDanseurs"),
             content: game.i18n.localize("agone.chat.regenEndDanseursMsg"),
-            yes: () => this.actor.ReposDanseurs(),
+            yes: () => this.actor.reposDanseurs(),
             //no: () =>, On ne fait rien sur le 'Non'
             defaultYes: true
         });

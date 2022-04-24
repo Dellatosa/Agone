@@ -504,7 +504,7 @@ export default class AgoneActor extends Actor {
         let data = this.data.data;
 
         if(data.caracSecondaires.heroisme.value > 0) {
-            let nouvelleVal = data.caracSecondaires.heroisme.value -1;
+            let nouvelleVal = data.caracSecondaires.heroisme.value - 1;
             this.update({"data.caracSecondaires.heroisme.value": nouvelleVal});
             return true;
         }
@@ -523,8 +523,8 @@ export default class AgoneActor extends Actor {
     subirBlessureGrave() {
         let data = this.data.data;
 
-        let nouvelleVal = data.caracSecondaires.nbBlessureGrave +1;
-        this.update({"data.nbBlessureGrave": nouvelleVal});
+        let nouvelleVal = data.caracSecondaires.nbBlessureGrave + 1;
+        this.update({"data.caracSecondaires.nbBlessureGrave": nouvelleVal});
     }
 
     updateFamilleComps(famille, listeComps) {
@@ -588,7 +588,7 @@ export default class AgoneActor extends Actor {
         return modInit;
     }
 
-    ReposDanseurs() {
+    reposDanseurs() {
 
         this.getDanseurs().forEach(danseur => {
             danseur.update({"data.endurance.value": danseur.data.data.endurance.max });
@@ -614,6 +614,15 @@ export default class AgoneActor extends Actor {
         }
 
         return combattant;
+    }
+
+    estCombattantActif() {
+        let combattant = this.getCombatant();
+        if(combattant) {
+            return game.combat.combatant == combattant;
+        }
+
+        return false;
     }
 
     estAttaquer() {

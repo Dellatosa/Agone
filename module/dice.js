@@ -457,13 +457,14 @@ export async function combatArme(actor, arme, type) {
     let gererBonusAspect = actor.gererBonusAspect();
     let statsCombat = actor.getStatsCombat(arme.data.data.competence, arme.data.data.minForce, arme.data.data.minAgilite);
 
-    console.log(game.tables);
+    console.log(game.combat, actor.estCombattantActif());
     
     if(statsCombat === null) {
         ui.notifications.error(`${game.i18n.localize("agone.notifications.errorDonnesArme")} ${arme.data.name}.`)
         return;
     }
 
+    // Vérification de l'utilisation d'une réaction le même round - uniquement en combat
     if(type == "Parade") {
         if(actor.reactionUtilisee()) {
             ui.notifications.warn(game.i18n.localize("agone.notifications.warnReactionUtilisee"));
@@ -471,12 +472,14 @@ export async function combatArme(actor, arme, type) {
         }
     }
 
-     // Construction des strutures de données pour l'affichage de la boite de dialogue
-    let armeData = {
-        nomArme: arme.data.name
-    };
+    if(type == "Attaque" && actor.getCombatant()) {
+        if(!actor.estCombattantActif()) {
+            ui.notifications.warn(game.i18n.localize("agone.notifications.warnAttqaueTourCombat"));
+            return;
+        }
+    }
 
-    //Cibles - uniquement si en combat
+    //Cibles - uniquement en combat
     let ciblesData;
     let nbCibles = 0;
     if(game.user.targets.size > 0 && actor.getCombatant()) {
@@ -497,6 +500,11 @@ export async function combatArme(actor, arme, type) {
         ui.notifications.warn(`${game.i18n.localize("agone.notifications.warnCibleUnique")}`);
         return;
     }
+
+    // Construction des strutures de données pour l'affichage de la boite de dialogue
+    let armeData = {
+        nomArme: arme.data.name
+    };
 
     let dialogOptions;
     if(type == "Attaque") {
@@ -528,7 +536,6 @@ export async function combatArme(actor, arme, type) {
     }
 
     let modificateurs = 0;
-    let difficulte;
     let utiliseHeroisme = false;
     let utiliseSpecialisation = false;
     // Récupération des données de la fenêtre de dialogue pour ce jet 
@@ -633,6 +640,10 @@ export async function combatArme(actor, arme, type) {
 
             if(rollStats.dommagesRecus > statsCombat.seuilBlessureCritique) {
                 rollStats.blessureCritique = true;
+                let lienTableCritique = getTableCritique(rollStats.infosAttaque.typeArme);
+                if(lienTableCritique) {
+                    rollStats.lienTableCritique = lienTableCritique;
+                }
             }
             else if (rollStats.dommagesRecus > statsCombat.seuilBlessureGrave) {
                 rollStats.blessureGrave = true;
@@ -686,13 +697,13 @@ export async function combatArme(actor, arme, type) {
         let combattant = ciblesData.cibles[0].combatant;
         if(combattant) {
             let bd = statsCombat.bonusDommages + arme.data.data.modifDommages;
-            combattant.setAttaqueCombattant(actor.data.name, statsCombat.tai, rollResult.total, bd);
+            combattant.setAttaqueCombattant(actor.data.name, arme.data.data.type, statsCombat.tai, rollResult.total, bd);
         }
     }
 
     if(type == "Parade") {
         actor.setDefense(true, rollResult.total);
-        // TODO - Retirer les dommages aux PV, et appliquer les blessures graves
+        // Retirer les dommages aux PV, et appliquer les blessures graves
         if(rollStats.dommagesRecus) {
             actor.subirDommages(rollStats.dommagesRecus);
         }
@@ -1468,21 +1479,20 @@ export async function jetDefense(defenseur, typeDef) {
     let caracData = defenseur.getCaracData("agilite");
     let gererBonusAspect = defenseur.gererBonusAspect();
 
-    let defenseurData;
     let titrePersonnalise;
+    let defenseurData = {
+        typeDefense: "esquive", // Pour gestion fenetre de dialogue
+        seuilBlessureCritique: defenseur.data.data.caracSecondaires.seuilBlessureCritique,
+        seuilBlessureGrave: defenseur.data.data.caracSecondaires.seuilBlessureGrave
+    };
+
     if(typeDef == "esquive") {
         titrePersonnalise = game.i18n.localize("agone.actors.jetEsquive");
-        defenseurData = {
-            potDefense: caracData.rangCarac + compData.rangComp + caracData.bonusAspect,
-            typeDefense: "esquive"
-        };
+        defenseurData.potDefense = caracData.rangCarac + compData.rangComp + caracData.bonusAspect;
     }
     else if(typeDef == "defenseNat") {
         titrePersonnalise = game.i18n.localize("agone.actors.jetDefenseNat");
-        defenseurData = {
-            potDefense: caracData.rangCarac + caracData.bonusAspect,
-            typeDefense: "esquive"
-        };
+        defenseurData.potDefense = caracData.rangCarac + caracData.bonusAspect;
     }
 
     let dialogOptions = await getJetDefenseOptions({defenseurData: defenseurData, armeData: null});
@@ -1543,6 +1553,28 @@ export async function jetDefense(defenseur, typeDef) {
         rollStats.labelAspect = null;
     }
     
+    if(defenseur.estAttaquer()) {
+        rollStats.infosAttaque = defenseur.getInfosAttaque();
+        let diffTaiMR = defenseur.calcDiffTaiMR(rollStats.infosAttaque.taiAttaquant);
+        rollStats.marge = rollResult.total - rollStats.infosAttaque.resultatJet - rollStats.infosAttaque.bonusDommages;
+
+        if(rollStats.marge + diffTaiMR <= 0) {
+            rollStats.attaqueTouche = true;
+            rollStats.dommagesRecus = (rollStats.marge * -1) - defenseur.getProtectionArmure();
+
+            if(rollStats.dommagesRecus > defenseurData.seuilBlessureCritique) {
+                rollStats.blessureCritique = true;
+                let lienTableCritique = getTableCritique(rollStats.infosAttaque.typeArme);
+                if(lienTableCritique) {
+                    rollStats.lienTableCritique = lienTableCritique;
+                }
+            }
+            else if (rollStats.dommagesRecus > defenseurData.seuilBlessureGrave) {
+                rollStats.blessureGrave = true;
+            }
+        }
+    }
+
     if(rollStats.valeurCritique) {
         let critInfos = getCritInfos("epreuves", rollStats.valeurCritique);
         rollStats.nomCritique = critInfos.nom;
@@ -1579,6 +1611,14 @@ export async function jetDefense(defenseur, typeDef) {
     }
 
     defenseur.setDefense(typeDef == "defenseNat" ? false : true, rollResult.total);
+    // Retirer les dommages aux PV, et appliquer les blessures graves
+    if(rollStats.dommagesRecus) {
+        defenseur.subirDommages(rollStats.dommagesRecus);
+    }
+
+    if(rollStats.blessureGrave) {
+        defenseur.subirBlessureGrave();
+    }
 }
 
 // Renvoi le niveau de qualité d'une oeuvre en fonction du malus que s'impose l'artiste
@@ -1653,4 +1693,16 @@ async function suggestCritChatMessage(actor, suggestCritData) {
     }
 
     await ChatMessage.create(chatCritData);  
+}
+
+function getTableCritique(typeArme) {
+    switch(typeArme) {
+        case "perforante":
+        case "perftranch":
+            return game.settings.get("agone","lienTableCritiquePerforation");
+        case "tranchante":
+            return game.settings.get("agone","lienTableCritiqueTaille");
+        case "contondante":
+            return game.settings.get("agone","lienTableCritiqueContusion");
+    }
 }

@@ -34,9 +34,9 @@ export default class AgoneCombatant extends Combatant {
         console.log("ReinitFlags", this.data.flags.agone);
     }
 
-    async setAttaqueCombattant(nomAttaquant, taiAttaquant, resultatJet, bonusDommages) {
+    async setAttaqueCombattant(nomAttaquant, typeArme, taiAttaquant, resultatJet, bonusDommages) {
         await this.setFlag("agone", "estAttaquer", true);
-        await this.setFlag("agone", "infosAttaque", {nomAttaquant: nomAttaquant, taiAttaquant:taiAttaquant, resultatJet: resultatJet, bonusDommages: bonusDommages});
+        await this.setFlag("agone", "infosAttaque", {nomAttaquant: nomAttaquant, typeArme: typeArme, taiAttaquant:taiAttaquant, resultatJet: resultatJet, bonusDommages: bonusDommages});
 
         console.log("setAttaqueCombattant", this.data.flags.agone);
     }
