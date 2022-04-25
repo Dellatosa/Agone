@@ -65,6 +65,7 @@ export default class AgoneItem extends Item {
 Hooks.on("closeAgoneItemSheet", (itemSheet, html) => onCloseAgoneItemSheet(itemSheet));
 Hooks.on("updateItem", (item, modif, info, id) => onUpdateItem(item, modif));
 Hooks.on("deleteItem", (item, render, id) => onDeleteItem(item));
+Hooks.on("createItem", (item, render, id) => onCreateItem(item));
 
 function onCloseAgoneItemSheet(itemSheet) {
 
@@ -93,6 +94,11 @@ function onCloseAgoneItemSheet(itemSheet) {
         // Le malus de perception dépend du type d'armure
         itemSheet.item.update({"data.malusPerception": CONFIG.agone.typesArmureMalusPer[itemSheet.item.data.data.type]});
     }
+}
+
+function onCreateItem(item) {
+    let image = CONFIG.agone.itemDefImage[item.data.type] ? CONFIG.agone.itemDefImage[item.data.type] : "icons/svg/mystery-man-black.svg";
+    item.data.img = image;
 }
 
 function onUpdateItem(item, modif) {
