@@ -106,7 +106,6 @@ export default class AgoneActor extends Actor {
             if(data.peuple != "aucun" && data.peuple != "" && data.peuple != null)
             {
                 data.caracSecondaires.tai = CONFIG.agone.peuple[data.peuple].tai;
-                data.caracSecondaires.mouvement = CONFIG.agone.peuple[data.peuple].mv;
                 data.caracSecondaires.chargeMax = (data.aspects.corps.caracteristiques.force.valeur + data.aspects.corps.caracteristiques.resistance.valeur) * CONFIG.agone.peuple[data.peuple].mpoids;
                 data.caracSecondaires.demiCharge = Math.floor(data.caracSecondaires.chargeMax / 2);
                 data.caracSecondaires.chargeQuotidienne = Math.floor(data.caracSecondaires.chargeMax / 4);

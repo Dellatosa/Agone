@@ -149,6 +149,8 @@ export default class AgoneActorSheet extends ActorSheet {
             // Edition d'une checkbox d'item directement en ligne
             html.find('.inline-chk').change(this._onEditerInlineCheck.bind(this));
 
+            html.find('.edit-peuple').change(this._onEditerPeuple.bind(this));
+
             // item-roll - jet de dés depuis un item
             html.find('.item-roll').click(this._onItemRoll.bind(this));
 
@@ -262,6 +264,14 @@ export default class AgoneActorSheet extends ActorSheet {
         let val = !item.data[dtField[0]][dtField[1]];
 
         return item.update({ [field]: val });
+    }
+
+    _onEditerPeuple(event) {
+        event.preventDefault();
+        const element = event.currentTarget;
+
+        let field = "data.caracSecondaires.mouvement"
+        this.actor.update({ [field]: CONFIG.agone.peuple[element.value].mv });
     }
 
     // item-roll - jet de dés depuis un item

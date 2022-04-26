@@ -12,7 +12,7 @@
         <label>{{localize "agone.actors.sexe"}}</label>
         <div class="small-size"><input name="data.sexe" type="text" value="{{data.data.sexe}}" placeholder="{{localize 'agone.actors.sexe'}}"/></div>
         <label>{{localize "agone.actors.peuple"}}</label>
-        <select class="auto-size" name="data.peuple">
+        <select class="auto-size edit-peuple" name="data.peuple">
             {{#select data.data.peuple}}
             {{#each config.peuple as |peuple keyPeuple|}}
                 <option value="{{keyPeuple}}">{{peuple.label}}</option>
