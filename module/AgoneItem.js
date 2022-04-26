@@ -97,8 +97,10 @@ function onCloseAgoneItemSheet(itemSheet) {
 }
 
 function onCreateItem(item) {
-    let image = CONFIG.agone.itemDefImage[item.data.type] ? CONFIG.agone.itemDefImage[item.data.type] : "icons/svg/mystery-man-black.svg";
-    item.data.img = image;
+    if (item.data.img == "icons/svg/item-bag.svg") {
+        let image = CONFIG.agone.itemDefImage[item.data.type] ? CONFIG.agone.itemDefImage[item.data.type] : "icons/svg/mystery-man-black.svg";
+        item.data.img = image;
+    }
 }
 
 function onUpdateItem(item, modif) {
