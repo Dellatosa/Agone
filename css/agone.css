@@ -83,14 +83,14 @@
 }
 .grid-avantage,
 .grid-defaut,
-.grid-peine,
-.grid-pvsaison {
+.grid-peine {
   display: grid;
   grid-template-columns: 2fr 1fr;
   padding: 3px;
 }
 .grid-pvflamme,
-.grid-ecole {
+.grid-ecole,
+.grid-pvsaison {
   display: grid;
   grid-template-columns: 1fr;
   padding: 3px;

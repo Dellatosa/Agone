@@ -344,70 +344,70 @@ agone.competences = {
 agone.peuple = {
     aucun: "",
     humain: {
-        label: "Humain",
+        label: "agone.actors.humain",
         bpdv: 25,
         mpoids: 7,
         tai: 0,
         mv: 3
     },
     ogre: {
-        label: "Ogre",
+        label: "agone.actors.ogre",
         bpdv: 25,
         mpoids: 7,
         tai: 0,
         mv: 3
     },
     minotaure: {
-        label: "Minotaure",
+        label: "agone.actors.minotaure",
         bpdv: 45,
         mpoids: 10,
         tai: 1,
         mv: 4
     },
     geant: {
-        label: "Géant",
+        label: "agone.actors.geant",
         bpdv: 100,
         mpoids: 20,
         tai: 3,
         mv: 8
     },
     feeNoire: {
-        label: "Fée noire",
+        label: "agone.actors.feeNoire",
         bpdv: 10,
         mpoids: 4,
         tai: -2,
         mv: 1
     },
     nain: {
-        label: "Nain",
+        label: "agone.actors.nain",
         bpdv: 20,
         mpoids: 6,
         tai: -1,
         mv: 2
     },
     meduse: {
-        label: "Méduse",
+        label: "agone.actors.meduse",
         bpdv: 25,
         mpoids: 7,
         tai: 0,
         mv: 3
     },
     lutin: {
-        label: "Lutin",
+        label: "agone.actors.lutin", 
         bpdv: 20,
         mpoids: 6,
         tai: -1,
         mv: 2
     },
     farfadet: {
-        label: "Farfadet",
+        label: "agone.actors.farfadet",
         bpdv: 20,
         mpoids: 6,
         tai: -1,
         mv: 2
     },
     satyre: {
-        label: "Satyre",
+        label: "agone.actors.satyre",
         bpdv: 25,
         mpoids: 7,
         tai: 0,
@@ -536,6 +536,19 @@ agone.saisons = {
     ete: "agone.actors.ete",
     automne: "agone.actors.automne",
     hiver: "agone.actors.hiver"
+}
+
+agone.saisonnins = {
+    aucun: "",
+    lutin: "agone.actors.lutin",   
+    farfadet: "agone.actors.farfadet",
+    satyre: "agone.actors.satyre",
+    ogre: "agone.actors.ogre",
+    minotaure: "agone.actors.minotaure",
+    geant: "agone.actors.geant",
+    feeNoire: "agone.actors.feeNoire",
+    nain: "agone.actors.nain",
+    meduse: "agone.actors.meduse"
 }
 
 agone.instruments = {

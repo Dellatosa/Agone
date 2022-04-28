@@ -209,7 +209,7 @@
                 "label": "Athlétisme",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "resistance",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -218,7 +218,7 @@
                 "label": "Equitation",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "agilite",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -227,7 +227,7 @@
                 "label": "Escalade",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "agilite",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -236,7 +236,7 @@
                 "label": "Esquive",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "agilite",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -245,7 +245,7 @@
                 "label": "Natation",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "force",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -254,7 +254,7 @@
                 "label": "Premiers soins",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "agilite",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -263,7 +263,7 @@
                 "label": "Survie",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "intelligence",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -272,7 +272,7 @@
                 "label": "Vigilance",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "perception",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -286,7 +286,7 @@
                 "label": "Acrobatie",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "agilite",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -295,7 +295,7 @@
                 "label": "Camouflage",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "agilite",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -304,7 +304,7 @@
                 "label": "Chasse",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "perception",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -313,7 +313,7 @@
                 "label": "Déguisement",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "creativite",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -322,7 +322,7 @@
                 "label": "Discrétion",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "agilite",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -331,7 +331,7 @@
                 "label": "Fouille",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "perception",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -340,7 +340,7 @@
                 "label": "Intigue",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "intelligence",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -349,7 +349,7 @@
                 "label": "Jeu",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "intelligence",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -358,7 +358,7 @@
                 "label": "Passe-passe",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "agilite",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -367,7 +367,7 @@
                 "label": "Poisons",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "intelligence",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -376,7 +376,7 @@
                 "label": "Serrurerie",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "agilite",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -390,7 +390,7 @@
                 "label": "Baratin",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "charisme",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -399,7 +399,7 @@
                 "label": "Diplomatie",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "charisme",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -408,7 +408,7 @@
                 "label": "Eloquence",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "charisme",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -424,7 +424,7 @@
                     "max": 10,
                     "specialisation": false, 
                     "labelSpecialisation": "",
-                    "caracteristique": ""
+                    "caracteristique": "charisme"
                   },
                   "d2": {
                     "domPerso": true,
@@ -433,7 +433,7 @@
                     "max": 10,
                     "specialisation": false, 
                     "labelSpecialisation": "",
-                    "caracteristique": ""
+                    "caracteristique": "charisme"
                   }
                 }
               },
@@ -441,7 +441,7 @@
                 "label": "Intendance",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "intelligence",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -457,7 +457,7 @@
                     "max": 10,
                     "specialisation": false, 
                     "labelSpecialisation": "",
-                    "caracteristique": ""
+                    "caracteristique": "creativite"
                   },
                   "d2": {
                     "domPerso": true,
@@ -466,7 +466,7 @@
                     "max": 10,
                     "specialisation": false, 
                     "labelSpecialisation": "",
-                    "caracteristique": ""
+                    "caracteristique": "creativite"
                   },
                   "d3": {
                     "domPerso": true,
@@ -475,7 +475,7 @@
                     "max": 10,
                     "specialisation": false, 
                     "labelSpecialisation": "",
-                    "caracteristique": ""
+                    "caracteristique": "creativite"
                   }
                 }
               },
@@ -494,7 +494,7 @@
                 "rang": 0,
                 "caracteristique": "",
                 "specialisation": false, 
-                "labelSpecialisation": "",
+                "labelSpecialisation": "creativite",
                 "max": 10
               },
               "poesie": {
@@ -503,7 +503,7 @@
                 "rang": 0,
                 "caracteristique": "",
                 "specialisation": false, 
-                "labelSpecialisation": "",
+                "labelSpecialisation": "creativite",
                 "max": 10
               },
               "savoirFaire": {
@@ -534,7 +534,7 @@
                 "label": "Sculpture",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "creativite",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -550,7 +550,7 @@
                     "max": 10,
                     "specialisation": false, 
                     "labelSpecialisation": "",
-                    "caracteristique": ""
+                    "caracteristique": "intelligence"
                   },
                   "d2": {
                     "domPerso": true,
@@ -559,7 +559,7 @@
                     "max": 10,
                     "specialisation": false, 
                     "labelSpecialisation": "",
-                    "caracteristique": ""
+                    "caracteristique": "intelligence"
                   }
                 }
               }
@@ -579,7 +579,7 @@
                     "max": 10,
                     "specialisation": false, 
                     "labelSpecialisation": "",
-                    "caracteristique": ""
+                    "caracteristique": "intelligence"
                   },
                   "d2": {
                     "domPerso": true,
@@ -588,7 +588,7 @@
                     "max": 10,
                     "specialisation": false, 
                     "labelSpecialisation": "",
-                    "caracteristique": ""
+                    "caracteristique": "intelligence"
                   }
                 } 
               },
@@ -596,7 +596,7 @@
                 "label": "Astronomie",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "intelligence",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -605,7 +605,7 @@
                 "label": "Chirurgie",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "intelligence",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -621,7 +621,7 @@
                     "max": 10,
                     "specialisation": false, 
                     "labelSpecialisation": "",
-                    "caracteristique": ""
+                    "caracteristique": "intelligence"
                   },
                   "d2": {
                     "domPerso": true,
@@ -630,7 +630,7 @@
                     "max": 10,
                     "specialisation": false, 
                     "labelSpecialisation": "",
-                    "caracteristique": ""
+                    "caracteristique": "intelligence"
                   }
                 }
               },
@@ -638,7 +638,7 @@
                 "label": "Géographie",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "intelligence",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -647,7 +647,7 @@
                 "label": "Herboristerie",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "intelligence",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -656,7 +656,7 @@
                 "label": "Histoire et Légendes",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "intelligence",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -672,7 +672,7 @@
                     "max": 10,
                     "specialisation": false, 
                     "labelSpecialisation": "",
-                    "caracteristique": ""
+                    "caracteristique": "intelligence"
                   },
                   "d2": {
                     "domPerso": true,
@@ -681,7 +681,7 @@
                     "max": 10,
                     "specialisation": false, 
                     "labelSpecialisation": "",
-                    "caracteristique": ""
+                    "caracteristique": "intelligence"
                   }
                 }
               },
@@ -689,7 +689,7 @@
                 "label": "Loi",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "intelligence",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -698,7 +698,7 @@
                 "label": "Médecine",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "intelligence",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -707,7 +707,7 @@
                 "label": "Navigation",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "perception",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -722,7 +722,7 @@
                     "max": 10,
                     "specialisation": false, 
                     "labelSpecialisation": "",
-                    "caracteristique": ""
+                    "caracteristique": "intelligence"
                   },
                   "printemps": {
                     "label": "Printemps",
@@ -730,7 +730,7 @@
                     "max": 10,
                     "specialisation": false, 
                     "labelSpecialisation": "",
-                    "caracteristique": ""
+                    "caracteristique": "intelligence"
                   },    
                   "ete": {
                     "label": "Eté",
@@ -738,7 +738,7 @@
                     "max": 10,
                     "specialisation": false, 
                     "labelSpecialisation": "",
-                    "caracteristique": ""
+                    "caracteristique": "intelligence"
                   },
                   "automne": { 
                     "label": "Automne",
@@ -746,7 +746,7 @@
                     "max": 10,
                     "specialisation": false, 
                     "labelSpecialisation": "",
-                    "caracteristique": ""
+                    "caracteristique": "intelligence"
                   }
                 }
               },
@@ -754,7 +754,7 @@
                 "label": "Stratégie",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "intelligence",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -763,7 +763,7 @@
                 "label": "Zoologie",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "intelligence",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -783,7 +783,7 @@
                     "max": 10,
                     "specialisation": false, 
                     "labelSpecialisation": "",
-                    "caracteristique": ""
+                    "caracteristique": "art"
                   },
                   "cyse": {
                     "label": "Cyse",
@@ -791,7 +791,7 @@
                     "max": 10,
                     "specialisation": false, 
                     "labelSpecialisation": "",
-                    "caracteristique": ""
+                    "caracteristique": "art"
                   },
                   "decorum": {
                     "label": "Décorum",
@@ -799,7 +799,7 @@
                     "max": 10,
                     "specialisation": false, 
                     "labelSpecialisation": "",
-                    "caracteristique": ""
+                    "caracteristique": "art"
                   },
                   "geste": {
                    "label": "Geste",
@@ -807,7 +807,7 @@
                     "max": 10,
                     "specialisation": false, 
                     "labelSpecialisation": "",
-                    "caracteristique": ""
+                    "caracteristique": "art"
                   }
                 }
               },
@@ -815,7 +815,7 @@
                 "label": "Conn. des danseurs",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "intelligence",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -824,7 +824,7 @@
                 "label": "Cryptogramme",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "intelligence",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -833,7 +833,7 @@
                 "label": "Démonologie",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "intelligence",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -842,7 +842,7 @@
                 "label": "Harmonie",
                 "domaine": false,
                 "rang": 0,
-                "caracteristique": "",
+                "caracteristique": "perception",
                 "specialisation": false, 
                 "labelSpecialisation": "",
                 "max": 10
@@ -857,7 +857,7 @@
                     "max": 10,
                     "specialisation": false, 
                     "labelSpecialisation": "",
-                    "caracteristique": ""
+                    "caracteristique": "emprise"
                   },
                   "eclipsiste": {
                     "label": "Eclipsiste",
@@ -865,7 +865,7 @@
                     "max": 10,
                     "specialisation": false, 
                     "labelSpecialisation": "",
-                    "caracteristique": ""
+                    "caracteristique": "emprise"
                   },
                   "obscurantiste": {
                     "label": "Obscurantiste",
@@ -873,7 +873,7 @@
                     "max": 10,
                     "specialisation": false, 
                     "labelSpecialisation": "",
-                    "caracteristique": ""
+                    "caracteristique": "emprise"
                   }
                 }
               }
@@ -940,8 +940,7 @@
     },
     "PouvoirSaison": {
       "templates": [ "base" ],
-      "saison": "",
-      "coutHeroisme": 0
+      "saisonnin": ""
     },
     "Manoeuvre": {
       "templates": [ "base" ],
