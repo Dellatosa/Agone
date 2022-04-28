@@ -15,7 +15,7 @@
         <select class="auto-size edit-peuple" name="data.peuple">
             {{#select data.data.peuple}}
             {{#each config.peuple as |peuple keyPeuple|}}
-                <option value="{{keyPeuple}}">{{peuple.label}}</option>
+                <option value="{{keyPeuple}}">{{localize peuple.label}}</option>
             {{/each}}
             {{/select}} 
         </select>

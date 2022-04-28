@@ -223,7 +223,18 @@
             "voirDanseur": "Voir le danseur",
             "voirOeuvre": "Voir l'oeuvre",
             "voirArme": "Voir l'arme",
-            "voirArmure": "Voir l'armure"
+            "voirArmure": "Voir l'armure",
+            "humain": "Humain",
+            "saisonnin": "Saisonnin",
+            "lutin": "Lutin",   
+            "farfadet": "Farfadet",
+            "satyre": "Satyre",
+            "ogre": "Ogre",
+            "minotaure": "Minotaure",
+            "geant": "Géant",
+            "feeNoire": "Fée Noire",
+            "nain": "Nain",
+            "meduse": "Méduse"
         },
         "items":{
             "description": "Description",

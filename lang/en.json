@@ -223,7 +223,18 @@
             "voirDanseur": "Display dancer card",
             "voirOeuvre": "Display work card",
             "voirArme": "Display weapon card",
-            "voirArmure": "Display armour card"
+            "voirArmure": "Display armour card",
+            "humain": "Human",
+            "saisonnin": "Seasonling",
+            "lutin": "Sprite",   
+            "farfadet": "Spriggan",
+            "satyre": "Satyr",
+            "ogre": "Ogre",
+            "minotaure": "Minotaur",
+            "geant": "Giant",
+            "feeNoire": "Black Fey",
+            "nain": "Dwarf",
+            "meduse": "Medusa"
         },
         "items":{
             "description": "Description",
