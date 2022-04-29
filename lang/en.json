@@ -226,6 +226,7 @@
             "voirArmure": "Display armour card",
             "voirDefaut": "Display fault",
             "voirAvantage": "Display asset",
+            "voirPouvoir": "Display power",
             "humain": "Human",
             "saisonnin": "Seasonling",
             "lutin": "Sprite",   
