@@ -1,0 +1,20 @@
+<div class="ligne-peine titre">
+    <label></label>
+    <label>{{localize "agone.common.name"}}</label>
+    <label>{{localize "agone.common.type"}}</label>
+    <label>{{localize "agone.items.palier"}}</label>
+    <label>{{localize "agone.items.descMalus"}}</label>
+    <label></label>
+    <a class="creer-item" data-type="Peine" title="{{localize 'agone.common.ajouter'}}"><i class="fas fa-plus"></i></a>
+</div>
+{{#each peines as |peine id|}}
+<div class="ligne-peine item" data-item-id="{{peine._id}}">
+    <a class="editer-item"><img src="{{img}}" title="{{localize 'agone.common.editer'}}" height="32" width="32"/></a>
+    <div>{{name}}</div>
+    <div>{{configLocalize "typesPeine" data.type}}</div>
+    <div>{{data.palier}}</div>
+    <div>{{data.descMalus}}</div>
+    <a class="editer-item" title="{{localize 'agone.common.editer'}}"><i class="fas fa-edit"></i></a>
+    <a class="supprimer-item" title="{{localize 'agone.common.supprimer'}}"><i class="fas fa-trash"></i></a>
+</div>            
+{{/each}}

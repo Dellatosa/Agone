@@ -1,0 +1,16 @@
+<div class="ligne-bienfait titre">
+    <label></label>
+    <label>{{localize "agone.common.name"}}</label>
+    <label>{{localize "agone.items.descBonus"}}</label>
+    <label></label>
+    <a class="creer-item" data-type="Bienfait" title="{{localize 'agone.common.ajouter'}}"><i class="fas fa-plus"></i></a>
+</div>
+{{#each bienfaits as |bienfait id|}}
+<div class="ligne-bienfait item" data-item-id="{{bienfait._id}}">
+    <a class="editer-item"><img src="{{img}}" title="{{localize 'agone.common.editer'}}" height="32" width="32"/></a>
+    <div>{{name}}</div>
+    <div>{{data.descBonus}}</div>
+    <a class="editer-item" title="{{localize 'agone.common.editer'}}"><i class="fas fa-edit"></i></a>
+    <a class="supprimer-item" title="{{localize 'agone.common.supprimer'}}"><i class="fas fa-trash"></i></a>
+</div>            
+{{/each}}
