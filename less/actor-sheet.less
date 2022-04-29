@@ -65,7 +65,7 @@ a.nohlight {
     }
 }
 
-nav.magie-tabs {
+nav.magie-tabs, nav.historique-tabs {
     height: 26px;
     line-height: 26px;
     border-bottom: 1px solid #b5b3a4;
@@ -259,6 +259,10 @@ nav.magie-tabs {
             margin: 3px;
         }
 
+        label.mod {
+            margin-top: 10px;
+        }
+
         div {
             margin: 3px;
             flex: 0 1 3em;
@@ -271,7 +275,8 @@ nav.magie-tabs {
 }
 
 
-.liste-armes, .liste-armures, .liste-danseurs, .liste-sorts, .liste-oeuvres, .liste-connivences, .liste-avantages, .liste-defauts, .liste-manoeuvres {
+.liste-armes, .liste-armures, .liste-danseurs, .liste-sorts, .liste-oeuvres, .liste-connivences, .liste-avantages, .liste-defauts, .liste-manoeuvres, 
+.liste-pouvoirs-flamme, .liste-pouvoirs-saisonnin, .liste-peines, .liste-bienfaits {
     display: flex;
     flex-direction: column;
     margin-bottom: 0.5rem;
@@ -402,7 +407,7 @@ nav.magie-tabs {
     }
 }
 
-.ligne-avantage, .ligne-defaut {
+.ligne-avantage, .ligne-defaut, .ligne-peine {
     display: grid;
     grid-template-columns: 2.5em 1fr 1fr 0.5fr 3fr 2em 2em;
     padding: 3px;
@@ -417,8 +422,38 @@ nav.magie-tabs {
     }
 }
 
-.ligne-arme.titre, .ligne-armure.titre, .ligne-danseur.titre, .ligne-sort.titre, .ligne-oeuvre.titre, 
-.ligne-connivence.titre, .ligne-avantage.titre, .ligne-defaut.titre, .ligne-manoeuvre.titre, .ligne-botteSecrete.titre {
+.ligne-pouvoir-flamme, .ligne-pouvoir-saisonnin {
+    display: grid;
+    grid-template-columns: 2.5em 1.5fr 0.5fr 3fr 2em 2em;
+    padding: 3px;
+    text-align: center;
+
+    > * {
+        padding: 3px;
+    }
+
+    img {
+        border: none;
+    }
+}
+
+.ligne-bienfait {
+    display: grid;
+    grid-template-columns: 2.5em 1fr 3fr 2em 2em;
+    padding: 3px;
+    text-align: center;
+
+    > * {
+        padding: 3px;
+    }
+
+    img {
+        border: none;
+    }
+}
+
+.ligne-arme.titre, .ligne-armure.titre, .ligne-danseur.titre, .ligne-sort.titre, .ligne-oeuvre.titre, .ligne-connivence.titre, .ligne-avantage.titre, .ligne-defaut.titre, 
+.ligne-manoeuvre.titre, .ligne-botteSecrete.titre, .ligne-pouvoir-flamme.titre, .ligne-pouvoir-saisonnin.titre, .ligne-peine.titre, .ligne-bienfait.titre {
     font-weight: bold;
     text-align: center;
     background-color: rgba(82, 77, 77, 0.075);

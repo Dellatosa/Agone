@@ -11,7 +11,8 @@ export default class AgoneActorSheet extends ActorSheet {
             height: 870,
             classes: ["agone", "sheet", "actor"],
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "competences" },
-                    { navSelector: ".magie-tabs", contentSelector: ".magie-content", initial: "emprise" }]
+                    { navSelector: ".magie-tabs", contentSelector: ".magie-content", initial: "emprise" },
+                    { navSelector: ".historique-tabs", contentSelector: ".historique-content", initial: "pouvoirs" }]
         });
     }
 

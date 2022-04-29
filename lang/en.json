@@ -197,7 +197,7 @@
             "societe": "Courtly",
             "savoir": "Knowledge",
             "occulte": "Occult",
-            "histoire": "Story",
+            "historique": "History",
             "equipement": "Equipment",
             "defenseNat": "NO TRAD - Défense naturelle",
             "reconnSort" : "NO TRAD - Reconnaître un sort",
@@ -224,6 +224,8 @@
             "voirOeuvre": "Display work card",
             "voirArme": "Display weapon card",
             "voirArmure": "Display armour card",
+            "voirDefaut": "Display fault",
+            "voirAvantage": "Display asset",
             "humain": "Human",
             "saisonnin": "Seasonling",
             "lutin": "Sprite",   
@@ -234,7 +236,12 @@
             "geant": "Giant",
             "feeNoire": "Black Fey",
             "nain": "Dwarf",
-            "meduse": "Medusa"
+            "meduse": "Medusa",
+            "pouvoirs" : "Powers",
+            "peinesBienfaits": "Troubles / Gifts",
+            "peines": "Troubles",
+            "bienfaits": "Gifts",
+            "histoire": "Story"
         },
         "items":{
             "description": "Description",
@@ -354,7 +361,8 @@
             "moyenne": "Medium (R/4 - R/2)",
             "longue": "Long (R/2 - R)",
             "extreme": "Extreme (R - Rx2)",
-            "rarete": "Rarity"
+            "rarete": "Rarity",
+            "descEffet": "Effect description"
         },
         "chat": {
             "succes": "Success !",

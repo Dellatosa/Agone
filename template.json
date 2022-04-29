@@ -929,18 +929,22 @@
       "templates": [ "base" ],
       "type": "",
       "palier": 0,
+      "descMalus": "",
       "bienfaitAssocie": []
     },
     "Bienfait": {
-      "templates": [ "base" ]
+      "templates": [ "base" ],
+      "descBonus": ""
     },
     "PouvoirFlamme": {
       "templates": [ "base" ],
-      "coutHeroisme": 0
+      "coutHeroisme": 0,
+      "descEffet": ""
     },
     "PouvoirSaison": {
       "templates": [ "base" ],
-      "saisonnin": ""
+      "saisonnin": "",
+      "descEffet": ""
     },
     "Manoeuvre": {
       "templates": [ "base" ],

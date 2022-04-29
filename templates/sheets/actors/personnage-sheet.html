@@ -16,7 +16,7 @@
         <a class="item" data-tab="magie">{{localize "agone.actors.magie"}}</a>
         <a class="item" data-tab="avantagesDefauts">{{localize "agone.actors.avantages"}} / {{localize "agone.actors.defauts"}}</a>
         <a class="item" data-tab="equipement">{{localize "agone.actors.equipement"}}</a>
-        <a class="item" data-tab="histoire">{{localize "agone.actors.histoire"}}</a>
+        <a class="item" data-tab="historique">{{localize "agone.actors.historique"}}</a>
     </nav>
     <section class="sheet-body">
         <div class="tab" data-group="principal" data-tab="competences">
@@ -82,29 +82,58 @@
                 {{> "systems/agone/templates/partials/actors/bloc-liste-armures-personnage.hbs"}}
             </div>
         </div>
-        <div class="tab fullheight" data-group="principal" data-tab="histoire">
-            <div class="recap">
-                <div>
-                    <label>{{localize "agone.actors.tenebre"}}</label>
-                    <div class="small-size"><input name="data.caracSecondaires.tenebre" type="number" value="{{data.data.caracSecondaires.tenebre}}" placeholder="0" min="0"/></div>
+        <div class="tab historique-content fullheight" data-group="principal" data-tab="historique">
+            <nav class="historique-tabs tabs" data-group="historique">
+                <a class="item" data-tab="pouvoirs">{{localize "agone.actors.pouvoirs"}}</a>
+                <a class="item" data-tab="peinesBienfaits">{{localize "agone.actors.peinesBienfaits"}}</a>
+                <a class="item" data-tab="histoire">{{localize "agone.actors.histoire"}}</a>
+            </nav>
+            <div class="tab" data-group="historique" data-tab="pouvoirs">
+                <h3>{{localize "agone.actors.flamme"}}</h3>
+                <div class="liste-pouvoirs-flamme">
+                    {{> "systems/agone/templates/partials/actors/bloc-liste-pouvoirs-flamme-personnage.hbs"}}
                 </div>
-                <div>
-                    <label>{{localize "agone.actors.perfidie"}}</label>
-                    <div class="small-size"><input name="data.caracSecondaires.perfidie" type="number" value="{{data.data.caracSecondaires.perfidie}}" placeholder="0" min="0"/></div>
-                </div>
-                <div>
-                    <label>{{localize "agone.actors.experienceDisponible"}}</label>
-                    <div class="small-size"><input name="data.experience.disponible" type="number" value="{{data.data.experience.disponible}}" placeholder="0" min="0"/></div>
-                </div>
-                <div>
-                    <label>{{localize "agone.actors.experienceTotale"}}</label>
-                    <div class="small-size"><input name="data.experience.totale" type="number" value="{{data.data.experience.totale}}" placeholder="0" min="0"/></div>
+                <h3>{{localize "agone.actors.saisonnin"}}</h3>
+                <div class="liste-pouvoirs-saisonnin">
+                    {{> "systems/agone/templates/partials/actors/bloc-liste-pouvoirs-saisonnin-personnage.hbs"}}
                 </div>
             </div>
-            <div>{{localize "agone.actors.apparence"}}</div>
-            {{editor content=data.data.apparence target="data.apparence" button=true owner=true editable=true}}
-            <div>{{localize "agone.actors.biographie"}}</div>
-            {{editor content=data.data.biographie target="data.biographie" button=true owner=true editable=true}}
+            <div class="tab" data-group="historique" data-tab="peinesBienfaits">
+                <div class="recap">
+                    <div>
+                        <label class="mod">{{localize "agone.actors.tenebre"}}</label>
+                        <div class="small-size"><input name="data.caracSecondaires.tenebre" type="number" value="{{data.data.caracSecondaires.tenebre}}" placeholder="0" min="0"/></div>
+                    </div>
+                    <div>
+                        <label class="mod">{{localize "agone.actors.perfidie"}}</label>
+                        <div class="small-size"><input name="data.caracSecondaires.perfidie" type="number" value="{{data.data.caracSecondaires.perfidie}}" placeholder="0" min="0"/></div>
+                    </div>
+                </div>
+                <h3>{{localize "agone.actors.peines"}}</h3>
+                <div class="liste-peines">
+                    {{> "systems/agone/templates/partials/actors/bloc-liste-peines-personnage.hbs"}}
+                </div>
+                <h3>{{localize "agone.actors.bienfaits"}}</h3>
+                <div class="liste-bienfaits">
+                    {{> "systems/agone/templates/partials/actors/bloc-liste-bienfaits-personnage.hbs"}}
+                </div>
+            </div>
+            <div class="tab" data-group="historique" data-tab="histoire">
+                <div class="recap">
+                    <div>
+                        <label class="mod">{{localize "agone.actors.experienceDisponible"}}</label>
+                        <div class="small-size"><input name="data.experience.disponible" type="number" value="{{data.data.experience.disponible}}" placeholder="0" min="0"/></div>
+                    </div>
+                    <div>
+                        <label class="mod">{{localize "agone.actors.experienceTotale"}}</label>
+                        <div class="small-size"><input name="data.experience.totale" type="number" value="{{data.data.experience.totale}}" placeholder="0" min="0"/></div>
+                    </div>
+                </div>
+                <div>{{localize "agone.actors.apparence"}}</div>
+                {{editor content=data.data.apparence target="data.apparence" button=true owner=true editable=true}}
+                <div>{{localize "agone.actors.biographie"}}</div>
+                {{editor content=data.data.biographie target="data.biographie" button=true owner=true editable=true}}
+            </div>
         </div>
     </section>
     <!-- <footer class="sheet-footer">    

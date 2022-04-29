@@ -197,7 +197,7 @@
             "societe": "Société",
             "savoir": "Savoir",
             "occulte": "Occulte",
-            "histoire": "Histoire",
+            "historique": "Historique",
             "equipement": "Equipement",
             "defenseNat": "Défense naturelle",
             "reconnSort" : "Reconnaître un sort",
@@ -224,6 +224,8 @@
             "voirOeuvre": "Voir l'oeuvre",
             "voirArme": "Voir l'arme",
             "voirArmure": "Voir l'armure",
+            "voirDefaut": "Voir le défaut",
+            "voirAvantage": "Voir l'avantage",
             "humain": "Humain",
             "saisonnin": "Saisonnin",
             "lutin": "Lutin",   
@@ -234,7 +236,12 @@
             "geant": "Géant",
             "feeNoire": "Fée Noire",
             "nain": "Nain",
-            "meduse": "Méduse"
+            "meduse": "Méduse",
+            "pouvoirs" : "Pouvoirs",
+            "peinesBienfaits": "Peines / Bienfaits",
+            "peines": "Peines",
+            "bienfaits": "Bienfaits",
+            "histoire": "Histoire"
         },
         "items":{
             "description": "Description",
@@ -354,7 +361,8 @@
             "moyenne": "Moyenne (P/4 - P/2)",
             "longue": "Longue (P/2 - P)",
             "extreme": "Extrême (P - Px2)",
-            "rarete": "Rareté"
+            "rarete": "Rareté",
+            "descEffet": "Description de l'effet"
         },
         "chat": {
             "succes": "Succès !",
