@@ -5,7 +5,11 @@ export default class AgoneItem extends Item {
         "Armure": "systems/agone/templates/partials/chat/carte-armure.hbs",
         "Danseur": "systems/agone/templates/partials/chat/carte-danseur.hbs",
         "Sort": "systems/agone/templates/partials/chat/carte-sort.hbs",
-        "Oeuvre": "systems/agone/templates/partials/chat/carte-oeuvre.hbs"        
+        "Oeuvre": "systems/agone/templates/partials/chat/carte-oeuvre.hbs",
+        "Defaut": "systems/agone/templates/partials/chat/carte-defaut.hbs",
+        "Avantage": "systems/agone/templates/partials/chat/carte-avantage.hbs",
+        "PouvoirFlamme":"systems/agone/templates/partials/chat/carte-pouvoir-flamme.hbs",
+        "PouvoirSaison":"systems/agone/templates/partials/chat/carte-pouvoir-saisonnin.hbs"
     }
 
     prepareData() {

@@ -1,0 +1,15 @@
+<div class="carte">
+    <div class="entete">
+        <img src="{{img}}" title="{{name}}" height="32" width="32"/>
+        <span>{{name}}</span>
+    </div>
+    <div class="grid-2">
+        <div>{{localize "agone.common.type"}}</div>
+        <div>{{localize "agone.common.cout"}}</div>
+        <div>{{configLocalize "typesAvantageDefaut" data.type}}</div>
+        <div>{{data.cout}}</div>
+    </div>
+    <div>{{editor content=data.description target="data.description" owner=true}}</div>
+    <h4 class="bold">En terme de jeu</h4>
+    <div>{{data.descBonus}}</div>
+</div>
