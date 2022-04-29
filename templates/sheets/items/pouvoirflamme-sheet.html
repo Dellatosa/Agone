@@ -12,6 +12,10 @@
             <span>{{localize "agone.items.pouvoirFlammeDesc"}}</span>
         </div>
         {{editor content=data.data.description target="data.description" button=true owner=true editable=true}}
+        <div>
+            <span>{{localize "agone.items.descEffet"}}</span>
+            <textarea name="data.descEffet" placeholder="{{localize 'agone.items.descEffet'}}">{{data.data.descEffet}}</textarea>
+        </div>
     </div>
     <footer class="sheet-footer">
         <div>{{localize "agone.common.type"}} : <span>{{localize "agone.items.pouvoirFlammeLabel"}}</span></div>

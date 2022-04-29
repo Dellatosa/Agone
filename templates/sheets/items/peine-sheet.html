@@ -28,6 +28,10 @@
                     <span>{{localize "agone.items.peineDesc"}}</span>
                 </div>
                 {{editor content=data.data.description target="data.description" button=true owner=true editable=true}}
+                <div>
+                    <span>{{localize "agone.items.descMalus"}}</span>
+                    <textarea name="data.descMalus" placeholder="{{localize 'agone.items.descMalus'}}">{{data.data.descMalus}}</textarea>
+                </div>
                 <!-- Gérer la sélection du bienfait associé -->
             </div>
             <div class="tab" data-group="primaire" data-tab="effets">
