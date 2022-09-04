@@ -79,25 +79,25 @@
             <div class="recap">
                 <div>
                     <label>{{localize "agone.actors.tenebre"}}</label>
-                    <div class="small-size"><input name="data.caracSecondaires.tenebre" type="number" value="{{data.data.caracSecondaires.tenebre}}" placeholder="0" min="0"/></div>
+                    <div class="small-size"><input name="system.caracSecondaires.tenebre" type="number" value="{{data.system.caracSecondaires.tenebre}}" placeholder="0" min="0"/></div>
                 </div>
                 <div>
                     <label>{{localize "agone.actors.perfidie"}}</label>
-                    <div class="small-size"><input name="data.caracSecondaires.perfidie" type="number" value="{{data.data.caracSecondaires.perfidie}}" placeholder="0" min="0"/></div>
+                    <div class="small-size"><input name="system.caracSecondaires.perfidie" type="number" value="{{data.system.caracSecondaires.perfidie}}" placeholder="0" min="0"/></div>
                 </div>
                 <div>
                     <label>{{localize "agone.actors.experienceDisponible"}}</label>
-                    <div class="small-size"><input name="data.experience.disponible" type="number" value="{{data.data.experience.disponible}}" placeholder="0" min="0"/></div>
+                    <div class="small-size"><input name="system.experience.disponible" type="number" value="{{data.system.experience.disponible}}" placeholder="0" min="0"/></div>
                 </div>
                 <div>
                     <label>{{localize "agone.actors.experienceTotale"}}</label>
-                    <div class="small-size"><input name="data.experience.totale" type="number" value="{{data.data.experience.totale}}" placeholder="0" min="0"/></div>
+                    <div class="small-size"><input name="system.experience.totale" type="number" value="{{data.system.experience.totale}}" placeholder="0" min="0"/></div>
                 </div>
             </div>
             <div>{{localize "agone.actors.apparence"}}</div>
-            {{editor content=data.data.apparence target="data.apparence" button=true owner=true editable=true}}
+            {{editor data.system.apparence target="system.apparence" button=true owner=true editable=true}}
             <div>{{localize "agone.actors.biographie"}}</div>
-            {{editor content=data.data.biographie target="data.biographie" button=true owner=true editable=true}}
+            {{editor data.system.biographie target="system.biographie" button=true owner=true editable=true}}
         </div>
     </section>
     <!-- <footer class="sheet-footer">    

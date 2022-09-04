@@ -1,12 +1,12 @@
 <div class="recap">
     <div>
         <label>{{localize "agone.actors.emprise"}}</label>
-        <div class="fixed-val">{{data.data.aspects.esprit.caracteristiques.emprise.valeur}}</div>
+        <div class="fixed-val">{{data.system.aspects.esprit.caracteristiques.emprise.valeur}}</div>
     </div>
     <div>
         <label>{{localize "agone.actors.resonance"}}</label>
-        <select name="data.caracSecondaires.resonance">
-            {{#select data.data.caracSecondaires.resonance}}
+        <select name="system.caracSecondaires.resonance">
+            {{#select data.system.caracSecondaires.resonance}}
                 {{#each config.resonances as |name type|}}
                     <option value="{{type}}">{{localize name}}</option>
                 {{/each}}
@@ -14,7 +14,7 @@
         </select>
     </div>
     <div> 
-        {{#with data.data as | dt | }}
+        {{#with data.system as | dt | }}
             {{#each dt.familleCompetences.occulte.competences.resonance.domaines as |reso keyReso|}}
                 {{#if (eq keyReso dt.caracSecondaires.resonance )}}
                     <label>{{localize "agone.actors.rang"}}</label>
@@ -25,7 +25,7 @@
     </div>
     <div>
         <label>{{localize "agone.actors.connDanseurs"}}</label>
-        <div class="fixed-val">{{data.data.familleCompetences.occulte.competences.connDanseurs.rang}}</div>
+        <div class="fixed-val">{{data.system.familleCompetences.occulte.competences.connDanseurs.rang}}</div>
     </div>
 </div>
 <div class="recap">

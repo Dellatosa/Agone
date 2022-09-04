@@ -2,7 +2,7 @@ export default class AgoneActor extends Actor {
 
     prepareData() {
         super.prepareData();
-        let data = this.data.data;
+        let data = this.system;
 
         if(this.type != "Demon") {
 

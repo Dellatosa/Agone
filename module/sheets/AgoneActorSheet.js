@@ -17,20 +17,20 @@ export default class AgoneActorSheet extends ActorSheet {
     }
 
     get template() {
-        if(this.actor.data.type == "Personnage" || this.actor.data.type == "Damne") {
-            console.log(`Agone | type : ${this.actor.data.type} | chargement du template systems/agone/templates/sheets/actors/personnage-sheet.html`);
+        if(this.actor.type == "Personnage" || this.actor.type == "Damne") {
+            console.log(`Agone | type : ${this.actor.type} | chargement du template systems/agone/templates/sheets/actors/personnage-sheet.html`);
             return `systems/agone/templates/sheets/actors/personnage-sheet.html`
         } 
         else {
-            console.log(`Agone | chargement du template systems/agone/templates/sheets/actors/${this.actor.data.type}-sheet.html`);
-            return `systems/agone/templates/sheets/actors/${this.actor.data.type}-sheet.html`
+            console.log(`Agone | chargement du template systems/agone/templates/sheets/actors/${this.actor.type}-sheet.html`);
+            return `systems/agone/templates/sheets/actors/${this.actor.type}-sheet.html`
         }
     }
 
     getData() {
         const data = super.getData();
         data.config = CONFIG.agone;
-        const actorData = data.data.data;
+        const actorData = data.data.system;
 
         /* ----------------------------------------------------
         ---- Création des listes d'items filtrées par type ----
