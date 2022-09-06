@@ -7,15 +7,15 @@
         <label>{{localize "agone.items.bonusEmprise"}}</label>
         <label>{{localize "agone.items.empathie"}}</label>
         <label>{{localize "agone.items.endurance"}}</label>
-        <div>{{data.bonusEmprise}}</div>
-        <div>{{data.empathie}}</div>
-        <div>{{data.endurance.value}} / {{data.endurance.max}}</div>
+        <div>{{system.bonusEmprise}}</div>
+        <div>{{system.empathie}}</div>
+        <div>{{system.endurance.value}} / {{system.endurance.max}}</div>
     </div>
     <div class="boutons-carte">
-        {{#each data.sorts as | sort | }}
+        {{#each system.sorts as | sort | }}
             <div class="ligne-btn-sort sort" data-sort-id="{{sort.id}}">
                 <a class="editer-item-sort" title="{{localize "agone.common.details"}}"><i class="fas fa-book-open"></i></a>
-                <button class="jet-sort">{{sort.data.name}} ({{sort.data.data.seuil}}{{#if sort.data.data.diffObedience}} + 5{{/if}})</button> <!-- <i class="fas fa-hand-sparkles"></i> -->
+                <button class="jet-sort">{{sort.name}} ({{sort.system.seuil}}{{#if sort.system.diffObedience}} + 5{{/if}})</button> <!-- <i class="fas fa-hand-sparkles"></i> -->
             </div>
         {{/each}}
         <button class="jet-sort-intuitif">Sort de magie intuitive</button>

@@ -3,42 +3,42 @@
         <img src="{{img}}" title="{{name}}" height="32" width="32"/>
         <span>{{name}}</span>
     </div>
-    {{#if (eq data.artMagique "accord")}}
+    {{#if (eq system.artMagique "accord")}}
     <div class="grid-3">
         <div>{{localize "agone.items.artMagique"}}</div>
         <div>{{localize "agone.items.instrument"}}</div>
         <div>{{localize "agone.items.seuil"}}</div>
-        <div>{{configLocalize "arts" data.artMagique}}</div>
-        <div>{{configLocalize "instruments" data.instrument}}</div>
-        <div>{{data.seuil}}</div>
+        <div>{{configLocalize "arts" system.artMagique}}</div>
+        <div>{{configLocalize "instruments" system.instrument}}</div>
+        <div>{{system.seuil}}</div>
     </div>
     {{/if}}
-    {{#if (eq data.artMagique "decorum")}}
+    {{#if (eq system.artMagique "decorum")}}
     <div class="grid-3">
         <div>{{localize "agone.items.artMagique"}}</div>
         <div>{{localize "agone.actors.saison"}}</div>
         <div>{{localize "agone.items.seuil"}}</div>
-        <div>{{configLocalize "arts" data.artMagique}}</div>
-        <div>{{configLocalize "saisons" data.saison}}</div>
-        <div>{{data.seuil}}</div>
+        <div>{{configLocalize "arts" system.artMagique}}</div>
+        <div>{{configLocalize "saisons" system.saison}}</div>
+        <div>{{system.seuil}}</div>
     </div>
     {{/if}}
-    {{#if (eq data.artMagique "geste")}}
+    {{#if (eq system.artMagique "geste")}}
     <div class="grid-2">
         <div>{{localize "agone.items.artMagique"}}</div>
         <div>{{localize "agone.items.seuil"}}</div>
-        <div>{{configLocalize "arts" data.artMagique}}</div>
-        <div>{{data.seuil}}</div>
+        <div>{{configLocalize "arts" system.artMagique}}</div>
+        <div>{{system.seuil}}</div>
     </div>
      {{/if}}
-     {{#if (eq data.artMagique "cyse")}}
+     {{#if (eq system.artMagique "cyse")}}
      <div class="grid-2">
         <div>{{localize "agone.items.artMagique"}}</div>
         <div>{{localize "agone.items.seuil"}}</div>
-        <div>{{configLocalize "arts" data.artMagique}}</div>
-        <div>{{data.seuil}}</div>
+        <div>{{configLocalize "arts" system.artMagique}}</div>
+        <div>{{system.seuil}}</div>
     </div>
      {{/if}}
-    <div>{{editor content=data.description target="data.description" owner=true}}</div>
+    <div>{{editor system.description target="system.description" owner=true}}</div>
     <button class="jet-oeuvre">{{localize "agone.chat.executerCetteOeuvre"}}</button>
 </div>

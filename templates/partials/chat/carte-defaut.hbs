@@ -6,10 +6,10 @@
     <div class="grid-2">
         <div>{{localize "agone.common.type"}}</div>
         <div>{{localize "agone.common.cout"}}</div>
-        <div>{{configLocalize "typesAvantageDefaut" data.type}}</div>
-        <div>{{data.cout}}</div>
+        <div>{{configLocalize "typesAvantageDefaut" system.type}}</div>
+        <div>{{system.cout}}</div>
     </div>
-    <div>{{editor content=data.description target="data.description" owner=true}}</div>
+    <div>{{editor system.description target="system.description" owner=true}}</div>
     <h4 class="bold">En terme de jeu</h4>
-    <div>{{data.descMalus}}</div>
+    <div>{{system.descMalus}}</div>
 </div>

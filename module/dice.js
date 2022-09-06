@@ -49,7 +49,7 @@ export async function jetCaracteristique({actor = null,
     }
     
     // Malus de blessures graves
-    let malusBlessureGrave = actor.getMalusBlessureGrave(actor.data.data.caracSecondaires.nbBlessureGrave);
+    let malusBlessureGrave = actor.getMalusBlessureGrave(actor.system.caracSecondaires.nbBlessureGrave);
     if(malusBlessureGrave < 0) {
         rollData.malusBlessureGrave = malusBlessureGrave;
         baseFormula += " + @malusBlessureGrave";
@@ -249,7 +249,7 @@ export async function jetCompetence({actor = null,
     }
 
     // Malus de blessures graves
-    let malusBlessureGrave = actor.getMalusBlessureGrave(actor.data.data.caracSecondaires.nbBlessureGrave);
+    let malusBlessureGrave = actor.getMalusBlessureGrave(actor.system.caracSecondaires.nbBlessureGrave);
     if(malusBlessureGrave < 0) {
         rollData.malusBlessureGrave = malusBlessureGrave;
         baseFormula += " + @malusBlessureGrave";
@@ -455,12 +455,12 @@ function _processJetCompetenceOptions(form) {
 
 export async function combatArme(actor, arme, type) {
     let gererBonusAspect = actor.gererBonusAspect();
-    let statsCombat = actor.getStatsCombat(arme.data.data.competence, arme.data.data.minForce, arme.data.data.minAgilite);
+    let statsCombat = actor.getStatsCombat(arme.system.competence, arme.system.minForce, arme.system.minAgilite);
 
     console.log(game.combat, actor.estCombattantActif());
     
     if(statsCombat === null) {
-        ui.notifications.error(`${game.i18n.localize("agone.notifications.errorDonnesArme")} ${arme.data.name}.`)
+        ui.notifications.error(`${game.i18n.localize("agone.notifications.errorDonnesArme")} ${arme.name}.`)
         return;
     }
 
@@ -486,7 +486,7 @@ export async function combatArme(actor, arme, type) {
         nbCibles = game.user.targets.size;
         let cibles = [];
         game.user.targets.forEach(token => {
-            cibles.push({id: token.id, name: token.actor.data.name, combatant: token.combatant});
+            cibles.push({id: token.id, name: token.actor.name, combatant: token.combatant});
         });
 
         ciblesData = {
@@ -503,15 +503,15 @@ export async function combatArme(actor, arme, type) {
 
     // Construction des strutures de données pour l'affichage de la boite de dialogue
     let armeData = {
-        nomArme: arme.data.name
+        nomArme: arme.name
     };
 
     let dialogOptions;
     if(type == "Attaque") {
-        statsCombat.modifAttaque = arme.data.data.modifAttaque;
-        armeData.distance = arme.data.data.style == "trait" || arme.data.data.style == "jet" ? "distance" : "contact";
+        statsCombat.modifAttaque = arme.system.modifAttaque;
+        armeData.distance = arme.system.style == "trait" || arme.system.style == "jet" ? "distance" : "contact";
         let attaquantData = {
-            potAttaque: statsCombat.rangCarac + statsCombat.rangComp + statsCombat.bonusAspect + statsCombat.malusManiement + arme.data.data.modifAttaque,
+            potAttaque: statsCombat.rangCarac + statsCombat.rangComp + statsCombat.bonusAspect + statsCombat.malusManiement + arme.system.modifAttaque,
             specialisation : statsCombat.specialisation,
             labelSpecialisation: statsCombat.labelSpecialisation
         };
@@ -519,9 +519,9 @@ export async function combatArme(actor, arme, type) {
         dialogOptions = await getJetAttaqueOptions({attaquantData: attaquantData, armeData: armeData, cfgData: CONFIG.agone});
     }
     else if(type == "Parade") {
-        statsCombat.modifParade = arme.data.data.modifParade;
+        statsCombat.modifParade = arme.system.modifParade;
         let defenseurData = {
-            potDefense: statsCombat.rangCarac + statsCombat.rangComp + statsCombat.bonusAspect + statsCombat.malusManiement + arme.data.data.modifParade,
+            potDefense: statsCombat.rangCarac + statsCombat.rangComp + statsCombat.bonusAspect + statsCombat.malusManiement + arme.system.modifParade,
             typeDefense: "parade",
             specialisation : statsCombat.specialisation,
             labelSpecialisation: statsCombat.labelSpecialisation
@@ -664,7 +664,7 @@ export async function combatArme(actor, arme, type) {
      // Assignation des données au template
     let templateContext = {
         stats: rollStats,
-        arme: arme.data,
+        arme: arme.system,
         type: type,
         ciblesData : type == "Attaque" ? ciblesData : null,
         roll: renderedRoll
@@ -696,8 +696,8 @@ export async function combatArme(actor, arme, type) {
     if(type == "Attaque" && nbCibles > 0) {
         let combattant = ciblesData.cibles[0].combatant;
         if(combattant) {
-            let bd = statsCombat.bonusDommages + arme.data.data.modifDommages;
-            combattant.setAttaqueCombattant(actor.data.name, arme.data.data.type, statsCombat.tai, rollResult.total, bd);
+            let bd = statsCombat.bonusDommages + arme.system.modifDommages;
+            combattant.setAttaqueCombattant(actor.name, arme.system.type, statsCombat.tai, rollResult.total, bd);
         }
     }
 
@@ -846,7 +846,7 @@ export async function sortEmprise(mage, danseur, sort, isIntuitif = false) {
 
     // Pas de jet de sort si le Danseur n'a plus d'endurance
     if(danseur.data.data.endurance.value <= 0) {
-        ui.notifications.warn(`${danseur.data.name} ${game.i18n.localize("agone.notifications.warnDanseurEpuise")}`);
+        ui.notifications.warn(`${danseur.name} ${game.i18n.localize("agone.notifications.warnDanseurEpuise")}`);
         return;
     }
 
@@ -854,15 +854,15 @@ export async function sortEmprise(mage, danseur, sort, isIntuitif = false) {
     // Le sort est défini (magie non intuitive)
     if(!isIntuitif) {
         // Ajout sur le sort des données pour gérer le cas des sorts d'une obédience différente de celle du Mage
-        sort.data.data.diffObedience = false;
-        sort.data.data.seuilTotal = sort.data.data.seuil;
+        sort.system.diffObedience = false;
+        sort.system.seuilTotal = sort.system.seuil;
 
-        if(sort.data.data.resonance != statsEmprise.resonance) {
-            sort.data.data.diffObedience = true;
-            sort.data.data.seuilTotal += 5;
+        if(sort.system.resonance != statsEmprise.resonance) {
+            sort.system.diffObedience = true;
+            sort.system.seuilTotal += 5;
         }
 
-        potEmprise = statsEmprise.emprise + Math.min(statsEmprise.rangResonance, statsEmprise.connDanseurs) + statsEmprise.bonusEsprit + danseur.data.data.bonusEmprise; 
+        potEmprise = statsEmprise.emprise + Math.min(statsEmprise.rangResonance, statsEmprise.connDanseurs) + statsEmprise.bonusEsprit + danseur.system.bonusEmprise; 
     }
     else {
         potEmprise = statsEmprise.creativite + Math.min(statsEmprise.rangResonance,  danseur.data.data.empathie) + statsEmprise.bonusAme; 
@@ -877,14 +877,14 @@ export async function sortEmprise(mage, danseur, sort, isIntuitif = false) {
     };
 
     let danseurData = {
-        nomDanseur: danseur.data.name
+        nomDanseur: danseur.name
     };
 
     let sortData = {
-        nomSort: isIntuitif ? game.i18n.localize("agone.items.sortIntuitif") : sort.data.name,
-        seuil: isIntuitif ? 0 : sort.data.data.seuil,
-        seuilTotal: isIntuitif ? 0 : sort.data.data.seuilTotal,
-        diffObedience: isIntuitif ? false : sort.data.data.diffObedience,
+        nomSort: isIntuitif ? game.i18n.localize("agone.items.sortIntuitif") : sort.name,
+        seuil: isIntuitif ? 0 : sort.system.seuil,
+        seuilTotal: isIntuitif ? 0 : sort.system.seuilTotal,
+        diffObedience: isIntuitif ? false : sort.system.diffObedience,
         isIntuitif: isIntuitif
     };
 
@@ -904,7 +904,7 @@ export async function sortEmprise(mage, danseur, sort, isIntuitif = false) {
     }
     else {
         if(dialogOptions.magieInstantanee) {
-            sort.data.data.seuilTotal = sort.data.data.diffObedience == true ? sort.data.data.seuil * 2 + 5 : (sort.data.data.seuil * 2);
+            sort.system.seuilTotal = sort.system.diffObedience == true ? sort.system.seuil * 2 + 5 : (sort.system.seuil * 2);
         }
     }
 
@@ -929,8 +929,8 @@ export async function sortEmprise(mage, danseur, sort, isIntuitif = false) {
     if(rollResult == null) return;
 
     // On baisse l'endurance du danseur d'un point
-    let valEndurance = danseur.data.data.endurance.value -1;
-    danseur.update({"data.endurance.value": valEndurance});
+    let valEndurance = danseur.system.endurance.value -1;
+    danseur.update({"system.endurance.value": valEndurance});
 
     // Construction du jeu de données pour alimenter le template
     let rollStats = {
@@ -938,11 +938,11 @@ export async function sortEmprise(mage, danseur, sort, isIntuitif = false) {
         specialisation: statsEmprise.specialisation,
         labelSpecialisation: statsEmprise.labelSpecialisation,
         utiliseSpecialisation: dialogOptions.utiliseSpecialisation,
-        difficulte: isIntuitif ? seuilTotalIntuitif : sort.data.data.seuilTotal,
+        difficulte: isIntuitif ? seuilTotalIntuitif : sort.system.seuilTotal,
         isIntuitif: isIntuitif
     }
 
-    rollStats.marge = isIntuitif ? rollResult.total - seuilTotalIntuitif : rollResult.total - sort.data.data.seuilTotal;
+    rollStats.marge = isIntuitif ? rollResult.total - seuilTotalIntuitif : rollResult.total - sort.system.seuilTotal;
     if(rollStats.marge <= -15) {
         rollStats.isEchecCritiqueMarge = true;
         rollStats.valeurCritique = rollStats.valeurCritique ? Math.min(rollStats.valeurCritique, rollStats.marge + 5) : rollStats.marge + 5;
@@ -963,7 +963,7 @@ export async function sortEmprise(mage, danseur, sort, isIntuitif = false) {
         stats: rollStats,
         mage: mageData,
         danseur: danseurData,
-        sort:  isIntuitif ? null : sort.data,
+        sort:  isIntuitif ? null : sort.system,
         roll: renderedRoll
     }
 
@@ -1058,7 +1058,7 @@ function _processJetSortEmpriseOptions(form) {
 
 // Jet d'une oeuvre d'Art magique, avec affichage du message dans le chat
 export async function oeuvre(artiste, oeuvre, artMagiqueImpro = null, isArtImpro = false) {
-    let artMagique = isArtImpro ? artMagiqueImpro : oeuvre.data.data.artMagique;
+    let artMagique = isArtImpro ? artMagiqueImpro : oeuvre.system.artMagique;
     let statsArtMagique;
     let potArtMagique;
 
@@ -1074,7 +1074,7 @@ export async function oeuvre(artiste, oeuvre, artMagiqueImpro = null, isArtImpro
             statsArtMagique = artiste.getStatsArtMagique(artMagique);
         }
         potArtMagique = statsArtMagique.art + Math.min(statsArtMagique.rangArtMagique, statsArtMagique.rangCompetence) + statsArtMagique.bonusAme;
-        oeuvre.data.data.seuilTotal = oeuvre.data.data.seuil;
+        oeuvre.data.data.seuilTotal = oeuvre.system.seuil;
     }
     
     // Construction des strutures de données pour l'affichage de la boite de dialogue
@@ -1085,10 +1085,10 @@ export async function oeuvre(artiste, oeuvre, artMagiqueImpro = null, isArtImpro
     };
 
     let oeuvreData = {
-        nomOeuvre: isArtImpro ? game.i18n.localize("agone.actors.oeuvreImprovisee") : oeuvre.data.name,
-        seuil: isArtImpro ? 0 : oeuvre.data.data.seuil,
-        artMagique: isArtImpro ? artMagiqueImpro : oeuvre.data.data.artMagique,
-        saison: isArtImpro ? "" : oeuvre.data.data.saison,
+        nomOeuvre: isArtImpro ? game.i18n.localize("agone.actors.oeuvreImprovisee") : oeuvre.name,
+        seuil: isArtImpro ? 0 : oeuvre.system.seuil,
+        artMagique: isArtImpro ? artMagiqueImpro : oeuvre.system.artMagique,
+        saison: isArtImpro ? "" : oeuvre.system.saison,
         instruments: isArtImpro ? artiste.getInstrumentsPratiques() : null,
         isArtImpro: isArtImpro
     };
@@ -1317,12 +1317,12 @@ export async function contreMagie(mage, danseur, utiliseHeroisme) {
 
     // Construction des strutures de données pour l'affichage du message
     let mageData = {
-        potEmprise: statsEmprise.emprise + Math.min(statsEmprise.rangResonance, statsEmprise.connDanseurs) + statsEmprise.bonusEsprit + danseur.data.data.bonusEmprise,
+        potEmprise: statsEmprise.emprise + Math.min(statsEmprise.rangResonance, statsEmprise.connDanseurs) + statsEmprise.bonusEsprit + danseur.system.bonusEmprise,
         resonance: statsEmprise.resonance
     };
 
     let danseurData = {
-        nomDanseur: danseur.data.name
+        nomDanseur: danseur.name
     };
 
     // On lance le jet de dé depuis la fonction de jet de compétence 
@@ -1333,7 +1333,7 @@ export async function contreMagie(mage, danseur, utiliseHeroisme) {
         jetDefautInterdit: true,
         rangCarac: statsEmprise.emprise,
         bonusAspect: statsEmprise.bonusEsprit,
-        bonusEmprise: danseur.data.data.bonusEmprise,
+        bonusEmprise: danseur.system.bonusEmprise,
         utiliseHeroisme: utiliseHeroisme,
         afficherDialog: false,
         envoiMessage: false
@@ -1482,8 +1482,8 @@ export async function jetDefense(defenseur, typeDef) {
     let titrePersonnalise;
     let defenseurData = {
         typeDefense: "esquive", // Pour gestion fenetre de dialogue
-        seuilBlessureCritique: defenseur.data.data.caracSecondaires.seuilBlessureCritique,
-        seuilBlessureGrave: defenseur.data.data.caracSecondaires.seuilBlessureGrave
+        seuilBlessureCritique: defenseur.system.caracSecondaires.seuilBlessureCritique,
+        seuilBlessureGrave: defenseur.system.caracSecondaires.seuilBlessureGrave
     };
 
     if(typeDef == "esquive") {

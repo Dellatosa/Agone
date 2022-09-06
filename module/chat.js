@@ -21,7 +21,7 @@ function onJetSort(event) {
     let danseur = mage.items.get(card.dataset.itemId);
     let sort = mage.items.get(sortCard.dataset.sortId);
 
-    if(sort.data.data.resonance == "" || sort.data.data.resonance == "aucun" || sort.data.data.seuil <= 0) {
+    if(sort.system.resonance == "" || sort.system.resonance == "aucun" || sort.system.seuil <= 0) {
         ui.notifications.warn(game.i18n.localize("agone.notifications.errorDonneesSort"));
         return;
     }
@@ -42,7 +42,7 @@ function onJetOeuvre(event) {
     let artiste = getCardActor(card);
     let oeuvre = artiste.items.get(card.dataset.itemId);
 
-    if(oeuvre.data.data.artMagique == "" || oeuvre.data.data.artMagique == "aucun" || oeuvre.data.data.seuil <= 0) {
+    if(oeuvre.system.artMagique == "" || oeuvre.system.artMagique == "aucun" || oeuvre.system.seuil <= 0) {
         ui.notifications.warn(game.i18n.localize("agone.notifications.errorDonneesOeuvre"));
         return;
     }

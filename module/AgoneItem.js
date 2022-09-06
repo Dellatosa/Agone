@@ -24,7 +24,7 @@ export default class AgoneItem extends Item {
         };
 
         let cardData = {
-            ...this.data,
+            ...this,
             isToken: this.actor.isToken ? 1 : 0,
             owner: this.actor.isToken ? this.actor.token.id : this.actor.id
         };
@@ -41,11 +41,11 @@ export default class AgoneItem extends Item {
                 }
             });
 
-            cardData.data.sorts = sorts;
+            cardData.system.sorts = sorts;
         }
         
         chatData.content = await renderTemplate(this.chatTemplate[this.type], cardData);
-        chatData.roll = true;
+        //chatData.roll = true;
 
         return ChatMessage.create(chatData);
     }

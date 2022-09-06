@@ -6,8 +6,8 @@
     <div class="grid-2">
         <div>{{localize "agone.items.resonance"}}</div>
         <div>{{localize "agone.items.seuil"}}</div>
-        <div>{{configLocalize "resonances" data.resonance}}</div>
-        <div>{{data.seuil}}</div>
+        <div>{{configLocalize "resonances" system.resonance}}</div>
+        <div>{{system.seuil}}</div>
     </div>
-    <div>{{editor content=data.description target="data.description" owner=true}}</div>
+    <div>{{editor system.description target="system.description" owner=true}}</div>
 </div>

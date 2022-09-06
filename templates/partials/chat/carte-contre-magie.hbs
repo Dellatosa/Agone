@@ -12,7 +12,7 @@
         {{#each danseurs as | danseur | }}
             <div class="ligne-btn-sort danseur" data-danseur-id="{{danseur.id}}">
                 <a class="editer-item-ctr-magie" title="{{localize "agone.common.details"}}"><i class="fas fa-book-open"></i></a>
-                <button class="jet-contre-magie">{{danseur.data.name}} ({{danseur.data.data.bonusEmprise}})</button> <!-- <i class="fas fa-hand-sparkles"></i> -->
+                <button class="jet-contre-magie">{{danseur.name}} ({{danseur.system.bonusEmprise}})</button> <!-- <i class="fas fa-hand-sparkles"></i> -->
             </div>
         {{/each}}
     </div>

@@ -21,7 +21,7 @@
     <a class="item-roll"><img src="{{img}}" title="{{localize 'agone.actors.voirArme'}}" height="32" width="32"/></a>
     <div>{{name}}</div>
     <div>
-        <select class="inline-edit" data-field="data.equipee">
+        <select class="inline-edit" data-field="system.equipee">
             {{#select system.equipee}}
                 <option value=""></option>
                 {{#if (eq system.style "melee") }}
@@ -48,7 +48,7 @@
             {{/select}}
         </select>
     </div>
-    <div>{{configLocalize "stylesArme" data.style}}</div>
+    <div>{{configLocalize "stylesArme" system.style}}</div>
     <div>{{system.modifInit}}</div>
     <div>{{system.modifAttaque}}</div>
     <div>{{system.modifParade}}</div>
