@@ -12,12 +12,12 @@
 {{#each armures as |armure id|}}
 <div class="ligne-armure item" data-item-id="{{armure._id}}">
     <a class="item-roll"><img src="{{img}}" title="{{localize 'agone.actors.voirArmure'}}" height="32" width="32"/></a>
-    <div><input class="inline-chk" data-field="data.equipee" name="data.equipee" type="checkbox" data-type="Boolean" {{checked data.equipee}}/></div>
+    <div><input class="inline-chk" data-field="system.equipee" name="system.equipee" type="checkbox" data-type="Boolean" {{checked system.equipee}}/></div>
     <div>{{name}}</div>
-    <div>{{configLocalize "typesArmure" data.type}}</div>
-    <div>{{data.protection}}</div>
-    <div>{{data.malus}}</div>
-    <div>{{data.malusPerception}}</div>
+    <div>{{configLocalize "typesArmure" system.type}}</div>
+    <div>{{system.protection}}</div>
+    <div>{{system.malus}}</div>
+    <div>{{system.malusPerception}}</div>
     <a class="editer-item" title="{{localize 'agone.common.editer'}}"><i class="fas fa-edit"></i></a>
     <a class="supprimer-item" title="{{localize 'agone.common.supprimer'}}"><i class="fas fa-trash"></i></a>
 </div>            

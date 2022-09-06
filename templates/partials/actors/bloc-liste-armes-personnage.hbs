@@ -22,43 +22,43 @@
     <div>{{name}}</div>
     <div>
         <select class="inline-edit" data-field="data.equipee">
-            {{#select data.equipee}}
+            {{#select system.equipee}}
                 <option value=""></option>
-                {{#if (eq data.style "melee") }}
-                    {{#if (eq data.diffTai -1)}}
+                {{#if (eq system.style "melee") }}
+                    {{#if (eq system.diffTai -1)}}
                         <option value="1main">1 m.</option>
                     {{/if}}
-                    {{#if (eq data.diffTai 0)}}
+                    {{#if (eq system.diffTai 0)}}
                         <option value="1main">1 m.</option>
                         <option value="2mains">2 m.</option>
                     {{/if}}
-                    {{#if (eq data.diffTai 1)}}
+                    {{#if (eq system.diffTai 1)}}
                         <option value="2mains">2 m.</option>
                     {{/if}}
                 {{/if}}
-                {{#if (eq data.style "trait") }}
+                {{#if (eq system.style "trait") }}
                     <option value="2mains">2 m.</option>
                 {{/if}}
-                {{#if (eq data.style "jet") }}
+                {{#if (eq system.style "jet") }}
                     <option value="1main">1 m.</option>
                 {{/if}}
-                {{#if (eq data.style "bouclier") }}
+                {{#if (eq system.style "bouclier") }}
                     <option value="secMain">2em m.</option>
                 {{/if}}
             {{/select}}
         </select>
     </div>
     <div>{{configLocalize "stylesArme" data.style}}</div>
-    <div>{{data.modifInit}}</div>
-    <div>{{data.modifAttaque}}</div>
-    <div>{{data.modifParade}}</div>
-    <div>{{data.modifDommages}}</div>
-    <div>{{data.portee}}</div>
+    <div>{{system.modifInit}}</div>
+    <div>{{system.modifAttaque}}</div>
+    <div>{{system.modifParade}}</div>
+    <div>{{system.modifDommages}}</div>
+    <div>{{system.portee}}</div>
     <div>
-        <select class="inline-edit" data-field="data.competence">
-            {{#select data.competence}}
+        <select class="inline-edit" data-field="system.competence">
+            {{#select system.competence}}
                 <option value=""></option>
-                {{#each ../actor.data.data.familleCompetences.epreuves.competences.armes.domaines as |domaine keyDom|}}
+                {{#each ../actor.system.familleCompetences.epreuves.competences.armes.domaines as |domaine keyDom|}}
                     {{#if domaine.label}}
                         <option value="{{keyDom}}">{{localize domaine.label}}</option>
                     {{/if}}
@@ -66,10 +66,10 @@
             {{/select}}
         </select>
     </div>
-    <div>{{configLocalize "typesArme" data.type}}</div>
-    <div>{{#malusFOR data.minForce data.style data.equipee ../actor.data.data.aspects.corps.caracteristiques.force.valeur }}<span class="warn">{{data.minForce}}</span>{{else}}<span>{{data.minForce}}</span>{{/malusFOR}}</div>
-    <div>{{#malusAGI data.minAgilite data.style data.equipee ../actor.data.data.aspects.corps.caracteristiques.agilite.valeur }}<span class="warn">{{data.minAgilite}}</span>{{else}}<span>{{data.minAgilite}}</span>{{/malusAGI}}</div>
-    <div>{{#if data.nonUtilisable }}<span class="warn">{{data.tai}}</span>{{else}}<span>{{data.tai}}</span>{{/if}}</div>
+    <div>{{configLocalize "typesArme" system.type}}</div>
+    <div>{{#malusFOR system.minForce system.style system.equipee ../actor.system.aspects.corps.caracteristiques.force.valeur }}<span class="warn">{{system.minForce}}</span>{{else}}<span>{{system.minForce}}</span>{{/malusFOR}}</div>
+    <div>{{#malusAGI system.minAgilite system.style system.equipee ../actor.system.aspects.corps.caracteristiques.agilite.valeur }}<span class="warn">{{system.minAgilite}}</span>{{else}}<span>{{system.minAgilite}}</span>{{/malusAGI}}</div>
+    <div>{{#if system.nonUtilisable }}<span class="warn">{{system.tai}}</span>{{else}}<span>{{system.tai}}</span>{{/if}}</div>
     <a class="editer-item" title="{{localize 'agone.common.editer'}}"><i class="fas fa-edit"></i></a>
     <a class="supprimer-item" title="{{localize 'agone.common.supprimer'}}"><i class="fas fa-trash"></i></a>
 </div>            

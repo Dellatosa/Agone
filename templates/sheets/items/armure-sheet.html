@@ -10,20 +10,20 @@
             <label class="grid-titre">{{localize "agone.items.malusAgilite"}}</label>
             <label class="grid-titre">{{localize "agone.items.malusPerception"}}</label>
             <div>
-                <select name="data.type">
-                    {{#select data.data.type}}
+                <select name="system.type">
+                    {{#select data.system.type}}
                         {{#each config.typesArmure as |name type|}}
                             <option value="{{type}}">{{localize name}}</option>
                         {{/each}}
                     {{/select}} 
                 </select>
             </div>
-            <div><input name="data.protection" type="text" value="{{data.data.protection}}" data-dtype="Number" placeholder="0"/></div>
-            <div><input name="data.malus" type="text" value="{{data.data.malus}}" data-dtype="Number" placeholder="0"/></div>
-            <div><input name="data.malusPerception" type="text" value="{{data.data.malusPerception}}" data-dtype="Number" placeholder="0" readonly/></div>
+            <div><input name="system.protection" type="text" value="{{data.system.protection}}" data-dtype="Number" placeholder="0"/></div>
+            <div><input name="system.malus" type="text" value="{{data.system.malus}}" data-dtype="Number" placeholder="0"/></div>
+            <div><input name="system.malusPerception" type="text" value="{{data.system.malusPerception}}" data-dtype="Number" placeholder="0" readonly/></div>
         </div>
          <div>{{localize "agone.items.armureDesc"}}</div> 
-         {{editor content=data.data.description target="data.description" button=true owner=true editable=true}}
+         {{editor data.system.description target="system.description" button=true owner=true editable=true}}
     </div>
     <footer class="sheet-footer">
         <div>{{localize "agone.common.type"}} : <span>{{localize "agone.items.armureLabel"}}</span></div>

@@ -7,8 +7,8 @@
         <div class="grid-pvsaison">
             <label class="grid-titre">{{localize "agone.actors.saisonnin"}}</label>
             <div>
-                <select name="data.saisonnin">
-                    {{#select data.data.saisonnin}}
+                <select name="system.saisonnin">
+                    {{#select data.system.saisonnin}}
                         {{#each config.saisonnins as |name type|}}
                             <option value="{{type}}">{{localize name}}</option>
                         {{/each}}
@@ -19,10 +19,10 @@
         <div>
             <span>{{localize "agone.items.pouvoirSaisonDesc"}}</span>
         </div>
-        {{editor content=data.data.description target="data.description" button=true owner=true editable=true}}
+        {{editor data.system.description target="system.description" button=true owner=true editable=true}}
         <div>
             <span>{{localize "agone.items.descEffet"}}</span>
-            <textarea name="data.descEffet" placeholder="{{localize 'agone.items.descEffet'}}">{{data.data.descEffet}}</textarea>
+            <textarea name="system.descEffet" placeholder="{{localize 'agone.items.descEffet'}}">{{data.system.descEffet}}</textarea>
         </div>
     </div>
     <footer class="sheet-footer">

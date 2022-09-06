@@ -7,10 +7,10 @@
         <div>
             <span>{{localize "agone.items.bienfaitDesc"}}</span>
         </div>
-        {{editor content=data.data.description target="data.description" button=true owner=true editable=true}}
+        {{editor data.system.description target="system.description" button=true owner=true editable=true}}
         <div>
             <span>{{localize "agone.items.descBonus"}}</span>
-            <textarea name="data.descBonus" placeholder="{{localize 'agone.items.descBonus'}}">{{data.data.descBonus}}</textarea>
+            <textarea name="system.descBonus" placeholder="{{localize 'agone.items.descBonus'}}">{{data.system.descBonus}}</textarea>
         </div>
     </div>
     <footer class="sheet-footer">

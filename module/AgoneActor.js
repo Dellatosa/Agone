@@ -219,20 +219,20 @@ export default class AgoneActor extends Actor {
     }
 
     calcDiffTaiMR(taiAttaquant) {
-        let data = this.data.data;
+        let data = this.system;
 
         let diff = taiAttaquant - data.caracSecondaires.tai;
         return diff * 2;
     }
 
     getCompetences(famille) {
-        let data = this.data.data;
+        let data = this.system;
 
         return data.familleCompetences[famille];
     }
 
     getCompData(famille, competence, domaine) {
-        let data = this.data.data;
+        let data = this.system;
 
         let result = {
             rangComp: 0, 
@@ -269,7 +269,7 @@ export default class AgoneActor extends Actor {
     }
 
     getCaracData(caracteristique) {
-        let data = this.data.data;
+        let data = this.system;
         let result = {
             rangCarac: 0, 
             labelCarac: "ND", 
@@ -292,7 +292,7 @@ export default class AgoneActor extends Actor {
     }
 
     getAspect(caracteristique) {
-        let data = this.data.data;
+        let data = this.system;
 
         if(data.aspects.corps.caracteristiques.hasOwnProperty(caracteristique)) {
             return "corps";
@@ -308,7 +308,7 @@ export default class AgoneActor extends Actor {
     }
 
     getStatsCombat(compArme, minForce, minAgilite) {
-        let data = this.data.data;
+        let data = this.system;
 
         if(compArme) {
             let result = {
@@ -358,7 +358,7 @@ export default class AgoneActor extends Actor {
     }
 
     getStatsEmprise() {
-        let data = this.data.data;
+        let data = this.system;
 
         let result = {emprise: 0, creativite: 0, resonance: "ND", specialisation: false, labelSpecialisation: "ND", rangResonance: 0, connDanseurs: 0, bonusEsprit: 0, labelEsprit: "ND", bonusAme: 0, labelAme: "ND", malusBlessureGrave: null};
         result.emprise = data.aspects.esprit.caracteristiques.emprise.valeur;
@@ -378,7 +378,7 @@ export default class AgoneActor extends Actor {
     }
 
     getStatsArtMagique(artMagique, instrument = null) {
-        let data = this.data.data;
+        let data = this.system;
 
         let compId;
         switch(artMagique) {
@@ -426,7 +426,7 @@ export default class AgoneActor extends Actor {
     getInstrumentsPratiques() {
         //let nbDomaines = 0;
         let instruments = [];
-        let domainesMusique = this.data.data.familleCompetences.societe.competences.musique.domaines;
+        let domainesMusique = this.system.familleCompetences.societe.competences.musique.domaines;
         for(let[keyDom, domaine] of Object.entries(domainesMusique)) {
             if(domaine.rang > 0) {
                 //nbDomaines += 1;
@@ -444,12 +444,12 @@ export default class AgoneActor extends Actor {
 
     getMalusArmure(carac) {
         let malusArmure = 0;
-        let armuresEquip = this.data.items.filter(function (item) { return item.type == "Armure" && item.data.data.equipee == true});
+        let armuresEquip = this.items.filter(function (item) { return item.type == "Armure" && item.system.equipee == true});
         armuresEquip.forEach( armure => {
             if(carac == "agilite")
-                malusArmure += armure.data.data.malus;
+                malusArmure += armure.system.malus;
             else if (carac == "perception")
-                malusArmure += armure.data.data.malusPerception;
+                malusArmure += armure.system.malusPerception;
         });
         
         if(malusArmure < 0) 
@@ -460,9 +460,9 @@ export default class AgoneActor extends Actor {
 
     getProtectionArmure() {
         let protectionArmure = 0;
-        let armuresEquip = this.data.items.filter(function (item) { return item.type == "Armure" && item.data.data.equipee == true});
+        let armuresEquip = this.items.filter(function (item) { return item.type == "Armure" && item.system.equipee == true});
         armuresEquip.forEach( armure => {
-            protectionArmure += armure.data.data.protection;
+            protectionArmure += armure.system.protection;
         });
 
         return protectionArmure;
@@ -482,7 +482,7 @@ export default class AgoneActor extends Actor {
     }
 
     getDomaineInstrument(instrument) {
-        let data = this.data.data;
+        let data = this.system;
 
         for (let [key, domaine] of Object.entries(data.familleCompetences.societe.competences.musique.domaines)) {
             if(domaine.label == instrument) {
@@ -492,7 +492,7 @@ export default class AgoneActor extends Actor {
     }
 
     getDanseurs() {
-        return this.data.items.filter(function (item) { return item.type == "Danseur"});
+        return this.items.filter(function (item) { return item.type == "Danseur"});
     }
 
     gererBonusAspect() {
@@ -500,7 +500,7 @@ export default class AgoneActor extends Actor {
     }
 
     depenserHeroisme() {
-        let data = this.data.data;
+        let data = this.system;
 
         if(data.caracSecondaires.heroisme.value > 0) {
             let nouvelleVal = data.caracSecondaires.heroisme.value - 1;
@@ -513,14 +513,14 @@ export default class AgoneActor extends Actor {
     }
 
     subirDommages(nbDommages) {
-        let data = this.data.data;
+        let data = this.system;
 
         let nouvelleVal = data.caracSecondaires.pdv.value - nbDommages;
         this.update({"data.caracSecondaires.pdv.value": nouvelleVal});
     }
 
     subirBlessureGrave() {
-        let data = this.data.data;
+        let data = this.system;
 
         let nouvelleVal = data.caracSecondaires.nbBlessureGrave + 1;
         this.update({"data.caracSecondaires.nbBlessureGrave": nouvelleVal});
@@ -534,21 +534,21 @@ export default class AgoneActor extends Actor {
         if(equipee == "") return;
 
         if(equipee == "2mains") {
-            let autresArmesEquip = this.data.items.filter(function (item) { return item.type == "Arme" && item.id != itemId && item.data.data.equipee != ""});
+            let autresArmesEquip = this.items.filter(function (item) { return item.type == "Arme" && item.id != itemId && item.system.equipee != ""});
             autresArmesEquip.forEach(arme => {
                 arme.update({"data.equipee": ""});
             });
         }
 
         if(equipee == "1main") {
-            let autresArmesEquip = this.data.items.filter(function (item) { return item.type == "Arme" && item.id != itemId && item.data.data.style != "bouclier" && item.data.data.equipee != ""});
+            let autresArmesEquip = this.items.filter(function (item) { return item.type == "Arme" && item.id != itemId && item.system.style != "bouclier" && item.system.equipee != ""});
             autresArmesEquip.forEach(arme => {
                 arme.update({"data.equipee": ""});
             });
         }
 
         if(equipee == "secMain") {
-            let autresArmesEquip = this.data.items.filter(function (item) { return item.type == "Arme" && item.id != itemId && item.data.data.equipee == "2mains"});
+            let autresArmesEquip = this.items.filter(function (item) { return item.type == "Arme" && item.id != itemId && item.system.equipee == "2mains"});
             autresArmesEquip.forEach(arme => {
                 arme.update({"data.equipee": ""});
             });
@@ -556,7 +556,7 @@ export default class AgoneActor extends Actor {
     }
 
     getInitiativeMod() {
-        let data = this.data.data;
+        let data = this.system;
 
         let modInit = 0;
 
@@ -576,11 +576,11 @@ export default class AgoneActor extends Actor {
 
         // Bonus de l'arme
         // TODO - corriger le calcul pour n'inclure que l'arme utilisée en attaque.
-        let armesEquipees = this.items.filter(function (item) { return item.type == "Arme" && item.data.data.type != "bouclier" && item.data.data.equipee != ""});
+        let armesEquipees = this.items.filter(function (item) { return item.type == "Arme" && item.system.type != "bouclier" && item.system.equipee != ""});
         
         armesEquipees.forEach(armeEq => {
-            if(armeEq.data.data.modifInit) {
-                modInit += armeEq.data.data.modifInit;
+            if(armeEq.system.modifInit) {
+                modInit += armeEq.system.modifInit;
             }
         });
 
@@ -590,7 +590,7 @@ export default class AgoneActor extends Actor {
     reposDanseurs() {
 
         this.getDanseurs().forEach(danseur => {
-            danseur.update({"data.endurance.value": danseur.data.data.endurance.max });
+            danseur.update({"data.endurance.value": danseur.system.endurance.max });
         });
     }
 

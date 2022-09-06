@@ -9,19 +9,19 @@
             <label class="grid-titre">{{localize "agone.items.nomDemon"}}</label>
             <label class="grid-titre">{{localize "agone.items.nomAdvocatus"}}</label>
             <div>
-                <select name="data.cercleDemon">
-                    {{#select data.data.cercleDemon}}
+                <select name="system.cercleDemon">
+                    {{#select data.system.cercleDemon}}
                         {{#each config.cerclesDemon as |name type|}}
                             <option value="{{type}}">{{localize name}}</option>
                         {{/each}}
                     {{/select}}
                 </select>
             </div>
-            <div><input name="data.nomDemon" type="text" value="{{data.data.nomDemon}}" placeholder="{{localize 'agone.items.nomDemon'}}"/></div>
-            <div><input name="data.nomAdvocatus" type="text" value="{{data.data.nomAdvocatus}}" placeholder="{{localize 'agone.items.nomAdvocatus'}}"/></div>
+            <div><input name="system.nomDemon" type="text" value="{{data.system.nomDemon}}" placeholder="{{localize 'agone.items.nomDemon'}}"/></div>
+            <div><input name="system.nomAdvocatus" type="text" value="{{data.system.nomAdvocatus}}" placeholder="{{localize 'agone.items.nomAdvocatus'}}"/></div>
         </div>
          <div>{{localize "agone.items.termes"}}</div> 
-         {{editor content=data.data.termes target="data.termes" button=true owner=true editable=true}}
+         {{editor data.system.termes target="system.termes" button=true owner=true editable=true}}
     </div>
     <footer class="sheet-footer">
         <div>{{localize "agone.common.type"}} : <span>{{localize "agone.items.connivenceLabel"}}</span></div>

@@ -9,17 +9,17 @@
             <label class="grid-titre">{{localize "agone.items.modifAttaque"}}</label>
             <label class="grid-titre">{{localize "agone.items.modifDefense"}}</label>
             <label class="grid-titre">{{localize "agone.items.modifDommages"}}</label>
-            <div><input name="data.modifInit" type="text" value="{{data.data.modifInit}}" data-dtype="Number" placeholder="0"/></div>
-            <div><input name="data.modifAttaque" type="text" value="{{data.data.modifAttaque}}" data-dtype="Number" placeholder="0"/></div>
-            <div><input name="data.modifDefense" type="text" value="{{data.data.modifDefense}}" data-dtype="Number" placeholder="0"/></div>
-            <div><input name="data.modifDommages" type="text" value="{{data.data.modifDommages}}" data-dtype="Number" placeholder="0"/></div>
+            <div><input name="system.modifInit" type="text" value="{{data.system.modifInit}}" data-dtype="Number" placeholder="0"/></div>
+            <div><input name="system.modifAttaque" type="text" value="{{data.system.modifAttaque}}" data-dtype="Number" placeholder="0"/></div>
+            <div><input name="system.modifDefense" type="text" value="{{data.system.modifDefense}}" data-dtype="Number" placeholder="0"/></div>
+            <div><input name="system.modifDommages" type="text" value="{{data.system.modifDommages}}" data-dtype="Number" placeholder="0"/></div>
         </div>
          <div>{{localize "agone.items.manoeuvreDesc"}}</div> 
-            {{editor content=data.data.description target="data.description" button=true owner=true editable=true}}
+            {{editor data.system.description target="system.description" button=true owner=true editable=true}}
         </div>
         <div>
             <span>{{localize "agone.items.condition"}}</span>
-            <textarea name="data.condition" placeholder="{{localize 'agone.items.condition'}}">{{data.data.condition}}</textarea>
+            <textarea name="system.condition" placeholder="{{localize 'agone.items.condition'}}">{{data.system.condition}}</textarea>
         </div>
     <footer class="sheet-footer">
         <div>{{localize "agone.common.type"}} : <span>{{localize "agone.items.manoeuvreLabel"}}</span></div>

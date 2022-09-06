@@ -230,7 +230,7 @@ export default class AgoneActorSheet extends ActorSheet {
         let itemId = element.closest(".item").dataset.itemId;
         let item = this.actor.items.get(itemId);
         
-        let content = `<p>${game.i18n.localize("agone.common.objet")} : ${item.data.name}<br>${game.i18n.localize("agone.common.confirmSupprText")}<p>`
+        let content = `<p>${game.i18n.localize("agone.common.objet")} : ${item.name}<br>${game.i18n.localize("agone.common.confirmSupprText")}<p>`
         let dlg = Dialog.confirm({
             title: game.i18n.localize("agone.common.confirmSuppr"),
             content: content,
@@ -262,7 +262,7 @@ export default class AgoneActorSheet extends ActorSheet {
         let field = element.dataset.field;
 
         let dtField = field.split(".");
-        let val = !item.data[dtField[0]][dtField[1]];
+        let val = !item.system[dtField[1]];
 
         return item.update({ [field]: val });
     }
@@ -271,7 +271,7 @@ export default class AgoneActorSheet extends ActorSheet {
         event.preventDefault();
         const element = event.currentTarget;
 
-        let field = "data.caracSecondaires.mouvement"
+        let field = "system.caracSecondaires.mouvement"
         this.actor.update({ [field]: CONFIG.agone.peuple[element.value].mv });
     }
 

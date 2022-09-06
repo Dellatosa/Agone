@@ -15,13 +15,13 @@
 <div class="ligne-oeuvre item" data-item-id="{{oeuvre._id}}">
     <a class="item-roll"><img src="{{img}}" title="{{localize 'agone.actors.voirOeuvre'}}" height="32" width="32"/></a>
     <div>{{name}}</div>
-    <div>{{configLocalize "arts" data.artMagique}}</div>
-    <div>{{configLocalize "saisons" data.saison}}</div>
-    <div>{{configLocalize "instruments" data.instrument}}</div>
-    <div>{{data.seuil}}</div>
-    <div>{{data.portee}}</div>
-    <div>{{data.tempsPreparation}}</div>
-    <div>{{data.dureeOeuvre}}</div>
+    <div>{{configLocalize "arts" system.artMagique}}</div>
+    <div>{{configLocalize "saisons" system.saison}}</div>
+    <div>{{configLocalize "instruments" system.instrument}}</div>
+    <div>{{system.seuil}}</div>
+    <div>{{system.portee}}</div>
+    <div>{{system.tempsPreparation}}</div>
+    <div>{{system.dureeOeuvre}}</div>
     <a class="editer-item" title="{{localize 'agone.common.editer'}}"><i class="fas fa-edit"></i></a>
     <a class="supprimer-item" title="{{localize 'agone.common.supprimer'}}"><i class="fas fa-trash"></i></a>
 </div>            

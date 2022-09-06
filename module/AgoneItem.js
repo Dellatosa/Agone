@@ -14,7 +14,7 @@ export default class AgoneItem extends Item {
 
     prepareData() {
         super.prepareData();
-        let data = this.data.data;
+        let data = this.system;
     }
 
     async roll() {
@@ -31,11 +31,11 @@ export default class AgoneItem extends Item {
 
         if(this.type == "Danseur") {
             let sorts = [];
-            this.data.data.sortsConnus.forEach(id => {
+            this.system.sortsConnus.forEach(id => {
                 let sort = this.actor.items.get(id);
                 if(sort) {
-                    if(sort.data.data.resonance != this.actor.data.data.caracSecondaires.resonance) {
-                        sort.data.data.diffObedience = true;
+                    if(sort.system.resonance != this.actor.system.caracSecondaires.resonance) {
+                        sort.system.diffObedience = true;
                     }
                     sorts.push(sort);
                 }
@@ -51,14 +51,14 @@ export default class AgoneItem extends Item {
     }
 
     updateMemoireDispo(memMax) {
-        if(this.data.data.sortsConnus.length > 0) {
+        if(this.system.sortsConnus.length > 0) {
             // Le danseur a des sorts connus. On déduit leur valeur de la memoire max.
             if(this.actor) {
                 // Le danseur est lié à un personnage, on cherche dans les sorts du personnage
-                let sortsPerso = this.actor.data.items.filter(function (item) { return item.type == "Sort"});
+                let sortsPerso = this.actor.items.filter(function (item) { return item.type == "Sort"});
                 sortsPerso.forEach( sort => {
-                    let sc = this.data.data.sortsConnus.find( id => id == sort.id)
-                    if(sc !== undefined) memMax -= Math.floor(sort.data.data.seuil / 5);
+                    let sc = this.system.sortsConnus.find( id => id == sort.id)
+                    if(sc !== undefined) memMax -= Math.floor(sort.system.seuil / 5);
                 });  
             }
         }
@@ -76,34 +76,35 @@ function onCloseAgoneItemSheet(itemSheet) {
     // Modification sur une arme
     if(itemSheet.item.type == "Arme" && itemSheet.actor) {
         // Calcul de la différence de TAI entre l'arme et le personnage qui l'utilise
-        let diff = itemSheet.item.data.data.tai - itemSheet.actor.data.data.caracSecondaires.tai;
-        itemSheet.item.update({"data.diffTai": diff });
+        let diff = itemSheet.item.system.tai - itemSheet.actor.system.caracSecondaires.tai;
+        itemSheet.item.update({"system.diffTai": diff });
         if(diff < -1 || diff > 1) {
-            itemSheet.item.update({"data.nonUtilisable": true});
+            itemSheet.item.update({"system.nonUtilisable": true});
         } else {
-            itemSheet.item.update({"data.nonUtilisable": false});
+            itemSheet.item.update({"system.nonUtilisable": false});
         }
     }
 
     // Modification sur un Danseur
     if(itemSheet.item.type == "Danseur") {
         // Modification de la mémoire max
-        itemSheet.item.updateMemoireDispo(itemSheet.item.data.data.memoire.max);
+        itemSheet.item.updateMemoireDispo(itemSheet.item.system.memoire.max);
         // Modification de l'endurance max
-        itemSheet.item.update({"data.endurance.value": itemSheet.item.data.data.endurance.max});
+        itemSheet.item.update({"system.endurance.value": itemSheet.item.system.endurance.max});
     }
 
     // Modification sur une armure
     if(itemSheet.item.type == "Armure") {
         // Le malus de perception dépend du type d'armure
-        itemSheet.item.update({"data.malusPerception": CONFIG.agone.typesArmureMalusPer[itemSheet.item.data.data.type]});
+        itemSheet.item.update({"system.malusPerception": CONFIG.agone.typesArmureMalusPer[itemSheet.item.system.type]});
     }
 }
 
 function onCreateItem(item) {
-    if (item.data.img == "icons/svg/item-bag.svg") {
-        let image = CONFIG.agone.itemDefImage[item.data.type] ? CONFIG.agone.itemDefImage[item.data.type] : "icons/svg/mystery-man-black.svg";
-        item.data.img = image;
+    if (item.img == "icons/svg/item-bag.svg") {
+        console.log(item.type);
+        let image = CONFIG.agone.itemDefImage[item.type] ? CONFIG.agone.itemDefImage[item.type] : "icons/svg/mystery-man-black.svg";
+        item.img = image;
     }
 }
 
@@ -171,11 +172,11 @@ function onUpdateItem(item, modif) {
 function onDeleteItem(item) {
     // En cas de suppression d'un sort, recalcul de la memoire des danseurs
     if(item.type == "Sort" && item.actor) {
-        let lstDanseurs = item.actor.data.items.filter(function (item) { return item.type == "Danseur" });
+        let lstDanseurs = item.actor.items.filter(function (item) { return item.type == "Danseur" });
         lstDanseurs.forEach(danseur => {
-            danseur.updateMemoireDispo(danseur.data.data.memoire.max)
-            danseur.data.data.sortsConnus.splice(danseur.data.data.sortsConnus.indexOf(item.id), 1);
-            danseur.update({"data.sortsConnus": danseur.data.data.sortsConnus});
+            danseur.updateMemoireDispo(danseur.system.memoire.max)
+            danseur.system.sortsConnus.splice(danseur.system.sortsConnus.indexOf(item.id), 1);
+            danseur.update({"system.sortsConnus": danseur.system.sortsConnus});
         });
     }
 }

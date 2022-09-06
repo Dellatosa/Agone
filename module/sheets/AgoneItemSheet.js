@@ -13,22 +13,22 @@ export default class AgoneItemSheet extends ItemSheet {
 
     get template() {
 
-        console.log(`Agone | loading systems/agone/templates/sheets/items/${this.item.data.type.toLowerCase()}-sheet.html template`);
-        return `systems/agone/templates/sheets/items/${this.item.data.type.toLowerCase()}-sheet.html`
+        console.log(`Agone | loading systems/agone/templates/sheets/items/${this.item.type.toLowerCase()}-sheet.html template`);
+        return `systems/agone/templates/sheets/items/${this.item.type.toLowerCase()}-sheet.html`
     }
 
     getData() {
         const data = super.getData();
         data.config = CONFIG.agone;
-        const myItemData = data.data;
+        const myItemData = data.data.system;
 
         if(this.item.type == "Danseur")
         {
             if(this.actor)
             {
-                myItemData.sortsDispo = this.actor.data.items.filter(function (item) { return item.type == "Sort"});
+                myItemData.sortsDispo = this.actor.items.filter(function (item) { return item.type == "Sort"});
                 myItemData.sortsDispo.forEach( sortDisp => {
-                    let sc = myItemData.data.sortsConnus.find( id => id == sortDisp.id);
+                    let sc = myItemData.sortsConnus.find( id => id == sortDisp.id);
                     sortDisp.connu = (sc !== undefined) 
                 });
             }
@@ -101,14 +101,14 @@ export default class AgoneItemSheet extends ItemSheet {
         let sortId = element.closest(".sort").dataset.itemId;
         const coutMemoire = this.getCoutMemoire(sortId);
         if(coutMemoire) {
-            let memoireDispo = typeof(this.item.data.data.memoire.value) == "number" ? this.item.data.data.memoire.value : 0;
+            let memoireDispo = typeof(this.item.system.memoire.value) == "number" ? this.item.system.memoire.value : 0;
             if(memoireDispo >= coutMemoire) {
-                let sortsConnus = this.item.data.data.sortsConnus;
+                let sortsConnus = this.item.system.sortsConnus;
                 sortsConnus.push(sortId);
-                this.item.update({"data.sortsConnus": sortsConnus});
+                this.item.update({"system.sortsConnus": sortsConnus});
 
                 memoireDispo -= coutMemoire;
-                this.item.update({"data.memoire.value": memoireDispo});
+                this.item.update({"system.memoire.value": memoireDispo});
             }
             else {
                 ui.notifications.warn(game.i18n.localize("agone.notifications.warnMemoireDanseur"));
@@ -126,14 +126,14 @@ export default class AgoneItemSheet extends ItemSheet {
         let sortId = element.closest(".sort").dataset.itemId;
         const coutMemoire = this.getCoutMemoire(sortId);
         if(coutMemoire) {
-            let memoireDispo = typeof(this.item.data.data.memoire.value) == "number" ? this.item.data.data.memoire.value : 0;
+            let memoireDispo = typeof(this.item.system.memoire.value) == "number" ? this.item.system.memoire.value : 0;
 
-            let sortsConnus = this.item.data.data.sortsConnus;
+            let sortsConnus = this.item.system.sortsConnus;
             sortsConnus.splice(sortsConnus.indexOf(sortId), 1);
-            this.item.update({"data.sortsConnus": sortsConnus});
+            this.item.update({"system.sortsConnus": sortsConnus});
 
             memoireDispo += coutMemoire;
-            this.item.update({"data.memoire.value": memoireDispo});
+            this.item.update({"system.memoire.value": memoireDispo});
         }
         else {
             ui.notifications.error(game.i18n.localize("agone.notifications.errorDonneesSort"));
@@ -143,7 +143,7 @@ export default class AgoneItemSheet extends ItemSheet {
     getCoutMemoire(sortId) {
         const sort = this.actor.items.get(sortId);
         if(sort) {
-            const seuil = typeof(sort.data.data.seuil) == "number" ? sort.data.data.seuil : 0;
+            const seuil = typeof(sort.system.seuil) == "number" ? sort.system.seuil : 0;
             return Math.floor(seuil / 5);
         }
         else {
