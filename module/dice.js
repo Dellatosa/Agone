@@ -353,7 +353,7 @@ export async function jetCompetence({actor = null,
 
         if(gererBonusAspect) {
             rollStats.labelAspect = labelAspect;
-        }
+        }        
 
         if(difficulte) {
             rollStats.difficulte = difficulte;
@@ -455,6 +455,7 @@ function _processJetCompetenceOptions(form) {
 
 export async function combatArme(actor, arme, type) {
     let gererBonusAspect = actor.gererBonusAspect();
+
     let statsCombat = actor.getStatsCombat(arme.system.competence, arme.system.minForce, arme.system.minAgilite);
 
     console.log(game.combat, actor.estCombattantActif());
@@ -474,7 +475,7 @@ export async function combatArme(actor, arme, type) {
 
     if(type == "Attaque" && actor.getCombatant()) {
         if(!actor.estCombattantActif()) {
-            ui.notifications.warn(game.i18n.localize("agone.notifications.warnAttqaueTourCombat"));
+            ui.notifications.warn(game.i18n.localize("agone.notifications.warnAttaqueTourCombat"));
             return;
         }
     }
@@ -539,6 +540,9 @@ export async function combatArme(actor, arme, type) {
     let utiliseHeroisme = false;
     let utiliseSpecialisation = false;
     // Récupération des données de la fenêtre de dialogue pour ce jet 
+    
+    let difficulte = null;
+
     if(type == "Attaque") {
         if(armeData.distance == "contact") {
             if(dialogOptions.mauvaiseMain) {
@@ -597,6 +601,8 @@ export async function combatArme(actor, arme, type) {
 
     utiliseHeroisme = dialogOptions.utiliseHeroisme;
     utiliseSpecialisation = dialogOptions.utiliseSpecialisation;
+
+    console.log(difficulte);
 
     let rollResult = await jetCompetence({
         actor: actor,
@@ -657,6 +663,11 @@ export async function combatArme(actor, arme, type) {
         rollStats.descCritique = critInfos.desc;
     }
 
+    // TO DO - Gestion de la difficulté sur la carte jet-arme
+    if(difficulte) {
+        rollStats.difficulte = difficulte;
+    }
+
     // Recupération du template
     const messageTemplate = "systems/agone/templates/partials/dice/jet-arme.hbs";
     let renderedRoll = await rollResult.render();
@@ -664,7 +675,7 @@ export async function combatArme(actor, arme, type) {
      // Assignation des données au template
     let templateContext = {
         stats: rollStats,
-        arme: arme.system,
+        arme: arme,
         type: type,
         ciblesData : type == "Attaque" ? ciblesData : null,
         roll: renderedRoll
@@ -845,7 +856,7 @@ export async function sortEmprise(mage, danseur, sort, isIntuitif = false) {
     let statsEmprise = mage.getStatsEmprise();
 
     // Pas de jet de sort si le Danseur n'a plus d'endurance
-    if(danseur.data.data.endurance.value <= 0) {
+    if(danseur.system.endurance.value <= 0) {
         ui.notifications.warn(`${danseur.name} ${game.i18n.localize("agone.notifications.warnDanseurEpuise")}`);
         return;
     }
@@ -912,11 +923,11 @@ export async function sortEmprise(mage, danseur, sort, isIntuitif = false) {
     // On récupère le rollResult
     let rollResult = await jetCompetence({
         actor: mage,
-        rangComp:  isIntuitif ? Math.min(statsEmprise.rangResonance, danseur.data.data.empathie) : Math.min(statsEmprise.rangResonance, statsEmprise.connDanseurs),
+        rangComp:  isIntuitif ? Math.min(statsEmprise.rangResonance, danseur.system.empathie) : Math.min(statsEmprise.rangResonance, statsEmprise.connDanseurs),
         jetDefautInterdit: true,
         rangCarac: isIntuitif ? statsEmprise.creativite : statsEmprise.emprise,
         bonusAspect: isIntuitif ? statsEmprise.bonusAme : statsEmprise.bonusEsprit,
-        bonusEmprise: isIntuitif ? null : danseur.data.data.bonusEmprise,
+        bonusEmprise: isIntuitif ? null : danseur.system.bonusEmprise,
         danseurInvisible: dialogOptions.danseurInvisible,
         mouvImperceptibles: dialogOptions.mouvImperceptibles,
         utiliseHeroisme: dialogOptions.utiliseHeroisme,
@@ -963,7 +974,7 @@ export async function sortEmprise(mage, danseur, sort, isIntuitif = false) {
         stats: rollStats,
         mage: mageData,
         danseur: danseurData,
-        sort:  isIntuitif ? null : sort.system,
+        sort:  isIntuitif ? null : sort,
         roll: renderedRoll
     }
 
@@ -1067,14 +1078,14 @@ export async function oeuvre(artiste, oeuvre, artMagiqueImpro = null, isArtImpro
         potArtMagique = statsArtMagique.creativite + Math.min(statsArtMagique.rangArtMagique, statsArtMagique.rangCompetence) + statsArtMagique.bonusAme;
     }
     else {
-        if(oeuvre.data.data.artMagique == "accord") {
-            statsArtMagique = artiste.getStatsArtMagique(artMagique, oeuvre.data.data.instrument);
+        if(oeuvre.system.artMagique == "accord") {
+            statsArtMagique = artiste.getStatsArtMagique(artMagique, oeuvre.system.instrument);
         }
         else {
             statsArtMagique = artiste.getStatsArtMagique(artMagique);
         }
         potArtMagique = statsArtMagique.art + Math.min(statsArtMagique.rangArtMagique, statsArtMagique.rangCompetence) + statsArtMagique.bonusAme;
-        oeuvre.data.data.seuilTotal = oeuvre.system.seuil;
+        oeuvre.system.seuilTotal = oeuvre.system.seuil;
     }
     
     // Construction des strutures de données pour l'affichage de la boite de dialogue
@@ -1117,9 +1128,9 @@ export async function oeuvre(artiste, oeuvre, artMagiqueImpro = null, isArtImpro
     }
     else {
         if(dialogOptions.magieInstantanee) {
-            oeuvre.data.data.seuilTotal = oeuvre.data.data.seuil * 2;
+            oeuvre.system.seuilTotal = oeuvre.data.data.seuil * 2;
         }
-        oeuvre.data.data.seuilTotal += dialogOptions.margeQualite;
+        oeuvre.system.seuilTotal += dialogOptions.margeQualite;
     }
 
     let qualite = getNiveauQualite(dialogOptions.margeQualite);
@@ -1165,12 +1176,12 @@ export async function oeuvre(artiste, oeuvre, artMagiqueImpro = null, isArtImpro
         //specialisation: statsArtMagique.specialisation,
         utiliseSpecialisation: dialogOptions.utiliseSpecialisation,
         labelSpecialisation: statsArtMagique.labelSpecialisation,
-        difficulte: isArtImpro ? seuilTotalImpro : oeuvre.data.data.seuilTotal,
+        difficulte: isArtImpro ? seuilTotalImpro : oeuvre.system.seuilTotal,
         qualite: qualite,
         isArtImpro: isArtImpro
     }
 
-    rollStats.marge = isArtImpro ? rollResult.total - seuilTotalImpro : rollResult.total - oeuvre.data.data.seuilTotal;
+    rollStats.marge = isArtImpro ? rollResult.total - seuilTotalImpro : rollResult.total - oeuvre.system.seuilTotal;
     if(rollStats.marge <= -15) {
         rollStats.isEchecCritiqueMarge = true;
         rollStats.valeurCritique = rollStats.valeurCritique ? Math.min(rollStats.valeurCritique, rollStats.marge + 5) : rollStats.marge + 5;
@@ -1199,7 +1210,7 @@ export async function oeuvre(artiste, oeuvre, artMagiqueImpro = null, isArtImpro
     let templateContext = {
         stats: rollStats,
         artiste: artisteData,
-        oeuvre: isArtImpro ? null : oeuvre.data,
+        oeuvre: isArtImpro ? null : oeuvre,
         roll: renderedRoll
     }
 

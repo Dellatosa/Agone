@@ -26,7 +26,8 @@ export default class AgoneItem extends Item {
         let cardData = {
             ...this,
             isToken: this.actor.isToken ? 1 : 0,
-            owner: this.actor.isToken ? this.actor.token.id : this.actor.id
+            owner: this.actor.isToken ? this.actor.token.id : this.actor.id,
+            _id: this._id
         };
 
         if(this.type == "Danseur") {
@@ -43,9 +44,8 @@ export default class AgoneItem extends Item {
 
             cardData.system.sorts = sorts;
         }
-        
+
         chatData.content = await renderTemplate(this.chatTemplate[this.type], cardData);
-        //chatData.roll = true;
 
         return ChatMessage.create(chatData);
     }
@@ -102,7 +102,6 @@ function onCloseAgoneItemSheet(itemSheet) {
 
 function onCreateItem(item) {
     if (item.img == "icons/svg/item-bag.svg") {
-        console.log(item.type);
         let image = CONFIG.agone.itemDefImage[item.type] ? CONFIG.agone.itemDefImage[item.type] : "icons/svg/mystery-man-black.svg";
         item.img = image;
     }

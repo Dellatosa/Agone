@@ -41,7 +41,6 @@ export default class AgoneItemSheet extends ItemSheet {
 
         // Tout ce qui suit nécessite que la feuille soit éditable
         if (!this.options.editable) return;
-
         
         if(this.actor) {
             if(this.actor.isOwner) {

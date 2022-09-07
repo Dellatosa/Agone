@@ -164,7 +164,6 @@ export async function selDanseurContreMagie(actor, danseurs) {
     };
 
     chatData.content = await renderTemplate("systems/agone/templates/partials/chat/carte-contre-magie.hbs", cardData);
-    chatData.roll = true;
 
     return ChatMessage.create(chatData);
 }
@@ -181,7 +180,7 @@ export async function selArtMagiqueReconnOeuvre(actor, arts) {
     };
 
     chatData.content = await renderTemplate("systems/agone/templates/partials/chat/carte-reconn-oeuvre.hbs", cardData);
-    chatData.roll = true;
+    //chatData.roll = true;
 
     return ChatMessage.create(chatData);
 }
@@ -198,7 +197,7 @@ export async function selArtMagiqueImprovise(actor, arts) {
     };
 
     chatData.content = await renderTemplate("systems/agone/templates/partials/chat/carte-art-improvise.hbs", cardData);
-    chatData.roll = true;
+    //chatData.roll = true;
 
     return ChatMessage.create(chatData);
 }
@@ -215,7 +214,7 @@ export async function selInstrumentDesaccord(actor, instruments) {
     };
 
     chatData.content = await renderTemplate("systems/agone/templates/partials/chat/carte-instrument-desaccord.hbs", cardData);
-    chatData.roll = true;
+    //chatData.roll = true;
 
     return ChatMessage.create(chatData);
 }

@@ -452,7 +452,7 @@ export default class AgoneActorSheet extends ActorSheet {
         event.preventDefault();
 
         // Carte de sélection de l'art magique à afficher dans le chat
-        Chat.selArtMagiqueReconnOeuvre(this.actor, this.actor.data.data.familleCompetences.occulte.competences.artsMagiques.domaines);
+        Chat.selArtMagiqueReconnOeuvre(this.actor, this.actor.system.familleCompetences.occulte.competences.artsMagiques.domaines);
     }
 
     // Désaccord
@@ -482,7 +482,7 @@ export default class AgoneActorSheet extends ActorSheet {
         event.preventDefault();
 
         // Carte de sélection de l'art magique à afficher dans le chat
-        Chat.selArtMagiqueImprovise(this.actor, this.actor.data.data.familleCompetences.occulte.competences.artsMagiques.domaines);
+        Chat.selArtMagiqueImprovise(this.actor, this.actor.system.familleCompetences.occulte.competences.artsMagiques.domaines);
     }
 
     // Regeneration de l'endurance des Danseurs

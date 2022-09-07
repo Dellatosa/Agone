@@ -522,7 +522,7 @@
             "warnInitSansCombat": "NO TRAD - Votre personnage n'est actuellement impliqué dans aucun combat.",
             "warnCibleUnique": "Please select one target only.",
             "warnReactionUtilisee": "NO TRAD - Vous avez déjà utilisé votre Réaction à ce tour !",
-            "warnAttqaueTourCombat": "NO TRAD - Vous ne pouvez attaquer que durant votre tour !"
+            "warnAttaqueTourCombat": "NO TRAD - Vous ne pouvez attaquer que durant votre tour !"
         }
     },
     "parametres": {
