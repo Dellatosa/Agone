@@ -37,7 +37,8 @@
   "manifest": "https://raw.githubusercontent.com/Dellatosa/Agone/main/system.json",
   "download": "https://github.com/Dellatosa/Agone/archive/refs/tags/v0.1.6.zip",
   "compatibility": {
-    "minimum": "0.8.8",
-    "verified": "9"
+    "minimum": "10.278",
+    "verified": "10.284",
+    "maximum": 10
   }
 }
