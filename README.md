@@ -1,6 +1,6 @@
-# Système de jeu Foundry VTT pour Agone
+# Système de jeu Agone pour Foundry VTT
 
-Agone est un jeu de rôle français
+Ce système de jeu, en cours de développement, nécessite la version 10 de Foundry pour fonctionner. 
 
 # Mentions légales
 
