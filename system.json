@@ -29,16 +29,16 @@
       "flags": {}
     }
   ],
+  "compatibility": {
+    "minimum": "10.278",
+    "verified": "11.315",
+    "maximum": "11"
+  },
   "gridDistance": 1.5,
   "gridUnits": "m",
   "initiative": "1d10 + @aspects.corps.caracteristiques.agilite.valeur + @aspects.corps.caracteristiques.perception.valeur + @aspects.corps.bonus.valeur",
   "primaryTokenAttribute": "caracSecondaires.pdv",
   "url": "https://github.com/Dellatosa/Agone",
   "manifest": "https://raw.githubusercontent.com/Dellatosa/Agone/main/system.json",
-  "download": "https://github.com/Dellatosa/Agone/archive/refs/tags/v0.1.6.zip",
-  "compatibility": {
-    "minimum": "10.278",
-    "verified": "10.284",
-    "maximum": 10
-  }
+  "download": "https://github.com/Dellatosa/Agone/archive/refs/tags/v0.1.6.zip"
 }

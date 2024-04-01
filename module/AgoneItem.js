@@ -136,8 +136,8 @@ function onUpdateItem(item, modif) {
     } */
 
     // Modification sur une arme
-     if(item.type == "Arme" && item.actor && modif.data) {
-        for(let[keyData, valData] of Object.entries(modif.data))
+     if(item.type == "Arme" && item.actor && modif.system) {
+        for(let[keyData, valData] of Object.entries(modif.system))
         {
             /*if(keyData == "tai" && valData != null) {
                 let diff = valData - item.actor.data.data.caracSecondaires.tai;
