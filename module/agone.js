@@ -119,6 +119,8 @@ Hooks.once("init", function(){
 
     preloadHandlebarsTemplates();
 
+    console.log(game);
+    
     Handlebars.registerHelper("configLocalize", function(liste, val) {
         return game.i18n.localize(agone[liste][val]);
     });

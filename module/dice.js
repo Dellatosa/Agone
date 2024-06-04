@@ -129,7 +129,7 @@ export async function jetCaracteristique({actor = null,
         roll: rollResult,
         content: await renderTemplate(messageTemplate, templateContext),
         sound: CONFIG.sounds.dice,
-        type: CONST.CHAT_MESSAGE_TYPES.ROLL
+        type: CONST.CHAT_MESSAGE_TYPES.ROLL // CONST.CHAT_MESSAGE_STYLES
     }
 
     // Affichage du message

@@ -33,6 +33,7 @@ export default class AgoneItemSheet extends ItemSheet {
                 });
             }
         }
+
         return data;
     }
 
@@ -67,7 +68,7 @@ export default class AgoneItemSheet extends ItemSheet {
         event.preventDefault();
 
         return this.item.createEmbeddedDocuments("ActiveEffect", [{
-            label: "Nouvel effet",
+            name: "Nouvel effet",
             icon: "icons/svg/aura.svg",
             origin: this.item.uuid
           }]);

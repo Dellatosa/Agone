@@ -44,8 +44,8 @@
                 </div>
                 {{#each item.effects as |effet id|}}
                 <div class="ligne-effet effet" data-effect-id="{{effet.id}}">
-                    <a class="editer-effet"><img src="{{effet.data.icon}}" title="{{localize 'agone.common.editer'}}" height="32" width="32"/></a>
-                    <div>{{effet.data.label}}</div>
+                    <a class="editer-effet"><img src="{{effet.icon}}" title="{{localize 'agone.common.editer'}}" height="32" width="32"/></a>
+                    <div>{{effet.name}}</div>
                     <a class="editer-effet" title="{{localize 'agone.common.editer'}}"><i class="fas fa-edit"></i></a>
                     <a class="supprimer-effet" title="{{localize 'agone.common.supprimer'}}"><i class="fas fa-trash"></i></a>
                 </div>            
