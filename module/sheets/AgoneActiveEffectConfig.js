@@ -9,8 +9,8 @@ export default class AgoneActiveEffectConfig extends ActiveEffectConfig {
         });
     }
 
-    getData() {
-        const data = super.getData();
+    async getData() {
+        const data = await super.getData();
         data.config = CONFIG.agone;
 
         return data;
