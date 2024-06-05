@@ -226,10 +226,6 @@ select.auto-size {
   flex: 0 0 150px;
   height: 150px;
 }
-.agone.sheet.actor .sheet-header label,
-.sheet-fixed-content label {
-  padding: 7px 0;
-}
 .agone.sheet.actor .fas {
   padding-top: 6px;
   padding-bottom: 6px;
@@ -258,15 +254,16 @@ nav.historique-tabs {
 }
 .actor-infos-line {
   display: flex;
-  flex-flow: row wrap;
-}
-.actor-flamme {
-  display: flex;
-  padding: 3px;
+  align-items: center;
   justify-content: center;
 }
-.actor-flamme div {
+.actor-flamme {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1.5fr;
+}
+.actor-flamme .box-flamme {
   display: flex;
+  align-items: center;
   justify-content: center;
 }
 .actor-aspects-and-caracs {
@@ -288,15 +285,18 @@ nav.historique-tabs {
 .actor-aspects-and-caracs .actor-aspect .actor-aspect-line {
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 .actor-aspects-and-caracs .actor-aspect .actor-carac-line {
   display: grid;
   justify-content: center;
+  align-items: center;
   grid-template-columns: max-content 3.5em 2em;
 }
 .actor-aspects-and-caracs .actor-aspect .actor-bonus-line {
   display: grid;
   justify-content: center;
+  align-items: center;
   grid-template-columns: max-content 3.5em;
 }
 .actor-aspects-and-caracs .actor-aspect .actor-carac-line.corps {
@@ -307,6 +307,7 @@ nav.historique-tabs {
 .actor-aspects-and-caracs .actor-aspect .actor-aspect-line {
   display: grid;
   justify-content: center;
+  align-items: center;
   grid-template-columns: max-content 3.5em max-content 3.5em;
 }
 .actor-caracSec {

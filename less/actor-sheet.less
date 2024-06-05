@@ -34,10 +34,6 @@ select.auto-size {
         flex: 0 0 150px;
         height: 150px;
     }
-
-    label {
-        padding: 7px 0;
-    }
 }
 
 .agone.sheet.actor .fas {
@@ -73,16 +69,17 @@ nav.magie-tabs, nav.historique-tabs {
 
 .actor-infos-line {
     display: flex;
-    flex-flow: row wrap;
+    align-items: center;
+    justify-content: center;
 }
 
 .actor-flamme {
-    display: flex;
-    padding: 3px;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.5fr;
 
-    div {
+    .box-flamme {
         display: flex;
+        align-items: center;
         justify-content: center;
     }
 }
@@ -108,17 +105,20 @@ nav.magie-tabs, nav.historique-tabs {
         .actor-aspect-line {
             display: flex;            
             justify-content: center;
+            align-items: center;
         }
 
         .actor-carac-line {
             display: grid;
             justify-content: center;
+            align-items: center;
             grid-template-columns: max-content 3.5em 2em;
         }
 
         .actor-bonus-line {
             display: grid;
             justify-content: center;
+            align-items: center;
             grid-template-columns: max-content 3.5em;
         }
 
@@ -131,6 +131,7 @@ nav.magie-tabs, nav.historique-tabs {
         .actor-aspect-line {
             display: grid;
             justify-content: center;
+            align-items: center;
             grid-template-columns: max-content 3.5em max-content 3.5em;
         }
     }
