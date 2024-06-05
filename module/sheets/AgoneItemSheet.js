@@ -12,7 +12,6 @@ export default class AgoneItemSheet extends ItemSheet {
     }
 
     get template() {
-
         console.log(`Agone | loading systems/agone/templates/sheets/items/${this.item.type.toLowerCase()}-sheet.html template`);
         return `systems/agone/templates/sheets/items/${this.item.type.toLowerCase()}-sheet.html`
     }

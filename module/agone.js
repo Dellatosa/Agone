@@ -6,7 +6,65 @@ import AgoneActor from "./AgoneActor.js";
 import AgoneCombat from "./combat/AgoneCombat.js";
 import AgoneCombatTracker from "./combat/AgoneCombatTracker.js";
 import AgoneCombatant from "./combat/AgoneCombatant.js";
+import { registerSystemSettings } from "./settings.js";
+import registerHandlebarsHelpers from "./common/helpers.js"
 import * as Chat from "./chat.js";
+import * as Migrations from "./migration.js";
+
+Hooks.once("init", function(){
+    console.log("Agone | Initialisation du système Agone RPG");
+
+    game.agone = {
+        AgoneActor,
+        AgoneItem,
+        rollItemMacro
+    };
+
+    //CONFIG.debug.hooks = true;
+
+    CONFIG.agone = agone;
+    CONFIG.Item.documentClass = AgoneItem;
+    CONFIG.Actor.documentClass = AgoneActor;
+    CONFIG.Combat.documentClass = AgoneCombat;
+    //CONFIG.ui.Combat = AgoneCombatTracker;
+    CONFIG.Combatant.documentClass = AgoneCombatant;
+
+    Actors.unregisterSheet("core", ActorSheet);
+    Actors.registerSheet("agone", AgoneActorSheet, {makeDefault: true});
+
+    Items.unregisterSheet("core", ItemSheet);
+    Items.registerSheet("agone", AgoneItemSheet, {makeDefault: true});
+
+    registerSystemSettings();
+
+    preloadHandlebarsTemplates();
+
+    //console.log(game);
+
+    // Register custom Handlebars Helpers
+	registerHandlebarsHelpers();
+});
+
+Hooks.once("setup", function() {
+    // Indicates Migration Version
+    CONFIG.agone.lastMigrationVer = game.settings.get("agone", "systemMigrationVersion")
+});
+
+Hooks.once("ready", async function() {
+    Hooks.on("hotbarDrop", (bar, data, slot) => createAgoneMacro(data, slot));
+
+     // Determine whether a system migration is required and feasible
+     if ( !game.user.isGM ) return;
+     const currentVersion = game.settings.get("agone", "systemMigrationVersion");
+     const NEEDS_MIGRATION_VERSION = "0.1.0";
+     const needsMigration = !currentVersion || isNewerVersion(NEEDS_MIGRATION_VERSION, currentVersion);
+     if ( !needsMigration ) return;
+     Migrations.migrateWorld();
+});
+
+Hooks.on("renderChatLog", (app, html, data) => Chat.addChatListeners(html));
+
+Hooks.on("getChatLogEntryContext", Chat.addChatMessageContextOptions);
 
 async function preloadHandlebarsTemplates() {
     const templatePaths = [
@@ -41,115 +99,6 @@ async function preloadHandlebarsTemplates() {
 
     return loadTemplates(templatePaths);
 };
-
-function registerSystemSettings() {
-    // Suggestions des échecs ctitiques envoyées à l'EG
-    game.settings.register("agone","suggestEchecCritEG", {
-        config: true,
-        scope: "world",
-        name: "parametres.suggestEchecCritEG.nom",
-        hint: "parametres.suggestEchecCritEG.label",
-        type: Boolean,
-        default: true
-    });
-
-    // Autoriser la sélection de cibles multiples sur un jet d'Attaque
-    game.settings.register("agone","ciblesMultiSurAttaque", {
-        config: true,
-        scope: "world",
-        name: "parametres.ciblesMultiSurAttaque.nom",
-        hint: "parametres.ciblesMultiSurAttaque.label",
-        type: Boolean,
-        default: false
-    });
-
-    game.settings.register("agone","lienTableCritiqueContusion", {
-        config: true,
-        scope: "world",
-        name: "parametres.lienTableCritiqueContusion.nom",
-        hint: "parametres.lienTableCritiqueContusion.label",
-        type:String,
-        default: ""
-    });
-
-    game.settings.register("agone","lienTableCritiquePerforation", {
-        config: true,
-        scope: "world",
-        name: "parametres.lienTableCritiquePerforation.nom",
-        hint: "parametres.lienTableCritiquePerforation.label",
-        type:String,
-        default: ""
-    });
-
-    game.settings.register("agone","lienTableCritiqueTaille", {
-        config: true,
-        scope: "world",
-        name: "parametres.lienTableCritiqueTaille.nom",
-        hint: "parametres.lienTableCritiqueTaille.label",
-        type:String,
-        default: ""
-    });
-}
-
-Hooks.once("init", function(){
-    console.log("Agone | Initialisation du système Agone RPG");
-
-    game.agone = {
-        AgoneActor,
-        AgoneItem,
-        rollItemMacro
-    };
-
-    //CONFIG.debug.hooks = true;
-
-    CONFIG.agone = agone;
-    CONFIG.Item.documentClass = AgoneItem;
-    CONFIG.Actor.documentClass = AgoneActor;
-    CONFIG.Combat.documentClass = AgoneCombat;
-    //CONFIG.ui.Combat = AgoneCombatTracker;
-    CONFIG.Combatant.documentClass = AgoneCombatant;
-
-    Actors.unregisterSheet("core", ActorSheet);
-    Actors.registerSheet("agone", AgoneActorSheet, {makeDefault: true});
-
-    Items.unregisterSheet("core", ItemSheet);
-    Items.registerSheet("agone", AgoneItemSheet, {makeDefault: true});
-
-    registerSystemSettings();
-
-    preloadHandlebarsTemplates();
-
-    //console.log(game);
-    
-    Handlebars.registerHelper("configLocalize", function(liste, val) {
-        return game.i18n.localize(agone[liste][val]);
-    });
-
-    Handlebars.registerHelper("malusAGI", function(minArme, style, equipee, agi, options) {
-        let diff = minArme - agi;
-        if(equipee == "2mains" && style != "trait") diff -= 1;
-        if(diff > 0)
-            return options.fn(this);
-        else
-            return options.inverse(this);
-    });
-    
-    Handlebars.registerHelper("malusFOR", function(minArme, style, equipee, agi, options) {
-        let diff = minArme - agi;
-        if(equipee == "2mains" && style != "trait") diff -= 2;
-        if(diff > 0)
-            return options.fn(this);
-        else
-            return options.inverse(this);
-    });
-});
-
-Hooks.once("ready", async function() {
-    Hooks.on("hotbarDrop", (bar, data, slot) => createAgoneMacro(data, slot));
-});
-
-Hooks.on("renderChatLog", (app, html, data) => Chat.addChatListeners(html));
-Hooks.on("getChatLogEntryContext", Chat.addChatMessageContextOptions);
 
 async function createAgoneMacro(data, slot) {
     if (data.type !== "Item") return;
