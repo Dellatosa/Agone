@@ -458,7 +458,7 @@ export async function combatArme(actor, arme, type) {
 
     let statsCombat = actor.getStatsCombat(arme.system.competence, arme.system.minForce, arme.system.minAgilite);
 
-    console.log(game.combat, actor.estCombattantActif());
+    //console.log(game.combat, actor.estCombattantActif());
     
     if(statsCombat === null) {
         ui.notifications.error(`${game.i18n.localize("agone.notifications.errorDonnesArme")} ${arme.name}.`)
@@ -602,7 +602,7 @@ export async function combatArme(actor, arme, type) {
     utiliseHeroisme = dialogOptions.utiliseHeroisme;
     utiliseSpecialisation = dialogOptions.utiliseSpecialisation;
 
-    console.log(difficulte);
+    //console.log(difficulte);
 
     let rollResult = await jetCompetence({
         actor: actor,

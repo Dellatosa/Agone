@@ -242,7 +242,7 @@ async function Test(attaque) {
 
     const cibleId = attaque.find(".cible").attr("data-cible-id");
     let res = canvas.tokens.controlled.find(elem => elem.id == cibleId);
-    console.log(canvas.tokens.controlled);
-    console.log(res, cibleId);
+    //console.log(canvas.tokens.controlled);
+    //console.log(res, cibleId);
 
 }

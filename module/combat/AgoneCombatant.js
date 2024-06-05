@@ -31,14 +31,14 @@ export default class AgoneCombatant extends Combatant {
         await this.setFlag("agone", "esquiveTotaleUtilisee", false);
         await this.setFlag("agone", "valeurEsquiveTotale", 0);
 
-        console.log("ReinitFlags", this.data.flags.agone);
+        //console.log("ReinitFlags", this.data.flags.agone);
     }
 
     async setAttaqueCombattant(nomAttaquant, typeArme, taiAttaquant, resultatJet, bonusDommages) {
         await this.setFlag("agone", "estAttaquer", true);
         await this.setFlag("agone", "infosAttaque", {nomAttaquant: nomAttaquant, typeArme: typeArme, taiAttaquant:taiAttaquant, resultatJet: resultatJet, bonusDommages: bonusDommages});
 
-        console.log("setAttaqueCombattant", this.data.flags.agone);
+        //console.log("setAttaqueCombattant", this.data.flags.agone);
     }
 
     async reinitAttaque() {
@@ -62,7 +62,7 @@ export default class AgoneCombatant extends Combatant {
 
         await this.reinitAttaque();
 
-        console.log("setDefenseCombattant", this.data.flags.agone);
+        //console.log("setDefenseCombattant", this.data.flags.agone);
     }
 
     reactionUtilisee() {

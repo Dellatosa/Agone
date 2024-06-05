@@ -16,7 +16,7 @@ export default class AgoneItem extends Item {
         super.prepareData();
         let data = this.system;
 
-        console.log(this);
+        //console.log(this);
     }
 
     async roll() {
