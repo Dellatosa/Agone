@@ -1,6 +1,6 @@
 # Système de jeu Agone pour Foundry VTT
 
-Ce système de jeu, en cours de développement, nécessite la version 10 de Foundry pour fonctionner. 
+Ce système de jeu, en cours de développement, nécessite la version 11 de Foundry pour fonctionner. 
 
 # Mentions légales
 
