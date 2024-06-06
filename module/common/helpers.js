@@ -1,3 +1,5 @@
+import { agone } from "../config.js";
+
 export default function registerHandlebarsHelpers() {
 
     Handlebars.registerHelper("configLocalize", function(liste, val) {

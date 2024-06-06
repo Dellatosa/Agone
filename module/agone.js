@@ -39,7 +39,7 @@ Hooks.once("init", function(){
 
     preloadHandlebarsTemplates();
 
-    //console.log(game);
+    console.log(game);
 
     // Register custom Handlebars Helpers
 	registerHandlebarsHelpers();
