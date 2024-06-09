@@ -51,7 +51,14 @@ Hooks.once("setup", function() {
 });
 
 Hooks.once("ready", async function() {
-    Hooks.on("hotbarDrop", (bar, data, slot) => createAgoneMacro(data, slot));
+    Hooks.on("hotbarDrop", (bar, data, slot) => { 
+        createAgoneMacro(data, slot);
+        return false;
+    });
+
+    /* game.macros.forEach(mc => {
+        mc.delete();
+    }); */ 
 
      // Determine whether a system migration is required and feasible
      if ( !game.user.isGM ) return;
@@ -101,24 +108,33 @@ async function preloadHandlebarsTemplates() {
 };
 
 async function createAgoneMacro(data, slot) {
+
     if (data.type !== "Item") return;
-    if (!("data" in data)) return ui.notifications.warn("Vous pouvez créer des raccourçis de macros uniquement pour des objets liés à votre personnage");
-    const item = data.data;
-  
+    const actor = game.actors.get(foundry.utils.parseUuid(data.uuid).documentId);
+    const item = actor.items.get(foundry.utils.parseUuid(data.uuid).embedded[1]);
+    if (!(actor.isOwner && item.isOwner)) return ui.notifications.warn("Vous pouvez créer des raccourçis de macros uniquement pour des objets liés à votre personnage");
+
     // Create the macro command
     const command = `game.agone.rollItemMacro("${item.name}");`;
     let macro = game.macros.contents.find(m => (m.name === item.name) && (m.command === command));
+
+    const ownMap = new Map();
+    ownMap.set(game.userId, 3);
+    ownMap.set("default", 3);
+
     if (!macro) {
-      macro = await Macro.create({
+        macro = await Macro.create({
         name: item.name,
         type: "script",
         img: item.img,
+        ownership :  Object.fromEntries(ownMap) ,
         command: command,
         flags: { "agone.itemMacro": true }
       });
     }
+
+    console.log(macro);
     game.user.assignHotbarMacro(macro, slot);
-    return false;
 }
 
 function rollItemMacro(itemName) {

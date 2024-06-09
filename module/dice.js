@@ -1,5 +1,6 @@
 // Jet de caractéristique avec affichage du message dans la chat
 export async function jetCaracteristique({actor = null, 
+    aspect = null,
     rangCarac = null,
     labelCarac = null,
     bonusAspect = null,
@@ -110,6 +111,12 @@ export async function jetCaracteristique({actor = null,
             rollStats.isEchecCritiqueMarge = true;
             rollStats.valeurCritique = rollStats.valeurCritique ? Math.min(rollStats.valeurCritique, rollStats.marge + 5) : rollStats.marge + 5;
         }
+    }
+
+    if(rollStats.valeurCritique) {
+        let critInfos = getCritInfos(aspect, rollStats.valeurCritique);
+        rollStats.nomCritique = critInfos.nom;
+        rollStats.descCritique = critInfos.desc;
     }
 
     // Recupération du template
@@ -1673,6 +1680,19 @@ function getCritInfos(familleComp, valeurCritique) {
     }
     else {
         gravite = 5;
+    }
+
+
+    // Echerc critique lors d'un test de caractéristique
+    // TODO - Revoir l'affichage des critiques avec des tables dédiées aux caractéristiques
+    if(familleComp == "corps") {
+        familleComp = "epreuves";
+    }
+    else if(familleComp == "esprit") {
+        familleComp = "savoir";
+    }
+    else if(familleComp == "ame")  {
+        familleComp = "occulte";
     }
 
     let elem = CONFIG.agone.critInfos[familleComp][gravite];

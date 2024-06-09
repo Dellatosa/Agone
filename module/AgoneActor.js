@@ -273,6 +273,7 @@ export default class AgoneActor extends Actor {
     getCaracData(caracteristique) {
         let data = this.system;
         let result = {
+            aspect: "",
             rangCarac: 0, 
             labelCarac: "ND", 
             bonusAspect: 0, 
@@ -282,6 +283,7 @@ export default class AgoneActor extends Actor {
         if(caracteristique) {
             let aspect = this.getAspect(caracteristique);
 
+            result.aspect = aspect;
             result.bonusAspect = data.aspects[aspect].bonus.valeur;
             result.labelAspect = data.aspects[aspect].bonus.label;
             result.rangCarac = data.aspects[aspect].caracteristiques[caracteristique].valeur;
