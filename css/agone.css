@@ -615,8 +615,14 @@ nav.historique-tabs {
   text-align: center;
   line-height: 24px;
 }
-.resultat {
+.resultat,
+.dice-tooltip {
   text-align: center;
+}
+.roll-total {
+  text-align: center;
+  font-size: 1.3em;
+  font-weight: bold;
 }
 .titre {
   margin-bottom: 0.25rem;
@@ -659,4 +665,12 @@ details {
 .edit-comp-grid .val-comp {
   text-align: center;
   margin: 2px;
+}
+@font-face {
+  font-family: "Barbedor";
+  src: url("../fonts/BarbedorTOT-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Lorgol";
+  src: url("../fonts/Lorgol.ttf") format("truetype");
 }

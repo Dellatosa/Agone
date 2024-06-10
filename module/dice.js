@@ -76,18 +76,34 @@ export async function jetCaracteristique({actor = null,
     rollData.isFumble = false;
     rollData.isEchecCritique = false;
 
+    // Détails des dés jetés (class css pour l'affichage et resulat du dé)
+    var dices = [];
+
     // Jet du 1er dé
     let rollResult = await new Roll(rollFormula, rollData).roll({async: true});
     if(rollResult.dice[0].results[0].result == 1) {
         // Si le 1er dé donne 1, c'est un Fumble
-        rollResult = await new Roll(rollFumbleFormula, rollData).roll({async: true});
         rollData.isFumble = true;
+        dices.push({ classes: "die d10 min", result : 1});
+
+        rollResult = await new Roll(rollFumbleFormula, rollData).roll({async: true});
         //Si le second dé donne 10, c'est un échec critique
         if(rollResult.dice[0].results[0].result == 10) {
             rollData.isEchecCritiqueJetDe = true;
             rollData.valeurCritique = rollResult.dice[0].total;
         }
     }
+
+    // Total du jet
+    rollData.total = rollResult.total;
+
+    // Détails pour chaque dé jeté
+    rollResult.dice[0].results.forEach( res => {
+        let classes = "die d10"; 
+        if (res.result == 10) { classes += " exploded max"; }
+        else if (res.result == 1) { classes += " min"; }
+        dices.push({ classes: classes, result : res.result});
+    });
 
     // Construction du jeu de données pour alimenter le template
     let rollStats = {
@@ -126,6 +142,7 @@ export async function jetCaracteristique({actor = null,
     // Assignation des données au template
     let templateContext = {
         stats : rollStats,
+        dices: dices,
         roll: renderedRoll
     }
 

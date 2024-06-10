@@ -97,6 +97,7 @@ async function preloadHandlebarsTemplates() {
         "systems/agone/templates/partials/actors/bloc-liste-bienfaits-personnage.hbs",
         "systems/agone/templates/partials/dice/jet-resultat.hbs",
         "systems/agone/templates/partials/dice/jet-resultat-dommages.hbs",
+        "systems/agone/templates/partials/dice/jet-dices-details.hbs",
         "templates/dice/roll.html"
     ];
 

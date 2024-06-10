@@ -20,9 +20,6 @@
             <div class="txt-small bold">{{localize "agone.chat.utilisationHeroisme"}}</div>
         {{/if}}
     </details>
-    {{#if stats.isFumble}}
-        <div class="dice-tooltip"><div class="dice-rolls fumble"><span class="fumble">{{localize "agone.chat.fumble"}}</span><div class="roll die d10 min">1</div></div></div>
-    {{/if}}
-    <div>{{{roll}}}</div>
+    {{> "systems/agone/templates/partials/dice/jet-dices-details.hbs"}}
     {{> "systems/agone/templates/partials/dice/jet-resultat.hbs"}}
 </div>
