@@ -56,14 +56,10 @@ Hooks.once("ready", async function() {
         return false;
     });
 
-    /* game.macros.forEach(mc => {
-        mc.delete();
-    }); */ 
-
      // Determine whether a system migration is required and feasible
      if ( !game.user.isGM ) return;
      const currentVersion = game.settings.get("agone", "systemMigrationVersion");
-     const NEEDS_MIGRATION_VERSION = "0.1.0";
+     const NEEDS_MIGRATION_VERSION = "0.1.8";
      const needsMigration = !currentVersion || isNewerVersion(NEEDS_MIGRATION_VERSION, currentVersion);
      if ( !needsMigration ) return;
      Migrations.migrateWorld();
@@ -112,7 +108,7 @@ async function createAgoneMacro(data, slot) {
     if (data.type !== "Item") return;
     const actor = game.actors.get(foundry.utils.parseUuid(data.uuid).documentId);
     const item = actor.items.get(foundry.utils.parseUuid(data.uuid).embedded[1]);
-    if (!(actor.isOwner && item.isOwner)) return ui.notifications.warn("Vous pouvez créer des raccourçis de macros uniquement pour des objets liés à votre personnage");
+    if (!(actor.isOwner && item.isOwner)) return ui.notifications.warn(game.i18n.localize("agone.notifications.warnErrCreaMacro"));
 
     // Create the macro command
     const command = `game.agone.rollItemMacro("${item.name}");`;
@@ -133,17 +129,23 @@ async function createAgoneMacro(data, slot) {
       });
     }
 
-    console.log(macro);
     game.user.assignHotbarMacro(macro, slot);
 }
 
 function rollItemMacro(itemName) {
-    const speaker = ChatMessage.getSpeaker();
     let actor;
+
+    // First choice - Actor linked to selected Token
+    const speaker = ChatMessage.getSpeaker();
     if (speaker.token) actor = game.actors.tokens[speaker.token];
+    
+    // Second choice - Actor linked to active player
     if (!actor) actor = game.actors.get(speaker.actor);
-    const item = actor ? actor.items.find(i => i.name === itemName) : null;
-    if (!item) return ui.notifications.warn(`Votre personnage ne possède pas d'objet nommé ${itemName}`);
+    
+    if(!actor) return ui.notifications.warn(game.i18n.localize("agone.notifications.warnErrUseMacro"));
+    
+    const item = actor.items.find(i => i.name === itemName);
+    if (!item) return ui.notifications.warn(`Le personnage '${actor.name}' ne possède pas d'objet nommé ${itemName}`);
   
     // Trigger the item roll
     return item.roll();

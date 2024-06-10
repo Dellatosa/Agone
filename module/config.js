@@ -1,5 +1,7 @@
 export const agone = {};
 
+agone.lastMigrationVer = "0.0.1"
+
 agone.caracteristiques = {
     aucun: "",
     agilite: "agone.actors.agilite",

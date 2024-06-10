@@ -542,7 +542,9 @@
             "warnInitSansCombat": "NO TRAD - Votre personnage n'est actuellement impliqué dans aucun combat.",
             "warnCibleUnique": "Please select one target only.",
             "warnReactionUtilisee": "NO TRAD - Vous avez déjà utilisé votre Réaction à ce tour !",
-            "warnAttaqueTourCombat": "NO TRAD - Vous ne pouvez attaquer que durant votre tour !"
+            "warnAttaqueTourCombat": "NO TRAD - Vous ne pouvez attaquer que durant votre tour !",
+            "warnErrCreaMacro": "NO TRAD - Vous pouvez créer des raccourçis de macros uniquement pour des objets liés à votre personnage",
+            "warnErrUseMacro": "Impossible de déterminer votre personnage. Sélectionnez votre personnage à la connexion ou bien un token sur la scène."
         }
     },
     "parametres": {
@@ -553,6 +555,18 @@
         "ciblesMultiSurAttaque": {
             "nom": "NO TRAD - Cibles multiples sur les jets d'attaque",
             "label": "NO TRAD - Autoriser la sélection de plusieurs cibles sur les jets d'attaque"
+        },
+        "lienTableCritiquePerforation": {
+            "nom": "NO TRAD - Lien table critiques de Perforation",
+            "label": "NO TRAD - Lien vers la rolltable des dommages critiques de Perforation" 
+        },
+        "lienTableCritiqueTaille": {
+            "nom": "NO TRAD - Lien table critiques de Taille",
+            "label": "NO TRAD - Lien vers la rolltable des dommages critiques de Taille" 
+        },
+        "lienTableCritiqueContusion": {
+            "nom": "NO TRAD - Lien table critiques de Contusion",
+            "label": "NO TRAD - Lien vers la rolltable des dommages critiques de Contusion" 
         }
     }
 }

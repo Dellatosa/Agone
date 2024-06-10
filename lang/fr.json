@@ -542,7 +542,9 @@
             "warnInitSansCombat": "Votre personnage n'est actuellement impliqué dans aucun combat.",
             "warnCibleUnique": "Veuillez sélectionner une seule cible.",
             "warnReactionUtilisee": "Vous avez déjà utilisé votre Réaction à ce tour !",
-            "warnAttaqueTourCombat": "Vous ne pouvez attaquer que durant votre tour !"
+            "warnAttaqueTourCombat": "Vous ne pouvez attaquer que durant votre tour !",
+            "warnErrCreaMacro": "Vous pouvez créer des raccourçis de macros uniquement pour des objets liés à votre personnage",
+            "warnErrUseMacro": "Impossible de déterminer votre personnage. Sélectionnez votre personnage à la connexion ou bien un token sur la scène."
         }
     },
     "parametres": {
