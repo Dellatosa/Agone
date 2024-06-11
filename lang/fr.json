@@ -389,7 +389,7 @@
             "succes": "Succès !",
             "echec": "Echec !",
             "echecCritique": "Echec critique !!!",
-            "fumble": "FUMBLE !!!",
+            "fumble": "Fumble !",
             "attaque": "Attaque",
             "attaqueAvec": "Jet d'attaque avec {arme}",
             "paradeAvec": "Jet de parade avec {arme}",

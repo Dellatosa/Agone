@@ -1,11 +1,11 @@
+<div class="dices-pool">
+    {{#each dices as |dice|}}
+        <div class="dice-back">
+            <div class="roll {{dice.classes}}">{{{dice.result}}}</div>
+        </div>
+    {{/each}}
+</div>
 {{#if stats.isFumble}}
     <div class="fumble">{{localize "agone.chat.fumble"}}</div>
 {{/if}}
-<div class="dice-tooltip">
-    <ol class="dice-rolls">
-        {{#each dices as |dice|}}
-            <li class="roll {{dice.classes}}">{{{dice.result}}}</li>
-        {{/each}}
-    </ol>
-</div>
 <div class="roll-total">{{stats.total}}</div>

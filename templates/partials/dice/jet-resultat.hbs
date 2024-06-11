@@ -1,18 +1,18 @@
 {{#if stats.isEchecCritiqueJetDe}}
-    <h3 class="resultat fumble">{{localize "agone.chat.echecCritique"}}</h3>
+    <div class="roll-result fumble">{{localize "agone.chat.echecCritique"}}</div>
     <div>{{localize stats.nomCritique}} ({{stats.valeurCritique}})</div>
 {{else}}
     {{#if stats.difficulte}}
-        <h3 class="resultat">{{localize "agone.chat.marge"}} {{#if stats.isEchecCritiqueMarge}}<span class="fumble">{{stats.marge}}</span>{{else}}{{stats.marge}}{{/if}}</h3>
+        <div class="roll-result">{{localize "agone.chat.marge"}} {{#if stats.isEchecCritiqueMarge}}<span class="fumble">{{stats.marge}}</span>{{else}}{{stats.marge}}{{/if}}</div>
         {{#if (gt stats.marge 0)}}
-            {{#if stats.qualite}}<h4 class="resultat">{{localize "agone.chat.qualiteOeuvre"}} {{stats.qualite}}</h4>{{/if}}
-            <h3 class="resultat">{{localize "agone.chat.succes"}}</h3>
+            {{#if stats.qualite}}<div class="roll-result">{{localize "agone.chat.qualiteOeuvre"}} {{stats.qualite}}</div>{{/if}}
+            <div class="roll-result">{{localize "agone.chat.succes"}}</div>
         {{else}}
             {{#if stats.isEchecCritiqueMarge}}
-                <h3 class="resultat fumble">{{localize "agone.chat.echecCritique"}}</h3>
+                <div class="roll-result fumble">{{localize "agone.chat.echecCritique"}}</div>
                 <div class="bold">{{localize stats.nomCritique}} ({{stats.valeurCritique}})</div>
             {{else}}
-                <h3 class="resultat">{{localize "agone.chat.echec"}}</h3>
+                <div class="roll-result">{{localize "agone.chat.echec"}}</div>
             {{/if}}
         {{/if}}        
     {{/if}}

@@ -6,20 +6,74 @@
     font-weight: bold;
 }
 
-.fumble {
-    color: #aa0200;
-    text-align: center;
-    line-height: 24px;
+.jet-carac, .jet-comp, .suggest-crit {
+    font-family: "Barbedor";
 }
 
-.resultat, .dice-tooltip {
+.roll-titre {
+    font-size: 1.2em;
+}
+
+.roll-details {
+    font-size: 0.85em;
+    font-weight: bold;
+}
+
+.fumble {
+    font-size: 1.5em;
+    color: #aa0200;
     text-align: center;
 }
 
 .roll-total {
     text-align: center;
-    font-size: 1.3em;
+    font-size: 1.7em;
     font-weight: bold;
+}
+
+.roll-result, .titre-suggest {
+    font-size: 1.5em;
+    text-align: center;
+}
+
+.nom-suggest {
+    font-weight: bold;
+}
+
+.dices-pool {
+    display: flex;
+    justify-content: center;
+}
+
+.dice-back {
+    display: flex;
+    justify-content: center;
+    margin: 3px;
+
+    .roll {
+        width: 30px;
+        line-height: 30px;
+        font-size: var(--font-size-16);
+        font-weight: bold;
+        text-align: center;
+        margin: 3px;
+    }
+
+    .d10 {
+        background: url("../images/dice/d10-grey.svg") no-repeat;
+        color: black;
+        background-size: 30px 30px;
+    }
+
+    .max {
+        color: #18520b;
+        filter: sepia(0.5) hue-rotate(60deg);
+    }
+
+    .min {
+        color: #aa0200;
+        filter: sepia(0.5) hue-rotate(-60deg);
+    }
 }
 
 .titre {

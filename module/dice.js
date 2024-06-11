@@ -76,7 +76,8 @@ export async function jetCaracteristique({actor = null,
     rollData.isFumble = false;
     rollData.isEchecCritique = false;
 
-    // Détails des dés jetés (class css pour l'affichage et resulat du dé)
+    // Détails du pool de dés jetés à afficher dans le chat
+    // (class css pour l'affichage et resulat du dé)
     var dices = [];
 
     // Jet du 1er dé
@@ -84,6 +85,7 @@ export async function jetCaracteristique({actor = null,
     if(rollResult.dice[0].results[0].result == 1) {
         // Si le 1er dé donne 1, c'est un Fumble
         rollData.isFumble = true;
+        // Ajout du dé dans le pool
         dices.push({ classes: "die d10 min", result : 1});
 
         rollResult = await new Roll(rollFumbleFormula, rollData).roll({async: true});
@@ -97,11 +99,10 @@ export async function jetCaracteristique({actor = null,
     // Total du jet
     rollData.total = rollResult.total;
 
-    // Détails pour chaque dé jeté
+    // Ajout de tous les dés dans le pool
     rollResult.dice[0].results.forEach( res => {
         let classes = "die d10"; 
-        if (res.result == 10) { classes += " exploded max"; }
-        else if (res.result == 1) { classes += " min"; }
+        if (res.result == 10) { classes += " max"; }
         dices.push({ classes: classes, result : res.result});
     });
 
@@ -137,13 +138,11 @@ export async function jetCaracteristique({actor = null,
 
     // Recupération du template
     const messageTemplate = "systems/agone/templates/partials/dice/jet-caracteristique.hbs"; 
-    let renderedRoll = await rollResult.render();
 
     // Assignation des données au template
     let templateContext = {
         stats : rollStats,
-        dices: dices,
-        roll: renderedRoll
+        dices: dices
     }
 
     // Construction du message
@@ -158,6 +157,16 @@ export async function jetCaracteristique({actor = null,
 
     // Affichage du message
     ChatMessage.create(chatData);
+
+    // Message de suggestions si l'option est activée
+    if(rollStats.valeurCritique) {
+        let suggestCritData = {
+            valeurCritique: rollStats.valeurCritique,
+            nomCritique: rollStats.nomCritique,
+            descCritique: rollStats.descCritique
+        }
+        await suggestCritChatMessage(actor, suggestCritData);
+    }
 }
 
 // Jet de compétence, avec au choix :
@@ -346,18 +355,36 @@ export async function jetCompetence({actor = null,
     rollData.isFumble = false;
     rollData.isEchecCritique = false;
 
+    // Détails du pool de dés jetés à afficher dans le chat
+    // (class css pour l'affichage et resulat du dé)
+    var dices = [];
+
     // Jet du 1er dé
     let rollResult = await new Roll(rollFormula, rollData).roll({async: true});
     if(rollResult.dice[0].results[0].result == 1) {
         // Si le 1er dé donne 1, c'est un Fumble
-        rollResult = await new Roll(rollFumbleFormula, rollData).roll({async: true});
         rollData.isFumble = true;
+        // Ajout du dé dans le pool
+        dices.push({ classes: "die d10 min", result : 1});
+
+        rollResult = await new Roll(rollFumbleFormula, rollData).roll({async: true});
         //Si le second dé donne 10, c'est un échec critique
         if(rollResult.dice[0].results[0].result == 10) {
             rollData.isEchecCritiqueJetDe = true;
             rollData.valeurCritique = rollResult.dice[0].total;
         }
     }
+
+    // Total du jet
+    rollData.total = rollResult.total;
+
+    // Ajout de tous les dés dans le pool
+    rollResult.dice[0].results.forEach( res => {
+        let classes = "die d10"; 
+        if (res.result == 10) { classes += " max"; }
+        //else if (res.result == 1) { classes += " min"; }
+        dices.push({ classes: classes, result : res.result});
+    });
 
     if(envoiMessage) {
         // Construction du jeu de données pour alimenter le template
@@ -366,7 +393,6 @@ export async function jetCompetence({actor = null,
             labelCarac: labelCarac,
             labelComp: labelComp,
             utiliseSpecialisation: utiliseSpecialisation,
-            //specialisation: specialisation,
             labelSpecialisation: labelSpecialisation,
             isJetDefaut: isJetDefaut
         }
@@ -396,13 +422,12 @@ export async function jetCompetence({actor = null,
         }
 
         // Recupération du template
-        const messageTemplate = "systems/agone/templates/partials/dice/jet-competence.hbs"; 
-        let renderedRoll = await rollResult.render();
+        const messageTemplate = "systems/agone/templates/partials/dice/jet-competence.hbs";
 
         // Assignation des données au template
         let templateContext = {
             stats : rollStats,
-            roll: renderedRoll
+            dices: dices
         }
 
         // Construction du message
@@ -725,7 +750,7 @@ export async function combatArme(actor, arme, type) {
             nomCritique: rollStats.nomCritique,
             descCritique: rollStats.descCritique
         }
-        suggestCritChatMessage(actor, suggestCritData);
+        await suggestCritChatMessage(actor, suggestCritData);
     }
 
     if(type == "Attaque" && nbCibles > 0) {
@@ -1022,7 +1047,7 @@ export async function sortEmprise(mage, danseur, sort, isIntuitif = false) {
             nomCritique: rollStats.nomCritique,
             descCritique: rollStats.descCritique
         }
-        suggestCritChatMessage(mage, suggestCritData);
+        await suggestCritChatMessage(mage, suggestCritData);
     }
 }
 
@@ -1258,7 +1283,7 @@ export async function oeuvre(artiste, oeuvre, artMagiqueImpro = null, isArtImpro
             nomCritique: rollStats.nomCritique,
             descCritique: rollStats.descCritique
         }
-        suggestCritChatMessage(artiste, suggestCritData);
+        await suggestCritChatMessage(artiste, suggestCritData);
     }
 }
 
@@ -1422,7 +1447,7 @@ export async function contreMagie(mage, danseur, utiliseHeroisme) {
             nomCritique: rollStats.nomCritique,
             descCritique: rollStats.descCritique
         }
-        suggestCritChatMessage(mage, suggestCritData);
+        await suggestCritChatMessage(mage, suggestCritData);
     }
 }
 
@@ -1496,7 +1521,7 @@ export async function desaccord(artiste, instrument, utiliseHeroisme) {
             nomCritique: rollStats.nomCritique,
             descCritique: rollStats.descCritique
         }
-        suggestCritChatMessage(artiste, suggestCritData);
+        await suggestCritChatMessage(artiste, suggestCritData);
     }
 }
 
@@ -1642,7 +1667,7 @@ export async function jetDefense(defenseur, typeDef) {
             nomCritique: rollStats.nomCritique,
             descCritique: rollStats.descCritique
         }
-        suggestCritChatMessage(defenseur, suggestCritData);
+        await suggestCritChatMessage(defenseur, suggestCritData);
     }
 
     defenseur.setDefense(typeDef == "defenseNat" ? false : true, rollResult.total);
@@ -1726,8 +1751,8 @@ async function suggestCritChatMessage(actor, suggestCritData) {
     // Si l'option n'est pas activée, on quitte la fonction
     if(!suggestCritOption) return;
 
-    // TODO trouver une méthode plus propre pour pousser le message au GM sans q'uil soit visible coté joueur
-    // Peux-être retravailler le template de blind roll
+    // TODO trouver une méthode plus propre pour pousser le message au GM sans qu'il soit visible coté joueur
+    // Peut-être retravailler le template de blind roll
     let roll = await new Roll("0", null).roll({async : true});
 
     let chatCritData = {

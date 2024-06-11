@@ -1,19 +1,19 @@
 <div class="jet-comp">
     <details>
-        <summary>
+        <summary class="roll-titre">
             <span>
                 {{#if stats.titrePersonnalise}} 
                     {{stats.titrePersonnalise}} 
                 {{else}}
                     {{#if stats.rangComp}}{{stats.labelComp}} + {{/if}}{{stats.labelCarac}}
                     {{#if stats.difficulte}}<span>▪ {{localize "agone.chat.difficulteAbrev"}} </span><span class="bold">{{stats.difficulte}} </span>{{/if}}
-                    {{#if stats.isJetDefaut}}<span>▪ <a class="nohlight spec" title="Jet par défaut"><i class="fas fa-minus-circle"></i></a></span>{{/if}}
+                    {{#if stats.isJetDefaut}}<span>▪ <a class="nohlight spec" title="Jet par défaut"><i class="fa-light fa-circle-chevron-down"></i></a></span>{{/if}}
                 {{/if}}
                     {{#if stats.utiliseSpecialisation}}<span>▪ <a class="nohlight spec" title="{{stats.labelSpecialisation}}"><i class="fas fa-award"></i></a></span>{{/if}}
-                    {{#if stats.utiliseHeroisme}}<span>▪ <a class="nohlight spec" title="{{localize 'agone.chat.utilisationHeroisme'}}"><i class="fas fa-fire"></i></a></span>{{/if}}
+                    {{#if stats.utiliseHeroisme}}<span>▪ <a class="nohlight spec" title="{{localize 'agone.chat.utilisationHeroisme'}}"><i class="fa-solid fa-fire-flame-curved"></i></a></span>{{/if}}
             </span>
         </summary>
-        <div class="txt-small bold">{{#if stats.rangComp}}{{stats.labelComp}} ({{stats.rangComp}}) + {{/if}}
+        <div class="roll-details">{{#if stats.rangComp}}{{stats.labelComp}} ({{stats.rangComp}}) + {{/if}}
             {{stats.labelCarac}} ({{stats.rangCarac}}) 
             {{#if stats.labelAspect}} + {{stats.labelAspect}} ({{stats.bonusAspect}}){{/if}}
             {{#if stats.malusArmure}} + {{localize "agone.chat.malusArmure"}} ({{stats.malusArmure}}){{/if}}
@@ -22,13 +22,10 @@
             {{#if stats.utiliseSpecialisation}} + {{localize "agone.actors.specialisation"}} {{stats.labelSpecialisation}} (1){{/if}}
         </div>
         {{#if stats.utiliseHeroisme}}
-            <div class="txt-small bold">{{localize "agone.chat.utilisationHeroisme"}}</div>
+            <div class="roll-details">{{localize "agone.chat.utilisationHeroisme"}}</div>
         {{/if}}
     </details>
-    {{#if stats.isFumble}}
-        <div class="dice-tooltip"><div class="dice-rolls fumble"><span class="fumble">{{localize "agone.chat.fumble"}}</span><div class="roll die d10 min">1</div></div></div>
-    {{/if}}
-    <div>{{{roll}}}</div>
+    {{> "systems/agone/templates/partials/dice/jet-dices-details.hbs"}}
     {{#if stats.infosAttaque}}
         {{> "systems/agone/templates/partials/dice/jet-resultat-dommages.hbs"}}
     {{else}}

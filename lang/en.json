@@ -389,7 +389,7 @@
             "succes": "Success !",
             "echec": "Failure !",
             "echecCritique": "Critical failure !!!",
-            "fumble": "FUMBLE !!!",
+            "fumble": "Fumble !",
             "attaque": "Attack",
             "attaqueAvec": "Attack roll with {arme}",
             "paradeAvec": "Parry roll with {arme}",
