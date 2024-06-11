@@ -567,6 +567,10 @@
         "lienTableCritiqueContusion": {
             "nom": "Lien table critiques de Contusion",
             "label": "Lien vers la rolltable des dommages critiques de Contusion" 
+        },
+        "gestionDesRencontres": {
+            "nom": "Activer la gestion des rencontres",
+            "label": "Si la gestion des rencontres de combat est active, elle impacte les jets d'initiative, d'esquive et de dommages" 
         }
     }
 }

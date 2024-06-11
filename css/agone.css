@@ -612,44 +612,59 @@ nav.historique-tabs {
 }
 .jet-carac,
 .jet-comp,
-.suggest-crit {
+.suggest-crit,
+.jet-contre-magie,
+.jet-desaccord,
+.jet-oeuvre {
   font-family: "Barbedor";
 }
-.roll-titre {
-  font-size: 1.2em;
+.chat-message .message-header .message-sender {
+  font-family: "Lorgol";
+  font-size: 1.8em;
+  margin-left: 5px;
 }
-.roll-details {
-  font-size: 0.85em;
+.chat-message .message-header .message-timestamp {
+  font-family: "Barbedor";
+}
+.chat-message .roll-desc {
+  font-size: 1.1em;
+  margin-bottom: 3px;
+}
+.chat-message .roll-titre {
+  font-size: 1.1em;
+}
+.chat-message .roll-details {
+  font-size: 0.8em;
   font-weight: bold;
 }
-.fumble {
-  font-size: 1.5em;
+.chat-message .fumble {
+  font-size: 1.3em;
   color: #aa0200;
   text-align: center;
 }
-.roll-total {
+.chat-message .roll-total {
   text-align: center;
-  font-size: 1.7em;
-  font-weight: bold;
-}
-.roll-result,
-.titre-suggest {
   font-size: 1.5em;
-  text-align: center;
-}
-.nom-suggest {
   font-weight: bold;
 }
-.dices-pool {
+.chat-message .roll-result,
+.chat-message .titre-suggest {
+  font-size: 1.3em;
+  text-align: center;
+}
+.chat-message .nom-suggest {
+  font-weight: bold;
+}
+.chat-message .dices-pool {
   display: flex;
   justify-content: center;
 }
-.dice-back {
+.chat-message .dice-back {
   display: flex;
   justify-content: center;
   margin: 3px;
 }
-.dice-back .roll {
+.chat-message .dice-back .roll {
   width: 30px;
   line-height: 30px;
   font-size: var(--font-size-16);
@@ -657,16 +672,16 @@ nav.historique-tabs {
   text-align: center;
   margin: 3px;
 }
-.dice-back .d10 {
+.chat-message .dice-back .d10 {
   background: url("../images/dice/d10-grey.svg") no-repeat;
   color: black;
   background-size: 30px 30px;
 }
-.dice-back .max {
+.chat-message .dice-back .max {
   color: #18520b;
   filter: sepia(0.5) hue-rotate(60deg);
 }
-.dice-back .min {
+.chat-message .dice-back .min {
   color: #aa0200;
   filter: sepia(0.5) hue-rotate(-60deg);
 }

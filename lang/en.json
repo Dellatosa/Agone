@@ -568,5 +568,10 @@
             "nom": "NO TRAD - Lien table critiques de Contusion",
             "label": "NO TRAD - Lien vers la rolltable des dommages critiques de Contusion" 
         }
+        ,
+        "gestionDesRencontres": {
+            "nom": "NO TRAD - Activer la gestion des rencontres",
+            "label": "NO TRAD - Si la gestion des rencontres de combat est active, elle impacte les jets d'initiative, d'esquive et de dommages" 
+        }
     }
 }

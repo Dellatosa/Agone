@@ -25,7 +25,7 @@ Hooks.once("init", function(){
     CONFIG.agone = agone;
     CONFIG.Item.documentClass = AgoneItem;
     CONFIG.Actor.documentClass = AgoneActor;
-    CONFIG.Combat.documentClass = AgoneCombat;
+    //CONFIG.Combat.documentClass = AgoneCombat;
     //CONFIG.ui.Combat = AgoneCombatTracker;
     CONFIG.Combatant.documentClass = AgoneCombatant;
 

@@ -454,7 +454,7 @@ export async function jetCompetence({actor = null,
         }
     }
 
-    return rollResult;
+    return [rollResult, dices];
 }
 
 // Fonction de contsruction de la boite de dialogue de jet de compétence
@@ -1203,7 +1203,7 @@ export async function oeuvre(artiste, oeuvre, artMagiqueImpro = null, isArtImpro
 
     // On lance le jet de dé depuis la fonction de jet de compétence 
     // On récupère le rollResult
-    let rollResult = await jetCompetence({
+    let result = await jetCompetence({
         actor: artiste,
         rangComp:  Math.min(statsArtMagique.rangArtMagique, statsArtMagique.rangCompetence),
         jetDefautInterdit: true,
@@ -1215,6 +1215,11 @@ export async function oeuvre(artiste, oeuvre, artMagiqueImpro = null, isArtImpro
         afficherDialog: false,
         envoiMessage: false
     });
+
+    if(result == null) return;
+    
+    const rollResult = result[0];
+    const dices = result[1];
 
     // Si le jet de compétence est annulé, on arrête le jet d'art magique (ex: compétence par défaut non autorisée)
     if(rollResult == null) return;
@@ -1247,20 +1252,29 @@ export async function oeuvre(artiste, oeuvre, artMagiqueImpro = null, isArtImpro
         let rollResistance = await new Roll("1d10 + @resistance", {resistance: resistance}).roll({async: true});
         if(rollResistance.total >= artisteData.potArtMagique) {
             rollStats.echecResistance = true;
-            rollStats.rollResistance = await rollResistance.render();
+
+            // Ajout du dé dans le pool
+            var diceRes = [];
+            rollResistance.dice[0].results.forEach( res => {
+                let classes = "die d10"; 
+                if (res.result == 10) { classes += " max"; }
+                diceRes.push({ classes: classes, result : res.result});
+            });
+
+            rollStats.resistDices = diceRes;
+            rollStats.resistTotal = rollResistance.total;
         }
     }
 
     // Recupération du template
     const messageTemplate = "systems/agone/templates/partials/dice/jet-oeuvre.hbs";
-    let renderedRoll = await rollResult.render();
 
     // Assignation des données au template
     let templateContext = {
         stats: rollStats,
+        dices: dices,
         artiste: artisteData,
-        oeuvre: isArtImpro ? null : oeuvre,
-        roll: renderedRoll
+        oeuvre: isArtImpro ? null : oeuvre
     }
 
     // Construction du message
@@ -1387,7 +1401,7 @@ export async function contreMagie(mage, danseur, utiliseHeroisme) {
 
     // On lance le jet de dé depuis la fonction de jet de compétence 
     // On récupère le rollResult
-    let rollResult = await jetCompetence({
+    let result = await jetCompetence({
         actor: mage,
         rangComp:  Math.min(statsEmprise.rangResonance, statsEmprise.connDanseurs),
         jetDefautInterdit: true,
@@ -1398,6 +1412,11 @@ export async function contreMagie(mage, danseur, utiliseHeroisme) {
         afficherDialog: false,
         envoiMessage: false
     });
+
+    if(result == null) return;
+
+    const rollResult = result[0];
+    const dices = result[1];
 
     // Si le jet de compétence est annulé, on arrête le jet de contre magie (ex: compétence par défaut non autorisée)
     if(rollResult == null) return;
@@ -1417,14 +1436,13 @@ export async function contreMagie(mage, danseur, utiliseHeroisme) {
 
     // Recupération du template
     const messageTemplate = "systems/agone/templates/partials/dice/jet-contre-magie.hbs";
-    let renderedRoll = await rollResult.render();
 
     // Assignation des données au template
     let templateContext = {
         stats: rollStats,
+        dices: dices,
         mage: mageData,
-        danseur: danseurData,
-        roll: renderedRoll
+        danseur: danseurData
     }
 
     // Construction du message
@@ -1463,7 +1481,7 @@ export async function desaccord(artiste, instrument, utiliseHeroisme) {
 
     // On lance le jet de dé depuis la fonction de jet de compétence 
     // On récupère le rollResult
-    let rollResult = await jetCompetence({
+    let result = await jetCompetence({
         actor: artiste,
         rangComp: Math.min(statsAccord.rangArtMagique, statsAccord.rangCompetence),
         jetDefautInterdit: true,
@@ -1473,6 +1491,11 @@ export async function desaccord(artiste, instrument, utiliseHeroisme) {
         afficherDialog: false,
         envoiMessage: false
     });
+
+    if(result == null) return;
+
+    const rollResult = result[0];
+    const dices = result[1];
 
     // Si le jet de compétence est annulé, on arrête le jet de désaccord (ex: compétence par défaut non autorisée)
     if(rollResult == null) return;
@@ -1492,13 +1515,12 @@ export async function desaccord(artiste, instrument, utiliseHeroisme) {
 
     // Recupération du template
     const messageTemplate = "systems/agone/templates/partials/dice/jet-desaccord.hbs";
-    let renderedRoll = await rollResult.render();
 
     // Assignation des données au template
     let templateContext = {
         stats: rollStats,
-        artiste: artisteData,
-        roll: renderedRoll
+        dices: dices,
+        artiste: artisteData
     }
 
     // Construction du message
@@ -1529,7 +1551,7 @@ export async function jetDefense(defenseur, typeDef) {
     let compData;
 
     if(typeDef == "esquive") {
-        if(defenseur.reactionUtilisee()) {
+        if(defenseur.reactionUtilisee() && game.settings.get("agone","gestionDesRencontres")) {
             ui.notifications.warn(game.i18n.localize("agone.notifications.warnReactionUtilisee"));
             return;
         }
@@ -1582,7 +1604,7 @@ export async function jetDefense(defenseur, typeDef) {
 
     let utiliseHeroisme = dialogOptions.utiliseHeroisme;
 
-    let rollResult = await jetCompetence({
+    let result = await jetCompetence({
         actor: defenseur,
         rangComp: typeDef == "esquive" ? compData.rangComp : null,
         labelComp: typeDef == "esquive" ? compData.labelComp: null,
@@ -1598,6 +1620,11 @@ export async function jetDefense(defenseur, typeDef) {
         afficherDialog: false,
         envoiMessage: false
     });
+
+    if(result == null) return;
+
+    const rollResult = result[0];
+    const dices = result[1];
 
     let rollStats = {
         ...rollResult.data,
@@ -1642,11 +1669,10 @@ export async function jetDefense(defenseur, typeDef) {
     }
 
     const messageTemplate = "systems/agone/templates/partials/dice/jet-competence.hbs";
-    let renderedRoll = await rollResult.render();
 
     let templateContext = {
         stats: rollStats,
-        roll: renderedRoll
+        dices: dices
     }
 
     let chatData = {

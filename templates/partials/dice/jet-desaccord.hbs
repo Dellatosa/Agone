@@ -1,22 +1,19 @@
 <div class="jet-desaccord">
-    <div class="titre">{{localize "agone.actors.jetDesaccord"}} - <span class="bold">{{configLocalize "instruments" artiste.instrument}}</span></div>
+    <div class="roll-desc">{{localize "agone.actors.jetDesaccord"}} - <span class="bold">{{configLocalize "instruments" artiste.instrument}}</span></div>
     <details>
-        <summary>
+        <summary class="roll-titre">
             <span>{{localize "agone.actors.potAccord"}} </span><span class="bold">{{artiste.potAccord}} </span>
             {{#if stats.utiliseSpecialisation}}<span>▪ <a class="nohlight spec" title="{{stats.labelSpecialisation}}"><i class="fas fa-award"></i></a></span>{{/if}}
-            {{#if stats.utiliseHeroisme}}<span>▪ <a class="nohlight spec" title="{{localize 'agone.chat.utilisationHeroisme'}}"><i class="fas fa-fire"></i></a></span>{{/if}}
+            {{#if stats.utiliseHeroisme}}<span>▪ <a class="nohlight spec" title="{{localize 'agone.chat.utilisationHeroisme'}}"><i class="fa-solid fa-fire-flame-curved"></i></a></span>{{/if}}
         </summary>
-        <div class="txt-small bold">{{ localize "agone.actors.potAccord"}} ({{artiste.potAccord}})
+        <div class="roll-details">{{ localize "agone.actors.potAccord"}} ({{artiste.potAccord}})
             {{#if stats.malusBlessureGrave}} + {{localize "agone.chat.malusBlessureGrave"}} ({{stats.malusBlessureGrave}}){{/if}}
             {{#if stats.utiliseSpecialisation}} + {{localize "agone.actors.specialisation"}} {{stats.labelSpecialisation}} (1){{/if}}
         </div>
         {{#if stats.utiliseHeroisme}}
-            <div class="txt-small bold">{{localize "agone.chat.utilisationHeroisme"}}</div>
+            <div class="roll-details">{{localize "agone.chat.utilisationHeroisme"}}</div>
         {{/if}}
     </details>
-    {{#if stats.isFumble}}
-        <div class="dice-tooltip"><div class="dice-rolls fumble"><span class="fumble">{{localize "agone.chat.fumble"}}</span><div class="roll die d10 min">1</div></div></div>
-    {{/if}}
-    <div>{{{roll}}}</div>
+    {{> "systems/agone/templates/partials/dice/jet-dices-details.hbs"}}
     {{> "systems/agone/templates/partials/dice/jet-resultat.hbs"}}
 </div>

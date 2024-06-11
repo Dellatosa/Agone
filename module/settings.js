@@ -12,9 +12,19 @@ export const registerSystemSettings = function() {
         default: true
     });
 
+    // Activer la gestion des rencontres
+    game.settings.register("agone","gestionDesRencontres", {
+        config: false,
+        scope: "world",
+        name: "parametres.gestionDesRencontres.nom",
+        hint: "parametres.gestionDesRencontres.label",
+        type: Boolean,
+        default: false
+    });
+
     // Autoriser la sélection de cibles multiples sur un jet d'Attaque
     game.settings.register("agone","ciblesMultiSurAttaque", {
-        config: true,
+        config: game.settings.get("agone","gestionDesRencontres"),
         scope: "world",
         name: "parametres.ciblesMultiSurAttaque.nom",
         hint: "parametres.ciblesMultiSurAttaque.label",
