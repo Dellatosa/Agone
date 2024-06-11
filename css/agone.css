@@ -616,7 +616,7 @@ nav.historique-tabs {
 .jet-contre-magie,
 .jet-desaccord,
 .jet-oeuvre {
-  font-family: "Barbedor";
+  font-family: "BarbedorMedium";
 }
 .chat-message .message-header .message-sender {
   font-family: "Lorgol";
@@ -624,7 +624,7 @@ nav.historique-tabs {
   margin-left: 5px;
 }
 .chat-message .message-header .message-timestamp {
-  font-family: "Barbedor";
+  font-family: "BarbedorMedium";
 }
 .chat-message .roll-desc {
   font-size: 1.1em;
@@ -729,6 +729,14 @@ details {
 }
 @font-face {
   font-family: "Barbedor";
+  src: url("../fonts/Barbedor T Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "BarbedorMedium";
+  src: url("../fonts/Barbedor T Medium.otf") format("opentype");
+}
+@font-face {
+  font-family: "BarbedorItalic";
   src: url("../fonts/BarbedorTOT-MediumItalic.ttf") format("truetype");
 }
 @font-face {
