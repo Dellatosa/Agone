@@ -651,6 +651,11 @@ nav.historique-tabs {
 .chat-message .carte .entete {
   font-weight: bold;
 }
+.chat-message .carte .carte-titre-desc {
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.3em;
+}
 .chat-message .carte .carte-desc {
   font-family: "BarbedorItalic";
   margin: 5px;

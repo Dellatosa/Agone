@@ -417,8 +417,16 @@ export default class AgoneActor extends Actor {
             result.labelCompetence = data.familleCompetences.societe.competences[compId].label;
         }
         else if(instrument) {
-            result.rangCompetence = data.familleCompetences.societe.competences[compId].domaines[domaine].rang;
-            result.labelCompetence = data.familleCompetences.societe.competences[compId].domaines[domaine].label;
+            const instruments = this.getInstrumentsPratiques();
+            console.log(instruments, instrument);
+            if(instruments && instruments.some( inst => inst.label == instrument)) {
+                result.rangCompetence = data.familleCompetences.societe.competences[compId].domaines[domaine].rang;
+                result.labelCompetence = data.familleCompetences.societe.competences[compId].domaines[domaine].label;    
+            }
+            else {
+                result.rangCompetence = null;
+                result.labelCompetence = null;
+            }
         }
         result.bonusAme = data.aspects.ame.bonus.valeur;
         result.labelAme = data.aspects.ame.bonus.label;

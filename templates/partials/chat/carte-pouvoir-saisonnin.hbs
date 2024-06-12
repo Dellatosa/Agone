@@ -1,8 +1,10 @@
 <div class="carte">
-    <div class="entete">
+    <div class="titre">
         <img src="{{img}}" title="{{name}}" height="32" width="32"/>
-        <span>{{name}}</span>
+        <div class="titre-nom">{{name}}</div>
     </div>
-    <h3>{{configLocalize "saisonnins" system.type}}</h3>
-    <div>{{editor system.description target="system.description" owner=true}}</div>
+    <div class="carte-titre-desc">{{configLocalize "saisonnins" system.saisonnin}}</div>
+    {{#if system.description}}
+        <div class="carte-desc">{{editor system.description target="system.description" owner=true}}</div>
+    {{/if}}
 </div>

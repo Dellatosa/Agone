@@ -1134,6 +1134,7 @@ export async function oeuvre(artiste, oeuvre, artMagiqueImpro = null, isArtImpro
     else {
         if(oeuvre.system.artMagique == "accord") {
             statsArtMagique = artiste.getStatsArtMagique(artMagique, oeuvre.system.instrument);
+            
         }
         else {
             statsArtMagique = artiste.getStatsArtMagique(artMagique);
@@ -1232,7 +1233,6 @@ export async function oeuvre(artiste, oeuvre, artMagiqueImpro = null, isArtImpro
     // Construction du jeu de données pour alimenter le template
     let rollStats = {
         ...rollResult.data,
-        //specialisation: statsArtMagique.specialisation,
         utiliseSpecialisation: dialogOptions.utiliseSpecialisation,
         labelSpecialisation: statsArtMagique.labelSpecialisation,
         difficulte: isArtImpro ? seuilTotalImpro : oeuvre.system.seuilTotal,

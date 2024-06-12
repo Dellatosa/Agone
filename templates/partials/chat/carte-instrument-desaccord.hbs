@@ -1,16 +1,20 @@
 <div class="carte instrument-desaccord" data-owner-id="{{owner}}">
-    <div class="entete">
+    <div class="titre">
         <!-- <img src="{{img}}" title="{{name}}" height="32" width="32"/> -->
-        <span>{{localize "agone.actors.jetDesaccord"}}</span>
+        <div class="titre-nom">{{localize "agone.actors.jetDesaccord"}}</div>
     </div>
     <div class="grid-2-chk">
-        <label>{{ localize "agone.chat.utiliseHeroisme"}}</label>
+        <label class="entete">{{ localize "agone.chat.utiliseHeroisme"}}</label>
         <input class="util-hero" type="checkbox" name="utiliseHeroisme"/>
     </div>
     <div>{{ localize "agone.chat.instrumentDesaccord" }}</div>
     <div class="boutons-carte">
-        {{#each instruments as | instrument | }}
-            <button class="jet-desaccord" data-instrument="{{instrument.label}}">{{configLocalize "instruments" instrument.label}}</button>
-        {{/each}}
+        <div class="ligne-btn-1">
+            {{#each instruments as | instrument | }}
+                {{#if instrument.label}}
+                    <button class="jet-desaccord" data-instrument="{{instrument.label}}">{{configLocalize "instruments" instrument.label}}</button>
+                {{/if}}
+            {{/each}}
+        </div>
     </div>
 </div>
