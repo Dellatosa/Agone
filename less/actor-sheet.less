@@ -67,11 +67,36 @@ nav.magie-tabs, nav.historique-tabs {
     border-bottom: 1px solid #b5b3a4;
 }
 
-.actor-infos-line {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.actor-infos {
+    
+    .nom-perso  {
+        font-family: "Lorgol";
+        font-size: 3em;
+
+        input[type=text] {
+            height: auto;
+        }
+        
+    }
+
+    .actor-infos-line {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        
+        label {
+            margin: 0 3px;
+            font-family: "Lorgol";
+            font-size: 1.5em;
+        }
+
+        input[type=number] , input[type=text], select {
+            font-family: "Barbedor";
+        }
+    }
 }
+
+
 
 .actor-flamme {
     display: grid;
@@ -81,6 +106,16 @@ nav.magie-tabs, nav.historique-tabs {
         display: flex;
         align-items: center;
         justify-content: center;
+
+        label {
+            margin: 0 3px;
+            font-family: "Lorgol";
+            font-size: 2em;
+        }
+
+        input[type=number] {
+            font-family: "Barbedor";
+        }
     }
 }
 

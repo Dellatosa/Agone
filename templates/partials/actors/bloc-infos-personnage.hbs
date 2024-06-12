@@ -1,7 +1,7 @@
 <!-- Bloc d'entête avec image à gauche et champs d'informations en ligne -->
 <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="150" width="150"/>
 <div class="actor-infos">
-    <h2><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'agone.common.name'}}"/></h2>
+    <div class="nom-perso"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'agone.common.name'}}"/></div>
     <div class="actor-infos-line">
         <label>{{localize "agone.actors.occupation"}}</label>
         <div class="auto-size"><input name="system.occupation" type="text" value="{{data.system.occupation}}" placeholder="{{localize 'agone.actors.occupation'}}"/></div>
@@ -35,7 +35,7 @@
         <div class="small-size"><input name="system.caracSecondaires.mouvement" type="number" value="{{data.system.caracSecondaires.mouvement}}" placeholder="{{localize 'agone.actors.mouvementAbbr'}}"/></div>
         <label>{{localize "agone.actors.pdv"}}</label>
         <div class="small-size"><input name="v.caracSecondaires.pdv.value" type="number" value="{{data.system.caracSecondaires.pdv.value}}" placeholder="0" max="{{data.system.caracSecondaires.pdv.max}}"/></div>
-        <label> / </label>
+        <div> / </div>
         <div class="small-size"><input name="system.caracSecondaires.pdv.max" type="number" value="{{data.system.caracSecondaires.pdv.max}}" placeholder="0"/></div>
         <label title="{{localize "agone.actors.nbBlessureGrave"}}">{{localize "agone.actors.nbBlessureGrave"}}</label>
         <div class="small-size"><input name="system.caracSecondaires.nbBlessureGrave" type="number" value="{{data.system.caracSecondaires.nbBlessureGrave}}" min="0" max="3">

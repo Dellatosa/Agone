@@ -182,10 +182,27 @@ nav.historique-tabs {
   line-height: 26px;
   border-bottom: 1px solid #b5b3a4;
 }
-.actor-infos-line {
+.actor-infos .nom-perso {
+  font-family: "Lorgol";
+  font-size: 3em;
+}
+.actor-infos .nom-perso input[type=text] {
+  height: auto;
+}
+.actor-infos .actor-infos-line {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.actor-infos .actor-infos-line label {
+  margin: 0 3px;
+  font-family: "Lorgol";
+  font-size: 1.5em;
+}
+.actor-infos .actor-infos-line input[type=number],
+.actor-infos .actor-infos-line input[type=text],
+.actor-infos .actor-infos-line select {
+  font-family: "Barbedor";
 }
 .actor-flamme {
   display: grid;
@@ -195,6 +212,14 @@ nav.historique-tabs {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+.actor-flamme .box-flamme label {
+  margin: 0 3px;
+  font-family: "Lorgol";
+  font-size: 2em;
+}
+.actor-flamme .box-flamme input[type=number] {
+  font-family: "Barbedor";
 }
 .actor-aspects-and-caracs {
   display: flex;
