@@ -1,24 +1,24 @@
 {{#if stats.isEchecCritiqueJetDe}}
-    <h3 class="resultat fumble">{{localize "agone.chat.echecCritique"}}</h3>
+    <div class="roll-result fumble">{{localize "agone.chat.echecCritique"}}</div>
     <div>{{localize stats.nomCritique}} ({{stats.valeurCritique}})</div>
 {{/if}}
 {{#if stats.infosAttaque}}
-    <h4 class="resultat">Pare l'attaque de {{stats.infosAttaque.nomAttaquant}} <span class="small-text">[Jet {{stats.infosAttaque.resultatJet}}
-        {{#unless (eq stats.infosAttaque.bonusDommages 0)}} - BD {{stats.infosAttaque.bonusDommages}}{{/unless}}]</span></h4>
+    <div class="roll-result">Pare l'attaque de {{stats.infosAttaque.nomAttaquant}} <span class="small-text">[Jet {{stats.infosAttaque.resultatJet}}
+        {{#unless (eq stats.infosAttaque.bonusDommages 0)}} - BD {{stats.infosAttaque.bonusDommages}}{{/unless}}]</span></div>
     {{#unless stats.attaqueTouche}}
-        <h3 class="resultat">{{localize "agone.chat.succes"}}</h3>
-        <h3 class="resultat">{{localize "agone.chat.marge"}} {{stats.marge}}</h3>
+        <div class="roll-result">{{localize "agone.chat.succes"}}</div>
+        <div class="roll-result">{{localize "agone.chat.marge"}} {{stats.marge}}</div>
     {{else}}
-        <h3 class="resultat">{{localize "agone.chat.echec"}}</h3>
+        <div class="roll-result">{{localize "agone.chat.echec"}}</div>
         {{#if (gt stats.dommagesRecus 0)}}
-            <h4 class="resultat">Encaisse {{stats.dommagesRecus}} points de dommages</h4>
+            <div class="roll-result">{{localize "agone.chat.encaisseDommages" dom=stats.dommagesRecus}}</div>
             {{#if stats.blessureCritique}}
-                <h3>Blessure Critique !!!</h3>
+                <div>{{localize "agone.chat.blessureCritique"}}</div>
                 {{#if stats.lienTableCritique}}<div class="resultat">{{stats.lienTableCritique}}{Jet de blessure critique}</div>{{/if}}
             {{/if}}
-            {{#if stats.blessureGrave}}<h3>Blessure Grave !</h3>{{/if}}
+            {{#if stats.blessureGrave}}<div>{{localize "agone.chat.blessureGrave"}}</div>{{/if}}
         {{else}}
-            <h4 class="resultat">N'encaisse aucun dommages</h4>
+            <div class="resultat">{{localize "agone.chat.aucunDommages"}}</div>
         {{/if}}    
     {{/unless}}
 {{/if}}

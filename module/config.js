@@ -649,6 +649,13 @@ agone.arts = {
     geste: "agone.actors.geste"
 }
 
+agone.artsSymbol = {
+    accord: "fa-duotone fa-music",
+    cyse: "fa-duotone fa-landmark",
+    decorum: "fa-duotone fa-paintbrush-fine",
+    geste: "fa-duotone fa-comment-lines"
+}
+
 agone.cerclesDemon = {
     aucun: "",
     opalin: "agone.items.opalin",

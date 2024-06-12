@@ -5,6 +5,10 @@ export default function registerHandlebarsHelpers() {
     Handlebars.registerHelper("configLocalize", function(liste, val) {
         return game.i18n.localize(agone[liste][val]);
     });
+
+    Handlebars.registerHelper("configArtSymbol", function(val) {
+        return game.i18n.localize(agone.artsSymbol[val]);
+    });
     
     Handlebars.registerHelper("malusAGI", function(minArme, style, equipee, agi, options) {
         let diff = minArme - agi;

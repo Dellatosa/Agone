@@ -1,12 +1,12 @@
 <div class="carte danseur" data-item-id="{{_id}}" data-owner-id="{{owner}}">
-    <div class="entete">
+    <div class="titre">
         <img src="{{img}}" title="{{name}}" height="32" width="32"/>
-        <span>{{name}}</span>
+        <div class="titre-nom">{{name}}</div>
     </div>
     <div class="grid-3">
-        <label>{{localize "agone.items.bonusEmprise"}}</label>
-        <label>{{localize "agone.items.empathie"}}</label>
-        <label>{{localize "agone.items.endurance"}}</label>
+        <label class="entete">{{localize "agone.items.bonusEmprise"}}</label>
+        <label class="entete">{{localize "agone.items.empathie"}}</label>
+        <label class="entete">{{localize "agone.items.endurance"}}</label>
         <div>{{system.bonusEmprise}}</div>
         <div>{{system.empathie}}</div>
         <div>{{system.endurance.value}} / {{system.endurance.max}}</div>
@@ -18,6 +18,8 @@
                 <button class="jet-sort">{{sort.name}} ({{sort.system.seuil}}{{#if sort.system.diffObedience}} + 5{{/if}})</button> <!-- <i class="fas fa-hand-sparkles"></i> -->
             </div>
         {{/each}}
-        <button class="jet-sort-intuitif">Sort de magie intuitive</button>
+         <div class="ligne-btn-1">
+            <button class="jet-sort-intuitif">Sort de magie intuitive</button>
+         </div>
     </div>
 </div>

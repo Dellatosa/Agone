@@ -1,13 +1,15 @@
-<div class="carte">
-    <div class="entete">
+<div class="carte sort">
+    <div class="titre">
         <img src="{{img}}" title="{{name}}" height="32" width="32"/>
-        <span>{{name}}</span>
+        <div class="titre-nom">{{name}}</div>
     </div>
     <div class="grid-2">
-        <div>{{localize "agone.items.resonance"}}</div>
-        <div>{{localize "agone.items.seuil"}}</div>
+        <div class="entete">{{localize "agone.items.resonance"}}</div>
+        <div class="entete">{{localize "agone.items.seuil"}}</div>
         <div>{{configLocalize "resonances" system.resonance}}</div>
         <div>{{system.seuil}}</div>
     </div>
-    <div>{{editor system.description target="system.description" owner=true}}</div>
+    {{#if system.description}}
+        <div class="carte-desc">{{editor system.description target="system.description" owner=true}}</div>
+    {{/if}}
 </div>

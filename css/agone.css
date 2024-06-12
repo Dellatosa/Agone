@@ -107,76 +107,6 @@
 .grid-sort-disp img {
   border: none;
 }
-.carte {
-  display: flex;
-  flex-direction: column;
-}
-.carte .entete {
-  display: flex;
-  flex-direction: row;
-  margin-bottom: 0.25rem;
-}
-.carte .entete span {
-  padding: 3px;
-  padding-top: 6px;
-  padding-bottom: 6px;
-}
-.carte .grid-2 {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  padding: 3px;
-  text-align: center;
-}
-.carte .grid-2-chk {
-  display: grid;
-  grid-template-columns: 9fr 1fr;
-  padding: 3px;
-  text-align: center;
-}
-.carte .grid-3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  padding: 3px;
-  text-align: center;
-}
-.carte .grid-4 {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  padding: 3px;
-  text-align: center;
-}
-.boutons-carte {
-  display: inline-flex;
-  flex-wrap: wrap;
-}
-.boutons-carte .ligne-btn-sort {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 2em 1fr;
-  text-align: center;
-  margin: 1px;
-}
-.boutons-carte .ligne-btn-2 {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  text-align: center;
-  margin: 1px;
-}
-.boutons-carte .ligne-btn-3 {
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  text-align: center;
-  margin: 1px;
-}
-.boutons-carte a {
-  padding-top: 6px;
-  padding-bottom: 6px;
-}
-.boutons-carte button {
-  margin: 1px;
-}
 .ligne-effet {
   display: grid;
   grid-template-columns: 2.5em 1fr 2em 2em;
@@ -610,14 +540,6 @@ nav.historique-tabs {
 .bold {
   font-weight: bold;
 }
-.jet-carac,
-.jet-comp,
-.suggest-crit,
-.jet-contre-magie,
-.jet-desaccord,
-.jet-oeuvre {
-  font-family: "BarbedorMedium";
-}
 .chat-message .message-header .message-sender {
   font-family: "Lorgol";
   font-size: 1.8em;
@@ -626,12 +548,26 @@ nav.historique-tabs {
 .chat-message .message-header .message-timestamp {
   font-family: "BarbedorMedium";
 }
+.chat-message details {
+  margin-bottom: 0.25rem;
+}
+.chat-message .jet-carac,
+.chat-message .jet-comp,
+.chat-message .suggest-crit,
+.chat-message .jet-contre-magie,
+.chat-message .jet-desaccord,
+.chat-message .jet-oeuvre,
+.chat-message .jet-arme,
+.chat-message .jet-sort {
+  font-family: "BarbedorMedium";
+}
 .chat-message .roll-desc {
   font-size: 1.1em;
-  margin-bottom: 3px;
+  margin: 5px 1px;
 }
 .chat-message .roll-titre {
   font-size: 1.1em;
+  margin-top: 5px;
 }
 .chat-message .roll-details {
   font-size: 0.8em;
@@ -641,6 +577,7 @@ nav.historique-tabs {
   font-size: 1.3em;
   color: #aa0200;
   text-align: center;
+  margin: 5px 1px;
 }
 .chat-message .roll-total {
   text-align: center;
@@ -651,6 +588,7 @@ nav.historique-tabs {
 .chat-message .titre-suggest {
   font-size: 1.3em;
   text-align: center;
+  margin: 5px 1px;
 }
 .chat-message .nom-suggest {
   font-weight: bold;
@@ -685,10 +623,110 @@ nav.historique-tabs {
   color: #aa0200;
   filter: sepia(0.5) hue-rotate(-60deg);
 }
-.titre {
-  margin-bottom: 0.25rem;
+.chat-message .carte {
+  display: flex;
+  flex-direction: column;
+  font-family: "BarbedorMedium";
 }
-details {
+.chat-message .carte .titre {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin: 5px 0;
+}
+.chat-message .carte .titre img {
+  display: block;
+  border: none;
+  width: 40px;
+  height: 40px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.chat-message .carte .titre .titre-nom {
+  flex: 2;
+  font-family: "Lorgol";
+  font-size: 2em;
+  margin-left: 5px;
+}
+.chat-message .carte .entete {
+  font-weight: bold;
+}
+.chat-message .carte .carte-desc {
+  font-family: "BarbedorItalic";
+  margin: 5px;
+  padding: 3px;
+  background-color: rgba(172, 172, 172, 0.35);
+}
+.chat-message .carte .boutons-carte {
+  display: inline-flex;
+  flex-wrap: wrap;
+  margin: 3px;
+}
+.chat-message .carte .boutons-carte .ligne-btn-sort {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2em 1fr;
+  text-align: center;
+  align-items: center;
+  margin: 1px;
+}
+.chat-message .carte .boutons-carte .ligne-btn-1 {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  text-align: center;
+  margin: 1px;
+}
+.chat-message .carte .boutons-carte .ligne-btn-2 {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  text-align: center;
+  margin: 1px;
+}
+.chat-message .carte .boutons-carte .ligne-btn-3 {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  text-align: center;
+  margin: 1px;
+}
+.chat-message .carte .boutons-carte a {
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+.chat-message .carte .boutons-carte button {
+  margin: 1px;
+  width: 90%;
+  justify-self: center;
+  font-family: "BarbedorMedium";
+}
+.carte .grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  padding: 3px;
+  text-align: center;
+}
+.carte .grid-2-chk {
+  display: grid;
+  grid-template-columns: 9fr 1fr;
+  padding: 3px;
+  align-items: center;
+  text-align: center;
+}
+.carte .grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 3px;
+  text-align: center;
+}
+.carte .grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 3px;
+  text-align: center;
+}
+.titre {
   margin-bottom: 0.25rem;
 }
 .edit-comp-grid {

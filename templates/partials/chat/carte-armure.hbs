@@ -1,12 +1,12 @@
 <div class="carte armure">
-    <div class="entete">
+    <div class="titre">
         <img src="{{img}}" title="{{name}}" height="32" width="32"/>
-        <span>{{name}}</span>
+        <div class="titre-nom">{{name}}</div>
     </div>
     <div class="grid-3">
-        <label>{{localize "agone.items.protection"}}</label>
-        <label>{{localize "agone.items.malusAgilite"}}</label>
-        <label>{{localize "agone.items.malusPerception"}}</label>
+        <label class="entete">{{localize "agone.items.protection"}}</label>
+        <label class="entete">{{localize "agone.items.malusAgilite"}}</label>
+        <label class="entete" >{{localize "agone.items.malusPerception"}}</label>
         <div>{{system.protection}}</div>
         <div>{{system.malus}}</div>
         <div>{{system.malusPerception}}</div>

@@ -1,20 +1,20 @@
 <div class="jet-sort">
     <!-- <div class="txt-small"> -->
     {{#if stats.isIntuitif}}
-        <div class="titre"><span class="bold">{{danseur.nomDanseur}}</span><span> {{localize "agone.chat.lanceSortMagieIntuitive"}}</span></div>
+        <div class="roll-desc"><span class="bold">{{danseur.nomDanseur}}</span><span> {{localize "agone.chat.lanceSortMagieIntuitive"}}</span></div>
         <details>
-            <summary>
+            <summary class="roll-titre">
                 <span>{{localize "agone.actors.potEmpriseIntuitive"}} </span><span class="bold">{{mage.potEmprise}}</span><span> ▪ {{localize "agone.chat.difficulteAbrev"}} </span><span class="bold">{{stats.difficulte}}</span>
     {{else}}
-        <div class="titre"><span class="bold">{{danseur.nomDanseur}}</span><span> {{localize "agone.chat.lanceSort"}} </span><span class="bold">{{sort.name}}</span></div>
+        <div class="roll-desc"><span class="bold">{{danseur.nomDanseur}}</span><span> {{localize "agone.chat.lanceSort"}} </span><span class="bold">{{sort.name}}</span></div>
         <details>
-            <summary>
+            <summary class="roll-titre">
                 <span>{{localize "agone.actors.potEmprise"}} </span><span class="bold">{{mage.potEmprise}}</span><span> ▪ {{localize "agone.chat.difficulteAbrev"}} </span><span class="bold">{{stats.difficulte}}</span>
     {{/if}}
                 {{#if stats.utiliseSpecialisation}}<span>▪ <a class="nohlight spec" title="{{stats.labelSpecialisation}}"><i class="fas fa-award"></i></a></span>{{/if}}
-                {{#if stats.utiliseHeroisme}}<span>▪ <a class="nohlight spec" title="{{localize 'agone.chat.utilisationHeroisme'}}"><i class="fas fa-fire"></i></a></span>{{/if}}
+                {{#if stats.utiliseHeroisme}}<span>▪ <a class="nohlight spec" title="{{localize 'agone.chat.utilisationHeroisme'}}"><i class="fa-solid fa-fire-flame-curved"></i></a></span>{{/if}}
             </summary>
-            <div class="txt-small bold">
+            <div class="roll-details">
                 {{#if stats.isIntuitif}}
                     <span>{{localize "agone.actors.potEmpriseIntuitive"}} ({{mage.potEmprise}})</span>
                 {{else}}
@@ -26,12 +26,9 @@
                 {{#if stats.utiliseSpecialisation}} + {{localize "agone.actors.specialisation"}} <span class="bold">{{stats.labelSpecialisation}} (1)</span>{{/if}}
             </div>
             {{#if stats.utiliseHeroisme}}
-                <div class="txt-small bold">{{localize "agone.chat.utilisationHeroisme"}}</div>
+                <div class="roll-details">{{localize "agone.chat.utilisationHeroisme"}}</div>
             {{/if}}
         </details>
-    {{#if stats.isFumble}}
-        <div class="dice-tooltip"><div class="dice-rolls fumble"><span class="fumble">{{localize "agone.chat.fumble"}}</span><div class="roll die d10 min">1</div></div></div>
-    {{/if}}
-    <div>{{{roll}}}</div>
+    {{> "systems/agone/templates/partials/dice/jet-dices-details.hbs"}}
     {{> "systems/agone/templates/partials/dice/jet-resultat.hbs"}}
 </div>

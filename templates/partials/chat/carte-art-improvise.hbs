@@ -1,16 +1,18 @@
 <div class="carte art-improvise" data-owner-id="{{owner}}">
-    <div class="entete">
+    <div class="titre">
         <!-- <img src="{{img}}" title="{{name}}" height="32" width="32"/> -->
-        <span>{{localize "agone.actors.artImprovise"}}</span>
+        <div class="titre-nom">{{localize "agone.actors.artImprovise"}}</div>
     </div>
     <!-- <div class="grid-2-chk">
         <label>{{ localize "agone.chat.utiliseHeroisme"}}</label>
         <input class="util-hero" type="checkbox" name="utiliseHeroisme"/>
     </div> -->
     <div>{{ localize "agone.chat.artImproviseMsg" }}</div>
-     <div class="boutons-carte grid-2">
-        {{#each arts as | art id | }}
-            <button class="jet-art-improvise" data-art-id="{{id}}">{{art.label}}</button>
-        {{/each}}
+     <div class="boutons-carte">
+        <div class="ligne-btn-2">
+            {{#each arts as | art id | }}
+                <button class="jet-art-improvise" data-art-id="{{id}}"><i class="{{configArtSymbol id}}"></i> {{art.label}}</button>
+            {{/each}}
+        </div>
     </div>
 </div>

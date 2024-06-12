@@ -510,20 +510,20 @@ export async function combatArme(actor, arme, type) {
     //console.log(game.combat, actor.estCombattantActif());
     
     if(statsCombat === null) {
-        ui.notifications.error(`${game.i18n.localize("agone.notifications.errorDonnesArme")} ${arme.name}.`)
+        ui.notifications.error(`${game.i18n.localize("agone.notifications.errorDonneesArme")} ${arme.name}.`)
         return;
     }
 
     // Vérification de l'utilisation d'une réaction le même round - uniquement en combat
     if(type == "Parade") {
-        if(actor.reactionUtilisee()) {
+        if(actor.reactionUtilisee() && game.settings.get("agone","gestionDesRencontres")) {
             ui.notifications.warn(game.i18n.localize("agone.notifications.warnReactionUtilisee"));
             return;
         }
     }
 
     if(type == "Attaque" && actor.getCombatant()) {
-        if(!actor.estCombattantActif()) {
+        if(!actor.estCombattantActif() && game.settings.get("agone","gestionDesRencontres")) {
             ui.notifications.warn(game.i18n.localize("agone.notifications.warnAttaqueTourCombat"));
             return;
         }
@@ -651,9 +651,7 @@ export async function combatArme(actor, arme, type) {
     utiliseHeroisme = dialogOptions.utiliseHeroisme;
     utiliseSpecialisation = dialogOptions.utiliseSpecialisation;
 
-    //console.log(difficulte);
-
-    let rollResult = await jetCompetence({
+    let result = await jetCompetence({
         actor: actor,
         rangComp: statsCombat.rangComp,
         labelComp: statsCombat.labelComp,
@@ -671,6 +669,11 @@ export async function combatArme(actor, arme, type) {
         afficherDialog: false,
         envoiMessage: false
     });
+
+    if(result == null) return;
+    
+    const rollResult = result[0];
+    const dices = result[1];
 
     let rollStats = {
         ...rollResult.data,
@@ -719,15 +722,15 @@ export async function combatArme(actor, arme, type) {
 
     // Recupération du template
     const messageTemplate = "systems/agone/templates/partials/dice/jet-arme.hbs";
-    let renderedRoll = await rollResult.render();
+    //let renderedRoll = await rollResult.render();
 
      // Assignation des données au template
     let templateContext = {
         stats: rollStats,
+        dices: dices,
         arme: arme,
         type: type,
-        ciblesData : type == "Attaque" ? ciblesData : null,
-        roll: renderedRoll
+        ciblesData : type == "Attaque" ? ciblesData : null
     }
 
      // Construction du message
@@ -970,7 +973,7 @@ export async function sortEmprise(mage, danseur, sort, isIntuitif = false) {
 
     // On lance le jet de dé depuis la fonction de jet de compétence 
     // On récupère le rollResult
-    let rollResult = await jetCompetence({
+    let result = await jetCompetence({
         actor: mage,
         rangComp:  isIntuitif ? Math.min(statsEmprise.rangResonance, danseur.system.empathie) : Math.min(statsEmprise.rangResonance, statsEmprise.connDanseurs),
         jetDefautInterdit: true,
@@ -986,7 +989,10 @@ export async function sortEmprise(mage, danseur, sort, isIntuitif = false) {
     });
 
     // Si le jet de compétence est annulé, on arrête le jet de sort (ex: compétence par défaut non autorisée)
-    if(rollResult == null) return;
+    if(result == null) return;
+
+    const rollResult = result[0];
+    const dices = result[1];
 
     // On baisse l'endurance du danseur d'un point
     let valEndurance = danseur.system.endurance.value -1;
@@ -1016,15 +1022,14 @@ export async function sortEmprise(mage, danseur, sort, isIntuitif = false) {
 
     // Recupération du template
     const messageTemplate = "systems/agone/templates/partials/dice/jet-sort-emprise.hbs";
-    let renderedRoll = await rollResult.render();
 
     // Assignation des données au template
     let templateContext = {
         stats: rollStats,
+        dices: dices,
         mage: mageData,
         danseur: danseurData,
-        sort:  isIntuitif ? null : sort,
-        roll: renderedRoll
+        sort:  isIntuitif ? null : sort
     }
 
     // Construction du message

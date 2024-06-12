@@ -6,9 +6,6 @@
     font-weight: bold;
 }
 
-.jet-carac, .jet-comp, .suggest-crit, .jet-contre-magie, .jet-desaccord, .jet-oeuvre {
-    font-family: "BarbedorMedium";
-}
 
 .chat-message {
 
@@ -24,13 +21,22 @@
         }
     }
 
+    details {
+        margin-bottom: 0.25rem;
+    }
+
+    .jet-carac, .jet-comp, .suggest-crit, .jet-contre-magie, .jet-desaccord, .jet-oeuvre, .jet-arme, .jet-sort {
+        font-family: "BarbedorMedium";
+    }
+
     .roll-desc {
         font-size: 1.1em;
-        margin-bottom: 3px;
+        margin: 5px 1px;
     }
 
     .roll-titre {
         font-size: 1.1em;
+        margin-top: 5px;
     }
     
     .roll-details {
@@ -42,6 +48,7 @@
         font-size: 1.3em;
         color: #aa0200;
         text-align: center;
+        margin: 5px 1px;
     }
     
     .roll-total {
@@ -53,6 +60,7 @@
     .roll-result, .titre-suggest {
         font-size: 1.3em;
         text-align: center;
+        margin: 5px 1px;
     }
     
     .nom-suggest {
@@ -94,6 +102,129 @@
             filter: sepia(0.5) hue-rotate(-60deg);
         }
     }
+
+    .carte {
+        display: flex;
+        flex-direction: column;
+        font-family: "BarbedorMedium";
+
+        .titre {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin: 5px 0;
+
+            img {
+                display: block;
+                border: none;
+                width : 40px;
+                height : 40px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .titre-nom {
+                flex: 2;
+                font-family: "Lorgol";
+                font-size: 2em;
+                margin-left: 5px;
+            }
+        }
+
+        .entete {
+            font-weight: bold;
+        }
+
+        .carte-desc {
+            font-family: "BarbedorItalic";
+            margin: 5px;
+            padding: 3px;
+            background-color: rgba(172, 172, 172, 0.35);
+        }
+
+        .boutons-carte {
+            display: inline-flex;
+            flex-wrap: wrap;
+            margin: 3px;
+        
+            .ligne-btn-sort {
+                width: 100%;
+                display: grid;
+                grid-template-columns: 2em 1fr;
+                text-align: center;
+                align-items: center;
+                margin: 1px;
+            }
+        
+            .ligne-btn-1 {
+                width: 100%;
+                display: grid;
+                grid-template-columns: 1fr;
+                text-align: center;
+                margin: 1px;
+            }
+
+            .ligne-btn-2 {
+                width: 100%;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                text-align: center;
+                margin: 1px;
+            }
+        
+            .ligne-btn-3 {
+                width: 100%;
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                text-align: center;
+                margin: 1px;
+            }
+        
+            a {
+                padding-top: 6px;
+                padding-bottom: 6px;
+            }
+        
+            button {
+                margin: 1px;
+                width: 90%;
+                justify-self: center;
+                font-family: "BarbedorMedium";
+            }
+        }
+    } 
+}
+
+.carte {
+
+    .grid-2 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        padding: 3px;
+        text-align: center;
+    }
+
+    .grid-2-chk {
+        display: grid;
+        grid-template-columns: 9fr 1fr;
+        padding: 3px;
+        align-items: center;
+        text-align: center;
+    }
+
+    .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        padding: 3px;
+        text-align: center;
+    }
+
+    .grid-4 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        padding: 3px;
+        text-align: center;
+    }
 }
 
 
@@ -102,9 +233,6 @@
     margin-bottom: 0.25rem;
 }
 
-details {
-    margin-bottom: 0.25rem;
-}
 
 .edit-comp-grid {
     display: grid;

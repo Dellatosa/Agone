@@ -1,17 +1,17 @@
 <div class="carte arme" data-item-id="{{_id}}" data-is-token="{{isToken}}" data-owner-id="{{owner}}">
-    <div class="entete">
+    <div class="titre">
         <img src="{{img}}" title="{{name}}" height="32" width="32"/>
-        <span>{{name}}</span>
+        <div class="titre-nom">{{name}}</div>
     </div>
     <div class="grid-4">
-        <label>{{localize "agone.items.modifInit"}}</label>
-        <label>{{localize "agone.items.modifAttaque"}}</label>
+        <label class="entete">{{localize "agone.items.modifInit"}}</label>
+        <label class="entete">{{localize "agone.items.modifAttaque"}}</label>
         {{#if (eq system.style "melee")}}
-            <label>{{localize "agone.items.modifParade"}}</label>
+            <label class="entete">{{localize "agone.items.modifParade"}}</label>
         {{else}}
-            <label>{{localize "agone.items.portee"}}</label>
+            <label class="entete">{{localize "agone.items.portee"}}</label>
         {{/if}}
-        <label>{{localize "agone.items.modifDommages"}}</label>
+        <label class="entete">{{localize "agone.items.modifDommages"}}</label>
         <div>{{system.modifInit}}</div>
         <div>{{system.modifAttaque}}</div>
         {{#if (eq system.style "melee")}}
@@ -27,11 +27,13 @@
         <div class="boutons-carte">
             {{#if (eq system.style "melee")}}
                 <div class="ligne-btn-2">
-                    <button class="attaque">{{localize "agone.chat.attaque"}}</button>
-                    <button class="parade">{{localize "agone.chat.parade"}}</button>
+                    <button class="attaque"><i class="fa-duotone fa-sword"></i> {{localize "agone.chat.attaque"}}</button>
+                    <button class="parade"><i class="fa-duotone fa-shield-halved"></i> {{localize "agone.chat.parade"}}</button>
                 </div>
             {{else}}
-                <button class="attaque">{{localize "agone.chat.attaque"}}</button>
+                <div class="ligne-btn-1">
+                    <button class="attaque"><i class="fa-duotone fa-sword"></i> {{localize "agone.chat.attaque"}}</button>
+                </div>
             {{/if}}
         </div>
     {{/if}}
