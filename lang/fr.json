@@ -549,6 +549,10 @@
             "warnAttaqueTourCombat": "Vous ne pouvez attaquer que durant votre tour !",
             "warnErrCreaMacro": "Vous pouvez créer des raccourçis de macros uniquement pour des objets liés à votre personnage",
             "warnErrUseMacro": "Impossible de déterminer votre personnage. Sélectionnez votre personnage à la connexion ou bien un token sur la scène."
+        },
+        "tooltip": {
+            "verrou": "Verrouiller la fiche",
+            "deverrou": "Déverouiller la fiche"
         }
     },
     "parametres": {

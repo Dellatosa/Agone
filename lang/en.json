@@ -549,6 +549,10 @@
             "warnAttaqueTourCombat": "NO TRAD - Vous ne pouvez attaquer que durant votre tour !",
             "warnErrCreaMacro": "NO TRAD - Vous pouvez créer des raccourçis de macros uniquement pour des objets liés à votre personnage",
             "warnErrUseMacro": "Impossible de déterminer votre personnage. Sélectionnez votre personnage à la connexion ou bien un token sur la scène."
+        },
+        "tooltip": {
+            "verrou": "Lock sheet",
+            "deverrou": "Unlock sheet"
         }
     },
     "parametres": {

@@ -1,7 +1,14 @@
 <!-- Bloc d'entête avec image à gauche et champs d'informations en ligne -->
 <img src="{{actor.img}}" data-edit="img" title="{{actor.name}}" height="150" width="150"/>
 <div class="actor-infos">
-    <div class="nom-perso"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'agone.common.name'}}"/></div>
+    <div class="actor-name-line">
+        <div class="nom-perso"><input name="name" type="text" value="{{actor.name}}" placeholder="{{localize 'agone.common.name'}}"/></div>
+        <div class="padlock">
+            <a class="sheet-change-lock" title="{{#if unlocked}} {{localize 'agone.tooltip.verrou'}} {{else}} {{localize 'agone.tooltip.deverrou'}} {{/if}}">
+                {{#if unlocked}}<i class="fa-solid fa-unlock"></i>{{else}}<i class="fa-solid fa-lock"></i>{{/if}}
+            </a>
+        </div>
+    </div>
     <div class="actor-infos-line">
         <label>{{localize "agone.actors.occupation"}}</label>
         <div class="auto-size"><input name="system.occupation" type="text" value="{{data.system.occupation}}" placeholder="{{localize 'agone.actors.occupation'}}"/></div>
@@ -29,16 +36,16 @@
     <div class="actor-infos-line">
         <label>{{localize "agone.actors.taille"}}</label>
         <div class="small-size"><input name="system.taille" type="number" value="{{data.system.taille}}" placeholder="{{localize 'agone.actors.taille'}}"/></div>
-        <label >{{localize "agone.actors.tai"}}</label>
-        <div class="small-size"><input name="system.caracSecondaires.tai" type="number" value="{{data.system.caracSecondaires.tai}}" placeholder="{{localize 'agone.actors.tai'}}" readonly/></div>
+        <label >{{localize "agone.actors.tai"}} : </label>
+        <div class="info-val">{{data.system.caracSecondaires.tai}}</div>
         <label>{{localize "agone.actors.mouvementAbbr"}}</label>
         <div class="small-size"><input name="system.caracSecondaires.mouvement" type="number" value="{{data.system.caracSecondaires.mouvement}}" placeholder="{{localize 'agone.actors.mouvementAbbr'}}"/></div>
         <label>{{localize "agone.actors.pdv"}}</label>
-        <div class="small-size"><input name="v.caracSecondaires.pdv.value" type="number" value="{{data.system.caracSecondaires.pdv.value}}" placeholder="0" max="{{data.system.caracSecondaires.pdv.max}}"/></div>
+        <div class="small-size"><input name="system.caracSecondaires.pdv.value" type="number" value="{{data.system.caracSecondaires.pdv.value}}" placeholder="0" max="{{data.system.caracSecondaires.pdv.max}}"/></div>
         <div> / </div>
         <div class="small-size"><input name="system.caracSecondaires.pdv.max" type="number" value="{{data.system.caracSecondaires.pdv.max}}" placeholder="0"/></div>
-        <label title="{{localize "agone.actors.nbBlessureGrave"}}">{{localize "agone.actors.nbBlessureGrave"}}</label>
-        <div class="small-size"><input name="system.caracSecondaires.nbBlessureGrave" type="number" value="{{data.system.caracSecondaires.nbBlessureGrave}}" min="0" max="3">
+        <label>{{localize "agone.actors.nbBlessureGrave"}}  : </label>
+        <div class="info-val">{{data.system.caracSecondaires.nbBlessureGrave}}</div>
     </div>
     </div>
 </div>

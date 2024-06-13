@@ -102,6 +102,9 @@ export default class AgoneActorSheet extends ActorSheet {
             } 
         }
 
+        // Etat du verrou sur la feuille
+        data.unlocked = this.actor.isUnlocked;
+        
         return data;
     }
 
@@ -125,6 +128,9 @@ export default class AgoneActorSheet extends ActorSheet {
         }
 
         if(this.actor.isOwner) {
+            // Vérouiller / dévérouiller la fiche
+            html.find(".sheet-change-lock").click(this._onSheetChangelock.bind(this));
+
             // edit-comp - edition des compétences d'une famille
             html.find('.edit-comp').click(this._onEditComp.bind(this));
 
@@ -192,6 +198,15 @@ export default class AgoneActorSheet extends ActorSheet {
             // Régénérer l'endurance
             html.find('.repos-danseurs').click(this._onReposDanseurs.bind(this));
         }
+    }
+
+    async _onSheetChangelock(event) {
+        event.preventDefault();
+        
+        let flagData = await this.actor.getFlag(game.system.id, "SheetUnlocked");
+        if (flagData) await this.actor.unsetFlag(game.system.id, "SheetUnlocked");
+        else await this.actor.setFlag(game.system.id, "SheetUnlocked", "SheetUnlocked");
+        this.actor.sheet.render(true);
     }
 
     // Gestionnaire d'événements pour les listes d'items

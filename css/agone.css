@@ -182,9 +182,19 @@ nav.historique-tabs {
   line-height: 26px;
   border-bottom: 1px solid #b5b3a4;
 }
+.actor-infos .actor-name-line {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.actor-infos .actor-name-line .padlock {
+  font-size: 1.2em;
+  margin-left: 5px;
+}
 .actor-infos .nom-perso {
   font-family: "Lorgol";
   font-size: 3em;
+  flex: 2;
 }
 .actor-infos .nom-perso input[type=text] {
   height: auto;
@@ -192,7 +202,12 @@ nav.historique-tabs {
 .actor-infos .actor-infos-line {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
+}
+.actor-infos .actor-infos-line .info-val {
+  margin: 2px 7px 0 3px;
+  font-family: "Barbedor";
+  font-size: 1.3em;
 }
 .actor-infos .actor-infos-line label {
   margin: 0 3px;

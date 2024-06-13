@@ -167,6 +167,11 @@ export default class AgoneActor extends Actor {
         }
     }
 
+    get isUnlocked() {
+        if (this.getFlag(game.system.id, "SheetUnlocked")) return true;
+        return false;
+    }
+    
     calcBonusDommages(force, tai) {
         let total = force + tai;
         switch(total) {

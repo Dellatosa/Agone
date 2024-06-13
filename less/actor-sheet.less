@@ -69,21 +69,38 @@ nav.magie-tabs, nav.historique-tabs {
 
 .actor-infos {
     
+    .actor-name-line {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        .padlock {
+            font-size: 1.2em;
+            margin-left: 5px;
+        }
+    }
+
     .nom-perso  {
         font-family: "Lorgol";
         font-size: 3em;
+        flex: 2;
 
         input[type=text] {
             height: auto;
         }
-        
     }
 
     .actor-infos-line {
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: space-around;
         
+        .info-val {
+            margin: 2px 7px 0 3px;
+            font-family: "Barbedor";
+            font-size: 1.3em;
+        }
+
         label {
             margin: 0 3px;
             font-family: "Lorgol";
@@ -95,8 +112,6 @@ nav.magie-tabs, nav.historique-tabs {
         }
     }
 }
-
-
 
 .actor-flamme {
     display: grid;
