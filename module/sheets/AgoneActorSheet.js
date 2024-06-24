@@ -140,6 +140,9 @@ export default class AgoneActorSheet extends ActorSheet {
             // roll-carac - jet de caractéritiques
             html.find('.roll-carac').click(this._onRollCarac.bind(this));
 
+            // roll-pdv - jet de points de vie
+            html.find('.roll-pdv').click(this._onRollPdv.bind(this));
+
             // Liste d'items dans la feuille
             // Création d'un item
             html.find('.creer-item').click(this._onCreerItem.bind(this));
@@ -349,6 +352,15 @@ export default class AgoneActorSheet extends ActorSheet {
             bonusAspect: caracData.bonusAspect,
             labelAspect: caracData.labelAspect,
             utiliseHeroisme: event.shiftKey
+        });
+    }
+
+    // roll-pdv - jet de points de vie
+    _onRollPdv(event) {
+        event.preventDefault();
+
+        Dice.jetPdv({
+            actor: this.actor
         });
     }
 

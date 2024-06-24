@@ -36,9 +36,11 @@ select.auto-size {
     }
 }
 
-.agone.sheet.actor .fas {
-    padding-top : 6px;
-    padding-bottom : 6px;
+.agone.sheet.actor {
+    .fas, .fa-solid {
+        padding-top : 6px;
+        padding-bottom : 6px;
+    }
 }
 
 a.nohlight {
@@ -96,7 +98,7 @@ nav.magie-tabs, nav.historique-tabs {
         justify-content: space-around;
         
         .info-val {
-            margin: 2px 7px 0 3px;
+            margin: 4px 7px 0 3px;
             font-family: "Barbedor";
             font-size: 1.3em;
         }
@@ -119,17 +121,16 @@ nav.magie-tabs, nav.historique-tabs {
 
     .box-flamme {
         display: flex;
-        align-items: center;
         justify-content: center;
 
-        label {
-            margin: 0 3px;
+        label, .info-val {
+            margin: 0 5px;
             font-family: "Lorgol";
-            font-size: 2em;
+            font-size: 2.5em;
         }
 
-        input[type=number] {
-            font-family: "Barbedor";
+        .slash {
+            margin-top: 17px;
         }
     }
 }

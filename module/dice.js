@@ -1,3 +1,45 @@
+//Jet de points de vie
+export async function jetPdv({actor = null} = {}) {
+    let rollFormula = "1d10";
+
+    // Détails du pool de dés jetés à afficher dans le chat
+    // (class css pour l'affichage et resulat du dé)
+    var dices = [];
+
+    // Jet du dé et maj du personnage
+    let rollResult = await new Roll(rollFormula, null).roll({async: true});
+    actor.setD10Pdv(rollResult.total);
+
+    // Ajout du dé dans le pool
+    rollResult.dice[0].results.forEach( res => {
+        let classes = "die d10"; 
+        if (res.result == 1) { classes += " min"; }
+        if (res.result == 10) { classes += " max"; }
+        dices.push({ classes: classes, result : res.result});
+    });
+
+    // Recupération du template
+    const messageTemplate = "systems/agone/templates/partials/dice/jet-pdv.hbs"; 
+
+    // Assignation des données au template
+    let templateContext = {
+        dices: dices
+    }
+
+    // Construction du message
+    let chatData = {
+        user: game.user.id,
+        speaker: ChatMessage.getSpeaker({ actor: actor }),
+        roll: rollResult,
+        content: await renderTemplate(messageTemplate, templateContext),
+        sound: CONFIG.sounds.dice,
+        type: CONST.CHAT_MESSAGE_TYPES.ROLL // CONST.CHAT_MESSAGE_STYLES
+    }
+
+    // Affichage du message
+    ChatMessage.create(chatData);
+}
+
 // Jet de caractéristique avec affichage du message dans la chat
 export async function jetCaracteristique({actor = null, 
     aspect = null,
@@ -58,6 +100,10 @@ export async function jetCaracteristique({actor = null,
 
     // Utilisation d'un point d'héroïsme
     if(utiliseHeroisme) {
+
+        actor.subirDommages(5);
+        actor.setD10Pdv(5);
+
         // On teste s'il reste des points d'héroïsme sur l'Actor
         if(actor.depenserHeroisme()) {
             rollData.utiliseHeroisme = true,

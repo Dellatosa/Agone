@@ -74,6 +74,7 @@ async function preloadHandlebarsTemplates() {
         "systems/agone/templates/partials/actors/bloc-aspect-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-aspect-terne.hbs",
         "systems/agone/templates/partials/actors/bloc-infos-personnage.hbs",
+        "systems/agone/templates/partials/actors/bloc-infos-personnage-unlocked.hbs",
         "systems/agone/templates/partials/actors/bloc-flamme-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-competences-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-recap-combat-personnage.hbs",

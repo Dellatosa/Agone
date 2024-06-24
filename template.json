@@ -131,6 +131,8 @@
         },
         "caracSecondaires": {
           "pdv": {
+            "d10": 0,
+            "bpdv": 0,
             "value": 0,
             "max": 0
           },

@@ -1,0 +1,10 @@
+<div class="jet-pdv">
+    <div class="roll-titre">{{localize "agone.chat.jetPdv"}}</div>
+    <div class="dices-pool">
+    {{#each dices as |dice|}}
+        <div class="dice-back">
+            <div class="roll {{dice.classes}}">{{{dice.result}}}</div>
+        </div>
+    {{/each}}
+</div>
+</div>

@@ -13,7 +13,7 @@
                         {{/if}}
                             {{#each domaines as |domaine keyDom|}}
                                 {{#if (eq domaine.numcol col)}}                                        
-                                    <a class="roll-comp" title="{{localize 'agone.actors.jetComp'}}" data-famille="{{keyFam}}" data-competence="{{keyComp}}" data-domaine="{{keyDom}}" data-carac="{{domaine.caracteristique}}"><i class="fas fa-dice" ></i></a> 
+                                    <a class="roll-comp" title="{{localize 'agone.actors.jetComp'}}" data-famille="{{keyFam}}" data-competence="{{keyComp}}" data-domaine="{{keyDom}}" data-carac="{{domaine.caracteristique}}"><i class="fa-solid fa-dice-d10"></i></a> 
                                     {{#if domPerso}}
                                         {{#if (eq keyComp "musique")}}
                                             <div class="dom-perso"><label>{{configLocalize "instruments" domaine.label}}</label></div>
@@ -33,7 +33,7 @@
                             {{/each}}
                         {{else}}
                         {{#if (eq competence.numcol col)}}
-                            <a class="roll-comp" title="{{localize 'agone.actors.jetComp'}}" data-famille="{{keyFam}}" data-competence="{{keyComp}}" data-carac="{{competence.caracteristique}}"><i class="fas fa-dice"></i></a> 
+                            <a class="roll-comp" title="{{localize 'agone.actors.jetComp'}}" data-famille="{{keyFam}}" data-competence="{{keyComp}}" data-carac="{{competence.caracteristique}}"><i class="fa-solid fa-dice-d10"></i></a> 
                             <label class="lbl-comp">{{competence.label}}</label>     
                             <div class="val-comp"><label>{{competence.rang}}</label></div>
                             {{#if competence.specialisation }}

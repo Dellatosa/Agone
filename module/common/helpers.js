@@ -6,6 +6,10 @@ export default function registerHandlebarsHelpers() {
         return game.i18n.localize(agone[liste][val]);
     });
 
+    Handlebars.registerHelper("configPeupleLocalize", function(val) {
+        return game.i18n.localize(agone.peuple[val].label);
+    });
+
     Handlebars.registerHelper("configArtSymbol", function(val) {
         return game.i18n.localize(agone.artsSymbol[val]);
     });

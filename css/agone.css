@@ -156,7 +156,8 @@ select.auto-size {
   flex: 0 0 150px;
   height: 150px;
 }
-.agone.sheet.actor .fas {
+.agone.sheet.actor .fas,
+.agone.sheet.actor .fa-solid {
   padding-top: 6px;
   padding-bottom: 6px;
 }
@@ -205,7 +206,7 @@ nav.historique-tabs {
   justify-content: space-around;
 }
 .actor-infos .actor-infos-line .info-val {
-  margin: 2px 7px 0 3px;
+  margin: 4px 7px 0 3px;
   font-family: "Barbedor";
   font-size: 1.3em;
 }
@@ -225,16 +226,16 @@ nav.historique-tabs {
 }
 .actor-flamme .box-flamme {
   display: flex;
-  align-items: center;
   justify-content: center;
 }
-.actor-flamme .box-flamme label {
-  margin: 0 3px;
+.actor-flamme .box-flamme label,
+.actor-flamme .box-flamme .info-val {
+  margin: 0 5px;
   font-family: "Lorgol";
-  font-size: 2em;
+  font-size: 2.5em;
 }
-.actor-flamme .box-flamme input[type=number] {
-  font-family: "Barbedor";
+.actor-flamme .box-flamme .slash {
+  margin-top: 17px;
 }
 .actor-aspects-and-caracs {
   display: flex;
@@ -598,7 +599,8 @@ nav.historique-tabs {
 .chat-message .jet-desaccord,
 .chat-message .jet-oeuvre,
 .chat-message .jet-arme,
-.chat-message .jet-sort {
+.chat-message .jet-sort,
+.chat-message .jet-pdv {
   font-family: "BarbedorMedium";
 }
 .chat-message .roll-desc {

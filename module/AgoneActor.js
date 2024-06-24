@@ -98,13 +98,7 @@ export default class AgoneActor extends Actor {
                     data.aspects.esprit.caracteristiques.emprise.valeur = 0;
             }
 
-
-            data.caracSecondaires.seuilBlessureGrave = Math.floor(data.caracSecondaires.pdv.max / 3);
-            data.caracSecondaires.seuilBlessureCritique = Math.floor(data.caracSecondaires.pdv.max / 2);
-            if(data.caracSecondaires.pdv.value > data.caracSecondaires.pdv.max) {
-                data.caracSecondaires.pdv.value = data.caracSecondaires.pdv.max;
-            }
-
+            // Calcul des caractéristiques liées au peuple
             if(data.peuple != "aucun" && data.peuple != "" && data.peuple != null)
             {
                 data.caracSecondaires.tai = CONFIG.agone.peuple[data.peuple].tai;
@@ -112,6 +106,7 @@ export default class AgoneActor extends Actor {
                 data.caracSecondaires.demiCharge = Math.floor(data.caracSecondaires.chargeMax / 2);
                 data.caracSecondaires.chargeQuotidienne = Math.floor(data.caracSecondaires.chargeMax / 4);
                 data.caracSecondaires.bonusDommages = this.calcBonusDommages(data.aspects.corps.caracteristiques.force.valeur, data.caracSecondaires.tai);
+                data.caracSecondaires.pdv.bpdv = CONFIG.agone.peuple[data.peuple].bpdv;
             } else {
                 data.caracSecondaires.tai = 0;
                 data.caracSecondaires.mouvement = 0;
@@ -119,6 +114,15 @@ export default class AgoneActor extends Actor {
                 data.caracSecondaires.demiCharge = 0;
                 data.caracSecondaires.chargeQuotidienne = 0;
                 data.caracSecondaires.bonusDommages = 0;
+                data.caracSecondaires.pdv.bpdv = 0;
+            }
+
+            // Calcul du nombre de points de vie max et des seuils de blessure
+            data.caracSecondaires.pdv.max = data.caracSecondaires.pdv.bpdv + data.aspects.corps.caracteristiques.resistance.valeur * 3 + data.caracSecondaires.pdv.d10;
+            data.caracSecondaires.seuilBlessureGrave = Math.floor(data.caracSecondaires.pdv.max / 3);
+            data.caracSecondaires.seuilBlessureCritique = Math.floor(data.caracSecondaires.pdv.max / 2);
+            if(data.caracSecondaires.pdv.value > data.caracSecondaires.pdv.max) {
+                data.caracSecondaires.pdv.value = data.caracSecondaires.pdv.max;
             }
 
 
@@ -510,6 +514,10 @@ export default class AgoneActor extends Actor {
 
     getDanseurs() {
         return this.items.filter(function (item) { return item.type == "Danseur"});
+    }
+
+    setD10Pdv(valD10) {
+        this.update({"data.caracSecondaires.pdv.d10": valD10});
     }
 
     gererBonusAspect() {
