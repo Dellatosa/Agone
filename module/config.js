@@ -350,70 +350,80 @@ agone.peuple = {
         bpdv: 25,
         mpoids: 7,
         tai: 0,
-        mv: 3
+        mv: 3,
+        ageMoyen: 30
     },
     ogre: {
         label: "agone.actors.ogre",
         bpdv: 25,
         mpoids: 7,
         tai: 0,
-        mv: 3
+        mv: 3,
+        ageMoyen: 35
     },
     minotaure: {
         label: "agone.actors.minotaure",
         bpdv: 45,
         mpoids: 10,
         tai: 1,
-        mv: 4
+        mv: 4,
+        ageMoyen: 45
     },
     geant: {
         label: "agone.actors.geant",
         bpdv: 100,
         mpoids: 20,
         tai: 3,
-        mv: 8
+        mv: 8,
+        ageMoyen: 75
     },
     feeNoire: {
         label: "agone.actors.feeNoire",
         bpdv: 10,
         mpoids: 4,
         tai: -2,
-        mv: 1
+        mv: 1,
+        ageMoyen: 1000
     },
     nain: {
         label: "agone.actors.nain",
         bpdv: 20,
         mpoids: 6,
         tai: -1,
-        mv: 2
+        mv: 2,
+        ageMoyen: 40
     },
     meduse: {
         label: "agone.actors.meduse",
         bpdv: 25,
         mpoids: 7,
         tai: 0,
-        mv: 3
+        mv: 3,
+        ageMoyen: 40
     },
     lutin: {
         label: "agone.actors.lutin", 
         bpdv: 20,
         mpoids: 6,
         tai: -1,
-        mv: 2
+        mv: 2,
+        ageMoyen: 35
     },
     farfadet: {
         label: "agone.actors.farfadet",
         bpdv: 20,
         mpoids: 6,
         tai: -1,
-        mv: 2
+        mv: 2,
+        ageMoyen: 50
     },
     satyre: {
         label: "agone.actors.satyre",
         bpdv: 25,
         mpoids: 7,
         tai: 0,
-        mv: 3
+        mv: 3,
+        ageMoyen: 30
     } 
 }
 

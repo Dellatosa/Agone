@@ -154,6 +154,7 @@ select.auto-size {
 .agone.sheet.actor .sheet-header img,
 .sheet-fixed-content img {
   flex: 0 0 150px;
+  border: none;
   height: 150px;
 }
 .agone.sheet.actor .fas,
@@ -207,7 +208,7 @@ nav.historique-tabs {
 }
 .actor-infos .actor-infos-line .info-val {
   margin: 4px 7px 0 3px;
-  font-family: "Barbedor";
+  font-family: "BarbedorMedium";
   font-size: 1.3em;
 }
 .actor-infos .actor-infos-line label {
@@ -218,7 +219,7 @@ nav.historique-tabs {
 .actor-infos .actor-infos-line input[type=number],
 .actor-infos .actor-infos-line input[type=text],
 .actor-infos .actor-infos-line select {
-  font-family: "Barbedor";
+  font-family: "BarbedorMedium";
 }
 .actor-flamme {
   display: grid;
@@ -237,11 +238,11 @@ nav.historique-tabs {
 .actor-flamme .box-flamme .slash {
   margin-top: 17px;
 }
-.actor-aspects-and-caracs {
+.aspects-and-caracs {
   display: flex;
   padding: 3px;
 }
-.actor-aspects-and-caracs .actor-aspect {
+.aspects-and-caracs .aspect {
   flex: 1 1 auto;
   display: flex;
   flex-direction: column;
@@ -250,36 +251,39 @@ nav.historique-tabs {
   border: solid 1px;
   border-radius: 15px;
 }
-.actor-aspects-and-caracs .actor-aspect h3 {
+.aspects-and-caracs .aspect .aspect-titre {
   text-align: center;
+  font-family: "Lorgol";
+  font-size: 2.5em;
 }
-.actor-aspects-and-caracs .actor-aspect .actor-aspect-line {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.actor-aspects-and-caracs .actor-aspect .actor-carac-line {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  grid-template-columns: max-content 3.5em 2em;
-}
-.actor-aspects-and-caracs .actor-aspect .actor-bonus-line {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  grid-template-columns: max-content 3.5em;
-}
-.actor-aspects-and-caracs .actor-aspect .actor-carac-line.corps {
-  display: grid;
-  justify-content: center;
-  grid-template-columns: max-content 3.5em 2em max-content 3.5em 2em;
-}
-.actor-aspects-and-caracs .actor-aspect .actor-aspect-line {
+.aspects-and-caracs .aspect .aspect-line {
   display: grid;
   justify-content: center;
   align-items: center;
   grid-template-columns: max-content 3.5em max-content 3.5em;
+  font-family: "BarbedorMedium";
+  font-weight: bold;
+}
+.aspects-and-caracs .aspect .bonus-line {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: max-content 3.5em;
+  font-family: "BarbedorMedium";
+  font-weight: bold;
+}
+.aspects-and-caracs .aspect .carac-line {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: max-content 3.5em 2em;
+  font-family: "BarbedorMedium";
+}
+.aspects-and-caracs .aspect .carac-line.corps {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: max-content 3.5em 2em max-content 3.5em 2em;
+  font-family: "BarbedorMedium";
 }
 .actor-caracSec {
   display: flex;

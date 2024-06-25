@@ -1,8 +1,8 @@
 <!-- Blocs d'aspects (corps, esprit ame) avec caractéristiques primaires associées à chaque aspect -->
 {{#each data.system.aspects as |aspect keyAsp|}}
-    <div class="actor-aspect">
-        <h3>{{aspect.positif.label}}</h3>
-        <div class="actor-carac-line {{keyAsp}}">
+    <div class="aspect">
+        <div class="aspect-titre">{{aspect.positif.label}}</div>
+        <div class="carac-line {{keyAsp}}">
             {{#each aspect.caracteristiques as |carac keyCarac|}}
                 {{#unless carac.secondaire}}
                 <label>{{carac.label}}</label>

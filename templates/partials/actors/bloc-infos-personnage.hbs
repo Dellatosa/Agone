@@ -20,16 +20,19 @@
         <div class="info-val">{{data.system.sexe}}</div>
         <label>{{localize "agone.actors.peuple"}} : </label>
         <div class="info-val">{{configPeupleLocalize data.system.peuple}}</div>
-        <label>{{localize "agone.actors.JetVieilAbbr"}} : </label>
+        <label>{{localize "agone.actors.jetVieilAbbr"}} : </label>
         <div class="info-val">{{data.system.caracSecondaires.diffJetVieillesse}}</div>
+        {{#if (lt data.system.caracSecondaires.diffJetVieillesse 1)}}
+            <a class="roll-vieillesse" title="{{localize 'agone.actors.jetVieillesse'}}"><i class="fa-solid fa-dice-d10"></i></a>
+        {{/if}}
         <label>{{localize "agone.actors.age"}} : </label>
-        <div class="info-val">{{data.system.age}}</div>
+        <div class="info-val">{{data.system.age}} {{localize 'agone.actors.anneesAbbr'}}</div>
         <label>{{localize "agone.actors.poids"}} : </label>
-        <div class="info-val">{{data.system.poids}}</div>
+        <div class="info-val">{{data.system.poids}} {{localize 'agone.actors.kiloAbbr'}}</div>
     </div>
     <div class="actor-infos-line">
         <label>{{localize "agone.actors.taille"}} : </label>
-        <div class="info-val">{{data.system.taille}}</div>
+        <div class="info-val">{{data.system.taille}} {{localize 'agone.actors.metreAbbr'}}</div>
         <label>{{localize "agone.actors.tai"}} : </label>
         <div class="info-val">{{data.system.caracSecondaires.tai}}</div>
         <label>{{localize "agone.actors.mouvementAbbr"}} : </label>
