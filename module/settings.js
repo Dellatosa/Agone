@@ -12,6 +12,16 @@ export const registerSystemSettings = function() {
         default: true
     });
 
+    // Utiliser la règle du jet de Vieillesse
+    game.settings.register("agone","gestionJetVieillesse", {
+        config: true,
+        scope: "world",
+        name: "parametres.gestionJetVieillesse.nom",
+        hint: "parametres.gestionJetVieillesse.label",
+        type: Boolean,
+        default: true
+    });
+
     // Activer la gestion des rencontres
     game.settings.register("agone","gestionDesRencontres", {
         config: false,

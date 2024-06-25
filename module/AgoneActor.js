@@ -304,6 +304,11 @@ export default class AgoneActor extends Actor {
         return result;
     }
 
+    get diffJetVieillesse() {
+        let diff = this.system.caracSecondaires.diffJetVieillesse;
+        return diff ? diff : 0;
+    }
+
     getAspect(caracteristique) {
         let data = this.system;
 

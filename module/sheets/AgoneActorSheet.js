@@ -105,6 +105,11 @@ export default class AgoneActorSheet extends ActorSheet {
         // Etat du verrou sur la feuille
         data.unlocked = this.actor.isUnlocked;
         
+        // Affichage du bouton pour le jet de Vieillesse
+        if(game.settings.get("agone", "gestionJetVieillesse") && actorData.peuple != "feeNoire") {
+            data.jetVieillesseActif = true;
+        }
+
         return data;
     }
 
@@ -142,6 +147,9 @@ export default class AgoneActorSheet extends ActorSheet {
 
             // roll-pdv - jet de points de vie
             html.find('.roll-pdv').click(this._onRollPdv.bind(this));
+
+            // roll-vieillesse
+            html.find('.roll-vieillesse').click(this._onRollVieillesse.bind(this));
 
             // Liste d'items dans la feuille
             // Création d'un item
@@ -361,6 +369,26 @@ export default class AgoneActorSheet extends ActorSheet {
 
         Dice.jetPdv({
             actor: this.actor
+        });
+    }
+
+    // roll-vieillesse - jet de vieillesse
+    _onRollVieillesse(event) {
+        event.preventDefault();
+
+        let caracData = this.actor.getCaracData("resistance");
+
+        console.log(this.actor.diffJetVieillesse);
+
+        Dice.jetCaracteristique({
+            actor: this.actor,
+            aspect: caracData.aspect,
+            rangCarac: caracData.rangCarac,
+            labelCarac: caracData.labelCarac,
+            bonusAspect: caracData.bonusAspect,
+            labelAspect: caracData.labelAspect,
+            difficulte: 15 + this.actor.diffJetVieillesse,
+            titrePersonnalise: "Jet de vieillesse"
         });
     }
 

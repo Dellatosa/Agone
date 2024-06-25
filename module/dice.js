@@ -1,45 +1,3 @@
-//Jet de points de vie
-export async function jetPdv({actor = null} = {}) {
-    let rollFormula = "1d10";
-
-    // Détails du pool de dés jetés à afficher dans le chat
-    // (class css pour l'affichage et resulat du dé)
-    var dices = [];
-
-    // Jet du dé et maj du personnage
-    let rollResult = await new Roll(rollFormula, null).roll({async: true});
-    actor.setD10Pdv(rollResult.total);
-
-    // Ajout du dé dans le pool
-    rollResult.dice[0].results.forEach( res => {
-        let classes = "die d10"; 
-        if (res.result == 1) { classes += " min"; }
-        if (res.result == 10) { classes += " max"; }
-        dices.push({ classes: classes, result : res.result});
-    });
-
-    // Recupération du template
-    const messageTemplate = "systems/agone/templates/partials/dice/jet-pdv.hbs"; 
-
-    // Assignation des données au template
-    let templateContext = {
-        dices: dices
-    }
-
-    // Construction du message
-    let chatData = {
-        user: game.user.id,
-        speaker: ChatMessage.getSpeaker({ actor: actor }),
-        roll: rollResult,
-        content: await renderTemplate(messageTemplate, templateContext),
-        sound: CONFIG.sounds.dice,
-        type: CONST.CHAT_MESSAGE_TYPES.ROLL // CONST.CHAT_MESSAGE_STYLES
-    }
-
-    // Affichage du message
-    ChatMessage.create(chatData);
-}
-
 // Jet de caractéristique avec affichage du message dans la chat
 export async function jetCaracteristique({actor = null, 
     aspect = null,
@@ -114,9 +72,9 @@ export async function jetCaracteristique({actor = null,
         }    
     }
 
-     // Construction des formules de jets définitives (jet initial et fumble)
-     rollFormula += baseFormula;
-     rollFumbleFormula += baseFormula;
+    // Construction des formules de jets définitives (jet initial et fumble)
+    rollFormula += baseFormula;
+    rollFumbleFormula += baseFormula;
 
     // Variables de gestion des fumbles (1 au dé) // TODO : et des échecs critiques (1 au dé suivi de 10, ou MR <= -15)
     rollData.isFumble = false;
@@ -225,6 +183,7 @@ export async function jetCompetence({actor = null,
     specialisation = false,
     labelSpecialisation = null,
     jetDefautInterdit = null,
+    diffJetVieillesse = null,
     rangCarac = null,
     labelCarac = null,
     bonusAspect = null,
@@ -452,6 +411,9 @@ export async function jetCompetence({actor = null,
         }        
 
         if(difficulte) {
+            if(diffJetVieillesse) {
+                difficulte += diffJetVieillesse;
+            }
             rollStats.difficulte = difficulte;
             rollStats.marge = rollResult.total - difficulte;
             //Si la marge est <= -15, c'est un échec critique
@@ -1756,6 +1718,48 @@ export async function jetDefense(defenseur, typeDef) {
     if(rollStats.blessureGrave) {
         defenseur.subirBlessureGrave();
     }
+}
+
+//Jet de points de vie
+export async function jetPdv({actor = null} = {}) {
+    let rollFormula = "1d10";
+
+    // Détails du pool de dés jetés à afficher dans le chat
+    // (class css pour l'affichage et resulat du dé)
+    var dices = [];
+
+    // Jet du dé et maj du personnage
+    let rollResult = await new Roll(rollFormula, null).roll({async: true});
+    actor.setD10Pdv(rollResult.total);
+
+    // Ajout du dé dans le pool
+    rollResult.dice[0].results.forEach( res => {
+        let classes = "die d10"; 
+        if (res.result == 1) { classes += " min"; }
+        if (res.result == 10) { classes += " max"; }
+        dices.push({ classes: classes, result : res.result});
+    });
+
+    // Recupération du template
+    const messageTemplate = "systems/agone/templates/partials/dice/jet-pdv.hbs"; 
+
+    // Assignation des données au template
+    let templateContext = {
+        dices: dices
+    }
+
+    // Construction du message
+    let chatData = {
+        user: game.user.id,
+        speaker: ChatMessage.getSpeaker({ actor: actor }),
+        roll: rollResult,
+        content: await renderTemplate(messageTemplate, templateContext),
+        sound: CONFIG.sounds.dice,
+        type: CONST.CHAT_MESSAGE_TYPES.ROLL // CONST.CHAT_MESSAGE_STYLES
+    }
+
+    // Affichage du message
+    ChatMessage.create(chatData);
 }
 
 // Renvoi le niveau de qualité d'une oeuvre en fonction du malus que s'impose l'artiste

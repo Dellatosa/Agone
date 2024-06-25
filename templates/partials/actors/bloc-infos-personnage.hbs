@@ -22,7 +22,7 @@
         <div class="info-val">{{configPeupleLocalize data.system.peuple}}</div>
         <label>{{localize "agone.actors.jetVieilAbbr"}} : </label>
         <div class="info-val">{{data.system.caracSecondaires.diffJetVieillesse}}</div>
-        {{#if (lt data.system.caracSecondaires.diffJetVieillesse 1)}}
+        {{#if jetVieillesseActif}}
             <a class="roll-vieillesse" title="{{localize 'agone.actors.jetVieillesse'}}"><i class="fa-solid fa-dice-d10"></i></a>
         {{/if}}
         <label>{{localize "agone.actors.age"}} : </label>
