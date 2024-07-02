@@ -140,20 +140,37 @@ nav.magie-tabs, nav.historique-tabs {
     display: flex;
     padding: 3px;
 
+    .bd-left {
+        border-left: solid 2px #B8B8B8;
+        border-top-left-radius: 15px;
+        border-bottom-left-radius: 15px;
+    }
+
+    .bd-right {
+        border-top-right-radius: 15px;
+        border-bottom-right-radius: 15px;
+    }
+
     .aspect {
         flex: 1 1 auto;
         display: flex;
         flex-direction: column;
-        margin: 2px;
-        padding: 3px;
-        border: solid 1px;
-        border-radius: 15px;
-        
 
+        border-top: solid 2px #B8B8B8;
+        border-right: solid 2px #B8B8B8;
+        border-bottom: solid 2px #B8B8B8;
+        
         .aspect-titre {
             text-align: center;
             font-family: "Lorgol";
             font-size: 2.5em;
+
+            background-color: rgba(82, 77, 77, 0.075);;
+            border-bottom: solid 2px #B8B8B8;
+            border-bottom-left-radius: 50% 30%;
+            border-bottom-right-radius: 50% 30%;
+        
+            margin-bottom: 5px;
         }
 
         .aspect-line {
@@ -224,6 +241,10 @@ nav.magie-tabs, nav.historique-tabs {
     height: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
+}
+
+.sheet-tabs {
+    font-family: "BarbedorMedium";
 }
 
 .tab h3 {

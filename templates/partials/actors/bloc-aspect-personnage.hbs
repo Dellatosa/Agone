@@ -1,6 +1,6 @@
 <!-- Blocs d'aspects (corps, esprit ame) avec bonus calculé et caractéristiques primaires associées à chaque aspect -->
 {{#each data.system.aspects as |aspect keyAsp|}}
-    <div class="aspect">
+    <div class="aspect {{#if (eq keyAsp "corps")}}bd-left{{/if}} {{#if (eq keyAsp "ame")}}bd-right{{/if}}">
         <div class="aspect-titre">{{aspect.positif.label}}</div>
         <div class="aspect-line">
             <label>{{aspect.positif.label}}</label>
