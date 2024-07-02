@@ -157,11 +157,12 @@ select.auto-size {
   border: none;
   height: 150px;
 }
-.agone.sheet.actor .fas,
-.agone.sheet.actor .fa-solid {
-  padding-top: 6px;
-  padding-bottom: 6px;
-}
+/*.agone.sheet.actor {
+    .fas, .fa-solid {
+        padding-top : 6px;
+        padding-bottom : 6px;
+    }
+}*/
 a.nohlight {
   text-shadow: none;
   cursor: default;
@@ -197,6 +198,7 @@ nav.historique-tabs {
   font-family: "Lorgol";
   font-size: 3em;
   flex: 2;
+  margin-left: 10px;
 }
 .actor-infos .nom-perso input[type=text] {
   height: auto;
@@ -292,36 +294,62 @@ nav.historique-tabs {
   grid-template-columns: max-content 3.5em 2em;
   font-family: "BarbedorMedium";
 }
+.aspects-and-caracs .aspect .carac-line-unlocked {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: max-content 1.5em 3.5em 1.5em;
+  font-family: "BarbedorMedium";
+}
 .aspects-and-caracs .aspect .carac-line.corps {
   display: grid;
   justify-content: center;
   grid-template-columns: max-content 3.5em 2em max-content 3.5em 2em;
   font-family: "BarbedorMedium";
 }
-.actor-caracSec {
-  display: flex;
-  padding: 3px;
-}
-.actor-caracSec .actor-caracSec-block {
-  flex: 1 1 auto;
-  display: flex;
-  flex-direction: column;
-  margin: 2px;
-  padding: 3px;
-  border: solid 1px;
-  border-radius: 15px;
-}
-.actor-caracSec .actor-caracSec-block h3 {
-  text-align: center;
-}
-.actor-caracSec .actor-caracSec-block .actor-caracSec-grid {
+.aspects-and-caracs .aspect .carac-line-unlocked.corps {
   display: grid;
   justify-content: center;
-  grid-template-columns: max-content 3.5em;
+  grid-template-columns: max-content 1.5em 3.5em 1.5em max-content 1.5em 3.5em 1.5em;
+  font-family: "BarbedorMedium";
 }
-.actor-caracSec .actor-caracSec-block .actor-caracSec-grid label {
-  padding: 7px 0;
+.aspects-and-caracs .aspect .carac-crea {
+  font-size: 0.8em;
 }
+.aspects-and-caracs .aspect .carac-crea.minus {
+  text-align: right;
+}
+.aspects-and-caracs .aspect .carac-crea.plus {
+  text-align: left;
+}
+/*.actor-caracSec {
+    display: flex;
+    padding: 3px;
+
+    .actor-caracSec-block {
+        flex: 1 1 auto;
+        display: flex;
+        flex-direction: column;
+        margin: 2px;
+        padding: 3px;
+        border: solid 1px;
+        border-radius: 15px;
+
+        h3 {
+            text-align: center;
+        }
+
+        .actor-caracSec-grid {
+            display: grid;
+            justify-content: center;
+            grid-template-columns: max-content 3.5em;
+
+            label {
+                padding: 7px 0;
+            }
+        }
+    }
+}*/
 .sheet-body {
   height: 100%;
   overflow-y: scroll;
@@ -333,17 +361,46 @@ nav.historique-tabs {
 .tab h3 {
   text-align: center;
 }
-.actor-fam-comp {
-  display: flex;
+.grid-caracSec-comp {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
 }
-.actor-fam-comp .actor-comp-grid {
+.grid-caracSec-comp .caracSec .caracSec-titre {
+  text-align: center;
+  font-family: "Lorgol";
+  font-size: 2em;
+}
+.grid-caracSec-comp .caracSec .grid-caracSec {
+  display: grid;
+  grid-template-columns: 1fr 3.5em;
+  align-items: center;
+  font-family: "BarbedorMedium";
+}
+.grid-caracSec-comp .caracSec .grid-caracSec .val-caracSec {
+  background-color: rgba(82, 77, 77, 0.075);
+  margin: 2px;
+  text-align: center;
+  align-items: center;
+  border-radius: 3px;
+  height: 23px;
+}
+.grid-caracSec-comp .caracSec .grid-caracSec .val-caracSec label {
+  position: relative;
+  top: 4px;
+}
+.grid-caracSec-comp .competences .comp-titre {
+  text-align: center;
+  font-family: "Lorgol";
+  font-size: 2em;
+}
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid {
   display: grid;
   padding: 3px;
   align-content: start;
   grid-template-columns: 2em 1fr 2.5em 2em;
   font-size: 0.9em;
 }
-.actor-fam-comp .actor-comp-grid .titre-fam {
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid .titre-fam {
   grid-column-start: span 3;
   padding-top: 6px;
   padding-bottom: 6px;
@@ -351,42 +408,43 @@ nav.historique-tabs {
   font-weight: bold;
   text-align: center;
 }
-.actor-fam-comp .actor-comp-grid .titre-comp {
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid .titre-comp {
   grid-column-start: span 4;
   font-weight: bold;
 }
-.actor-fam-comp .actor-comp-grid .lbl-comp {
-  position: relative;
-  top: 7px;
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid .lbl-comp {
+  align-self: center;
 }
-.actor-fam-comp .actor-comp-grid .dom-fixe {
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid .dom-fixe {
   text-indent: 1em;
-  position: relative;
-  top: 7px;
+  align-self: center;
 }
-.actor-fam-comp .actor-comp-grid .dom-perso {
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid .dom-perso {
   margin: 2px;
   background-color: rgba(82, 77, 77, 0.075);
+  border-radius: 3px;
 }
-.actor-fam-comp .actor-comp-grid .dom-perso label {
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid .dom-perso label {
   position: relative;
   top: 5px;
   left: 2px;
 }
-.actor-fam-comp .actor-comp-grid .val-comp {
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid .val-comp {
   background-color: rgba(82, 77, 77, 0.075);
   margin: 2px;
   text-align: center;
+  border-radius: 3px;
+  height: 23px;
 }
-.actor-fam-comp .actor-comp-grid .val-comp label {
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid .val-comp label {
   position: relative;
   top: 5px;
 }
-.actor-fam-comp .actor-comp-grid a {
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid a {
   text-align: center;
-  font-size: 1.2em;
+  align-self: center;
 }
-.actor-fam-comp .actor-comp-grid a.spec {
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid a.spec {
   font-size: 1.4em;
 }
 .recap {

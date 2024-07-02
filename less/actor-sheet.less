@@ -37,12 +37,12 @@ select.auto-size {
     }
 }
 
-.agone.sheet.actor {
+/*.agone.sheet.actor {
     .fas, .fa-solid {
         padding-top : 6px;
         padding-bottom : 6px;
     }
-}
+}*/
 
 a.nohlight {
     text-shadow: none;
@@ -87,6 +87,7 @@ nav.magie-tabs, nav.historique-tabs {
         font-family: "Lorgol";
         font-size: 3em;
         flex: 2;
+        margin-left: 10px;
 
         input[type=text] {
             height: auto;
@@ -199,16 +200,43 @@ nav.magie-tabs, nav.historique-tabs {
             font-family: "BarbedorMedium";
         }
 
+        .carac-line-unlocked {
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            grid-template-columns: max-content 1.5em 3.5em 1.5em;
+            font-family: "BarbedorMedium";
+        }
+
         .carac-line.corps {
             display: grid;
             justify-content: center;
             grid-template-columns: max-content 3.5em 2em max-content 3.5em 2em;
             font-family: "BarbedorMedium";
         }
+
+        .carac-line-unlocked.corps {
+            display: grid;
+            justify-content: center;
+            grid-template-columns: max-content 1.5em 3.5em 1.5em max-content 1.5em 3.5em 1.5em;
+            font-family: "BarbedorMedium";
+        }
+
+        .carac-crea {
+            font-size: 0.8em;
+        }
+
+        .carac-crea.minus {
+            text-align: right;
+        }
+
+        .carac-crea.plus {
+            text-align: left;
+        }
     }
 }
 
-.actor-caracSec {
+/*.actor-caracSec {
     display: flex;
     padding: 3px;
 
@@ -235,7 +263,7 @@ nav.magie-tabs, nav.historique-tabs {
             }
         }
     }
-}
+}*/
 
 .sheet-body {
     height: 100%;
@@ -251,70 +279,116 @@ nav.magie-tabs, nav.historique-tabs {
     text-align: center;
 }
 
-.actor-fam-comp {
-    display: flex;
-    
-    .actor-comp-grid {
-        display: grid;
-        padding: 3px;
-        align-content: start;
-        grid-template-columns: 2em 1fr 2.5em 2em;
-        font-size: 0.9em;
+.grid-caracSec-comp {
+    display: grid;
+    grid-template-columns: 1fr 3fr;
 
-        .titre-fam {
-            grid-column-start: span 3;
-            padding-top: 6px;
-            padding-bottom: 6px;
-            font-size: 1.2em;
-            font-weight: bold;
+    .caracSec {
+
+        .caracSec-titre {
             text-align: center;
+            font-family: "Lorgol";
+            font-size: 2em;
         }
 
-        .titre-comp {
-            grid-column-start: span 4;
-            font-weight: bold;
-        }
+        .grid-caracSec {
+            display: grid;
+            grid-template-columns: 1fr 3.5em;
+            align-items: center;
 
-        .lbl-comp {
-            position: relative;
-            top: 7px;
-        }
+            font-family: "BarbedorMedium";
 
-        .dom-fixe {
-            text-indent: 1em;
-            position: relative;
-            top: 7px;
-        }
+            .val-caracSec {
+                background-color: rgba(82, 77, 77, 0.075);
+                margin: 2px;
+                text-align: center;
+                align-items: center;
+                border-radius: 3px;
+                height: 23px;
 
-        .dom-perso {
-            margin: 2px;
-            background-color: rgba(82, 77, 77, 0.075);
-
-            label {
-                position: relative;
-                top: 5px;
-                left: 2px;
+                label {
+                    position: relative;
+                    top: 4px;
+                }
             }
         }
+    }
 
-        .val-comp {
-            background-color: rgba(82, 77, 77, 0.075);
-            margin: 2px;
+    .competences {
+
+        .comp-titre {
             text-align: center;
+            font-family: "Lorgol";
+            font-size: 2em;
+        }
 
-            label {
-                position: relative;
-                top: 5px;
+        .actor-fam-comp {
+            //display: flex;
+            
+            .actor-comp-grid {
+                display: grid;
+                padding: 3px;
+                align-content: start;
+                grid-template-columns: 2em 1fr 2.5em 2em;
+                font-size: 0.9em;
+        
+                .titre-fam {
+                    grid-column-start: span 3;
+                    padding-top: 6px;
+                    padding-bottom: 6px;
+                    font-size: 1.2em;
+                    font-weight: bold;
+                    text-align: center;
+                }
+        
+                .titre-comp {
+                    grid-column-start: span 4;
+                    font-weight: bold;
+                }
+        
+                .lbl-comp {
+                    align-self: center;
+                }
+        
+                .dom-fixe {
+                    text-indent: 1em;
+                    align-self: center;
+                }
+        
+                .dom-perso {
+                    margin: 2px;
+                    background-color: rgba(82, 77, 77, 0.075);
+                    border-radius: 3px;
+        
+                    label {
+                        position: relative;
+                        top: 5px;
+                        left: 2px;
+                    }
+                }
+        
+                .val-comp {
+                    background-color: rgba(82, 77, 77, 0.075);
+                    margin: 2px;
+                    text-align: center;
+                    border-radius: 3px;
+                    height: 23px;
+        
+                    label {
+                        position: relative;
+                        top: 5px;
+                    }
+                }
+        
+                a {
+                    text-align: center;
+                    align-self: center;
+                }
+        
+                a.spec {
+                    font-size: 1.4em;
+                }
             }
-        }
-
-        a {
-            text-align: center;
-            font-size: 1.2em;
-        }
-
-        a.spec {
-            font-size: 1.4em;
         }
     }
 }

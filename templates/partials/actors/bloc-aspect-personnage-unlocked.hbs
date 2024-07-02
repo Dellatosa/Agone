@@ -1,0 +1,34 @@
+<!-- Blocs d'aspects (corps, esprit ame) avec bonus calculé et caractéristiques primaires associées à chaque aspect -->
+{{#each data.system.aspects as |aspect keyAsp|}}
+    <div class="aspect {{#if (eq keyAsp "corps")}}bd-left{{/if}} {{#if (eq keyAsp "ame")}}bd-right{{/if}}">
+        <div class="aspect-titre">{{aspect.positif.label}}</div>
+        <div class="aspect-line">
+            <label>{{aspect.positif.label}}</label>
+            <div class="small-size"><input name="system.aspects.{{keyAsp}}.positif.valeur" type="number" value="{{aspect.positif.valeur}}" placeholder="0" min="0" max="10"/></div>
+            <label>{{aspect.negatif.label}}</label>
+            <div class="small-size"><input name="system.aspects.{{keyAsp}}.negatif.valeur" type="number" value="{{aspect.negatif.valeur}}" placeholder="0" min="0" max="10"/></div>
+        </div>
+        <div class="bonus-line">
+            <label>{{aspect.bonus.label}}</label>
+            <div class="small-size"><input name="system.aspects.{{keyAsp}}.bonus.valeur" type="number" value="{{aspect.bonus.valeur}}" placeholder="0" readonly/></div>
+        </div>
+        <div class="carac-line-unlocked {{keyAsp}}">
+            {{#each aspect.caracteristiques as |carac keyCarac|}}
+                {{#unless carac.secondaire}}
+                <label>{{carac.label}}</label>
+                <div class="carac-crea minus">
+                    <a class="mod-crea" title="{{localize 'LdC.tooltip.dimExp'}}" data-carac="{{keyCarac}}" data-action="minus">
+                        <i class="fa-solid fa-circle-minus"></i>
+                    </a>
+                </div>
+                <div class="small-size"><input name="system.aspects.{{keyAsp}}.caracteristiques.{{keyCarac}}.valeur" type="number" value="{{carac.valeur}}" placeholder="0" min="0" max="10"/></div>
+                <div class="carac-crea plus">
+                    <a class="mod-crea" title="{{localize 'LdC.tooltip.augExp'}}" data-carac="{{keyCarac}}" data-action="plus">
+                        <i class="fa-solid fa-circle-plus"></i>
+                    </a>
+                </div>
+                {{/unless}}
+            {{/each}}
+        </div>
+    </div>
+{{/each}}

@@ -1,9 +1,13 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
-        {{> "systems/agone/templates/partials/actors/bloc-infos-personnage.hbs"}}
+        {{#if unlocked}}
+            {{> "systems/agone/templates/partials/actors/bloc-infos-personnage-unlocked.hbs"}}
+        {{else}}
+            {{> "systems/agone/templates/partials/actors/bloc-infos-personnage.hbs"}}
+        {{/if}}
     </header>
     <div class="sheet-fixed-content">
-        <div class="actor-aspects-and-caracs">    
+        <div class="aspects-and-caracs">    
             {{> "systems/agone/templates/partials/actors/bloc-aspect-terne.hbs"}}
         </div>
     </div>

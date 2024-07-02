@@ -71,11 +71,13 @@ Hooks.on("getChatLogEntryContext", Chat.addChatMessageContextOptions);
 
 async function preloadHandlebarsTemplates() {
     const templatePaths = [
-        "systems/agone/templates/partials/actors/bloc-aspect-personnage.hbs",
-        "systems/agone/templates/partials/actors/bloc-aspect-terne.hbs",
         "systems/agone/templates/partials/actors/bloc-infos-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-infos-personnage-unlocked.hbs",
         "systems/agone/templates/partials/actors/bloc-flamme-personnage.hbs",
+        "systems/agone/templates/partials/actors/bloc-aspect-personnage.hbs",
+        "systems/agone/templates/partials/actors/bloc-aspect-personnage-unlocked.hbs",
+        "systems/agone/templates/partials/actors/bloc-aspect-terne.hbs",
+        "systems/agone/templates/partials/actors/bloc-carac-secondaires.hbs",
         "systems/agone/templates/partials/actors/bloc-competences-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-recap-combat-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-armes-personnage.hbs",
