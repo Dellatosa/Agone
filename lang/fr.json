@@ -558,7 +558,9 @@
         },
         "tooltip": {
             "verrou": "Verrouiller la fiche",
-            "deverrou": "Déverouiller la fiche"
+            "deverrou": "Déverouiller la fiche",
+            "augCarac": "Augmenter la caractéristique",
+            "dimCarac": "Diminuer la caractéristique"
         }
     },
     "parametres": {

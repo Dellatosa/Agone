@@ -6,62 +6,22 @@
     <a class="item" data-tab="savoir">{{localize "agone.actors.savoir"}}</a>
     <a class="item" data-tab="occulte">{{localize "agone.actors.occulte"}}</a>
 </nav>
-<div class="tab" data-group="competences" data-tab="epreuves">
-    <div class="actor-fam-comp">
-        <div class="actor-comp-grid">
-            <label class="titre-fam">{{data.system.familleCompetences.epreuves.label}}</label>
-            <a class="edit-comp" title="{{localize 'agone.actors.editComp'}}" data-famille="epreuves"><i class="fas fa-edit" ></i></a>
-            {{#each data.system.familleCompetences.epreuves.competences as |competence keyComp|}}
-                {{#if domaine}}
-                        <label class="titre-comp">{{competence.label}}</label>
-                        {{#each domaines as |domaine keyDom|}}                                 
-                                <a class="roll-comp" title="{{localize 'agone.actors.jetComp'}}" data-famille="epreuves" data-competence="{{keyComp}}" data-domaine="{{keyDom}}" data-carac="{{domaine.caracteristique}}"><i class="fa-solid fa-dice-d10"></i></a> 
-                                {{#if domPerso}}
-                                    {{#if (eq keyComp "musique")}}
-                                        <div class="dom-perso"><label>{{configLocalize "instruments" domaine.label}}</label></div>
-                                    {{else}}
-                                        <div class="dom-perso"><label>{{domaine.label}}</label></div>
-                                    {{/if}}
-                                {{else}}
-                                    <label class="dom-fixe">{{domaine.label}}</label>
-                                {{/if}}
-                                <div class="val-comp"><label>{{domaine.rang}}</label></div>
-                                    {{#if domaine.specialisation }}
-                                    <a class="nohlight spec" title="{{domaine.labelSpecialisation}}"><i class="fas fa-award"></i></a>
-                                    {{else}}
-                                        <div></div>
-                                    {{/if}}  
-                        {{/each}}
-                {{else}}
-                        <a class="roll-comp" title="{{localize 'agone.actors.jetComp'}}" data-famille="epreuves" data-competence="{{keyComp}}" data-carac="{{competence.caracteristique}}"><i class="fa-solid fa-dice-d10"></i></a> 
-                        <label class="lbl-comp">{{competence.label}}</label>     
-                        <div class="val-comp"><label>{{competence.rang}}</label></div>
-                        {{#if competence.specialisation }}
-                            <a class="nohlight spec" title="{{competence.labelSpecialisation}}"><i class="fas fa-award"></i></a>
-                        {{else}}
-                            <div></div>
-                        {{/if}}                              
-                {{/if}}
-            {{/each}}
-        </div>
-    </div>
-</div>
-<div class="tab" data-group="competences" data-tab="occulte">
-<div class="actor-fam-comp">
-    {{#each data.system.colonnes as |col|}}
-        <div class="actor-comp-grid">
-            {{#each ../data.system.familleCompetences as |famille keyFam|}} 
-                {{#if (eq famille.numcol col)}}
-                    <label class="titre-fam">{{famille.label}}</label>
-                    <a class="edit-comp" title="{{localize 'agone.actors.editComp'}}" data-famille="{{keyFam}}"><i class="fas fa-edit" ></i></a> 
-                {{/if}}
-                {{#each famille.competences as |competence keyComp|}}
-                    {{#if domaine}}
-                        {{#if (eq competence.numcol col)}}
-                            <label class="titre-comp">{{competence.label}}</label>
-                        {{/if}}
+{{#each data.system.familleCompetences as |famille keyFam|}}
+    <div class="tab" data-group="competences" data-tab="{{keyFam}}">
+        <div class="actor-fam-comp">
+            <div class="col-max">
+                <label class="titre-fam">{{famille.label}}</label>
+                <a class="edit-comp" title="{{localize 'agone.actors.editComp'}}" data-famille="{{keyFam}}"><i class="fas fa-edit" ></i></a>
+            </div>
+            {{#each ../data.system.colFams as |col|}}
+                <div class="actor-comp-grid col-{{col}}">
+                    {{#each famille.competences as |competence keyComp|}}
+                        {{#if domaine}}
+                            {{#if (eq competence.numcolFamille col)}}
+                                <label class="titre-comp">{{competence.label}}</label>
+                            {{/if}}
                             {{#each domaines as |domaine keyDom|}}
-                                {{#if (eq domaine.numcol col)}}                                        
+                                {{#if (eq domaine.numcolFamille col)}}                                
                                     <a class="roll-comp" title="{{localize 'agone.actors.jetComp'}}" data-famille="{{keyFam}}" data-competence="{{keyComp}}" data-domaine="{{keyDom}}" data-carac="{{domaine.caracteristique}}"><i class="fa-solid fa-dice-d10"></i></a> 
                                     {{#if domPerso}}
                                         {{#if (eq keyComp "musique")}}
@@ -73,28 +33,28 @@
                                         <label class="dom-fixe">{{domaine.label}}</label>
                                     {{/if}}
                                     <div class="val-comp"><label>{{domaine.rang}}</label></div>
-                                        {{#if domaine.specialisation }}
+                                    {{#if domaine.specialisation }}
                                         <a class="nohlight spec" title="{{domaine.labelSpecialisation}}"><i class="fas fa-award"></i></a>
-                                        {{else}}
-                                            <div></div>
-                                        {{/if}}
-                                {{/if}}      
+                                    {{else}}
+                                        <div></div>
+                                    {{/if}} 
+                                {{/if}}
                             {{/each}}
                         {{else}}
-                        {{#if (eq competence.numcol col)}}
-                            <a class="roll-comp" title="{{localize 'agone.actors.jetComp'}}" data-famille="{{keyFam}}" data-competence="{{keyComp}}" data-carac="{{competence.caracteristique}}"><i class="fa-solid fa-dice-d10"></i></a> 
-                            <label class="lbl-comp">{{competence.label}}</label>     
-                            <div class="val-comp"><label>{{competence.rang}}</label></div>
-                            {{#if competence.specialisation }}
-                            <a class="nohlight spec" title="{{competence.labelSpecialisation}}"><i class="fas fa-award"></i></a>
-                            {{else}}
-                                <div></div>
-                            {{/if}}                              
-                        {{/if}}    
-                    {{/if}}
-                {{/each}}
+                            {{#if (eq competence.numcolFamille col)}}
+                                <a class="roll-comp" title="{{localize 'agone.actors.jetComp'}}" data-famille="{{keyFam}}" data-competence="{{keyComp}}" data-carac="{{competence.caracteristique}}"><i class="fa-solid fa-dice-d10"></i></a> 
+                                <label class="lbl-comp">{{competence.label}}</label>     
+                                <div class="val-comp"><label>{{competence.rang}}</label></div>
+                                {{#if competence.specialisation }}
+                                    <a class="nohlight spec" title="{{competence.labelSpecialisation}}"><i class="fas fa-award"></i></a>
+                                {{else}}
+                                 <div></div>
+                                {{/if}}
+                            {{/if}}                             
+                        {{/if}}
+                    {{/each}}
+                </div>
             {{/each}}
-        </div> 
-    {{/each}}
-</div>
-</div>
+        </div>
+    </div>
+{{/each}}

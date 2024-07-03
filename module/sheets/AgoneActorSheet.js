@@ -63,41 +63,60 @@ export default class AgoneActorSheet extends ActorSheet {
         ----------------------------------------------------------*/
 
         // Décompte du nombre de compétences pour les répartir équitablement dans les colonnes
-        let nbElemsGridComp = 0;
+        //let nbElemsGridComp = 0;
         for(let[keyFam, famille] of Object.entries(actorData.familleCompetences)) {
-            nbElemsGridComp += 1;
+            //nbElemsGridComp += 1;
+            let nbCompsFamille = 0;
+
             for(let[keyComp, competence] of Object.entries(famille.competences)) {
-                nbElemsGridComp += 1;
+                //nbElemsGridComp += 1;
+                nbCompsFamille += 1;
                 if(competence.domaine == true) {
                     for(let[keyDom, domaine] of Object.entries(competence.domaines)) {
-                        nbElemsGridComp += 1;
+                        //nbElemsGridComp += 1;
+                        nbCompsFamille += 1;
                     }
                 }
-            } 
+            }
+            famille.nbCompsFamille = nbCompsFamille;
         }
 
-        // Calcul de répartition des compétences dans 4 colonnes
-        const nbColonnes = 4;
+        // Calcul de répartition des compétences apr onglet dans 2 colonnes
+        /*const nbColonnes = 4;
         var arr = Array(nbColonnes);
         for (let i = 0; i < nbColonnes; i++) {
             arr[i] = i;
         }
-        actorData.colonnes = arr;
+        actorData.colonnes = arr;*/
 
-        const nbCompParColonne = Math.ceil(nbElemsGridComp / nbColonnes);
-        let numCompetence = 0;
+        var arrFam = Array(2);
+        for (let i = 0; i < 2; i++) {
+            arrFam[i] = i;
+        }
+        actorData.colFams = arrFam;
+
+        //const nbCompParColonne = Math.ceil(nbElemsGridComp / nbColonnes);
+        //let numCompetence = 0;
         for(let[keyFam, famille] of Object.entries(actorData.familleCompetences)) {
-            famille.numcol = Math.floor(numCompetence / nbCompParColonne);
-            numCompetence += 1;
+            //famille.numcol = Math.floor(numCompetence / nbCompParColonne);
+            //numCompetence += 1;
+            let numCompFamille = 0;
+            const nbCompsFamilleParCol = Math.ceil(famille.nbCompsFamille / 2);
             
             for(let[keyComp, competence] of Object.entries(famille.competences)) {
-                competence.numcol = Math.floor(numCompetence / nbCompParColonne);
-                numCompetence += 1;
+                //competence.numcol = Math.floor(numCompetence / nbCompParColonne);
+                //numCompetence += 1;
+
+                competence.numcolFamille = Math.floor(numCompFamille / nbCompsFamilleParCol);
+                numCompFamille += 1;
                 
                 if(competence.domaine == true) {
                     for(let[keyDom, domaine] of Object.entries(competence.domaines)) {
-                        domaine.numcol = Math.floor(numCompetence / nbCompParColonne);
-                        numCompetence += 1;
+                        //domaine.numcol = Math.floor(numCompetence / nbCompParColonne);
+                        //numCompetence += 1;
+
+                        domaine.numcolFamille = Math.floor(numCompFamille / nbCompsFamilleParCol);
+                        numCompFamille += 1;
                     }
                 }
             } 
@@ -110,6 +129,9 @@ export default class AgoneActorSheet extends ActorSheet {
         if(game.settings.get("agone", "gestionJetVieillesse") && actorData.peuple != "feeNoire") {
             data.jetVieillesseActif = true;
         }
+
+        // Affichae des points d'héroïsme
+        data.afficherHeroisme = data.data.type == "Personnage";
 
         return data;
     }
@@ -295,11 +317,11 @@ export default class AgoneActorSheet extends ActorSheet {
     }
 
     _onEditerPeuple(event) {
-        event.preventDefault();
+        /*event.preventDefault();
         const element = event.currentTarget;
 
         let field = "system.caracSecondaires.mouvement"
-        this.actor.update({ [field]: CONFIG.agone.peuple[element.value].mv });
+        this.actor.update({ [field]: CONFIG.agone.peuple[element.value].mv });*/
     }
 
     // item-roll - jet de dés depuis un item

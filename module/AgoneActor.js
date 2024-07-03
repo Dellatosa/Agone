@@ -12,8 +12,16 @@ export default class AgoneActor extends Actor {
             ---- Calculs de caractéristiques et scores secondaires ----
             ---------------------------------------------------------*/
 
-            // Calcul des scores de bonus d'aspects
+            // Calcul des valeurs des aspects
+            data.aspects.corps.positif.valeur = data.aspects.corps.positif.base + data.aspects.corps.positif.pc + data.aspects.corps.positif.exp + data.aspects.corps.positif.avgDef;
+            data.aspects.corps.negatif.valeur = data.aspects.corps.negatif.base + data.aspects.corps.negatif.pc + data.aspects.corps.negatif.exp + data.aspects.corps.negatif.avgDef;
+            data.aspects.esprit.positif.valeur = data.aspects.esprit.positif.base + data.aspects.esprit.positif.pc + data.aspects.esprit.positif.exp + data.aspects.esprit.positif.avgDef;
+            data.aspects.esprit.negatif.valeur = data.aspects.esprit.negatif.base + data.aspects.esprit.negatif.pc + data.aspects.esprit.negatif.exp + data.aspects.esprit.negatif.avgDef;
+            data.aspects.ame.positif.valeur = data.aspects.ame.positif.base + data.aspects.ame.positif.pc + data.aspects.ame.positif.exp + data.aspects.ame.positif.avgDef;
+            data.aspects.ame.negatif.valeur = data.aspects.ame.negatif.base + data.aspects.ame.negatif.pc + data.aspects.ame.negatif.exp + data.aspects.ame.negatif.avgDef;
+
             if(this.type == "Personnage") {
+                // Calcul des scores de bonus d'aspects - Inspiré
                 if(data.aspects.corps.bonus == null) {
                     data.aspects.corps.bonus = {};
                 }
@@ -30,6 +38,7 @@ export default class AgoneActor extends Actor {
                 data.aspects.ame.bonus.valeur = data.aspects.ame.positif.valeur - data.aspects.ame.negatif.valeur;
             }
             else if(this.type == "Damne") {
+                // Calcul des scores de bonus d'aspects - Damné
                 if(data.aspects.corps.bonus == null) {
                     data.aspects.corps.bonus = {};
                 }
@@ -46,6 +55,7 @@ export default class AgoneActor extends Actor {
                 data.aspects.ame.bonus.valeur = data.aspects.ame.negatif.valeur - data.aspects.ame.positif.valeur;
             }
             else {
+                // Calcul des scores de bonus d'aspects - Terne
                 if(data.aspects.corps.bonus == null) {
                     data.aspects.corps.bonus = {};
                 }
@@ -79,20 +89,20 @@ export default class AgoneActor extends Actor {
             }
 
             // Calcul des caractéristiques secondaires
-            data.aspects.corps.caracteristiques.melee.valeur = Math.floor((data.aspects.corps.caracteristiques.force.valeur + data.aspects.corps.caracteristiques.agilite.valeur * 2) / 3);
-            data.aspects.corps.caracteristiques.tir.valeur = Math.floor((data.aspects.corps.caracteristiques.perception.valeur + data.aspects.corps.caracteristiques.agilite.valeur) / 2);
-            data.aspects.ame.caracteristiques.art.valeur = Math.floor((data.aspects.ame.caracteristiques.charisme.valeur + data.aspects.ame.caracteristiques.creativite.valeur) / 2); 
+            data.aspects.corps.caracteristiques.melee.valeur = Math.floor((data.aspects.corps.caracteristiques.force.valeur + data.aspects.corps.caracteristiques.agilite.valeur * 2) / 3) + data.aspects.corps.caracteristiques.melee.avgDef;
+            data.aspects.corps.caracteristiques.tir.valeur = Math.floor((data.aspects.corps.caracteristiques.perception.valeur + data.aspects.corps.caracteristiques.agilite.valeur) / 2) + data.aspects.corps.caracteristiques.tir.avgDef;
+            data.aspects.ame.caracteristiques.art.valeur = Math.floor((data.aspects.ame.caracteristiques.charisme.valeur + data.aspects.ame.caracteristiques.creativite.valeur) / 2) + data.aspects.ame.caracteristiques.art.avgDef; 
             data.caracSecondaires.noirceur =  Math.floor(data.caracSecondaires.tenebre / 10);
 
             switch(data.caracSecondaires.resonance) {
                 case "jorniste":
-                    data.aspects.esprit.caracteristiques.emprise.valeur = data.aspects.esprit.caracteristiques.intelligence.valeur;
+                    data.aspects.esprit.caracteristiques.emprise.valeur = data.aspects.esprit.caracteristiques.intelligence.valeur + data.aspects.esprit.caracteristiques.emprise.avgDef;
                     break;
                 case "eclipsiste":
-                    data.aspects.esprit.caracteristiques.emprise.valeur = Math.floor((data.aspects.esprit.caracteristiques.intelligence.valeur + data.aspects.esprit.caracteristiques.volonte.valeur) / 2);
+                    data.aspects.esprit.caracteristiques.emprise.valeur = Math.floor((data.aspects.esprit.caracteristiques.intelligence.valeur + data.aspects.esprit.caracteristiques.volonte.valeur) / 2) + data.aspects.esprit.caracteristiques.emprise.avgDef;
                     break;
                 case "obscurantiste":
-                    data.aspects.esprit.caracteristiques.emprise.valeur = data.aspects.esprit.caracteristiques.volonte.valeur;
+                    data.aspects.esprit.caracteristiques.emprise.valeur = data.aspects.esprit.caracteristiques.volonte.valeur + data.aspects.esprit.caracteristiques.emprise.avgDef;
                     break;
                 default:
                     data.aspects.esprit.caracteristiques.emprise.valeur = 0;
@@ -101,15 +111,16 @@ export default class AgoneActor extends Actor {
             // Calcul des caractéristiques liées au peuple
             if(data.peuple != "aucun" && data.peuple != "" && data.peuple != null)
             {
-                data.caracSecondaires.tai = CONFIG.agone.peuple[data.peuple].tai;
+                data.caracSecondaires.tai.valeur = CONFIG.agone.peuple[data.peuple].tai + data.caracSecondaires.tai.avgDef;
+                data.caracSecondaires.mouvement.valeur = CONFIG.agone.peuple[data.peuple].mv + data.caracSecondaires.mouvement.avgDef;
                 data.caracSecondaires.chargeMax = (data.aspects.corps.caracteristiques.force.valeur + data.aspects.corps.caracteristiques.resistance.valeur) * CONFIG.agone.peuple[data.peuple].mpoids;
                 data.caracSecondaires.demiCharge = Math.floor(data.caracSecondaires.chargeMax / 2);
                 data.caracSecondaires.chargeQuotidienne = Math.floor(data.caracSecondaires.chargeMax / 4);
-                data.caracSecondaires.bonusDommages = this.calcBonusDommages(data.aspects.corps.caracteristiques.force.valeur, data.caracSecondaires.tai);
+                data.caracSecondaires.bonusDommages = this.calcBonusDommages(data.aspects.corps.caracteristiques.force.valeur, data.caracSecondaires.tai.valeur);
                 data.caracSecondaires.pdv.bpdv = CONFIG.agone.peuple[data.peuple].bpdv;
             } else {
-                data.caracSecondaires.tai = 0;
-                data.caracSecondaires.mouvement = 0;
+                data.caracSecondaires.tai.valeur = 0 + data.caracSecondaires.tai.avgDef;
+                data.caracSecondaires.mouvement.valeur = 0 + data.caracSecondaires.mouvement.avgDef;
                 data.caracSecondaires.chargeMax = 0;
                 data.caracSecondaires.demiCharge = 0;
                 data.caracSecondaires.chargeQuotidienne = 0;
@@ -232,7 +243,7 @@ export default class AgoneActor extends Actor {
     calcDiffTaiMR(taiAttaquant) {
         let data = this.system;
 
-        let diff = taiAttaquant - data.caracSecondaires.tai;
+        let diff = taiAttaquant - data.caracSecondaires.tai.valeur;
         return diff * 2;
     }
 
@@ -353,7 +364,7 @@ export default class AgoneActor extends Actor {
             result.malusBlessureGrave = this.getMalusBlessureGrave(data.caracSecondaires.nbBlessureGrave);
 
             result.bonusDommages = data.caracSecondaires.bonusDommages;
-            result.tai = data.caracSecondaires.tai;
+            result.tai = data.caracSecondaires.tai.valeur;
             result.seuilBlessureGrave = data.caracSecondaires.seuilBlessureGrave;
             result.seuilBlessureCritique = data.caracSecondaires.seuilBlessureCritique;
             

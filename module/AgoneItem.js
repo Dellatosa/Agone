@@ -78,7 +78,7 @@ function onCloseAgoneItemSheet(itemSheet) {
     // Modification sur une arme
     if(itemSheet.item.type == "Arme" && itemSheet.actor) {
         // Calcul de la différence de TAI entre l'arme et le personnage qui l'utilise
-        let diff = itemSheet.item.system.tai - itemSheet.actor.system.caracSecondaires.tai;
+        let diff = itemSheet.item.system.tai - itemSheet.actor.system.caracSecondaires.tai.valeur;
         itemSheet.item.update({"system.diffTai": diff });
         if(diff < -1 || diff > 1) {
             itemSheet.item.update({"system.nonUtilisable": true});
@@ -112,62 +112,16 @@ function onCreateItem(item) {
 function onUpdateItem(item, modif) {
     //if(item.parent.isToken) return;
 
-    // Modification sur un Danseur
-    /* if(item.type == "Danseur" && modif.data) {
-        for(let[keyData, valData] of Object.entries(modif.data))
-        {
-            // Modification de la mémoire max
-            if(keyData == "memoire") {
-                for(let[keyValue, newVal] of Object.entries(valData)) {
-                    if(keyValue == "max") {
-                        // Calcul de la memoire disponible
-                        item.updateMemoireDispo(newVal);
-                    }
-                }
-            }
-
-            // Modification de l'endurance max
-            if(keyData == "endurance") {
-                for(let[keyValue, newVal] of Object.entries(valData)) {
-                    if(keyValue == "max") {
-                        item.update({"data.endurance.value": newVal });
-                    }
-                }
-            }
-        }          
-    } */
-
     // Modification sur une arme
      if(item.type == "Arme" && item.actor && modif.system) {
         for(let[keyData, valData] of Object.entries(modif.system))
         {
-            /*if(keyData == "tai" && valData != null) {
-                let diff = valData - item.actor.data.data.caracSecondaires.tai;
-                item.update({"data.diffTai": diff });
-                if(diff < -1 || diff > 1) {
-                    item.update({"data.nonUtilisable": true});
-                } else {
-                    item.update({"data.nonUtilisable": false});
-                }
-            }*/
-
             // Si on equipe une arme, les autres ne doivent plus être équipées
             if(keyData == "equipee" && item.actor) {
                 item.actor.desequipeArmes(item.id, valData);
             }
         }
     }
-
-    // Modification sur une armure
-    /* if(item.type == "Armure" && modif.data) {
-        for(let[keyData, valData] of Object.entries(modif.data))
-        {
-            // Le malus de perception dépend du type d'armure
-            if(keyData == "type") {
-                item.update({"data.malusPerception": CONFIG.agone.typesArmureMalusPer[valData]});
-            }
-        }
-    } */
 }
 
 function onDeleteItem(item) {

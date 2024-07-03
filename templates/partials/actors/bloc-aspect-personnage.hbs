@@ -4,9 +4,9 @@
         <div class="aspect-titre">{{aspect.positif.label}}</div>
         <div class="aspect-line">
             <label>{{aspect.positif.label}}</label>
-            <div class="small-size"><input name="system.aspects.{{keyAsp}}.positif.valeur" type="number" value="{{aspect.positif.valeur}}" placeholder="0" min="0" max="10"/></div>
+            <div class="small-size"><input name="system.aspects.{{keyAsp}}.positif.valeur" type="number" value="{{aspect.positif.valeur}}" placeholder="0" min="0" max="10" readonly/></div>
             <label>{{aspect.negatif.label}}</label>
-            <div class="small-size"><input name="system.aspects.{{keyAsp}}.negatif.valeur" type="number" value="{{aspect.negatif.valeur}}" placeholder="0" min="0" max="10"/></div>
+            <div class="small-size"><input name="system.aspects.{{keyAsp}}.negatif.valeur" type="number" value="{{aspect.negatif.valeur}}" placeholder="0" min="0" max="10" readonly/></div>
         </div>
         <div class="bonus-line">
             <label>{{aspect.bonus.label}}</label>
@@ -16,7 +16,7 @@
             {{#each aspect.caracteristiques as |carac keyCarac|}}
                 {{#unless carac.secondaire}}
                 <label>{{carac.label}}</label>
-                <div class="small-size"><input name="system.aspects.{{keyAsp}}.caracteristiques.{{keyCarac}}.valeur" type="number" value="{{carac.valeur}}" placeholder="0" min="0" max="10"/></div>
+                <div class="small-size"><input name="system.aspects.{{keyAsp}}.caracteristiques.{{keyCarac}}.valeur" type="number" value="{{carac.valeur}}" placeholder="0" min="0" max="10" readonly/></div>
                 <a class="roll-carac" title="{{localize 'agone.actors.jetCarac'}}" data-carac="{{keyCarac}}"><i class="fa-solid fa-dice-d10"></i></a>
                 {{/unless}}
             {{/each}}

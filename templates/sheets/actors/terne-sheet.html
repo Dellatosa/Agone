@@ -8,7 +8,11 @@
     </header>
     <div class="sheet-fixed-content">
         <div class="aspects-and-caracs">    
-            {{> "systems/agone/templates/partials/actors/bloc-aspect-terne.hbs"}}
+            {{#if unlocked}}
+                {{> "systems/agone/templates/partials/actors/bloc-aspect-terne-unlocked.hbs"}}
+            {{else}}
+                {{> "systems/agone/templates/partials/actors/bloc-aspect-terne.hbs"}}
+            {{/if}}
         </div>
     </div>
     <nav class="sheet-tabs tabs" data-group="principal">
@@ -21,7 +25,14 @@
     </nav>
     <section class="sheet-body">
         <div class="tab" data-group="principal" data-tab="competences">
-            {{> "systems/agone/templates/partials/actors/bloc-competences-personnage.hbs"}}
+            <div class="grid-caracSec-comp">
+                <div class="caracSec">
+                    {{> "systems/agone/templates/partials/actors/bloc-carac-secondaires.hbs"}}
+                </div>
+                <div class="competences">
+                    {{> "systems/agone/templates/partials/actors/bloc-competences-personnage.hbs"}}
+                </div>
+            </div>
         </div>
         <div class="tab" data-group="principal" data-tab="combat">
             {{> "systems/agone/templates/partials/actors/bloc-recap-combat-personnage.hbs"}}

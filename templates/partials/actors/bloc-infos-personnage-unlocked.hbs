@@ -9,7 +9,7 @@
             </a>
         </div>
     </div>
-    <div class="actor-infos-line">
+    <div class="actor-infos-line-1">
         <label>{{localize "agone.actors.occupation"}}</label>
         <div class="auto-size"><input name="system.occupation" type="text" value="{{data.system.occupation}}" placeholder="{{localize 'agone.actors.occupation'}}"/></div>
         <label>{{localize "agone.actors.origine"}}</label>
@@ -37,16 +37,13 @@
         <label>{{localize "agone.actors.taille"}}</label>
         <div class="small-size"><input name="system.taille" type="number" value="{{data.system.taille}}" placeholder="{{localize 'agone.actors.metreAbbr'}}"/></div>
         <label>{{localize "agone.actors.tai"}} : </label>
-        <div class="info-val">{{data.system.caracSecondaires.tai}}</div>
+        <div class="info-val">{{data.system.caracSecondaires.tai.valeur}}</div>
         <label>{{localize "agone.actors.mouvementAbbr"}} : </label>
-        <div class="info-val">{{data.system.caracSecondaires.mouvement}}</div>
+        <div class="info-val">{{data.system.caracSecondaires.mouvement.valeur}}</div>
         <label>{{localize "agone.actors.pdv"}}</label>
         <div class="small-size"><input name="system.caracSecondaires.pdv.value" type="number" value="{{data.system.caracSecondaires.pdv.value}}" placeholder="0" max="{{data.system.caracSecondaires.pdv.max}}"/></div>
         <div> / </div>
         <div class="info-val">{{data.system.caracSecondaires.pdv.max}}</div>
-        {{#if (lt data.system.caracSecondaires.pdv.d10 1)}}
-            <a class="roll-pdv" title="{{localize 'agone.actors.jetPdv'}}"><i class="fa-solid fa-dice-d10"></i></a>
-        {{/if}}
         <label>{{localize "agone.actors.nbBlessureGrave"}}  : </label>
         <div class="info-val">{{data.system.caracSecondaires.nbBlessureGrave}}</div>
     </div>

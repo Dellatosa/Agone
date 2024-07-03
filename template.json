@@ -19,21 +19,35 @@
           "corps": {
             "positif": {
               "valeur": 0,
+              "pc": 0,
+              "exp": 0,
+              "avgDef": 0,
+              "base": 1,
               "label": "Corps"
             },
             "negatif": {
               "valeur": 0,
+              "pc": 0,
+              "exp": 0,
+              "avgDef": 0,
+              "base": 0,
               "label": "Corps noir"
             },
             "caracteristiques" : {
               "agilite": {
                 "valeur": 0,
+                "pc": 0,
+                "exp": 0,
+                "avgDef": 0,
                 "max": 10,
                 "label": "Agilité",
                 "abrev": "AGI"
               },
               "force": {
                 "valeur": 0,
+                "pc": 0,
+                "exp": 0,
+                "avgDef": 0,
                 "max": 10,
                 "label": "Force",
                 "abrev": "FOR"
@@ -46,12 +60,18 @@
               },
               "resistance": {
                 "valeur": 0,
+                "pc": 0,
+                "exp": 0,
+                "avgDef": 0,
                 "max": 10,
                 "label": "Résistance",
                 "abrev": "RES"
               },
               "melee": {
                 "valeur": 0,
+                "pc": 0,
+                "exp": 0,
+                "avgDef": 0,
                 "max": 10,
                 "label": "Melée",
                 "abrev": "MEL",
@@ -59,6 +79,9 @@
               },
               "tir": {
                 "valeur": 0,
+                "pc": 0,
+                "exp": 0,
+                "avgDef": 0,
                 "max": 10,
                 "label": "Tir",
                 "abrev": "TIR",
@@ -69,15 +92,26 @@
           "esprit": {
             "positif": {
               "valeur": 0,
+              "pc": 0,
+              "exp": 0,
+              "avgDef": 0,
+              "base": 1,
               "label": "Esprit"
             },
             "negatif": {
               "valeur": 0,
+              "pc": 0,
+              "exp": 0,
+              "avgDef": 0,
+              "base": 0,
               "label": "Esprit noir"
             },
             "caracteristiques" : {
               "intelligence": {
                 "valeur": 0,
+                "pc": 0,
+                "exp": 0,
+                "avgDef": 0,
                 "max": 10,
                 "label": "Intelligence",
                 "abrev": "INT"
@@ -85,12 +119,18 @@
               "volonte": {
                 "valeur": 0,
                 "max": 10,
+                "pc": 0,
+                "exp": 0,
+                "avgDef": 0,
                 "label": "Volonté",
                 "abrev": "VOL"
               },
               "emprise": {
                 "valeur": 0,
                 "max": 10,
+                "pc": 0,
+                "exp": 0,
+                "avgDef": 0,
                 "label": "Emprise", 
                 "abrev": "EMP",
                 "secondaire": true
@@ -100,27 +140,44 @@
           "ame": {
             "positif": {
               "valeur": 0,
+              "pc": 0,
+              "exp": 0,
+              "avgDef": 0,
+              "base": 1,
               "label": "Ame"
             },
             "negatif": {
               "valeur": 0,
+              "pc": 0,
+              "exp": 0,
+              "avgDef": 0,
+              "base": 0,
               "label": "Ame noire"
             },
             "caracteristiques" : {
               "charisme": {
                 "valeur": 0,
+                "pc": 0,
+                "exp": 0,
+                "avgDef": 0,
                 "max": 10,
                 "label": "Charisme",
                 "abrev": "CHA"
               },
               "creativite": {
                 "valeur": 0,
+                "pc": 0,
+                "exp": 0,
+                "avgDef": 0,
                 "max": 10,
                 "label": "Créativité",
                 "abrev": "CRE"
               },
               "art": {
                 "valeur": 0,
+                "pc": 0,
+                "exp": 0,
+                "avgDef": 0,
                 "max": 10,
                 "label": "Art", 
                 "abrev": "ART",
@@ -136,8 +193,14 @@
             "value": 0,
             "max": 0
           },
-          "tai": 0,
-          "mouvement": 0,
+          "tai": {
+            "valeur" : 0,
+            "avgDef": 0
+          },
+          "mouvement": {
+            "valeur" : 0,
+            "avgDef": 0
+          },
           "bonusInitiative": 0,
           "nbBlessureGrave": 0,
           "diffJetVieillesse": 0,

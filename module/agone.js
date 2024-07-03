@@ -59,7 +59,7 @@ Hooks.once("ready", async function() {
      // Determine whether a system migration is required and feasible
      if ( !game.user.isGM ) return;
      const currentVersion = game.settings.get("agone", "systemMigrationVersion");
-     const NEEDS_MIGRATION_VERSION = "0.1.8";
+     const NEEDS_MIGRATION_VERSION = "0.1.8"; 
      const needsMigration = !currentVersion || isNewerVersion(NEEDS_MIGRATION_VERSION, currentVersion);
      if ( !needsMigration ) return;
      Migrations.migrateWorld();
@@ -77,6 +77,7 @@ async function preloadHandlebarsTemplates() {
         "systems/agone/templates/partials/actors/bloc-aspect-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-aspect-personnage-unlocked.hbs",
         "systems/agone/templates/partials/actors/bloc-aspect-terne.hbs",
+        "systems/agone/templates/partials/actors/bloc-aspect-terne-unlocked.hbs",
         "systems/agone/templates/partials/actors/bloc-carac-secondaires.hbs",
         "systems/agone/templates/partials/actors/bloc-competences-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-recap-combat-personnage.hbs",

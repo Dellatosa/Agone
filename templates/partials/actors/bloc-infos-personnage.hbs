@@ -9,7 +9,7 @@
             </a>
         </div>
     </div>
-    <div class="actor-infos-line">
+    <div class="actor-infos-line-1">
         <label>{{localize "agone.actors.occupation"}} : </label>
         <div class="info-val">{{data.system.occupation}}</div>
         <label>{{localize "agone.actors.origine"}} : </label>
@@ -34,9 +34,9 @@
         <label>{{localize "agone.actors.taille"}} : </label>
         <div class="info-val">{{data.system.taille}} {{localize 'agone.actors.metreAbbr'}}</div>
         <label>{{localize "agone.actors.tai"}} : </label>
-        <div class="info-val">{{data.system.caracSecondaires.tai}}</div>
+        <div class="info-val">{{data.system.caracSecondaires.tai.valeur}}</div>
         <label>{{localize "agone.actors.mouvementAbbr"}} : </label>
-        <div class="info-val">{{data.system.caracSecondaires.mouvement}}</div>
+        <div class="info-val">{{data.system.caracSecondaires.mouvement.valeur}}</div>
         <label>{{localize "agone.actors.pdv"}}</label>
         <div class="small-size"><input name="system.caracSecondaires.pdv.value" type="number" value="{{data.system.caracSecondaires.pdv.value}}" placeholder="0" max="{{data.system.caracSecondaires.pdv.max}}"/></div>
         <div> / </div>

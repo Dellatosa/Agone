@@ -558,7 +558,9 @@
         },
         "tooltip": {
             "verrou": "Lock sheet",
-            "deverrou": "Unlock sheet"
+            "deverrou": "Unlock sheet",
+            "augCarac": "NO TRAD - Augmenter la caractéristique",
+            "dimCarac": "NO TRAD - Diminuer la caractéristique"
         }
     },
     "parametres": {
