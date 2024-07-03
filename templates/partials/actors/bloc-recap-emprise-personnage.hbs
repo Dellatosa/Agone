@@ -1,9 +1,9 @@
 <div class="recap">
-    <div>
+    <div class="recap-item">
         <label>{{localize "agone.actors.emprise"}}</label>
         <div class="fixed-val">{{data.system.aspects.esprit.caracteristiques.emprise.valeur}}</div>
     </div>
-    <div>
+    <div class="recap-item">
         <label>{{localize "agone.actors.resonance"}}</label>
         <select name="system.caracSecondaires.resonance">
             {{#select data.system.caracSecondaires.resonance}}
@@ -13,7 +13,7 @@
             {{/select}} 
         </select>
     </div>
-    <div> 
+    <div class="recap-item"> 
         {{#with data.system as | dt | }}
             {{#each dt.familleCompetences.occulte.competences.resonance.domaines as |reso keyReso|}}
                 {{#if (eq keyReso dt.caracSecondaires.resonance )}}
@@ -23,7 +23,7 @@
             {{/each}}
         {{/with}}
     </div>
-    <div>
+    <div class="recap-item">
         <label>{{localize "agone.actors.connDanseurs"}}</label>
         <div class="fixed-val">{{data.system.familleCompetences.occulte.competences.connDanseurs.rang}}</div>
     </div>

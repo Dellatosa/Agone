@@ -17,6 +17,7 @@ select.auto-size {
     background-color: rgba(82, 77, 77, 0.075);
     margin: 2px;
     text-align: center;
+    flex: 0 1 3em;
 }
 
 .warn {
@@ -129,12 +130,33 @@ a.nohlight {
         display: grid;
         grid-template-columns: 1.1fr 3fr 0.8fr 3fr;
         align-items: center;
+        height: 32px;
+    }
+
+    .actor-infos-line-2 {
+        display: grid;
+        grid-template-columns: 0.7fr 2.5fr 1fr 3.5fr 0.7fr 1.5fr;
+        align-items: center;
+        height: 32px;
+    }
+
+    .actor-infos-line-3 {
+        display: grid;
+        grid-template-columns: 1.8fr 1fr 0.8fr 1.2fr 0.7fr 0.7fr 0.8fr 1.1fr 1fr 0.7fr;
+        align-items: center;
+        height: 32px;
+
+        .jet-vieil-item {
+            display: flex;
+            align-items: center;
+        }
     }
 
     .actor-infos-line {
         display: flex;
         align-items: center;
         justify-content: space-around;
+        height: 32px;
     }
 }
 
@@ -259,14 +281,17 @@ a.nohlight {
 
 .grid-caracSec-comp {
     display: grid;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 1.25fr 3fr;
 
     .caracSec {
+        background: linear-gradient(to right; #00000000; #00000021;);
+        padding: 5px;
 
         .caracSec-titre {
             text-align: center;
             font-family: "Lorgol";
             font-size: 2em;
+            margin-bottom: 5px;
         }
 
         .grid-caracSec {
@@ -298,6 +323,7 @@ a.nohlight {
             text-align: center;
             font-family: "Lorgol";
             font-size: 2em;
+            margin-bottom: 5px;
         }
 
         .actor-fam-comp {
@@ -346,6 +372,8 @@ a.nohlight {
                 .titre-comp {
                     grid-column-start: span 4;
                     font-weight: bold;
+                    height: 23px;
+                    margin: 2px;
                 }
         
                 .lbl-comp {
@@ -402,7 +430,9 @@ a.nohlight {
     justify-content: center;
     margin-bottom: 0.5rem;
 
-    div {
+    .recap-item {
+        align-items: center;
+
         display: flex;
         flex: 1;
         justify-content: center;
@@ -411,14 +441,9 @@ a.nohlight {
             margin: 3px;
         }
 
-        label.mod {
-            margin-top: 10px;
-        }
-
         div {
             margin: 3px;
-            flex: 0 1 3em;
-        }    
+        } 
     }
 
     button {

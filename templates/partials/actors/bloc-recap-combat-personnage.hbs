@@ -1,23 +1,35 @@
 <div class="recap">
-    <div>
+    <div class="recap-item">
         <label>{{localize "agone.actors.melee"}}</label>
         <div class="fixed-val">{{data.system.aspects.corps.caracteristiques.melee.valeur}}</div>
     </div>
-    <div>
+    <div class="recap-item">
         <label>{{localize "agone.actors.tir"}}</label>
         <div class="fixed-val">{{data.system.aspects.corps.caracteristiques.tir.valeur}}</div>
     </div>
-    <div>
+    <div class="recap-item">
         <label title="{{localize "agone.actors.bonusDommages"}}">{{localize "agone.actors.bdom"}}</label>
         <div class="fixed-val">{{data.system.caracSecondaires.bonusDommages}}</div>
     </div>
-    <div>
+    <div class="recap-item">
         <label title="{{localize "agone.actors.seuilBlessureGrave"}}">{{localize "agone.actors.sbg"}}</label>
         <div class="fixed-val">{{data.system.caracSecondaires.seuilBlessureGrave}}</div>
     </div>
-    <div>
+    <div class="recap-item">
         <label title="{{localize "agone.actors.seuilBlessureCritique"}}">{{localize "agone.actors.sbc"}}</label>
         <div class="fixed-val">{{data.system.caracSecondaires.seuilBlessureCritique}}</div>
+    </div>
+</div>
+<div class="recap">
+    <div class="recap-item">
+        <label>{{localize "agone.actors.pdv"}}</label>
+        <div class="small-size"><input name="system.caracSecondaires.pdv.value" type="number" value="{{data.system.caracSecondaires.pdv.value}}" placeholder="0" max="{{data.system.caracSecondaires.pdv.max}}"/></div>
+        <div> / </div>
+        <div class="fixed-val">{{data.system.caracSecondaires.pdv.max}}</div>
+    </div>
+    <div class="recap-item">
+        <label>{{localize "agone.actors.nbBlessureGrave"}}  : </label>
+        <div class="fixed-val">{{data.system.caracSecondaires.nbBlessureGrave}}</div>
     </div>
 </div>
 <div class="recap">

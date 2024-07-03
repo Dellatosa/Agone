@@ -20,8 +20,10 @@
     {{/if}}
     <div>
         {{localize "agone.actors.pdv"}}
-        {{#if (lt data.system.caracSecondaires.pdv.d10 1)}}
-            <a class="roll-pdv" title="{{localize 'agone.actors.jetPdv'}}"><i class="fa-solid fa-dice-d10"></i></a>
+        {{#if unlocked}}
+            {{#if (lt data.system.caracSecondaires.pdv.d10 1)}}
+                <a class="roll-pdv" title="{{localize 'agone.actors.jetPdv'}}"><i class="fa-solid fa-dice-d10"></i></a>
+            {{/if}}
         {{/if}}
     </div>
     <div class="val-caracSec">
