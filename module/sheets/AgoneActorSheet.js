@@ -110,8 +110,6 @@ export default class AgoneActorSheet extends ActorSheet {
 
         // Affichae des points d'héroïsme
         data.afficherHeroisme = data.data.type == "Personnage";
-
-        console.log(data);
         
         return data;
     }

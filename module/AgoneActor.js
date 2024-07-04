@@ -92,7 +92,10 @@ export default class AgoneActor extends Actor {
             data.aspects.corps.caracteristiques.melee.valeur = Math.floor((data.aspects.corps.caracteristiques.force.valeur + data.aspects.corps.caracteristiques.agilite.valeur * 2) / 3) + data.aspects.corps.caracteristiques.melee.avgDef;
             data.aspects.corps.caracteristiques.tir.valeur = Math.floor((data.aspects.corps.caracteristiques.perception.valeur + data.aspects.corps.caracteristiques.agilite.valeur) / 2) + data.aspects.corps.caracteristiques.tir.avgDef;
             data.aspects.ame.caracteristiques.art.valeur = Math.floor((data.aspects.ame.caracteristiques.charisme.valeur + data.aspects.ame.caracteristiques.creativite.valeur) / 2) + data.aspects.ame.caracteristiques.art.avgDef; 
-            data.caracSecondaires.noirceur =  Math.floor(data.caracSecondaires.tenebre / 10);
+
+            data.caracSecondaires.tenebre.valeur = data.caracSecondaires.tenebre.base + data.caracSecondaires.tenebre.avgDef;
+            data.caracSecondaires.perfidie.valeur = data.caracSecondaires.perfidie.base + data.caracSecondaires.perfidie.avgDef;
+            data.caracSecondaires.noirceur =  Math.floor(data.caracSecondaires.tenebre.valeur / 10);
 
             switch(data.caracSecondaires.resonance) {
                 case "jorniste":
@@ -118,6 +121,10 @@ export default class AgoneActor extends Actor {
                 data.caracSecondaires.chargeQuotidienne = Math.floor(data.caracSecondaires.chargeMax / 4);
                 data.caracSecondaires.bonusDommages = this.calcBonusDommages(data.aspects.corps.caracteristiques.force.valeur, data.caracSecondaires.tai.valeur);
                 data.caracSecondaires.pdv.bpdv = CONFIG.agone.peuple[data.peuple].bpdv;
+                if(this.type == "Personnage") {
+                    data.pcCaracs.base = data.peuple == "humain" ? 80 : 70;
+                    data.pcCompetences.base = data.peuple == "humain" ? 120 : 100;
+                }
             } else {
                 data.caracSecondaires.tai.valeur = 0 + data.caracSecondaires.tai.avgDef;
                 data.caracSecondaires.mouvement.valeur = 0 + data.caracSecondaires.mouvement.avgDef;
@@ -126,6 +133,10 @@ export default class AgoneActor extends Actor {
                 data.caracSecondaires.chargeQuotidienne = 0;
                 data.caracSecondaires.bonusDommages = 0;
                 data.caracSecondaires.pdv.bpdv = 0;
+                if(this.type == "Personnage") {
+                    data.pcCaracs.base = 0;
+                    data.pcCompetences.base = 0;
+                }
             }
 
             // Calcul du nombre de points de vie max et des seuils de blessure
@@ -135,7 +146,6 @@ export default class AgoneActor extends Actor {
             if(data.caracSecondaires.pdv.value > data.caracSecondaires.pdv.max) {
                 data.caracSecondaires.pdv.value = data.caracSecondaires.pdv.max;
             }
-
 
             /* ---------------------------------------------------------
             ---- Récupération des données de traduction en fonction ----

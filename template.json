@@ -208,9 +208,17 @@
             "value": 0,
             "max": 0
           },
-          "tenebre": 0,
+          "tenebre": {
+            "valeur" : 0,
+            "gain": 0,
+            "avgDef": 0
+          },
           "noirceur": 0,
-          "perfidie": 0,
+          "perfidie": {
+            "valeur" : 0,
+            "gain": 0,
+            "avgDef": 0
+          },
           "resonance": ""
         }
       },
@@ -954,6 +962,19 @@
       "experience": {
         "disponible": 0,
         "totale": 0
+      },
+      "pcCaracs": {
+        "base" : 0,
+        "depense": 0
+      },
+      "pcCompetences": {
+        "base" : 0,
+        "depense": 0
+      },
+      "pcAvgDef": {
+        "pcCharge": 0,
+        "pcDefauts": 0,
+        "pcAvantages": 0
       }
     },
     "Damne": {
