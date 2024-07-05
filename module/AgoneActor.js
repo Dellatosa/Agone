@@ -13,6 +13,11 @@ export default class AgoneActor extends Actor {
             ---------------------------------------------------------*/
 
             // Calcul des valeurs des aspects
+            if(this.type == "Personnage") {
+                data.aspects.corps.positif.base = 1;
+                data.aspects.esprit.positif.base = 1;
+                data.aspects.ame.positif.base = 1;
+            }
             data.aspects.corps.positif.valeur = data.aspects.corps.positif.base + data.aspects.corps.positif.pc + data.aspects.corps.positif.exp + data.aspects.corps.positif.avgDef;
             data.aspects.corps.negatif.valeur = data.aspects.corps.negatif.base + data.aspects.corps.negatif.pc + data.aspects.corps.negatif.exp + data.aspects.corps.negatif.avgDef;
             data.aspects.esprit.positif.valeur = data.aspects.esprit.positif.base + data.aspects.esprit.positif.pc + data.aspects.esprit.positif.exp + data.aspects.esprit.positif.avgDef;
@@ -87,6 +92,16 @@ export default class AgoneActor extends Actor {
                 data.caracSecondaires.flammeNoire = 0;
                 data.caracSecondaires.heroisme.max = 0;
             }
+
+            // Calcul des caractéristiques primaires
+            data.aspects.corps.caracteristiques.agilite.valeur = data.aspects.corps.caracteristiques.agilite.pc + data.aspects.corps.caracteristiques.agilite.avgDef + data.aspects.corps.caracteristiques.agilite.exp;
+            data.aspects.corps.caracteristiques.force.valeur = data.aspects.corps.caracteristiques.force.pc + data.aspects.corps.caracteristiques.force.avgDef + data.aspects.corps.caracteristiques.force.exp;
+            data.aspects.corps.caracteristiques.perception.valeur = data.aspects.corps.caracteristiques.perception.pc + data.aspects.corps.caracteristiques.perception.avgDef + data.aspects.corps.caracteristiques.perception.exp;
+            data.aspects.corps.caracteristiques.resistance.valeur = data.aspects.corps.caracteristiques.resistance.pc + data.aspects.corps.caracteristiques.resistance.avgDef + data.aspects.corps.caracteristiques.resistance.exp;
+            data.aspects.esprit.caracteristiques.intelligence.valeur = data.aspects.esprit.caracteristiques.intelligence.pc + data.aspects.esprit.caracteristiques.intelligence.avgDef + data.aspects.esprit.caracteristiques.intelligence.exp;
+            data.aspects.esprit.caracteristiques.volonte.valeur = data.aspects.esprit.caracteristiques.volonte.pc + data.aspects.esprit.caracteristiques.volonte.avgDef + data.aspects.esprit.caracteristiques.volonte.exp;
+            data.aspects.ame.caracteristiques.charisme.valeur = data.aspects.ame.caracteristiques.charisme.pc + data.aspects.ame.caracteristiques.charisme.avgDef + data.aspects.ame.caracteristiques.charisme.exp;
+            data.aspects.ame.caracteristiques.creativite.valeur = data.aspects.ame.caracteristiques.creativite.pc + data.aspects.ame.caracteristiques.creativite.avgDef + data.aspects.ame.caracteristiques.creativite.exp;
 
             // Calcul des caractéristiques secondaires
             data.aspects.corps.caracteristiques.melee.valeur = Math.floor((data.aspects.corps.caracteristiques.force.valeur + data.aspects.corps.caracteristiques.agilite.valeur * 2) / 3) + data.aspects.corps.caracteristiques.melee.avgDef;

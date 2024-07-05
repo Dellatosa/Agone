@@ -31,7 +31,7 @@ export const migrateWorld = async function() {
                 actor.system.caracSecondaires.perfidie = {"valeur": 0, "gain": perf, "avgDef": 0};
             }
 
-            // Changement de format du chanmp Perfidie
+            // Changement de format du chanmp Tenèbre
             if(Number.isInteger(actor.system.caracSecondaires.tenebre)) {
                 const teneb = actor.system.caracSecondaires.tenebre;
                 delete actor.system.caracSecondaires.tenebre;

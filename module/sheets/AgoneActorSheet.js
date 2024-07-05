@@ -1,5 +1,6 @@
 import * as Dice from "../dice.js";
 import * as Chat from "../chat.js";
+import * as Utils from "../common/utils.js";
 
 import EditCompFormApplication from "../EditCompFormApplication.js";
 
@@ -108,11 +109,17 @@ export default class AgoneActorSheet extends ActorSheet {
             data.jetVieillesseActif = true;
         }
 
-        // Affichae des points d'héroïsme
-        data.afficherHeroisme = data.data.type == "Personnage";
+        // Affichage des points d'héroïsme
+        data.typePersonnage = data.data.type == "Personnage";
+
+        // Verrouillage du peuple si personnage Humain et dépense de points de création supérieure à 70
+        if(data.data.type == "Personnage" && actorData.peuple == "humain" && actorData.pcCaracs.depense > 70) {
+            data.figerPeuple = true;
+        }
         
         return data;
     }
+
 
     activateListeners(html) {
         super.activateListeners(html);
@@ -136,6 +143,9 @@ export default class AgoneActorSheet extends ActorSheet {
         if(this.actor.isOwner) {
             // Vérouiller / dévérouiller la fiche
             html.find(".sheet-change-lock").click(this._onSheetChangelock.bind(this));
+
+            // Modifier ses caractéristiues
+            html.find(".mod-carac-crea").click(this._onModifCaracCrea.bind(this));
 
             // edit-comp - edition des compétences d'une famille
             html.find('.edit-comp').click(this._onEditComp.bind(this));
@@ -167,8 +177,6 @@ export default class AgoneActorSheet extends ActorSheet {
 
             // Edition d'une checkbox d'item directement en ligne
             html.find('.inline-chk').change(this._onEditerInlineCheck.bind(this));
-
-            //html.find('.edit-peuple').change(this._onEditerPeuple.bind(this));
 
             // item-roll - jet de dés depuis un item
             html.find('.item-roll').click(this._onItemRoll.bind(this));
@@ -219,6 +227,53 @@ export default class AgoneActorSheet extends ActorSheet {
         if (flagData) await this.actor.unsetFlag(game.system.id, "SheetUnlocked");
         else await this.actor.setFlag(game.system.id, "SheetUnlocked", "SheetUnlocked");
         this.actor.sheet.render(true);
+    }
+
+    async _onModifCaracCrea(event) {
+        event.preventDefault();
+        const element = event.currentTarget;
+
+        const aspect = element.dataset.aspect;
+        const carac = element.dataset.carac;
+        const action = element.dataset.action;
+
+        const currentVal = parseInt(this.actor.system.aspects[aspect].caracteristiques[carac].pc);
+
+        if(action == "minus") {
+            if(currentVal > 0) {
+                const cout = Utils.getCoutAchat(currentVal);
+
+                await this.actor.update({ [`system.aspects.${aspect}.caracteristiques.${carac}.pc`] : currentVal - 1 });
+
+                if(this.actor.type == "Personnage") {
+                    const currentPcDep = parseInt(this.actor.system.pcCaracs.depense);
+                    //console.log("pcDepense avant", currentPcDep);
+                    await this.actor.update({ [`system.pcCaracs.depense`] : currentPcDep - cout });
+                    //console.log("pcDepense après", parseInt(this.actor.system.pcCaracs.depense));
+                }
+            }
+        }
+        else if(action == "plus") {
+            if(currentVal < parseInt(this.actor.system.aspects[aspect].caracteristiques[carac].max)) {
+
+                if(this.actor.type == "Personnage") {
+                    const currentPcDep = parseInt(this.actor.system.pcCaracs.depense);
+                    //console.log("pcDepense avant", currentPcDep);
+                    const pcMax = parseInt(this.actor.system.pcCaracs.base);
+                    const cout = Utils.getCoutAchat(currentVal + 1);
+
+                    if (currentPcDep + cout > pcMax) {
+                        ui.notifications.warn(game.i18n.localize("agone.notifications.pcCaracVide"));
+                        return;
+                    }
+
+                    await this.actor.update({ [`system.pcCaracs.depense`] : currentPcDep + cout });
+                    //console.log("pcDepense après", parseInt(this.actor.system.pcCaracs.depense));
+                }
+                
+                await this.actor.update({ [`system.aspects.${aspect}.caracteristiques.${carac}.pc`] : currentVal + 1 });
+            }
+        }
     }
 
     // Gestionnaire d'événements pour les listes d'items
@@ -293,14 +348,6 @@ export default class AgoneActorSheet extends ActorSheet {
 
         return item.update({ [field]: val });
     }
-
-    /*_onEditerPeuple(event) {
-        event.preventDefault();
-        const element = event.currentTarget;
-
-        let field = "system.caracSecondaires.mouvement"
-        this.actor.update({ [field]: CONFIG.agone.peuple[element.value].mv });
-    }*/
 
     // item-roll - jet de dés depuis un item
     _onItemRoll(event) {

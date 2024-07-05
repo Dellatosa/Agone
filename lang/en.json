@@ -554,7 +554,8 @@
             "warnReactionUtilisee": "NO TRAD - Vous avez déjà utilisé votre Réaction à ce tour !",
             "warnAttaqueTourCombat": "NO TRAD - Vous ne pouvez attaquer que durant votre tour !",
             "warnErrCreaMacro": "NO TRAD - Vous pouvez créer des raccourçis de macros uniquement pour des objets liés à votre personnage",
-            "warnErrUseMacro": "Impossible de déterminer votre personnage. Sélectionnez votre personnage à la connexion ou bien un token sur la scène."
+            "warnErrUseMacro": "NO TRAD - Impossible de déterminer votre personnage. Sélectionnez votre personnage à la connexion ou bien un token sur la scène.",
+            "pcCaracVide": "NO TRAD - Vous n'avez plus de points de création disponibles pour vos caractéristiques."
         },
         "tooltip": {
             "verrou": "Lock sheet",

@@ -245,6 +245,16 @@ a.nohlight {
   align-items: center;
   height: 32px;
 }
+.actor-infos .actor-infos-line-2 .peuple {
+  display: flex;
+  align-items: center;
+}
+.actor-infos .actor-infos-line-2 .peuple select {
+  flex: 2;
+}
+.actor-infos .actor-infos-line-2 .peuple i {
+  margin: 0 8px 0 2px;
+}
 .actor-infos .actor-infos-line-3 {
   display: grid;
   grid-template-columns: 1.8fr 1fr 0.8fr 1.2fr 0.7fr 0.7fr 0.8fr 1.1fr 1fr 0.7fr;
@@ -254,12 +264,6 @@ a.nohlight {
 .actor-infos .actor-infos-line-3 .jet-vieil-item {
   display: flex;
   align-items: center;
-}
-.actor-infos .actor-infos-line {
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  height: 32px;
 }
 .actor-flamme {
   display: grid;
@@ -317,6 +321,14 @@ a.nohlight {
   font-family: "BarbedorMedium";
   font-weight: bold;
 }
+.aspects-and-caracs .aspect .aspect-line-unlocked {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: max-content 1.5em 3.5em 1.5em max-content 1.5em 3.5em 1.5em;
+  font-family: "BarbedorMedium";
+  font-weight: bold;
+}
 .aspects-and-caracs .aspect .bonus-line {
   display: grid;
   justify-content: center;
@@ -351,13 +363,28 @@ a.nohlight {
   grid-template-columns: max-content 1.5em 3.5em 1.5em max-content 1.5em 3.5em 1.5em;
   font-family: "BarbedorMedium";
 }
-.aspects-and-caracs .aspect .carac-crea {
+.aspects-and-caracs .aspect .val-carac {
+  background-color: rgba(82, 77, 77, 0.075);
+  margin: 2px 5px;
+  text-align: center;
+  align-items: center;
+  border-radius: 3px;
+  height: 26px;
+}
+.aspects-and-caracs .aspect .val-carac label {
+  position: relative;
+  top: 5px;
+}
+.aspects-and-caracs .aspect .carac-crea,
+.aspects-and-caracs .aspect .aspect-crea {
   font-size: 0.8em;
 }
-.aspects-and-caracs .aspect .carac-crea.minus {
+.aspects-and-caracs .aspect .carac-crea.minus,
+.aspects-and-caracs .aspect .aspect-crea.minus {
   text-align: right;
 }
-.aspects-and-caracs .aspect .carac-crea.plus {
+.aspects-and-caracs .aspect .carac-crea.plus,
+.aspects-and-caracs .aspect .aspect-crea.plus {
   text-align: left;
 }
 .grid-caracSec-comp {

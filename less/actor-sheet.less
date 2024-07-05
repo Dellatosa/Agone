@@ -138,6 +138,19 @@ a.nohlight {
         grid-template-columns: 0.7fr 2.5fr 1fr 3.5fr 0.7fr 1.5fr;
         align-items: center;
         height: 32px;
+
+        .peuple {
+            display: flex;
+            align-items: center;
+
+            select {
+                flex: 2;
+            }
+
+            i {
+                margin: 0 8px 0 2px;
+            }
+        }
     }
 
     .actor-infos-line-3 {
@@ -150,13 +163,6 @@ a.nohlight {
             display: flex;
             align-items: center;
         }
-    }
-
-    .actor-infos-line {
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        height: 32px;
     }
 }
 
@@ -226,6 +232,15 @@ a.nohlight {
             font-weight: bold;
         }
 
+        .aspect-line-unlocked {
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            grid-template-columns: max-content 1.5em 3.5em 1.5em max-content 1.5em 3.5em 1.5em;
+            font-family: "BarbedorMedium";
+            font-weight: bold;
+        }
+
         .bonus-line {
             display: grid;
             justify-content: center;
@@ -265,15 +280,29 @@ a.nohlight {
             font-family: "BarbedorMedium";
         }
 
-        .carac-crea {
+        .val-carac {
+            background-color: rgba(82, 77, 77, 0.075);
+            margin: 2px 5px;
+            text-align: center;
+            align-items: center;
+            border-radius: 3px;
+            height: 26px;
+
+            label {
+                position: relative;
+                top: 5px;
+            }
+        }
+
+        .carac-crea, .aspect-crea {
             font-size: 0.8em;
         }
 
-        .carac-crea.minus {
+        .carac-crea.minus, .aspect-crea.minus {
             text-align: right;
         }
 
-        .carac-crea.plus {
+        .carac-crea.plus, .aspect-crea.plus {
             text-align: left;
         }
     }

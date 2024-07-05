@@ -7,13 +7,13 @@
                 {{#unless carac.secondaire}}
                 <label>{{carac.label}}</label>
                 <div class="carac-crea minus">
-                    <a class="mod-crea" title="{{localize 'agone.tooltip.dimCarac'}}" data-carac="{{keyCarac}}" data-action="minus">
+                    <a class="mod-carac-crea" title="{{localize 'agone.tooltip.dimCarac'}}" data-aspect="{{keyAsp}}" data-carac="{{keyCarac}}" data-action="minus">
                         <i class="fa-solid fa-circle-minus"></i>
                     </a>
                 </div>
-                <div class="small-size"><input name="system.aspects.{{keyAsp}}.caracteristiques.{{keyCarac}}.valeur" type="number" value="{{carac.valeur}}" placeholder="0" min="0" max="10" readonly/></div>
+                <div class="val-carac"><label>{{carac.valeur}}</label></div>
                 <div class="carac-crea plus">
-                    <a class="mod-crea" title="{{localize 'agone.tooltip.augCarac'}}" data-carac="{{keyCarac}}" data-action="plus">
+                    <a class="mod-carac-crea" title="{{localize 'agone.tooltip.augCarac'}}" data-aspect="{{keyAsp}}" data-carac="{{keyCarac}}" data-action="plus">
                         <i class="fa-solid fa-circle-plus"></i>
                     </a>
                 </div>

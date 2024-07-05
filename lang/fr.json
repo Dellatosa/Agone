@@ -554,7 +554,9 @@
             "warnReactionUtilisee": "Vous avez déjà utilisé votre Réaction à ce tour !",
             "warnAttaqueTourCombat": "Vous ne pouvez attaquer que durant votre tour !",
             "warnErrCreaMacro": "Vous pouvez créer des raccourçis de macros uniquement pour des objets liés à votre personnage",
-            "warnErrUseMacro": "Impossible de déterminer votre personnage. Sélectionnez votre personnage à la connexion ou bien un token sur la scène."
+            "warnErrUseMacro": "Impossible de déterminer votre personnage. Sélectionnez votre personnage à la connexion ou bien un token sur la scène.",
+            "pcCaracVide": "Vous n'avez plus de points de création disponibles pour vos caractéristiques.",
+            "verrouPeuple": "Vous avez dépensé plus de points de création que le maximum attribué aux saisonnins."
         },
         "tooltip": {
             "verrou": "Verrouiller la fiche",

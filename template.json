@@ -22,7 +22,7 @@
               "pc": 0,
               "exp": 0,
               "avgDef": 0,
-              "base": 1,
+              "base": 0,
               "label": "Corps"
             },
             "negatif": {
@@ -54,6 +54,9 @@
               },
               "perception": {
                 "valeur": 0,
+                "pc": 0,
+                "exp": 0,
+                "avgDef": 0,
                 "max": 10,
                 "label": "Perception",
                 "abrev": "PER"
@@ -95,7 +98,7 @@
               "pc": 0,
               "exp": 0,
               "avgDef": 0,
-              "base": 1,
+              "base": 0,
               "label": "Esprit"
             },
             "negatif": {
@@ -143,7 +146,7 @@
               "pc": 0,
               "exp": 0,
               "avgDef": 0,
-              "base": 1,
+              "base": 0,
               "label": "Ame"
             },
             "negatif": {
