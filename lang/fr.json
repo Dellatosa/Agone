@@ -562,7 +562,9 @@
             "verrou": "Verrouiller la fiche",
             "deverrou": "Déverouiller la fiche",
             "augCarac": "Augmenter la caractéristique",
-            "dimCarac": "Diminuer la caractéristique"
+            "dimCarac": "Diminuer la caractéristique",
+            "minPeuple": "Vous ne respectez pas la valeur de caractéristique minimum pour ce peuple",
+            "maxPeuple": "Vous ne respectez pas la valeur de caractéristique maximum pour ce peuple"
         }
     },
     "parametres": {

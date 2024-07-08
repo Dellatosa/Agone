@@ -561,7 +561,9 @@
             "verrou": "Lock sheet",
             "deverrou": "Unlock sheet",
             "augCarac": "NO TRAD - Augmenter la caractéristique",
-            "dimCarac": "NO TRAD - Diminuer la caractéristique"
+            "dimCarac": "NO TRAD - Diminuer la caractéristique",
+            "minPeuple": "NO TRAD - Vous ne respectez pas la valeur de caractéristique minimum pour ce peuple",
+            "maxPeuple": "NO TRAD - Vous ne respectez pas la valeur de caractéristique maximum pour ce peuple"
         }
     },
     "parametres": {

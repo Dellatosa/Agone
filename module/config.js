@@ -351,7 +351,49 @@ agone.peuple = {
         mpoids: 7,
         tai: 0,
         mv: 3,
-        ageMoyen: 30
+        ageMoyen: 30,
+        caracs : {
+            resistance: {
+                mod: 0,
+                min: 0,
+                max: 0
+            },
+            force : {
+                mod: 0,
+                min: 0,
+                max: 0
+            },
+            agilite : {
+                mod: 0,
+                min: 0,
+                max: 0
+            },
+            perception: {
+                mod: 0,
+                min: 0,
+                max: 0
+            },
+            volonte: {
+                mod: 0,
+                min: 0,
+                max: 0
+            },
+            intelligence: {
+                mod: 0,
+                min: 0,
+                max: 0
+            },
+            charisme: {
+                mod: 0,
+                min: 0,
+                max: 0
+            },
+            creativite: {
+                mod: 0,
+                min: 0,
+                max: 0
+            }
+        }
     },
     ogre: {
         label: "agone.actors.ogre",
@@ -359,7 +401,49 @@ agone.peuple = {
         mpoids: 7,
         tai: 0,
         mv: 3,
-        ageMoyen: 35
+        ageMoyen: 35,
+        caracs : {
+            resistance: {
+                mod: 2,
+                min: 5,
+                max: 0
+            },
+            force : {
+                mod: 1,
+                min: 5,
+                max: 0
+            },
+            agilite : {
+                mod: 0,
+                min: 0,
+                max: 0
+            },
+            perception: {
+                mod: 0,
+                min: 0,
+                max: 0
+            },
+            volonte: {
+                mod: 0,
+                min: 0,
+                max: 0
+            },
+            intelligence: {
+                mod: 0,
+                min: 0,
+                max: 0
+            },
+            charisme: {
+                mod: 0,
+                min: 0,
+                max: 0
+            },
+            creativite: {
+                mod: 0,
+                min: 0,
+                max: 0
+            }
+        }
     },
     minotaure: {
         label: "agone.actors.minotaure",
@@ -367,7 +451,49 @@ agone.peuple = {
         mpoids: 10,
         tai: 1,
         mv: 4,
-        ageMoyen: 45
+        ageMoyen: 45,
+        caracs : {
+            resistance: {
+                mod: 4,
+                min: 6,
+                max: 0
+            },
+            force : {
+                mod: 3,
+                min: 7,
+                max: 0
+            },
+            agilite : {
+                mod: 0,
+                min: 0,
+                max: 8
+            },
+            perception: {
+                mod: 0,
+                min: 0,
+                max: 0
+            },
+            volonte: {
+                mod: 0,
+                min: 0,
+                max: 0
+            },
+            intelligence: {
+                mod: 0,
+                min: 0,
+                max: 0
+            },
+            charisme: {
+                mod: -1,
+                min: 0,
+                max: 0
+            },
+            creativite: {
+                mod: -1,
+                min: 0,
+                max: 0
+            }
+        }
     },
     geant: {
         label: "agone.actors.geant",
@@ -375,7 +501,49 @@ agone.peuple = {
         mpoids: 20,
         tai: 3,
         mv: 8,
-        ageMoyen: 75
+        ageMoyen: 75,
+        caracs : {
+            resistance: {
+                mod: 7,
+                min: 7,
+                max: 0
+            },
+            force : {
+                mod: 8,
+                min: 8,
+                max: 0
+            },
+            agilite : {
+                mod: 0,
+                min: 0,
+                max: 3
+            },
+            perception: {
+                mod: 0,
+                min: 0,
+                max: 0
+            },
+            volonte: {
+                mod: 0,
+                min: 0,
+                max: 0
+            },
+            intelligence: {
+                mod: -2,
+                min: 0,
+                max: 0
+            },
+            charisme: {
+                mod: -2,
+                min: 0,
+                max: 0
+            },
+            creativite: {
+                mod: 0,
+                min: 0,
+                max: 0
+            }
+        }
     },
     feeNoire: {
         label: "agone.actors.feeNoire",
@@ -383,7 +551,49 @@ agone.peuple = {
         mpoids: 4,
         tai: -2,
         mv: 1,
-        ageMoyen: 1000
+        ageMoyen: 1000,
+        caracs : {
+            resistance: {
+                mod: 0,
+                min: 0,
+                max: 3
+            },
+            force : {
+                mod: 0,
+                min: 0,
+                max: 3
+            },
+            agilite : {
+                mod: 0,
+                min: 0,
+                max: 0
+            },
+            perception: {
+                mod: 0,
+                min: 0,
+                max: 0
+            },
+            volonte: {
+                mod: 1,
+                min: 0,
+                max: 0
+            },
+            intelligence: {
+                mod: 2,
+                min: 0,
+                max: 0
+            },
+            charisme: {
+                mod: -2,
+                min: 0,
+                max: 0
+            },
+            creativite: {
+                mod: 3,
+                min: 0,
+                max: 0
+            }
+        }
     },
     nain: {
         label: "agone.actors.nain",
@@ -391,7 +601,49 @@ agone.peuple = {
         mpoids: 6,
         tai: -1,
         mv: 2,
-        ageMoyen: 40
+        ageMoyen: 40,
+        caracs : {
+            resistance: {
+                mod: 2,
+                min: 5,
+                max: 0
+            },
+            force : {
+                mod: 0,
+                min: 0,
+                max: 0
+            },
+            agilite : {
+                mod: 0,
+                min: 0,
+                max: 0
+            },
+            perception: {
+                mod: 0,
+                min: 0,
+                max: 0
+            },
+            volonte: {
+                mod: 0,
+                min: 0,
+                max: 0
+            },
+            intelligence: {
+                mod: 0,
+                min: 0,
+                max: 0
+            },
+            charisme: {
+                mod: 0,
+                min: 0,
+                max: 0
+            },
+            creativite: {
+                mod: 2,
+                min: 0,
+                max: 0
+            }
+        }
     },
     meduse: {
         label: "agone.actors.meduse",
@@ -399,7 +651,49 @@ agone.peuple = {
         mpoids: 7,
         tai: 0,
         mv: 3,
-        ageMoyen: 40
+        ageMoyen: 40,
+        caracs : {
+            resistance: {
+                mod: 0,
+                min: 0,
+                max: 0
+            },
+            force : {
+                mod: 0,
+                min: 0,
+                max: 0
+            },
+            agilite : {
+                mod: 1,
+                min: 0,
+                max: 0
+            },
+            perception: {
+                mod: 0,
+                min: 0,
+                max: 0
+            },
+            volonte: {
+                mod: 0,
+                min: 0,
+                max: 0
+            },
+            intelligence: {
+                mod: 1,
+                min: 6,
+                max: 0
+            },
+            charisme: {
+                mod: 1,
+                min: 7,
+                max: 0
+            },
+            creativite: {
+                mod: 1,
+                min: 0,
+                max: 0
+            }
+        }
     },
     lutin: {
         label: "agone.actors.lutin", 
@@ -407,7 +701,49 @@ agone.peuple = {
         mpoids: 6,
         tai: -1,
         mv: 2,
-        ageMoyen: 35
+        ageMoyen: 35,
+        caracs : {
+            resistance: {
+                mod: -2,
+                min: 0,
+                max: 7
+            },
+            force : {
+                mod: 0,
+                min: 0,
+                max: 4
+            },
+            agilite : {
+                mod: 1,
+                min: 0,
+                max: 0
+            },
+            perception: {
+                mod: 2,
+                min: 0,
+                max: 0
+            },
+            volonte: {
+                mod: 1,
+                min: 0,
+                max: 0
+            },
+            intelligence: {
+                mod: 0,
+                min: 5,
+                max: 0
+            },
+            charisme: {
+                mod: 0,
+                min: 0,
+                max: 0
+            },
+            creativite: {
+                mod: 0,
+                min: 0,
+                max: 0
+            }
+        }
     },
     farfadet: {
         label: "agone.actors.farfadet",
@@ -415,7 +751,49 @@ agone.peuple = {
         mpoids: 6,
         tai: -1,
         mv: 2,
-        ageMoyen: 50
+        ageMoyen: 50,
+        caracs : {
+            resistance: {
+                mod: -2,
+                min: 0,
+                max: 8
+            },
+            force : {
+                mod: 0,
+                min: 0,
+                max: 5
+            },
+            agilite : {
+                mod: 2,
+                min: 0,
+                max: 0
+            },
+            perception: {
+                mod: 1,
+                min: 0,
+                max: 0
+            },
+            volonte: {
+                mod: 0,
+                min: 0,
+                max: 0
+            },
+            intelligence: {
+                mod: 1,
+                min: 0,
+                max: 0
+            },
+            charisme: {
+                mod: 0,
+                min: 5,
+                max: 0
+            },
+            creativite: {
+                mod: 0,
+                min: 0,
+                max: 0
+            }
+        }
     },
     satyre: {
         label: "agone.actors.satyre",
@@ -423,7 +801,49 @@ agone.peuple = {
         mpoids: 7,
         tai: 0,
         mv: 3,
-        ageMoyen: 30
+        ageMoyen: 30,
+        caracs : {
+            resistance: {
+                mod: 1,
+                min: 0,
+                max: 0
+            },
+            force : {
+                mod: 0,
+                min: 0,
+                max: 0
+            },
+            agilite : {
+                mod: 0,
+                min: 0,
+                max: 0
+            },
+            perception: {
+                mod: 0,
+                min: 0,
+                max: 0
+            },
+            volonte: {
+                mod: 1,
+                min: 0,
+                max: 0
+            },
+            intelligence: {
+                mod: 0,
+                min: 0,
+                max: 0
+            },
+            charisme: {
+                mod: 2,
+                min: 6,
+                max: 0
+            },
+            creativite: {
+                mod: 0,
+                min: 0,
+                max: 0
+            }
+        }
     } 
 }
 

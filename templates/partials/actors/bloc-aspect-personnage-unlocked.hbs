@@ -21,7 +21,13 @@
                         <i class="fa-solid fa-circle-minus"></i>
                     </a>
                 </div>
-                <div class="val-carac"><label>{{carac.valeur}}</label></div>
+                <div class="val-carac">
+                    <label>
+                        {{carac.valeur}}
+                        {{#if carac.peupleMin}} <i class="fa-solid fa-circle-up" title="{{localize 'agone.tooltip.minPeuple'}}"></i>{{/if}}
+                        {{#if carac.peupleMax}} <i class="fa-solid fa-circle-down" title="{{localize 'agone.tooltip.maxPeuple'}}"></i>{{/if}}
+                    </label>
+                </div>
                 <div class="carac-crea plus">
                     <a class="mod-carac-crea" title="{{localize 'agone.tooltip.augCarac'}}" data-aspect="{{keyAsp}}" data-carac="{{keyCarac}}" data-action="plus">
                         <i class="fa-solid fa-circle-plus"></i>
@@ -32,3 +38,7 @@
         </div>
     </div>
 {{/each}}
+<!--
+ <i class="fa-regular fa-up-from-line"></i> <i class="fa-regular fa-down-from-line"></i>
+ <i class="fa-solid fa-circle-up"></i><i class="fa-solid fa-circle-down"></i>
+ -->

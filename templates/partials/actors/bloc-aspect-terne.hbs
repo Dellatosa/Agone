@@ -6,7 +6,13 @@
             {{#each aspect.caracteristiques as |carac keyCarac|}}
                 {{#unless carac.secondaire}}
                 <label>{{carac.label}}</label>
-                <div class="val-carac"><label>{{carac.valeur}}</label></div>
+                <div class="val-carac">
+                    <label>
+                        {{carac.valeur}}
+                        {{#if carac.peupleMin}} <i class="fa-solid fa-circle-up" title="{{localize 'agone.tooltip.minPeuple'}}"></i>{{/if}}
+                        {{#if carac.peupleMax}} <i class="fa-solid fa-circle-down" title="{{localize 'agone.tooltip.maxPeuple'}}"></i>{{/if}}
+                    </label>
+                </div>
                 <a class="roll-carac" title="{{localize 'agone.actors.jetCarac'}}" data-carac="{{keyCarac}}"><i class="fa-solid fa-dice-d10"></i></a>
                 {{/unless}}
             {{/each}}

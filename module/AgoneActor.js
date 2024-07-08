@@ -136,6 +136,104 @@ export default class AgoneActor extends Actor {
                 data.caracSecondaires.chargeQuotidienne = Math.floor(data.caracSecondaires.chargeMax / 4);
                 data.caracSecondaires.bonusDommages = this.calcBonusDommages(data.aspects.corps.caracteristiques.force.valeur, data.caracSecondaires.tai.valeur);
                 data.caracSecondaires.pdv.bpdv = CONFIG.agone.peuple[data.peuple].bpdv;
+
+                // modificateurs de peuple des caractéristiques primaires
+                data.aspects.corps.caracteristiques.agilite.valeur += CONFIG.agone.peuple[data.peuple].caracs.agilite.mod;
+                if(CONFIG.agone.peuple[data.peuple].caracs.agilite.min > 0) {
+                    if(data.aspects.corps.caracteristiques.agilite.pc < CONFIG.agone.peuple[data.peuple].caracs.agilite.min) {
+                        data.aspects.corps.caracteristiques.agilite.peupleMin = true;
+                    }
+                }
+                if(CONFIG.agone.peuple[data.peuple].caracs.agilite.max > 0) {
+                    if(data.aspects.corps.caracteristiques.agilite.pc > CONFIG.agone.peuple[data.peuple].caracs.agilite.max) {
+                        data.aspects.corps.caracteristiques.agilite.peupleMax = true;
+                    }
+                }
+
+                data.aspects.corps.caracteristiques.force.valeur += CONFIG.agone.peuple[data.peuple].caracs.force.mod;
+                if(CONFIG.agone.peuple[data.peuple].caracs.force.min > 0) {
+                    if(data.aspects.corps.caracteristiques.force.pc < CONFIG.agone.peuple[data.peuple].caracs.force.min) {
+                        data.aspects.corps.caracteristiques.force.peupleMin = true;
+                    }
+                }
+                if(CONFIG.agone.peuple[data.peuple].caracs.force.max > 0) {
+                    if(data.aspects.corps.caracteristiques.force.pc > CONFIG.agone.peuple[data.peuple].caracs.force.max) {
+                        data.aspects.corps.caracteristiques.force.peupleMax = true;
+                    }
+                }
+
+                data.aspects.corps.caracteristiques.perception.valeur += CONFIG.agone.peuple[data.peuple].caracs.perception.mod;
+                if(CONFIG.agone.peuple[data.peuple].caracs.perception.min > 0) {
+                    if(data.aspects.corps.caracteristiques.perception.pc < CONFIG.agone.peuple[data.peuple].caracs.perception.min) {
+                        data.aspects.corps.caracteristiques.perception.peupleMin = true;
+                    }
+                }
+                if(CONFIG.agone.peuple[data.peuple].caracs.perception.max > 0) {
+                    if(data.aspects.corps.caracteristiques.perception.pc > CONFIG.agone.peuple[data.peuple].caracs.perception.max) {
+                        data.aspects.corps.caracteristiques.perception.peupleMax = true;
+                    }
+                }
+
+                data.aspects.corps.caracteristiques.resistance.valeur += CONFIG.agone.peuple[data.peuple].caracs.resistance.mod;
+                if(CONFIG.agone.peuple[data.peuple].caracs.resistance.min > 0) {
+                    if(data.aspects.corps.caracteristiques.resistance.pc < CONFIG.agone.peuple[data.peuple].caracs.resistance.min) {
+                        data.aspects.corps.caracteristiques.resistance.peupleMin = true;
+                    }
+                }
+                if(CONFIG.agone.peuple[data.peuple].caracs.resistance.max > 0) {
+                    if(data.aspects.corps.caracteristiques.resistance.pc > CONFIG.agone.peuple[data.peuple].caracs.resistance.max) {
+                        data.aspects.corps.caracteristiques.resistance.peupleMax = true;
+                    }
+                }
+
+                data.aspects.esprit.caracteristiques.intelligence.valeur += CONFIG.agone.peuple[data.peuple].caracs.intelligence.mod;
+                if(CONFIG.agone.peuple[data.peuple].caracs.intelligence.min > 0) {
+                    if(data.aspects.esprit.caracteristiques.intelligence.pc < CONFIG.agone.peuple[data.peuple].caracs.intelligence.min) {
+                        data.aspects.esprit.caracteristiques.intelligence.peupleMin = true;
+                    }
+                }
+                if(CONFIG.agone.peuple[data.peuple].caracs.intelligence.max > 0) {
+                    if(data.aspects.esprit.caracteristiques.intelligence.pc > CONFIG.agone.peuple[data.peuple].caracs.intelligence.max) {
+                        data.aspects.esprit.caracteristiques.intelligence.peupleMax = true;
+                    }
+                }
+
+                data.aspects.esprit.caracteristiques.volonte.valeur += CONFIG.agone.peuple[data.peuple].caracs.volonte.mod;
+                if(CONFIG.agone.peuple[data.peuple].caracs.volonte.min > 0) {
+                    if(data.aspects.esprit.caracteristiques.volonte.pc < CONFIG.agone.peuple[data.peuple].caracs.volonte.min) {
+                        data.aspects.esprit.caracteristiques.volonte.peupleMin = true;
+                    }
+                }
+                if(CONFIG.agone.peuple[data.peuple].caracs.volonte.max > 0) {
+                    if(data.aspects.esprit.caracteristiques.volonte.pc > CONFIG.agone.peuple[data.peuple].caracs.volonte.max) {
+                        data.aspects.esprit.caracteristiques.volonte.peupleMax = true;
+                    }
+                }
+
+                data.aspects.ame.caracteristiques.charisme.valeur += CONFIG.agone.peuple[data.peuple].caracs.charisme.mod;
+                if(CONFIG.agone.peuple[data.peuple].caracs.charisme.min > 0) {
+                    if(data.aspects.ame.caracteristiques.charisme.pc < CONFIG.agone.peuple[data.peuple].caracs.charisme.min) {
+                        data.aspects.ame.caracteristiques.charisme.peupleMin = true;
+                    }
+                }
+                if(CONFIG.agone.peuple[data.peuple].caracs.charisme.max > 0) {
+                    if(data.aspects.ame.caracteristiques.charisme.pc > CONFIG.agone.peuple[data.peuple].caracs.charisme.max) {
+                        data.aspects.ame.caracteristiques.charisme.peupleMax = true;
+                    }
+                }
+
+                data.aspects.ame.caracteristiques.creativite.valeur += CONFIG.agone.peuple[data.peuple].caracs.creativite.mod;
+                if(CONFIG.agone.peuple[data.peuple].caracs.creativite.min > 0) {
+                    if(data.aspects.ame.caracteristiques.creativite.pc < CONFIG.agone.peuple[data.peuple].caracs.creativite.min) {
+                        data.aspects.ame.caracteristiques.creativite.peupleMin = true;
+                    }
+                }
+                if(CONFIG.agone.peuple[data.peuple].caracs.creativite.max > 0) {
+                    if(data.aspects.ame.caracteristiques.creativite.pc > CONFIG.agone.peuple[data.peuple].caracs.creativite.max) {
+                        data.aspects.ame.caracteristiques.creativite.peupleMax = true;
+                    }
+                }
+
                 if(this.type == "Personnage") {
                     data.pcCaracs.base = data.peuple == "humain" ? 80 : 70;
                     data.pcCompetences.base = data.peuple == "humain" ? 120 : 100;
