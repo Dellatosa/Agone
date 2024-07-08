@@ -37,7 +37,11 @@
                     {{> "systems/agone/templates/partials/actors/bloc-carac-secondaires.hbs"}}
                 </div>
                 <div class="competences">
-                    {{> "systems/agone/templates/partials/actors/bloc-competences-personnage.hbs"}}
+                    {{#if unlocked}}
+                        {{> "systems/agone/templates/partials/actors/bloc-competences-personnage-unlocked.hbs"}}
+                    {{else}}
+                        {{> "systems/agone/templates/partials/actors/bloc-competences-personnage.hbs"}}
+                    {{/if}}
                 </div>
             </div>
         </div>

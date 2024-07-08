@@ -121,6 +121,19 @@ export default class AgoneActorSheet extends ActorSheet {
     }
 
 
+    async _updateObject(event, formData) {
+        const updateObj = {};
+
+        for (const [key, value] of Object.entries(formData)) {             
+            if(key.startsWith("system.familleCompetences")) {
+                updateObj[key] = value;
+            }
+        }
+        this.actor.update(updateObj);
+
+        super._updateObject(event, formData);
+    }
+
     activateListeners(html) {
         super.activateListeners(html);
     

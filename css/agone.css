@@ -160,10 +160,13 @@ select.auto-size {
 .sheet-tabs,
 nav {
   font-family: "BarbedorMedium";
+  align-items: center;
+  margin-bottom: 10px;
 }
 .sheet-tabs .active,
 nav .active {
   font-weight: bold;
+  font-size: 1.2em;
 }
 nav.magie-tabs,
 nav.historique-tabs {
@@ -325,7 +328,7 @@ a.nohlight {
   display: grid;
   justify-content: center;
   align-items: center;
-  grid-template-columns: max-content 1.5em 3.5em 1.5em max-content 1.5em 3.5em 1.5em;
+  grid-template-columns: max-content 1.5em 3.5em 1.5em;
   font-family: "BarbedorMedium";
   font-weight: bold;
 }
@@ -454,6 +457,7 @@ a.nohlight {
   align-content: start;
   grid-template-columns: 2em 1fr 2.5em 2em;
   font-size: 0.9em;
+  font-family: "BarbedorMedium";
 }
 .grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid .titre-fam {
   grid-column-start: span 3;
@@ -503,6 +507,73 @@ a.nohlight {
 }
 .grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid a.spec {
   font-size: 1.4em;
+}
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked {
+  display: grid;
+  padding: 3px;
+  align-content: start;
+  grid-template-columns: 1fr 1.5em 2em 1.5em 2.5em 1fr 1fr;
+  font-size: 0.9em;
+  font-family: "BarbedorMedium";
+  /*.titre-fam {
+                    grid-column-start: span 3;
+                    padding-top: 6px;
+                    padding-bottom: 6px;
+                    font-size: 1.2em;
+                    font-weight: bold;
+                    text-align: center;
+                }*/
+  /*a {
+                    text-align: center;
+                    align-self: center;
+                }
+        
+                a.spec {
+                    font-size: 1.4em;
+                }*/
+}
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked .titre-comp {
+  grid-column-start: span 7;
+  font-weight: bold;
+  height: 23px;
+  margin: 2px;
+}
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked .lbl-comp {
+  align-self: center;
+}
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked .dom-fixe {
+  text-indent: 1em;
+  align-self: center;
+}
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked .dom-perso {
+  margin: 2px;
+  background-color: rgba(82, 77, 77, 0.075);
+  border-radius: 3px;
+}
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked .dom-perso label {
+  position: relative;
+  top: 5px;
+  left: 2px;
+}
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked .val-comp {
+  background-color: rgba(82, 77, 77, 0.075);
+  margin: 2px;
+  text-align: center;
+  border-radius: 3px;
+  height: 23px;
+}
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked .val-comp label {
+  position: relative;
+  top: 5px;
+}
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked .comp-crea {
+  font-size: 0.8em;
+}
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked .comp-crea.minus {
+  text-align: right;
+}
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked .comp-crea.plus {
+  text-align: left;
 }
 .recap {
   display: flex;

@@ -9,10 +9,6 @@
 {{#each data.system.familleCompetences as |famille keyFam|}}
     <div class="tab" data-group="competences" data-tab="{{keyFam}}">
         <div class="actor-fam-comp">
-            <div class="col-max">
-                <label class="titre-fam">{{famille.label}}</label>
-                <a class="edit-comp" title="{{localize 'agone.actors.editComp'}}" data-famille="{{keyFam}}"><i class="fas fa-edit" ></i></a>
-            </div>
             {{#each ../data.system.colFams as |col|}}
                 <div class="actor-comp-grid col-{{col}}">
                     {{#each famille.competences as |competence keyComp|}}
