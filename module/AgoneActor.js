@@ -4,79 +4,40 @@ export default class AgoneActor extends Actor {
         super.prepareData();
         let data = this.system;
 
-        //console.log(this);
-
         if(this.type != "Demon") {
 
             /* --------------------------------------------------------
             ---- Calculs de caractéristiques et scores secondaires ----
             ---------------------------------------------------------*/
 
-            // Calcul des valeurs des aspects
-            if(this.type == "Personnage") {
-                data.aspects.corps.positif.base = 1;
-                data.aspects.esprit.positif.base = 1;
-                data.aspects.ame.positif.base = 1;
-            }
-            data.aspects.corps.positif.valeur = data.aspects.corps.positif.base + data.aspects.corps.positif.pc + data.aspects.corps.positif.exp + data.aspects.corps.positif.avgDef;
-            data.aspects.corps.negatif.valeur = data.aspects.corps.negatif.base + data.aspects.corps.negatif.pc + data.aspects.corps.negatif.exp + data.aspects.corps.negatif.avgDef;
-            data.aspects.esprit.positif.valeur = data.aspects.esprit.positif.base + data.aspects.esprit.positif.pc + data.aspects.esprit.positif.exp + data.aspects.esprit.positif.avgDef;
-            data.aspects.esprit.negatif.valeur = data.aspects.esprit.negatif.base + data.aspects.esprit.negatif.pc + data.aspects.esprit.negatif.exp + data.aspects.esprit.negatif.avgDef;
-            data.aspects.ame.positif.valeur = data.aspects.ame.positif.base + data.aspects.ame.positif.pc + data.aspects.ame.positif.exp + data.aspects.ame.positif.avgDef;
-            data.aspects.ame.negatif.valeur = data.aspects.ame.negatif.base + data.aspects.ame.negatif.pc + data.aspects.ame.negatif.exp + data.aspects.ame.negatif.avgDef;
+            // Calcul des valeurs d'aspects
+            for (let [keyA, aspect] of Object.entries(data.aspects)) {
+                // Base de 1 en positif pour les Inspirés
+                if(this.type == "Personnage") { aspect.positif.base = 1; }
 
-            if(this.type == "Personnage") {
-                // Calcul des scores de bonus d'aspects - Inspiré
-                if(data.aspects.corps.bonus == null) {
-                    data.aspects.corps.bonus = {};
-                }
-                data.aspects.corps.bonus.valeur = data.aspects.corps.positif.valeur - data.aspects.corps.negatif.valeur;
-    
-                if(data.aspects.esprit.bonus == null) {
-                    data.aspects.esprit.bonus = {};
-                }
-                data.aspects.esprit.bonus.valeur = data.aspects.esprit.positif.valeur - data.aspects.esprit.negatif.valeur;
-    
-                if(data.aspects.ame.bonus == null) {
-                    data.aspects.ame.bonus = {};
-                }
-                data.aspects.ame.bonus.valeur = data.aspects.ame.positif.valeur - data.aspects.ame.negatif.valeur;
-            }
-            else if(this.type == "Damne") {
-                // Calcul des scores de bonus d'aspects - Damné
-                if(data.aspects.corps.bonus == null) {
-                    data.aspects.corps.bonus = {};
-                }
-                data.aspects.corps.bonus.valeur = data.aspects.corps.negatif.valeur - data.aspects.corps.positif.valeur;
-    
-                if(data.aspects.esprit.bonus == null) {
-                    data.aspects.esprit.bonus = {};
-                }
-                data.aspects.esprit.bonus.valeur = data.aspects.esprit.negatif.valeur - data.aspects.esprit.positif.valeur;
-    
-                if(data.aspects.ame.bonus == null) {
-                    data.aspects.ame.bonus = {};
-                }
-                data.aspects.ame.bonus.valeur = data.aspects.ame.negatif.valeur - data.aspects.ame.positif.valeur;
-            }
-            else {
-                // Calcul des scores de bonus d'aspects - Terne
-                if(data.aspects.corps.bonus == null) {
-                    data.aspects.corps.bonus = {};
-                }
-                data.aspects.corps.bonus.valeur = 0;
+                // Calcul des aspects
+                aspect.positif.valeur = aspect.positif.base + aspect.positif.pc + aspect.positif.exp + aspect.positif.avgDef;
+                aspect.negatif.valeur = aspect.negatif.base + aspect.negatif.pc + aspect.negatif.exp + aspect.negatif.avgDef;
 
-                if(data.aspects.esprit.bonus == null) {
-                    data.aspects.esprit.bonus = {};
+                // Calcul du bonus
+                if(aspect.bonus == null) {
+                    aspect.bonus = {};
                 }
-                data.aspects.esprit.bonus.valeur = 0;
+                if(this.type == "Personnage") {
+                    aspect.bonus.valeur = aspect.positif.valeur - aspect.negatif.valeur;
+                }
+                else if(this.type == "Damne") {
+                    aspect.bonus.valeur = aspect.negatif.valeur - aspect.positif.valeur;
+                }
+                else {
+                    aspect.bonus.valeur = 0;
+                }
 
-                if(data.aspects.ame.bonus == null) {
-                    data.aspects.ame.bonus = {};
+                // Calcul des caractéristiques primaires
+                for (let [keyC, carac] of Object.entries(aspect.caracteristiques)) {
+                    if(!carac.secondaire) { carac.valeur = carac.pc + carac.avgDef + carac.exp; }
                 }
-                data.aspects.ame.bonus.valeur = 0;
             }
-            
 
             // Calcul des scores de Flamme, Flamme noire et de points d'heroisme
             if(this.type == "Personnage" || this.type == "Damne") {
@@ -93,38 +54,10 @@ export default class AgoneActor extends Actor {
                 data.caracSecondaires.heroisme.max = 0;
             }
 
-            // Calcul des caractéristiques primaires
-            data.aspects.corps.caracteristiques.agilite.valeur = data.aspects.corps.caracteristiques.agilite.pc + data.aspects.corps.caracteristiques.agilite.avgDef + data.aspects.corps.caracteristiques.agilite.exp;
-            data.aspects.corps.caracteristiques.force.valeur = data.aspects.corps.caracteristiques.force.pc + data.aspects.corps.caracteristiques.force.avgDef + data.aspects.corps.caracteristiques.force.exp;
-            data.aspects.corps.caracteristiques.perception.valeur = data.aspects.corps.caracteristiques.perception.pc + data.aspects.corps.caracteristiques.perception.avgDef + data.aspects.corps.caracteristiques.perception.exp;
-            data.aspects.corps.caracteristiques.resistance.valeur = data.aspects.corps.caracteristiques.resistance.pc + data.aspects.corps.caracteristiques.resistance.avgDef + data.aspects.corps.caracteristiques.resistance.exp;
-            data.aspects.esprit.caracteristiques.intelligence.valeur = data.aspects.esprit.caracteristiques.intelligence.pc + data.aspects.esprit.caracteristiques.intelligence.avgDef + data.aspects.esprit.caracteristiques.intelligence.exp;
-            data.aspects.esprit.caracteristiques.volonte.valeur = data.aspects.esprit.caracteristiques.volonte.pc + data.aspects.esprit.caracteristiques.volonte.avgDef + data.aspects.esprit.caracteristiques.volonte.exp;
-            data.aspects.ame.caracteristiques.charisme.valeur = data.aspects.ame.caracteristiques.charisme.pc + data.aspects.ame.caracteristiques.charisme.avgDef + data.aspects.ame.caracteristiques.charisme.exp;
-            data.aspects.ame.caracteristiques.creativite.valeur = data.aspects.ame.caracteristiques.creativite.pc + data.aspects.ame.caracteristiques.creativite.avgDef + data.aspects.ame.caracteristiques.creativite.exp;
-
-            // Calcul des caractéristiques secondaires
-            data.aspects.corps.caracteristiques.melee.valeur = Math.floor((data.aspects.corps.caracteristiques.force.valeur + data.aspects.corps.caracteristiques.agilite.valeur * 2) / 3) + data.aspects.corps.caracteristiques.melee.avgDef;
-            data.aspects.corps.caracteristiques.tir.valeur = Math.floor((data.aspects.corps.caracteristiques.perception.valeur + data.aspects.corps.caracteristiques.agilite.valeur) / 2) + data.aspects.corps.caracteristiques.tir.avgDef;
-            data.aspects.ame.caracteristiques.art.valeur = Math.floor((data.aspects.ame.caracteristiques.charisme.valeur + data.aspects.ame.caracteristiques.creativite.valeur) / 2) + data.aspects.ame.caracteristiques.art.avgDef; 
-
-            data.caracSecondaires.tenebre.valeur = data.caracSecondaires.tenebre.base + data.caracSecondaires.tenebre.avgDef;
-            data.caracSecondaires.perfidie.valeur = data.caracSecondaires.perfidie.base + data.caracSecondaires.perfidie.avgDef;
-            data.caracSecondaires.noirceur =  Math.floor(data.caracSecondaires.tenebre.valeur / 10);
-
-            switch(data.caracSecondaires.resonance) {
-                case "jorniste":
-                    data.aspects.esprit.caracteristiques.emprise.valeur = data.aspects.esprit.caracteristiques.intelligence.valeur + data.aspects.esprit.caracteristiques.emprise.avgDef;
-                    break;
-                case "eclipsiste":
-                    data.aspects.esprit.caracteristiques.emprise.valeur = Math.floor((data.aspects.esprit.caracteristiques.intelligence.valeur + data.aspects.esprit.caracteristiques.volonte.valeur) / 2) + data.aspects.esprit.caracteristiques.emprise.avgDef;
-                    break;
-                case "obscurantiste":
-                    data.aspects.esprit.caracteristiques.emprise.valeur = data.aspects.esprit.caracteristiques.volonte.valeur + data.aspects.esprit.caracteristiques.emprise.avgDef;
-                    break;
-                default:
-                    data.aspects.esprit.caracteristiques.emprise.valeur = 0;
-            }
+            // Calcul des scores de Ténèbre, Perfidie et Noirceur
+            data.caracSecondaires.tenebre.valeur = data.caracSecondaires.tenebre.gain + data.caracSecondaires.tenebre.avgDef;
+            data.caracSecondaires.perfidie.valeur = data.caracSecondaires.perfidie.gain + data.caracSecondaires.perfidie.avgDef;
+            data.caracSecondaires.noirceur = Math.floor(data.caracSecondaires.tenebre.valeur / 10);
 
             // Calcul des caractéristiques liées au peuple
             if(data.peuple != "aucun" && data.peuple != "" && data.peuple != null)
@@ -138,105 +71,53 @@ export default class AgoneActor extends Actor {
                 data.caracSecondaires.pdv.bpdv = CONFIG.agone.peuple[data.peuple].bpdv;
 
                 // modificateurs de peuple des caractéristiques primaires
-                data.aspects.corps.caracteristiques.agilite.valeur += CONFIG.agone.peuple[data.peuple].caracs.agilite.mod;
-                if(CONFIG.agone.peuple[data.peuple].caracs.agilite.min > 0) {
-                    if(data.aspects.corps.caracteristiques.agilite.pc < CONFIG.agone.peuple[data.peuple].caracs.agilite.min) {
-                        data.aspects.corps.caracteristiques.agilite.peupleMin = true;
-                    }
-                }
-                if(CONFIG.agone.peuple[data.peuple].caracs.agilite.max > 0) {
-                    if(data.aspects.corps.caracteristiques.agilite.pc > CONFIG.agone.peuple[data.peuple].caracs.agilite.max) {
-                        data.aspects.corps.caracteristiques.agilite.peupleMax = true;
-                    }
-                }
-
-                data.aspects.corps.caracteristiques.force.valeur += CONFIG.agone.peuple[data.peuple].caracs.force.mod;
-                if(CONFIG.agone.peuple[data.peuple].caracs.force.min > 0) {
-                    if(data.aspects.corps.caracteristiques.force.pc < CONFIG.agone.peuple[data.peuple].caracs.force.min) {
-                        data.aspects.corps.caracteristiques.force.peupleMin = true;
-                    }
-                }
-                if(CONFIG.agone.peuple[data.peuple].caracs.force.max > 0) {
-                    if(data.aspects.corps.caracteristiques.force.pc > CONFIG.agone.peuple[data.peuple].caracs.force.max) {
-                        data.aspects.corps.caracteristiques.force.peupleMax = true;
-                    }
-                }
-
-                data.aspects.corps.caracteristiques.perception.valeur += CONFIG.agone.peuple[data.peuple].caracs.perception.mod;
-                if(CONFIG.agone.peuple[data.peuple].caracs.perception.min > 0) {
-                    if(data.aspects.corps.caracteristiques.perception.pc < CONFIG.agone.peuple[data.peuple].caracs.perception.min) {
-                        data.aspects.corps.caracteristiques.perception.peupleMin = true;
-                    }
-                }
-                if(CONFIG.agone.peuple[data.peuple].caracs.perception.max > 0) {
-                    if(data.aspects.corps.caracteristiques.perception.pc > CONFIG.agone.peuple[data.peuple].caracs.perception.max) {
-                        data.aspects.corps.caracteristiques.perception.peupleMax = true;
-                    }
-                }
-
-                data.aspects.corps.caracteristiques.resistance.valeur += CONFIG.agone.peuple[data.peuple].caracs.resistance.mod;
-                if(CONFIG.agone.peuple[data.peuple].caracs.resistance.min > 0) {
-                    if(data.aspects.corps.caracteristiques.resistance.pc < CONFIG.agone.peuple[data.peuple].caracs.resistance.min) {
-                        data.aspects.corps.caracteristiques.resistance.peupleMin = true;
-                    }
-                }
-                if(CONFIG.agone.peuple[data.peuple].caracs.resistance.max > 0) {
-                    if(data.aspects.corps.caracteristiques.resistance.pc > CONFIG.agone.peuple[data.peuple].caracs.resistance.max) {
-                        data.aspects.corps.caracteristiques.resistance.peupleMax = true;
-                    }
-                }
-
-                data.aspects.esprit.caracteristiques.intelligence.valeur += CONFIG.agone.peuple[data.peuple].caracs.intelligence.mod;
-                if(CONFIG.agone.peuple[data.peuple].caracs.intelligence.min > 0) {
-                    if(data.aspects.esprit.caracteristiques.intelligence.pc < CONFIG.agone.peuple[data.peuple].caracs.intelligence.min) {
-                        data.aspects.esprit.caracteristiques.intelligence.peupleMin = true;
-                    }
-                }
-                if(CONFIG.agone.peuple[data.peuple].caracs.intelligence.max > 0) {
-                    if(data.aspects.esprit.caracteristiques.intelligence.pc > CONFIG.agone.peuple[data.peuple].caracs.intelligence.max) {
-                        data.aspects.esprit.caracteristiques.intelligence.peupleMax = true;
-                    }
-                }
-
-                data.aspects.esprit.caracteristiques.volonte.valeur += CONFIG.agone.peuple[data.peuple].caracs.volonte.mod;
-                if(CONFIG.agone.peuple[data.peuple].caracs.volonte.min > 0) {
-                    if(data.aspects.esprit.caracteristiques.volonte.pc < CONFIG.agone.peuple[data.peuple].caracs.volonte.min) {
-                        data.aspects.esprit.caracteristiques.volonte.peupleMin = true;
-                    }
-                }
-                if(CONFIG.agone.peuple[data.peuple].caracs.volonte.max > 0) {
-                    if(data.aspects.esprit.caracteristiques.volonte.pc > CONFIG.agone.peuple[data.peuple].caracs.volonte.max) {
-                        data.aspects.esprit.caracteristiques.volonte.peupleMax = true;
-                    }
-                }
-
-                data.aspects.ame.caracteristiques.charisme.valeur += CONFIG.agone.peuple[data.peuple].caracs.charisme.mod;
-                if(CONFIG.agone.peuple[data.peuple].caracs.charisme.min > 0) {
-                    if(data.aspects.ame.caracteristiques.charisme.pc < CONFIG.agone.peuple[data.peuple].caracs.charisme.min) {
-                        data.aspects.ame.caracteristiques.charisme.peupleMin = true;
-                    }
-                }
-                if(CONFIG.agone.peuple[data.peuple].caracs.charisme.max > 0) {
-                    if(data.aspects.ame.caracteristiques.charisme.pc > CONFIG.agone.peuple[data.peuple].caracs.charisme.max) {
-                        data.aspects.ame.caracteristiques.charisme.peupleMax = true;
-                    }
-                }
-
-                data.aspects.ame.caracteristiques.creativite.valeur += CONFIG.agone.peuple[data.peuple].caracs.creativite.mod;
-                if(CONFIG.agone.peuple[data.peuple].caracs.creativite.min > 0) {
-                    if(data.aspects.ame.caracteristiques.creativite.pc < CONFIG.agone.peuple[data.peuple].caracs.creativite.min) {
-                        data.aspects.ame.caracteristiques.creativite.peupleMin = true;
-                    }
-                }
-                if(CONFIG.agone.peuple[data.peuple].caracs.creativite.max > 0) {
-                    if(data.aspects.ame.caracteristiques.creativite.pc > CONFIG.agone.peuple[data.peuple].caracs.creativite.max) {
-                        data.aspects.ame.caracteristiques.creativite.peupleMax = true;
+                for (let [keyA, aspect] of Object.entries(data.aspects)) {
+                    for (let [keyC, carac] of Object.entries(aspect.caracteristiques)) {
+                        if(!carac.secondaire) {
+                            carac.valeur += CONFIG.agone.peuple[data.peuple].caracs[keyC].mod;
+                            if(CONFIG.agone.peuple[data.peuple].caracs[keyC].min > 0) {
+                                if(carac.pc < CONFIG.agone.peuple[data.peuple].caracs[keyC].min) {
+                                    carac.peupleMin = true;
+                                }
+                            }
+                            if(CONFIG.agone.peuple[data.peuple].caracs[keyC].max > 0) {
+                                if(carac.pc > CONFIG.agone.peuple[data.peuple].caracs[keyC].max) {
+                                    carac.peupleMax = true;
+                                }
+                            }
+                        }
                     }
                 }
 
                 if(this.type == "Personnage") {
+                    // Nb de points de création selon le peuple
                     data.pcCaracs.base = data.peuple == "humain" ? 80 : 70;
                     data.pcCompetences.base = data.peuple == "humain" ? 120 : 100;
+
+                    if(data.peuple != "humain") {
+                        for (let [keyF, famille] of Object.entries(CONFIG.agone.peuple[data.peuple].competences)) {
+                            for (let [keyC, comp] of Object.entries(famille)) {
+                                if(data.familleCompetences[keyF].competences[keyC].peuple) {
+                                    // La comp de peuple existe deja
+                                    if(data.familleCompetences[keyF].competences[keyC].pc > 5) {
+                                        //TODO - verrouiller le peuple
+                                    }
+                                }
+                                else {
+                                    if(comp.domaine) {
+                                        if(data.familleCompetences[keyF].competences[keyC].domaines[comp.domaine].pc > 0) {
+                                            //TODO - rendre les points investis
+                                        }
+                                    }
+                                    else {
+                                        if(data.familleCompetences[keyF].competences[keyC].pc > 0) {
+                                            //TODO - rendre les points investis
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             } else {
                 data.caracSecondaires.tai.valeur = 0 + data.caracSecondaires.tai.avgDef;
@@ -252,6 +133,25 @@ export default class AgoneActor extends Actor {
                 }
             }
 
+            // Calcul des caractéristiques secondaires
+            data.aspects.corps.caracteristiques.melee.valeur = Math.floor((data.aspects.corps.caracteristiques.force.valeur + data.aspects.corps.caracteristiques.agilite.valeur * 2) / 3) + data.aspects.corps.caracteristiques.melee.avgDef;
+            data.aspects.corps.caracteristiques.tir.valeur = Math.floor((data.aspects.corps.caracteristiques.perception.valeur + data.aspects.corps.caracteristiques.agilite.valeur) / 2) + data.aspects.corps.caracteristiques.tir.avgDef;
+            data.aspects.ame.caracteristiques.art.valeur = Math.floor((data.aspects.ame.caracteristiques.charisme.valeur + data.aspects.ame.caracteristiques.creativite.valeur) / 2) + data.aspects.ame.caracteristiques.art.avgDef; 
+
+            switch(data.caracSecondaires.resonance) {
+                case "jorniste":
+                    data.aspects.esprit.caracteristiques.emprise.valeur = data.aspects.esprit.caracteristiques.intelligence.valeur + data.aspects.esprit.caracteristiques.emprise.avgDef;
+                    break;
+                case "eclipsiste":
+                    data.aspects.esprit.caracteristiques.emprise.valeur = Math.floor((data.aspects.esprit.caracteristiques.intelligence.valeur + data.aspects.esprit.caracteristiques.volonte.valeur) / 2) + data.aspects.esprit.caracteristiques.emprise.avgDef;
+                    break;
+                case "obscurantiste":
+                    data.aspects.esprit.caracteristiques.emprise.valeur = data.aspects.esprit.caracteristiques.volonte.valeur + data.aspects.esprit.caracteristiques.emprise.avgDef;
+                    break;
+                default:
+                    data.aspects.esprit.caracteristiques.emprise.valeur = 0;
+            }
+
             // Calcul du nombre de points de vie max et des seuils de blessure
             data.caracSecondaires.pdv.max = data.caracSecondaires.pdv.bpdv + data.aspects.corps.caracteristiques.resistance.valeur * 3 + data.caracSecondaires.pdv.d10;
             data.caracSecondaires.seuilBlessureGrave = Math.floor(data.caracSecondaires.pdv.max / 3);
@@ -265,29 +165,19 @@ export default class AgoneActor extends Actor {
             ---- de la langue sélectionnée                          ----
             ----------------------------------------------------------*/
 
-            // Récupération des traductions pour les caractéristiques
-            for (let [key, carac] of Object.entries(data.aspects.corps.caracteristiques)) {
-                carac.label = game.i18n.localize(CONFIG.agone.caracteristiques[key]);
-                carac.abrev = game.i18n.localize(CONFIG.agone.caracAbrev[key]);
-            }
-        
-            for (let [key, carac] of Object.entries(data.aspects.esprit.caracteristiques)) {
-                carac.label = game.i18n.localize(CONFIG.agone.caracteristiques[key]);
-                carac.abrev = game.i18n.localize(CONFIG.agone.caracAbrev[key]);
-            }
-        
-            for (let [key, carac] of Object.entries(data.aspects.ame.caracteristiques)) {
-                carac.label = game.i18n.localize(CONFIG.agone.caracteristiques[key]);
-                carac.abrev = game.i18n.localize(CONFIG.agone.caracAbrev[key]);
-            }
-
             // Récupération des traductions pour les aspects
-            for (let [key, aspect] of Object.entries(data.aspects)) {
-                aspect.positif.label = game.i18n.localize(CONFIG.agone.aspects[key]);
-                let keyNoir = key + "N";
+            for (let [keyA, aspect] of Object.entries(data.aspects)) {
+                aspect.positif.label = game.i18n.localize(CONFIG.agone.aspects[keyA]);
+                let keyNoir = keyA + "N";
                 aspect.negatif.label = game.i18n.localize(CONFIG.agone.aspects[keyNoir]);
-                let keyBonus = "B" + key;
+                let keyBonus = "B" + keyA;
                 aspect.bonus.label = game.i18n.localize(CONFIG.agone.aspects[keyBonus]);
+
+                // Récupération des traductions pour les caractéristiques
+                for (let [keyC, carac] of Object.entries(aspect.caracteristiques)) {
+                    carac.label = game.i18n.localize(CONFIG.agone.caracteristiques[keyC]);
+                    carac.abrev = game.i18n.localize(CONFIG.agone.caracAbrev[keyC]);
+                }
             }
 
             // Récupération des traductions pour les compétences

@@ -267,7 +267,8 @@
             "peinesBienfaits": "Sorrows / Gifts",
             "peines": "Sorrows",
             "bienfaits": "Gifts",
-            "histoire": "Story"
+            "histoire": "Story",
+            "pcCaracUtilises": "Used creation points"
         },
         "items":{
             "description": "Description",
@@ -562,6 +563,8 @@
             "deverrou": "Unlock sheet",
             "augCarac": "NO TRAD - Augmenter la caractéristique",
             "dimCarac": "NO TRAD - Diminuer la caractéristique",
+            "augAspect": "NO TRAD - Augmenter l'aspect",
+            "dimAspect": "NO TRAD - Diminuer l'aspect",
             "minPeuple": "NO TRAD - Vous ne respectez pas la valeur de caractéristique minimum pour ce peuple",
             "maxPeuple": "NO TRAD - Vous ne respectez pas la valeur de caractéristique maximum pour ce peuple"
         }

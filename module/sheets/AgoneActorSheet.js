@@ -157,11 +157,14 @@ export default class AgoneActorSheet extends ActorSheet {
             // Vérouiller / dévérouiller la fiche
             html.find(".sheet-change-lock").click(this._onSheetChangelock.bind(this));
 
-            // Modifier ses caractéristiues
+            // Modifier les aspects - Damné uniquement
+            html.find(".mod-aspect-crea").click(this._onModifAspect.bind(this));
+
+            // Modifier les caractéristiques
             html.find(".mod-carac-crea").click(this._onModifCaracCrea.bind(this));
 
-            // edit-comp - edition des compétences d'une famille
-            html.find('.edit-comp').click(this._onEditComp.bind(this));
+            //// edit-comp - edition des compétences d'une famille
+            //html.find('.edit-comp').click(this._onEditComp.bind(this));
 
             // roll-comp - jet de compétence
             html.find('.roll-comp').click(this._onRollComp.bind(this));
@@ -233,6 +236,7 @@ export default class AgoneActorSheet extends ActorSheet {
         }
     }
 
+    // Vérouiller / dévérouiller la fiche
     async _onSheetChangelock(event) {
         event.preventDefault();
         
@@ -242,6 +246,30 @@ export default class AgoneActorSheet extends ActorSheet {
         this.actor.sheet.render(true);
     }
 
+    // Modifier les aspects - Damné uniquement
+    async _onModifAspect(event) {
+        event.preventDefault();
+        const element = event.currentTarget;
+
+        const aspect = element.dataset.aspect;
+        const type = element.dataset.type;
+        const action = element.dataset.action;
+
+        const currentVal = parseInt(this.actor.system.aspects[aspect][type].pc);
+
+        if(action == "minus") {
+            if(currentVal > 0) {
+                await this.actor.update({ [`system.aspects.${aspect}.${type}.pc`] : currentVal - 1 });
+            }
+        }
+        else if(action == "plus") {
+            if(currentVal < 10) {
+                await this.actor.update({ [`system.aspects.${aspect}.${type}.pc`] : currentVal + 1 });
+            }
+        }
+    }
+
+    // Modifier les caractéristiques
     async _onModifCaracCrea(event) {
         event.preventDefault();
         const element = event.currentTarget;
@@ -260,9 +288,7 @@ export default class AgoneActorSheet extends ActorSheet {
 
                 if(this.actor.type == "Personnage") {
                     const currentPcDep = parseInt(this.actor.system.pcCaracs.depense);
-                    //console.log("pcDepense avant", currentPcDep);
                     await this.actor.update({ [`system.pcCaracs.depense`] : currentPcDep - cout });
-                    //console.log("pcDepense après", parseInt(this.actor.system.pcCaracs.depense));
                 }
             }
         }
@@ -271,7 +297,6 @@ export default class AgoneActorSheet extends ActorSheet {
 
                 if(this.actor.type == "Personnage") {
                     const currentPcDep = parseInt(this.actor.system.pcCaracs.depense);
-                    //console.log("pcDepense avant", currentPcDep);
                     const pcMax = parseInt(this.actor.system.pcCaracs.base);
                     const cout = Utils.getCoutAchat(currentVal + 1);
 
@@ -281,7 +306,6 @@ export default class AgoneActorSheet extends ActorSheet {
                     }
 
                     await this.actor.update({ [`system.pcCaracs.depense`] : currentPcDep + cout });
-                    //console.log("pcDepense après", parseInt(this.actor.system.pcCaracs.depense));
                 }
                 
                 await this.actor.update({ [`system.aspects.${aspect}.caracteristiques.${carac}.pc`] : currentVal + 1 });
@@ -373,14 +397,14 @@ export default class AgoneActorSheet extends ActorSheet {
         item.roll();
     }
 
-    // edit-comp - edition des compétences d'une famille
+    /*// edit-comp - edition des compétences d'une famille
     _onEditComp(event) {
         event.preventDefault();
         const dataset = event.currentTarget.dataset;
         const lstComps = this.actor.getCompetences(dataset.famille);
 
         new EditCompFormApplication(this.actor, dataset.famille, lstComps).render(true);
-    }
+    }*/
 
     // roll-comp - jet de compétence
     _onRollComp(event) {

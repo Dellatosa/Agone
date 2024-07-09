@@ -402,6 +402,27 @@ agone.peuple = {
         tai: 0,
         mv: 3,
         ageMoyen: 35,
+        competences: {
+            epreuves: {
+                premiersSoins: {
+                    rang: 5
+                }
+            },
+            savoir: {
+                chirurgie: {
+                    rang: 5
+                },
+                saisons: {
+                    domaine: "hiver",
+                    rang: 5
+                }
+            },
+            maraude: {
+                jeu: {
+                    rang: 5
+                }
+            }
+        },
         caracs : {
             resistance: {
                 mod: 2,

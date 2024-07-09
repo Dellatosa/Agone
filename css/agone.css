@@ -270,7 +270,7 @@ a.nohlight {
 }
 .actor-flamme {
   display: grid;
-  grid-template-columns: 1fr 1fr 1.5fr;
+  grid-template-columns: 1.5fr 1fr 1.5fr;
 }
 .actor-flamme .box-flamme {
   display: flex;
@@ -284,6 +284,21 @@ a.nohlight {
 }
 .actor-flamme .box-flamme .slash {
   margin-top: 17px;
+}
+.actor-flamme .box-flamme .pc-box {
+  align-self: center;
+  padding: 3px;
+  margin: 0 5px;
+  font-family: "BarbedorMedium";
+  font-size: 0.9em;
+  text-align: center;
+  border: solid 1px #B8B8B8;
+  background-color: rgba(82, 77, 77, 0.075);
+  border-radius: 3px;
+}
+.actor-flamme.pc {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.5fr;
 }
 .aspects-and-caracs {
   display: flex;

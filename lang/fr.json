@@ -267,7 +267,8 @@
             "peinesBienfaits": "Peines / Bienfaits",
             "peines": "Peines",
             "bienfaits": "Bienfaits",
-            "histoire": "Histoire"
+            "histoire": "Histoire",
+            "pcCaracUtilises": "Points de création utilisés"
         },
         "items":{
             "description": "Description",
@@ -563,6 +564,8 @@
             "deverrou": "Déverouiller la fiche",
             "augCarac": "Augmenter la caractéristique",
             "dimCarac": "Diminuer la caractéristique",
+            "augAspect": "Augmenter l'aspect",
+            "dimAspect": "Diminuer l'aspect",
             "minPeuple": "Vous ne respectez pas la valeur de caractéristique minimum pour ce peuple",
             "maxPeuple": "Vous ne respectez pas la valeur de caractéristique maximum pour ce peuple"
         }
