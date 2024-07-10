@@ -1,3 +1,5 @@
+import * as Utils from "./common/utils.js";
+
 export default class AgoneActor extends Actor {
 
     prepareData() {
@@ -59,7 +61,7 @@ export default class AgoneActor extends Actor {
             data.caracSecondaires.perfidie.valeur = data.caracSecondaires.perfidie.gain + data.caracSecondaires.perfidie.avgDef;
             data.caracSecondaires.noirceur = Math.floor(data.caracSecondaires.tenebre.valeur / 10);
 
-            // Calcul des caractéristiques liées au peuple
+            // Calcul des caractéristiques et competences liées au peuple
             if(data.peuple != "aucun" && data.peuple != "" && data.peuple != null)
             {
                 data.caracSecondaires.tai.valeur = CONFIG.agone.peuple[data.peuple].tai + data.caracSecondaires.tai.avgDef;
@@ -94,24 +96,72 @@ export default class AgoneActor extends Actor {
                     data.pcCaracs.base = data.peuple == "humain" ? 80 : 70;
                     data.pcCompetences.base = data.peuple == "humain" ? 120 : 100;
 
-                    if(data.peuple != "humain") {
-                        for (let [keyF, famille] of Object.entries(CONFIG.agone.peuple[data.peuple].competences)) {
-                            for (let [keyC, comp] of Object.entries(famille)) {
-                                if(data.familleCompetences[keyF].competences[keyC].peuple) {
-                                    // La comp de peuple existe deja
-                                    if(data.familleCompetences[keyF].competences[keyC].pc > 5) {
-                                        //TODO - verrouiller le peuple
-                                    }
-                                }
-                                else {
-                                    if(comp.domaine) {
-                                        if(data.familleCompetences[keyF].competences[keyC].domaines[comp.domaine].pc > 0) {
-                                            //TODO - rendre les points investis
+                    // Suppression des competences de peuple (en cas de changement de peuple)
+                    for(let[keyF, famille] of Object.entries(data.familleCompetences)) {
+                        for(let[keyC, competence] of Object.entries(famille.competences)) {
+                            if(competence.peuple) {
+                                if(competence.peuple != data.peuple) {
+                                    if(competence.domaine) {
+                                        for(let[keyDom, domaine] of Object.entries(competence.domaines)) {
+                                            if(domaine.peuple) {
+                                                if(domaine.peuple != data.peuple) { 
+                                                    if(domaine.pc > 5) { ui.notifications.warn(`Competence de peuple ${domaine.label} a supprimer supérieure à 5 !!!`); }
+                                                    else { 
+                                                        domaine.pc = 0; 
+                                                        delete domaine.peuple;
+                                                        delete competence.peuple;
+                                                    }
+                                                }
+                                            }
                                         }
                                     }
                                     else {
-                                        if(data.familleCompetences[keyF].competences[keyC].pc > 0) {
-                                            //TODO - rendre les points investis
+                                        if(competence.pc > 5) { ui.notifications.warn(`Competence de peuple ${competence.label} a supprimer supérieure à 5 !!!`); }
+                                        else { 
+                                            competence.pc = 0; 
+                                            delete competence.peuple;
+                                        }
+                                        //delete data.familleCompetences[keyF].competences[keyC].peuple;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    if(data.peuple != "humain") {
+                        console.log("Competences peuple");
+                        if(CONFIG.agone.peuple[data.peuple].competences) {
+                            for (let [keyF, famille] of Object.entries(CONFIG.agone.peuple[data.peuple].competences)) {
+                                for (let [keyC, comp] of Object.entries(famille)) {                         
+                                    if(!data.familleCompetences[keyF].competences[keyC].peuple) {
+                                        console.log("La compétence de peuple n'existe pas", keyC, comp);
+                                        // La compétence de peuple n'existe pas
+                                        if(comp.domaine) {
+                                            console.log("comp domaine", data.familleCompetences[keyF].competences[keyC].domaines[comp.domaine]);
+                                            if(data.familleCompetences[keyF].competences[keyC].domaines[comp.domaine].pc > 0) {
+                                                // Restitution des points investis
+                                                data.pcCompetences.depense -= Utils.getCoutAchatTotal(data.familleCompetences[keyF].competences[keyC].domaines[comp.domaine].pc);
+                                            }
+                                            data.familleCompetences[keyF].competences[keyC].domaines[comp.domaine].pc = comp.rang;
+                                            data.familleCompetences[keyF].competences[keyC].domaines[comp.domaine].peuple = data.peuple;
+                                        }
+                                        else {
+                                            console.log("comp pc", data.familleCompetences[keyF].competences[keyC]);
+                                            if(data.familleCompetences[keyF].competences[keyC].pc > 0) {
+                                                // Restitution des points investis
+                                                data.pcCompetences.depense -= Utils.getCoutAchatTotal(data.familleCompetences[keyF].competences[keyC].pc);
+                                            }
+                                            data.familleCompetences[keyF].competences[keyC].pc = comp.rang;
+                                        }
+                                        data.familleCompetences[keyF].competences[keyC].peuple = data.peuple;
+
+                                        console.log("comp apres modif", data.familleCompetences[keyF].competences[keyC]);
+                                    }
+                                    else if (data.familleCompetences[keyF].competences[keyC].peuple == data.peuple) {
+                                        console.log("La compétence de peuple existe deja", keyC, comp);
+                                        // La comp de peuple existe deja
+                                        if(data.familleCompetences[keyF].competences[keyC].pc > 5) {
+                                            //TODO - verrouiller le peuple
                                         }
                                     }
                                 }
@@ -158,6 +208,18 @@ export default class AgoneActor extends Actor {
             data.caracSecondaires.seuilBlessureCritique = Math.floor(data.caracSecondaires.pdv.max / 2);
             if(data.caracSecondaires.pdv.value > data.caracSecondaires.pdv.max) {
                 data.caracSecondaires.pdv.value = data.caracSecondaires.pdv.max;
+            }
+
+            // Calcul des compétences
+            for(let[keyFam, famille] of Object.entries(data.familleCompetences)) {
+                for(let[keyComp, competence] of Object.entries(famille.competences)) {
+                    competence.rang = competence.pc + competence.avgDef + competence.exp;
+                    if(competence.domaine == true) {
+                        for(let[keyDom, domaine] of Object.entries(competence.domaines)) {
+                            domaine.rang = domaine.pc + domaine.avgDef + domaine.exp;
+                        }
+                    }
+                } 
             }
 
             /* ---------------------------------------------------------

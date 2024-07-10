@@ -163,6 +163,9 @@ export default class AgoneActorSheet extends ActorSheet {
             // Modifier les caractéristiques
             html.find(".mod-carac-crea").click(this._onModifCaracCrea.bind(this));
 
+            // Modifier les compétences
+            html.find(".mod-comp-crea").click(this._onModifCompetenceCrea.bind(this));
+
             //// edit-comp - edition des compétences d'une famille
             //html.find('.edit-comp').click(this._onEditComp.bind(this));
 
@@ -309,6 +312,78 @@ export default class AgoneActorSheet extends ActorSheet {
                 }
                 
                 await this.actor.update({ [`system.aspects.${aspect}.caracteristiques.${carac}.pc`] : currentVal + 1 });
+            }
+        }
+    }
+
+    async _onModifCompetenceCrea(event) {
+        event.preventDefault();
+        const element = event.currentTarget;
+
+        const famille = element.dataset.famille;
+        const competence = element.dataset.competence;
+        const domaine = element.dataset.domaine;
+        const action = element.dataset.action;
+
+        let currentVal = 0;;
+        if(domaine) {
+            currentVal = parseInt(this.actor.system.familleCompetences[famille].competences[competence].domaines[domaine].pc);
+        }
+        else {
+            currentVal = parseInt(this.actor.system.familleCompetences[famille].competences[competence].pc);
+        }
+        
+        if(action == "minus") {
+            if(currentVal > 0) {
+                // Pas de score inférieur à 5 pour la compétence de peuple d'un Inspiré
+                if(this.actor.type == "Personnage" && this.actor.system.familleCompetences[famille].competences[competence].peuple && currentVal <= 5) {
+                    return;
+                }
+
+                const cout = Utils.getCoutAchat(currentVal);
+                if(domaine) {
+                    await this.actor.update({ [`system.familleCompetences.${famille}.competences.${competence}.domaines.${domaine}.pc`] : currentVal - 1 });
+                }
+                else {
+                    await this.actor.update({ [`system.familleCompetences.${famille}.competences.${competence}.pc`] : currentVal - 1 });
+                }
+
+                if(this.actor.type == "Personnage") {
+                    const currentPcDep = parseInt(this.actor.system.pcCaracs.depense);
+                    await this.actor.update({ [`system.pcCaracs.depense`] : currentPcDep - cout });
+                }
+            }
+        }
+        else if(action == "plus") {
+            let rangMax = 0;
+            if(domaine) {
+                rangMax = parseInt(this.actor.system.familleCompetences[famille].competences[competence].domaines[domaine].max);
+            }
+            else {
+                rangMax = parseInt(this.actor.system.familleCompetences[famille].competences[competence].max);
+            }
+
+            if(currentVal < rangMax) {
+
+                if(this.actor.type == "Personnage") {
+                    const currentPcDep = parseInt(this.actor.system.pcCompetences.depense);
+                    const pcMax = parseInt(this.actor.system.pcCompetences.base);
+                    const cout = Utils.getCoutAchat(currentVal + 1);
+
+                    if (currentPcDep + cout > pcMax) {
+                        ui.notifications.warn(game.i18n.localize("agone.notifications.pcCompVide"));
+                        return;
+                    }
+
+                    await this.actor.update({ [`system.pcCompetences.depense`] : currentPcDep + cout });
+                }
+                
+                if(domaine) {
+                    await this.actor.update({ [`system.familleCompetences.${famille}.competences.${competence}.domaines.${domaine}.pc`] : currentVal + 1 });
+                }
+                else {
+                    await this.actor.update({ [`system.familleCompetences.${famille}.competences.${competence}.pc`] : currentVal + 1 });
+                }
             }
         }
     }

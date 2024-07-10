@@ -14,3 +14,12 @@ export function getCoutAchat(niveau) {
             return 1;     
     }
 }
+
+export function getCoutAchatTotal(niveau) {
+    let coutTotal = 0;
+    for (let i = 1; i < niveau +1 ; i++) {
+        coutTotal += getCoutAchat(niveau);
+    }
+
+    return coutTotal;
+}

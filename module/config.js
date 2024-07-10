@@ -413,7 +413,7 @@ agone.peuple = {
                     rang: 5
                 },
                 saisons: {
-                    domaine: "hiver",
+                    domaine: "ete",
                     rang: 5
                 }
             },
