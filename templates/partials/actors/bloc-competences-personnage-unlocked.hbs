@@ -1,4 +1,12 @@
-<div class="comp-titre">Compétences</div>
+<div class="comp-titre">
+    <label>{{localize "agone.actors.competences"}}</label>
+    {{#if typePersonnage}}
+        <div class="pc-box">
+            <div>{{localize "agone.actors.pcCompUtilises"}}</div>
+            <div>{{data.system.pcCompetences.depense}} / {{data.system.pcCompetences.base}}</div>
+        </div>
+    {{/if}}
+</div>
 <nav class="competences-tabs tabs" data-group="competences">
     <a class="item" data-tab="epreuves">{{localize "agone.actors.epreuves"}}</a>
     <a class="item" data-tab="maraude">{{localize "agone.actors.maraude"}}</a>

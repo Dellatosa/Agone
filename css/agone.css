@@ -443,10 +443,25 @@ a.nohlight {
   top: 4px;
 }
 .grid-caracSec-comp .competences .comp-titre {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+.grid-caracSec-comp .competences .comp-titre label {
   text-align: center;
   font-family: "Lorgol";
   font-size: 2em;
-  margin-bottom: 5px;
+}
+.grid-caracSec-comp .competences .comp-titre .pc-box {
+  align-self: center;
+  padding: 3px;
+  margin: 0 5px;
+  font-family: "BarbedorMedium";
+  font-size: 0.9em;
+  text-align: center;
+  border: solid 1px #B8B8B8;
+  background-color: rgba(82, 77, 77, 0.075);
+  border-radius: 3px;
 }
 .grid-caracSec-comp .competences .actor-fam-comp {
   display: grid;

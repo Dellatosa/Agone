@@ -375,10 +375,28 @@ a.nohlight {
     .competences {
 
         .comp-titre {
-            text-align: center;
-            font-family: "Lorgol";
-            font-size: 2em;
+            display: flex;
+            justify-content: center;
             margin-bottom: 5px;
+
+            label {
+                text-align: center;
+                font-family: "Lorgol";
+                font-size: 2em;
+            }
+            
+            .pc-box {
+                align-self: center;
+                padding: 3px;
+                margin: 0 5px;
+                font-family: "BarbedorMedium";
+                font-size: 0.9em;
+                text-align: center;
+    
+                border: solid 1px #B8B8B8;
+                background-color: rgba(82, 77, 77, 0.075);;
+                border-radius: 3px;
+            }
         }
 
         .actor-fam-comp {

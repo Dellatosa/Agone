@@ -268,7 +268,8 @@
             "peines": "Peines",
             "bienfaits": "Bienfaits",
             "histoire": "Histoire",
-            "pcCaracUtilises": "Points de création utilisés"
+            "pcCaracUtilises": "Points de création utilisés",
+            "pcCompUtilises": "Points de création utilisés"
         },
         "items":{
             "description": "Description",
@@ -557,7 +558,8 @@
             "warnErrCreaMacro": "Vous pouvez créer des raccourçis de macros uniquement pour des objets liés à votre personnage",
             "warnErrUseMacro": "Impossible de déterminer votre personnage. Sélectionnez votre personnage à la connexion ou bien un token sur la scène.",
             "pcCaracVide": "Vous n'avez plus de points de création disponibles pour vos caractéristiques.",
-            "verrouPeuple": "Vous avez dépensé plus de points de création que le maximum attribué aux saisonnins."
+            "verrouPeupleH": "Vous avez dépensé plus de points de création que le maximum attribué aux saisonnins.",
+            "verrouPeupleS": "Vous avez dépensé des points de création sur une compétence de saisonnin."
         },
         "tooltip": {
             "verrou": "Verrouiller la fiche",
@@ -566,6 +568,8 @@
             "dimCarac": "Diminuer la caractéristique",
             "augAspect": "Augmenter l'aspect",
             "dimAspect": "Diminuer l'aspect",
+            "augComp": "Augmenter la compétence",
+            "dimComp": "Diminuer la compétence",
             "minPeuple": "Vous ne respectez pas la valeur de caractéristique minimum pour ce peuple",
             "maxPeuple": "Vous ne respectez pas la valeur de caractéristique maximum pour ce peuple"
         }

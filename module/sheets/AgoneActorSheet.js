@@ -114,9 +114,29 @@ export default class AgoneActorSheet extends ActorSheet {
 
         // Verrouillage du peuple si personnage Humain et dépense de points de création supérieure à 70
         if(data.data.type == "Personnage" && actorData.peuple == "humain" && actorData.pcCaracs.depense > 70) {
-            data.figerPeuple = true;
+            data.figerPeupleH = true;
         }
         
+        // Verrouillage du peuple si une compétence de peuple d'un personnage a une valeur supérieure à 5
+        if(CONFIG.agone.peuple[actorData.peuple].competences && data.data.type == "Personnage") {
+            for (let [keyF, famille] of Object.entries(CONFIG.agone.peuple[actorData.peuple].competences)) {
+                for (let [keyC, comp] of Object.entries(famille)) {  
+                    if(comp.domaine) {
+                        if(this.actor.system.familleCompetences[keyF].competences[keyC].domaines[comp.domaine].pc > 5) {
+                            // Verrouiller le peuple
+                            data.figerPeupleS = true;
+                        }
+                    }
+                    else {
+                        if(this.actor.system.familleCompetences[keyF].competences[keyC].pc > 5) {
+                            // Verrouiller le peuple
+                            data.figerPeupleS = true;
+                        }
+                    }
+                }
+            }
+        }
+
         return data;
     }
 
@@ -168,6 +188,9 @@ export default class AgoneActorSheet extends ActorSheet {
 
             //// edit-comp - edition des compétences d'une famille
             //html.find('.edit-comp').click(this._onEditComp.bind(this));
+
+            // Modifier le peuple
+            html.find('.edit-peuple').change(this._onEditerPeuple.bind(this));
 
             // roll-comp - jet de compétence
             html.find('.roll-comp').click(this._onRollComp.bind(this));
@@ -247,6 +270,91 @@ export default class AgoneActorSheet extends ActorSheet {
         if (flagData) await this.actor.unsetFlag(game.system.id, "SheetUnlocked");
         else await this.actor.setFlag(game.system.id, "SheetUnlocked", "SheetUnlocked");
         this.actor.sheet.render(true);
+    }
+
+    // Modifier le peuple
+    async _onEditerPeuple(event) {
+        event.preventDefault();
+
+        const peupleInit = this.actor.system.peuple;
+        const peupleSelect = event.target.value;
+
+        if(this.actor.type == "Personnage") {
+            console.log("Changement du peuple", this.actor.system.peuple, event.target.value);
+
+            // Suppression des competences de peuple sur l'ancien peuple
+            console.log("Suppression des compétences de peuple sur", peupleInit);
+            if(CONFIG.agone.peuple[peupleInit].competences) {
+                for (let [keyF, famille] of Object.entries(CONFIG.agone.peuple[peupleInit].competences)) {
+                    for (let [keyC, comp] of Object.entries(famille)) {
+                        if(comp.domaine) {
+                            if(this.actor.system.familleCompetences[keyF].competences[keyC].domaines[comp.domaine].peuple == peupleInit) {
+                                console.log("Compétence de domaine à supprimer", keyC, comp.domaine);
+                                if(this.actor.system.familleCompetences[keyF].competences[keyC].domaines[comp.domaine].pc > 5) {
+                                    ui.notifications.warn(`Compétence de peuple ${comp.domaine} a supprimer supérieure à 5 !!!`);
+                                }
+                                else {
+                                    console.log("Suppression de la compétence", keyC, comp.domaine);
+                                    await this.actor.update({[`system.familleCompetences.${keyF}.competences.${keyC}.domaines.${comp.domaine}.pc`]: 0});
+                                    await this.actor.update({[`system.familleCompetences.${keyF}.competences.${keyC}.domaines.${comp.domaine}.peuple`]: ""});
+                                    if(comp.libDomaine) {
+                                        await this.actor.update({[`system.familleCompetences.${keyF}.competences.${keyC}.domaines.${comp.domaine}.label`]: ""});
+                                    }
+                                }
+                            }
+                        }
+                        else {
+                            if(this.actor.system.familleCompetences[keyF].competences[keyC].peuple == peupleInit) {
+                                console.log("Comp peuple à supprimer", keyC);
+                                if(this.actor.system.familleCompetences[keyF].competences[keyC].pc > 5) {
+                                    ui.notifications.warn(`Compétence de peuple ${comp} a supprimer supérieure à 5 !!!`);
+                                }
+                                else {
+                                    console.log("Suppression de la compétence", keyC);
+                                    await this.actor.update({[`system.familleCompetences.${keyF}.competences.${keyC}.pc`]: 0});
+                                    await this.actor.update({[`system.familleCompetences.${keyF}.competences.${keyC}.peuple`]: ""});
+                                }
+                            }
+                        }                
+                    }
+                }
+            }
+
+            console.log("Ajout des compétences de peuple sur", peupleSelect);
+            if(CONFIG.agone.peuple[peupleSelect].competences) {
+                for (let [keyF, famille] of Object.entries(CONFIG.agone.peuple[peupleSelect].competences)) {
+                    for (let [keyC, comp] of Object.entries(famille)) {  
+                        if(comp.domaine) {
+                            if(this.actor.system.familleCompetences[keyF].competences[keyC].domaines[comp.domaine].peuple != peupleSelect) {
+                                console.log("La compétence de peuple n'existe pas", keyC, comp.domaine);
+                                // La compétence de peuple n'existe pas
+                                if(this.actor.system.familleCompetences[keyF].competences[keyC].domaines[comp.domaine].pc > 0) {
+                                    // Restitution des points investis
+                                    await this.actor.update({"system.pcCompetences.depense": this.actor.system.pcCompetences.depense - Utils.getCoutAchatTotal(this.actor.system.familleCompetences[keyF].competences[keyC].domaines[comp.domaine].pc)});
+                                }
+                                await this.actor.update({[`system.familleCompetences.${keyF}.competences.${keyC}.domaines.${comp.domaine}.pc`]: comp.rang});
+                                await this.actor.update({[`system.familleCompetences.${keyF}.competences.${keyC}.domaines.${comp.domaine}.peuple`]: peupleSelect});
+                                if(comp.libDomaine) {
+                                    await this.actor.update({[`system.familleCompetences.${keyF}.competences.${keyC}.domaines.${comp.domaine}.label`]: comp.libDomaine});
+                                }
+                            }
+                        }
+                        else {
+                            if(this.actor.system.familleCompetences[keyF].competences[keyC].peuple != peupleSelect) {
+                                console.log("La compétence de peuple n'existe pas", keyC);
+                                // La compétence de peuple n'existe pas
+                                if(this.actor.system.familleCompetences[keyF].competences[keyC].pc > 0) {
+                                    // Restitution des points investis
+                                    await this.actor.update({"system.pcCompetences.depense": this.actor.system.pcCompetences.depense - Utils.getCoutAchatTotal(this.actor.system.familleCompetences[keyF].competences[keyC].pc)});
+                                }
+                                await this.actor.update({[`system.familleCompetences.${keyF}.competences.${keyC}.pc`]: comp.rang});
+                                await this.actor.update({[`system.familleCompetences.${keyF}.competences.${keyC}.peuple`]: peupleSelect});
+                            }
+                        }                       
+                    }
+                }
+            }
+        }
     }
 
     // Modifier les aspects - Damné uniquement
@@ -349,8 +457,8 @@ export default class AgoneActorSheet extends ActorSheet {
                 }
 
                 if(this.actor.type == "Personnage") {
-                    const currentPcDep = parseInt(this.actor.system.pcCaracs.depense);
-                    await this.actor.update({ [`system.pcCaracs.depense`] : currentPcDep - cout });
+                    const currentPcDep = parseInt(this.actor.system.pcCompetences.depense);
+                    await this.actor.update({ [`system.pcCompetences.depense`] : currentPcDep - cout });
                 }
             }
         }

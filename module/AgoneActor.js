@@ -1,5 +1,3 @@
-import * as Utils from "./common/utils.js";
-
 export default class AgoneActor extends Actor {
 
     prepareData() {
@@ -76,98 +74,27 @@ export default class AgoneActor extends Actor {
                 for (let [keyA, aspect] of Object.entries(data.aspects)) {
                     for (let [keyC, carac] of Object.entries(aspect.caracteristiques)) {
                         if(!carac.secondaire) {
-                            carac.valeur += CONFIG.agone.peuple[data.peuple].caracs[keyC].mod;
-                            if(CONFIG.agone.peuple[data.peuple].caracs[keyC].min > 0) {
-                                if(carac.pc < CONFIG.agone.peuple[data.peuple].caracs[keyC].min) {
-                                    carac.peupleMin = true;
+                            if(CONFIG.agone.peuple[data.peuple].caracs[keyC]) {
+                                carac.valeur += CONFIG.agone.peuple[data.peuple].caracs[keyC].mod;
+                                if(CONFIG.agone.peuple[data.peuple].caracs[keyC].min > 0) {
+                                    if(carac.pc < CONFIG.agone.peuple[data.peuple].caracs[keyC].min) {
+                                        carac.peupleMin = true;
+                                    }
                                 }
-                            }
-                            if(CONFIG.agone.peuple[data.peuple].caracs[keyC].max > 0) {
-                                if(carac.pc > CONFIG.agone.peuple[data.peuple].caracs[keyC].max) {
-                                    carac.peupleMax = true;
+                                if(CONFIG.agone.peuple[data.peuple].caracs[keyC].max > 0) {
+                                    if(carac.pc > CONFIG.agone.peuple[data.peuple].caracs[keyC].max) {
+                                        carac.peupleMax = true;
+                                    }
                                 }
                             }
                         }
                     }
                 }
 
+                // Nb de points de création selon le peuple
                 if(this.type == "Personnage") {
-                    // Nb de points de création selon le peuple
                     data.pcCaracs.base = data.peuple == "humain" ? 80 : 70;
                     data.pcCompetences.base = data.peuple == "humain" ? 120 : 100;
-
-                    // Suppression des competences de peuple (en cas de changement de peuple)
-                    for(let[keyF, famille] of Object.entries(data.familleCompetences)) {
-                        for(let[keyC, competence] of Object.entries(famille.competences)) {
-                            if(competence.peuple) {
-                                if(competence.peuple != data.peuple) {
-                                    if(competence.domaine) {
-                                        for(let[keyDom, domaine] of Object.entries(competence.domaines)) {
-                                            if(domaine.peuple) {
-                                                if(domaine.peuple != data.peuple) { 
-                                                    if(domaine.pc > 5) { ui.notifications.warn(`Competence de peuple ${domaine.label} a supprimer supérieure à 5 !!!`); }
-                                                    else { 
-                                                        domaine.pc = 0; 
-                                                        delete domaine.peuple;
-                                                        delete competence.peuple;
-                                                    }
-                                                }
-                                            }
-                                        }
-                                    }
-                                    else {
-                                        if(competence.pc > 5) { ui.notifications.warn(`Competence de peuple ${competence.label} a supprimer supérieure à 5 !!!`); }
-                                        else { 
-                                            competence.pc = 0; 
-                                            delete competence.peuple;
-                                        }
-                                        //delete data.familleCompetences[keyF].competences[keyC].peuple;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    if(data.peuple != "humain") {
-                        console.log("Competences peuple");
-                        if(CONFIG.agone.peuple[data.peuple].competences) {
-                            for (let [keyF, famille] of Object.entries(CONFIG.agone.peuple[data.peuple].competences)) {
-                                for (let [keyC, comp] of Object.entries(famille)) {                         
-                                    if(!data.familleCompetences[keyF].competences[keyC].peuple) {
-                                        console.log("La compétence de peuple n'existe pas", keyC, comp);
-                                        // La compétence de peuple n'existe pas
-                                        if(comp.domaine) {
-                                            console.log("comp domaine", data.familleCompetences[keyF].competences[keyC].domaines[comp.domaine]);
-                                            if(data.familleCompetences[keyF].competences[keyC].domaines[comp.domaine].pc > 0) {
-                                                // Restitution des points investis
-                                                data.pcCompetences.depense -= Utils.getCoutAchatTotal(data.familleCompetences[keyF].competences[keyC].domaines[comp.domaine].pc);
-                                            }
-                                            data.familleCompetences[keyF].competences[keyC].domaines[comp.domaine].pc = comp.rang;
-                                            data.familleCompetences[keyF].competences[keyC].domaines[comp.domaine].peuple = data.peuple;
-                                        }
-                                        else {
-                                            console.log("comp pc", data.familleCompetences[keyF].competences[keyC]);
-                                            if(data.familleCompetences[keyF].competences[keyC].pc > 0) {
-                                                // Restitution des points investis
-                                                data.pcCompetences.depense -= Utils.getCoutAchatTotal(data.familleCompetences[keyF].competences[keyC].pc);
-                                            }
-                                            data.familleCompetences[keyF].competences[keyC].pc = comp.rang;
-                                        }
-                                        data.familleCompetences[keyF].competences[keyC].peuple = data.peuple;
-
-                                        console.log("comp apres modif", data.familleCompetences[keyF].competences[keyC]);
-                                    }
-                                    else if (data.familleCompetences[keyF].competences[keyC].peuple == data.peuple) {
-                                        console.log("La compétence de peuple existe deja", keyC, comp);
-                                        // La comp de peuple existe deja
-                                        if(data.familleCompetences[keyF].competences[keyC].pc > 5) {
-                                            //TODO - verrouiller le peuple
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
                 }
             } else {
                 data.caracSecondaires.tai.valeur = 0 + data.caracSecondaires.tai.avgDef;
@@ -608,7 +535,7 @@ export default class AgoneActor extends Actor {
     }
 
     setD10Pdv(valD10) {
-        this.update({"data.caracSecondaires.pdv.d10": valD10});
+        this.update({"system.caracSecondaires.pdv.d10": valD10});
     }
 
     gererBonusAspect() {
@@ -620,7 +547,7 @@ export default class AgoneActor extends Actor {
 
         if(data.caracSecondaires.heroisme.value > 0) {
             let nouvelleVal = data.caracSecondaires.heroisme.value - 1;
-            this.update({"data.caracSecondaires.heroisme.value": nouvelleVal});
+            this.update({"system.caracSecondaires.heroisme.value": nouvelleVal});
             return true;
         }
         else {

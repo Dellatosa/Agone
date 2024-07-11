@@ -352,48 +352,7 @@ agone.peuple = {
         tai: 0,
         mv: 3,
         ageMoyen: 30,
-        caracs : {
-            resistance: {
-                mod: 0,
-                min: 0,
-                max: 0
-            },
-            force : {
-                mod: 0,
-                min: 0,
-                max: 0
-            },
-            agilite : {
-                mod: 0,
-                min: 0,
-                max: 0
-            },
-            perception: {
-                mod: 0,
-                min: 0,
-                max: 0
-            },
-            volonte: {
-                mod: 0,
-                min: 0,
-                max: 0
-            },
-            intelligence: {
-                mod: 0,
-                min: 0,
-                max: 0
-            },
-            charisme: {
-                mod: 0,
-                min: 0,
-                max: 0
-            },
-            creativite: {
-                mod: 0,
-                min: 0,
-                max: 0
-            }
-        }
+        caracs : {}
     },
     ogre: {
         label: "agone.actors.ogre",
@@ -433,36 +392,6 @@ agone.peuple = {
                 mod: 1,
                 min: 5,
                 max: 0
-            },
-            agilite : {
-                mod: 0,
-                min: 0,
-                max: 0
-            },
-            perception: {
-                mod: 0,
-                min: 0,
-                max: 0
-            },
-            volonte: {
-                mod: 0,
-                min: 0,
-                max: 0
-            },
-            intelligence: {
-                mod: 0,
-                min: 0,
-                max: 0
-            },
-            charisme: {
-                mod: 0,
-                min: 0,
-                max: 0
-            },
-            creativite: {
-                mod: 0,
-                min: 0,
-                max: 0
             }
         }
     },
@@ -473,6 +402,29 @@ agone.peuple = {
         tai: 1,
         mv: 4,
         ageMoyen: 45,
+        competences: {
+            epreuves: {
+                armes: {
+                    domaine: "d1",
+                    libDomaine: "Cornes",
+                    rang: 5
+                },
+                vigilance: {
+                    rang: 5
+                }
+            },
+            savoir: {
+                saisons: {
+                    domaine: "ete",
+                    rang: 5
+                }
+            },
+            occulte: {
+                demonologie: {
+                    rang: 5
+                }
+            }
+        },
         caracs : {
             resistance: {
                 mod: 4,
@@ -488,21 +440,6 @@ agone.peuple = {
                 mod: 0,
                 min: 0,
                 max: 8
-            },
-            perception: {
-                mod: 0,
-                min: 0,
-                max: 0
-            },
-            volonte: {
-                mod: 0,
-                min: 0,
-                max: 0
-            },
-            intelligence: {
-                mod: 0,
-                min: 0,
-                max: 0
             },
             charisme: {
                 mod: -1,
@@ -539,16 +476,6 @@ agone.peuple = {
                 min: 0,
                 max: 3
             },
-            perception: {
-                mod: 0,
-                min: 0,
-                max: 0
-            },
-            volonte: {
-                mod: 0,
-                min: 0,
-                max: 0
-            },
             intelligence: {
                 mod: -2,
                 min: 0,
@@ -556,11 +483,6 @@ agone.peuple = {
             },
             charisme: {
                 mod: -2,
-                min: 0,
-                max: 0
-            },
-            creativite: {
-                mod: 0,
                 min: 0,
                 max: 0
             }
@@ -583,16 +505,6 @@ agone.peuple = {
                 mod: 0,
                 min: 0,
                 max: 3
-            },
-            agilite : {
-                mod: 0,
-                min: 0,
-                max: 0
-            },
-            perception: {
-                mod: 0,
-                min: 0,
-                max: 0
             },
             volonte: {
                 mod: 1,
@@ -629,36 +541,6 @@ agone.peuple = {
                 min: 5,
                 max: 0
             },
-            force : {
-                mod: 0,
-                min: 0,
-                max: 0
-            },
-            agilite : {
-                mod: 0,
-                min: 0,
-                max: 0
-            },
-            perception: {
-                mod: 0,
-                min: 0,
-                max: 0
-            },
-            volonte: {
-                mod: 0,
-                min: 0,
-                max: 0
-            },
-            intelligence: {
-                mod: 0,
-                min: 0,
-                max: 0
-            },
-            charisme: {
-                mod: 0,
-                min: 0,
-                max: 0
-            },
             creativite: {
                 mod: 2,
                 min: 0,
@@ -674,28 +556,8 @@ agone.peuple = {
         mv: 3,
         ageMoyen: 40,
         caracs : {
-            resistance: {
-                mod: 0,
-                min: 0,
-                max: 0
-            },
-            force : {
-                mod: 0,
-                min: 0,
-                max: 0
-            },
             agilite : {
                 mod: 1,
-                min: 0,
-                max: 0
-            },
-            perception: {
-                mod: 0,
-                min: 0,
-                max: 0
-            },
-            volonte: {
-                mod: 0,
                 min: 0,
                 max: 0
             },
@@ -753,16 +615,6 @@ agone.peuple = {
                 mod: 0,
                 min: 5,
                 max: 0
-            },
-            charisme: {
-                mod: 0,
-                min: 0,
-                max: 0
-            },
-            creativite: {
-                mod: 0,
-                min: 0,
-                max: 0
             }
         }
     },
@@ -794,11 +646,6 @@ agone.peuple = {
                 min: 0,
                 max: 0
             },
-            volonte: {
-                mod: 0,
-                min: 0,
-                max: 0
-            },
             intelligence: {
                 mod: 1,
                 min: 0,
@@ -807,11 +654,6 @@ agone.peuple = {
             charisme: {
                 mod: 0,
                 min: 5,
-                max: 0
-            },
-            creativite: {
-                mod: 0,
-                min: 0,
                 max: 0
             }
         }
@@ -829,39 +671,14 @@ agone.peuple = {
                 min: 0,
                 max: 0
             },
-            force : {
-                mod: 0,
-                min: 0,
-                max: 0
-            },
-            agilite : {
-                mod: 0,
-                min: 0,
-                max: 0
-            },
-            perception: {
-                mod: 0,
-                min: 0,
-                max: 0
-            },
             volonte: {
                 mod: 1,
-                min: 0,
-                max: 0
-            },
-            intelligence: {
-                mod: 0,
                 min: 0,
                 max: 0
             },
             charisme: {
                 mod: 2,
                 min: 6,
-                max: 0
-            },
-            creativite: {
-                mod: 0,
-                min: 0,
                 max: 0
             }
         }
