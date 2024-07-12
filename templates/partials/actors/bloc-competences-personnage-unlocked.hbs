@@ -50,7 +50,9 @@
                                     <i class="fa-solid fa-circle-plus"></i>
                                 </a>
                             </div>
-                            <div class="chk-spe"><input name="system.familleCompetences.{{keyFam}}.competences.{{keyComp}}.domaines.{{keyDom}}.specialisation" type="checkbox" data-dtype="Boolean" {{checked domaine.specialisation}}/></div>
+                            <a class="case-chk-spe" title="" data-famille="{{keyFam}}" data-competence="{{keyComp}}" data-domaine="{{keyDom}}">
+                                {{#if domaine.specialisation}}<i class="fa-regular fa-square-check"></i>{{else}}<i class="fa-regular fa-square"></i>{{/if}}
+                            </a>
                             <div class="val-spe"><input name="system.familleCompetences.{{keyFam}}.competences.{{keyComp}}.domaines.{{keyDom}}.labelSpecialisation" type="text" value="{{domaine.labelSpecialisation}}" placeholder="{{localize 'agone.actors.specialisation'}}" {{#if domaine.spePeuple}}readonly{{/if}}/></div>
                             <select name="system.familleCompetences.{{keyFam}}.competences.{{keyComp}}.domaines.{{keyDom}}.caracteristique">
                                 {{#select caracteristique}}
@@ -77,7 +79,9 @@
                                 <i class="fa-solid fa-circle-plus"></i>
                             </a>
                         </div>
-                        <div class="chk-spe"><input name="system.familleCompetences.{{keyFam}}.competences.{{keyComp}}.specialisation" type="checkbox" data-dtype="Boolean" {{checked competence.specialisation}}/></div>
+                        <a class="case-chk-spe" title="" data-famille="{{keyFam}}" data-competence="{{keyComp}}">
+                            {{#if competence.specialisation}}<i class="fa-regular fa-square-check"></i>{{else}}<i class="fa-regular fa-square"></i>{{/if}}
+                        </a>
                         <div class="val-spe"><input name="system.familleCompetences.{{keyFam}}.competences.{{keyComp}}.labelSpecialisation" type="text" value="{{competence.labelSpecialisation}}" placeholder="{{localize 'agone.actors.specialisation'}}" {{#if competence.spePeuple}}readonly{{/if}}/></div>
                         <select name="{{keyComp}}.caracteristique">
                             {{#select caracteristique}}

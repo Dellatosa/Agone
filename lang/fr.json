@@ -557,9 +557,10 @@
             "warnAttaqueTourCombat": "Vous ne pouvez attaquer que durant votre tour !",
             "warnErrCreaMacro": "Vous pouvez créer des raccourçis de macros uniquement pour des objets liés à votre personnage",
             "warnErrUseMacro": "Impossible de déterminer votre personnage. Sélectionnez votre personnage à la connexion ou bien un token sur la scène.",
-            "pcCaracVide": "Vous n'avez plus de points de création disponibles pour vos caractéristiques.",
-            "verrouPeupleH": "Vous avez dépensé plus de points de création que le maximum attribué aux saisonnins.",
-            "verrouPeupleS": "Vous avez dépensé des points de création sur une compétence de saisonnin."
+            "warnPcCaracVide": "Vous n'avez plus de points de création disponibles pour vos caractéristiques.",
+            "warnPcCompVide": "Vous n'avez plus de points de création disponibles pour vos compétences.",
+            "warnCompSpe": "Vous ne pouvez pas baisser un compétence spécialisée en dessous de 5.",
+            "warnSpeCompMini": "Il faut un minimum de 5 dans une compétence pour se spécialiser."
         },
         "tooltip": {
             "verrou": "Verrouiller la fiche",
@@ -571,7 +572,9 @@
             "augComp": "Augmenter la compétence",
             "dimComp": "Diminuer la compétence",
             "minPeuple": "Vous ne respectez pas la valeur de caractéristique minimum pour ce peuple",
-            "maxPeuple": "Vous ne respectez pas la valeur de caractéristique maximum pour ce peuple"
+            "maxPeuple": "Vous ne respectez pas la valeur de caractéristique maximum pour ce peuple",
+            "verrouPeupleH": "Vous avez dépensé plus de points de création que le maximum attribué aux saisonnins.",
+            "verrouPeupleS": "Vous avez dépensé des points de création sur une compétence de saisonnin."
         }
     },
     "parametres": {

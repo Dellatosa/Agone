@@ -588,8 +588,8 @@ a.nohlight {
   text-align: center;
   align-self: center;
 }
-.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked a.spec {
-  font-size: 1.4em;
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked a.case-chk-spe {
+  font-size: 1.3em;
 }
 .recap {
   display: flex;

@@ -556,9 +556,10 @@
             "warnAttaqueTourCombat": "NO TRAD - Vous ne pouvez attaquer que durant votre tour !",
             "warnErrCreaMacro": "NO TRAD - Vous pouvez créer des raccourçis de macros uniquement pour des objets liés à votre personnage",
             "warnErrUseMacro": "NO TRAD - Impossible de déterminer votre personnage. Sélectionnez votre personnage à la connexion ou bien un token sur la scène.",
-            "pcCaracVide": "NO TRAD - Vous n'avez plus de points de création disponibles pour vos caractéristiques.",
-            "verrouPeupleH": "NO TRAD - Vous avez dépensé plus de points de création que le maximum attribué aux saisonnins.",
-            "verrouPeupleS": "NO TRAD - Vous avez dépensé des points de création sur une compétence de saisonnin."
+            "warnPcCaracVide": "NO TRAD - Vous n'avez plus de points de création disponibles pour vos caractéristiques.",
+            "warnPcCompVide": "NO TRAD - Vous n'avez plus de points de création disponibles pour vos compétences.",
+            "warnCompSpe": "NO TRAD - Vous ne pouvez pas baisser un compétence spécialisée en dessous de 5.",
+            "warnSpeCompMini": "NO TRAD - Il faut un minimum de 5 dans une compétence pour se spécialiser."
         },
         "tooltip": {
             "verrou": "Lock sheet",
@@ -570,7 +571,9 @@
             "augComp": "NO TRAD - Augmenter la compétence",
             "dimComp": "NO TRAD - Diminuer la compétence",
             "minPeuple": "NO TRAD - Vous ne respectez pas la valeur de caractéristique minimum pour ce peuple",
-            "maxPeuple": "NO TRAD - Vous ne respectez pas la valeur de caractéristique maximum pour ce peuple"
+            "maxPeuple": "NO TRAD - Vous ne respectez pas la valeur de caractéristique maximum pour ce peuple",
+            "verrouPeupleH": "NO TRAD - Vous avez dépensé plus de points de création que le maximum attribué aux saisonnins.",
+            "verrouPeupleS": "NO TRAD - Vous avez dépensé des points de création sur une compétence de saisonnin."
         }
     },
     "parametres": {

@@ -192,6 +192,9 @@ export default class AgoneActorSheet extends ActorSheet {
             // Modifier le peuple
             html.find('.edit-peuple').change(this._onEditerPeuple.bind(this));
 
+            // Case de spécialisation
+            html.find('.case-chk-spe').click(this._onCocherSpecialisation.bind(this));
+
             // roll-comp - jet de compétence
             html.find('.roll-comp').click(this._onRollComp.bind(this));
 
@@ -389,20 +392,22 @@ export default class AgoneActorSheet extends ActorSheet {
         event.preventDefault();
         const element = event.currentTarget;
 
-        const aspect = element.dataset.aspect;
-        const type = element.dataset.type;
-        const action = element.dataset.action;
-
-        const currentVal = parseInt(this.actor.system.aspects[aspect][type].pc);
-
-        if(action == "minus") {
-            if(currentVal > 0) {
-                await this.actor.update({ [`system.aspects.${aspect}.${type}.pc`] : currentVal - 1 });
+        if(!event.detail || event.detail == 1) {
+            const aspect = element.dataset.aspect;
+            const type = element.dataset.type;
+            const action = element.dataset.action;
+    
+            const currentVal = parseInt(this.actor.system.aspects[aspect][type].pc);
+    
+            if(action == "minus") {
+                if(currentVal > 0) {
+                    await this.actor.update({ [`system.aspects.${aspect}.${type}.pc`] : currentVal - 1 });
+                }
             }
-        }
-        else if(action == "plus") {
-            if(currentVal < 10) {
-                await this.actor.update({ [`system.aspects.${aspect}.${type}.pc`] : currentVal + 1 });
+            else if(action == "plus") {
+                if(currentVal < 10) {
+                    await this.actor.update({ [`system.aspects.${aspect}.${type}.pc`] : currentVal + 1 });
+                }
             }
         }
     }
@@ -412,41 +417,43 @@ export default class AgoneActorSheet extends ActorSheet {
         event.preventDefault();
         const element = event.currentTarget;
 
-        const aspect = element.dataset.aspect;
-        const carac = element.dataset.carac;
-        const action = element.dataset.action;
-
-        const currentVal = parseInt(this.actor.system.aspects[aspect].caracteristiques[carac].pc);
-
-        if(action == "minus") {
-            if(currentVal > 0) {
-                const cout = Utils.getCoutAchat(currentVal);
-
-                await this.actor.update({ [`system.aspects.${aspect}.caracteristiques.${carac}.pc`] : currentVal - 1 });
-
-                if(this.actor.type == "Personnage") {
-                    const currentPcDep = parseInt(this.actor.system.pcCaracs.depense);
-                    await this.actor.update({ [`system.pcCaracs.depense`] : currentPcDep - cout });
+        if(!event.detail || event.detail == 1) {
+            const aspect = element.dataset.aspect;
+            const carac = element.dataset.carac;
+            const action = element.dataset.action;
+    
+            const currentVal = parseInt(this.actor.system.aspects[aspect].caracteristiques[carac].pc);
+    
+            if(action == "minus") {
+                if(currentVal > 0) {
+                    const cout = Utils.getCoutAchat(currentVal);
+    
+                    await this.actor.update({ [`system.aspects.${aspect}.caracteristiques.${carac}.pc`] : currentVal - 1 });
+    
+                    if(this.actor.type == "Personnage") {
+                        const currentPcDep = parseInt(this.actor.system.pcCaracs.depense);
+                        await this.actor.update({ [`system.pcCaracs.depense`] : currentPcDep - cout });
+                    }
                 }
             }
-        }
-        else if(action == "plus") {
-            if(currentVal < parseInt(this.actor.system.aspects[aspect].caracteristiques[carac].max)) {
-
-                if(this.actor.type == "Personnage") {
-                    const currentPcDep = parseInt(this.actor.system.pcCaracs.depense);
-                    const pcMax = parseInt(this.actor.system.pcCaracs.base);
-                    const cout = Utils.getCoutAchat(currentVal + 1);
-
-                    if (currentPcDep + cout > pcMax) {
-                        ui.notifications.warn(game.i18n.localize("agone.notifications.pcCaracVide"));
-                        return;
+            else if(action == "plus") {
+                if(currentVal < parseInt(this.actor.system.aspects[aspect].caracteristiques[carac].max)) {
+    
+                    if(this.actor.type == "Personnage") {
+                        const currentPcDep = parseInt(this.actor.system.pcCaracs.depense);
+                        const pcMax = parseInt(this.actor.system.pcCaracs.base);
+                        const cout = Utils.getCoutAchat(currentVal + 1);
+    
+                        if (currentPcDep + cout > pcMax) {
+                            ui.notifications.warn(game.i18n.localize("agone.notifications.warnPcCaracVide"));
+                            return;
+                        }
+    
+                        await this.actor.update({ [`system.pcCaracs.depense`] : currentPcDep + cout });
                     }
-
-                    await this.actor.update({ [`system.pcCaracs.depense`] : currentPcDep + cout });
+                    
+                    await this.actor.update({ [`system.aspects.${aspect}.caracteristiques.${carac}.pc`] : currentVal + 1 });
                 }
-                
-                await this.actor.update({ [`system.aspects.${aspect}.caracteristiques.${carac}.pc`] : currentVal + 1 });
             }
         }
     }
@@ -455,74 +462,150 @@ export default class AgoneActorSheet extends ActorSheet {
         event.preventDefault();
         const element = event.currentTarget;
 
-        const famille = element.dataset.famille;
-        const competence = element.dataset.competence;
-        const domaine = element.dataset.domaine;
-        const action = element.dataset.action;
-
-        let currentVal = 0;;
-        if(domaine) {
-            currentVal = parseInt(this.actor.system.familleCompetences[famille].competences[competence].domaines[domaine].pc);
-        }
-        else {
-            currentVal = parseInt(this.actor.system.familleCompetences[famille].competences[competence].pc);
-        }
-        
-        if(action == "minus") {
-            if(currentVal > 0) {
-                // Pas de score inférieur à 5 pour la compétence de peuple d'un Inspiré
-                if(this.actor.type == "Personnage" && this.actor.system.familleCompetences[famille].competences[competence].peuple && currentVal <= 5) {
-                    return;
-                }
-
-                const cout = Utils.getCoutAchat(currentVal);
-                if(domaine) {
-                    await this.actor.update({ [`system.familleCompetences.${famille}.competences.${competence}.domaines.${domaine}.pc`] : currentVal - 1 });
-                }
-                else {
-                    await this.actor.update({ [`system.familleCompetences.${famille}.competences.${competence}.pc`] : currentVal - 1 });
-                }
-
-                if(this.actor.type == "Personnage") {
-                    const currentPcDep = parseInt(this.actor.system.pcCompetences.depense);
-                    await this.actor.update({ [`system.pcCompetences.depense`] : currentPcDep - cout });
-                }
-            }
-        }
-        else if(action == "plus") {
-            let rangMax = 0;
+        if(!event.detail || event.detail == 1) {
+            const famille = element.dataset.famille;
+            const competence = element.dataset.competence;
+            const domaine = element.dataset.domaine;
+            const action = element.dataset.action;
+    
+            let currentVal = 0;;
             if(domaine) {
-                rangMax = parseInt(this.actor.system.familleCompetences[famille].competences[competence].domaines[domaine].max);
+                currentVal = parseInt(this.actor.system.familleCompetences[famille].competences[competence].domaines[domaine].pc);
             }
             else {
-                rangMax = parseInt(this.actor.system.familleCompetences[famille].competences[competence].max);
+                currentVal = parseInt(this.actor.system.familleCompetences[famille].competences[competence].pc);
             }
+            
+            if(action == "minus") {
+                if(currentVal > 0) {
+                    const cout = Utils.getCoutAchat(currentVal);
+                    if(domaine) {
+                        // Pas de score inférieur à 5 pour la compétence de peuple d'un Inspiré
+                        if(this.actor.type == "Personnage" && this.actor.system.familleCompetences[famille].competences[competence].domaines[domaine].peuple && currentVal <= 5) {
+                            return;
+                        }
+                        // Pas de score inférieur à 5 pour une compétence spécialisée
+                        if(this.actor.system.familleCompetences[famille].competences[competence].domaines[domaine].specialisation) {
+                            ui.notifications.warn(game.i18n.localize("agone.notifications.warnCompSpe"));
+                            return;
+                        }
 
-            if(currentVal < rangMax) {
-
-                if(this.actor.type == "Personnage") {
-                    const currentPcDep = parseInt(this.actor.system.pcCompetences.depense);
-                    const pcMax = parseInt(this.actor.system.pcCompetences.base);
-                    const cout = Utils.getCoutAchat(currentVal + 1);
-
-                    if (currentPcDep + cout > pcMax) {
-                        ui.notifications.warn(game.i18n.localize("agone.notifications.pcCompVide"));
-                        return;
+                        await this.actor.update({ [`system.familleCompetences.${famille}.competences.${competence}.domaines.${domaine}.pc`] : currentVal - 1 });
                     }
+                    else {
+                        // Pas de score inférieur à 5 pour la compétence de peuple d'un Inspiré
+                        if(this.actor.type == "Personnage" && this.actor.system.familleCompetences[famille].competences[competence].peuple && currentVal <= 5) {
+                            return;
+                        }
+                        // Pas de score inférieur à 5 pour une compétence spécialisée
+                        if(this.actor.system.familleCompetences[famille].competences[competence].specialisation) {
+                            ui.notifications.warn(game.i18n.localize("agone.notifications.warnCompSpe"));
+                            return;
+                        }
 
-                    await this.actor.update({ [`system.pcCompetences.depense`] : currentPcDep + cout });
+                        await this.actor.update({ [`system.familleCompetences.${famille}.competences.${competence}.pc`] : currentVal - 1 });
+                    }
+    
+                    if(this.actor.type == "Personnage") {
+                        const currentPcDep = parseInt(this.actor.system.pcCompetences.depense);
+                        await this.actor.update({ [`system.pcCompetences.depense`] : currentPcDep - cout });
+                    }
                 }
-                
+            }
+            else if(action == "plus") {
+                let rangMax = 0;
                 if(domaine) {
-                    await this.actor.update({ [`system.familleCompetences.${famille}.competences.${competence}.domaines.${domaine}.pc`] : currentVal + 1 });
+                    rangMax = parseInt(this.actor.system.familleCompetences[famille].competences[competence].domaines[domaine].max);
                 }
                 else {
-                    await this.actor.update({ [`system.familleCompetences.${famille}.competences.${competence}.pc`] : currentVal + 1 });
+                    rangMax = parseInt(this.actor.system.familleCompetences[famille].competences[competence].max);
+                }
+    
+                if(currentVal < rangMax) {
+                
+                    if(this.actor.type == "Personnage") {
+                        const currentPcDep = parseInt(this.actor.system.pcCompetences.depense);
+                        const cout = Utils.getCoutAchat(currentVal + 1);
+                        const pcMax = parseInt(this.actor.system.pcCompetences.base);
+    
+                        if (currentPcDep + cout > pcMax) {
+                            ui.notifications.warn(game.i18n.localize("agone.notifications.warnPcCompVide"));
+                            return;
+                        }
+    
+                        await this.actor.update({ [`system.pcCompetences.depense`] : currentPcDep + cout });
+                    }
+                    
+                    if(domaine) {
+                        await this.actor.update({ [`system.familleCompetences.${famille}.competences.${competence}.domaines.${domaine}.pc`] : currentVal + 1 });
+                    }
+                    else {
+                        await this.actor.update({ [`system.familleCompetences.${famille}.competences.${competence}.pc`] : currentVal + 1 });
+                    }
                 }
             }
         }
     }
 
+    // Case de spécialisation
+    async _onCocherSpecialisation(event) {
+        event.preventDefault();
+        const element = event.currentTarget;
+
+        const famille = element.dataset.famille;
+        const competence = element.dataset.competence;
+        const domaine = element.dataset.domaine;
+
+        let estSpecialiser = false;
+        let currentVal = 0;
+        if(domaine) {
+            if(this.actor.system.familleCompetences[famille].competences[competence].domaines[domaine].spePeuple) {
+                return;
+            }
+            estSpecialiser = this.actor.system.familleCompetences[famille].competences[competence].domaines[domaine].specialisation;
+            currentVal = parseInt(this.actor.system.familleCompetences[famille].competences[competence].domaines[domaine].pc);
+        }
+        else {
+            if(this.actor.system.familleCompetences[famille].competences[competence].spePeuple) {
+                return;
+            }
+            estSpecialiser = this.actor.system.familleCompetences[famille].competences[competence].specialisation;
+            currentVal = parseInt(this.actor.system.familleCompetences[famille].competences[competence].pc);
+        }
+
+        if(!estSpecialiser && currentVal < 5) {
+            ui.notifications.warn(game.i18n.localize("agone.notifications.warnSpeCompMini"));
+            return;
+        }
+
+        if(this.actor.type == "Personnage") {
+            const currentPcDep = parseInt(this.actor.system.pcCompetences.depense);
+            const pcMax = parseInt(this.actor.system.pcCompetences.base);
+
+
+            if(estSpecialiser) {
+                // On décoche
+                await this.actor.update({ [`system.pcCompetences.depense`] : currentPcDep - 2 });
+            }
+            else {
+                // On coche
+                if (currentPcDep + 2 > pcMax) {
+                    ui.notifications.warn(game.i18n.localize("agone.notifications.pcCompVide"));
+                    return;
+                }
+    
+                await this.actor.update({ [`system.pcCompetences.depense`] : currentPcDep + 2 });
+            }
+        }
+
+        if(domaine) {
+            await this.actor.update({ [`system.familleCompetences.${famille}.competences.${competence}.domaines.${domaine}.specialisation`] : !estSpecialiser });
+        }
+        else {
+            await this.actor.update({ [`system.familleCompetences.${famille}.competences.${competence}.specialisation`] : !estSpecialiser });
+        }
+    }
+    
     // Gestionnaire d'événements pour les listes d'items
      // Création d'un item
     _onCreerItem(event) {
