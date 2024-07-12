@@ -460,6 +460,29 @@ agone.peuple = {
         tai: 3,
         mv: 8,
         ageMoyen: 75,
+        competences: {
+            epreuves: {
+                armes: {
+                    domaine: "d1",
+                    libDomaine: "Lancer de rocher",
+                    rang: 5
+                }
+            },
+            maraude: {
+                chasse: {
+                    rang: 5
+                }
+            },
+            savoir: {
+                geographie: {
+                    rang: 5
+                },
+                saisons: {
+                    domaine: "ete",
+                    rang: 5
+                }
+            }
+        },
         caracs : {
             resistance: {
                 mod: 7,
@@ -495,6 +518,27 @@ agone.peuple = {
         tai: -2,
         mv: 1,
         ageMoyen: 1000,
+        competences: {
+            societe: {
+                sculpture: {
+                    rang: 5
+                }
+            },
+            savoir: {
+                histoiresLegendes: {
+                    rang: 5
+                },
+                saisons: {
+                    domaine: "hiver",
+                    rang: 5
+                }
+            },
+            occulte: {
+                harmonie: {
+                    rang: 5
+                }
+            }
+        },
         caracs : {
             resistance: {
                 mod: 0,
@@ -535,6 +579,30 @@ agone.peuple = {
         tai: -1,
         mv: 2,
         ageMoyen: 40,
+        competences:{
+            societe: {
+                savoirFaire: {
+                    domaine: "d1",
+                    libDomaine: "Forge",
+                    rang: 5
+                }
+            },
+            savoir: {
+                saisons: {
+                    domaine: "hiver",
+                    rang: 5
+                }
+            },
+            occulte: {
+                harmonie: {
+                    libSpecialisation : "Architecture ésotérique",
+                    rang: 5
+                },
+                demonologie: {
+                    rang: 5
+                }
+            }
+        },
         caracs : {
             resistance: {
                 mod: 2,
@@ -555,6 +623,29 @@ agone.peuple = {
         tai: 0,
         mv: 3,
         ageMoyen: 40,
+        competences:{
+            epreuves: {
+                armes: {
+                    domaine: "d1",
+                    libDomaine: "Serpents",
+                    rang: 5
+                }
+            },
+            societe: {
+                eloquence: {
+                    rang: 5
+                },
+                intendance: {
+                    rang: 5
+                }
+            },
+            savoir: {
+                saisons: {
+                    domaine: "hiver",
+                    rang: 5
+                }
+            }
+        },
         caracs : {
             agilite : {
                 mod: 1,
@@ -585,6 +676,25 @@ agone.peuple = {
         tai: -1,
         mv: 2,
         ageMoyen: 35,
+        competences:{
+            maraude: {
+                discretion: {
+                    rang: 5
+                }
+            },
+            savoir: {
+                astronomie: {
+                    rang: 5
+                },
+                herboristerie: {
+                    rang: 5
+                },
+                saisons: {
+                    domaine: "printemps",
+                    rang: 5
+                }
+            }
+        },
         caracs : {
             resistance: {
                 mod: -2,
@@ -625,6 +735,26 @@ agone.peuple = {
         tai: -1,
         mv: 2,
         ageMoyen: 50,
+        competences:{
+            maraude: {
+                chasse: {
+                    libSpecialisation : "Danseurs",
+                    rang: 5
+                },
+                serrurerie: {
+                    rang: 5
+                },
+                passePasse: {
+                    rang: 5
+                }
+            },
+            savoir: {
+                saisons: {
+                    domaine: "printemps",
+                    rang: 5
+                }
+            }
+        },
         caracs : {
             resistance: {
                 mod: -2,
@@ -665,6 +795,30 @@ agone.peuple = {
         tai: 0,
         mv: 3,
         ageMoyen: 30,
+        competences:{
+            epreuves: {
+                armes: {
+                    domaine: "d1",
+                    libDomaine: "Sabots",
+                    rang: 5
+                }
+            },
+            societe: {
+                musique: {
+                    domaine : "d1",
+                    rang: 5
+                },
+                eloquence: {
+                    rang: 5
+                }
+            },
+            savoir: {
+                saisons: {
+                    domaine: "printemps",
+                    rang: 5
+                }
+            }
+        },
         caracs : {
             resistance: {
                 mod: 1,

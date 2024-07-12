@@ -32,7 +32,9 @@
                                     {{/select}}
                                     </select>
                                 {{else}}
-                                    <div class="dom-perso"><input name="system.familleCompetences.{{keyFam}}.competences.{{keyComp}}.domaines.{{keyDom}}.label" type="text" value="{{domaine.label}}" placeholder="{{localize 'agone.actors.domaine'}}"/></div>
+                                    <div class="dom-perso">
+                                        <input name="system.familleCompetences.{{keyFam}}.competences.{{keyComp}}.domaines.{{keyDom}}.label" type="text" value="{{domaine.label}}" placeholder="{{localize 'agone.actors.domaine'}}" {{#if domaine.peuple}}readonly{{/if}}/>
+                                    </div>
                                 {{/if}}
                             {{else}}
                                 <label class="dom-fixe">{{domaine.label}}</label>
@@ -49,7 +51,7 @@
                                 </a>
                             </div>
                             <div class="chk-spe"><input name="system.familleCompetences.{{keyFam}}.competences.{{keyComp}}.domaines.{{keyDom}}.specialisation" type="checkbox" data-dtype="Boolean" {{checked domaine.specialisation}}/></div>
-                            <div class="val-spe"><input name="system.familleCompetences.{{keyFam}}.competences.{{keyComp}}.domaines.{{keyDom}}.labelSpecialisation" type="text" value="{{domaine.labelSpecialisation}}" placeholder="{{localize 'agone.actors.specialisation'}}"/></div>
+                            <div class="val-spe"><input name="system.familleCompetences.{{keyFam}}.competences.{{keyComp}}.domaines.{{keyDom}}.labelSpecialisation" type="text" value="{{domaine.labelSpecialisation}}" placeholder="{{localize 'agone.actors.specialisation'}}" {{#if domaine.spePeuple}}readonly{{/if}}/></div>
                             <select name="system.familleCompetences.{{keyFam}}.competences.{{keyComp}}.domaines.{{keyDom}}.caracteristique">
                                 {{#select caracteristique}}
                                 {{#each ../../../config.caracteristiques as |name key|}}
@@ -75,8 +77,8 @@
                                 <i class="fa-solid fa-circle-plus"></i>
                             </a>
                         </div>
-                        <div class="chk-spe"><input name="{{keyComp}}.specialisation" type="checkbox" data-dtype="Boolean" {{checked competence.specialisation}}/></div>
-                        <div class="val-spe"><input name="{{keyComp}}.labelSpecialisation" type="text" value="{{competence.labelSpecialisation}}" placeholder="{{localize 'agone.actors.specialisation'}}"/></div>
+                        <div class="chk-spe"><input name="system.familleCompetences.{{keyFam}}.competences.{{keyComp}}.specialisation" type="checkbox" data-dtype="Boolean" {{checked competence.specialisation}}/></div>
+                        <div class="val-spe"><input name="system.familleCompetences.{{keyFam}}.competences.{{keyComp}}.labelSpecialisation" type="text" value="{{competence.labelSpecialisation}}" placeholder="{{localize 'agone.actors.specialisation'}}" {{#if competence.spePeuple}}readonly{{/if}}/></div>
                         <select name="{{keyComp}}.caracteristique">
                             {{#select caracteristique}}
                                 {{#each ../../config.caracteristiques as |name key|}}

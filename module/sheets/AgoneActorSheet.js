@@ -120,7 +120,7 @@ export default class AgoneActorSheet extends ActorSheet {
         // Verrouillage du peuple si une compétence de peuple d'un personnage a une valeur supérieure à 5
         if(CONFIG.agone.peuple[actorData.peuple].competences && data.data.type == "Personnage") {
             for (let [keyF, famille] of Object.entries(CONFIG.agone.peuple[actorData.peuple].competences)) {
-                for (let [keyC, comp] of Object.entries(famille)) {  
+                for (let [keyC, comp] of Object.entries(famille)) { 
                     if(comp.domaine) {
                         if(this.actor.system.familleCompetences[keyF].competences[keyC].domaines[comp.domaine].pc > 5) {
                             // Verrouiller le peuple
@@ -300,6 +300,11 @@ export default class AgoneActorSheet extends ActorSheet {
                                     if(comp.libDomaine) {
                                         await this.actor.update({[`system.familleCompetences.${keyF}.competences.${keyC}.domaines.${comp.domaine}.label`]: ""});
                                     }
+                                    if(comp.libSpecialisation) {
+                                        await this.actor.update({[`system.familleCompetences.${keyF}.competences.${keyC}.domaines.${comp.domaine}.spePeuple`]: false});
+                                        await this.actor.update({[`system.familleCompetences.${keyF}.competences.${keyC}.domaines.${comp.domaine}.specialisation`]: false});
+                                        await this.actor.update({[`system.familleCompetences.${keyF}.competences.${keyC}.domaines.${comp.domaine}.labelSpecialisation`]: ""});
+                                    }
                                 }
                             }
                         }
@@ -313,6 +318,11 @@ export default class AgoneActorSheet extends ActorSheet {
                                     console.log("Suppression de la compétence", keyC);
                                     await this.actor.update({[`system.familleCompetences.${keyF}.competences.${keyC}.pc`]: 0});
                                     await this.actor.update({[`system.familleCompetences.${keyF}.competences.${keyC}.peuple`]: ""});
+                                    if(comp.libSpecialisation) {
+                                        await this.actor.update({[`system.familleCompetences.${keyF}.competences.${keyC}.spePeuple`]: false});
+                                        await this.actor.update({[`system.familleCompetences.${keyF}.competences.${keyC}.specialisation`]: false});
+                                        await this.actor.update({[`system.familleCompetences.${keyF}.competences.${keyC}.labelSpecialisation`]: ""});
+                                    }
                                 }
                             }
                         }                
@@ -337,6 +347,15 @@ export default class AgoneActorSheet extends ActorSheet {
                                 if(comp.libDomaine) {
                                     await this.actor.update({[`system.familleCompetences.${keyF}.competences.${keyC}.domaines.${comp.domaine}.label`]: comp.libDomaine});
                                 }
+                                if(comp.libSpecialisation) {
+                                    if(this.actor.system.familleCompetences[keyF].competences[keyC].domaines[comp.domaine].specialisation == true) {
+                                        // Restitution des points investis
+                                        await this.actor.update({"system.pcCompetences.depense": this.actor.system.pcCompetences.depense - 2});
+                                    }
+                                    await this.actor.update({[`system.familleCompetences.${keyF}.competences.${keyC}.domaines.${comp.domaine}.spePeuple`]: true});
+                                    await this.actor.update({[`system.familleCompetences.${keyF}.competences.${keyC}.domaines.${comp.domaine}.specialisation`]: true});
+                                    await this.actor.update({[`system.familleCompetences.${keyF}.competences.${keyC}.domaines.${comp.domaine}.labelSpecialisation`]: comp.libSpecialisation});
+                                }
                             }
                         }
                         else {
@@ -349,6 +368,14 @@ export default class AgoneActorSheet extends ActorSheet {
                                 }
                                 await this.actor.update({[`system.familleCompetences.${keyF}.competences.${keyC}.pc`]: comp.rang});
                                 await this.actor.update({[`system.familleCompetences.${keyF}.competences.${keyC}.peuple`]: peupleSelect});
+                                if(comp.libSpecialisation) {
+                                    if(this.actor.system.familleCompetences[keyF].competences[keyC].specialisation == true) {
+                                        await this.actor.update({"system.pcCompetences.depense": this.actor.system.pcCompetences.depense - 2});
+                                    }
+                                    await this.actor.update({[`system.familleCompetences.${keyF}.competences.${keyC}.spePeuple`]: true});
+                                    await this.actor.update({[`system.familleCompetences.${keyF}.competences.${keyC}.specialisation`]: true});
+                                    await this.actor.update({[`system.familleCompetences.${keyF}.competences.${keyC}.labelSpecialisation`]: comp.libSpecialisation});
+                                }
                             }
                         }                       
                     }
