@@ -485,7 +485,7 @@ export default class AgoneActorSheet extends ActorSheet {
                             return;
                         }
                         // Pas de score inférieur à 5 pour une compétence spécialisée
-                        if(this.actor.system.familleCompetences[famille].competences[competence].domaines[domaine].specialisation) {
+                        if(this.actor.system.familleCompetences[famille].competences[competence].domaines[domaine].specialisation && currentVal <= 5) {
                             ui.notifications.warn(game.i18n.localize("agone.notifications.warnCompSpe"));
                             return;
                         }
@@ -498,7 +498,7 @@ export default class AgoneActorSheet extends ActorSheet {
                             return;
                         }
                         // Pas de score inférieur à 5 pour une compétence spécialisée
-                        if(this.actor.system.familleCompetences[famille].competences[competence].specialisation) {
+                        if(this.actor.system.familleCompetences[famille].competences[competence].specialisation && currentVal <= 5) {
                             ui.notifications.warn(game.i18n.localize("agone.notifications.warnCompSpe"));
                             return;
                         }

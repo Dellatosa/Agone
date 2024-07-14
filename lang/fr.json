@@ -559,7 +559,7 @@
             "warnErrUseMacro": "Impossible de déterminer votre personnage. Sélectionnez votre personnage à la connexion ou bien un token sur la scène.",
             "warnPcCaracVide": "Vous n'avez plus de points de création disponibles pour vos caractéristiques.",
             "warnPcCompVide": "Vous n'avez plus de points de création disponibles pour vos compétences.",
-            "warnCompSpe": "Vous ne pouvez pas baisser un compétence spécialisée en dessous de 5.",
+            "warnCompSpe": "Vous ne pouvez pas baisser une compétence spécialisée en dessous de 5.",
             "warnSpeCompMini": "Il faut un minimum de 5 dans une compétence pour se spécialiser."
         },
         "tooltip": {
