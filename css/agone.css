@@ -152,27 +152,38 @@ select.auto-size {
   flex-direction: column;
   overflow: hidden;
 }
-.sheet-body {
-  height: 100%;
-  overflow-y: scroll;
-  overflow-x: hidden;
-}
-.agone.sheet.actor nav.sheet-tabs,
 .agone.sheet.actor nav.tabs {
   font-family: "BarbedorMedium";
   align-items: center;
-  margin-bottom: 10px;
 }
-.agone.sheet.actor nav.sheet-tabs .active,
 .agone.sheet.actor nav.tabs .active {
   font-weight: bold;
   font-size: 1.2em;
 }
-nav.magie-tabs,
-nav.historique-tabs {
+.agone.sheet.actor nav:not(.sheet-tabs) {
+  margin-bottom: 10px;
+}
+.agone.sheet.actor nav.magie-tabs,
+.agone.sheet.actor nav.historique-tabs {
   height: 26px;
   line-height: 26px;
   border-bottom: 1px solid #b5b3a4;
+}
+.agone.sheet.actor .sheet-body {
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.agone.sheet.actor .competences-content,
+.agone.sheet.actor .combat-content {
+  height: 100%;
+}
+.agone.sheet.actor .fullheight {
+  height: 100%;
+}
+.agone.sheet.actor .fullheight .editor {
+  height: 170px;
+  background-color: rgba(82, 77, 77, 0.075);
 }
 .agone.sheet.actor .sheet-header img,
 .sheet-fixed-content img {
@@ -180,12 +191,6 @@ nav.historique-tabs {
   border: none;
   height: 150px;
 }
-/*.agone.sheet.actor {
-    .fas, .fa-solid {
-        padding-top : 6px;
-        padding-bottom : 6px;
-    }
-}*/
 a.nohlight {
   text-shadow: none;
   cursor: default;
@@ -195,13 +200,6 @@ a.nohlight {
     text-shadow: 0 0 10px red;
     cursor: pointer;
 }*/
-.agone.sheet.actor .fullheight {
-  height: 100%;
-}
-.agone.sheet.actor .fullheight .editor {
-  height: 170px;
-  background-color: rgba(82, 77, 77, 0.075);
-}
 .actor-infos .info-val {
   margin: 4px 7px 0 3px;
   font-family: "BarbedorMedium";
@@ -413,6 +411,7 @@ a.nohlight {
 .grid-caracSec-comp {
   display: grid;
   grid-template-columns: 1.25fr 3fr;
+  height: 100%;
 }
 .grid-caracSec-comp .caracSec {
   background: linear-gradient(to right, #00000000, #00000021);
@@ -590,6 +589,107 @@ a.nohlight {
 }
 .grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked a.case-chk-spe {
   font-size: 1.3em;
+}
+.grid-data-att {
+  display: grid;
+  grid-template-columns: 1.25fr 3fr;
+  height: 100%;
+  font-family: "BarbedorMedium";
+}
+.grid-data-att .data-combat {
+  background: linear-gradient(to right, #00000000, #00000021);
+  padding: 5px;
+}
+.grid-data-att .data-combat .data-combat-titre {
+  text-align: center;
+  font-family: "Lorgol";
+  font-size: 1.7em;
+  margin-bottom: 2px;
+}
+.grid-data-att .data-combat .heroisme .grid-heroisme {
+  display: grid;
+  grid-template-columns: 1fr 10px 3.5em 10px 3.5em;
+  align-items: center;
+  margin: 3px 1px;
+  padding: 3px;
+  border: solid 1px rgba(138, 137, 137, 0.7);
+  border-radius: 5px;
+}
+.grid-data-att .data-combat .heroisme .grid-heroisme .lib-all {
+  grid-column-start: 1;
+  grid-column-end: 6;
+  text-align: center;
+}
+.grid-data-att .data-combat .heroisme .grid-heroisme .sep {
+  align-self: center;
+  text-align: center;
+}
+.grid-data-att .data-combat .heroisme .grid-heroisme .val,
+.grid-data-att .data-combat .heroisme .grid-heroisme .val-max {
+  background-color: rgba(82, 77, 77, 0.075);
+  margin: 2px 5px;
+  text-align: center;
+  align-items: center;
+  border-radius: 3px;
+  height: 26px;
+}
+.grid-data-att .data-combat .heroisme .grid-heroisme .val label,
+.grid-data-att .data-combat .heroisme .grid-heroisme .val-max label {
+  position: relative;
+  top: 5px;
+}
+.grid-data-att .data-combat .sante .grid-sante {
+  display: grid;
+  grid-template-columns: 1fr 3.5em 10px 3.5em;
+  align-items: center;
+  margin: 3px 1px;
+  padding: 3px;
+  border: solid 1px rgba(138, 137, 137, 0.7);
+  border-radius: 5px;
+}
+.grid-data-att .data-combat .sante .grid-sante .lib {
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+.grid-data-att .data-combat .sante .grid-sante .lib-all {
+  grid-column-start: 1;
+  grid-column-end: 5;
+  text-align: center;
+}
+.grid-data-att .data-combat .sante .grid-sante .edit {
+  flex: 0 1 3.5em;
+  padding: 3px;
+  text-align: center;
+}
+.grid-data-att .data-combat .sante .grid-sante .sep {
+  align-self: center;
+  text-align: center;
+}
+.grid-data-att .data-combat .sante .grid-sante .val-max {
+  background-color: rgba(82, 77, 77, 0.075);
+  margin: 2px 5px;
+  text-align: center;
+  align-items: center;
+  border-radius: 3px;
+  height: 26px;
+}
+.grid-data-att .data-combat .sante .grid-sante .val-max label {
+  position: relative;
+  top: 5px;
+}
+.grid-data-att .data-combat .actions-def {
+  margin: 3px 1px;
+  padding: 3px;
+  border: solid 1px rgba(138, 137, 137, 0.7);
+  border-radius: 5px;
+}
+.grid-data-att .data-combat .actions-def button {
+  margin: 0;
+  font-family: "BarbedorMedium";
+  border-radius: 5px;
+}
+.grid-data-att .attaque {
+  font-family: "BarbedorMedium";
 }
 .recap {
   display: flex;

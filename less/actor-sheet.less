@@ -24,33 +24,52 @@ select.auto-size {
     color: #aa0200;
 }
 
-.agone.sheet.actor form {
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-}
-
-.sheet-body {
-    height: 100%;
-    overflow-y: scroll;
-    overflow-x: hidden;
-}
-
-.agone.sheet.actor nav.sheet-tabs, .agone.sheet.actor nav.tabs  {
-    font-family: "BarbedorMedium";
-    align-items: center;
-
-    .active {
-        font-weight: bold;
-        font-size: 1.2em;
+.agone.sheet.actor  {
+    
+    form {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
     }
-    margin-bottom: 10px;
-}
 
-nav.magie-tabs, nav.historique-tabs {
-    height: 26px;
-    line-height: 26px;
-    border-bottom: 1px solid #b5b3a4;
+    nav.tabs {
+        font-family: "BarbedorMedium";
+        align-items: center;
+    
+        .active {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+    }
+
+    nav:not(.sheet-tabs) {
+        margin-bottom: 10px;
+    }
+
+    nav.magie-tabs, nav.historique-tabs {
+        height: 26px;
+        line-height: 26px;
+        border-bottom: 1px solid #b5b3a4;
+    }
+
+    .sheet-body {
+        height: 100%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+    }
+
+    .competences-content, .combat-content {
+        height: 100%;
+    }
+
+    .fullheight {
+        height: 100%;
+    
+        .editor {
+            height: 170px;
+            background-color: rgba(82, 77, 77, 0.075);
+        }
+    }
 }
 
 .agone.sheet.actor .sheet-header, .sheet-fixed-content {
@@ -60,13 +79,6 @@ nav.magie-tabs, nav.historique-tabs {
         height: 150px;
     }
 }
-
-/*.agone.sheet.actor {
-    .fas, .fa-solid {
-        padding-top : 6px;
-        padding-bottom : 6px;
-    }
-}*/
 
 a.nohlight {
     text-shadow: none;
@@ -78,15 +90,6 @@ a.nohlight {
     text-shadow: 0 0 10px red;
     cursor: pointer;
 }*/
-
-.agone.sheet.actor .fullheight {
-    height: 100%;
-
-    .editor {
-        height: 170px;
-        background-color: rgba(82, 77, 77, 0.075);
-    }
-}
 
 .actor-infos {
     
@@ -337,6 +340,7 @@ a.nohlight {
 .grid-caracSec-comp {
     display: grid;
     grid-template-columns: 1.25fr 3fr;
+    height: 100%;
 
     .caracSec {
         background: linear-gradient(to right; #00000000; #00000021;);
@@ -401,7 +405,7 @@ a.nohlight {
 
         .actor-fam-comp {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr 1fr;            
 
             .col-1 {
                 grid-column: 1 / 2;
@@ -554,6 +558,128 @@ a.nohlight {
                 }
             }
         }
+    }
+}
+
+.grid-data-att {
+    display: grid;
+    grid-template-columns: 1.25fr 3fr;
+    height: 100%;
+
+    font-family: "BarbedorMedium";
+
+    .data-combat {
+        background: linear-gradient(to right; #00000000; #00000021;);
+        padding: 5px;
+
+        .data-combat-titre {
+            text-align: center;
+            font-family: "Lorgol";
+            font-size: 1.7em;
+            margin-bottom: 2px;
+        }
+
+        .heroisme {
+            .grid-heroisme {
+                display: grid;
+                grid-template-columns: 1fr 10px 3.5em 10px 3.5em;
+                align-items: center;
+                margin: 3px 1px;
+                padding: 3px;
+                border: solid 1px rgba(138, 137, 137, 0.7);
+                border-radius: 5px;
+
+                .lib-all {
+                    grid-column-start: 1;
+                    grid-column-end: 6;
+                    text-align: center;
+                }
+
+                .sep {
+                    align-self: center;
+                    text-align: center;
+                }
+
+                .val, .val-max {
+                    background-color: rgba(82, 77, 77, 0.075);
+                    margin: 2px 5px;
+                    text-align: center;
+                    align-items: center;
+                    border-radius: 3px;
+                    height: 26px;
+
+                    label {
+                        position: relative;
+                        top: 5px;
+                    }       
+                }
+            }
+        }
+
+        .sante {
+            .grid-sante {
+                display: grid;
+                grid-template-columns: 1fr 3.5em 10px 3.5em;
+                align-items: center;
+                margin: 3px 1px;
+                padding: 3px;
+                border: solid 1px rgba(138, 137, 137, 0.7);
+                border-radius: 5px;
+
+                .lib {
+                    grid-column-start: 1;
+                    grid-column-end: 4;
+                }
+
+                .lib-all {
+                    grid-column-start: 1;
+                    grid-column-end: 5;
+                    text-align: center;
+                }
+
+                .edit {
+                    flex: 0 1 3.5em;
+                    padding: 3px;
+                    text-align: center;
+                }
+
+                .sep {
+                    align-self: center;
+                    text-align: center;
+                }
+
+                .val-max {
+                    background-color: rgba(82, 77, 77, 0.075);
+                    margin: 2px 5px;
+                    text-align: center;
+                    align-items: center;
+                    border-radius: 3px;
+                    height: 26px;
+
+                    label {
+                        position: relative;
+                        top: 5px;
+                    }       
+                }
+            }
+        }
+
+        .actions-def {
+            margin: 3px 1px;
+            padding: 3px;
+            border: solid 1px rgba(138, 137, 137, 0.7);
+            border-radius: 5px;
+
+            button {
+                margin: 0;
+                font-family: "BarbedorMedium";
+                border-radius: 5px;
+            }
+        }
+    }
+
+    .attaque {
+        font-family: "BarbedorMedium";
     }
 }
 

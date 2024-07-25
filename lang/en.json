@@ -35,7 +35,8 @@
             "jet": "Roll",
             "annuler": "Cancel",
             "aucun": "None",
-            "editerComp": "Edit skills"
+            "editerComp": "Edit skills",
+            "reserve": "Pool"
         },
         "actors": {
             "biographie": "Biography",
@@ -56,6 +57,7 @@
             "danseurs": "Dancers",
             "apparence": "Appearance",      
             "nbBlessureGrave": "Serious wound",
+            "malusBlessures": "Wounds penalty",
             "origine": "Birthplace",
             "occupation": "Occupation",
             "sexe": "Sex",
@@ -128,6 +130,7 @@
             "jetVieilAbbr": "Old age diff.",
             "seuilBlessureGrave": "Serious wound threshold",
             "sbg": "SWT",
+            "blessuresCritique": "Critical wounds",
             "seuilBlessureCritique": "Critical wound threshold",
             "sbc": "CWT",
             "bonusDommages": "Damages bonus",
@@ -573,7 +576,8 @@
             "minPeuple": "NO TRAD - Vous ne respectez pas la valeur de caractéristique minimum pour ce peuple",
             "maxPeuple": "NO TRAD - Vous ne respectez pas la valeur de caractéristique maximum pour ce peuple",
             "verrouPeupleH": "NO TRAD - Vous avez dépensé plus de points de création que le maximum attribué aux saisonnins.",
-            "verrouPeupleS": "NO TRAD - Vous avez dépensé des points de création sur une compétence de saisonnin."
+            "verrouPeupleS": "NO TRAD - Vous avez dépensé des points de création sur une compétence de saisonnin.",
+            "regainHeroisme": "NO TRAD - Régénérer la réserve de points d'Héroïsme"
         }
     },
     "parametres": {

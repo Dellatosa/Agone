@@ -35,7 +35,8 @@
             "jet": "Jet",
             "annuler": "Annuler",
             "aucun": "Aucun",
-            "editerComp": "Edition des compétences"
+            "editerComp": "Edition des compétences",
+            "reserve": "Réserve"
         },
         "actors": {
             "biographie": "Biographie",
@@ -56,6 +57,7 @@
             "danseurs": "Danseurs",
             "apparence": "Apparence",
             "nbBlessureGrave": "Nb blessures graves",
+            "malusBlessures": "Malus de blessures",
             "origine": "Origine",
             "occupation": "Occupation",
             "sexe": "Sexe",
@@ -128,6 +130,7 @@
             "jetVieilAbbr": "Diff. jet vieil.",
             "seuilBlessureGrave": "Seuil de blessure grave",
             "sbg": "SBG",
+            "blessuresCritique": "Blessures critiques",
             "seuilBlessureCritique": "Seuil de blessure critique",
             "sbc": "SBC",
             "bonusDommages": "Bonus de dommages",
@@ -574,7 +577,8 @@
             "minPeuple": "Vous ne respectez pas la valeur de caractéristique minimum pour ce peuple",
             "maxPeuple": "Vous ne respectez pas la valeur de caractéristique maximum pour ce peuple",
             "verrouPeupleH": "Vous avez dépensé plus de points de création que le maximum attribué aux saisonnins.",
-            "verrouPeupleS": "Vous avez dépensé des points de création sur une compétence de saisonnin."
+            "verrouPeupleS": "Vous avez dépensé des points de création sur une compétence de saisonnin.",
+            "regainHeroisme": "Régénérer la réserve de points d'Héroïsme"
         }
     },
     "parametres": {

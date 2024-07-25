@@ -56,8 +56,6 @@ export default class AgoneActorSheet extends ActorSheet {
         data.peines = data.items.filter(function (item) { return item.type == "Peine"});
         data.bienfaits = data.items.filter(function (item) { return item.type == "Bienfait"});
 
-
-
         /* ---------------------------------------------------------
         ---- Répartition équilibrée des compétences en fonction ----
         ---- du nombre de colonnes d'affichage sélectionné      ----
@@ -109,8 +107,10 @@ export default class AgoneActorSheet extends ActorSheet {
             data.jetVieillesseActif = true;
         }
 
-        // Affichage des points d'héroïsme
+        // Affichage des points de creation
         data.typePersonnage = data.data.type == "Personnage";
+
+        data.afficherHeroisme = data.data.type == "Personnage" || data.data.type == "Damne";
 
         // Verrouillage du peuple si personnage Humain et dépense de points de création supérieure à 70
         if(data.data.type == "Personnage" && actorData.peuple == "humain" && actorData.pcCaracs.depense > 70) {
@@ -136,6 +136,8 @@ export default class AgoneActorSheet extends ActorSheet {
                 }
             }
         }
+
+        console.log(data);
 
         return data;
     }
@@ -756,7 +758,7 @@ export default class AgoneActorSheet extends ActorSheet {
 
         let caracData = this.actor.getCaracData("resistance");
 
-        console.log(this.actor.diffJetVieillesse);
+        //console.log(this.actor.diffJetVieillesse);
 
         Dice.jetCaracteristique({
             actor: this.actor,
