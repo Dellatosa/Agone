@@ -43,7 +43,14 @@ export default class AgoneActor extends Actor {
             if(this.type == "Personnage" || this.type == "Damne") {
                 data.caracSecondaires.flamme = Math.min(data.aspects.corps.positif.valeur, data.aspects.esprit.positif.valeur, data.aspects.ame.positif.valeur);
                 data.caracSecondaires.flammeNoire = Math.min(data.aspects.corps.negatif.valeur, data.aspects.esprit.negatif.valeur, data.aspects.ame.negatif.valeur);
-                data.caracSecondaires.heroisme.max = data.caracSecondaires.flamme * 2;
+                
+                if(this.type == "Personnage") {
+                    data.caracSecondaires.heroisme.max = data.caracSecondaires.flamme * 2;
+                }
+                else if(this.type == "Damne") { 
+                    data.caracSecondaires.heroisme.max = data.caracSecondaires.flammeNoire * 2;
+                }
+
                 if(data.caracSecondaires.heroisme.value > data.caracSecondaires.heroisme.max) {
                     data.caracSecondaires.heroisme.value = data.caracSecondaires.heroisme.max;
                 }
@@ -136,6 +143,8 @@ export default class AgoneActor extends Actor {
             if(data.caracSecondaires.pdv.value > data.caracSecondaires.pdv.max) {
                 data.caracSecondaires.pdv.value = data.caracSecondaires.pdv.max;
             }
+
+            data.caracSecondaires.malusBlessures = this.getMalusBlessureGrave(data.caracSecondaires.nbBlessureGrave);
 
             // Calcul des compétences
             for(let[keyFam, famille] of Object.entries(data.familleCompetences)) {

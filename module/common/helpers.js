@@ -21,8 +21,8 @@ export default function registerHandlebarsHelpers() {
         return val != "" ? game.i18n.localize(agone.peuple[val].label) : "";
     });
 
-    Handlebars.registerHelper("configArtSymbol", function(val) {
-        return game.i18n.localize(agone.artsSymbol[val]);
+    Handlebars.registerHelper("configSymbole", function(val) {
+        return game.i18n.localize(agone.symboles[val]);
     });
     
     Handlebars.registerHelper("malusAGI", function(minArme, style, equipee, agi, options) {

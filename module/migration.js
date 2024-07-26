@@ -6,10 +6,13 @@ export const migrateWorld = async function() {
     if (isNewerVersion("0.1.8", lastMigrationVer)) {
 
         // Reinitialisation des macros Agone
-        let macros = game.macros.filter(mc => { return mc.flags.agone.itemMacro == true });
-        macros.forEach(mc => {
-            mc.delete();
-        }); 
+        game.macros.forEach(mc => {
+            if (mc.flags.agone) {
+                if(mc.flags.agone.itemMacro == true) {
+                    mc.delete();
+                }
+            }
+        });
 
         // Changement de champs sur les fiches Actor
         game.actors.forEach(actor => {

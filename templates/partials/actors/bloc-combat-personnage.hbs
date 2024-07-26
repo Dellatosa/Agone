@@ -1,0 +1,48 @@
+<div class="grid-data-att">
+    <div class="data-combat">
+        <div class="heroisme">
+            <div class="grid-heroisme">
+                <div class="data-combat-titre lib-all">{{localize "agone.actors.heroisme"}}</div>
+                <label>{{localize "agone.common.reserve"}}</label>
+                <label><a title="{{localize 'agone.tooltip.regainHeroisme'}}"><i class="fa-duotone fa-solid fa-fire-flame-curved"></i></a></label>
+                <div class="val"><label>{{data.system.caracSecondaires.heroisme.value}}</label></div>
+                <div class="sep"> / </div>
+                <div class="val-max"><label>{{data.system.caracSecondaires.heroisme.max}}</label></div>
+            </div>
+        </div>
+        <div class="sante">
+            <div class="grid-sante">
+                <div class="data-combat-titre lib-all">Etat de Santé</div>
+                <label>{{localize "agone.actors.pdv"}}</label>
+                <div class="edit"><input name="system.caracSecondaires.pdv.value" type="number" value="{{data.system.caracSecondaires.pdv.value}}" placeholder="0" max="{{data.system.caracSecondaires.pdv.max}}"/></div>
+                <div class="sep"> / </div>
+                <div class="val-max"><label>{{data.system.caracSecondaires.pdv.max}}</label></div>
+                <label class="lib">{{localize "agone.actors.nbBlessureGrave"}}</label>
+                <div class="val-max"><label>{{data.system.caracSecondaires.nbBlessureGrave}}</label></div>
+                <label class="lib">{{localize "agone.actors.malusBlessures"}}</label>
+                <div class="val-max"><label>{{data.system.caracSecondaires.malusBlessures}}</label></div>
+                <label class="lib-all">{{localize "agone.actors.blessuresCritique"}}</label>
+            </div>
+        </div>
+        <div class="actions-def">
+            <div class="data-combat-titre">Actions de défense</div>
+            <button class="esquive"><i class="fa-sharp-duotone fa-solid fa-person-falling-burst"></i> {{localize "agone.actors.esquive"}}</button>
+            <button class="defenseNat"><i class="fa-duotone fa-solid fa-shield-slash"></i> {{localize "agone.actors.defenseNat"}}</button>
+            <button class="resistMagieNat"><i class="fa-duotone fa-solid fa-sparkles"></i> {{localize "agone.actors.resistMagie"}}</button>
+
+            <i class="fa-duotone fa-solid fa-helmet-battle"></i>
+        </div>
+    </div>
+    <div class="attaque">
+        {{> "systems/agone/templates/partials/actors/bloc-recap-combat-personnage.hbs"}}
+        {{#if typePersonnage}}
+            {{> "systems/agone/templates/partials/actors/bloc-liste-armes-personnage-v2.hbs"}}
+        {{else}}
+            {{> "systems/agone/templates/partials/actors/bloc-liste-armes-personnage.hbs"}}
+        {{/if}}
+        <!-- <h3>{{localize "agone.actors.bottesSecretes"}}</h3>
+        <div class="liste-bottesSecretes">
+            {{> "systems/agone/templates/partials/actors/bloc-liste-bottesSecretes-personnage.hbs"}}
+        </div> -->
+    </div>
+</div>
