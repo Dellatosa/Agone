@@ -1,3 +1,5 @@
+<h3>{{localize "agone.actors.armes"}}</h3>
+<div class="liste-armes">
 <div class="ligne-arme titre">
     <label></label>
     <label>{{localize "agone.common.name"}}</label>
@@ -37,13 +39,34 @@
                     {{/if}}
                 {{/if}}
                 {{#if (eq system.style "trait") }}
-                    <option value="2mains">2 m.</option>
+                    {{#if (eq system.diffTai -1)}}
+                        <option value="2mains">2 m.</option>
+                    {{/if}}
+                    {{#if (eq system.diffTai 0)}}
+                        <option value="2mains">2 m.</option>
+                    {{/if}}
+                    {{#if (eq system.diffTai 1)}}
+                        <option value="2mains">2 m.</option>
+                    {{/if}}
                 {{/if}}
                 {{#if (eq system.style "jet") }}
-                    <option value="1main">1 m.</option>
+                    {{#if (eq system.diffTai -1)}}
+                        <option value="1main">1 m.</option>
+                    {{/if}}
+                    {{#if (eq system.diffTai 0)}}
+                        <option value="1main">1 m.</option>
+                    {{/if}}
                 {{/if}}
                 {{#if (eq system.style "bouclier") }}
-                    <option value="secMain">2em m.</option>
+                    {{#if (eq system.diffTai -1)}}
+                        <option value="secMain">2em m.</option>
+                    {{/if}}
+                    {{#if (eq system.diffTai 0)}}
+                        <option value="secMain">2em m.</option>
+                    {{/if}}
+                    {{#if (eq system.diffTai 1)}}
+                        <option value="secMain">2em m.</option>
+                    {{/if}}
                 {{/if}}
             {{/select}}
         </select>
@@ -74,3 +97,5 @@
     <a class="supprimer-item" title="{{localize 'agone.common.supprimer'}}"><i class="fas fa-trash"></i></a>
 </div>            
 {{/each}}
+</div>
+

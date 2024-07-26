@@ -14,14 +14,14 @@ select.auto-size {
 }
 
 .fixed-val {
-    background-color: rgba(82, 77, 77, 0.075);
+    background-color: var(--color-stats-background);
     margin: 2px;
     text-align: center;
     flex: 0 1 3em;
 }
 
 .warn {
-    color: #aa0200;
+    color: var(--color-red-warning);
 }
 
 .agone.sheet.actor  {
@@ -67,7 +67,7 @@ select.auto-size {
     
         .editor {
             height: 170px;
-            background-color: rgba(82, 77, 77, 0.075);
+            background-color: var(--color-stats-background);
         }
     }
 }
@@ -101,8 +101,7 @@ a.nohlight {
 
     label {
         margin: 0 3px;
-        font-family: "Lorgol";
-        font-size: 1.5em;
+        font: var(--font-lorgol-21px);
     }
 
     input[type=number] , input[type=text], select {
@@ -116,10 +115,9 @@ a.nohlight {
         justify-content: center;
 
         .nom-perso  {
-            font-family: "Lorgol";
-            font-size: 3em;
             margin-left: 10px;
-    
+            font: var(--font-lorgol-nom-perso);
+
             input[type=text] {
                 height: auto;
                 font-family: "Lorgol";
@@ -182,8 +180,7 @@ a.nohlight {
 
         label, .info-val {
             margin: 0 5px;
-            font-family: "Lorgol";
-            font-size: 2.5em;
+            font: var(--font-lorgol-35px);
         }
 
         .slash {
@@ -198,8 +195,8 @@ a.nohlight {
             font-size: 0.9em;
             text-align: center;
 
-            border: solid 1px #B8B8B8;
-            background-color: rgba(82, 77, 77, 0.075);;
+            border: solid 1px var(--color-box-border);;
+            background-color: var(--color-stats-background);;
             border-radius: 3px;
         }
     }
@@ -215,7 +212,7 @@ a.nohlight {
     padding: 3px;
 
     .bd-left {
-        border-left: solid 2px #B8B8B8;
+        border-left: solid 2px var(--color-box-border);;
         border-top-left-radius: 15px;
         border-bottom-left-radius: 15px;
     }
@@ -230,17 +227,16 @@ a.nohlight {
         display: flex;
         flex-direction: column;
 
-        border-top: solid 2px #B8B8B8;
-        border-right: solid 2px #B8B8B8;
-        border-bottom: solid 2px #B8B8B8;
+        border-top: solid 2px var(--color-box-border);;
+        border-right: solid 2px var(--color-box-border);;
+        border-bottom: solid 2px var(--color-box-border);;
         
         .aspect-titre {
             text-align: center;
-            font-family: "Lorgol";
-            font-size: 2.5em;
+            font: var(--font-lorgol-35px);
 
-            background-color: rgba(82, 77, 77, 0.075);
-            border-bottom: solid 2px #B8B8B8;
+            background-color: var(--color-stats-background);
+            border-bottom: solid 2px var(--color-box-border);;
             border-bottom-left-radius: 50% 30%;
             border-bottom-right-radius: 50% 30%;
         
@@ -305,7 +301,7 @@ a.nohlight {
         }
 
         .val-carac {
-            background-color: rgba(82, 77, 77, 0.075);
+            background-color: var(--color-stats-background);
             margin: 2px 5px;
             text-align: center;
             align-items: center;
@@ -319,7 +315,7 @@ a.nohlight {
 
             .fa-circle-up, .fa-circle-down {
                 font-size: 0.8em;
-                color: #aa0200;
+                color: var(--color-red-warning);
             }
         }
 
@@ -348,8 +344,7 @@ a.nohlight {
 
         .caracSec-titre {
             text-align: center;
-            font-family: "Lorgol";
-            font-size: 2em;
+            font: var(--font-lorgol-28px);
             margin-bottom: 5px;
         }
 
@@ -361,7 +356,7 @@ a.nohlight {
             font-family: "BarbedorMedium";
 
             .val-caracSec {
-                background-color: rgba(82, 77, 77, 0.075);
+                background-color: var(--color-stats-background);
                 margin: 2px;
                 text-align: center;
                 align-items: center;
@@ -385,8 +380,7 @@ a.nohlight {
 
             label {
                 text-align: center;
-                font-family: "Lorgol";
-                font-size: 2em;
+                font: var(--font-lorgol-28px);
             }
             
             .pc-box {
@@ -397,8 +391,8 @@ a.nohlight {
                 font-size: 0.9em;
                 text-align: center;
     
-                border: solid 1px #B8B8B8;
-                background-color: rgba(82, 77, 77, 0.075);;
+                border: solid 1px var(--color-box-border);;
+                background-color: var(--color-stats-background);;
                 border-radius: 3px;
             }
         }
@@ -455,7 +449,7 @@ a.nohlight {
         
                 .dom-perso {
                     margin: 2px;
-                    background-color: rgba(82, 77, 77, 0.075);
+                    background-color: var(--color-stats-background);
                     border-radius: 3px;
         
                     label {
@@ -466,7 +460,7 @@ a.nohlight {
                 }
         
                 .val-comp {
-                    background-color: rgba(82, 77, 77, 0.075);
+                    background-color: var(--color-stats-background);
                     margin: 2px;
                     text-align: center;
                     border-radius: 3px;
@@ -513,7 +507,7 @@ a.nohlight {
         
                 .dom-perso {
                     margin: 2px;
-                    background-color: rgba(82, 77, 77, 0.075);
+                    background-color: var(--color-stats-background);
                     border-radius: 3px;
         
                     label {
@@ -524,7 +518,7 @@ a.nohlight {
                 }
         
                 .val-comp {
-                    background-color: rgba(82, 77, 77, 0.075);
+                    background-color: var(--color-stats-background);
                     margin: 2px;
                     text-align: center;
                     border-radius: 3px;
@@ -574,8 +568,7 @@ a.nohlight {
 
         .data-combat-titre {
             text-align: center;
-            font-family: "Lorgol";
-            font-size: 1.7em;
+            font: var(--font-lorgol-24px);
             margin-bottom: 2px;
         }
 
@@ -586,7 +579,7 @@ a.nohlight {
                 align-items: center;
                 margin: 3px 1px;
                 padding: 3px;
-                border: solid 1px rgba(138, 137, 137, 0.7);
+                border: solid 1px var(--color-box-border-dark);
                 border-radius: 5px;
 
                 .lib-all {
@@ -601,7 +594,7 @@ a.nohlight {
                 }
 
                 .val, .val-max {
-                    background-color: rgba(82, 77, 77, 0.075);
+                    background-color: var(--color-stats-background);
                     margin: 2px 5px;
                     text-align: center;
                     align-items: center;
@@ -623,7 +616,7 @@ a.nohlight {
                 align-items: center;
                 margin: 3px 1px;
                 padding: 3px;
-                border: solid 1px rgba(138, 137, 137, 0.7);
+                border: solid 1px var(--color-box-border-dark);
                 border-radius: 5px;
 
                 .lib {
@@ -649,7 +642,7 @@ a.nohlight {
                 }
 
                 .val-max {
-                    background-color: rgba(82, 77, 77, 0.075);
+                    background-color: var(--color-stats-background);
                     margin: 2px 5px;
                     text-align: center;
                     align-items: center;
@@ -667,7 +660,7 @@ a.nohlight {
         .actions-def {
             margin: 3px 1px;
             padding: 3px;
-            border: solid 1px rgba(138, 137, 137, 0.7);
+            border: solid 1px var(--color-box-border-dark);
             border-radius: 5px;
 
             button {
@@ -680,6 +673,11 @@ a.nohlight {
 
     .attaque {
         font-family: "BarbedorMedium";
+
+        .titre-rub {
+            font: var(--font-lorgol-28px);
+            text-align: center;
+        }
     }
 }
 
@@ -711,6 +709,55 @@ a.nohlight {
     }
 }
 
+.grid-armes {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    .bloc-arme {
+        border: solid 1px var(--color-box-border-dark);
+        border-radius: 5px;
+        margin: 2px;
+        padding: 2px;
+
+        .icone {
+            font-size: 1.3em;
+            margin-left: 2px;
+        }
+
+        .ligne-titre {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+
+            img {
+                flex: 0 0 24px;
+                border: none;
+                height: 24px;
+            }
+
+            .titre {
+                flex: 2;
+                font-family: "BarbedorMedium";
+                font-size: 1.3em;
+                margin-left: 2px;
+            }
+        }
+
+        .ligne-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            text-align: center;
+            margin-bottom: 3px;
+        }
+
+        .ligne-conf {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            align-items: center;
+            margin-bottom: 3px;
+        }
+    }
+}
 
 .liste-armes, .liste-armures, .liste-danseurs, .liste-sorts, .liste-oeuvres, .liste-connivences, .liste-avantages, .liste-defauts, .liste-manoeuvres, 
 .liste-pouvoirs-flamme, .liste-pouvoirs-saisonnin, .liste-peines, .liste-bienfaits {
@@ -893,7 +940,7 @@ a.nohlight {
 .ligne-manoeuvre.titre, .ligne-botteSecrete.titre, .ligne-pouvoir-flamme.titre, .ligne-pouvoir-saisonnin.titre, .ligne-peine.titre, .ligne-bienfait.titre {
     font-weight: bold;
     text-align: center;
-    background-color: rgba(82, 77, 77, 0.075);
-    border-top: solid thin rgb(119, 119, 119);
+    background-color: var(--color-stats-background);
+    border-top: solid thin var(--color-box-border-dark);
     padding: 3px;
 }

@@ -1071,13 +1071,6 @@ agone.arts = {
     geste: "agone.actors.geste"
 }
 
-agone.artsSymbol = {
-    accord: "fa-duotone fa-music",
-    cyse: "fa-duotone fa-landmark",
-    decorum: "fa-duotone fa-paintbrush-fine",
-    geste: "fa-duotone fa-comment-lines"
-}
-
 agone.cerclesDemon = {
     aucun: "",
     opalin: "agone.items.opalin",
@@ -1085,6 +1078,20 @@ agone.cerclesDemon = {
     safran: "agone.items.safran",
     carmin: "agone.items.carmin",
     obsidien: "agone.items.obsidien"
+}
+
+agone.symboles = {
+    accord: "fa-duotone fa-music",
+    cyse: "fa-duotone fa-landmark",
+    decorum: "fa-duotone fa-paintbrush-fine",
+    geste: "fa-duotone fa-comment-lines",
+    trait: "fa-duotone fa-solid fa-bow-arrow",
+    melee: "fa-duotone fa-solid fa-swords",
+    bouclier: "fa-duotone fa-solid fa-shield",
+    jet: "fa-sharp-duotone fa-solid fa-star",
+    contondante: "fa-duotone fa-solid fa-hammer-war",
+    tranchante: "fa-duotone fa-solid fa-sickle",
+    perforante: "fa-duotone fa-solid fa-bullseye-arrow"
 }
 
 agone.clefsEffets = {

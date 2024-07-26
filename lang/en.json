@@ -577,7 +577,11 @@
             "maxPeuple": "NO TRAD - Vous ne respectez pas la valeur de caractéristique maximum pour ce peuple",
             "verrouPeupleH": "NO TRAD - Vous avez dépensé plus de points de création que le maximum attribué aux saisonnins.",
             "verrouPeupleS": "NO TRAD - Vous avez dépensé des points de création sur une compétence de saisonnin.",
-            "regainHeroisme": "NO TRAD - Régénérer la réserve de points d'Héroïsme"
+            "regainHeroisme": "NO TRAD - Régénérer la réserve de points d'Héroïsme",
+            "modificateurInit": "Initiative modifier",
+            "modificateurAttaque": "Attack modifier",
+            "modificateurParade": "Parry modifier",
+            "modificateurDommages": "Damages modifier"
         }
     },
     "parametres": {

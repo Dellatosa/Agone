@@ -12,8 +12,7 @@
     .message-header {
         
         .message-sender {
-            font-family: "Lorgol";
-            font-size: 1.8em;
+            font: var(--font-lorgol-24px);
             margin-left: 5px;
         }
         .message-timestamp {
@@ -25,6 +24,10 @@
         margin-bottom: 0.25rem;
     }
 
+    .titre {
+        margin-bottom: 0.25rem;
+    }
+    
     .jet-carac, .jet-comp, .suggest-crit, .jet-contre-magie, .jet-desaccord, .jet-oeuvre, .jet-arme, .jet-sort, .jet-pdv {
         font-family: "BarbedorMedium";
     }
@@ -46,7 +49,7 @@
     
     .fumble {
         font-size: 1.3em;
-        color: #aa0200;
+        color: var(--color-red-warning);
         text-align: center;
         margin: 5px 1px;
     }
@@ -93,12 +96,12 @@
         }
     
         .max {
-            color: #18520b;
+            color: var(--color-green-success);
             filter: sepia(0.5) hue-rotate(60deg);
         }
     
         .min {
-            color: #aa0200;
+            color: var(--color-red-warning);
             filter: sepia(0.5) hue-rotate(-60deg);
         }
     }
@@ -125,8 +128,7 @@
 
             .titre-nom {
                 flex: 2;
-                font-family: "Lorgol";
-                font-size: 2em;
+                font: var(--font-lorgol-28px);
                 margin-left: 10px;
             }
         }
@@ -145,7 +147,7 @@
             font-family: "BarbedorItalic";
             margin: 5px;
             padding: 3px;
-            background-color: rgba(172, 172, 172, 0.35);
+            background-color: var(--color-chat-card-background);
         }
 
         .boutons-carte {
@@ -232,13 +234,6 @@
         text-align: center;
     }
 }
-
-
-
-.titre {
-    margin-bottom: 0.25rem;
-}
-
 
 .edit-comp-grid {
     display: grid;

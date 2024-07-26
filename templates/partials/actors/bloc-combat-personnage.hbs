@@ -29,25 +29,18 @@
             <button class="esquive"><i class="fa-sharp-duotone fa-solid fa-person-falling-burst"></i> {{localize "agone.actors.esquive"}}</button>
             <button class="defenseNat"><i class="fa-duotone fa-solid fa-shield-slash"></i> {{localize "agone.actors.defenseNat"}}</button>
             <button class="resistMagieNat"><i class="fa-duotone fa-solid fa-sparkles"></i> {{localize "agone.actors.resistMagie"}}</button>
-            <i class="fa-duotone fa-solid fa-bow-arrow"></i>
-            <i class="fa-duotone fa-solid fa-swords"></i>
-            <i class="fa-duotone fa-solid fa-shield-halved"></i>
-            <i class="fa-sharp-duotone fa-solid fa-star"></i>
-
-            <i class="fa-duotone fa-solid fa-hammer-war"></i>
-            <i class="fa-duotone fa-solid fa-sickle"></i>
-            <i class="fa-duotone fa-solid fa-bullseye-arrow"></i>
 
             <i class="fa-duotone fa-solid fa-helmet-battle"></i>
         </div>
     </div>
     <div class="attaque">
         {{> "systems/agone/templates/partials/actors/bloc-recap-combat-personnage.hbs"}}
-        <!-- <h3>{{localize "agone.actors.armes"}}</h3>
-        <div class="liste-armes">
+        {{#if typePersonnage}}
+            {{> "systems/agone/templates/partials/actors/bloc-liste-armes-personnage-v2.hbs"}}
+        {{else}}
             {{> "systems/agone/templates/partials/actors/bloc-liste-armes-personnage.hbs"}}
-        </div>
-        <h3>{{localize "agone.actors.bottesSecretes"}}</h3>
+        {{/if}}
+        <!-- <h3>{{localize "agone.actors.bottesSecretes"}}</h3>
         <div class="liste-bottesSecretes">
             {{> "systems/agone/templates/partials/actors/bloc-liste-bottesSecretes-personnage.hbs"}}
         </div> -->

@@ -578,7 +578,11 @@
             "maxPeuple": "Vous ne respectez pas la valeur de caractéristique maximum pour ce peuple",
             "verrouPeupleH": "Vous avez dépensé plus de points de création que le maximum attribué aux saisonnins.",
             "verrouPeupleS": "Vous avez dépensé des points de création sur une compétence de saisonnin.",
-            "regainHeroisme": "Régénérer la réserve de points d'Héroïsme"
+            "regainHeroisme": "Régénérer la réserve de points d'Héroïsme",
+            "modificateurInit": "Modificateur d'initiative",
+            "modificateurAttaque": "Modificateur d'attaque",
+            "modificateurParade": "Modificateur de parade",
+            "modificateurDommages": "Modificateur de dommages"
         }
     },
     "parametres": {
