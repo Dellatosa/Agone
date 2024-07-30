@@ -724,6 +724,9 @@ a.nohlight {
   font-size: 1.3em;
   margin-left: 2px;
 }
+.grid-armes .bloc-arme .m10 {
+  margin-left: 10px;
+}
 .grid-armes .bloc-arme .ligne-titre {
   display: flex;
   align-items: center;
