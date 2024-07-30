@@ -568,18 +568,18 @@ export default class AgoneActor extends Actor {
         let data = this.system;
 
         let nouvelleVal = data.caracSecondaires.pdv.value - nbDommages;
-        this.update({"data.caracSecondaires.pdv.value": nouvelleVal});
+        this.update({"system.caracSecondaires.pdv.value": nouvelleVal});
     }
 
     subirBlessureGrave() {
         let data = this.system;
 
         let nouvelleVal = data.caracSecondaires.nbBlessureGrave + 1;
-        this.update({"data.caracSecondaires.nbBlessureGrave": nouvelleVal});
+        this.update({"system.caracSecondaires.nbBlessureGrave": nouvelleVal});
     }
 
     updateFamilleComps(famille, listeComps) {
-        this.update({[`data.familleCompetences.${famille}`]: listeComps});
+        this.update({[`system.familleCompetences.${famille}`]: listeComps});
     }
 
     desequipeArmes(itemId, equipee) {
