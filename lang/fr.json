@@ -86,6 +86,7 @@
             "magie": "Magie",
             "combat": "Combat",
             "sante": "Santé",
+            "etatSante": "Etat de santé",
             "poidsPortable" : "Poids portable",
             "domaine": "Domaine",
             "jetPdv": "Jeter le d10 de points de vie",
@@ -243,6 +244,7 @@
             "potAttaque": "Potentiel d'Attaque",
             "potDefense": "Potentiel de Défense",
             "initiative": "Initiative",
+            "initiativeNonArme": "Initiative (non armé)",
             "experienceDisponible": "Expérience disponible",
             "experienceTotale": "Expérience totale",
             "manoeuvres": "Manoeuvres",
@@ -272,7 +274,8 @@
             "bienfaits": "Bienfaits",
             "histoire": "Histoire",
             "pcCaracUtilises": "Points de création utilisés",
-            "pcCompUtilises": "Points de création utilisés"
+            "pcCompUtilises": "Points de création utilisés",
+            "actionsDefense": "Actions de défense"
         },
         "items":{
             "description": "Description",
@@ -334,6 +337,9 @@
             "modifDommages": "Dom.",
             "minAgilite": "AGI min.",
             "minForce": "FOR min.",
+            "mainPri": "'Bonne' main",
+            "mainSec": "'Mauvaise' main",
+            "deuxMains": "A deux mains",
             "descBonus": "Description du bonus",
             "prerequis": "Prérequis",
             "condition": "Condition",
@@ -582,7 +588,13 @@
             "modificateurInit": "Modificateur d'initiative",
             "modificateurAttaque": "Modificateur d'attaque",
             "modificateurParade": "Modificateur de parade",
-            "modificateurDommages": "Modificateur de dommages"
+            "modificateurDommages": "Modificateur de dommages",
+            "prerequisTaiArme": "La taille de cette arme est inadaptée à votre personnage. Vous ne pouvez pas l'utilisée.",
+            "prerequisAgiArme": "Votre personnage ne dispose pas de l'agilité minimum pour utiliser cette arme.",
+            "prerequisForArme": "Votre personnage ne dispose pas de la force minimum pour utiliser cette arme.",
+            "armeEquipee": "Arme équipée",
+            "selectionMain": "Sélectionnez la main",
+            "clickPourEquiper" : "Cliquer pour équiper l'arme"
         }
     },
     "parametres": {
@@ -609,6 +621,10 @@
         "gestionDesRencontres": {
             "nom": "Activer la gestion des rencontres",
             "label": "Si la gestion des rencontres de combat est active, elle impacte les jets d'initiative, d'esquive et de dommages" 
+        },
+        "gestionJetVieillesse": {
+            "nom": "Gestion des jets de vieillesse",
+            "label": "Si cette option est active, un bouton permet le jet de dé et calcule les éventuels malus aux futurs jets" 
         }
     }
 }

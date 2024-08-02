@@ -936,6 +936,13 @@ agone.typesArmureMalusPer = {
     complete: -3
 }
 
+agone.armeEquipee = {
+    mainPri: "agone.items.mainPri",
+    mainSec: "agone.items.mainSec",
+    deuxMains : "agone.items.deuxMains",
+    selection: "agone.tooltip.selectionMain"
+}
+
 agone.typesAvantageDefaut = {
     aucun: "",
     chargeSociete: "agone.items.chargeSociete",

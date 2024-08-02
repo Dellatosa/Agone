@@ -12,7 +12,7 @@
         </div>
         <div class="sante">
             <div class="grid-sante">
-                <div class="data-combat-titre lib-all">Etat de Santé</div>
+                <div class="data-combat-titre lib-all">{{localize "agone.actors.etatSante"}}</div>
                 <label>{{localize "agone.actors.pdv"}}</label>
                 <div class="edit"><input name="system.caracSecondaires.pdv.value" type="number" value="{{data.system.caracSecondaires.pdv.value}}" placeholder="0" max="{{data.system.caracSecondaires.pdv.max}}"/></div>
                 <div class="sep"> / </div>
@@ -24,8 +24,12 @@
                 <label class="lib-all">{{localize "agone.actors.blessuresCritique"}}</label>
             </div>
         </div>
-        <div class="actions-def">
-            <div class="data-combat-titre">Actions de défense</div>
+        <div class="init-basique">
+            <div class="data-combat-titre">{{localize "agone.actors.initiative"}}</div>
+            <button class="initiative"><i class="fa-duotone fa-solid fa-bolt"></i> {{localize "agone.actors.initiativeNonArme"}}</button>
+        </div>
+        <div class="actions-def"> 
+            <div class="data-combat-titre">{{localize "agone.actors.actionsDefense"}}</div>
             <button class="esquive"><i class="fa-sharp-duotone fa-solid fa-person-falling-burst"></i> {{localize "agone.actors.esquive"}}</button>
             <button class="defenseNat"><i class="fa-duotone fa-solid fa-shield-slash"></i> {{localize "agone.actors.defenseNat"}}</button>
             <button class="resistMagieNat"><i class="fa-duotone fa-solid fa-sparkles"></i> {{localize "agone.actors.resistMagie"}}</button>
@@ -34,10 +38,10 @@
         </div>
     </div>
     <div class="attaque">
-        {{> "systems/agone/templates/partials/actors/bloc-recap-combat-personnage.hbs"}}
         {{#if typePersonnage}}
             {{> "systems/agone/templates/partials/actors/bloc-liste-armes-personnage-v2.hbs"}}
         {{else}}
+            {{> "systems/agone/templates/partials/actors/bloc-recap-combat-personnage.hbs"}}
             {{> "systems/agone/templates/partials/actors/bloc-liste-armes-personnage.hbs"}}
         {{/if}}
         <!-- <h3>{{localize "agone.actors.bottesSecretes"}}</h3>

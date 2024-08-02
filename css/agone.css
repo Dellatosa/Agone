@@ -670,13 +670,15 @@ a.nohlight {
   position: relative;
   top: 5px;
 }
-.grid-data-att .data-combat .actions-def {
+.grid-data-att .data-combat .actions-def,
+.grid-data-att .data-combat .init-basique {
   margin: 3px 1px;
   padding: 3px;
   border: solid 1px var(--color-box-border-dark);
   border-radius: 5px;
 }
-.grid-data-att .data-combat .actions-def button {
+.grid-data-att .data-combat .actions-def button,
+.grid-data-att .data-combat .init-basique button {
   margin: 0;
   font-family: "BarbedorMedium";
   border-radius: 5px;
@@ -724,9 +726,6 @@ a.nohlight {
   font-size: 1.3em;
   margin-left: 2px;
 }
-.grid-armes .bloc-arme .m10 {
-  margin-left: 10px;
-}
 .grid-armes .bloc-arme .ligne-titre {
   display: flex;
   align-items: center;
@@ -745,13 +744,34 @@ a.nohlight {
 }
 .grid-armes .bloc-arme .ligne-stats {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
   text-align: center;
+  align-items: center;
   margin-bottom: 3px;
+}
+.grid-armes .bloc-arme .ligne-stats .style-row {
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+.grid-armes .bloc-arme .ligne-equipee {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  text-align: center;
+  align-items: center;
+  margin-bottom: 3px;
+}
+.grid-armes .bloc-arme .ligne-equipee .equip-row {
+  grid-row-start: 1;
+  grid-row-end: 5;
 }
 .grid-armes .bloc-arme .ligne-conf {
   display: grid;
   grid-template-columns: 1fr 2fr;
+  align-items: center;
+  margin-bottom: 3px;
+}
+.grid-armes .bloc-arme .ligne-conf2 {
+  display: flex;
   align-items: center;
   margin-bottom: 3px;
 }

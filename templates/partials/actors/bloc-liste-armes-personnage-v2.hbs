@@ -6,16 +6,31 @@
             <div class="ligne-titre">
                 <a class="item-roll"><img src="{{img}}" title="{{localize 'agone.actors.voirArme'}}"/></a>
                 <div class="titre">{{name}}</div>
-                <div class="icone"><i class="{{configSymbole system.style}}" title="{{configLocalize "stylesArme" system.style}}"></i></div>
                 {{#if ../unlocked}}
-                    <div class="icone m10"><a class="editer-item" title="{{localize 'agone.common.editer'}}"><i class="fa-duotone fa-solid fa-pen-to-square"></i></a></div>
+                    <div class="icone"><a class="editer-item" title="{{localize 'agone.common.editer'}}"><i class="fa-duotone fa-solid fa-pen-to-square"></i></a></div>
                     <div class="icone"><a class="supprimer-item" title="{{localize 'agone.common.supprimer'}}"><i class="fa-duotone fa-solid fa-x"></i></a></div>
+                {{else}}
+                    {{#if system.nonUtilisable}}
+                        <div class="icone warn"><i class="fa-light fa-hand-fist" title="{{system.raisonNonUtilisable}}"></i></div>
+                    {{else if system.equipee}}
+                        <div class="icone"><a class="mod-equip" data-action="retirer" title="{{localize 'agone.tooltip.armeEquipee'}} - {{configLocalize "armeEquipee" system.equipee}}"><i class="fa-solid fa-hand-fist"></i></a></div>
+                    {{else}}
+                        <div class="icone"><a class="mod-equip" data-action="equiper" title="{{localize 'agone.tooltip.clickPourEquiper'}}"><i class="fa-light fa-hand-fist"></i></a></div>
+                    {{/if}}
                 {{/if}}
             </div>
             <div class="ligne-stats">
-                <div><i class="fa-duotone fa-solid fa-bolt" title="{{localize 'agone.tooltip.modificateurInit'}}"></i> {{system.modifInit}}</div>
+                <div class="style-row">
+                    <i class="{{configSymbole system.style}} icone" title="{{configLocalize "stylesArme" system.style}}"></i>
+                    {{#if (eq system.style "trait")}}
+                        {{system.portee}} m
+                    {{else if (eq system.style "jet")}}
+                        {{system.portee}} m
+                    {{/if}}
+                </div>
                 <div><i class="fa-duotone fa-solid fa-sword" title="{{localize 'agone.tooltip.modificateurAttaque'}}"></i> {{system.modifAttaque}}</div>
                 <div><i class="fa-duotone fa-solid fa-shield-halved" title="{{localize 'agone.tooltip.modificateurParade'}}"></i> {{system.modifParade}}</div>
+                <div><i class="fa-duotone fa-solid fa-bolt" title="{{localize 'agone.tooltip.modificateurInit'}}"></i> {{system.modifInit}}</div>
                 <div>
                     <i class="fa-duotone fa-solid fa-burst" title="{{localize 'agone.tooltip.modificateurDommages'}}"></i> {{system.modifDommages}}
                     {{#if (eq system.type "perftranch")}}
@@ -26,56 +41,88 @@
                     {{/if}}
                 </div>
             </div>
-            <div class="ligne-conf">
-                <div>{{localize "agone.items.equipee"}}</div>
-                <select class="inline-edit" data-field="system.equipee">
-                    {{#select system.equipee}}
-                        <option value=""></option>
-                        {{#if (eq system.style "melee") }}
-                            {{#if (eq system.diffTai -1)}}
-                                <option value="1main">1 m.</option>
-                            {{/if}}
-                            {{#if (eq system.diffTai 0)}}
-                                <option value="1main">1 m.</option>
-                                <option value="2mains">2 m.</option>
-                            {{/if}}
-                            {{#if (eq system.diffTai 1)}}
-                                <option value="2mains">2 m.</option>
-                            {{/if}}
+            {{#if (eq system.equipee "selection")}}
+                {{#if (eq system.style "melee")}}
+                    <div class="ligne-equipee">
+                        <div class="equip-row icone"><i class="fa-solid fa-hand-fist" title="{{configLocalize "armeEquipee" system.equipee}}"></i></div>
+                        {{#if (eq system.diffTai 1)}}
+                            {{#unless (eq system.equipee "mainPri")}}
+                                <div><a class="mod-equip" data-action="mainPri"><i class="fa-regular fa-square"></i></a> {{localize "agone.items.mainPri"}}</div>
+                            {{else}}
+                                <div><a class="mod-equip" data-action="retirer"><i class="fa-regular fa-square-check"></i></a> {{localize "agone.items.mainPri"}}</div>
+                            {{/unless}}
+                            {{#unless (eq system.equipee "mainSec")}}
+                                <div><a class="mod-equip" data-action="mainSec"><i class="fa-regular fa-square"></i></a> {{localize "agone.items.mainSec"}}</div>
+                            {{else}}
+                                <div><a class="mod-equip" data-action="retirer"><i class="fa-regular fa-square-check"></i></a> {{localize "agone.items.mainSec"}}</div>
+                            {{/unless}}
                         {{/if}}
-                        {{#if (eq system.style "trait") }}
-                            {{#if (eq system.diffTai -1)}}
-                                <option value="2mains">2 m.</option>
-                            {{/if}}
-                            {{#if (eq system.diffTai 0)}}
-                                <option value="2mains">2 m.</option>
-                            {{/if}}
-                            {{#if (eq system.diffTai 1)}}
-                                <option value="2mains">2 m.</option>
-                            {{/if}}
+                        {{#if (eq system.diffTai 0)}}
+                            {{#unless (eq system.equipee "mainPri")}}
+                                <div><a class="mod-equip" data-action="mainPri"><i class="fa-regular fa-square"></i></a> {{localize "agone.items.mainPri"}}</div>
+                            {{else}}
+                                <div><a class="mod-equip" data-action="retirer"><i class="fa-regular fa-square-check"></i></a> {{localize "agone.items.mainPri"}}</div>
+                            {{/unless}}
+                            {{#unless (eq system.equipee "mainSec")}}
+                                <div><a class="mod-equip" data-action="mainSec"><i class="fa-regular fa-square"></i></a> {{localize "agone.items.mainSec"}}</div>
+                            {{else}}
+                                <div><a class="mod-equip" data-action="retirer"><i class="fa-regular fa-square-check"></i></a> {{localize "agone.items.mainSec"}}</div>
+                            {{/unless}}
+                            {{#unless (eq system.equipee "deuxMains")}}
+                                <div><a class="mod-equip" data-action="deuxMains"><i class="fa-regular fa-square"></i></a> {{localize "agone.items.deuxMains"}}</div>
+                            {{else}}
+                                <div><a class="mod-equip" data-action="retirer"><i class="fa-regular fa-square-check"></i></a> {{localize "agone.items.deuxMains"}}</div>
+                            {{/unless}}
                         {{/if}}
-                        {{#if (eq system.style "jet") }}
-                            {{#if (eq system.diffTai -1)}}
-                                <option value="1main">1 m.</option>
+                    </div>
+                {{else if (eq system.style "jet")}}
+                    <div class="ligne-equipee">
+                        <div class="equip-row icone"><i class="fa-solid fa-hand-fist" title="{{configLocalize "armeEquipee" system.equipee}}"></i></div>
+                        {{#unless (eq system.equipee "mainPri")}}
+                            <div><a class="mod-equip" data-action="mainPri"><i class="fa-regular fa-square"></i></a> {{localize "agone.items.mainPri"}}</div>
+                        {{else}}
+                            <div><a class="mod-equip" data-action="retirer"><i class="fa-regular fa-square-check"></i></a> {{localize "agone.items.mainPri"}}</div>
+                        {{/unless}}
+                        {{#unless (eq system.equipee "mainSec")}}
+                            <div><a class="mod-equip" data-action="mainSec"><i class="fa-regular fa-square"></i></a> {{localize "agone.items.mainSec"}}</div>
+                        {{else}}
+                            <div><a class="mod-equip" data-action="retirer"><i class="fa-regular fa-square-check"></i></a> {{localize "agone.items.mainSec"}}</div>
+                        {{/unless}}
+                    </div>
+                {{/if}}
+            {{/if}}
+            <!-- <div class="ligne-conf2">
+                    <div>{{localize "agone.items.equipee"}}</div>
+                    <select class="inline-edit" data-field="system.equipee">
+                        {{#select system.equipee}}
+                            <option value=""></option>
+                            {{#if (eq system.style "melee") }}
+                                {{#if (eq system.diffTai 1)}}
+                                    <option value="mainPri">1 m.</option>
+                                    <option value="mainSec">2em m.</option>
+                                {{/if}}
+                                {{#if (eq system.diffTai 0)}}
+                                    <option value="mainPri">1 m.</option>
+                                    <option value="mainSec">2em m.</option>
+                                    <option value="deuxMains">2 m.</option>
+                                {{/if}}
+                                {{#if (eq system.diffTai -1)}}
+                                    <option value="deuxMains">2 m.</option>
+                                {{/if}}
                             {{/if}}
-                            {{#if (eq system.diffTai 0)}}
-                                <option value="1main">1 m.</option>
+                            {{#if (eq system.style "trait") }}
+                                <option value="deuxMains">2 m.</option>
                             {{/if}}
-                        {{/if}}
-                        {{#if (eq system.style "bouclier") }}
-                            {{#if (eq system.diffTai -1)}}
-                                <option value="secMain">2em m.</option>
+                            {{#if (eq system.style "jet") }}
+                                <option value="mainPri">1 m.</option>
+                                <option value="mainSec">2em m.</option>
                             {{/if}}
-                            {{#if (eq system.diffTai 0)}}
-                                <option value="secMain">2em m.</option>
+                            {{#if (eq system.style "bouclier") }}
+                                <option value="mainSec">2em m.</option>
                             {{/if}}
-                            {{#if (eq system.diffTai 1)}}
-                                <option value="secMain">2em m.</option>
-                            {{/if}}
-                        {{/if}}
-                    {{/select}}
-                </select>
-            </div>
+                        {{/select}}
+                    </select>
+            </div> -->
             {{#if ../unlocked}}
                 <div class="ligne-conf">
                     <div>{{localize "agone.actors.competence"}}</div>
@@ -94,37 +141,3 @@
         </div>
     {{/each}}
 </div>
-<!-- <div class="ligne-arme titre">
-
-    <label>{{localize "agone.items.portee"}}</label>
-    <label>{{localize "agone.actors.competence"}}</label>
-    <label>{{localize "agone.items.minForce"}}</label>
-    <label>{{localize "agone.items.minAgilite"}}</label>
-    <label>{{localize "agone.items.tai"}}</label>
-    <label></label>
-    <a class="creer-item" data-type="Arme" title="{{localize 'agone.common.ajouter'}}"><i class="fas fa-plus"></i></a>
-</div>
-{{#each armes as |arme id|}}
-<div class="ligne-arme item" data-item-id="{{arme._id}}">
-    <a class="item-roll"><img src="{{img}}" title="{{localize 'agone.actors.voirArme'}}" height="32" width="32"/></a>
-    <div>{{name}}</div>
-    <div>
-        
-    </div>
-    <div>{{configLocalize "stylesArme" system.style}}</div>
-    <div>{{system.modifInit}}</div>
-    <div>{{system.modifAttaque}}</div>
-    <div>{{system.modifParade}}</div>
-    <div>{{system.modifDommages}}</div>
-    <div>{{system.portee}}</div>
-    <div>
-        
-    </div>
-    <div>{{configLocalize "typesArme" system.type}}</div>
-    <div>{{#malusFOR system.minForce system.style system.equipee ../actor.system.aspects.corps.caracteristiques.force.valeur }}<span class="warn">{{system.minForce}}</span>{{else}}<span>{{system.minForce}}</span>{{/malusFOR}}</div>
-    <div>{{#malusAGI system.minAgilite system.style system.equipee ../actor.system.aspects.corps.caracteristiques.agilite.valeur }}<span class="warn">{{system.minAgilite}}</span>{{else}}<span>{{system.minAgilite}}</span>{{/malusAGI}}</div>
-    <div>{{#if system.nonUtilisable }}<span class="warn">{{system.tai}}</span>{{else}}<span>{{system.tai}}</span>{{/if}}</div>
-    
-</div>            
-{{/each}}
--->

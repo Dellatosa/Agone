@@ -657,7 +657,7 @@ a.nohlight {
             }
         }
 
-        .actions-def {
+        .actions-def, .init-basique {
             margin: 3px 1px;
             padding: 3px;
             border: solid 1px var(--color-box-border-dark);
@@ -724,10 +724,6 @@ a.nohlight {
             margin-left: 2px;
         }
 
-        .m10 {
-            margin-left: 10px;
-        }
-
         .ligne-titre {
             display: flex;
             align-items: center;
@@ -749,14 +745,39 @@ a.nohlight {
 
         .ligne-stats {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr 1fr;
             text-align: center;
+            align-items: center;
             margin-bottom: 3px;
+
+            .style-row {
+                grid-row-start: 1;
+                grid-row-end: 3;
+            }
+        }
+
+        .ligne-equipee {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            text-align: center;
+            align-items: center;
+            margin-bottom: 3px;
+
+            .equip-row {
+                grid-row-start: 1;
+                grid-row-end: 5;
+            }
         }
 
         .ligne-conf {
             display: grid;
             grid-template-columns: 1fr 2fr;
+            align-items: center;
+            margin-bottom: 3px;
+        }
+
+        .ligne-conf2 {
+            display: flex;
             align-items: center;
             margin-bottom: 3px;
         }

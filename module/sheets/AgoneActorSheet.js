@@ -9,7 +9,7 @@ export default class AgoneActorSheet extends ActorSheet {
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {
             width: 760,
-            height: 870,
+            height: 910,
             classes: ["agone", "sheet", "actor"],
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "competences" },
                     { navSelector: ".competences-tabs", contentSelector: ".competences-content", initial: "epreuves" },
@@ -137,11 +137,39 @@ export default class AgoneActorSheet extends ActorSheet {
             }
         }
 
-        //console.log(data);
+        data.armes.forEach( arme => { 
+            const diffTai = actorData.caracSecondaires.tai.valeur - arme.system.tai;
+            const diffAgilite = actorData.aspects.corps.caracteristiques.agilite.valeur - arme.system.minAgilite;
+            const diffForce = actorData.aspects.corps.caracteristiques.force.valeur - arme.system.minForce;
+            const item = data.actor.items.get(arme._id);
+
+            item.update({"system.diffTai": diffTai });
+            item.update({"system.diffAgilite": diffAgilite });
+            item.update({"system.diffforce": diffForce });
+
+            if(diffTai < -1 || diffTai > 1) {
+                item.update({"system.equipee": ""});
+                item.update({"system.nonUtilisable": true});
+                item.update({"system.raisonNonUtilisable": game.i18n.localize("agone.tooltip.prerequisTaiArme")});
+            } 
+            else if ((diffTai < 1 && diffAgilite < -1 && arme.system.style == "melee") || diffAgilite < 0) {
+                item.update({"system.equipee": ""});
+                item.update({"system.nonUtilisable": true});
+                item.update({"system.raisonNonUtilisable": game.i18n.localize("agone.tooltip.prerequisAgiArme")});
+            }
+            else if ((diffTai < 1 && diffForce < -2 && arme.system.style == "melee") || diffForce < 0) {
+                item.update({"system.equipee": ""});
+                item.update({"system.nonUtilisable": true});
+                item.update({"system.raisonNonUtilisable": game.i18n.localize("agone.tooltip.prerequisForArme")});
+            }
+            else {
+                item.update({"system.nonUtilisable": false});
+                item.update({"system.raisonNonUtilisable": ""});
+            }
+        });
 
         return data;
     }
-
 
     async _updateObject(event, formData) {
         const updateObj = {};
@@ -196,6 +224,9 @@ export default class AgoneActorSheet extends ActorSheet {
 
             // Case de spécialisation
             html.find('.case-chk-spe').click(this._onCocherSpecialisation.bind(this));
+
+            // Equiper/Déséquiper une arme
+            html.find('.mod-equip').click(this._onEquiperArme.bind(this));
 
             // roll-comp - jet de compétence
             html.find('.roll-comp').click(this._onRollComp.bind(this));
@@ -608,6 +639,40 @@ export default class AgoneActorSheet extends ActorSheet {
         }
     }
     
+    _onEquiperArme(event) {
+        event.preventDefault();
+        const element = event.currentTarget;
+
+        const itemId = element.closest(".item").dataset.itemId;
+        const item = this.actor.items.get(itemId);
+        const action = element.dataset.action;
+
+        if(action == "equiper") {
+            switch(item.system.style) {
+                case "trait":
+                    return item.update({["system.equipee"] : "deuxMains"});
+                case "bouclier":
+                    return item.update({["system.equipee"] : "mainSec"});
+                case "melee":
+                    if(item.system.diffTai == -1) {
+                        return item.update({["system.equipee"] : "deuxMains"});        
+                    }
+                    else {
+                        return item.update({["system.equipee"] : "selection"});
+                    }
+                case "jet":
+                    return item.update({["system.equipee"] : "selection"});
+            }
+        }
+        else if (action == "retirer") {
+            return item.update({["system.equipee"] : ""});
+        }
+        else if (action == "mainPri" || action == "mainSec" || action == "deuxMains") {
+            return item.update({["system.equipee"] : action});
+        }
+        
+    }
+
     // Gestionnaire d'événements pour les listes d'items
      // Création d'un item
     _onCreerItem(event) {
@@ -773,7 +838,7 @@ export default class AgoneActorSheet extends ActorSheet {
     }
 
     // Gestionnaire d'événements de l'onglet Combat
-    // Initiative
+    // Initiative - base, sans arme
     _onInitiativeRoll(event) {
         event.preventDefault();
         

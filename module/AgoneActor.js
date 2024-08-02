@@ -585,22 +585,22 @@ export default class AgoneActor extends Actor {
     desequipeArmes(itemId, equipee) {
         if(equipee == "") return;
 
-        if(equipee == "2mains") {
+        if(equipee == "deuxMains") {
             let autresArmesEquip = this.items.filter(function (item) { return item.type == "Arme" && item.id != itemId && item.system.equipee != ""});
             autresArmesEquip.forEach(arme => {
                 arme.update({"data.equipee": ""});
             });
         }
 
-        if(equipee == "1main") {
-            let autresArmesEquip = this.items.filter(function (item) { return item.type == "Arme" && item.id != itemId && item.system.style != "bouclier" && item.system.equipee != ""});
+        if(equipee == "mainPri") {
+            let autresArmesEquip = this.items.filter(function (item) { return item.type == "Arme" && item.id != itemId && (item.system.equipee == "mainPri" || item.system.equipee == "deuxMains")});
             autresArmesEquip.forEach(arme => {
                 arme.update({"data.equipee": ""});
             });
         }
 
-        if(equipee == "secMain") {
-            let autresArmesEquip = this.items.filter(function (item) { return item.type == "Arme" && item.id != itemId && item.system.equipee == "2mains"});
+        if(equipee == "mainSec") {
+            let autresArmesEquip = this.items.filter(function (item) { return item.type == "Arme" && item.id != itemId && (item.system.equipee == "deuxMains" || item.system.equipee == "mainSec")});
             autresArmesEquip.forEach(arme => {
                 arme.update({"data.equipee": ""});
             });

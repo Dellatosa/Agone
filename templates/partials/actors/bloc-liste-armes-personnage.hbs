@@ -28,44 +28,44 @@
                 <option value=""></option>
                 {{#if (eq system.style "melee") }}
                     {{#if (eq system.diffTai -1)}}
-                        <option value="1main">1 m.</option>
+                        <option value="mainPri">1 m.</option>
                     {{/if}}
                     {{#if (eq system.diffTai 0)}}
-                        <option value="1main">1 m.</option>
-                        <option value="2mains">2 m.</option>
+                        <option value="mainPri">1 m.</option>
+                        <option value="deuxMains">2 m.</option>
                     {{/if}}
                     {{#if (eq system.diffTai 1)}}
-                        <option value="2mains">2 m.</option>
+                        <option value="deuxMains">2 m.</option>
                     {{/if}}
                 {{/if}}
                 {{#if (eq system.style "trait") }}
                     {{#if (eq system.diffTai -1)}}
-                        <option value="2mains">2 m.</option>
+                        <option value="deuxMains">2 m.</option>
                     {{/if}}
                     {{#if (eq system.diffTai 0)}}
-                        <option value="2mains">2 m.</option>
+                        <option value="deuxMains">2 m.</option>
                     {{/if}}
                     {{#if (eq system.diffTai 1)}}
-                        <option value="2mains">2 m.</option>
+                        <option value="deuxMains">2 m.</option>
                     {{/if}}
                 {{/if}}
                 {{#if (eq system.style "jet") }}
                     {{#if (eq system.diffTai -1)}}
-                        <option value="1main">1 m.</option>
+                        <option value="mainPri">1 m.</option>
                     {{/if}}
                     {{#if (eq system.diffTai 0)}}
-                        <option value="1main">1 m.</option>
+                        <option value="mainPri">1 m.</option>
                     {{/if}}
                 {{/if}}
                 {{#if (eq system.style "bouclier") }}
                     {{#if (eq system.diffTai -1)}}
-                        <option value="secMain">2em m.</option>
+                        <option value="mainSec">2em m.</option>
                     {{/if}}
                     {{#if (eq system.diffTai 0)}}
-                        <option value="secMain">2em m.</option>
+                        <option value="mainSec">2em m.</option>
                     {{/if}}
                     {{#if (eq system.diffTai 1)}}
-                        <option value="secMain">2em m.</option>
+                        <option value="mainSec">2em m.</option>
                     {{/if}}
                 {{/if}}
             {{/select}}

@@ -27,7 +27,7 @@ export default function registerHandlebarsHelpers() {
     
     Handlebars.registerHelper("malusAGI", function(minArme, style, equipee, agi, options) {
         let diff = minArme - agi;
-        if(equipee == "2mains" && style != "trait") diff -= 1;
+        if(equipee == "deuxMains" && style != "trait") diff -= 1;
         if(diff > 0)
             return options.fn(this);
         else
@@ -36,7 +36,7 @@ export default function registerHandlebarsHelpers() {
     
     Handlebars.registerHelper("malusFOR", function(minArme, style, equipee, agi, options) {
         let diff = minArme - agi;
-        if(equipee == "2mains" && style != "trait") diff -= 2;
+        if(equipee == "deuxMains" && style != "trait") diff -= 2;
         if(diff > 0)
             return options.fn(this);
         else

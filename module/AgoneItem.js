@@ -74,19 +74,6 @@ Hooks.on("deleteItem", (item, render, id) => onDeleteItem(item));
 Hooks.on("createItem", (item, render, id) => onCreateItem(item));
 
 function onCloseAgoneItemSheet(itemSheet) {
-
-    // Modification sur une arme
-    if(itemSheet.item.type == "Arme" && itemSheet.actor) {
-        // Calcul de la différence de TAI entre l'arme et le personnage qui l'utilise
-        let diff = itemSheet.item.system.tai - itemSheet.actor.system.caracSecondaires.tai.valeur;
-        itemSheet.item.update({"system.diffTai": diff });
-        if(diff < -1 || diff > 1) {
-            itemSheet.item.update({"system.nonUtilisable": true});
-        } else {
-            itemSheet.item.update({"system.nonUtilisable": false});
-        }
-    }
-
     // Modification sur un Danseur
     if(itemSheet.item.type == "Danseur") {
         // Modification de la mémoire max

@@ -86,6 +86,7 @@
             "magie": "Magic",
             "combat": "Fight",
             "sante": "Health",
+            "etatSante": "Health status",
             "poidsPortable" : "Load",
             "domaine": "Field",
             "jetPdv": "Roll d10 hit points",
@@ -243,6 +244,7 @@
             "potAttaque": "NO TRAD - Potentiel d'Attaque",
             "potDefense": "NO TRAD - Potentiel de Défense",
             "initiative": "Initiative",
+            "initiativeNonArme": "Initiative (unarmed)",
             "experienceDisponible": "NO TRAD - Expérience disponible",
             "experienceTotale": "NO TRAD - Expérience totale",
             "manoeuvres": "Maneuvers",
@@ -271,7 +273,8 @@
             "peines": "Sorrows",
             "bienfaits": "Gifts",
             "histoire": "Story",
-            "pcCaracUtilises": "Used creation points"
+            "pcCaracUtilises": "Used creation points",
+            "actionsDefense": "NO TRAD - Actions de défense"
         },
         "items":{
             "description": "Description",
@@ -334,6 +337,9 @@
             "minAgilite": "min. AGI",
             "minForce": "min. STR",
             "descBonus": "Bonus description",
+            "mainPri": "'Preferred' hand",
+            "mainSec": "'Wrong' hand",
+            "deuxMains": "Two handed",
             "prerequis": "Prerequisite",
             "condition": "Condition",
             "descMalus": "Penalty description",
@@ -581,7 +587,13 @@
             "modificateurInit": "Initiative modifier",
             "modificateurAttaque": "Attack modifier",
             "modificateurParade": "Parry modifier",
-            "modificateurDommages": "Damages modifier"
+            "modificateurDommages": "Damages modifier",
+            "prerequisTaiArme": "NO TRAD - La taille de cette arme est inadaptée à votre personnage. Vous ne pouvez pas l'utilisée.",
+            "prerequisAgiArme": "NO TRAD - Votre personnage ne dispose pas de l'agilité minimum pour utiliser cette arme.",
+            "prerequisForArme": "NO TRAD - Votre personnage ne dispose pas de la force minimum pour utiliser cette arme.",
+            "armeEquipee": "Weapon equipped",
+            "selectionMain": "Select hand",
+            "clickPourEquiper" : "Click to equip weapon"
         }
     },
     "parametres": {
