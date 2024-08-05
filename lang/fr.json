@@ -406,6 +406,7 @@
             "echec": "Echec !",
             "echecCritique": "Echec critique !!!",
             "fumble": "Fumble !",
+            "initiative": "Init.",
             "attaque": "Attaque",
             "attaqueAvec": "Jet d'attaque avec {arme}",
             "paradeAvec": "Jet de parade avec {arme}",
@@ -589,12 +590,15 @@
             "modificateurAttaque": "Modificateur d'attaque",
             "modificateurParade": "Modificateur de parade",
             "modificateurDommages": "Modificateur de dommages",
-            "prerequisTaiArme": "La taille de cette arme est inadaptée à votre personnage. Vous ne pouvez pas l'utilisée.",
-            "prerequisAgiArme": "Votre personnage ne dispose pas de l'agilité minimum pour utiliser cette arme.",
-            "prerequisForArme": "Votre personnage ne dispose pas de la force minimum pour utiliser cette arme.",
+            "prerequisTaiArme": "La taille de cette arme est inadaptée à votre personnage. Vous ne pouvez pas l'utiliser.",
             "armeEquipee": "Arme équipée",
+            "armureEquipee": "Armure équipée",
             "selectionMain": "Sélectionnez la main",
-            "clickPourEquiper" : "Cliquer pour équiper l'arme"
+            "clickPourEquiperArme" : "Cliquer pour équiper l'arme",
+            "clickPourEquiperArmure" : "Cliquer pour équiper l'armure",
+            "protection": "Valeur de protection",
+            "malusAgilite": "Malus aux tests d'agilité",
+            "malusPerception": "Malus aux tests de perception"
         }
     },
     "parametres": {

@@ -33,13 +33,12 @@
             <button class="esquive"><i class="fa-sharp-duotone fa-solid fa-person-falling-burst"></i> {{localize "agone.actors.esquive"}}</button>
             <button class="defenseNat"><i class="fa-duotone fa-solid fa-shield-slash"></i> {{localize "agone.actors.defenseNat"}}</button>
             <button class="resistMagieNat"><i class="fa-duotone fa-solid fa-sparkles"></i> {{localize "agone.actors.resistMagie"}}</button>
-
-            <!-- <i class="fa-duotone fa-solid fa-helmet-battle"></i> -->
         </div>
     </div>
     <div class="attaque">
         {{#if typePersonnage}}
             {{> "systems/agone/templates/partials/actors/bloc-liste-armes-personnage-v2.hbs"}}
+            {{> "systems/agone/templates/partials/actors/bloc-liste-armures-personnage-v2.hbs"}}
         {{else}}
             {{> "systems/agone/templates/partials/actors/bloc-recap-combat-personnage.hbs"}}
             {{> "systems/agone/templates/partials/actors/bloc-liste-armes-personnage.hbs"}}

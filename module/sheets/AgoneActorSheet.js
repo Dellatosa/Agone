@@ -152,7 +152,7 @@ export default class AgoneActorSheet extends ActorSheet {
                 item.update({"system.nonUtilisable": true});
                 item.update({"system.raisonNonUtilisable": game.i18n.localize("agone.tooltip.prerequisTaiArme")});
             } 
-            else if ((diffTai < 1 && diffAgilite < -1 && arme.system.style == "melee") || diffAgilite < 0) {
+            /*else if ((diffTai < 1 && diffAgilite < -1 && arme.system.style == "melee") || diffAgilite < 0) {
                 item.update({"system.equipee": ""});
                 item.update({"system.nonUtilisable": true});
                 item.update({"system.raisonNonUtilisable": game.i18n.localize("agone.tooltip.prerequisAgiArme")});
@@ -161,7 +161,7 @@ export default class AgoneActorSheet extends ActorSheet {
                 item.update({"system.equipee": ""});
                 item.update({"system.nonUtilisable": true});
                 item.update({"system.raisonNonUtilisable": game.i18n.localize("agone.tooltip.prerequisForArme")});
-            }
+            }*/
             else {
                 item.update({"system.nonUtilisable": false});
                 item.update({"system.raisonNonUtilisable": ""});
@@ -227,6 +227,9 @@ export default class AgoneActorSheet extends ActorSheet {
 
             // Equiper/Déséquiper une arme
             html.find('.mod-equip').click(this._onEquiperArme.bind(this));
+
+            // Equiper/Déséquiper une arme
+            html.find('.mod-equip-armure').click(this._onEquiperArmure.bind(this));
 
             // roll-comp - jet de compétence
             html.find('.roll-comp').click(this._onRollComp.bind(this));
@@ -671,6 +674,23 @@ export default class AgoneActorSheet extends ActorSheet {
             return item.update({["system.equipee"] : action});
         }
         
+    }
+
+    _onEquiperArmure(event) {
+        event.preventDefault();
+        const element = event.currentTarget;
+
+        const itemId = element.closest(".item").dataset.itemId;
+        const item = this.actor.items.get(itemId);
+
+        const action = element.dataset.action;
+
+        if(action == "equiper") {
+            return item.update({["system.equipee"] : true});
+        }
+        else if (action == "retirer") {
+            return item.update({["system.equipee"] : false});
+        }
     }
 
     // Gestionnaire d'événements pour les listes d'items

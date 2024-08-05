@@ -274,6 +274,7 @@
             "bienfaits": "Gifts",
             "histoire": "Story",
             "pcCaracUtilises": "Used creation points",
+            "pcCompUtilises": "Used creation points",
             "actionsDefense": "NO TRAD - Actions de défense"
         },
         "items":{
@@ -405,6 +406,7 @@
             "echec": "Failure !",
             "echecCritique": "Critical failure !!!",
             "fumble": "Fumble !",
+            "initiative": "Init.",
             "attaque": "Attack",
             "attaqueAvec": "Attack roll with {arme}",
             "paradeAvec": "Parry roll with {arme}",
@@ -588,12 +590,15 @@
             "modificateurAttaque": "Attack modifier",
             "modificateurParade": "Parry modifier",
             "modificateurDommages": "Damages modifier",
-            "prerequisTaiArme": "NO TRAD - La taille de cette arme est inadaptée à votre personnage. Vous ne pouvez pas l'utilisée.",
-            "prerequisAgiArme": "NO TRAD - Votre personnage ne dispose pas de l'agilité minimum pour utiliser cette arme.",
-            "prerequisForArme": "NO TRAD - Votre personnage ne dispose pas de la force minimum pour utiliser cette arme.",
+            "prerequisTaiArme": "NO TRAD - La taille de cette arme est inadaptée à votre personnage. Vous ne pouvez pas l'utiliser.",
             "armeEquipee": "Weapon equipped",
+            "armureEquipee": "Armor equipped",
             "selectionMain": "Select hand",
-            "clickPourEquiper" : "Click to equip weapon"
+            "clickPourEquiperArme" : "Click to equip weapon",
+            "clickPourEquiperArmure" : "Click to equip armor",
+            "protection": "NO TRAD - Valeur de protection",
+            "malusAgilite": "NO TRAD - Malus aux tests d'agilité",
+            "malusPerception": "NO TRAD - Malus aux tests de perception"
         }
     },
     "parametres": {

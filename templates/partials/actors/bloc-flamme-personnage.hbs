@@ -1,13 +1,11 @@
-<div class="actor-flamme{{#if unlocked}}{{#if typePersonnage}} pc{{/if}}{{/if}}">
+<div class="actor-flamme{{#if (and unlocked typePersonnage)}} pc{{/if}}">
     <div class="box-flamme">
         <label>{{localize "agone.actors.caracteristiques"}}</label>
-        {{#if unlocked}}
-            {{#if typePersonnage}}
-                <div class="pc-box">
-                    <div>{{localize "agone.actors.pcCaracUtilises"}}</div>
-                    <div>{{data.system.pcCaracs.depense}} / {{data.system.pcCaracs.base}}</div>
-                </div>
-            {{/if}}
+        {{#if (and unlocked typePersonnage)}}
+            <div class="pc-box">
+                <div>{{localize "agone.actors.pcCaracUtilises"}}</div>
+                <div>{{data.system.pcCaracs.depense}} / {{data.system.pcCaracs.base}}</div>
+            </div>    
         {{/if}}
     </div>
     <div class="box-flamme">

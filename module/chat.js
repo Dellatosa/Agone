@@ -3,6 +3,7 @@ import * as Dice from "./dice.js";
 export function addChatListeners(html) {
     html.on('click', 'button.attaque', onAttaque);
     html.on('click', 'button.parade', onParade);
+    html.on('click', 'button.initiative', onInitiative);
     html.on('click', 'button.jet-sort', onJetSort);
     html.on('click', 'button.jet-sort-intuitif', onJetSortIntuitif);
     html.on('click', 'a.editer-item-sort', onEditItemSort)
@@ -138,6 +139,14 @@ function onParade(event) {
     let arme = defenseur.items.get(card.dataset.itemId);
 
     Dice.combatArme(defenseur, arme, "Parade");
+}
+
+function onInitiative(event) {
+    const card = event.currentTarget.closest(".arme");
+    let combattant = getCardActor(card);
+    let arme = combattant.items.get(card.dataset.itemId); 
+
+    combattant.rollInitiative({createCombatants: true});
 }
 
 function getCardActor(card) {

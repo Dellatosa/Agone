@@ -100,12 +100,23 @@ function onUpdateItem(item, modif) {
     //if(item.parent.isToken) return;
 
     // Modification sur une arme
-     if(item.type == "Arme" && item.actor && modif.system) {
+    if(item.type == "Arme" && item.actor && modif.system) {
         for(let[keyData, valData] of Object.entries(modif.system))
         {
             // Si on equipe une arme, les autres ne doivent plus être équipées
             if(keyData == "equipee" && item.actor) {
                 item.actor.desequipeArmes(item.id, valData);
+            }
+        }
+    }
+
+    // Modification sur une arme
+    if(item.type == "Armure" && item.actor && modif.system) {
+        for(let[keyData, valData] of Object.entries(modif.system))
+        {
+            // Si on equipe une arme, les autres ne doivent plus être équipées
+            if(keyData == "equipee" && item.actor) {
+                item.actor.desequipeArmures(item.id, valData);
             }
         }
     }

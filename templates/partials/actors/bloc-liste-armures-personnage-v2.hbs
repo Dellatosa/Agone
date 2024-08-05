@@ -1,0 +1,29 @@
+<div class="titre-rub">{{localize "agone.actors.armures"}}</div>
+<div class="grid-armures">
+    {{#each armures as |armure id|}}
+        <div class="bloc-armure item" data-item-id="{{armure._id}}">
+            <div class="ligne-titre">
+                <a class="item-roll"><img src="{{img}}" title="{{localize 'agone.actors.voirArmure'}}"/></a>
+                <div class="titre">{{name}}</div>
+                {{#if ../unlocked}}
+                    <div class="icone"><a class="editer-item" title="{{localize 'agone.common.editer'}}"><i class="fa-duotone fa-solid fa-pen-to-square"></i></a></div>
+                    <div class="icone"><a class="supprimer-item" title="{{localize 'agone.common.supprimer'}}"><i class="fa-duotone fa-solid fa-x"></i></a></div>
+                {{else}}
+                    {{#if system.nonUtilisable}}
+                        <div class="icone warn"><i class="fa-light fa-hand-fist" title="{{system.raisonNonUtilisable}}"></i></div>
+                    {{else if system.equipee}}
+                        <div class="icone"><a class="mod-equip-armure" data-action="retirer" title="{{localize 'agone.tooltip.armureEquipee'}}"><i class="fa-solid fa-helmet-battle"></i></a></div>
+                    {{else}}
+                        <div class="icone"><a class="mod-equip-armure" data-action="equiper" title="{{localize 'agone.tooltip.clickPourEquiperArmure'}}"><i class="fa-light fa-helmet-battle"></i></a></div>
+                    {{/if}}
+                {{/if}}
+            </div>
+            <div class="ligne-stats-armure">
+                <div class="style-row">{{configLocalize "typesArmure" system.type}}</div>
+                <div class="style-row"><i class="fa-duotone fa-solid fa-shield-plus" title="{{localize 'agone.tooltip.protection'}}"></i> {{system.protection}}</div>
+                <div><i class="fa-duotone fa-solid fa-weight-hanging" title="{{localize 'agone.tooltip.malusAgilite'}}"></i> {{system.malus}}</div>
+                <div><i class="fa-duotone fa-solid fa-eye-low-vision" title="{{localize 'agone.tooltip.malusPerception'}}"></i> {{system.malusPerception}}</div>
+            </div>
+        </div>
+    {{/each}}
+</div>

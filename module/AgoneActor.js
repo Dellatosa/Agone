@@ -347,54 +347,71 @@ export default class AgoneActor extends Actor {
         return null;
     }
 
-    getStatsCombat(compArme, minForce, minAgilite) {
+    getStatsCombat(arme, /*compArme, minForce, minAgilite*/) {
         let data = this.system;
 
-        if(compArme) {
-            let result = {
-                rangComp: 0, 
-                labelComp: "ND", 
-                specialisation: false, 
-                labelSpecialisation: "ND", 
-                rangCarac: 0, 
-                labelCarac: "ND", 
-                bonusAspect: 0, 
-                labelAspect: "ND", 
-                bonusDommages: 0,
-                tai: 0,
-                malusManiement: null, 
-                malusBlessureGrave: null,
-                seuilBlessureGrave: null,
-                seuilBlessureCritique: null
-            };
+        let result = {
+            rangComp: 0, 
+            labelComp: "", 
+            specialisation: false, 
+            labelSpecialisation: "", 
+            rangCarac: 0, 
+            labelCarac: "", 
+            bonusAspect: 0, 
+            labelAspect: "", 
+            bonusDommages: 0,
+            tai: 0,
+            malusManiement: null, 
+            malusBlessureGrave: null,
+            seuilBlessureGrave: null,
+            seuilBlessureCritique: null
+        };
 
+        if(arme.system.competence) {
             result.rangComp = data.familleCompetences.epreuves.competences.armes.domaines[compArme].rang;
             result.labelComp = data.familleCompetences.epreuves.competences.armes.domaines[compArme].label;
             result.specialisation = data.familleCompetences.epreuves.competences.armes.domaines[compArme].specialisation;
             result.labelSpecialisation = data.familleCompetences.epreuves.competences.armes.domaines[compArme].labelSpecialisation;
-            result.malusBlessureGrave = this.getMalusBlessureGrave(data.caracSecondaires.nbBlessureGrave);
+        }
+        else {
+            result.rangComp = -3;
+            result.labelComp = "Jet par défaut"
+        }
+        
+        result.malusBlessureGrave = this.getMalusBlessureGrave(data.caracSecondaires.nbBlessureGrave);
 
-            result.bonusDommages = data.caracSecondaires.bonusDommages;
-            result.tai = data.caracSecondaires.tai.valeur;
-            result.seuilBlessureGrave = data.caracSecondaires.seuilBlessureGrave;
-            result.seuilBlessureCritique = data.caracSecondaires.seuilBlessureCritique;
+        result.bonusDommages = data.caracSecondaires.bonusDommages;
+        result.tai = data.caracSecondaires.tai.valeur;
+        result.seuilBlessureGrave = data.caracSecondaires.seuilBlessureGrave;
+        result.seuilBlessureCritique = data.caracSecondaires.seuilBlessureCritique;
             
-            let malusAgilite = Math.min(data.aspects.corps.caracteristiques.agilite.valeur - minAgilite, 0);
-            let malusForce = Math.min(data.aspects.corps.caracteristiques.force.valeur - minForce, 0);
-            if(malusAgilite + malusForce < 0) {
-                result.malusManiement = malusAgilite + malusForce;
-            }
-
-            let caracData = this.getCaracData(data.familleCompetences.epreuves.competences.armes.domaines[compArme].caracteristique);
-            result.rangCarac = caracData.rangCarac;
-            result.labelCarac = caracData.labelCarac;
-            result.bonusAspect = caracData.bonusAspect;
-            result.labelAspect = caracData.labelAspect;
-
-            return result;
+        let reducMalusAgi = 0;
+        let reducMalusFor = 0;
+        if(arme.system.style == "melee" && arme.system.equipee == "deuxMains") {
+            reducMalusAgi = 1;
+            reducMalusFor = 2;
         }
 
-        return null;
+        let malusAgilite = Math.min(data.aspects.corps.caracteristiques.agilite.valeur - arme.system.minAgilite + reducMalusAgi, 0);
+        let malusForce = Math.min(data.aspects.corps.caracteristiques.force.valeur - arme.system.minForce + reducMalusFor, 0);
+        if(malusAgilite + malusForce < 0) {
+            result.malusManiement = malusAgilite + malusForce;
+        }
+
+        let carac = "";
+        if(arme.system.style == "melee" || arme.system.style == "bouclier") {
+            carac = "melee";
+        }
+        else if(arme.system.style == "trait" || arme.system.style == "jet") {
+            carac = "tir";
+        }
+
+        result.rangCarac = data.aspects.corps.caracteristiques[carac].valeur;
+        result.labelCarac = data.aspects.corps.caracteristiques[carac].label;
+        result.bonusAspect = data.aspects.corps.bonus.valeur;
+        result.labelAspect = data.aspects.corps.bonus.label;
+
+        return result;
     }
 
     getStatsEmprise() {
@@ -588,21 +605,30 @@ export default class AgoneActor extends Actor {
         if(equipee == "deuxMains") {
             let autresArmesEquip = this.items.filter(function (item) { return item.type == "Arme" && item.id != itemId && item.system.equipee != ""});
             autresArmesEquip.forEach(arme => {
-                arme.update({"data.equipee": ""});
+                arme.update({"system.equipee": ""});
             });
         }
 
         if(equipee == "mainPri") {
             let autresArmesEquip = this.items.filter(function (item) { return item.type == "Arme" && item.id != itemId && (item.system.equipee == "mainPri" || item.system.equipee == "deuxMains")});
             autresArmesEquip.forEach(arme => {
-                arme.update({"data.equipee": ""});
+                arme.update({"system.equipee": ""});
             });
         }
 
         if(equipee == "mainSec") {
             let autresArmesEquip = this.items.filter(function (item) { return item.type == "Arme" && item.id != itemId && (item.system.equipee == "deuxMains" || item.system.equipee == "mainSec")});
             autresArmesEquip.forEach(arme => {
-                arme.update({"data.equipee": ""});
+                arme.update({"system.equipee": ""});
+            });
+        }
+    }
+
+    desequipeArmures(itemId, equipee) {
+        if(equipee == true) {
+            let autresArmuresEquip = this.items.filter(function (item) { return item.type == "Armure" && item.id != itemId && item.system.equipee == true});
+            autresArmuresEquip.forEach(armure => {
+                armure.update({"system.equipee": ""});
             });
         }
     }

@@ -25,13 +25,15 @@
         <div class="fumble">{{localize "agone.chat.warnArmeNonUtilisableMsg"}}</div>
     {{else}}
         <div class="boutons-carte">
-            {{#if (eq system.style "melee")}}
-                <div class="ligne-btn-2">
+            {{#if (or (eq system.style "melee") (eq system.style "bouclier")) }}
+                <div class="ligne-btn-3">
+                    <button class="initiative"><i class="fa-duotone fa-solid fa-bolt"></i> {{localize "agone.chat.initiative"}}</button>
                     <button class="attaque"><i class="fa-duotone fa-sword"></i> {{localize "agone.chat.attaque"}}</button>
                     <button class="parade"><i class="fa-duotone fa-shield-halved"></i> {{localize "agone.chat.parade"}}</button>
                 </div>
             {{else}}
-                <div class="ligne-btn-1">
+                <div class="ligne-btn-2">
+                    <button class="initiative"><i class="fa-duotone fa-solid fa-bolt"></i> {{localize "agone.chat.initiative"}}</button>
                     <button class="attaque"><i class="fa-duotone fa-sword"></i> {{localize "agone.chat.attaque"}}</button>
                 </div>
             {{/if}}

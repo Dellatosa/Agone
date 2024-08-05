@@ -513,7 +513,8 @@ function _processJetCompetenceOptions(form) {
 export async function combatArme(actor, arme, type) {
     let gererBonusAspect = actor.gererBonusAspect();
 
-    let statsCombat = actor.getStatsCombat(arme.system.competence, arme.system.minForce, arme.system.minAgilite);
+    //let statsCombat = actor.getStatsCombat(arme.system.competence, arme.system.minForce, arme.system.minAgilite);
+    let statsCombat = actor.getStatsCombat(arme);
 
     //console.log(game.combat, actor.estCombattantActif());
     
