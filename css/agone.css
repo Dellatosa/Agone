@@ -175,7 +175,8 @@ select.auto-size {
   overflow-x: hidden;
 }
 .agone.sheet.actor .competences-content,
-.agone.sheet.actor .combat-content {
+.agone.sheet.actor .combat-content,
+.agone.sheet.actor .magie-content {
   height: 100%;
 }
 .agone.sheet.actor .fullheight {
@@ -617,8 +618,7 @@ a.nohlight {
   align-self: center;
   text-align: center;
 }
-.grid-data-att .data-combat .heroisme .grid-heroisme .val,
-.grid-data-att .data-combat .heroisme .grid-heroisme .val-max {
+.grid-data-att .data-combat .heroisme .grid-heroisme .val {
   background-color: var(--color-stats-background);
   margin: 2px 5px;
   text-align: center;
@@ -626,8 +626,7 @@ a.nohlight {
   border-radius: 3px;
   height: 26px;
 }
-.grid-data-att .data-combat .heroisme .grid-heroisme .val label,
-.grid-data-att .data-combat .heroisme .grid-heroisme .val-max label {
+.grid-data-att .data-combat .heroisme .grid-heroisme .val label {
   position: relative;
   top: 5px;
 }
@@ -658,7 +657,7 @@ a.nohlight {
   align-self: center;
   text-align: center;
 }
-.grid-data-att .data-combat .sante .grid-sante .val-max {
+.grid-data-att .data-combat .sante .grid-sante .val {
   background-color: var(--color-stats-background);
   margin: 2px 5px;
   text-align: center;
@@ -666,7 +665,7 @@ a.nohlight {
   border-radius: 3px;
   height: 26px;
 }
-.grid-data-att .data-combat .sante .grid-sante .val-max label {
+.grid-data-att .data-combat .sante .grid-sante .val label {
   position: relative;
   top: 5px;
 }
@@ -690,6 +689,64 @@ a.nohlight {
 .grid-data-att .attaque .titre-rub {
   font: var(--font-lorgol-28px);
   text-align: center;
+}
+.grid-magies {
+  display: grid;
+  grid-template-columns: 1.25fr 3fr;
+  height: 100%;
+  font-family: "BarbedorMedium";
+}
+.grid-magies .data-magie {
+  background: linear-gradient(to right, #00000000, #00000021);
+  padding: 5px;
+}
+.grid-magies .data-magie .data-magie-titre {
+  text-align: center;
+  font: var(--font-lorgol-24px);
+  margin-bottom: 2px;
+}
+.grid-magies .data-magie .emprise .grid-emprise {
+  display: grid;
+  grid-template-columns: 2fr 1fr 3.5em;
+  align-items: center;
+  margin: 3px 1px;
+  padding: 3px;
+  border: solid 1px var(--color-box-border-dark);
+  border-radius: 5px;
+}
+.grid-magies .data-magie .emprise .grid-emprise .lib {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+.grid-magies .data-magie .emprise .grid-emprise .lib-obd {
+  align-items: center;
+  height: 27px;
+}
+.grid-magies .data-magie .emprise .grid-emprise .lib-obd label {
+  position: relative;
+  top: 5px;
+}
+.grid-magies .data-magie .emprise .grid-emprise .val-obd {
+  grid-column-start: 2;
+  grid-column-end: 4;
+  text-align: center;
+}
+.grid-magies .data-magie .emprise .grid-emprise .lib-all {
+  grid-column-start: 1;
+  grid-column-end: 4;
+  text-align: center;
+}
+.grid-magies .data-magie .emprise .grid-emprise .val {
+  background-color: var(--color-stats-background);
+  margin: 2px 5px;
+  text-align: center;
+  align-items: center;
+  border-radius: 3px;
+  height: 26px;
+}
+.grid-magies .data-magie .emprise .grid-emprise .val label {
+  position: relative;
+  top: 5px;
 }
 .recap {
   display: flex;
@@ -1134,7 +1191,6 @@ a.nohlight {
 .chat-message .carte .boutons-carte {
   display: inline-flex;
   flex-wrap: wrap;
-  margin: 3px;
 }
 .chat-message .carte .boutons-carte .ligne-btn-sort {
   width: 100%;

@@ -269,9 +269,9 @@ export default class AgoneActor extends Actor {
 
         let result = {
             rangComp: 0, 
-            labelComp: "ND", 
+            labelComp: "", 
             specialisation: false, 
-            labelSpecialisation: "ND", 
+            labelSpecialisation: "", 
             defCarac: null, 
             jetDefautInterdit: false
         };
@@ -306,9 +306,9 @@ export default class AgoneActor extends Actor {
         let result = {
             aspect: "",
             rangCarac: 0, 
-            labelCarac: "ND", 
+            labelCarac: "", 
             bonusAspect: 0, 
-            labelAspect: "ND"
+            labelAspect: ""
         };
 
         if(caracteristique) {
@@ -347,7 +347,7 @@ export default class AgoneActor extends Actor {
         return null;
     }
 
-    getStatsCombat(arme, /*compArme, minForce, minAgilite*/) {
+    /* getStatsCombat(arme) {
         let data = this.system;
 
         let result = {
@@ -412,7 +412,7 @@ export default class AgoneActor extends Actor {
         result.labelAspect = data.aspects.corps.bonus.label;
 
         return result;
-    }
+    } */
 
     getStatsEmprise() {
         let data = this.system;

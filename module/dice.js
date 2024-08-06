@@ -511,17 +511,7 @@ function _processJetCompetenceOptions(form) {
 }
 
 export async function combatArme(actor, arme, type) {
-    let gererBonusAspect = actor.gererBonusAspect();
-
-    //let statsCombat = actor.getStatsCombat(arme.system.competence, arme.system.minForce, arme.system.minAgilite);
-    let statsCombat = actor.getStatsCombat(arme);
-
     //console.log(game.combat, actor.estCombattantActif());
-    
-    if(statsCombat === null) {
-        ui.notifications.error(`${game.i18n.localize("agone.notifications.errorDonneesArme")} ${arme.name}.`)
-        return;
-    }
 
     // Vérification de l'utilisation d'une réaction le même round - uniquement en combat
     if(type == "Parade") {
@@ -531,6 +521,7 @@ export async function combatArme(actor, arme, type) {
         }
     }
 
+    // Vérification que l'attaque à lieu durant le tour du personnage - uniquement en combat
     if(type == "Attaque" && actor.getCombatant()) {
         if(!actor.estCombattantActif() && game.settings.get("agone","gestionDesRencontres")) {
             ui.notifications.warn(game.i18n.localize("agone.notifications.warnAttaqueTourCombat"));
@@ -560,6 +551,49 @@ export async function combatArme(actor, arme, type) {
         return;
     }
 
+    // Calcul des données de combat
+    let compData = new Object();
+    // Competence
+    if(arme.system.competence) {
+        compData = actor.getCompData("epreuves", "armes", arme.system.competence);
+    }
+    else {
+        compData.rangComp = -3;
+        compData.labelComp = game.i18n.localize("agone.chat.combatSansCompArme");
+        compData.specialisation = false;
+        compData.labelSpecialisation = "";
+        compData.isJetDefaut = true;
+    }
+    
+    // Caractéristique
+    const carac = arme.system.style == "trait" || arme.system.style == "jet" ? "tir" : "melee";
+    let caracData = actor.getCaracData(carac);
+    
+    // Autres stats de combat
+    let statsCombat = new Object();
+
+    // Malus de maniement suivants prérequis AGI et FOR
+    let reducMalusAgi = 0;
+    let reducMalusFor = 0;
+    if(arme.system.style == "melee" && arme.system.equipee == "deuxMains") {
+        reducMalusAgi = 1;
+        reducMalusFor = 2;
+    }
+
+    statsCombat.malusManiement = null;
+    let malusAgilite = Math.min(actor.system.aspects.corps.caracteristiques.agilite.valeur - arme.system.minAgilite + reducMalusAgi, 0);
+    let malusForce = Math.min(actor.system.aspects.corps.caracteristiques.force.valeur - arme.system.minForce + reducMalusFor, 0);
+    if(malusAgilite + malusForce < 0) {
+        statsCombat.malusManiement = malusAgilite + malusForce;
+    }
+
+    // Autres données de l'acteur
+    statsCombat.malusBlessureGrave = actor.getMalusBlessureGrave(actor.system.caracSecondaires.nbBlessureGrave);
+    statsCombat.bonusDommages = actor.system.caracSecondaires.bonusDommages;
+    statsCombat.tai = actor.system.caracSecondaires.tai.valeur;
+    statsCombat.seuilBlessureGrave = actor.system.caracSecondaires.seuilBlessureGrave;
+    statsCombat.seuilBlessureCritique = actor.system.caracSecondaires.seuilBlessureCritique;
+
     // Construction des strutures de données pour l'affichage de la boite de dialogue
     let armeData = {
         nomArme: arme.name
@@ -570,9 +604,9 @@ export async function combatArme(actor, arme, type) {
         statsCombat.modifAttaque = arme.system.modifAttaque;
         armeData.distance = arme.system.style == "trait" || arme.system.style == "jet" ? "distance" : "contact";
         let attaquantData = {
-            potAttaque: statsCombat.rangCarac + statsCombat.rangComp + statsCombat.bonusAspect + statsCombat.malusManiement + arme.system.modifAttaque,
-            specialisation : statsCombat.specialisation,
-            labelSpecialisation: statsCombat.labelSpecialisation
+            potAttaque: caracData.rangCarac + caracData.bonusAspect + compData.rangComp + statsCombat.malusManiement + arme.system.modifAttaque,
+            specialisation : compData.specialisation,
+            labelSpecialisation: compData.labelSpecialisation
         };
 
         dialogOptions = await getJetAttaqueOptions({attaquantData: attaquantData, armeData: armeData, cfgData: CONFIG.agone});
@@ -580,10 +614,10 @@ export async function combatArme(actor, arme, type) {
     else if(type == "Parade") {
         statsCombat.modifParade = arme.system.modifParade;
         let defenseurData = {
-            potDefense: statsCombat.rangCarac + statsCombat.rangComp + statsCombat.bonusAspect + statsCombat.malusManiement + arme.system.modifParade,
+            potDefense: caracData.rangCarac + caracData.bonusAspect + compData.rangComp + statsCombat.malusManiement + arme.system.modifParade,
             typeDefense: "parade",
-            specialisation : statsCombat.specialisation,
-            labelSpecialisation: statsCombat.labelSpecialisation
+            specialisation : compData.specialisation,
+            labelSpecialisation: compData.labelSpecialisation
         };
 
         dialogOptions = await getJetDefenseOptions({defenseurData: defenseurData, armeData: armeData});
@@ -660,15 +694,17 @@ export async function combatArme(actor, arme, type) {
     utiliseHeroisme = dialogOptions.utiliseHeroisme;
     utiliseSpecialisation = dialogOptions.utiliseSpecialisation;
 
+    const gererBonusAspect = actor.gererBonusAspect();
+
     let result = await jetCompetence({
         actor: actor,
-        rangComp: statsCombat.rangComp,
-        labelComp: statsCombat.labelComp,
+        rangComp: compData.rangComp,
+        labelComp: compData.labelComp,
         jetDefautInterdit: false,
-        rangCarac: statsCombat.rangCarac,
-        labelCarac: statsCombat.labelCarac,
-        bonusAspect: gererBonusAspect ? statsCombat.bonusAspect : null,
-        labelAspect: gererBonusAspect ? statsCombat.labelAspect: null,
+        rangCarac: caracData.rangCarac,
+        labelCarac: caracData.labelCarac,
+        bonusAspect: gererBonusAspect ? caracData.bonusAspect : null,
+        labelAspect: gererBonusAspect ? caracData.labelAspect: null,
         modifAttaque: statsCombat.modifAttaque,
         modifParade: statsCombat.modifParade,
         malusManiement: statsCombat.malusManiement,
@@ -686,6 +722,8 @@ export async function combatArme(actor, arme, type) {
 
     let rollStats = {
         ...rollResult.data,
+        ...compData,
+        ...caracData,
         ...statsCombat,
         modificateurs: modificateurs,
         utiliseHeroisme: utiliseHeroisme,

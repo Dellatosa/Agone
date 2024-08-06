@@ -8,6 +8,7 @@
                     {{localize "agone.chat.paradeAvec" arme=arme.name}}
                 {{/if}}
                 {{#if stats.difficulte}}<span>▪ {{localize "agone.chat.difficulteAbrev"}} </span><span class="bold">{{stats.difficulte}} </span>{{/if}}
+                {{#if stats.isJetDefaut}}<span>▪ <a class="nohlight spec" title="{{localize 'agone.chat.combatSansCompArme'}}"><i class="fa-light fa-circle-chevron-down"></i></a></span>{{/if}}
                 {{#if stats.utiliseSpecialisation}}<span>▪ <a class="nohlight spec" title="{{stats.labelSpecialisation}}"><i class="fas fa-award"></i></a></span>{{/if}}
                 {{#if stats.utiliseHeroisme}}<span>▪ <a class="nohlight spec" title="{{localize 'agone.chat.utilisationHeroisme'}}"><i class="fa-solid fa-fire-flame-curved"></i></a></span>{{/if}}
             </span>

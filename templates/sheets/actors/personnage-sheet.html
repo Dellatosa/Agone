@@ -47,36 +47,40 @@
             {{> "systems/agone/templates/partials/actors/bloc-combat-personnage.hbs"}}
         </div>
         <div class="tab magie-content" data-group="principal" data-tab="magie">
-            <nav class="magie-tabs tabs" data-group="magie">
-                <a class="item" data-tab="emprise">{{localize "agone.actors.emprise"}}</a>
-                <a class="item" data-tab="artsMagiques">{{localize "agone.actors.artsMagiques"}}</a>
-                <a class="item" data-tab="conjuration">{{localize "agone.actors.conjuration"}}</a>
-            </nav>
-            <div class="tab" data-group="magie" data-tab="emprise">
-                {{> "systems/agone/templates/partials/actors/bloc-recap-emprise-personnage.hbs"}}
-                <h3>{{localize "agone.actors.danseurs"}}</h3>
-                <div class="liste-danseurs">
-                    {{> "systems/agone/templates/partials/actors/bloc-liste-danseurs-personnage.hbs"}}
+            {{#if typePersonnage}}
+                {{> "systems/agone/templates/partials/actors/bloc-magie-personnage.hbs"}}
+            {{else}}
+                <nav class="magie-tabs tabs" data-group="magie">
+                    <a class="item" data-tab="emprise">{{localize "agone.actors.emprise"}}</a>
+                    <a class="item" data-tab="artsMagiques">{{localize "agone.actors.artsMagiques"}}</a>
+                    <a class="item" data-tab="conjuration">{{localize "agone.actors.conjuration"}}</a>
+                </nav>
+                <div class="tab" data-group="magie" data-tab="emprise">
+                    {{> "systems/agone/templates/partials/actors/bloc-recap-emprise-personnage.hbs"}}
+                    <h3>{{localize "agone.actors.danseurs"}}</h3>
+                    <div class="liste-danseurs">
+                        {{> "systems/agone/templates/partials/actors/bloc-liste-danseurs-personnage.hbs"}}
+                    </div>
+                    <h3>{{localize "agone.actors.sorts"}}</h3>
+                    <div class="liste-sorts">
+                        {{> "systems/agone/templates/partials/actors/bloc-liste-sorts-personnage.hbs"}}
+                    </div>
                 </div>
-                <h3>{{localize "agone.actors.sorts"}}</h3>
-                <div class="liste-sorts">
-                    {{> "systems/agone/templates/partials/actors/bloc-liste-sorts-personnage.hbs"}}
+                <div class="tab" data-group="magie" data-tab="artsMagiques">
+                    {{> "systems/agone/templates/partials/actors/bloc-recap-artsmagiques-personnage.hbs"}}
+                    <h3>{{localize "agone.actors.oeuvres"}}</h3>
+                    <div class="liste-oeuvres">
+                        {{> "systems/agone/templates/partials/actors/bloc-liste-oeuvres-personnage.hbs"}}
+                    </div>
                 </div>
-            </div>
-            <div class="tab" data-group="magie" data-tab="artsMagiques">
-                {{> "systems/agone/templates/partials/actors/bloc-recap-artsmagiques-personnage.hbs"}}
-                <h3>{{localize "agone.actors.oeuvres"}}</h3>
-                <div class="liste-oeuvres">
-                    {{> "systems/agone/templates/partials/actors/bloc-liste-oeuvres-personnage.hbs"}}
+                <div class="tab" data-group="magie" data-tab="conjuration">
+                    {{> "systems/agone/templates/partials/actors/bloc-recap-conjuration-personnage.hbs"}}
+                    <h3>{{localize "agone.actors.connivences"}}</h3>
+                    <div class="liste-connivences">
+                        {{> "systems/agone/templates/partials/actors/bloc-liste-connivences-personnage.hbs"}}
+                    </div>
                 </div>
-            </div>
-            <div class="tab" data-group="magie" data-tab="conjuration">
-                {{> "systems/agone/templates/partials/actors/bloc-recap-conjuration-personnage.hbs"}}
-                <h3>{{localize "agone.actors.connivences"}}</h3>
-                <div class="liste-connivences">
-                    {{> "systems/agone/templates/partials/actors/bloc-liste-connivences-personnage.hbs"}}
-                </div>
-            </div>
+            {{/if}}
         </div>
         <div class="tab" data-group="principal" data-tab="avantagesDefauts">
             <h3>{{localize "agone.actors.avantages"}}</h3>

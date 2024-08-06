@@ -90,6 +90,7 @@ async function preloadHandlebarsTemplates() {
         "systems/agone/templates/partials/actors/bloc-liste-armures-personnage-v2.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-manoeuvres-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-bottesSecretes-personnage.hbs",
+        "systems/agone/templates/partials/actors/bloc-magie-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-recap-emprise-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-danseurs-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-sorts-personnage.hbs",

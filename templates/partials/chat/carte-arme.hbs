@@ -6,7 +6,7 @@
     <div class="grid-4">
         <label class="entete">{{localize "agone.items.modifInit"}}</label>
         <label class="entete">{{localize "agone.items.modifAttaque"}}</label>
-        {{#if (eq system.style "melee")}}
+        {{#if (or (eq system.style "melee") (eq system.style "bouclier")) }}
             <label class="entete">{{localize "agone.items.modifParade"}}</label>
         {{else}}
             <label class="entete">{{localize "agone.items.portee"}}</label>
@@ -14,7 +14,7 @@
         <label class="entete">{{localize "agone.items.modifDommages"}}</label>
         <div>{{system.modifInit}}</div>
         <div>{{system.modifAttaque}}</div>
-        {{#if (eq system.style "melee")}}
+        {{#if (or (eq system.style "melee") (eq system.style "bouclier")) }}
             <div>{{system.modifParade}}</div>
         {{else}}
             <div>{{system.portee}}</div>
