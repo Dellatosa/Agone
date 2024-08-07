@@ -46,7 +46,7 @@ select.auto-size {
         margin-bottom: 10px;
     }
 
-    nav.magie-tabs, nav.historique-tabs {
+    nav.historique-tabs {
         height: 26px;
         line-height: 26px;
         border-bottom: 1px solid #b5b3a4;
@@ -733,6 +733,94 @@ a.nohlight {
                 .lib-all {
                     grid-column-start: 1;
                     grid-column-end: 4;
+                    text-align: center;
+                }
+
+                .val {
+                    background-color: var(--color-stats-background);
+                    margin: 2px 5px;
+                    text-align: center;
+                    align-items: center;
+                    border-radius: 3px;
+                    height: 26px;
+
+                    label {
+                        position: relative;
+                        top: 5px;
+                    }       
+                }
+            }
+        }
+
+        .actions-emp {
+            margin: 3px 1px;
+            padding: 3px;
+            border: solid 1px var(--color-box-border-dark);
+            border-radius: 5px;
+
+            button {
+                margin: 1px 0;
+                font-family: "BarbedorMedium";
+                border-radius: 5px;
+                border: 1px solid var(--color-box-border-dark);
+            }
+        }
+
+        .arts-magiques {
+            .grid-arts-magiques {
+                display: grid;
+                grid-template-columns: 1fr 3.5em;
+                align-items: center;
+                margin: 3px 1px;
+                padding: 3px;
+                border: solid 1px var(--color-box-border-dark);
+                border-radius: 5px;
+
+                .lib {
+                    grid-column-start: 1;
+                    grid-column-end: 2;
+                }
+
+                .lib-all {
+                    grid-column-start: 1;
+                    grid-column-end: 3;
+                    text-align: center;
+                }
+
+                .val {
+                    background-color: var(--color-stats-background);
+                    margin: 2px 5px;
+                    text-align: center;
+                    align-items: center;
+                    border-radius: 3px;
+                    height: 26px;
+
+                    label {
+                        position: relative;
+                        top: 5px;
+                    }       
+                }
+            }
+        }
+
+        .conjuration {
+            .grid-conjuration {
+                display: grid;
+                grid-template-columns: 1fr 3.5em;
+                align-items: center;
+                margin: 3px 1px;
+                padding: 3px;
+                border: solid 1px var(--color-box-border-dark);
+                border-radius: 5px;
+
+                .lib {
+                    grid-column-start: 1;
+                    grid-column-end: 2;
+                }
+
+                .lib-all {
+                    grid-column-start: 1;
+                    grid-column-end: 3;
                     text-align: center;
                 }
 

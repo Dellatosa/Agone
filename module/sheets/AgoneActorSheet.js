@@ -7,6 +7,7 @@ import EditCompFormApplication from "../EditCompFormApplication.js";
 export default class AgoneActorSheet extends ActorSheet {
      
     static get defaultOptions() {
+
         return mergeObject(super.defaultOptions, {
             width: 760,
             height: 910,
@@ -19,6 +20,7 @@ export default class AgoneActorSheet extends ActorSheet {
     }
 
     get template() {
+
         if(this.actor.type == "Personnage" || this.actor.type == "Damne") {
             console.log(`Agone | type : ${this.actor.type} | chargement du template systems/agone/templates/sheets/actors/personnage-sheet.html`);
             return `systems/agone/templates/sheets/actors/personnage-sheet.html`
@@ -101,6 +103,9 @@ export default class AgoneActorSheet extends ActorSheet {
 
         // Etat du verrou sur la feuille
         data.unlocked = this.actor.isUnlocked;
+
+        // Onglet magie sélectionné
+        data.tabMagieActif = this.actor.getFlag(game.system.id, "TabMagieActif");
         
         // Affichage du bouton pour le jet de Vieillesse
         if(game.settings.get("agone", "gestionJetVieillesse") && actorData.peuple != "feeNoire") {
@@ -151,22 +156,12 @@ export default class AgoneActorSheet extends ActorSheet {
                 item.update({"system.equipee": ""});
                 item.update({"system.nonUtilisable": true});
                 item.update({"system.raisonNonUtilisable": game.i18n.localize("agone.tooltip.prerequisTaiArme")});
-            } 
-            /*else if ((diffTai < 1 && diffAgilite < -1 && arme.system.style == "melee") || diffAgilite < 0) {
-                item.update({"system.equipee": ""});
-                item.update({"system.nonUtilisable": true});
-                item.update({"system.raisonNonUtilisable": game.i18n.localize("agone.tooltip.prerequisAgiArme")});
             }
-            else if ((diffTai < 1 && diffForce < -2 && arme.system.style == "melee") || diffForce < 0) {
-                item.update({"system.equipee": ""});
-                item.update({"system.nonUtilisable": true});
-                item.update({"system.raisonNonUtilisable": game.i18n.localize("agone.tooltip.prerequisForArme")});
-            }*/
             else {
                 item.update({"system.nonUtilisable": false});
                 item.update({"system.raisonNonUtilisable": ""});
             }
-        });
+        });        
 
         return data;
     }
@@ -206,6 +201,9 @@ export default class AgoneActorSheet extends ActorSheet {
         if(this.actor.isOwner) {
             // Vérouiller / dévérouiller la fiche
             html.find(".sheet-change-lock").click(this._onSheetChangelock.bind(this));
+
+            // Changement d'onglet magie
+            html.find("nav.magie-tabs").click(this._onChangeMagieTabs.bind(this));
 
             // Modifier les aspects - Damné uniquement
             html.find(".mod-aspect-crea").click(this._onModifAspect.bind(this));
@@ -309,6 +307,17 @@ export default class AgoneActorSheet extends ActorSheet {
         if (flagData) await this.actor.unsetFlag(game.system.id, "SheetUnlocked");
         else await this.actor.setFlag(game.system.id, "SheetUnlocked", "SheetUnlocked");
         this.actor.sheet.render(true);
+    }
+
+    // Changement d'onglet magie
+    async _onChangeMagieTabs(event) {
+        event.preventDefault();
+
+        for(const tab of event.currentTarget.children) {
+            if(tab.matches(".active")) {
+                await this.actor.setFlag(game.system.id, "TabMagieActif", tab.dataset.tab);
+            }
+        }
     }
 
     // Modifier le peuple

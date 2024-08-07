@@ -5,7 +5,7 @@
     </div>
     <div class="recap-item">
         <label>{{localize "agone.actors.resonance"}}</label>
-        <select name="system.caracSecondaires.resonance">
+         <select name="system.caracSecondaires.resonance">
             {{#select data.system.caracSecondaires.resonance}}
                 {{#each config.resonances as |name type|}}
                     <option value="{{type}}">{{localize name}}</option>

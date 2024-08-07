@@ -276,6 +276,7 @@
             "histoire": "Histoire",
             "pcCaracUtilises": "Points de création utilisés",
             "pcCompUtilises": "Points de création utilisés",
+            "actionsEmprise" :"Actions d'Emprise",
             "actionsDefense": "Actions de défense"
         },
         "items":{

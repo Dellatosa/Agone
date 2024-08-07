@@ -47,7 +47,11 @@ Hooks.once("init", function(){
 
 Hooks.once("setup", function() {
     // Indicates Migration Version
-    CONFIG.agone.lastMigrationVer = game.settings.get("agone", "systemMigrationVersion")
+    CONFIG.agone.lastMigrationVer = game.settings.get("agone", "systemMigrationVersion");
+
+    game.actors.forEach(actor => {
+        actor.setFlag(game.system.id, "TabMagieActif", "emprise");
+    });
 });
 
 Hooks.once("ready", async function() {

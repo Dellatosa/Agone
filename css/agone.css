@@ -163,7 +163,6 @@ select.auto-size {
 .agone.sheet.actor nav:not(.sheet-tabs) {
   margin-bottom: 10px;
 }
-.agone.sheet.actor nav.magie-tabs,
 .agone.sheet.actor nav.historique-tabs {
   height: 26px;
   line-height: 26px;
@@ -745,6 +744,78 @@ a.nohlight {
   height: 26px;
 }
 .grid-magies .data-magie .emprise .grid-emprise .val label {
+  position: relative;
+  top: 5px;
+}
+.grid-magies .data-magie .actions-emp {
+  margin: 3px 1px;
+  padding: 3px;
+  border: solid 1px var(--color-box-border-dark);
+  border-radius: 5px;
+}
+.grid-magies .data-magie .actions-emp button {
+  margin: 1px 0;
+  font-family: "BarbedorMedium";
+  border-radius: 5px;
+  border: 1px solid var(--color-box-border-dark);
+}
+.grid-magies .data-magie .arts-magiques .grid-arts-magiques {
+  display: grid;
+  grid-template-columns: 1fr 3.5em;
+  align-items: center;
+  margin: 3px 1px;
+  padding: 3px;
+  border: solid 1px var(--color-box-border-dark);
+  border-radius: 5px;
+}
+.grid-magies .data-magie .arts-magiques .grid-arts-magiques .lib {
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+.grid-magies .data-magie .arts-magiques .grid-arts-magiques .lib-all {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  text-align: center;
+}
+.grid-magies .data-magie .arts-magiques .grid-arts-magiques .val {
+  background-color: var(--color-stats-background);
+  margin: 2px 5px;
+  text-align: center;
+  align-items: center;
+  border-radius: 3px;
+  height: 26px;
+}
+.grid-magies .data-magie .arts-magiques .grid-arts-magiques .val label {
+  position: relative;
+  top: 5px;
+}
+.grid-magies .data-magie .conjuration .grid-conjuration {
+  display: grid;
+  grid-template-columns: 1fr 3.5em;
+  align-items: center;
+  margin: 3px 1px;
+  padding: 3px;
+  border: solid 1px var(--color-box-border-dark);
+  border-radius: 5px;
+}
+.grid-magies .data-magie .conjuration .grid-conjuration .lib {
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+.grid-magies .data-magie .conjuration .grid-conjuration .lib-all {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  text-align: center;
+}
+.grid-magies .data-magie .conjuration .grid-conjuration .val {
+  background-color: var(--color-stats-background);
+  margin: 2px 5px;
+  text-align: center;
+  align-items: center;
+  border-radius: 3px;
+  height: 26px;
+}
+.grid-magies .data-magie .conjuration .grid-conjuration .val label {
   position: relative;
   top: 5px;
 }

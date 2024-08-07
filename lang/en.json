@@ -276,7 +276,8 @@
             "histoire": "Story",
             "pcCaracUtilises": "Used creation points",
             "pcCompUtilises": "Used creation points",
-            "actionsDefense": "NO TRAD - Actions de défense"
+            "actionsEmprise" :"Ascendancy actions",
+            "actionsDefense": "Defense Actions"
         },
         "items":{
             "description": "Description",
