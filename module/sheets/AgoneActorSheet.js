@@ -295,7 +295,7 @@ export default class AgoneActorSheet extends ActorSheet {
 
             // Liste Danseurs
             // Régénérer l'endurance
-            html.find('.repos-danseurs').click(this._onReposDanseurs.bind(this));
+            html.find('button.repos-danseurs').click(this._onReposDanseurs.bind(this));
         }
     }
 

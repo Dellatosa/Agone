@@ -277,7 +277,9 @@
             "pcCaracUtilises": "Used creation points",
             "pcCompUtilises": "Used creation points",
             "actionsEmprise" :"Ascendancy actions",
-            "actionsDefense": "Defense Actions"
+            "actionsArts": "Magical arts actions",
+            "actionsDefense": "Defense Actions",
+            "reposDanseurs": "Dancers rest"
         },
         "items":{
             "description": "Description",
@@ -601,7 +603,11 @@
             "clickPourEquiperArmure" : "Click to equip armor",
             "protection": "NO TRAD - Valeur de protection",
             "malusAgilite": "NO TRAD - Malus aux tests d'agilité",
-            "malusPerception": "NO TRAD - Malus aux tests de perception"
+            "malusPerception": "NO TRAD - Malus aux tests de perception",
+            "memoire": "Memory",
+            "endurance": "Stamina",
+            "bonusEmprise": "Ascendancy bonus",
+            "empathie": "Empathy"
         }
     },
     "parametres": {

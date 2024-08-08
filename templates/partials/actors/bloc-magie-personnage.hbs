@@ -1,59 +1,95 @@
 <div class="grid-magies">
     <div class="data-magie">
         {{#if (eq tabMagieActif "emprise")}}
-        <div class="emprise">
-            <div class="grid-emprise">
-                <div class="data-magie-titre lib-all">{{localize "agone.actors.emprise"}}</div>
-                <div class="lib-obd"><label>{{localize "agone.actors.obedience"}}</label></div>
-                {{#if unlocked}}
-                    <select class="val-obd" name="system.caracSecondaires.resonance">
-                    {{#select data.system.caracSecondaires.resonance}}
-                        {{#each config.resonances as |name type|}}
-                            <option value="{{type}}">{{localize name}}</option>
-                        {{/each}}
-                    {{/select}} 
-                    </select>
-                {{else}}
-                    <div class="val-obd">{{configLocalize "resonances" data.system.caracSecondaires.resonance}}</div>
-                {{/if}}
-                {{#unless (eq data.system.caracSecondaires.resonance "aucun")}}
-                    <label class="lib">{{localize "agone.actors.emprise"}}</label>
-                    <div class="val"><label>{{data.system.aspects.esprit.caracteristiques.emprise.valeur}}</label></div>
-                    <label class="lib">{{localize "agone.actors.resonance"}}</label>
-                    {{#with data.system as | dt | }}
-                        {{#each dt.familleCompetences.occulte.competences.resonance.domaines as |reso keyReso|}}
-                            {{#if (eq keyReso dt.caracSecondaires.resonance )}}
-                                <div class="val"><label>{{reso.rang}}</label></div>
-                            {{/if}}
-                        {{/each}}
-                    {{/with}}
-                    <label class="lib">{{localize "agone.actors.connDanseurs"}}</label>
-                    <div class="val"><label>{{data.system.familleCompetences.occulte.competences.connDanseurs.rang}}</label></div>
-                {{/unless}}
+            <div class="emprise">
+                <div class="grid-emprise">
+                    <div class="data-magie-titre lib-all">{{localize "agone.actors.emprise"}}</div>
+                    <div class="lib-obd"><label>{{localize "agone.actors.obedience"}}</label></div>
+                    {{#if unlocked}}
+                        <select class="val-obd" name="system.caracSecondaires.resonance">
+                        {{#select data.system.caracSecondaires.resonance}}
+                            {{#each config.resonances as |name type|}}
+                                <option value="{{type}}">{{localize name}}</option>
+                            {{/each}}
+                        {{/select}} 
+                        </select>
+                    {{else}}
+                        <div class="val-obd">{{configLocalize "resonances" data.system.caracSecondaires.resonance}}</div>
+                    {{/if}}
+                    {{#unless (eq data.system.caracSecondaires.resonance "aucun")}}
+                        <label class="lib">{{localize "agone.actors.emprise"}}</label>
+                        <div class="val"><label>{{data.system.aspects.esprit.caracteristiques.emprise.valeur}}</label></div>
+                        <label class="lib">{{localize "agone.actors.resonance"}}</label>
+                        {{#with data.system as | dt | }}
+                            {{#each dt.familleCompetences.occulte.competences.resonance.domaines as |reso keyReso|}}
+                                {{#if (eq keyReso dt.caracSecondaires.resonance )}}
+                                    <div class="val"><label>{{reso.rang}}</label></div>
+                                {{/if}}
+                            {{/each}}
+                        {{/with}}
+                        <label class="lib">{{localize "agone.actors.connDanseurs"}}</label>
+                        <div class="val"><label>{{data.system.familleCompetences.occulte.competences.connDanseurs.rang}}</label></div>
+                    {{/unless}}
+                </div>
             </div>
-        </div>
-        {{#unless (eq data.system.caracSecondaires.resonance "aucun")}}
-            <div class="actions-emp"> 
-                <div class="data-magie-titre">{{localize "agone.actors.actionsEmprise"}}</div>
-                <button class="reconnSort"><i class="fa-duotone fa-solid fa-book-sparkles"></i> {{localize "agone.actors.reconnSort"}}</button>
-                <button class="resistMagie"><i class="fa-duotone fa-solid fa-sparkles"></i> {{localize "agone.actors.resistMagie"}}</button>
-                <button class="contreMagie"><i class="fa-duotone fa-solid fa-hand-sparkles"></i></i> {{localize "agone.actors.contreMagie"}}</button>
-            </div>
-        {{/unless}}
+            {{#unless (eq data.system.caracSecondaires.resonance "aucun")}}
+                <div class="actions-magie"> 
+                    <div class="data-magie-titre">{{localize "agone.actors.actionsEmprise"}}</div>
+                    <button class="reconnSort"><i class="fa-duotone fa-solid fa-book-sparkles"></i> {{localize "agone.actors.reconnSort"}}</button>
+                    <button class="resistMagie"><i class="fa-sharp-duotone fa-solid fa-person-falling-burst"></i> {{localize "agone.actors.resistMagie"}}</button>
+                    <button class="contreMagie"><i class="fa-duotone fa-solid fa-hand-sparkles"></i> {{localize "agone.actors.contreMagie"}}</button>
+                    <button class="repos-danseurs"><i class="fa-duotone fa-solid fa-moon-cloud"></i> {{localize "agone.actors.reposDanseurs"}}</button>
+                </div>
+            {{/unless}}
         {{/if}}
         {{#if (eq tabMagieActif "artsMagiques")}}
-        <div class="arts-magiques">
-            <div class="grid-arts-magiques">
-                <div class="data-magie-titre lib-all">{{localize "agone.actors.artsMagiques"}}</div>
+            <div class="arts-magiques">
+                <div class="grid-arts-magiques">
+                    <div class="data-magie-titre lib-all">{{localize "agone.actors.artsMagiques"}}</div>
+                    <label class="lib">{{localize "agone.actors.art"}}</label>
+                    <div class="val"><label>{{data.system.aspects.ame.caracteristiques.art.valeur}}</label></div>
+                    {{#if (gt data.system.familleCompetences.occulte.competences.artsMagiques.domaines.accord.rang 0)}}
+                        <label class="lib">{{localize "agone.actors.accord"}}</label>
+                        <div class="val"><label>{{data.system.familleCompetences.occulte.competences.artsMagiques.domaines.accord.rang}}</label></div>
+                    {{/if}}
+                    {{#if (gt data.system.familleCompetences.occulte.competences.artsMagiques.domaines.cyse.rang 0)}}
+                        <label class="lib">{{localize "agone.actors.cyse"}}</label>
+                        <div class="val"><label>{{data.system.familleCompetences.occulte.competences.artsMagiques.domaines.cyse.rang}}</label></div>
+                    {{/if}}
+                    {{#if (gt data.system.familleCompetences.occulte.competences.artsMagiques.domaines.decorum.rang 0)}}
+                        <label class="lib">{{localize "agone.actors.decorum"}}</label>
+                        <div class="val"><label>{{data.system.familleCompetences.occulte.competences.artsMagiques.domaines.decorum.rang}}</label></div>
+                    {{/if}}
+                    {{#if (gt data.system.familleCompetences.occulte.competences.artsMagiques.domaines.geste.rang 0)}}
+                        <label class="lib">{{localize "agone.actors.geste"}}</label>
+                        <div class="val"><label>{{data.system.familleCompetences.occulte.competences.artsMagiques.domaines.geste.rang}}</label></div>
+                    {{/if}}
+                </div>
             </div>
-        </div>
+            {{#unless (and (eq data.system.familleCompetences.occulte.competences.artsMagiques.domaines.accord.rang 0)
+                    (eq data.system.familleCompetences.occulte.competences.artsMagiques.domaines.cyse.rang 0)
+                    (eq data.system.familleCompetences.occulte.competences.artsMagiques.domaines.decorum.rang 0)
+                    (eq data.system.familleCompetences.occulte.competences.artsMagiques.domaines.geste.rang 0)) }}
+                <div class="actions-magie"> 
+                    <div class="data-magie-titre">{{localize "agone.actors.actionsArts"}}</div>
+                    <button class="reconnOeuvre"><i class="fa-duotone fa-solid fa-comments-question"></i> {{localize "agone.actors.reconnOeuvre"}}</button>
+                    {{#if (gt data.system.familleCompetences.occulte.competences.artsMagiques.domaines.accord.rang 0)}}
+                        <button class="desaccord"><i class="fa-duotone fa-solid fa-music-note-slash"></i> {{localize "agone.actors.desaccord"}}</button>
+                    {{/if}}
+                    <button class="artImprovise">{{localize "agone.actors.artImprovise"}}</button>
+                </div>
+            {{/unless}}
         {{/if}}
         {{#if (eq tabMagieActif "conjuration")}}
-        <div class="conjuration">
-            <div class="grid-conjuration">
-                <div class="data-magie-titre lib-all">{{localize "agone.actors.conjuration"}}</div>
+            <div class="conjuration">
+                <div class="grid-conjuration">
+                    <div class="data-magie-titre lib-all">{{localize "agone.actors.conjuration"}}</div>
+                    <label class="lib">{{localize "agone.actors.demonologie"}}</label>
+                    <div class="val"><label>{{data.system.familleCompetences.occulte.competences.demonologie.rang}}</label></div>
+                    <label class="lib">{{localize "agone.actors.noirceur"}}</label>
+                    <div class="val"><label>{{data.system.caracSecondaires.noirceur}}</label></div>
+                </div>
             </div>
-        </div>
         {{/if}}
     </div>
     <div class="magies">
@@ -63,24 +99,19 @@
             <a class="item" data-tab="conjuration">{{localize "agone.actors.conjuration"}}</a>
         </nav>
         <div class="tab" data-group="magie" data-tab="emprise">
-            <h3>{{localize "agone.actors.danseurs"}}</h3>
-            <div class="liste-danseurs">
-                <!-- {{> "systems/agone/templates/partials/actors/bloc-liste-danseurs-personnage.hbs"}} -->
-            </div>
+            {{> "systems/agone/templates/partials/actors/bloc-liste-danseurs-personnage-v2.hbs"}}
             <h3>{{localize "agone.actors.sorts"}}</h3>
             <div class="liste-sorts">
                 {{> "systems/agone/templates/partials/actors/bloc-liste-sorts-personnage.hbs"}}
             </div>
         </div>
         <div class="tab" data-group="magie" data-tab="artsMagiques">
-            {{> "systems/agone/templates/partials/actors/bloc-recap-artsmagiques-personnage.hbs"}}
             <h3>{{localize "agone.actors.oeuvres"}}</h3>
             <div class="liste-oeuvres">
                 {{> "systems/agone/templates/partials/actors/bloc-liste-oeuvres-personnage.hbs"}}
             </div>
         </div>
         <div class="tab" data-group="magie" data-tab="conjuration">
-            {{> "systems/agone/templates/partials/actors/bloc-recap-conjuration-personnage.hbs"}}
             <h3>{{localize "agone.actors.connivences"}}</h3>
             <div class="liste-connivences">
                 {{> "systems/agone/templates/partials/actors/bloc-liste-connivences-personnage.hbs"}}

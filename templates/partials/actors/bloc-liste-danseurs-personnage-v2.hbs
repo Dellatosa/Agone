@@ -1,0 +1,32 @@
+<div class="titre-rub">{{localize "agone.actors.danseurs"}}</div>
+<div class="grid-danseurs">
+    {{#each danseurs as |danseur id|}}
+        <div class="bloc-danseur item" data-item-id="{{danseur._id}}">
+            <div class="ligne-titre">
+                <a class="item-roll"><img src="{{img}}" title="{{localize 'agone.actors.voirDanseur'}}"/></a>
+                <div class="titre">{{name}}</div>
+                {{#if ../unlocked}}
+                    <div class="icone"><a class="editer-item" title="{{localize 'agone.common.editer'}}"><i class="fa-duotone fa-solid fa-pen-to-square"></i></a></div>
+                    <div class="icone"><a class="supprimer-item" title="{{localize 'agone.common.supprimer'}}"><i class="fa-duotone fa-solid fa-x"></i></a></div>
+                {{else}}
+                    {{#if (eq system.endurance.value 0)}}
+                        <div class="icone warn"><i class="fa-duotone fa-solid fa-heart-circle-bolt" title="{{name}} {{localize 'agone.notifications.warnDanseurEpuise'}}"></i></div>
+                    {{/if}}
+                <!-- <i class="fa-duotone fa-solid fa-book-copy"></i>
+                <i class="fa-duotone fa-solid fa-wreath-laurel"></i> -->
+                {{/if}}
+            </div>
+            <div class="ligne-stats-danseur">
+                <div class="full-row"><i class="fa-duotone fa-solid fa-head-side-brain" title="{{localize 'agone.tooltip.memoire'}}"></i> {{system.memoire.value}} / {{system.memoire.max}}</div>
+                <div class="full-row"><i class="fa-duotone fa-solid fa-heart-circle-bolt" title="{{localize 'agone.tooltip.endurance'}}"></i> {{system.endurance.value}} / {{system.endurance.max}}</div>
+                <div><i class="fa-duotone fa-solid fa-sparkles" title="{{localize 'agone.tooltip.bonusEmprise'}}"></i> {{system.bonusEmprise}}</div>
+                <div><i class="fa-duotone fa-solid fa-hands-holding-heart" title="{{localize 'agone.tooltip.empathie'}}"></i> {{system.empathie}}</div>
+            </div>
+        </div>
+    {{/each}}
+</div>
+<!-- 
+    <a class="repos-danseurs" title="{{localize 'agone.chat.regenEndDanseurs'}}"><i class="fas fa-moon"></i></a>
+    <a class="creer-item" data-type="Danseur" title="{{localize 'agone.common.ajouter'}}"><i class="fas fa-plus"></i></a>
+</div>
+ -->
