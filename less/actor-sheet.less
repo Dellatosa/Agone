@@ -24,6 +24,10 @@ select.auto-size {
     color: var(--color-red-warning);
 }
 
+.white {
+    color: white;
+}
+
 .agone.sheet.actor  {
     
     form {
@@ -879,11 +883,11 @@ a.nohlight {
     }
 }
 
-.grid-armes, .grid-armures, .grid-danseurs {
+.grid-armes, .grid-armures, .grid-danseurs, .grid-sorts {
     display: grid;
     grid-template-columns: 1fr 1fr;
 
-    .bloc-arme, .bloc-armure, .bloc-danseur {
+    .bloc-arme, .bloc-armure, .bloc-danseur, .bloc-sort {
         border: solid 1px var(--color-box-border-dark);
         border-radius: 5px;
         margin: 2px;
@@ -970,6 +974,40 @@ a.nohlight {
             .full-row {
                 grid-row-start: 1;
                 grid-row-end: 3;
+            }
+        }
+
+        .ligne-sorts-connus {
+            display: flex;
+            align-items: center;
+            border-top: solid 1px var(--color-box-border-dark);
+
+            .titre {
+                flex: 2;
+                margin: 3px;
+                font-weight: bold;
+            }
+
+            .info {
+                margin: 3px;
+            }
+        }
+
+        .ligne-sort {
+            display: flex;
+            align-items: center;
+        }
+
+        .ligne-stats-sort {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            text-align: center;
+            align-items: center;
+            margin-bottom: 3px;
+
+            .full-row {
+                grid-row-start: 1;
+                grid-row-end: 4;
             }
         }
     }

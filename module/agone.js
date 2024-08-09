@@ -99,6 +99,7 @@ async function preloadHandlebarsTemplates() {
         "systems/agone/templates/partials/actors/bloc-liste-danseurs-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-danseurs-personnage-v2.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-sorts-personnage.hbs",
+        "systems/agone/templates/partials/actors/bloc-liste-sorts-personnage-v2.hbs",
         "systems/agone/templates/partials/actors/bloc-recap-artsmagiques-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-oeuvres-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-recap-conjuration-personnage.hbs",

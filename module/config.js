@@ -1098,7 +1098,10 @@ agone.symboles = {
     jet: "fa-sharp-duotone fa-solid fa-star",
     contondante: "fa-duotone fa-solid fa-hammer-war",
     tranchante: "fa-duotone fa-solid fa-sickle",
-    perforante: "fa-duotone fa-solid fa-bullseye-arrow"
+    perforante: "fa-duotone fa-solid fa-bullseye-arrow",
+    jorniste: "fa-duotone fa-solid fa-sparkle white",
+    eclipsiste: "fa-duotone fa-solid fa-sparkle",
+    obscurantiste: "fa-solid fa-sparkle"
 }
 
 agone.clefsEffets = {

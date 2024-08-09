@@ -1,0 +1,27 @@
+<div class="titre-rub">{{localize "agone.actors.sorts"}}</div>
+<div class="grid-sorts">
+    {{#each sorts as |sort id|}}
+        <div class="bloc-sort item" data-item-id="{{sort._id}}">
+            <div class="ligne-titre">
+                <a class="item-roll"><img src="{{img}}" title="{{localize 'agone.actors.voirSort'}}"/></a>
+                <div class="titre">{{name}}</div>
+                {{#if ../unlocked}}
+                    <div class="icone"><a class="editer-item" title="{{localize 'agone.common.editer'}}"><i class="fa-duotone fa-solid fa-pen-to-square"></i></a></div>
+                    <div class="icone"><a class="supprimer-item" title="{{localize 'agone.common.supprimer'}}"><i class="fa-duotone fa-solid fa-x"></i></a></div>
+                {{else}}
+                {{/if}}
+            </div>
+            <div class="ligne-stats-sort">
+                <div class="full-row">
+                    <i class="{{configSymbole system.resonance}} icone" title="{{configLocalize "resonances" system.resonance}}"></i>
+                    {{localize "agone.items.seuil"}} {{system.seuil}}
+                </div>
+                <div>
+                    <div><i class="fa-duotone fa-solid fa-ruler-horizontal" title="{{localize 'agone.items.porteeZoneEffet'}}"></i> {{system.portee}}</div>
+                    <div><i class="fa-duotone fa-solid fa-sparkles" title="{{localize 'agone.items.dureeDanse'}}"></i> {{system.dureeDanse}}</div>
+                    <div><i class="fa-duotone fa-solid fa-hourglass-clock" title="{{localize 'agone.items.dureeSort'}}"></i> {{system.dureeSort}}</div>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+</div>
