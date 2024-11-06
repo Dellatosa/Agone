@@ -147,6 +147,9 @@ select.auto-size {
 .warn {
   color: var(--color-red-warning);
 }
+.white {
+  color: white;
+}
 .agone.sheet.actor form {
   display: flex;
   flex-direction: column;
@@ -850,19 +853,27 @@ a.nohlight {
 }
 .grid-armes,
 .grid-armures,
-.grid-danseurs {
+.grid-danseurs,
+.grid-sorts {
   display: grid;
   grid-template-columns: 1fr 1fr;
 }
 .grid-armes .bloc-arme,
 .grid-armures .bloc-arme,
 .grid-danseurs .bloc-arme,
+.grid-sorts .bloc-arme,
 .grid-armes .bloc-armure,
 .grid-armures .bloc-armure,
 .grid-danseurs .bloc-armure,
+.grid-sorts .bloc-armure,
 .grid-armes .bloc-danseur,
 .grid-armures .bloc-danseur,
-.grid-danseurs .bloc-danseur {
+.grid-danseurs .bloc-danseur,
+.grid-sorts .bloc-danseur,
+.grid-armes .bloc-sort,
+.grid-armures .bloc-sort,
+.grid-danseurs .bloc-sort,
+.grid-sorts .bloc-sort {
   border: solid 1px var(--color-box-border-dark);
   border-radius: 5px;
   margin: 2px;
@@ -871,24 +882,38 @@ a.nohlight {
 .grid-armes .bloc-arme .icone,
 .grid-armures .bloc-arme .icone,
 .grid-danseurs .bloc-arme .icone,
+.grid-sorts .bloc-arme .icone,
 .grid-armes .bloc-armure .icone,
 .grid-armures .bloc-armure .icone,
 .grid-danseurs .bloc-armure .icone,
+.grid-sorts .bloc-armure .icone,
 .grid-armes .bloc-danseur .icone,
 .grid-armures .bloc-danseur .icone,
-.grid-danseurs .bloc-danseur .icone {
+.grid-danseurs .bloc-danseur .icone,
+.grid-sorts .bloc-danseur .icone,
+.grid-armes .bloc-sort .icone,
+.grid-armures .bloc-sort .icone,
+.grid-danseurs .bloc-sort .icone,
+.grid-sorts .bloc-sort .icone {
   font-size: 1.3em;
   margin-left: 2px;
 }
 .grid-armes .bloc-arme .ligne-titre,
 .grid-armures .bloc-arme .ligne-titre,
 .grid-danseurs .bloc-arme .ligne-titre,
+.grid-sorts .bloc-arme .ligne-titre,
 .grid-armes .bloc-armure .ligne-titre,
 .grid-armures .bloc-armure .ligne-titre,
 .grid-danseurs .bloc-armure .ligne-titre,
+.grid-sorts .bloc-armure .ligne-titre,
 .grid-armes .bloc-danseur .ligne-titre,
 .grid-armures .bloc-danseur .ligne-titre,
-.grid-danseurs .bloc-danseur .ligne-titre {
+.grid-danseurs .bloc-danseur .ligne-titre,
+.grid-sorts .bloc-danseur .ligne-titre,
+.grid-armes .bloc-sort .ligne-titre,
+.grid-armures .bloc-sort .ligne-titre,
+.grid-danseurs .bloc-sort .ligne-titre,
+.grid-sorts .bloc-sort .ligne-titre {
   display: flex;
   align-items: center;
   margin-bottom: 5px;
@@ -897,12 +922,19 @@ a.nohlight {
 .grid-armes .bloc-arme .ligne-titre img,
 .grid-armures .bloc-arme .ligne-titre img,
 .grid-danseurs .bloc-arme .ligne-titre img,
+.grid-sorts .bloc-arme .ligne-titre img,
 .grid-armes .bloc-armure .ligne-titre img,
 .grid-armures .bloc-armure .ligne-titre img,
 .grid-danseurs .bloc-armure .ligne-titre img,
+.grid-sorts .bloc-armure .ligne-titre img,
 .grid-armes .bloc-danseur .ligne-titre img,
 .grid-armures .bloc-danseur .ligne-titre img,
-.grid-danseurs .bloc-danseur .ligne-titre img {
+.grid-danseurs .bloc-danseur .ligne-titre img,
+.grid-sorts .bloc-danseur .ligne-titre img,
+.grid-armes .bloc-sort .ligne-titre img,
+.grid-armures .bloc-sort .ligne-titre img,
+.grid-danseurs .bloc-sort .ligne-titre img,
+.grid-sorts .bloc-sort .ligne-titre img {
   flex: 0 0 24px;
   border: none;
   height: 24px;
@@ -910,12 +942,19 @@ a.nohlight {
 .grid-armes .bloc-arme .ligne-titre .titre,
 .grid-armures .bloc-arme .ligne-titre .titre,
 .grid-danseurs .bloc-arme .ligne-titre .titre,
+.grid-sorts .bloc-arme .ligne-titre .titre,
 .grid-armes .bloc-armure .ligne-titre .titre,
 .grid-armures .bloc-armure .ligne-titre .titre,
 .grid-danseurs .bloc-armure .ligne-titre .titre,
+.grid-sorts .bloc-armure .ligne-titre .titre,
 .grid-armes .bloc-danseur .ligne-titre .titre,
 .grid-armures .bloc-danseur .ligne-titre .titre,
-.grid-danseurs .bloc-danseur .ligne-titre .titre {
+.grid-danseurs .bloc-danseur .ligne-titre .titre,
+.grid-sorts .bloc-danseur .ligne-titre .titre,
+.grid-armes .bloc-sort .ligne-titre .titre,
+.grid-armures .bloc-sort .ligne-titre .titre,
+.grid-danseurs .bloc-sort .ligne-titre .titre,
+.grid-sorts .bloc-sort .ligne-titre .titre {
   flex: 2;
   font-family: "BarbedorMedium";
   font-size: 1.3em;
@@ -924,12 +963,19 @@ a.nohlight {
 .grid-armes .bloc-arme .ligne-stats-arme,
 .grid-armures .bloc-arme .ligne-stats-arme,
 .grid-danseurs .bloc-arme .ligne-stats-arme,
+.grid-sorts .bloc-arme .ligne-stats-arme,
 .grid-armes .bloc-armure .ligne-stats-arme,
 .grid-armures .bloc-armure .ligne-stats-arme,
 .grid-danseurs .bloc-armure .ligne-stats-arme,
+.grid-sorts .bloc-armure .ligne-stats-arme,
 .grid-armes .bloc-danseur .ligne-stats-arme,
 .grid-armures .bloc-danseur .ligne-stats-arme,
-.grid-danseurs .bloc-danseur .ligne-stats-arme {
+.grid-danseurs .bloc-danseur .ligne-stats-arme,
+.grid-sorts .bloc-danseur .ligne-stats-arme,
+.grid-armes .bloc-sort .ligne-stats-arme,
+.grid-armures .bloc-sort .ligne-stats-arme,
+.grid-danseurs .bloc-sort .ligne-stats-arme,
+.grid-sorts .bloc-sort .ligne-stats-arme {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   text-align: center;
@@ -939,24 +985,38 @@ a.nohlight {
 .grid-armes .bloc-arme .ligne-stats-arme .full-row,
 .grid-armures .bloc-arme .ligne-stats-arme .full-row,
 .grid-danseurs .bloc-arme .ligne-stats-arme .full-row,
+.grid-sorts .bloc-arme .ligne-stats-arme .full-row,
 .grid-armes .bloc-armure .ligne-stats-arme .full-row,
 .grid-armures .bloc-armure .ligne-stats-arme .full-row,
 .grid-danseurs .bloc-armure .ligne-stats-arme .full-row,
+.grid-sorts .bloc-armure .ligne-stats-arme .full-row,
 .grid-armes .bloc-danseur .ligne-stats-arme .full-row,
 .grid-armures .bloc-danseur .ligne-stats-arme .full-row,
-.grid-danseurs .bloc-danseur .ligne-stats-arme .full-row {
+.grid-danseurs .bloc-danseur .ligne-stats-arme .full-row,
+.grid-sorts .bloc-danseur .ligne-stats-arme .full-row,
+.grid-armes .bloc-sort .ligne-stats-arme .full-row,
+.grid-armures .bloc-sort .ligne-stats-arme .full-row,
+.grid-danseurs .bloc-sort .ligne-stats-arme .full-row,
+.grid-sorts .bloc-sort .ligne-stats-arme .full-row {
   grid-row-start: 1;
   grid-row-end: 3;
 }
 .grid-armes .bloc-arme .ligne-equipee-arme,
 .grid-armures .bloc-arme .ligne-equipee-arme,
 .grid-danseurs .bloc-arme .ligne-equipee-arme,
+.grid-sorts .bloc-arme .ligne-equipee-arme,
 .grid-armes .bloc-armure .ligne-equipee-arme,
 .grid-armures .bloc-armure .ligne-equipee-arme,
 .grid-danseurs .bloc-armure .ligne-equipee-arme,
+.grid-sorts .bloc-armure .ligne-equipee-arme,
 .grid-armes .bloc-danseur .ligne-equipee-arme,
 .grid-armures .bloc-danseur .ligne-equipee-arme,
-.grid-danseurs .bloc-danseur .ligne-equipee-arme {
+.grid-danseurs .bloc-danseur .ligne-equipee-arme,
+.grid-sorts .bloc-danseur .ligne-equipee-arme,
+.grid-armes .bloc-sort .ligne-equipee-arme,
+.grid-armures .bloc-sort .ligne-equipee-arme,
+.grid-danseurs .bloc-sort .ligne-equipee-arme,
+.grid-sorts .bloc-sort .ligne-equipee-arme {
   display: grid;
   grid-template-columns: 1fr 2fr;
   text-align: center;
@@ -966,24 +1026,38 @@ a.nohlight {
 .grid-armes .bloc-arme .ligne-equipee-arme .equip-row,
 .grid-armures .bloc-arme .ligne-equipee-arme .equip-row,
 .grid-danseurs .bloc-arme .ligne-equipee-arme .equip-row,
+.grid-sorts .bloc-arme .ligne-equipee-arme .equip-row,
 .grid-armes .bloc-armure .ligne-equipee-arme .equip-row,
 .grid-armures .bloc-armure .ligne-equipee-arme .equip-row,
 .grid-danseurs .bloc-armure .ligne-equipee-arme .equip-row,
+.grid-sorts .bloc-armure .ligne-equipee-arme .equip-row,
 .grid-armes .bloc-danseur .ligne-equipee-arme .equip-row,
 .grid-armures .bloc-danseur .ligne-equipee-arme .equip-row,
-.grid-danseurs .bloc-danseur .ligne-equipee-arme .equip-row {
+.grid-danseurs .bloc-danseur .ligne-equipee-arme .equip-row,
+.grid-sorts .bloc-danseur .ligne-equipee-arme .equip-row,
+.grid-armes .bloc-sort .ligne-equipee-arme .equip-row,
+.grid-armures .bloc-sort .ligne-equipee-arme .equip-row,
+.grid-danseurs .bloc-sort .ligne-equipee-arme .equip-row,
+.grid-sorts .bloc-sort .ligne-equipee-arme .equip-row {
   grid-row-start: 1;
   grid-row-end: 5;
 }
 .grid-armes .bloc-arme .ligne-comp,
 .grid-armures .bloc-arme .ligne-comp,
 .grid-danseurs .bloc-arme .ligne-comp,
+.grid-sorts .bloc-arme .ligne-comp,
 .grid-armes .bloc-armure .ligne-comp,
 .grid-armures .bloc-armure .ligne-comp,
 .grid-danseurs .bloc-armure .ligne-comp,
+.grid-sorts .bloc-armure .ligne-comp,
 .grid-armes .bloc-danseur .ligne-comp,
 .grid-armures .bloc-danseur .ligne-comp,
-.grid-danseurs .bloc-danseur .ligne-comp {
+.grid-danseurs .bloc-danseur .ligne-comp,
+.grid-sorts .bloc-danseur .ligne-comp,
+.grid-armes .bloc-sort .ligne-comp,
+.grid-armures .bloc-sort .ligne-comp,
+.grid-danseurs .bloc-sort .ligne-comp,
+.grid-sorts .bloc-sort .ligne-comp {
   display: grid;
   grid-template-columns: 1fr 2fr;
   align-items: center;
@@ -992,12 +1066,19 @@ a.nohlight {
 .grid-armes .bloc-arme .ligne-stats-armure,
 .grid-armures .bloc-arme .ligne-stats-armure,
 .grid-danseurs .bloc-arme .ligne-stats-armure,
+.grid-sorts .bloc-arme .ligne-stats-armure,
 .grid-armes .bloc-armure .ligne-stats-armure,
 .grid-armures .bloc-armure .ligne-stats-armure,
 .grid-danseurs .bloc-armure .ligne-stats-armure,
+.grid-sorts .bloc-armure .ligne-stats-armure,
 .grid-armes .bloc-danseur .ligne-stats-armure,
 .grid-armures .bloc-danseur .ligne-stats-armure,
-.grid-danseurs .bloc-danseur .ligne-stats-armure {
+.grid-danseurs .bloc-danseur .ligne-stats-armure,
+.grid-sorts .bloc-danseur .ligne-stats-armure,
+.grid-armes .bloc-sort .ligne-stats-armure,
+.grid-armures .bloc-sort .ligne-stats-armure,
+.grid-danseurs .bloc-sort .ligne-stats-armure,
+.grid-sorts .bloc-sort .ligne-stats-armure {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   text-align: center;
@@ -1007,24 +1088,38 @@ a.nohlight {
 .grid-armes .bloc-arme .ligne-stats-armure .full-row,
 .grid-armures .bloc-arme .ligne-stats-armure .full-row,
 .grid-danseurs .bloc-arme .ligne-stats-armure .full-row,
+.grid-sorts .bloc-arme .ligne-stats-armure .full-row,
 .grid-armes .bloc-armure .ligne-stats-armure .full-row,
 .grid-armures .bloc-armure .ligne-stats-armure .full-row,
 .grid-danseurs .bloc-armure .ligne-stats-armure .full-row,
+.grid-sorts .bloc-armure .ligne-stats-armure .full-row,
 .grid-armes .bloc-danseur .ligne-stats-armure .full-row,
 .grid-armures .bloc-danseur .ligne-stats-armure .full-row,
-.grid-danseurs .bloc-danseur .ligne-stats-armure .full-row {
+.grid-danseurs .bloc-danseur .ligne-stats-armure .full-row,
+.grid-sorts .bloc-danseur .ligne-stats-armure .full-row,
+.grid-armes .bloc-sort .ligne-stats-armure .full-row,
+.grid-armures .bloc-sort .ligne-stats-armure .full-row,
+.grid-danseurs .bloc-sort .ligne-stats-armure .full-row,
+.grid-sorts .bloc-sort .ligne-stats-armure .full-row {
   grid-row-start: 1;
   grid-row-end: 3;
 }
 .grid-armes .bloc-arme .ligne-stats-danseur,
 .grid-armures .bloc-arme .ligne-stats-danseur,
 .grid-danseurs .bloc-arme .ligne-stats-danseur,
+.grid-sorts .bloc-arme .ligne-stats-danseur,
 .grid-armes .bloc-armure .ligne-stats-danseur,
 .grid-armures .bloc-armure .ligne-stats-danseur,
 .grid-danseurs .bloc-armure .ligne-stats-danseur,
+.grid-sorts .bloc-armure .ligne-stats-danseur,
 .grid-armes .bloc-danseur .ligne-stats-danseur,
 .grid-armures .bloc-danseur .ligne-stats-danseur,
-.grid-danseurs .bloc-danseur .ligne-stats-danseur {
+.grid-danseurs .bloc-danseur .ligne-stats-danseur,
+.grid-sorts .bloc-danseur .ligne-stats-danseur,
+.grid-armes .bloc-sort .ligne-stats-danseur,
+.grid-armures .bloc-sort .ligne-stats-danseur,
+.grid-danseurs .bloc-sort .ligne-stats-danseur,
+.grid-sorts .bloc-sort .ligne-stats-danseur {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   text-align: center;
@@ -1034,14 +1129,139 @@ a.nohlight {
 .grid-armes .bloc-arme .ligne-stats-danseur .full-row,
 .grid-armures .bloc-arme .ligne-stats-danseur .full-row,
 .grid-danseurs .bloc-arme .ligne-stats-danseur .full-row,
+.grid-sorts .bloc-arme .ligne-stats-danseur .full-row,
 .grid-armes .bloc-armure .ligne-stats-danseur .full-row,
 .grid-armures .bloc-armure .ligne-stats-danseur .full-row,
 .grid-danseurs .bloc-armure .ligne-stats-danseur .full-row,
+.grid-sorts .bloc-armure .ligne-stats-danseur .full-row,
 .grid-armes .bloc-danseur .ligne-stats-danseur .full-row,
 .grid-armures .bloc-danseur .ligne-stats-danseur .full-row,
-.grid-danseurs .bloc-danseur .ligne-stats-danseur .full-row {
+.grid-danseurs .bloc-danseur .ligne-stats-danseur .full-row,
+.grid-sorts .bloc-danseur .ligne-stats-danseur .full-row,
+.grid-armes .bloc-sort .ligne-stats-danseur .full-row,
+.grid-armures .bloc-sort .ligne-stats-danseur .full-row,
+.grid-danseurs .bloc-sort .ligne-stats-danseur .full-row,
+.grid-sorts .bloc-sort .ligne-stats-danseur .full-row {
   grid-row-start: 1;
   grid-row-end: 3;
+}
+.grid-armes .bloc-arme .ligne-sorts-connus,
+.grid-armures .bloc-arme .ligne-sorts-connus,
+.grid-danseurs .bloc-arme .ligne-sorts-connus,
+.grid-sorts .bloc-arme .ligne-sorts-connus,
+.grid-armes .bloc-armure .ligne-sorts-connus,
+.grid-armures .bloc-armure .ligne-sorts-connus,
+.grid-danseurs .bloc-armure .ligne-sorts-connus,
+.grid-sorts .bloc-armure .ligne-sorts-connus,
+.grid-armes .bloc-danseur .ligne-sorts-connus,
+.grid-armures .bloc-danseur .ligne-sorts-connus,
+.grid-danseurs .bloc-danseur .ligne-sorts-connus,
+.grid-sorts .bloc-danseur .ligne-sorts-connus,
+.grid-armes .bloc-sort .ligne-sorts-connus,
+.grid-armures .bloc-sort .ligne-sorts-connus,
+.grid-danseurs .bloc-sort .ligne-sorts-connus,
+.grid-sorts .bloc-sort .ligne-sorts-connus {
+  display: flex;
+  align-items: center;
+  border-top: solid 1px var(--color-box-border-dark);
+}
+.grid-armes .bloc-arme .ligne-sorts-connus .titre,
+.grid-armures .bloc-arme .ligne-sorts-connus .titre,
+.grid-danseurs .bloc-arme .ligne-sorts-connus .titre,
+.grid-sorts .bloc-arme .ligne-sorts-connus .titre,
+.grid-armes .bloc-armure .ligne-sorts-connus .titre,
+.grid-armures .bloc-armure .ligne-sorts-connus .titre,
+.grid-danseurs .bloc-armure .ligne-sorts-connus .titre,
+.grid-sorts .bloc-armure .ligne-sorts-connus .titre,
+.grid-armes .bloc-danseur .ligne-sorts-connus .titre,
+.grid-armures .bloc-danseur .ligne-sorts-connus .titre,
+.grid-danseurs .bloc-danseur .ligne-sorts-connus .titre,
+.grid-sorts .bloc-danseur .ligne-sorts-connus .titre,
+.grid-armes .bloc-sort .ligne-sorts-connus .titre,
+.grid-armures .bloc-sort .ligne-sorts-connus .titre,
+.grid-danseurs .bloc-sort .ligne-sorts-connus .titre,
+.grid-sorts .bloc-sort .ligne-sorts-connus .titre {
+  flex: 2;
+  margin: 3px;
+  font-weight: bold;
+}
+.grid-armes .bloc-arme .ligne-sorts-connus .info,
+.grid-armures .bloc-arme .ligne-sorts-connus .info,
+.grid-danseurs .bloc-arme .ligne-sorts-connus .info,
+.grid-sorts .bloc-arme .ligne-sorts-connus .info,
+.grid-armes .bloc-armure .ligne-sorts-connus .info,
+.grid-armures .bloc-armure .ligne-sorts-connus .info,
+.grid-danseurs .bloc-armure .ligne-sorts-connus .info,
+.grid-sorts .bloc-armure .ligne-sorts-connus .info,
+.grid-armes .bloc-danseur .ligne-sorts-connus .info,
+.grid-armures .bloc-danseur .ligne-sorts-connus .info,
+.grid-danseurs .bloc-danseur .ligne-sorts-connus .info,
+.grid-sorts .bloc-danseur .ligne-sorts-connus .info,
+.grid-armes .bloc-sort .ligne-sorts-connus .info,
+.grid-armures .bloc-sort .ligne-sorts-connus .info,
+.grid-danseurs .bloc-sort .ligne-sorts-connus .info,
+.grid-sorts .bloc-sort .ligne-sorts-connus .info {
+  margin: 3px;
+}
+.grid-armes .bloc-arme .ligne-sort,
+.grid-armures .bloc-arme .ligne-sort,
+.grid-danseurs .bloc-arme .ligne-sort,
+.grid-sorts .bloc-arme .ligne-sort,
+.grid-armes .bloc-armure .ligne-sort,
+.grid-armures .bloc-armure .ligne-sort,
+.grid-danseurs .bloc-armure .ligne-sort,
+.grid-sorts .bloc-armure .ligne-sort,
+.grid-armes .bloc-danseur .ligne-sort,
+.grid-armures .bloc-danseur .ligne-sort,
+.grid-danseurs .bloc-danseur .ligne-sort,
+.grid-sorts .bloc-danseur .ligne-sort,
+.grid-armes .bloc-sort .ligne-sort,
+.grid-armures .bloc-sort .ligne-sort,
+.grid-danseurs .bloc-sort .ligne-sort,
+.grid-sorts .bloc-sort .ligne-sort {
+  display: flex;
+  align-items: center;
+}
+.grid-armes .bloc-arme .ligne-stats-sort,
+.grid-armures .bloc-arme .ligne-stats-sort,
+.grid-danseurs .bloc-arme .ligne-stats-sort,
+.grid-sorts .bloc-arme .ligne-stats-sort,
+.grid-armes .bloc-armure .ligne-stats-sort,
+.grid-armures .bloc-armure .ligne-stats-sort,
+.grid-danseurs .bloc-armure .ligne-stats-sort,
+.grid-sorts .bloc-armure .ligne-stats-sort,
+.grid-armes .bloc-danseur .ligne-stats-sort,
+.grid-armures .bloc-danseur .ligne-stats-sort,
+.grid-danseurs .bloc-danseur .ligne-stats-sort,
+.grid-sorts .bloc-danseur .ligne-stats-sort,
+.grid-armes .bloc-sort .ligne-stats-sort,
+.grid-armures .bloc-sort .ligne-stats-sort,
+.grid-danseurs .bloc-sort .ligne-stats-sort,
+.grid-sorts .bloc-sort .ligne-stats-sort {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  text-align: center;
+  align-items: center;
+  margin-bottom: 3px;
+}
+.grid-armes .bloc-arme .ligne-stats-sort .full-row,
+.grid-armures .bloc-arme .ligne-stats-sort .full-row,
+.grid-danseurs .bloc-arme .ligne-stats-sort .full-row,
+.grid-sorts .bloc-arme .ligne-stats-sort .full-row,
+.grid-armes .bloc-armure .ligne-stats-sort .full-row,
+.grid-armures .bloc-armure .ligne-stats-sort .full-row,
+.grid-danseurs .bloc-armure .ligne-stats-sort .full-row,
+.grid-sorts .bloc-armure .ligne-stats-sort .full-row,
+.grid-armes .bloc-danseur .ligne-stats-sort .full-row,
+.grid-armures .bloc-danseur .ligne-stats-sort .full-row,
+.grid-danseurs .bloc-danseur .ligne-stats-sort .full-row,
+.grid-sorts .bloc-danseur .ligne-stats-sort .full-row,
+.grid-armes .bloc-sort .ligne-stats-sort .full-row,
+.grid-armures .bloc-sort .ligne-stats-sort .full-row,
+.grid-danseurs .bloc-sort .ligne-stats-sort .full-row,
+.grid-sorts .bloc-sort .ligne-stats-sort .full-row {
+  grid-row-start: 1;
+  grid-row-end: 4;
 }
 .liste-armes,
 .liste-armures,

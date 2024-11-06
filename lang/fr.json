@@ -279,7 +279,8 @@
             "actionsEmprise" :"Actions d'Emprise",
             "actionsArts": "Actions d'Arts magiques",
             "actionsDefense": "Actions de défense",
-            "reposDanseurs": "Repos des danseurs"
+            "reposDanseurs": "Repos des danseurs",
+            "sortsConnus": "Sorts connus"
         },
         "items":{
             "description": "Description",

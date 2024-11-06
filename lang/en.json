@@ -279,7 +279,8 @@
             "actionsEmprise" :"Ascendancy actions",
             "actionsArts": "Magical arts actions",
             "actionsDefense": "Defense Actions",
-            "reposDanseurs": "Dancers rest"
+            "reposDanseurs": "Dancers rest",
+            "sortsConnus": "Spells known"
         },
         "items":{
             "description": "Description",

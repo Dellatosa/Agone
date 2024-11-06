@@ -42,4 +42,20 @@ export default function registerHandlebarsHelpers() {
         else
             return options.inverse(this);
     });
+
+    Handlebars.registerHelper("nomSort", function(sorts, id) {
+        let result;
+        sorts.forEach(sort => {
+            if(sort._id == id) result = sort.name;
+        });
+        return result;
+    });
+
+    Handlebars.registerHelper("symboleResonance", function(sorts, id) {
+        let result;
+        sorts.forEach(sort => {
+            if(sort._id == id) result = game.i18n.localize(agone.symboles[sort.system.resonance]);
+        });
+        return result;
+    });
 }
