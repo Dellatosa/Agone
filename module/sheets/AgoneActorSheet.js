@@ -123,7 +123,7 @@ export default class AgoneActorSheet extends ActorSheet {
         }
         
         // Verrouillage du peuple si une compétence de peuple d'un personnage a une valeur supérieure à 5
-        if(CONFIG.agone.peuple[actorData.peuple].competences && data.data.type == "Personnage") {
+        if(CONFIG.agone.peuple[actorData.peuple] && CONFIG.agone.peuple[actorData.peuple].competences && data.data.type == "Personnage") {
             for (let [keyF, famille] of Object.entries(CONFIG.agone.peuple[actorData.peuple].competences)) {
                 for (let [keyC, comp] of Object.entries(famille)) { 
                     if(comp.domaine) {
