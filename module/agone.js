@@ -63,7 +63,7 @@ Hooks.once("ready", async function() {
      // Determine whether a system migration is required and feasible
      if ( !game.user.isGM ) return;
      const currentVersion = game.settings.get("agone", "systemMigrationVersion");
-     const NEEDS_MIGRATION_VERSION = "0.1.8";
+     const NEEDS_MIGRATION_VERSION = "0.1.7";
      const needsMigration = !currentVersion || isNewerVersion(NEEDS_MIGRATION_VERSION, currentVersion);
      if ( !needsMigration ) return;
      Migrations.migrateWorld();
