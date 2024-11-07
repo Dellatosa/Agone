@@ -175,6 +175,7 @@ select.auto-size {
   height: 100%;
   overflow-y: scroll;
   overflow-x: hidden;
+  scrollbar-width: thin;
 }
 .agone.sheet.actor .competences-content,
 .agone.sheet.actor .combat-content,
