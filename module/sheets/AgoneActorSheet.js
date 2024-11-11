@@ -26,7 +26,7 @@ export default class AgoneActorSheet extends ActorSheet {
             return `systems/agone/templates/sheets/actors/personnage-sheet.html`
         } 
         else {
-            console.log(`Agone | chargement du template systems/agone/templates/sheets/actors/${this.actor.type}-sheet.html`);
+            console.log(`Agone | chargement du template systems/agone/templates/sheets/actors/${this.actor.type.toLowerCase()}-sheet.html`);
             return `systems/agone/templates/sheets/actors/${this.actor.type}-sheet.html`
         }
     }
