@@ -25,9 +25,9 @@ export default class AgoneActorSheet extends ActorSheet {
             console.log(`Agone | type : ${this.actor.type} | chargement du template systems/agone/templates/sheets/actors/personnage-sheet.html`);
             return `systems/agone/templates/sheets/actors/personnage-sheet.html`
         } 
-        else {
-            console.log(`Agone | chargement du template systems/agone/templates/sheets/actors/${this.actor.type.toLowerCase()}-sheet.html`);
-            return `systems/agone/templates/sheets/actors/${this.actor.type}-sheet.html`
+        else if(this.actor.type == "Terne") {
+            console.log(`Agone | chargement du template systems/agone/templates/sheets/actors/terne-sheet.html`);
+            return `systems/agone/templates/sheets/actors/terne-sheet.html`
         }
     }
 
