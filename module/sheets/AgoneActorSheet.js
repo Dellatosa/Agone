@@ -261,6 +261,9 @@ export default class AgoneActorSheet extends ActorSheet {
             html.find('.item-roll').click(this._onItemRoll.bind(this));
 
             // Boutons de l'onglet Combat
+            // Regen héroisme
+            html.find('.regen-heroisme').click(this._onRegenHeroisme.bind(this));
+
             // Initiative
             html.find('button.initiative').click(this._onInitiativeRoll.bind(this));
 
@@ -867,6 +870,13 @@ export default class AgoneActorSheet extends ActorSheet {
     }
 
     // Gestionnaire d'événements de l'onglet Combat
+    // Régénération de l'Héroisme
+    _onRegenHeroisme(event) {
+        event.preventDefault();
+        
+        this.actor.regenererHeroisme();
+    }
+
     // Initiative - base, sans arme
     _onInitiativeRoll(event) {
         event.preventDefault();

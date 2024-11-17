@@ -59,8 +59,8 @@ export async function jetCaracteristique({actor = null,
     // Utilisation d'un point d'héroïsme
     if(utiliseHeroisme) {
 
-        actor.subirDommages(5);
-        actor.setD10Pdv(5);
+        //actor.subirDommages(5);
+        //actor.setD10Pdv(5);
 
         // On teste s'il reste des points d'héroïsme sur l'Actor
         if(actor.depenserHeroisme()) {

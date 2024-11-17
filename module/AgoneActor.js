@@ -581,6 +581,10 @@ export default class AgoneActor extends Actor {
         }
     }
 
+    regenererHeroisme() {
+        this.update({"system.caracSecondaires.heroisme.value": this.system.caracSecondaires.heroisme.max});
+    }
+
     subirDommages(nbDommages) {
         let data = this.system;
 
