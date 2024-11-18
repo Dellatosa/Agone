@@ -14,6 +14,7 @@ export async function jetCaracteristique({actor = null,
     // Définition de la formule de base du jet, et de sa version fumble (avec 1d10 explosif retranché au 1 du dé initial)
     let rollFormula = "1d10x";
     let rollFumbleFormula = "-1d10x + 1";
+        // formule a test "1d10xo1x10"
 
     let rollData = {
         rangCarac: rangCarac

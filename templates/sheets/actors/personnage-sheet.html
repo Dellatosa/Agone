@@ -47,9 +47,10 @@
             {{> "systems/agone/templates/partials/actors/bloc-combat-personnage.hbs"}}
         </div>
         <div class="tab magie-content" data-group="principal" data-tab="magie">
-            {{#if typePersonnage}}
-                {{> "systems/agone/templates/partials/actors/bloc-magie-personnage.hbs"}}
-            {{else}}
+            {{> "systems/agone/templates/partials/actors/bloc-magie-personnage.hbs"}}
+            <!-- {{#if typePersonnage}} -->
+                
+            <!-- {{else}}
                 <nav class="magie-tabs tabs" data-group="magie">
                     <a class="item" data-tab="emprise">{{localize "agone.actors.emprise"}}</a>
                     <a class="item" data-tab="artsMagiques">{{localize "agone.actors.artsMagiques"}}</a>
@@ -80,7 +81,7 @@
                         {{> "systems/agone/templates/partials/actors/bloc-liste-connivences-personnage.hbs"}}
                     </div>
                 </div>
-            {{/if}}
+            {{/if}} -->
         </div>
         <div class="tab" data-group="principal" data-tab="avantagesDefauts">
             <h3>{{localize "agone.actors.avantages"}}</h3>

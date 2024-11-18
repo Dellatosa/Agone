@@ -885,11 +885,11 @@ a.nohlight {
     }
 }
 
-.grid-armes, .grid-armures, .grid-danseurs, .grid-sorts {
+.grid-armes, .grid-armures, .grid-danseurs, .grid-sorts , .grid-oeuvres {
     display: grid;
     grid-template-columns: 1fr 1fr;
 
-    .bloc-arme, .bloc-armure, .bloc-danseur, .bloc-sort {
+    .bloc-arme, .bloc-armure, .bloc-danseur, .bloc-sort, .bloc-oeuvre {
         border: solid 1px var(--color-box-border-dark);
         border-radius: 5px;
         margin: 2px;
@@ -1001,6 +1001,19 @@ a.nohlight {
         }
 
         .ligne-stats-sort {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            text-align: center;
+            align-items: center;
+            margin-bottom: 3px;
+
+            .full-row {
+                grid-row-start: 1;
+                grid-row-end: 4;
+            }
+        }
+
+        .ligne-stats-oeuvre {
             display: grid;
             grid-template-columns: 1fr 2fr;
             text-align: center;

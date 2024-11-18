@@ -1,0 +1,49 @@
+<div class="titre-rub">{{localize "agone.actors.oeuvres"}}</div>
+<div class="grid-oeuvres">
+    {{#each oeuvres as |oeuvre id|}}
+        <div class="bloc-oeuvre item" data-item-id="{{oeuvre._id}}">
+            <div class="ligne-titre">
+                <a class="item-roll"><img src="{{img}}" title="{{localize 'agone.actors.voirOeuvre'}}"/></a>
+                <div class="titre">{{name}}</div>
+                {{#if ../unlocked}}
+                    <div class="icone"><a class="editer-item" title="{{localize 'agone.common.editer'}}"><i class="fa-duotone fa-solid fa-pen-to-square"></i></a></div>
+                    <div class="icone"><a class="supprimer-item" title="{{localize 'agone.common.supprimer'}}"><i class="fa-duotone fa-solid fa-x"></i></a></div>
+                {{else}}
+                {{/if}}
+            </div>
+            <div class="ligne-stats-oeuvre">
+                {{#if (eq system.artMagique "accord")}}
+                <div>
+                    <div class="full-row">
+                        <i class="{{configSymbole system.artMagique}} icone" title="{{configLocalize "arts" system.artMagique}}"></i>
+                        {{localize "agone.items.seuil"}} {{system.seuil}}
+                    </div>
+                    <div class="full-row">
+                        {{configLocalize "instruments" system.instrument}}
+                    </div>
+                </div>
+                {{else if (eq system.artMagique "decorum")}}
+                <div>
+                    <div class="full-row">
+                        <i class="{{configSymbole system.artMagique}} icone" title="{{configLocalize "arts" system.artMagique}}"></i>
+                        {{localize "agone.items.seuil"}} {{system.seuil}}
+                    </div>
+                    <div class="full-row">
+                        {{configLocalize "saisons" system.saison}}
+                    </div>
+                </div>
+                {{else}}
+                    <div class="full-row">
+                        <i class="{{configSymbole system.artMagique}} icone" title="{{configLocalize "arts" system.artMagique}}"></i>
+                        {{localize "agone.items.seuil"}} {{system.seuil}}
+                    </div>
+                {{/if}}
+                <div>
+                    <div><i class="fa-duotone fa-solid fa-ruler-horizontal" title="{{localize 'agone.items.porteeZoneEffet'}}"></i> {{system.portee}}</div>
+                    <div><i class="fa-duotone fa-solid fa-sparkles" title="{{localize 'agone.items.tempsPreparation'}}"></i> {{system.tempsPreparation}}</div>
+                    <div><i class="fa-duotone fa-solid fa-hourglass-clock" title="{{localize 'agone.items.dureeOeuvre'}}"></i> {{system.dureeOeuvre}}</div>
+                </div>
+            </div>
+        </div>
+    {{/each}}
+</div>

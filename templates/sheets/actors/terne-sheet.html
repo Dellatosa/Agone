@@ -38,19 +38,12 @@
                 </div>
             </div>
         </div>
-        <div class="tab" data-group="principal" data-tab="combat">
-            {{> "systems/agone/templates/partials/actors/bloc-recap-combat-personnage.hbs"}}
-            <h3>{{localize "agone.actors.armes"}}</h3>
-            <div class="liste-armes">
-                {{> "systems/agone/templates/partials/actors/bloc-liste-armes-personnage.hbs"}}
-            </div>
-            <h3>{{localize "agone.actors.armures"}}</h3>
-            <div class="liste-armures">
-                {{> "systems/agone/templates/partials/actors/bloc-liste-armures-personnage.hbs"}}
-            </div>
+        <div class="tab combat-content" data-group="principal" data-tab="combat">
+            {{> "systems/agone/templates/partials/actors/bloc-combat-personnage.hbs"}}
         </div>
         <div class="tab magie-content" data-group="principal" data-tab="magie">
-            <nav class="magie-tabs tabs" data-group="magie">
+            {{> "systems/agone/templates/partials/actors/bloc-magie-personnage.hbs"}}
+            <!-- <nav class="magie-tabs tabs" data-group="magie">
                 <a class="item" data-tab="emprise">{{localize "agone.actors.emprise"}}</a>
                 <a class="item" data-tab="artsMagiques">{{localize "agone.actors.artsMagiques"}}</a>
                 <a class="item" data-tab="conjuration">{{localize "agone.actors.conjuration"}}</a>
@@ -79,7 +72,7 @@
                 <div class="liste-connivences">
                     {{> "systems/agone/templates/partials/actors/bloc-liste-connivences-personnage.hbs"}}
                 </div>
-            </div>
+            </div> -->
         </div>
         <div class="tab" data-group="principal" data-tab="avantagesDefauts">
             <h3>{{localize "agone.actors.avantages"}}</h3>
