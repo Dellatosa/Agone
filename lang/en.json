@@ -258,6 +258,7 @@
             "voirDefaut": "Display fault",
             "voirAvantage": "Display asset",
             "voirPouvoir": "Display power",
+            "voirConnivence": "Display connivance",
             "humain": "Human",
             "saisonnin": "Seasonling",
             "lutin": "Sprite",   

@@ -13,22 +13,22 @@
             </div>
             <div class="ligne-stats-oeuvre">
                 {{#if (eq system.artMagique "accord")}}
-                <div>
-                    <div class="full-row">
+                <div class="full-row">
+                    <div>
                         <i class="{{configSymbole system.artMagique}} icone" title="{{configLocalize "arts" system.artMagique}}"></i>
                         {{localize "agone.items.seuil"}} {{system.seuil}}
                     </div>
-                    <div class="full-row">
+                    <div>
                         {{configLocalize "instruments" system.instrument}}
                     </div>
                 </div>
                 {{else if (eq system.artMagique "decorum")}}
-                <div>
-                    <div class="full-row">
+                <div class="full-row">
+                    <div>
                         <i class="{{configSymbole system.artMagique}} icone" title="{{configLocalize "arts" system.artMagique}}"></i>
                         {{localize "agone.items.seuil"}} {{system.seuil}}
                     </div>
-                    <div class="full-row">
+                    <div>
                         {{configLocalize "saisons" system.saison}}
                     </div>
                 </div>

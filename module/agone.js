@@ -105,6 +105,7 @@ async function preloadHandlebarsTemplates() {
         "systems/agone/templates/partials/actors/bloc-liste-oeuvres-personnage-v2.hbs",
         "systems/agone/templates/partials/actors/bloc-recap-conjuration-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-connivences-personnage.hbs",
+        "systems/agone/templates/partials/actors/bloc-liste-connivences-personnage-v2.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-defauts-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-avantages-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-recap-equipement-personnage.hbs",

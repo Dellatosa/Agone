@@ -1,0 +1,26 @@
+<div class="titre-rub">{{localize "agone.actors.connivences"}}</div>
+<div class="grid-connivences">
+    {{#each connivences as |connivence id|}}
+        <div class="bloc-connivence item" data-item-id="{{connivence._id}}">
+            <div class="ligne-titre">
+                <a class="item-roll"><img src="{{img}}" title="{{localize 'agone.actors.voirConnivence'}}"/></a>
+                <div class="titre">{{name}}</div>
+                {{#if ../unlocked}}
+                    <div class="icone"><a class="editer-item" title="{{localize 'agone.common.editer'}}"><i class="fa-duotone fa-solid fa-pen-to-square"></i></a></div>
+                    <div class="icone"><a class="supprimer-item" title="{{localize 'agone.common.supprimer'}}"><i class="fa-duotone fa-solid fa-x"></i></a></div>
+                {{else}}
+                {{/if}}
+            </div>
+            <div class="ligne-stats-connivence">
+                <div>
+                    <i class="fa-duotone fa-solid fa-face-angry-horns icone" title="{{configLocalize "cerclesDemon" system.cercleDemon}}"></i>
+                    {{system.nomDemon}}
+                </div>
+                <div>
+                    <i class="fa-duotone fa-solid fa-scroll-old icone" title="{{localize "agone.items.nomAdvocatus"}}"></i>
+                    {{system.nomAdvocatus}}
+                </div>
+            </div>
+        </div>
+    {{/each}}
+</div>
