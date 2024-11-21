@@ -1545,6 +1545,13 @@ a.nohlight {
   align-items: center;
   margin-bottom: 3px;
 }
+.grid-connivences .bloc-connivence .ligne-stats-connivence .desc-col {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  padding: 3px;
+  background-color: var(--color-stats-background);
+  text-align: left;
+}
 .liste-armes,
 .liste-armures,
 .liste-danseurs,
