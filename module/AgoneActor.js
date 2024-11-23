@@ -412,6 +412,17 @@ export default class AgoneActor extends Actor {
         result.labelAspect = data.aspects.corps.bonus.label;
 
         return result;
+    } 
+
+    getStatsConjuration() {
+        let data = this.system;
+
+        let result = {potConjuration: 0, specialisation: false, labelSpecialisation: "ND"};
+        result.potConjuration = data.caracSecondaires.noirceur + data.aspects.ame.bonus.valeur + data.familleCompetences.occulte.competences.demonologie.rang;
+        result.specialisation = data.familleCompetences.occulte.competences.demonologie.specialisation;
+        result.labelSpecialisation = data.familleCompetences.occulte.competences.demonologie.labelSpecialisation;
+
+        return result;
     } */
 
     getStatsEmprise() {

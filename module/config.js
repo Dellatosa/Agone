@@ -1087,6 +1087,15 @@ agone.cerclesDemon = {
     obsidien: "agone.items.obsidien"
 }
 
+agone.couleurDemon = {
+    aucun: "",
+    opalin: "cd-blanc",
+    azurin: "cd-bleu",
+    safran: "cd-jaune",
+    carmin: "cd-rouge",
+    obsidien: "cd-noir"
+}
+
 agone.symboles = {
     accord: "fa-duotone fa-music",
     cyse: "fa-duotone fa-landmark",

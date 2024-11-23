@@ -150,6 +150,21 @@ select.auto-size {
 .white {
   color: white;
 }
+.cd-blanc {
+  color: white;
+}
+.cd-bleu {
+  color: #2b2bbb;
+}
+.cd-jaune {
+  color: #c9922b;
+}
+.cd-rouge {
+  color: #991010;
+}
+.cd-noir {
+  color: black;
+}
 .agone.sheet.actor form {
   display: flex;
   flex-direction: column;
@@ -795,6 +810,47 @@ a.nohlight {
 .grid-magies .data-magie .arts-magiques .grid-arts-magiques .val label {
   position: relative;
   top: 5px;
+}
+.grid-magies .data-magie .conjuration .grid-conjuration-edit {
+  display: grid;
+  grid-template-columns: 1fr 1.5em 3.5em 1.5em;
+  align-items: center;
+  margin: 3px 1px;
+  padding: 3px;
+  border: solid 1px var(--color-box-border-dark);
+  border-radius: 5px;
+}
+.grid-magies .data-magie .conjuration .grid-conjuration-edit .lib {
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+.grid-magies .data-magie .conjuration .grid-conjuration-edit .lib-all {
+  grid-column-start: 1;
+  grid-column-end: 5;
+  text-align: center;
+}
+.grid-magies .data-magie .conjuration .grid-conjuration-edit .val {
+  grid-column-start: 3;
+  grid-column-end: 4;
+  background-color: var(--color-stats-background);
+  margin: 2px 5px;
+  text-align: center;
+  align-items: center;
+  border-radius: 3px;
+  height: 26px;
+}
+.grid-magies .data-magie .conjuration .grid-conjuration-edit .val label {
+  position: relative;
+  top: 5px;
+}
+.grid-magies .data-magie .conjuration .grid-conjuration-edit .tenebre-crea {
+  font-size: 0.8em;
+}
+.grid-magies .data-magie .conjuration .grid-conjuration-edit .tenebre-crea.minus {
+  text-align: right;
+}
+.grid-magies .data-magie .conjuration .grid-conjuration-edit .tenebre-crea {
+  text-align: left;
 }
 .grid-magies .data-magie .conjuration .grid-conjuration {
   display: grid;

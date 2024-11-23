@@ -1600,6 +1600,67 @@ export async function desaccord(artiste, instrument, utiliseHeroisme) {
     }
 }
 
+// Jet de conjuration, avec affichage du messsage dans la chat
+export async function conjurerDemon(conjurateur) {
+    // Construction des strutures de données pour l'affichage de la boite de dialogue
+    let conjurateurData = new Object();
+
+    conjurateurData.potConjuration = conjurateur.system.caracSecondaires.noirceur + conjurateur.system.aspects.ame.bonus.valeur + conjurateur.system.familleCompetences.occulte.competences.demonologie.rang;
+    conjurateurData.tenebbre = conjurateur.system.caracSecondaires.tenebre.valeur;
+    conjurateurData.specialisation = conjurateur.system.familleCompetences.occulte.competences.demonologie.specialisation;
+    conjurateurData.labelSpecialisation = conjurateur.system.familleCompetences.occulte.competences.demonologie.labelSpecialisation;
+
+    let dialogOptions = await getJetConjurationOptions({conjurateurData: conjurateurData, cfgData: CONFIG.agone});
+
+    // On annule le jet sur les boutons 'Annuler' ou 'Fermeture'
+    if(dialogOptions.annule) {
+        return;
+    }
+
+    // Récupération des données de la fenêtre de dialogue pour ce jet 
+    /*let seuilTotalIntuitif;
+    if(isIntuitif) {
+        seuilTotalIntuitif = dialogOptions.seuilEstime * 2;
+        let modifObedience = dialogOptions.resonanceEstimee != statsEmprise.resonance ? 5 : 0;
+        seuilTotalIntuitif = dialogOptions.magieInstantanee ? seuilTotalIntuitif = (seuilTotalIntuitif * 2) + modifObedience : seuilTotalIntuitif = seuilTotalIntuitif + modifObedience;
+    }
+    else {
+        if(dialogOptions.magieInstantanee) {
+            sort.system.seuilTotal = sort.system.diffObedience == true ? sort.system.seuil * 2 + 5 : (sort.system.seuil * 2);
+        }
+    }*/
+}
+
+// Fonction de construction de la boite de dialogue de jet de sort d'Emprise
+async function getJetConjurationOptions({conjurateurData = null, cfgData = null}) {
+    // Recupération du template
+    const template = "systems/agone/templates/partials/dice/dialog-jet-conjuration.hbs";
+    const html = await renderTemplate(template, {conjurateurData: conjurateurData, cfgData: cfgData });
+
+    return new Promise( resolve => {
+        const data = {
+            title: game.i18n.localize("agone.actors.jetConjuration"),
+            content: html,
+            buttons: {
+                jet: { // Bouton qui lance le jet de dé
+                    icon: '<i class="fas fa-dice"></i>',
+                    label: game.i18n.localize("agone.common.jet"),
+                    callback: html => resolve(_processJetSortEmpriseOptions(html[0].querySelector("form")))
+                },
+                annuler: { // Bouton d'annulation
+                    label: game.i18n.localize("agone.common.annuler"),
+                    callback: html => resolve({annule: true})
+                }
+            },
+            default: "jet",
+            close: () => resolve({annule: true}) // Annulation sur fermeture de la boite de dialogue
+        }
+
+        // Affichage de la boite de dialogue
+        new Dialog(data, null).render(true);
+    });
+}
+
 export async function jetDefense(defenseur, typeDef) {
     let compData;
 

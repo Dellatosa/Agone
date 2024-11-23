@@ -24,6 +24,10 @@ export default function registerHandlebarsHelpers() {
     Handlebars.registerHelper("configSymbole", function(val) {
         return game.i18n.localize(agone.symboles[val]);
     });
+
+    Handlebars.registerHelper("configCouleurDemon", function(val) {
+        return game.i18n.localize(agone.couleurDemon[val]);
+    });
     
     Handlebars.registerHelper("malusAGI", function(minArme, style, equipee, agi, options) {
         let diff = minArme - agi;

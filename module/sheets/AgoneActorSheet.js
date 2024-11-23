@@ -214,6 +214,9 @@ export default class AgoneActorSheet extends ActorSheet {
             // Modifier les compétences
             html.find(".mod-comp-crea").click(this._onModifCompetenceCrea.bind(this));
 
+            //Modifier le score de ténèbre
+            html.find(".mod-tenebre-crea").click(this._onModifTenebreCrea.bind(this));
+
             //// edit-comp - edition des compétences d'une famille
             //html.find('.edit-comp').click(this._onEditComp.bind(this));
 
@@ -286,6 +289,10 @@ export default class AgoneActorSheet extends ActorSheet {
             // Contre-magie
             html.find('button.contreMagie').click(this._onContreMagie.bind(this));
 
+            // Liste Danseurs
+            // Régénérer l'endurance
+            html.find('button.repos-danseurs').click(this._onReposDanseurs.bind(this));
+
             // Boutons de l'onglet Arts
             // Reconnaitre une oeuvre
             html.find('button.reconnOeuvre').click(this._onReconnOeuvre.bind(this));
@@ -296,9 +303,9 @@ export default class AgoneActorSheet extends ActorSheet {
             // Art improvisé
             html.find('button.artImprovise').click(this._onArtImprovise.bind(this));
 
-            // Liste Danseurs
-            // Régénérer l'endurance
-            html.find('button.repos-danseurs').click(this._onReposDanseurs.bind(this));
+            // Boutons de l'onglet Conjuration
+            // Conjurer un démon
+            html.find('button.conjurer').click(this._onConjurerDemon.bind(this));
         }
     }
 
@@ -511,9 +518,9 @@ export default class AgoneActorSheet extends ActorSheet {
         const element = event.currentTarget;
 
         if(!event.detail || event.detail == 1) {
-            const famille = element.dataset.famille;
-            const competence = element.dataset.competence;
-            const domaine = element.dataset.domaine;
+            const famille= element.dataset.famille;
+            const competence= element.dataset.competence;
+            const domaine= element.dataset.domaine;
             const action = element.dataset.action;
     
             let currentVal = 0;;
@@ -590,6 +597,30 @@ export default class AgoneActorSheet extends ActorSheet {
                     else {
                         await this.actor.update({ [`system.familleCompetences.${famille}.competences.${competence}.pc`] : currentVal + 1 });
                     }
+                }
+            }
+        }
+    }
+
+    async _onModifTenebreCrea(event) {
+        event.preventDefault();
+        const element = event.currentTarget;
+        const action = element.dataset.action;
+        let currentVal = 0;
+        
+        if(!event.detail || event.detail == 1) {
+            currentVal = parseInt(this.actor.system.caracSecondaires.tenebre.gain);
+
+            if(action == "minus") {
+                if(currentVal > 0) {
+                    await this.actor.update({ [`system.caracSecondaires.tenebre.gain`] : currentVal - 1 });
+                }
+            }
+            else if(action == "plus") {
+                let rangMax = 100 - parseInt(this.actor.system.caracSecondaires.tenebre.avgDef);;
+
+                if(currentVal < rangMax) {
+                    await this.actor.update({ [`system.caracSecondaires.tenebre.gain`] : currentVal + 1 });
                 }
             }
         }
@@ -1023,6 +1054,14 @@ export default class AgoneActorSheet extends ActorSheet {
 
         // Carte de sélection de l'art magique à afficher dans le chat
         Chat.selArtMagiqueImprovise(this.actor, this.actor.system.familleCompetences.occulte.competences.artsMagiques.domaines);
+    }
+
+    _onConjurerDemon(event) {
+        event.preventDefault();
+
+        console.log("conjurDemon");
+        // Jet de conjuration 
+        Dice.conjurerDemon(this.actor);
     }
 
     // Regeneration de l'endurance des Danseurs

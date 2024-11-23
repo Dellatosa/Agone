@@ -105,6 +105,7 @@
             "jetOeuvre": "Jet d'exécution d'oeuvre",
             "jetAttaque": "Jet d'attaque",
             "jetParade": "Jet de parade",
+            "jetConjuration": "Jet de conjuration",
             "editComp": "Editer les compétences",
             "armures": "Armures",
             "obedience": "Obédience",
@@ -279,9 +280,11 @@
             "pcCompUtilises": "Points de création utilisés",
             "actionsEmprise" :"Actions d'Emprise",
             "actionsArts": "Actions d'Arts magiques",
+            "actionsConjuration": "Actions de Conjuration",
             "actionsDefense": "Actions de défense",
             "reposDanseurs": "Repos des danseurs",
-            "sortsConnus": "Sorts connus"
+            "sortsConnus": "Sorts connus",
+            "conjurer": "Conjurer un démon"
         },
         "items":{
             "description": "Description",
@@ -439,6 +442,7 @@
             "jetPdv": "Jet de points de vie",
             "jetSortMagieIntuitiveDanseur": "Jeter un sort de magie intuitive avec le danseur",
             "jetSort": "Jeter le sort",
+            "jetConjuration": "Conjurer un démon",
             "avecDanseur": "avec le danseur",
             "lanceSortMagieIntuitive": "lance un sort de magie intuitive",
             "lanceSort": "lance le sort",

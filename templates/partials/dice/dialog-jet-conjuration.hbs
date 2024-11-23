@@ -1,0 +1,27 @@
+<form>
+    <div>{{ localize "agone.chat.jetConjuration"}}</div>   
+    <div class="form-group">
+        <label>{{ localize "agone.chat.magieInstantanee"}}</label>
+        <input type="checkbox" name="magieInstantanee"/>
+    </div>
+    <div class="form-group">
+        <label>{{ localize "agone.chat.danseurInvisible"}}</label>
+        <input type="checkbox" name="danseurInvisible"/>
+    </div>
+    {{#if (eq mageData.resonance "jorniste")}}
+        <div class="form-group">
+            <label>{{ localize "agone.chat.mouvImperceptibles"}}</label>
+            <input type="checkbox" name="mouvImperceptibles"/>
+        </div>
+    {{/if}}
+    {{#if mageData.specialisation}}
+        <div class="form-group">
+            <div>{{ localize "agone.actors.specialisation"}}  <span class="bold">{{mageData.labelSpecialisation}}</span></div>
+            <input type="checkbox" name="utiliseSpecialisation"/>
+        </div>
+    {{/if}}
+    <div class="form-group">
+        <label>{{ localize "agone.chat.utiliseHeroisme"}}</label>
+        <input type="checkbox" name="utiliseHeroisme"/>
+    </div>
+</form>

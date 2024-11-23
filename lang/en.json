@@ -50,7 +50,7 @@
             "jorniste": "Jornist",
             "eclipsiste": "Eclipsist",
             "obscurantiste": "Obscurantist",
-            "conjuration": "Conjuration",
+            "conjuration": "Invoking",
             "sorts": "Spells",
             "oeuvres": "Works",
             "connivences": "Connivances",
@@ -105,6 +105,7 @@
             "jetOeuvre": "NO TRAD - Jet d'exécution d'oeuvre",
             "jetAttaque": "Attack roll",
             "jetParade": "Parry roll",
+            "jetConjuration": "Invoking roll",
             "editComp": "Edit skills",
             "armures": "Armour",
             "obedience": "NO TRAD - Obédience",
@@ -279,9 +280,11 @@
             "pcCompUtilises": "Used creation points",
             "actionsEmprise" :"Ascendancy actions",
             "actionsArts": "Magical arts actions",
+            "actionsConjuration": "Invoking actions",
             "actionsDefense": "Defense Actions",
             "reposDanseurs": "Dancers rest",
-            "sortsConnus": "Spells known"
+            "sortsConnus": "Spells known",
+            "conjurer": "Invoking a demon"
         },
         "items":{
             "description": "Description",
@@ -439,6 +442,7 @@
             "jetPdv": "Hit points roll",
             "jetSortMagieIntuitiveDanseur": "NO TRAD - Jeter un sort de magie intuitive avec le danseur",
             "jetSort": "NO TRAD - Jeter le sort",
+            "jetConjuration": "NO TRAD - Conjurer un démon",
             "avecDanseur": "NO TRAD - avec le danseur",
             "lanceSortMagieIntuitive": "NO TRAD - lance un sort de magie intuitive",
             "lanceSort": "NO TRAD - lance le sort",

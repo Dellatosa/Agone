@@ -82,14 +82,45 @@
         {{/if}}
         {{#if (eq tabMagieActif "conjuration")}}
             <div class="conjuration">
-                <div class="grid-conjuration">
-                    <div class="data-magie-titre lib-all">{{localize "agone.actors.conjuration"}}</div>
-                    <label class="lib">{{localize "agone.actors.demonologie"}}</label>
-                    <div class="val"><label>{{data.system.familleCompetences.occulte.competences.demonologie.rang}}</label></div>
-                    <label class="lib">{{localize "agone.actors.noirceur"}}</label>
-                    <div class="val"><label>{{data.system.caracSecondaires.noirceur}}</label></div>
-                </div>
+                {{#if unlocked}}
+                    <div class="grid-conjuration-edit">
+                        <div class="data-magie-titre lib-all">{{localize "agone.actors.conjuration"}}</div>
+                        <label class="lib">{{localize "agone.actors.tenebre"}}</label>
+                        <div class="tenebre-crea minus">
+                            <a class="mod-tenebre-crea" title="{{localize 'agone.tooltip.dimTenebre'}}" data-action="minus">
+                                <i class="fa-solid fa-circle-minus"></i>
+                            </a>
+                        </div>
+                        <div class="val"><label>{{data.system.caracSecondaires.tenebre.valeur}}</label></div>
+                        <div class="tenebre-crea plus">
+                            <a class="mod-tenebre-crea" title="{{localize 'agone.tooltip.augTenebre'}}" data-action="plus">
+                                <i class="fa-solid fa-circle-plus"></i>
+                            </a>
+                        </div>
+                        <label class="lib">{{localize "agone.actors.noirceur"}}</label>
+                        <div class="val"><label>{{data.system.caracSecondaires.noirceur}}</label></div>
+                        <label class="lib">{{localize "agone.actors.demonologie"}}</label>
+                        <div class="val"><label>{{data.system.familleCompetences.occulte.competences.demonologie.rang}}</label></div>
+                    </div>
+                {{else}}
+                    <div class="grid-conjuration">
+                        <div class="data-magie-titre lib-all">{{localize "agone.actors.conjuration"}}</div>
+                        <label class="lib">{{localize "agone.actors.tenebre"}}</label>
+                        <div class="val"><label>{{data.system.caracSecondaires.tenebre.valeur}}</label></div>
+                        <label class="lib">{{localize "agone.actors.noirceur"}}</label>
+                        <div class="val"><label>{{data.system.caracSecondaires.noirceur}}</label></div>
+                        <label class="lib">{{localize "agone.actors.demonologie"}}</label>
+                        <div class="val"><label>{{data.system.familleCompetences.occulte.competences.demonologie.rang}}</label></div>
+                    </div>
+                {{/if}}
             </div>
+            {{#unless (or (eq data.system.familleCompetences.occulte.competences.demonologie.rang 0)
+                    (eq data.system.caracSecondaires.noirceur 0)) }}
+                    <div class="actions-magie">
+                        <div class="data-magie-titre">{{localize "agone.actors.actionsConjuration"}}</div>
+                        <button class="conjurer"><i class="fa-duotone fa-solid fa-face-angry-horns icone"></i>{{localize "agone.actors.conjurer"}}</button>
+                    </div>
+            {{/unless}}
         {{/if}}
     </div>
     <div class="magies">

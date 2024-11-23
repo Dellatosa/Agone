@@ -28,6 +28,26 @@ select.auto-size {
     color: white;
 }
 
+.cd-blanc {
+    color: white;
+}
+
+.cd-bleu {
+    color: rgb(43, 43, 187);
+}
+
+.cd-jaune {
+    color: rgb(201, 146, 43);
+}
+
+.cd-rouge {
+    color: rgb(153, 16, 16);
+}
+
+.cd-noir {
+    color: black;
+}
+
 .agone.sheet.actor  {
     
     form {
@@ -812,6 +832,56 @@ a.nohlight {
         }
 
         .conjuration {
+            .grid-conjuration-edit {
+                display: grid;
+                grid-template-columns: 1fr 1.5em 3.5em 1.5em;
+                align-items: center;
+                margin: 3px 1px;
+                padding: 3px;
+                border: solid 1px var(--color-box-border-dark);
+                border-radius: 5px;
+
+                .lib {
+                    grid-column-start: 1;
+                    grid-column-end: 2;
+                }
+
+                .lib-all {
+                    grid-column-start: 1;
+                    grid-column-end: 5;
+                    text-align: center;
+                }
+
+                .val {
+                    grid-column-start: 3;
+                    grid-column-end: 4;
+
+                    background-color: var(--color-stats-background);
+                    margin: 2px 5px;
+                    text-align: center;
+                    align-items: center;
+                    border-radius: 3px;
+                    height: 26px;
+
+                    label {
+                        position: relative;
+                        top: 5px;
+                    }       
+                }
+
+                .tenebre-crea {
+                    font-size: 0.8em;
+                }
+
+                .tenebre-crea.minus {
+                    text-align: right;
+                }
+
+                .tenebre-crea {
+                    text-align: left;
+                }
+            }
+
             .grid-conjuration {
                 display: grid;
                 grid-template-columns: 1fr 3.5em;
