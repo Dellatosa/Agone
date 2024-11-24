@@ -1063,6 +1063,52 @@ agone.materiaux = {
     },
 }
 
+agone.encrageApplique = {
+    aucun: {
+        label: "",
+        modif: 0,
+        tenebre: 0
+    },
+    encAppTour1: {
+        label: "agone.chat.encAppTour1",
+        modif: 1,
+        tenebre: 0
+    },
+    encAppTour2: {
+        label: "agone.chat.encAppTour2",
+        modif: 2,
+        tenebre: 0
+    },
+    encAppTour3: {
+        label: "agone.chat.encAppTour3",
+        modif: 3,
+        tenebre: 0
+    }
+}
+
+agone.melerSangEncre = {
+    aucun: {
+        label: "",
+        modif: 0,
+        tenebre: 0
+    },
+    melSangPdv1: {
+        label: "agone.chat.melSangPdv1",
+        modif: 1,
+        tenebre: 4
+    },
+    melSangPdv2: {
+        label: "agone.chat.melSangPdv2",
+        modif: 2,
+        tenebre: 5
+    },
+    melSangPdv3: {
+        label: "agone.chat.melSangPdv3",
+        modif: 3,
+        tenebre: 6
+    }
+}
+
 agone.resonances = {
     aucun: "",
     jorniste: "agone.actors.jorniste",

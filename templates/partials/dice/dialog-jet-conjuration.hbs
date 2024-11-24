@@ -1,19 +1,67 @@
 <form>
     <div>{{ localize "agone.chat.jetConjuration"}}</div>   
     <div class="form-group">
-        <label>{{ localize "agone.chat.magieInstantanee"}}</label>
-        <input type="checkbox" name="magieInstantanee"/>
+        <label>{{localize "agone.chat.cercleDemonInvoque"}}</label>
+        <select name="cercleDemonInvoque">
+            {{#select cercleDemonInvoque}}
+                {{#each cfgData.cerclesDemon as | cercle |}}
+                    <option value="{{cercle}}">{{localize cercle}}</option>
+                {{/each}}
+            {{/select}}
+        </select>
     </div>
     <div class="form-group">
-        <label>{{ localize "agone.chat.danseurInvisible"}}</label>
-        <input type="checkbox" name="danseurInvisible"/>
+        <label>{{localize "agone.chat.encrageApplique"}}</label>
+        <select name="encrageApplique">
+            {{#select encrageApplique}}
+                {{#each cfgData.encrageApplique as | encApp |}}
+                    <option value="{{encApp.modif}}">{{localize encApp.label}}</option>
+                {{/each}}
+            {{/select}}
+        </select>
     </div>
-    {{#if (eq mageData.resonance "jorniste")}}
-        <div class="form-group">
-            <label>{{ localize "agone.chat.mouvImperceptibles"}}</label>
-            <input type="checkbox" name="mouvImperceptibles"/>
-        </div>
-    {{/if}}
+    <div class="form-group">
+        <label>{{ localize "agone.chat.encrageRapide"}}</label>
+        <input type="checkbox" name="encrageRapide"/>
+    </div>
+    <div class="form-group">
+        <label>{{ localize "agone.chat.ombresProfondes"}}</label>
+        <input type="checkbox" name="ombresProfondes"/>
+    </div>
+    <div class="form-group">
+        <label>{{ localize "agone.chat.ombresClaires"}}</label>
+        <input type="checkbox" name="ombresClaires"/>
+    </div>
+    <div class="form-group">
+        <label>{{localize "agone.chat.melerSangEncre"}}</label>
+        <select name="melerSangEncre">
+            {{#select melerSangEncre}}
+                {{#each cfgData.melerSangEncre as | melSang |}}
+                    <option value="{{melSang.modif}}">{{localize melSang.label}}</option>
+                {{/each}}
+            {{/select}}
+        </select>
+    </div>
+    <div class="form-group">
+        <label>{{ localize "agone.chat.conseilDiablotin"}}</label>
+        <input type="checkbox" name="conseilDiablotin"/>
+    </div>
+    <div class="form-group">
+        <label>{{ localize "agone.chat.conseilDemon"}}</label>
+        <input type="checkbox" name="conseilDemon"/>
+    </div>
+    <div class="form-group">
+        <label>{{ localize "agone.chat.presenceMinotaure"}}</label>
+        <input type="checkbox" name="presenceMinotaure"/>
+    </div>
+    <div class="form-group">
+        <label>{{ localize "agone.chat.presenceTenebreux"}}</label>
+        <input type="checkbox" name="presenceTenebreux"/>
+    </div>
+    <div class="form-group">
+        <label>{{ localize "agone.chat.conseilTenebreux"}}</label>
+        <input type="number" name="conseilTenebreux" min="0" max="10" value="0"/>
+    </div>
     {{#if mageData.specialisation}}
         <div class="form-group">
             <div>{{ localize "agone.actors.specialisation"}}  <span class="bold">{{mageData.labelSpecialisation}}</span></div>
