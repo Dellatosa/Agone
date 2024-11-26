@@ -1606,7 +1606,7 @@ export async function conjurerDemon(conjurateur) {
     let conjurateurData = new Object();
 
     conjurateurData.potConjuration = conjurateur.system.caracSecondaires.noirceur + conjurateur.system.aspects.ame.bonus.valeur + conjurateur.system.familleCompetences.occulte.competences.demonologie.rang;
-    conjurateurData.tenebbre = conjurateur.system.caracSecondaires.tenebre.valeur;
+    conjurateurData.tenebre = conjurateur.system.caracSecondaires.tenebre.valeur;
     conjurateurData.specialisation = conjurateur.system.familleCompetences.occulte.competences.demonologie.specialisation;
     conjurateurData.labelSpecialisation = conjurateur.system.familleCompetences.occulte.competences.demonologie.labelSpecialisation;
 
@@ -1617,18 +1617,154 @@ export async function conjurerDemon(conjurateur) {
         return;
     }
 
+    console.log(dialogOptions);
+
     // Récupération des données de la fenêtre de dialogue pour ce jet 
-    /*let seuilTotalIntuitif;
-    if(isIntuitif) {
-        seuilTotalIntuitif = dialogOptions.seuilEstime * 2;
-        let modifObedience = dialogOptions.resonanceEstimee != statsEmprise.resonance ? 5 : 0;
-        seuilTotalIntuitif = dialogOptions.magieInstantanee ? seuilTotalIntuitif = (seuilTotalIntuitif * 2) + modifObedience : seuilTotalIntuitif = seuilTotalIntuitif + modifObedience;
+    let seuilDifficulte = 0;
+    let cercleDemon = 0;
+    switch(dialogOptions.cercleDemonInvoque) {
+        case "opalin":
+            seuilDifficulte = 10;
+            cercleDemon = 1;
+            break;        
+        case "azurin": 
+            seuilDifficulte = 15;
+            cercleDemon = 2;
+            break;
+        case "safran":
+            seuilDifficulte = 20;
+            cercleDemon = 3;
+            break;
+        case "carmin":
+            seuilDifficulte = 25;
+            cercleDemon = 4;
+            break;
+        case "obsidien":
+            seuilDifficulte = 30;
+            cercleDemon = 5;
+            break;
+        default:
+            ui.notifications.warn(game.i18n.localize("agone.notifications.warnAucunCercleSelectionne"));
+            return;
     }
-    else {
-        if(dialogOptions.magieInstantanee) {
-            sort.system.seuilTotal = sort.system.diffObedience == true ? sort.system.seuil * 2 + 5 : (sort.system.seuil * 2);
+
+    let modifJet = 0;
+    let gainTenebre = 0;
+    
+    modifJet += CONFIG.agone.encrageApplique[dialogOptions.encrageApplique].modif;
+    
+    if (dialogOptions.encrageRapide) {
+        modifJet -= 2;
+    }
+    
+    if (dialogOptions.ombresClaires) {
+        modifJet -= 1;
+    }
+    
+    if (dialogOptions.ombresProfondes) {
+        modifJet += 1;
+    }
+    
+    modifJet += CONFIG.agone.melerSangEncre[dialogOptions.melerSangEncre].modif;
+    gainTenebre += CONFIG.agone.melerSangEncre[dialogOptions.melerSangEncre].tenebre;
+
+    if (dialogOptions.conseilDiablotin) {
+        modifJet += 2;
+        gainTenebre += 5;
+    }
+
+    if (dialogOptions.conseilDemon) {
+        modifJet += 5;
+        gainTenebre += cercleDemon * 2;
+    }
+
+    if (dialogOptions.presenceMinotaure) {
+        modifJet += 1;
+    }
+    
+    if (dialogOptions.presenceTenebreux) {
+        modifJet += 1;
+    }
+    
+    modifJet += dialogOptions.conseilTenebreux;
+    gainTenebre += dialogOptions.conseilTenebreux;
+
+    // On lance le jet de dé depuis la fonction de jet de compétence 
+    // On récupère le rollResult
+    let result = await jetCompetence({
+        actor: conjurateur,
+        rangComp:  conjurateur.system.familleCompetences.occulte.competences.demonologie.rang,
+        jetDefautInterdit: true,
+        rangCarac: conjurateur.system.caracSecondaires.noirceur,
+        bonusAspect: conjurateur.system.aspects.ame.bonus.valeur,
+        modificateurs: modifJet,
+        utiliseHeroisme: dialogOptions.utiliseHeroisme,
+        utiliseSpecialisation: dialogOptions.utiliseSpecialisation,
+        afficherDialog: false,
+        envoiMessage: false
+    });
+
+    if(result == null) return;
+    
+    const rollResult = result[0];
+    const dices = result[1];
+
+    // Si le jet de compétence est annulé, on arrête le jet d'art magique (ex: compétence par défaut non autorisée)
+    if(rollResult == null) return;
+
+    // Construction du jeu de données pour alimenter le template
+    let rollStats = {
+        ...rollResult.data,
+        utiliseSpecialisation: dialogOptions.utiliseSpecialisation,
+        labelSpecialisation: conjurateur.system.familleCompetences.occulte.competences.demonologie.labelSpecialisation,
+        difficulte: seuilDifficulte,
+        cercleDemon: cercleDemon
+    }
+
+    rollStats.marge = rollResult.total - seuilDifficulte;
+    if(rollStats.marge <= -15) {
+        rollStats.isEchecCritiqueMarge = true;
+        rollStats.valeurCritique = rollStats.valeurCritique ? Math.min(rollStats.valeurCritique, rollStats.marge + 5) : rollStats.marge + 5;
+    }
+
+    if(rollStats.valeurCritique) {
+        let critInfos = getCritInfos("occulte", rollStats.valeurCritique);
+        rollStats.nomCritique = critInfos.nom;
+        rollStats.descCritique = critInfos.desc;
+    }
+
+    // Recupération du template
+    const messageTemplate = "systems/agone/templates/partials/dice/jet-conjuration.hbs";
+
+    // Assignation des données au template
+    let templateContext = {
+        stats: rollStats,
+        dices: dices,
+        conjurateur: conjurateurData
+    }
+
+    // Construction du message
+    let chatData = {
+        user: game.user.id,
+        speaker: ChatMessage.getSpeaker({ actor: conjurateur }),
+        roll: rollResult,
+        content: await renderTemplate(messageTemplate, templateContext),
+        sound: CONFIG.sounds.dice,
+        type: CONST.CHAT_MESSAGE_TYPES.ROLL
+    }
+
+    // Affichage du message
+    ChatMessage.create(chatData);
+
+    // Message de suggestions si l'option est activée
+    if(rollStats.valeurCritique) {
+        let suggestCritData = {
+            valeurCritique: rollStats.valeurCritique,
+            nomCritique: rollStats.nomCritique,
+            descCritique: rollStats.descCritique
         }
-    }*/
+        await suggestCritChatMessage(conjurateur, suggestCritData);
+    }
 }
 
 // Fonction de construction de la boite de dialogue de jet de sort d'Emprise
@@ -1645,7 +1781,7 @@ async function getJetConjurationOptions({conjurateurData = null, cfgData = null}
                 jet: { // Bouton qui lance le jet de dé
                     icon: '<i class="fas fa-dice"></i>',
                     label: game.i18n.localize("agone.common.jet"),
-                    callback: html => resolve(_processJetSortEmpriseOptions(html[0].querySelector("form")))
+                    callback: html => resolve(_processJetConjurationOptions(html[0].querySelector("form")))
                 },
                 annuler: { // Bouton d'annulation
                     label: game.i18n.localize("agone.common.annuler"),
@@ -1659,6 +1795,34 @@ async function getJetConjurationOptions({conjurateurData = null, cfgData = null}
         // Affichage de la boite de dialogue
         new Dialog(data, null).render(true);
     });
+}
+
+// Gestion des données renseignées dans la boite de dialogue de jet de conjuration
+function _processJetConjurationOptions(form) {
+    // L'affichage des options suivantes dépend de l'Art Magique de l'oeuvre
+    // On récupère la valeur des options si elles sont affichées 
+
+    let utiliseSpecialisation = false;
+
+    if(form.utiliseSpecialisation) {
+        utiliseSpecialisation = form.utiliseSpecialisation.checked;
+    }
+
+    return {
+        cercleDemonInvoque: form.cercleDemonInvoque.value,
+        encrageApplique: form.encrageApplique.value,
+        encrageRapide: form.encrageRapide.checked,
+        ombresClaires: form.ombresClaires.checked,
+        ombresProfondes: form.ombresProfondes.checked,
+        melerSangEncre: form.melerSangEncre.value,
+        conseilDiablotin: form.conseilDiablotin.checked,
+        conseilDemon: form.conseilDemon.checked,
+        presenceMinotaure: form.presenceMinotaure.checked,
+        presenceTenebreux: form.presenceTenebreux.checked,
+        conseilTenebreux: parseInt(form.conseilTenebreux.value),
+        utiliseHeroisme : form.utiliseHeroisme.checked,
+        utiliseSpecialisation : utiliseSpecialisation
+    }
 }
 
 export async function jetDefense(defenseur, typeDef) {

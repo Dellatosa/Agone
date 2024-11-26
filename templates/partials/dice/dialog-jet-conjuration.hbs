@@ -4,8 +4,8 @@
         <label>{{localize "agone.chat.cercleDemonInvoque"}}</label>
         <select name="cercleDemonInvoque">
             {{#select cercleDemonInvoque}}
-                {{#each cfgData.cerclesDemon as | cercle |}}
-                    <option value="{{cercle}}">{{localize cercle}}</option>
+                {{#each cfgData.cerclesDemon as | name cercle |}}
+                    <option value="{{cercle}}">{{localize name}}</option>
                 {{/each}}
             {{/select}}
         </select>
@@ -14,8 +14,8 @@
         <label>{{localize "agone.chat.encrageApplique"}}</label>
         <select name="encrageApplique">
             {{#select encrageApplique}}
-                {{#each cfgData.encrageApplique as | encApp |}}
-                    <option value="{{encApp.modif}}">{{localize encApp.label}}</option>
+                {{#each cfgData.encrageApplique as | encApp val|}}
+                    <option value="{{val}}">{{localize encApp.label}}</option>
                 {{/each}}
             {{/select}}
         </select>
@@ -36,8 +36,8 @@
         <label>{{localize "agone.chat.melerSangEncre"}}</label>
         <select name="melerSangEncre">
             {{#select melerSangEncre}}
-                {{#each cfgData.melerSangEncre as | melSang |}}
-                    <option value="{{melSang.modif}}">{{localize melSang.label}}</option>
+                {{#each cfgData.melerSangEncre as | melSang val |}}
+                    <option value="{{val}}">{{localize melSang.label}}</option>
                 {{/each}}
             {{/select}}
         </select>

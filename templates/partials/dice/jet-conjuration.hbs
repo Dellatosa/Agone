@@ -1,0 +1,23 @@
+<div class="jet-conjuration">
+    <div class="roll-desc"><span>{{localize "agone.chat.jetConjuration"}} </span><span class="bold">{{#if (eq stats.cercleDemon 1)}}{{stats.cercleDemon}}er{{else}}{{stats.cercleDemon}}em{{/if}} cercle</span></div>
+    <details>
+        <summary class="roll-titre">
+            <span>{{localize "agone.actors.potConjuration"}} </span><span class="bold">{{conjurateur.potConjuration}}</span><span> ▪ {{localize "agone.chat.difficulteAbrev"}} </span><span class="bold">{{stats.difficulte}}</span>
+            {{#if stats.utiliseSpecialisation}}<span>▪ <a class="nohlight spec" title="{{stats.labelSpecialisation}}"><i class="fa-duotone fa-solid fa-award"></i></a></span>{{/if}}
+            {{#if stats.utiliseHeroisme}}<span>▪ <a class="nohlight spec" title="{{localize 'agone.chat.utilisationHeroisme'}}"><i class="fa-solid fa-fire-flame-curved"></i></a></span>{{/if}}
+        </summary>
+        <div class="roll-details">
+            <span>{{localize "agone.actors.potConjuration"}} ({{conjurateur.potConjuration}})</span>
+            <span>+ modificateurs ({{stats.modificateurs}})</span>
+            {{#if stats.malusBlessureGrave}}<span> + {{localize "agone.chat.malusBlessureGrave"}} ({{stats.malusBlessureGrave}})</span>{{/if}}
+            <!-- {{#if stats.danseurInvisible}}<span> + {{localize "agone.chat.danseurInvisible"}}</span>{{/if}}
+            {{#if stats.mouvImperceptibles}}<span> + {{localize "agone.chat.mouvImperceptibles"}}</span>{{/if}} -->
+            {{#if stats.utiliseSpecialisation}} + {{localize "agone.actors.specialisation"}} <span class="bold">{{stats.labelSpecialisation}} (1)</span>{{/if}}
+        </div>
+        {{#if stats.utiliseHeroisme}}
+            <div class="roll-details">{{localize "agone.chat.utilisationHeroisme"}} (5)</div>
+        {{/if}}
+    </details>
+    {{> "systems/agone/templates/partials/dice/jet-dices-details.hbs"}}
+    {{> "systems/agone/templates/partials/dice/jet-resultat.hbs"}}
+</div>
