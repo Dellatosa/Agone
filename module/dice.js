@@ -1,4 +1,10 @@
-// Jet de caractéristique avec affichage du message dans la chat
+/*********************** 
+ *** CARACTERISTIQUE ***
+***********************/
+
+/* ------------------------------------------------------------------
+--- Jet de caractéristique avec affichage du message dans la chat ---
+------------------------------------------------------------------ */
 export async function jetCaracteristique({actor = null, 
     aspect = null,
     rangCarac = null,
@@ -174,9 +180,15 @@ export async function jetCaracteristique({actor = null,
     }
 }
 
-// Jet de compétence, avec au choix :
-// - affichage du message dans le chat
-// - renvoi du rollResult
+/****************** 
+ *** COMPETENCE ***
+******************/
+
+/* ----------------------------------------
+--- Jet de compétence, avec au choix :  ---
+--- - affichage du message dans le chat ---
+--- - renvoi du rollResult              ---
+---------------------------------------- */
 export async function jetCompetence({actor = null,
     rangComp = null,
     labelComp = null,
@@ -466,7 +478,9 @@ export async function jetCompetence({actor = null,
     return [rollResult, dices];
 }
 
-// Fonction de contsruction de la boite de dialogue de jet de compétence
+/* --------------------------------------------------------------------------
+--- Fonction de construction de la boite de dialogue de jet de compétence ---
+-------------------------------------------------------------------------- */
 async function getJetCompetenceOptions({cfgData = null, defCarac = null, specialisation = false, labelSpecialisation = null}) {
     // Recupération du template
     const template = "systems/agone/templates/partials/dice/dialog-jet-competence.hbs";
@@ -496,7 +510,9 @@ async function getJetCompetenceOptions({cfgData = null, defCarac = null, special
     });
 }
 
-// Gestion des données renseignées dans la boite de dialogue de jet de compétence
+/* -----------------------------------------------------------------------------------
+--- Gestion des données renseignées dans la boite de dialogue de jet de compétence ---
+----------------------------------------------------------------------------------- */
 function _processJetCompetenceOptions(form) {
     let utiliseSpecialisation = false;
     if(form.utiliseSpecialisation) {
@@ -511,6 +527,13 @@ function _processJetCompetenceOptions(form) {
     }
 }
 
+/************** 
+ *** COMBAT ***
+**************/
+
+/* -----------------------------------------------------------
+--- Gestion des jets d'attaque et de défense avec une arme ---
+----------------------------------------------------------- */
 export async function combatArme(actor, arme, type) {
     //console.log(game.combat, actor.estCombattantActif());
 
@@ -825,7 +848,9 @@ export async function combatArme(actor, arme, type) {
     }
 }
 
-// Fonction de construction de la boite de dialogue de jet d'attaque
+/* ----------------------------------------------------------------------
+--- Fonction de construction de la boite de dialogue de jet d'attaque ---
+---------------------------------------------------------------------- */
 async function getJetAttaqueOptions({attaquantData = null, armeData = null, cfgData = null}) {
     // Recupération du template
     const template = "systems/agone/templates/partials/dice/dialog-jet-combat-attaque.hbs";
@@ -855,7 +880,9 @@ async function getJetAttaqueOptions({attaquantData = null, armeData = null, cfgD
     });
 }
 
-// Gestion des données renseignées dans la boite de dialogue de jet d'attaque
+/* -------------------------------------------------------------------------------
+--- Gestion des données renseignées dans la boite de dialogue de jet d'attaque ---
+------------------------------------------------------------------------------- */
 function _processJetAttaqueOptions(form, distance) {
     let utiliseSpecialisation = false;
     if(form.utiliseSpecialisation) {
@@ -888,7 +915,9 @@ function _processJetAttaqueOptions(form, distance) {
     }
 }
 
-// Fonction de construction de la boite de dialogue de jet de defense
+/* -----------------------------------------------------------------------
+--- Fonction de construction de la boite de dialogue de jet de defense ---
+----------------------------------------------------------------------- */
 async function getJetDefenseOptions({defenseurData = null, armeData = null}) {
     // Recupération du template
     const template = "systems/agone/templates/partials/dice/dialog-jet-combat-defense.hbs";
@@ -918,7 +947,9 @@ async function getJetDefenseOptions({defenseurData = null, armeData = null}) {
     });
 }
 
-// Gestion des données renseignées dans la boite de dialogue de jet d'attaque
+/* --------------------------------------------------------------------------------
+--- Gestion des données renseignées dans la boite de dialogue de jet de defense ---
+-------------------------------------------------------------------------------- */
 function _processJetDefenseOptions(form, typeDefense) {
     let utiliseSpecialisation = false;
     if(form.utiliseSpecialisation) {
@@ -951,7 +982,191 @@ function _processJetDefenseOptions(form, typeDefense) {
     }
 }
 
-// Jet de sort d'Emprise, avec affichage du message dans le chat
+/* -------------------------------------------------------
+--- Gestion des jets de défense anturelle ou d'esquive ---
+------------------------------------------------------- */
+export async function jetDefense(defenseur, typeDef) {
+    let compData;
+
+    if(typeDef == "esquive") {
+        if(defenseur.reactionUtilisee() && game.settings.get("agone","gestionDesRencontres")) {
+            ui.notifications.warn(game.i18n.localize("agone.notifications.warnReactionUtilisee"));
+            return;
+        }
+        compData = defenseur.getCompData("epreuves", "esquive", null);
+    }
+
+    let caracData = defenseur.getCaracData("agilite");
+    let gererBonusAspect = defenseur.gererBonusAspect();
+
+    let titrePersonnalise;
+    let defenseurData = {
+        typeDefense: "esquive", // Pour gestion fenetre de dialogue
+        seuilBlessureCritique: defenseur.system.caracSecondaires.seuilBlessureCritique,
+        seuilBlessureGrave: defenseur.system.caracSecondaires.seuilBlessureGrave
+    };
+
+    if(typeDef == "esquive") {
+        titrePersonnalise = game.i18n.localize("agone.actors.jetEsquive");
+        defenseurData.potDefense = caracData.rangCarac + compData.rangComp + caracData.bonusAspect;
+    }
+    else if(typeDef == "defenseNat") {
+        titrePersonnalise = game.i18n.localize("agone.actors.jetDefenseNat");
+        defenseurData.potDefense = caracData.rangCarac + caracData.bonusAspect;
+    }
+
+    let dialogOptions = await getJetDefenseOptions({defenseurData: defenseurData, armeData: null});
+
+     // On annule le jet sur les boutons 'Annuler' ou 'Fermeture'
+     if(dialogOptions.annule) {
+        return;
+    }
+
+    
+    let modificateurs = 0;
+    if(dialogOptions.defenseurEnSelle) {
+        modificateurs += -5;
+    }
+    if(dialogOptions.defenseurAuSol) {
+        modificateurs += -3;
+    }
+    if(dialogOptions.attaqueCote) {
+        modificateurs += -1;
+    }
+    if(dialogOptions.attaqueDos) {
+        modificateurs += -8;
+    }
+    if(dialogOptions.defenseurSureleve) {
+        modificateurs += 2;
+    }
+
+    let utiliseHeroisme = dialogOptions.utiliseHeroisme;
+
+    let result = await jetCompetence({
+        actor: defenseur,
+        rangComp: typeDef == "esquive" ? compData.rangComp : null,
+        labelComp: typeDef == "esquive" ? compData.labelComp: null,
+        specialisation: typeDef == "esquive" ? compData.specialisation : null,
+        labelSpecialisation: typeDef == "esquive" ? compData.labelSpecialisation : null,
+        jetDefautInterdit: typeDef == "esquive" ? compData.jetDefautInterdit : false,
+        rangCarac: caracData.rangCarac,
+        labelCarac: caracData.labelCarac,
+        bonusAspect: gererBonusAspect ? caracData.bonusAspect : null,
+        labelAspect: gererBonusAspect ? caracData.labelAspect: null,
+        modificateurs: modificateurs,
+        utiliseHeroisme: utiliseHeroisme,
+        afficherDialog: false,
+        envoiMessage: false
+    });
+
+    if(result == null) return;
+
+    const rollResult = result[0];
+    const dices = result[1];
+
+    let rollStats = {
+        ...rollResult.data,
+        labelCarac: caracData.labelCarac,
+        labelAspect: caracData.labelAspect,
+        labelComp: typeDef == "esquive" ? compData.labelComp : null,
+        modificateurs: modificateurs,
+        utiliseHeroisme: utiliseHeroisme,
+        titrePersonnalise: titrePersonnalise
+    }
+
+    if(!gererBonusAspect) {
+        rollStats.labelAspect = null;
+    }
+    
+    if(defenseur.estAttaquer()) {
+        rollStats.infosAttaque = defenseur.getInfosAttaque();
+        let diffTaiMR = defenseur.calcDiffTaiMR(rollStats.infosAttaque.taiAttaquant);
+        rollStats.marge = rollResult.total - rollStats.infosAttaque.resultatJet - rollStats.infosAttaque.bonusDommages;
+
+        if(rollStats.marge + diffTaiMR <= 0) {
+            rollStats.attaqueTouche = true;
+            rollStats.dommagesRecus = (rollStats.marge * -1) - defenseur.getProtectionArmure();
+
+            if(rollStats.dommagesRecus > defenseurData.seuilBlessureCritique) {
+                rollStats.blessureCritique = true;
+                let lienTableCritique = getTableCritique(rollStats.infosAttaque.typeArme);
+                if(lienTableCritique) {
+                    rollStats.lienTableCritique = lienTableCritique;
+                }
+            }
+            else if (rollStats.dommagesRecus > defenseurData.seuilBlessureGrave) {
+                rollStats.blessureGrave = true;
+            }
+        }
+    }
+
+    if(rollStats.valeurCritique) {
+        let critInfos = getCritInfos("epreuves", rollStats.valeurCritique);
+        rollStats.nomCritique = critInfos.nom;
+        rollStats.descCritique = critInfos.desc;
+    }
+
+    const messageTemplate = "systems/agone/templates/partials/dice/jet-competence.hbs";
+
+    let templateContext = {
+        stats: rollStats,
+        dices: dices
+    }
+
+    let chatData = {
+        user: game.user.id,
+        speaker: ChatMessage.getSpeaker({ actor: defenseur }),
+        roll: rollResult,
+        content: await renderTemplate(messageTemplate, templateContext),
+        sound: CONFIG.sounds.dice,
+        type: CONST.CHAT_MESSAGE_TYPES.ROLL
+    }
+
+    ChatMessage.create(chatData);
+
+    // Message de suggestions si l'option est activée
+    if(rollStats.valeurCritique) {
+        let suggestCritData = {
+            valeurCritique: rollStats.valeurCritique,
+            nomCritique: rollStats.nomCritique,
+            descCritique: rollStats.descCritique
+        }
+        await suggestCritChatMessage(defenseur, suggestCritData);
+    }
+
+    defenseur.setDefense(typeDef == "defenseNat" ? false : true, rollResult.total);
+    // Retirer les dommages aux PV, et appliquer les blessures graves
+    if(rollStats.dommagesRecus) {
+        defenseur.subirDommages(rollStats.dommagesRecus);
+    }
+
+    if(rollStats.blessureGrave) {
+        defenseur.subirBlessureGrave();
+    }
+}
+
+/* -----------------------------------------------------
+--- Détermination de la table des dommages critiques ---
+----------------------------------------------------- */
+function getTableCritique(typeArme) {
+    switch(typeArme) {
+        case "perforante":
+        case "perftranch":
+            return game.settings.get("agone","lienTableCritiquePerforation");
+        case "tranchante":
+            return game.settings.get("agone","lienTableCritiqueTaille");
+        case "contondante":
+            return game.settings.get("agone","lienTableCritiqueContusion");
+    }
+}
+
+/*************** 
+ *** EMPRISE ***
+***************/
+
+/* ------------------------------------------------------------------
+--- Jet de sort d'Emprise, avec affichage du message dans le chat ---
+------------------------------------------------------------------ */
 export async function sortEmprise(mage, danseur, sort, isIntuitif = false) {
     let statsEmprise = mage.getStatsEmprise();
 
@@ -1104,7 +1319,9 @@ export async function sortEmprise(mage, danseur, sort, isIntuitif = false) {
     }
 }
 
-// Fonction de construction de la boite de dialogue de jet de sort d'Emprise
+/* ------------------------------------------------------------------------------
+--- Fonction de construction de la boite de dialogue de jet de sort d'Emprise ---
+------------------------------------------------------------------------------ */
 async function getJetSortEmpriseOptions({mageData = null, danseurData = null, sortData = null, cfgData = null}) {
     // Recupération du template
     const template = "systems/agone/templates/partials/dice/dialog-jet-sort-emprise.hbs";
@@ -1134,7 +1351,9 @@ async function getJetSortEmpriseOptions({mageData = null, danseurData = null, so
     });
 }
 
-// Gestion des données renseignées dans la boite de dialogue de jet de sort d'Emprise
+/* ---------------------------------------------------------------------------------------
+--- Gestion des données renseignées dans la boite de dialogue de jet de sort d'Emprise ---
+--------------------------------------------------------------------------------------- */
 function _processJetSortEmpriseOptions(form) {
     // L'affichage de l'option Mouvements imperceptibles est conditionelle
     // On récupère la valeur de la case à cocher uniquement si l'option était affichée 
@@ -1169,7 +1388,99 @@ function _processJetSortEmpriseOptions(form) {
     }
 }
 
-// Jet d'une oeuvre d'Art magique, avec affichage du message dans le chat
+/* -----------------------------------------------------------------
+--- Jet de Contre-magie, avec affichage du messsage dans la chat ---
+----------------------------------------------------------------- */
+export async function contreMagie(mage, danseur, utiliseHeroisme) {
+    let statsEmprise = mage.getStatsEmprise();
+
+    // Construction des strutures de données pour l'affichage du message
+    let mageData = {
+        potEmprise: statsEmprise.emprise + Math.min(statsEmprise.rangResonance, statsEmprise.connDanseurs) + statsEmprise.bonusEsprit + danseur.system.bonusEmprise,
+        resonance: statsEmprise.resonance
+    };
+
+    let danseurData = {
+        nomDanseur: danseur.name
+    };
+
+    // On lance le jet de dé depuis la fonction de jet de compétence 
+    // On récupère le rollResult
+    let result = await jetCompetence({
+        actor: mage,
+        rangComp:  Math.min(statsEmprise.rangResonance, statsEmprise.connDanseurs),
+        jetDefautInterdit: true,
+        rangCarac: statsEmprise.emprise,
+        bonusAspect: statsEmprise.bonusEsprit,
+        bonusEmprise: danseur.system.bonusEmprise,
+        utiliseHeroisme: utiliseHeroisme,
+        afficherDialog: false,
+        envoiMessage: false
+    });
+
+    if(result == null) return;
+
+    const rollResult = result[0];
+    const dices = result[1];
+
+    // Si le jet de compétence est annulé, on arrête le jet de contre magie (ex: compétence par défaut non autorisée)
+    if(rollResult == null) return;
+
+    // Construction du jeu de données pour alimenter le template
+    let rollStats = {
+        ...rollResult.data,
+        specialisation: statsEmprise.specialisation,
+        labelSpecialisation: statsEmprise.labelSpecialisation
+    }
+
+    if(rollStats.valeurCritique) {
+        let critInfos = getCritInfos("emprise", rollStats.valeurCritique);
+        rollStats.nomCritique = critInfos.nom;
+        rollStats.descCritique = critInfos.desc;
+    }
+
+    // Recupération du template
+    const messageTemplate = "systems/agone/templates/partials/dice/jet-contre-magie.hbs";
+
+    // Assignation des données au template
+    let templateContext = {
+        stats: rollStats,
+        dices: dices,
+        mage: mageData,
+        danseur: danseurData
+    }
+
+    // Construction du message
+    let chatData = {
+        user: game.user.id,
+        speaker: ChatMessage.getSpeaker({ actor: mage }),
+        roll: rollResult,
+        content: await renderTemplate(messageTemplate, templateContext),
+        sound: CONFIG.sounds.dice,
+        type: CONST.CHAT_MESSAGE_TYPES.ROLL
+    }
+
+    // Affichage du message
+    ChatMessage.create(chatData);
+
+    // Message de suggestions si l'option est activée
+    if(rollStats.valeurCritique) {
+        let suggestCritData = {
+            valeurCritique: rollStats.valeurCritique,
+            nomCritique: rollStats.nomCritique,
+            descCritique: rollStats.descCritique
+        }
+        await suggestCritChatMessage(mage, suggestCritData);
+    }
+}
+
+/********************* 
+ *** ARTS MAGIQUES ***
+*********************/
+
+/* ---------------------------------------------------------------------------
+--- Jet d'une oeuvre d'Art magique, avec affichage du message dans le chat ---
+--------------------------------------------------------------------------- */
 export async function oeuvre(artiste, oeuvre, artMagiqueImpro = null, isArtImpro = false) {
     let artMagique = isArtImpro ? artMagiqueImpro : oeuvre.system.artMagique;
     let statsArtMagique;
@@ -1354,7 +1665,9 @@ export async function oeuvre(artiste, oeuvre, artMagiqueImpro = null, isArtImpro
     }
 }
 
-// Fonction de construction de la boite de dialogue de jet d'une oeuvre
+/* -------------------------------------------------------------------------
+--- Fonction de construction de la boite de dialogue de jet d'une oeuvre ---
+------------------------------------------------------------------------- */
 async function getJetOeuvreOptions({artisteData = null, oeuvreData = null, cfgData = null}) {
     // Recupération du template
     const template = "systems/agone/templates/partials/dice/dialog-jet-oeuvre.hbs";
@@ -1384,7 +1697,9 @@ async function getJetOeuvreOptions({artisteData = null, oeuvreData = null, cfgDa
     });
 }
 
-// Gestion des données renseignées dans la boite de dialogue de jet d'oeuvre d'art magique
+/* --------------------------------------------------------------------------------------------
+--- Gestion des données renseignées dans la boite de dialogue de jet d'oeuvre d'art magique ---
+-------------------------------------------------------------------------------------------- */
 function _processJetOeuvreOptions(form) {
     // L'affichage des options suivantes dépend de l'Art Magique de l'oeuvre
     // On récupère la valeur des options si elles sont affichées 
@@ -1438,90 +1753,9 @@ function _processJetOeuvreOptions(form) {
     }
 }
 
-// Jet de Contre-magie, avec affichage du messsage dans la chat
-export async function contreMagie(mage, danseur, utiliseHeroisme) {
-    let statsEmprise = mage.getStatsEmprise();
-
-    // Construction des strutures de données pour l'affichage du message
-    let mageData = {
-        potEmprise: statsEmprise.emprise + Math.min(statsEmprise.rangResonance, statsEmprise.connDanseurs) + statsEmprise.bonusEsprit + danseur.system.bonusEmprise,
-        resonance: statsEmprise.resonance
-    };
-
-    let danseurData = {
-        nomDanseur: danseur.name
-    };
-
-    // On lance le jet de dé depuis la fonction de jet de compétence 
-    // On récupère le rollResult
-    let result = await jetCompetence({
-        actor: mage,
-        rangComp:  Math.min(statsEmprise.rangResonance, statsEmprise.connDanseurs),
-        jetDefautInterdit: true,
-        rangCarac: statsEmprise.emprise,
-        bonusAspect: statsEmprise.bonusEsprit,
-        bonusEmprise: danseur.system.bonusEmprise,
-        utiliseHeroisme: utiliseHeroisme,
-        afficherDialog: false,
-        envoiMessage: false
-    });
-
-    if(result == null) return;
-
-    const rollResult = result[0];
-    const dices = result[1];
-
-    // Si le jet de compétence est annulé, on arrête le jet de contre magie (ex: compétence par défaut non autorisée)
-    if(rollResult == null) return;
-
-    // Construction du jeu de données pour alimenter le template
-    let rollStats = {
-        ...rollResult.data,
-        specialisation: statsEmprise.specialisation,
-        labelSpecialisation: statsEmprise.labelSpecialisation
-    }
-
-    if(rollStats.valeurCritique) {
-        let critInfos = getCritInfos("emprise", rollStats.valeurCritique);
-        rollStats.nomCritique = critInfos.nom;
-        rollStats.descCritique = critInfos.desc;
-    }
-
-    // Recupération du template
-    const messageTemplate = "systems/agone/templates/partials/dice/jet-contre-magie.hbs";
-
-    // Assignation des données au template
-    let templateContext = {
-        stats: rollStats,
-        dices: dices,
-        mage: mageData,
-        danseur: danseurData
-    }
-
-    // Construction du message
-    let chatData = {
-        user: game.user.id,
-        speaker: ChatMessage.getSpeaker({ actor: mage }),
-        roll: rollResult,
-        content: await renderTemplate(messageTemplate, templateContext),
-        sound: CONFIG.sounds.dice,
-        type: CONST.CHAT_MESSAGE_TYPES.ROLL
-    }
-
-    // Affichage du message
-    ChatMessage.create(chatData);
-
-    // Message de suggestions si l'option est activée
-    if(rollStats.valeurCritique) {
-        let suggestCritData = {
-            valeurCritique: rollStats.valeurCritique,
-            nomCritique: rollStats.nomCritique,
-            descCritique: rollStats.descCritique
-        }
-        await suggestCritChatMessage(mage, suggestCritData);
-    }
-}
-
+/* -------------------------------------------------------------
+--- Jet de désaccord, avec affichage du message dans le chat ---
+------------------------------------------------------------- */
 export async function desaccord(artiste, instrument, utiliseHeroisme) {
     
     let statsAccord = artiste.getStatsArtMagique("accord", instrument);
@@ -1600,7 +1834,37 @@ export async function desaccord(artiste, instrument, utiliseHeroisme) {
     }
 }
 
-// Jet de conjuration, avec affichage du messsage dans la chat
+/* -----------------------------------------------------------------------------------------
+--- Renvoi le niveau de qualité d'une oeuvre en fonction du malus que s'impose l'artiste ---
+----------------------------------------------------------------------------------------- */
+function getNiveauQualite(margeQualite) {
+    if(margeQualite == 0) {
+        return 1;
+    }
+    else if(margeQualite <= 4) {
+        return 2;
+    }
+    else if(margeQualite <= 9) {
+        return 5;
+    }
+    else if(margeQualite <= 15) {
+        return 10;
+    }
+    else if(margeQualite <= 20) {
+        return 30;
+    }
+    else if(margeQualite >= 21) {
+        return 100;
+    }
+}
+
+/******************* 
+ *** CONJURATION ***
+*******************/
+
+/* ----------------------------------------------------------------
+--- Jet de conjuration, avec affichage du messsage dans la chat ---
+---------------------------------------------------------------- */
 export async function conjurerDemon(conjurateur) {
     // Construction des strutures de données pour l'affichage de la boite de dialogue
     let conjurateurData = new Object();
@@ -1767,7 +2031,9 @@ export async function conjurerDemon(conjurateur) {
     }
 }
 
-// Fonction de construction de la boite de dialogue de jet de sort d'Emprise
+/* --------------------------------------------------------------------------
+// Fonction de construction de la boite de dialogue de jet de conjuration ---
+-------------------------------------------------------------------------- */
 async function getJetConjurationOptions({conjurateurData = null, cfgData = null}) {
     // Recupération du template
     const template = "systems/agone/templates/partials/dice/dialog-jet-conjuration.hbs";
@@ -1797,13 +2063,11 @@ async function getJetConjurationOptions({conjurateurData = null, cfgData = null}
     });
 }
 
-// Gestion des données renseignées dans la boite de dialogue de jet de conjuration
+/* ------------------------------------------------------------------------------------
+--- Gestion des données renseignées dans la boite de dialogue de jet de conjuration ---
+------------------------------------------------------------------------------------ */
 function _processJetConjurationOptions(form) {
-    // L'affichage des options suivantes dépend de l'Art Magique de l'oeuvre
-    // On récupère la valeur des options si elles sont affichées 
-
     let utiliseSpecialisation = false;
-
     if(form.utiliseSpecialisation) {
         utiliseSpecialisation = form.utiliseSpecialisation.checked;
     }
@@ -1825,167 +2089,13 @@ function _processJetConjurationOptions(form) {
     }
 }
 
-export async function jetDefense(defenseur, typeDef) {
-    let compData;
+/*********************
+ *** POINTS DE VIE ***
+ ********************/
 
-    if(typeDef == "esquive") {
-        if(defenseur.reactionUtilisee() && game.settings.get("agone","gestionDesRencontres")) {
-            ui.notifications.warn(game.i18n.localize("agone.notifications.warnReactionUtilisee"));
-            return;
-        }
-        compData = defenseur.getCompData("epreuves", "esquive", null);
-    }
-
-    let caracData = defenseur.getCaracData("agilite");
-    let gererBonusAspect = defenseur.gererBonusAspect();
-
-    let titrePersonnalise;
-    let defenseurData = {
-        typeDefense: "esquive", // Pour gestion fenetre de dialogue
-        seuilBlessureCritique: defenseur.system.caracSecondaires.seuilBlessureCritique,
-        seuilBlessureGrave: defenseur.system.caracSecondaires.seuilBlessureGrave
-    };
-
-    if(typeDef == "esquive") {
-        titrePersonnalise = game.i18n.localize("agone.actors.jetEsquive");
-        defenseurData.potDefense = caracData.rangCarac + compData.rangComp + caracData.bonusAspect;
-    }
-    else if(typeDef == "defenseNat") {
-        titrePersonnalise = game.i18n.localize("agone.actors.jetDefenseNat");
-        defenseurData.potDefense = caracData.rangCarac + caracData.bonusAspect;
-    }
-
-    let dialogOptions = await getJetDefenseOptions({defenseurData: defenseurData, armeData: null});
-
-     // On annule le jet sur les boutons 'Annuler' ou 'Fermeture'
-     if(dialogOptions.annule) {
-        return;
-    }
-
-    
-    let modificateurs = 0;
-    if(dialogOptions.defenseurEnSelle) {
-        modificateurs += -5;
-    }
-    if(dialogOptions.defenseurAuSol) {
-        modificateurs += -3;
-    }
-    if(dialogOptions.attaqueCote) {
-        modificateurs += -1;
-    }
-    if(dialogOptions.attaqueDos) {
-        modificateurs += -8;
-    }
-    if(dialogOptions.defenseurSureleve) {
-        modificateurs += 2;
-    }
-
-    let utiliseHeroisme = dialogOptions.utiliseHeroisme;
-
-    let result = await jetCompetence({
-        actor: defenseur,
-        rangComp: typeDef == "esquive" ? compData.rangComp : null,
-        labelComp: typeDef == "esquive" ? compData.labelComp: null,
-        specialisation: typeDef == "esquive" ? compData.specialisation : null,
-        labelSpecialisation: typeDef == "esquive" ? compData.labelSpecialisation : null,
-        jetDefautInterdit: typeDef == "esquive" ? compData.jetDefautInterdit : false,
-        rangCarac: caracData.rangCarac,
-        labelCarac: caracData.labelCarac,
-        bonusAspect: gererBonusAspect ? caracData.bonusAspect : null,
-        labelAspect: gererBonusAspect ? caracData.labelAspect: null,
-        modificateurs: modificateurs,
-        utiliseHeroisme: utiliseHeroisme,
-        afficherDialog: false,
-        envoiMessage: false
-    });
-
-    if(result == null) return;
-
-    const rollResult = result[0];
-    const dices = result[1];
-
-    let rollStats = {
-        ...rollResult.data,
-        labelCarac: caracData.labelCarac,
-        labelAspect: caracData.labelAspect,
-        labelComp: typeDef == "esquive" ? compData.labelComp : null,
-        modificateurs: modificateurs,
-        utiliseHeroisme: utiliseHeroisme,
-        titrePersonnalise: titrePersonnalise
-    }
-
-    if(!gererBonusAspect) {
-        rollStats.labelAspect = null;
-    }
-    
-    if(defenseur.estAttaquer()) {
-        rollStats.infosAttaque = defenseur.getInfosAttaque();
-        let diffTaiMR = defenseur.calcDiffTaiMR(rollStats.infosAttaque.taiAttaquant);
-        rollStats.marge = rollResult.total - rollStats.infosAttaque.resultatJet - rollStats.infosAttaque.bonusDommages;
-
-        if(rollStats.marge + diffTaiMR <= 0) {
-            rollStats.attaqueTouche = true;
-            rollStats.dommagesRecus = (rollStats.marge * -1) - defenseur.getProtectionArmure();
-
-            if(rollStats.dommagesRecus > defenseurData.seuilBlessureCritique) {
-                rollStats.blessureCritique = true;
-                let lienTableCritique = getTableCritique(rollStats.infosAttaque.typeArme);
-                if(lienTableCritique) {
-                    rollStats.lienTableCritique = lienTableCritique;
-                }
-            }
-            else if (rollStats.dommagesRecus > defenseurData.seuilBlessureGrave) {
-                rollStats.blessureGrave = true;
-            }
-        }
-    }
-
-    if(rollStats.valeurCritique) {
-        let critInfos = getCritInfos("epreuves", rollStats.valeurCritique);
-        rollStats.nomCritique = critInfos.nom;
-        rollStats.descCritique = critInfos.desc;
-    }
-
-    const messageTemplate = "systems/agone/templates/partials/dice/jet-competence.hbs";
-
-    let templateContext = {
-        stats: rollStats,
-        dices: dices
-    }
-
-    let chatData = {
-        user: game.user.id,
-        speaker: ChatMessage.getSpeaker({ actor: defenseur }),
-        roll: rollResult,
-        content: await renderTemplate(messageTemplate, templateContext),
-        sound: CONFIG.sounds.dice,
-        type: CONST.CHAT_MESSAGE_TYPES.ROLL
-    }
-
-    ChatMessage.create(chatData);
-
-    // Message de suggestions si l'option est activée
-    if(rollStats.valeurCritique) {
-        let suggestCritData = {
-            valeurCritique: rollStats.valeurCritique,
-            nomCritique: rollStats.nomCritique,
-            descCritique: rollStats.descCritique
-        }
-        await suggestCritChatMessage(defenseur, suggestCritData);
-    }
-
-    defenseur.setDefense(typeDef == "defenseNat" ? false : true, rollResult.total);
-    // Retirer les dommages aux PV, et appliquer les blessures graves
-    if(rollStats.dommagesRecus) {
-        defenseur.subirDommages(rollStats.dommagesRecus);
-    }
-
-    if(rollStats.blessureGrave) {
-        defenseur.subirBlessureGrave();
-    }
-}
-
-//Jet de points de vie
+/*--------------------------
+--- Jet de points de vie ---
+------------------------- */
 export async function jetPdv({actor = null} = {}) {
     let rollFormula = "1d10";
 
@@ -2027,29 +2137,14 @@ export async function jetPdv({actor = null} = {}) {
     ChatMessage.create(chatData);
 }
 
-// Renvoi le niveau de qualité d'une oeuvre en fonction du malus que s'impose l'artiste
-function getNiveauQualite(margeQualite) {
-    if(margeQualite == 0) {
-        return 1;
-    }
-    else if(margeQualite <= 4) {
-        return 2;
-    }
-    else if(margeQualite <= 9) {
-        return 5;
-    }
-    else if(margeQualite <= 15) {
-        return 10;
-    }
-    else if(margeQualite <= 20) {
-        return 30;
-    }
-    else if(margeQualite >= 21) {
-        return 100;
-    }
-}
+/************************
+ *** ECHECS CRITIQUES ***
+ ***********************/
 
-// Renvoi le niveau de gravite de l'échec critique en fonction du résultat du dé ou de la marge
+ /* ---------------------------------------------------
+--- Renvoi le niveau de gravite de l'échec critique ---
+--- en fonction du résultat du dé ou de la marge    ---
+---------------------------------------------------- */
 function getCritInfos(familleComp, valeurCritique) {
     let critInfos = {};
 
@@ -2070,8 +2165,7 @@ function getCritInfos(familleComp, valeurCritique) {
         gravite = 5;
     }
 
-
-    // Echerc critique lors d'un test de caractéristique
+    // Echec critique lors d'un test de caractéristique
     // TODO - Revoir l'affichage des critiques avec des tables dédiées aux caractéristiques
     if(familleComp == "corps") {
         familleComp = "epreuves";
@@ -2090,7 +2184,10 @@ function getCritInfos(familleComp, valeurCritique) {
     return critInfos;
 }
 
-// Envoi d'un message à l'EG pour lui proposer une interprétation de l'échec critique en fonction de sa gravité
+ /* ------------------------------------------------------------------
+--- Envoi d'un message à l'EG pour lui proposer une interprétation ---
+--- de l'échec critique en fonction de sa gravité                  ---
+------------------------------------------------------------------- */
 async function suggestCritChatMessage(actor, suggestCritData) {
     let suggestCritOption = game.settings.get("agone","suggestEchecCritEG");
 
@@ -2112,16 +2209,4 @@ async function suggestCritChatMessage(actor, suggestCritData) {
     }
 
     await ChatMessage.create(chatCritData);  
-}
-
-function getTableCritique(typeArme) {
-    switch(typeArme) {
-        case "perforante":
-        case "perftranch":
-            return game.settings.get("agone","lienTableCritiquePerforation");
-        case "tranchante":
-            return game.settings.get("agone","lienTableCritiqueTaille");
-        case "contondante":
-            return game.settings.get("agone","lienTableCritiqueContusion");
-    }
 }

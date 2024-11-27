@@ -1023,6 +1023,9 @@ export default class AgoneActorSheet extends ActorSheet {
         event.preventDefault();
 
         // Carte de sélection de l'art magique à afficher dans le chat
+        //let arts = Object();
+        //arts = this.actor.system.familleCompetences.occulte.competences.artsMagiques.domaines;
+        //console.log(this.actor.system.familleCompetences.occulte.competences.artsMagiques.domaines, arts);
         Chat.selArtMagiqueReconnOeuvre(this.actor, this.actor.system.familleCompetences.occulte.competences.artsMagiques.domaines);
     }
 

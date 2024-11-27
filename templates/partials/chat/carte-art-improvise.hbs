@@ -11,7 +11,7 @@
      <div class="boutons-carte">
         <div class="ligne-btn-2">
             {{#each arts as | art id | }}
-                <button class="jet-art-improvise" data-art-id="{{id}}"><i class="{{configSymbole id}}"></i> {{art.label}}</button>
+                {{#if (gt art.rang 0)}}<button class="jet-art-improvise" data-art-id="{{id}}"><i class="{{configSymbole id}}"></i> {{art.label}}</button>{{/if}}
             {{/each}}
         </div>
     </div>

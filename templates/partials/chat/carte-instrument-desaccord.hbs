@@ -12,7 +12,7 @@
         <div class="ligne-btn-1">
             {{#each instruments as | instrument | }}
                 {{#if instrument.label}}
-                    <button class="jet-desaccord" data-instrument="{{instrument.label}}">{{configLocalize "instruments" instrument.label}}</button>
+                    <button class="jet-desaccord" data-instrument="{{instrument.label}}">{{#unless (eq instrument.label "aucun")}}{{configLocalize "instruments" instrument.label}}{{else}}ND !!{{/unless}}</button>
                 {{/if}}
             {{/each}}
         </div>

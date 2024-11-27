@@ -24,8 +24,8 @@
                         {{#each domaines as |domaine keyDom|}}
                             {{#if domPerso}}
                                 {{#if (eq keyComp "musique")}}
-                                    <select name="{{keyComp}}.domaines.{{keyDom}}.label">
-                                        {{#select domaine.label}}
+                                    <select name="system.familleCompetences.{{keyFam}}.competences.{{keyComp}}.domaines.{{keyDom}}.label">
+                                        {{#select label}}
                                             {{#each ../../../config.instruments as |name type|}}
                                                 <option value="{{type}}">{{localize name}}</option>
                                             {{/each}}
