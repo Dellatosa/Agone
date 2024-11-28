@@ -311,7 +311,7 @@ export default class AgoneActor extends Actor {
             labelAspect: ""
         };
 
-        if(caracteristique) {
+        if(caracteristique && caracteristique != "aucun") {
             let aspect = this.getAspect(caracteristique);
 
             result.aspect = aspect;
@@ -482,7 +482,7 @@ export default class AgoneActor extends Actor {
         }
         else if(instrument) {
             const instruments = this.getInstrumentsPratiques();
-            console.log(instruments, instrument);
+            
             if(instruments && instruments.some( inst => inst.label == instrument)) {
                 result.rangCompetence = data.familleCompetences.societe.competences[compId].domaines[domaine].rang;
                 result.labelCompetence = data.familleCompetences.societe.competences[compId].domaines[domaine].label;    

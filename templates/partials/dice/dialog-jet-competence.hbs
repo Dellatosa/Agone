@@ -4,13 +4,13 @@
         <select name="caracteristique">
         {{#select caracteristique}}
             {{#each data.caracteristiques as |name key|}}
-                {{#if (eq key ../defCarac)}}
-                    <option value="{{key}}" selected>{{localize name}}</option>
-                {{else}}
-                    {{#unless (eq key "aucun")}}
-                    <option value="{{key}}">{{localize name}}</option>
-                    {{/unless}}
-                {{/if}}
+                {{#unless (eq key "aucun")}}
+                    {{#if (eq key ../defCarac)}}
+                        <option value="{{key}}" selected>{{localize name}}</option>
+                    {{else}}
+                        <option value="{{key}}">{{localize name}}</option>
+                    {{/if}}
+                {{/unless}}
             {{/each}}
         {{/select}}
         </select>

@@ -1,5 +1,5 @@
 <div class="jet-conjuration">
-    <div class="roll-desc"><span>{{localize "agone.chat.jetConjuration"}} </span><span class="bold">{{#if (eq stats.cercleDemon 1)}}{{stats.cercleDemon}}er{{else}}{{stats.cercleDemon}}em{{/if}} cercle</span></div>
+    <div class="roll-desc"><span>{{localize "agone.chat.conjureUnDemon"}} </span><span class="bold">{{#if (eq stats.cercleDemon 1)}}{{stats.cercleDemon}}{{localize "agone.chat.abbrevNumPremier"}}{{else}}{{stats.cercleDemon}}{{localize "agone.chat.abbrevNumAutre"}}{{/if}} {{localize "agone.chat.cercle"}}</span></div>
     <details>
         <summary class="roll-titre">
             <span>{{localize "agone.actors.potConjuration"}} </span><span class="bold">{{conjurateur.potConjuration}}</span><span> ▪ {{localize "agone.chat.difficulteAbrev"}} </span><span class="bold">{{stats.difficulte}}</span>
@@ -8,10 +8,8 @@
         </summary>
         <div class="roll-details">
             <span>{{localize "agone.actors.potConjuration"}} ({{conjurateur.potConjuration}})</span>
-            <span>+ modificateurs ({{stats.modificateurs}})</span>
+            {{#if stats.modificateurs}}<span>+ {{localize "agone.chat.modificateurs"}} ({{stats.modificateurs}})</span>{{/if}}
             {{#if stats.malusBlessureGrave}}<span> + {{localize "agone.chat.malusBlessureGrave"}} ({{stats.malusBlessureGrave}})</span>{{/if}}
-            <!-- {{#if stats.danseurInvisible}}<span> + {{localize "agone.chat.danseurInvisible"}}</span>{{/if}}
-            {{#if stats.mouvImperceptibles}}<span> + {{localize "agone.chat.mouvImperceptibles"}}</span>{{/if}} -->
             {{#if stats.utiliseSpecialisation}} + {{localize "agone.actors.specialisation"}} <span class="bold">{{stats.labelSpecialisation}} (1)</span>{{/if}}
         </div>
         {{#if stats.utiliseHeroisme}}

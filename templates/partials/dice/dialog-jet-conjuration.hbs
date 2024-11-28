@@ -62,9 +62,9 @@
         <label>{{ localize "agone.chat.conseilTenebreux"}}</label>
         <input type="number" name="conseilTenebreux" min="0" max="10" value="0"/>
     </div>
-    {{#if mageData.specialisation}}
+    {{#if conjurateurData.specialisation}}
         <div class="form-group">
-            <div>{{ localize "agone.actors.specialisation"}}  <span class="bold">{{mageData.labelSpecialisation}}</span></div>
+            <div>{{ localize "agone.actors.specialisation"}}  <span class="bold">{{conjurateurData.labelSpecialisation}}</span></div>
             <input type="checkbox" name="utiliseSpecialisation"/>
         </div>
     {{/if}}

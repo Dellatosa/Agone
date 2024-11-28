@@ -83,7 +83,7 @@
                             {{#if competence.specialisation}}<i class="fa-regular fa-square-check"></i>{{else}}<i class="fa-regular fa-square"></i>{{/if}}
                         </a>
                         <div class="val-spe"><input name="system.familleCompetences.{{keyFam}}.competences.{{keyComp}}.labelSpecialisation" type="text" value="{{competence.labelSpecialisation}}" placeholder="{{localize 'agone.actors.specialisation'}}" {{#if competence.spePeuple}}readonly{{/if}}/></div>
-                        <select name="{{keyComp}}.caracteristique">
+                        <select name="system.familleCompetences.{{keyFam}}.competences.{{keyComp}}.caracteristique">
                             {{#select caracteristique}}
                                 {{#each ../../config.caracteristiques as |name key|}}
                                     {{#if (eq key caracteristique)}}

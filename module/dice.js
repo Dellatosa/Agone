@@ -1881,8 +1881,6 @@ export async function conjurerDemon(conjurateur) {
         return;
     }
 
-    console.log(dialogOptions);
-
     // Récupération des données de la fenêtre de dialogue pour ce jet 
     let seuilDifficulte = 0;
     let cercleDemon = 0;
@@ -2000,6 +1998,8 @@ export async function conjurerDemon(conjurateur) {
     // Recupération du template
     const messageTemplate = "systems/agone/templates/partials/dice/jet-conjuration.hbs";
 
+    console.log(rollStats);
+    
     // Assignation des données au template
     let templateContext = {
         stats: rollStats,

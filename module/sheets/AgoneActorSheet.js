@@ -215,7 +215,10 @@ export default class AgoneActorSheet extends ActorSheet {
             html.find(".mod-comp-crea").click(this._onModifCompetenceCrea.bind(this));
 
             //Modifier le score de ténèbre
-            html.find(".mod-tenebre-crea").click(this._onModifTenebreCrea.bind(this));
+            html.find(".mod-tenebre-crea").click(this._onModifTenebre.bind(this));
+
+            //Modifier le score de ténèbre
+            html.find(".mod-blessGrave").click(this._onModifBlessureGrave.bind(this));
 
             //// edit-comp - edition des compétences d'une famille
             //html.find('.edit-comp').click(this._onEditComp.bind(this));
@@ -602,7 +605,7 @@ export default class AgoneActorSheet extends ActorSheet {
         }
     }
 
-    async _onModifTenebreCrea(event) {
+    async _onModifTenebre(event) {
         event.preventDefault();
         const element = event.currentTarget;
         const action = element.dataset.action;
@@ -617,10 +620,32 @@ export default class AgoneActorSheet extends ActorSheet {
                 }
             }
             else if(action == "plus") {
-                let rangMax = 100 - parseInt(this.actor.system.caracSecondaires.tenebre.avgDef);;
+                let rangMax = 100 - parseInt(this.actor.system.caracSecondaires.tenebre.avgDef);
 
                 if(currentVal < rangMax) {
                     await this.actor.update({ [`system.caracSecondaires.tenebre.gain`] : currentVal + 1 });
+                }
+            }
+        }
+    }
+
+    async _onModifBlessureGrave(event) {
+        event.preventDefault();
+        const element = event.currentTarget;
+        const action = element.dataset.action;
+        let currentVal = 0;
+        
+        if(!event.detail || event.detail == 1) {
+            currentVal = parseInt(this.actor.system.caracSecondaires.nbBlessureGrave);
+
+            if(action == "minus") {
+                if(currentVal > 0) {
+                    await this.actor.update({ [`system.caracSecondaires.nbBlessureGrave`] : currentVal - 1 });
+                }
+            }
+            else if(action == "plus") {
+                if(currentVal < 3) {
+                    await this.actor.update({ [`system.caracSecondaires.nbBlessureGrave`] : currentVal + 1 });
                 }
             }
         }
@@ -1062,7 +1087,6 @@ export default class AgoneActorSheet extends ActorSheet {
     _onConjurerDemon(event) {
         event.preventDefault();
 
-        console.log("conjurDemon");
         // Jet de conjuration 
         Dice.conjurerDemon(this.actor);
     }

@@ -640,7 +640,7 @@ a.nohlight {
         .sante {
             .grid-sante {
                 display: grid;
-                grid-template-columns: 1fr 3.5em 10px 3.5em;
+                grid-template-columns: 1fr 3.5em 10px 3.5em 10px;
                 align-items: center;
                 margin: 3px 1px;
                 padding: 3px;
@@ -652,9 +652,14 @@ a.nohlight {
                     grid-column-end: 4;
                 }
 
+                .lib-blessGrave {
+                    grid-column-start: 1;
+                    grid-column-end: 3;
+                }
+
                 .lib-all {
                     grid-column-start: 1;
-                    grid-column-end: 5;
+                    grid-column-end: 6;
                     text-align: center;
                 }
 
@@ -667,6 +672,18 @@ a.nohlight {
                 .sep {
                     align-self: center;
                     text-align: center;
+
+                    .blessGrave {
+                        font-size: 0.8em;
+                    }
+    
+                    .blessGrave.minus {
+                        text-align: right;
+                    }
+    
+                    .blessGrave {
+                        text-align: left;
+                    }
                 }
 
                 .val {

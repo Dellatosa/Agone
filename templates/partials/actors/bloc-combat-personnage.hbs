@@ -19,8 +19,22 @@
                 <div class="edit"><input name="system.caracSecondaires.pdv.value" type="number" value="{{data.system.caracSecondaires.pdv.value}}" placeholder="0" max="{{data.system.caracSecondaires.pdv.max}}"/></div>
                 <div class="sep"> / </div>
                 <div class="val"><label>{{data.system.caracSecondaires.pdv.max}}</label></div>
-                <label class="lib">{{localize "agone.actors.nbBlessureGrave"}}</label>
+                <label class="lib-blessGrave">{{localize "agone.actors.nbBlessureGrave"}}</label>
+                <div class="sep">
+                    <div class="blessGrave minus">
+                        <a class="mod-blessGrave" title="{{localize 'agone.tooltip.dimTenebre'}}" data-action="minus">
+                            <i class="fa-solid fa-circle-minus"></i>
+                        </a>
+                    </div>
+                </div>
                 <div class="val"><label>{{data.system.caracSecondaires.nbBlessureGrave}}</label></div>
+                <div class="sep">
+                    <div class="blessGrave plus">
+                        <a class="mod-blessGrave" title="{{localize 'agone.tooltip.augTenebre'}}" data-action="plus">
+                            <i class="fa-solid fa-circle-plus"></i>
+                        </a>
+                    </div>
+                </div>
                 <label class="lib">{{localize "agone.actors.malusBlessures"}}</label>
                 <div class="val"><label>{{data.system.caracSecondaires.malusBlessures}}</label></div>
                 <label class="lib-all">{{localize "agone.actors.blessuresCritique"}}</label>

@@ -653,7 +653,7 @@ a.nohlight {
 }
 .grid-data-att .data-combat .sante .grid-sante {
   display: grid;
-  grid-template-columns: 1fr 3.5em 10px 3.5em;
+  grid-template-columns: 1fr 3.5em 10px 3.5em 10px;
   align-items: center;
   margin: 3px 1px;
   padding: 3px;
@@ -664,9 +664,13 @@ a.nohlight {
   grid-column-start: 1;
   grid-column-end: 4;
 }
+.grid-data-att .data-combat .sante .grid-sante .lib-blessGrave {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
 .grid-data-att .data-combat .sante .grid-sante .lib-all {
   grid-column-start: 1;
-  grid-column-end: 5;
+  grid-column-end: 6;
   text-align: center;
 }
 .grid-data-att .data-combat .sante .grid-sante .edit {
@@ -677,6 +681,15 @@ a.nohlight {
 .grid-data-att .data-combat .sante .grid-sante .sep {
   align-self: center;
   text-align: center;
+}
+.grid-data-att .data-combat .sante .grid-sante .sep .blessGrave {
+  font-size: 0.8em;
+}
+.grid-data-att .data-combat .sante .grid-sante .sep .blessGrave.minus {
+  text-align: right;
+}
+.grid-data-att .data-combat .sante .grid-sante .sep .blessGrave {
+  text-align: left;
 }
 .grid-data-att .data-combat .sante .grid-sante .val {
   background-color: var(--color-stats-background);
@@ -1816,7 +1829,8 @@ a.nohlight {
 .chat-message .jet-oeuvre,
 .chat-message .jet-arme,
 .chat-message .jet-sort,
-.chat-message .jet-pdv {
+.chat-message .jet-pdv,
+.chat-message .jet-conjuration {
   font-family: "BarbedorMedium";
 }
 .chat-message .roll-desc {
