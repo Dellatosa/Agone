@@ -32,7 +32,7 @@
   "compatibility": {
     "minimum": "10.278",
     "verified": "11.315",
-    "maximum": "11"
+    "maximum": "13"
   },
   "gridDistance": 1.5,
   "gridUnits": "m",

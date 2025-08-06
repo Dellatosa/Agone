@@ -29,11 +29,11 @@ Hooks.once("init", function(){
     //CONFIG.ui.Combat = AgoneCombatTracker;
     CONFIG.Combatant.documentClass = AgoneCombatant;
 
-    Actors.unregisterSheet("core", ActorSheet);
-    Actors.registerSheet("agone", AgoneActorSheet, {makeDefault: true});
+    foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
+    foundry.documents.collections.Actors.registerSheet("agone", AgoneActorSheet, {makeDefault: true});
 
-    Items.unregisterSheet("core", ItemSheet);
-    Items.registerSheet("agone", AgoneItemSheet, {makeDefault: true});
+    foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
+    foundry.documents.collections.Items.registerSheet("agone", AgoneItemSheet, {makeDefault: true});
 
     registerSystemSettings();
 
@@ -64,7 +64,7 @@ Hooks.once("ready", async function() {
      if ( !game.user.isGM ) return;
      const currentVersion = game.settings.get("agone", "systemMigrationVersion");
      const NEEDS_MIGRATION_VERSION = "0.1.7";
-     const needsMigration = !currentVersion || isNewerVersion(NEEDS_MIGRATION_VERSION, currentVersion);
+     const needsMigration = !currentVersion || foundry.utils.isNewerVersion(NEEDS_MIGRATION_VERSION, currentVersion);
      if ( !needsMigration ) return;
      Migrations.migrateWorld();
 });
@@ -119,7 +119,7 @@ async function preloadHandlebarsTemplates() {
         "templates/dice/roll.html"
     ];
 
-    return loadTemplates(templatePaths);
+    return foundry.applications.handlebars.loadTemplates(templatePaths);
 };
 
 async function createAgoneMacro(data, slot) {

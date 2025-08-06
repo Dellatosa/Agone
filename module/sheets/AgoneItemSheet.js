@@ -1,6 +1,6 @@
 import AgoneActiveEffectConfig from "./AgoneActiveEffectConfig.js";
 
-export default class AgoneItemSheet extends ItemSheet {
+export default class AgoneItemSheet extends foundry.appv1.sheets.ItemSheet {
      
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {

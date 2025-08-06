@@ -1,4 +1,4 @@
-export default class AgoneActiveEffectConfig extends ActiveEffectConfig {
+export default class AgoneActiveEffectConfig extends foundry.applications.sheets.ActiveEffectConfig {
 
     static get defaultOptions() {
         return mergeObject(super.defaultOptions, {

@@ -1,3 +1,3 @@
-export default class AgoneCombatTracker extends CombatTracker {
+export default class AgoneCombatTracker extends foundry.applications.sidebar.tabs.CombatTracker {
     
 }

@@ -4,7 +4,7 @@ import * as Utils from "../common/utils.js";
 
 import EditCompFormApplication from "../EditCompFormApplication.js";
 
-export default class AgoneActorSheet extends ActorSheet {
+export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
      
     static get defaultOptions() {
 
