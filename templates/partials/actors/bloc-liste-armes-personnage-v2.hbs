@@ -82,14 +82,8 @@
                 <div class="ligne-comp">
                     <div>{{localize "agone.actors.competence"}}</div>
                     <select class="inline-edit" data-field="system.competence">
-                        {{#select system.competence}}
-                            <option value=""></option>
-                            {{#each ../actor.system.familleCompetences.epreuves.competences.armes.domaines as |domaine keyDom|}}
-                                {{#if domaine.label}}
-                                    <option value="{{keyDom}}">{{localize domaine.label}}</option>
-                                {{/if}}
-                            {{/each}}
-                        {{/select}}
+                        <!-- TODO : A corriger -> la liste comporte les domaines vides -->
+                        {{selectOptions ../actor.system.familleCompetences.epreuves.competences.armes.domaines selected=system.competence}}
                     </select>
                 </div>
             {{/if}}

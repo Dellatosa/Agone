@@ -35,11 +35,7 @@
         <div class="form-group">
             <label>{{ localize "agone.chat.mouvementTireur"}}</label>
             <select name="mouvementTireur">
-                {{#select mouvementTireur}}
-                    {{#each cfgData.mouvementCombat as | mvtTireur |}}
-                        <option value="{{mvtTireur.modif}}">{{localize mvtTireur.label}}</option>
-                    {{/each}}
-                {{/select}}
+                {{selectOptions cfgData.mouvementCombat selected=mouvementTireur valueAttr="modif" labelAttr="label" localize=true}}
             </select>
         </div>
         <div class="form-group">
@@ -49,31 +45,19 @@
         <div class="form-group">
             <label>{{ localize "agone.chat.visibiliteCible"}}</label>
             <select name="visibiliteCible">
-                {{#select visibiliteCible}}
-                    {{#each cfgData.visibiliteCombat as | visibCible |}}
-                        <option value="{{visibCible.modif}}">{{localize visibCible.label}}</option>
-                    {{/each}}
-                {{/select}}
+                {{selectOptions cfgData.visibiliteCombat selected=visibiliteCible valueAttr="modif" labelAttr="label" localize=true}}
             </select>
         </div>
         <div class="form-group">
             <label>{{ localize "agone.chat.mouvementCible"}}</label>
-            <select name="mouvementCible">
-                {{#select mouvementCible}}
-                    {{#each cfgData.mouvementCombat as | mvtCible |}}
-                        <option value="{{mvtCible.modif}}">{{localize mvtCible.label}}</option>
-                    {{/each}}
-                {{/select}}
+            <select name="mouvementCible">   
+                {{selectOptions cfgData.mouvementCombat selected=mouvementCible valueAttr="modif" labelAttr="label" localize=true}}
             </select>
         </div>
         <div class="form-group">
             <label>{{ localize "agone.chat.distanceTir"}}</label>
             <select name="difficulte">
-                {{#select difficulte}}
-                    {{#each cfgData.distanceTir as | distTir |}}
-                        <option value="{{distTir.modif}}">{{localize distTir.label}}</option>
-                    {{/each}}
-                {{/select}}
+                {{selectOptions cfgData.distanceTir selected=difficulte valueAttr="modif" labelAttr="label" localize=true}}
             </select>
         </div>
     {{/if}}

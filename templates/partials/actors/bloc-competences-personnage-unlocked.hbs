@@ -25,11 +25,7 @@
                             {{#if domPerso}}
                                 {{#if (eq keyComp "musique")}}
                                     <select name="system.familleCompetences.{{keyFam}}.competences.{{keyComp}}.domaines.{{keyDom}}.label">
-                                        {{#select label}}
-                                            {{#each ../../../config.instruments as |name type|}}
-                                                <option value="{{type}}">{{localize name}}</option>
-                                            {{/each}}
-                                    {{/select}}
+                                        {{selectOptions ../../../config.instruments selected=label localize=true}}
                                     </select>
                                 {{else}}
                                     <div class="dom-perso">
@@ -55,15 +51,7 @@
                             </a>
                             <div class="val-spe"><input name="system.familleCompetences.{{keyFam}}.competences.{{keyComp}}.domaines.{{keyDom}}.labelSpecialisation" type="text" value="{{domaine.labelSpecialisation}}" placeholder="{{localize 'agone.actors.specialisation'}}" {{#if domaine.spePeuple}}readonly{{/if}}/></div>
                             <select name="system.familleCompetences.{{keyFam}}.competences.{{keyComp}}.domaines.{{keyDom}}.caracteristique">
-                                {{#select caracteristique}}
-                                {{#each ../../../config.caracteristiques as |name key|}}
-                                    {{#if (eq key caracteristique)}}
-                                        <option value="{{key}}" selected>{{localize name}}</option>
-                                    {{else}}
-                                        <option value="{{key}}">{{localize name}}</option>
-                                    {{/if}}
-                                {{/each}}
-                                {{/select}}
+                                {{selectOptions ../../../config.caracteristiques selected=caracteristique localize=true}}
                             </select> 
                         {{/each}}
                     {{else}}
@@ -84,15 +72,7 @@
                         </a>
                         <div class="val-spe"><input name="system.familleCompetences.{{keyFam}}.competences.{{keyComp}}.labelSpecialisation" type="text" value="{{competence.labelSpecialisation}}" placeholder="{{localize 'agone.actors.specialisation'}}" {{#if competence.spePeuple}}readonly{{/if}}/></div>
                         <select name="system.familleCompetences.{{keyFam}}.competences.{{keyComp}}.caracteristique">
-                            {{#select caracteristique}}
-                                {{#each ../../config.caracteristiques as |name key|}}
-                                    {{#if (eq key caracteristique)}}
-                                        <option value="{{key}}" selected>{{localize name}}</option>
-                                    {{else}}
-                                        <option value="{{key}}">{{localize name}}</option>
-                                    {{/if}}
-                                {{/each}}
-                            {{/select}}
+                            {{selectOptions ../../config.caracteristiques selected=caracteristique localize=true}}
                         </select>                           
                     {{/if}}
                 {{/each}}

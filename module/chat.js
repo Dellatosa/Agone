@@ -1,5 +1,44 @@
 import * as Dice from "./dice.js";
 
+export function addChatMessageListeners(html) {
+    let query = html.querySelector('button.attaque');
+    if(query) { query.addEventListener('click', onAttaque); }
+
+    query = html.querySelector('button.parade');
+    if(query) { query.addEventListener('click', onParade); }
+
+    query = html.querySelector('button.initiative');
+    if(query) { query.addEventListener('click', onInitiative); }
+
+    query = html.querySelector('button.jet-sort');
+    if(query) { query.addEventListener('click', onJetSort); }
+
+    query = html.querySelector('button.jet-sort-intuitif');
+    if(query) { query.addEventListener('click', onJetSortIntuitif); }
+
+    query = html.querySelector('button.jet-contre-magie');
+    if(query) { query.addEventListener('click', onJetContreMagie); }
+
+    query = html.querySelectorAll('button.jet-reconn-oeuvre');
+    query.forEach( element => { element.addEventListener('click', onJetReconnOeuvre); });
+
+    query = html.querySelector('button.jet-desaccord');
+    if(query) { query.addEventListener('click', onJetDesaccord); }
+
+    query = html.querySelector('button.jet-oeuvre');
+    if(query) { query.addEventListener('click', onJetOeuvre); }
+
+    query = html.querySelectorAll('button.jet-art-improvise');
+    query.forEach( element => { element.addEventListener('click', onJetArtImprovise); }); 
+
+    query = html.querySelector('a.editer-item-sort');
+    if(query) { query.addEventListener('click', onEditItemSort); }
+
+    query = html.querySelector('a.editer-item-ctr-magie');
+    if(query) { query.addEventListener('click', onEditItemContreMagie); }
+}
+
+/*
 export function addChatListeners(html) {
     html.on('click', 'button.attaque', onAttaque);
     html.on('click', 'button.parade', onParade);
@@ -14,6 +53,7 @@ export function addChatListeners(html) {
     html.on('click', 'button.jet-oeuvre', onJetOeuvre);
     html.on('click', 'button.jet-art-improvise', onJetArtImprovise);
 }
+*/
 
 function onJetSort(event) {
     const card = event.currentTarget.closest(".danseur");
@@ -104,6 +144,8 @@ function onJetArtImprovise(event) {
     let artiste = getCardActor(card);
     let artId =  artCard.dataset.artId;
 
+    console.log(event,card, artCard);
+
     Dice.oeuvre(artiste, null, artId, true);
 }
 
@@ -172,7 +214,7 @@ export async function selDanseurContreMagie(actor, danseurs) {
         owner: actor.id
     };
 
-    chatData.content = await renderTemplate("systems/agone/templates/partials/chat/carte-contre-magie.hbs", cardData);
+    chatData.content = await foundry.applications.handlebars.renderTemplate("systems/agone/templates/partials/chat/carte-contre-magie.hbs", cardData);
 
     return ChatMessage.create(chatData);
 }
@@ -188,7 +230,7 @@ export async function selArtMagiqueReconnOeuvre(actor, arts) {
         owner: actor.id
     };
 
-    chatData.content = await renderTemplate("systems/agone/templates/partials/chat/carte-reconn-oeuvre.hbs", cardData);
+    chatData.content = await foundry.applications.handlebars.renderTemplate("systems/agone/templates/partials/chat/carte-reconn-oeuvre.hbs", cardData);
     //chatData.roll = true;
 
     return ChatMessage.create(chatData);
@@ -205,7 +247,7 @@ export async function selArtMagiqueImprovise(actor, arts) {
         owner: actor.id
     };
 
-    chatData.content = await renderTemplate("systems/agone/templates/partials/chat/carte-art-improvise.hbs", cardData);
+    chatData.content = await foundry.applications.handlebars.renderTemplate("systems/agone/templates/partials/chat/carte-art-improvise.hbs", cardData);
     //chatData.roll = true;
 
     return ChatMessage.create(chatData);
@@ -222,7 +264,7 @@ export async function selInstrumentDesaccord(actor, instruments) {
         owner: actor.id
     };
 
-    chatData.content = await renderTemplate("systems/agone/templates/partials/chat/carte-instrument-desaccord.hbs", cardData);
+    chatData.content = await foundry.applications.handlebars.renderTemplate("systems/agone/templates/partials/chat/carte-instrument-desaccord.hbs", cardData);
     //chatData.roll = true;
 
     return ChatMessage.create(chatData);

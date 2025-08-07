@@ -9,7 +9,8 @@ export default class AgoneItem extends Item {
         "Defaut": "systems/agone/templates/partials/chat/carte-defaut.hbs",
         "Avantage": "systems/agone/templates/partials/chat/carte-avantage.hbs",
         "PouvoirFlamme":"systems/agone/templates/partials/chat/carte-pouvoir-flamme.hbs",
-        "PouvoirSaison":"systems/agone/templates/partials/chat/carte-pouvoir-saisonnin.hbs"
+        "PouvoirSaison":"systems/agone/templates/partials/chat/carte-pouvoir-saisonnin.hbs",
+        "Connivence":"systems/agone/templates/partials/chat/carte-connivence.hbs"
     }
 
     prepareData() {
@@ -47,7 +48,7 @@ export default class AgoneItem extends Item {
             cardData.system.sorts = sorts;
         }
 
-        chatData.content = await renderTemplate(this.chatTemplate[this.type], cardData);
+        chatData.content = await foundry.applications.handlebars.renderTemplate(this.chatTemplate[this.type], cardData);
 
         return ChatMessage.create(chatData);
     }

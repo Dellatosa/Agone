@@ -1,7 +1,7 @@
 export default class AgoneActiveEffectConfig extends foundry.applications.sheets.ActiveEffectConfig {
 
     static get defaultOptions() {
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             width: 560,
             height: 300,
             classes: ["agone", "sheet", "active-effect"],

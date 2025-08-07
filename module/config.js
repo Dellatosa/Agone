@@ -346,6 +346,7 @@ agone.competences = {
 agone.peuple = {
     aucun: "",
     humain: {
+        id: "humain",
         label: "agone.actors.humain",
         bpdv: 25,
         mpoids: 7,
@@ -355,6 +356,7 @@ agone.peuple = {
         caracs : {}
     },
     ogre: {
+        id: "ogre",
         label: "agone.actors.ogre",
         bpdv: 25,
         mpoids: 7,
@@ -396,6 +398,7 @@ agone.peuple = {
         }
     },
     minotaure: {
+        id: "minotaure",
         label: "agone.actors.minotaure",
         bpdv: 45,
         mpoids: 10,
@@ -454,6 +457,7 @@ agone.peuple = {
         }
     },
     geant: {
+        id: "geant",
         label: "agone.actors.geant",
         bpdv: 100,
         mpoids: 20,
@@ -512,6 +516,7 @@ agone.peuple = {
         }
     },
     feeNoire: {
+        id: "feeNoire",
         label: "agone.actors.feeNoire",
         bpdv: 10,
         mpoids: 4,
@@ -573,6 +578,7 @@ agone.peuple = {
         }
     },
     nain: {
+        id: "nain",
         label: "agone.actors.nain",
         bpdv: 20,
         mpoids: 6,
@@ -617,6 +623,7 @@ agone.peuple = {
         }
     },
     meduse: {
+        id: "meduse",
         label: "agone.actors.meduse",
         bpdv: 25,
         mpoids: 7,
@@ -670,6 +677,7 @@ agone.peuple = {
         }
     },
     lutin: {
+        id: "lutin",
         label: "agone.actors.lutin", 
         bpdv: 20,
         mpoids: 6,
@@ -729,6 +737,7 @@ agone.peuple = {
         }
     },
     farfadet: {
+        id: "farfadet",
         label: "agone.actors.farfadet",
         bpdv: 20,
         mpoids: 6,
@@ -789,6 +798,7 @@ agone.peuple = {
         }
     },
     satyre: {
+        id: "satyre",
         label: "agone.actors.satyre",
         bpdv: 25,
         mpoids: 7,
@@ -1032,11 +1042,11 @@ agone.saisonOeuvre = {
     },
     saisonOpposee: {
         label: "agone.items.saisonOpposee",
-        modif: 2
+        modif: -2
     },
     saisonIdentique: {
         label: "agone.items.saisonIdentique",
-        modif: -2
+        modif: 2
     }
 }
 

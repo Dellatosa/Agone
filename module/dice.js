@@ -92,14 +92,14 @@ export async function jetCaracteristique({actor = null,
     var dices = [];
 
     // Jet du 1er dé
-    let rollResult = await new Roll(rollFormula, rollData).roll({async: true});
+    let rollResult = await new Roll(rollFormula, rollData).evaluate(); //.roll({async: true});
     if(rollResult.dice[0].results[0].result == 1) {
         // Si le 1er dé donne 1, c'est un Fumble
         rollData.isFumble = true;
         // Ajout du dé dans le pool
         dices.push({ classes: "die d10 min", result : 1});
 
-        rollResult = await new Roll(rollFumbleFormula, rollData).roll({async: true});
+        rollResult = await new Roll(rollFumbleFormula, rollData).evaluate(); //.roll({async: true});
         //Si le second dé donne 10, c'est un échec critique
         if(rollResult.dice[0].results[0].result == 10) {
             rollData.isEchecCritiqueJetDe = true;
@@ -161,9 +161,9 @@ export async function jetCaracteristique({actor = null,
         user: game.user.id,
         speaker: ChatMessage.getSpeaker({ actor: actor }),
         roll: rollResult,
-        content: await renderTemplate(messageTemplate, templateContext),
-        sound: CONFIG.sounds.dice,
-        type: CONST.CHAT_MESSAGE_TYPES.ROLL // CONST.CHAT_MESSAGE_STYLES
+        content: await foundry.applications.handlebars.renderTemplate(messageTemplate, templateContext),
+        sound: CONFIG.sounds.dice//,
+        //type: CONST.CHAT_MESSAGE_TYPES.ROLL // CONST.CHAT_MESSAGE_STYLES
     }
 
     // Affichage du message
@@ -378,14 +378,14 @@ export async function jetCompetence({actor = null,
     var dices = [];
 
     // Jet du 1er dé
-    let rollResult = await new Roll(rollFormula, rollData).roll({async: true});
+    let rollResult = await new Roll(rollFormula, rollData).evaluate(); //.roll({async: true});
     if(rollResult.dice[0].results[0].result == 1) {
         // Si le 1er dé donne 1, c'est un Fumble
         rollData.isFumble = true;
         // Ajout du dé dans le pool
         dices.push({ classes: "die d10 min", result : 1});
 
-        rollResult = await new Roll(rollFumbleFormula, rollData).roll({async: true});
+        rollResult = await new Roll(rollFumbleFormula, rollData).evaluate(); //.roll({async: true});
         //Si le second dé donne 10, c'est un échec critique
         if(rollResult.dice[0].results[0].result == 10) {
             rollData.isEchecCritiqueJetDe = true;
@@ -456,9 +456,9 @@ export async function jetCompetence({actor = null,
             user: game.user.id,
             speaker: ChatMessage.getSpeaker({ actor: actor }),
             roll: rollResult,
-            content: await renderTemplate(messageTemplate, templateContext),
-            sound: CONFIG.sounds.dice,
-            type: CONST.CHAT_MESSAGE_TYPES.ROLL
+            content: await foundry.applications.handlebars.renderTemplate(messageTemplate, templateContext),
+            sound: CONFIG.sounds.dice//,
+            //type: CONST.CHAT_MESSAGE_TYPES.ROLL
         }
 
         // Affichage du message
@@ -484,7 +484,7 @@ export async function jetCompetence({actor = null,
 async function getJetCompetenceOptions({cfgData = null, defCarac = null, specialisation = false, labelSpecialisation = null}) {
     // Recupération du template
     const template = "systems/agone/templates/partials/dice/dialog-jet-competence.hbs";
-    const html = await renderTemplate(template, {data: cfgData, defCarac: defCarac, specialisation: specialisation, labelSpecialisation: labelSpecialisation});
+    const html = await foundry.applications.handlebars.renderTemplate(template, {data: cfgData, defCarac: defCarac, specialisation: specialisation, labelSpecialisation: labelSpecialisation});
 
     return new Promise( resolve => {
         const data = {
@@ -809,9 +809,9 @@ export async function combatArme(actor, arme, type) {
         user: game.user.id,
         speaker: ChatMessage.getSpeaker({ actor: actor }),
         roll: rollResult,
-        content: await renderTemplate(messageTemplate, templateContext),
-        sound: CONFIG.sounds.dice,
-        type: CONST.CHAT_MESSAGE_TYPES.ROLL
+        content: await foundry.applications.handlebars.renderTemplate(messageTemplate, templateContext),
+        sound: CONFIG.sounds.dice//,
+        //type: CONST.CHAT_MESSAGE_TYPES.ROLL
     }
 
     // Affichage du message
@@ -854,7 +854,7 @@ export async function combatArme(actor, arme, type) {
 async function getJetAttaqueOptions({attaquantData = null, armeData = null, cfgData = null}) {
     // Recupération du template
     const template = "systems/agone/templates/partials/dice/dialog-jet-combat-attaque.hbs";
-    const html = await renderTemplate(template, {attaquantData: attaquantData, armeData: armeData, cfgData: cfgData});
+    const html = await foundry.applications.handlebars.renderTemplate(template, {attaquantData: attaquantData, armeData: armeData, cfgData: cfgData});
 
     return new Promise( resolve => {
         const data = {
@@ -921,7 +921,7 @@ function _processJetAttaqueOptions(form, distance) {
 async function getJetDefenseOptions({defenseurData = null, armeData = null}) {
     // Recupération du template
     const template = "systems/agone/templates/partials/dice/dialog-jet-combat-defense.hbs";
-    const html = await renderTemplate(template, {defenseurData: defenseurData, armeData: armeData});
+    const html = await foundry.applications.handlebars.renderTemplate(template, {defenseurData: defenseurData, armeData: armeData});
 
     return new Promise( resolve => {
         const data = {
@@ -1117,9 +1117,9 @@ export async function jetDefense(defenseur, typeDef) {
         user: game.user.id,
         speaker: ChatMessage.getSpeaker({ actor: defenseur }),
         roll: rollResult,
-        content: await renderTemplate(messageTemplate, templateContext),
-        sound: CONFIG.sounds.dice,
-        type: CONST.CHAT_MESSAGE_TYPES.ROLL
+        content: await foundry.applications.handlebars.renderTemplate(messageTemplate, templateContext),
+        sound: CONFIG.sounds.dice//,
+        //type: CONST.CHAT_MESSAGE_TYPES.ROLL
     }
 
     ChatMessage.create(chatData);
@@ -1191,7 +1191,7 @@ export async function sortEmprise(mage, danseur, sort, isIntuitif = false) {
         potEmprise = statsEmprise.emprise + Math.min(statsEmprise.rangResonance, statsEmprise.connDanseurs) + statsEmprise.bonusEsprit + danseur.system.bonusEmprise; 
     }
     else {
-        potEmprise = statsEmprise.creativite + Math.min(statsEmprise.rangResonance,  danseur.data.data.empathie) + statsEmprise.bonusAme; 
+        potEmprise = statsEmprise.creativite + Math.min(statsEmprise.rangResonance,  danseur.system.empathie) + statsEmprise.bonusAme; 
     }
 
     // Construction des strutures de données pour l'affichage de la boite de dialogue
@@ -1300,9 +1300,9 @@ export async function sortEmprise(mage, danseur, sort, isIntuitif = false) {
         user: game.user.id,
         speaker: ChatMessage.getSpeaker({ actor: mage }),
         roll: rollResult,
-        content: await renderTemplate(messageTemplate, templateContext),
-        sound: CONFIG.sounds.dice,
-        type: CONST.CHAT_MESSAGE_TYPES.ROLL
+        content: await foundry.applications.handlebars.renderTemplate(messageTemplate, templateContext),
+        sound: CONFIG.sounds.dice//,
+        //type: CONST.CHAT_MESSAGE_TYPES.ROLL
     }
 
     // Affichage du message
@@ -1325,7 +1325,7 @@ export async function sortEmprise(mage, danseur, sort, isIntuitif = false) {
 async function getJetSortEmpriseOptions({mageData = null, danseurData = null, sortData = null, cfgData = null}) {
     // Recupération du template
     const template = "systems/agone/templates/partials/dice/dialog-jet-sort-emprise.hbs";
-    const html = await renderTemplate(template, {mageData: mageData, danseurData: danseurData, sortData: sortData, cfgData: cfgData });
+    const html = await foundry.applications.handlebars.renderTemplate(template, {mageData: mageData, danseurData: danseurData, sortData: sortData, cfgData: cfgData });
 
     return new Promise( resolve => {
         const data = {
@@ -1455,9 +1455,9 @@ export async function contreMagie(mage, danseur, utiliseHeroisme) {
         user: game.user.id,
         speaker: ChatMessage.getSpeaker({ actor: mage }),
         roll: rollResult,
-        content: await renderTemplate(messageTemplate, templateContext),
-        sound: CONFIG.sounds.dice,
-        type: CONST.CHAT_MESSAGE_TYPES.ROLL
+        content: await foundry.applications.handlebars.renderTemplate(messageTemplate, templateContext),
+        sound: CONFIG.sounds.dice//,
+        //type: CONST.CHAT_MESSAGE_TYPES.ROLL
     }
 
     // Affichage du message
@@ -1613,7 +1613,7 @@ export async function oeuvre(artiste, oeuvre, artMagiqueImpro = null, isArtImpro
 
     // Dans le cas de la Cyse, gestion de la résistance des matériaux
     if(artMagique == "cyse") {
-        let rollResistance = await new Roll("1d10 + @resistance", {resistance: resistance}).roll({async: true});
+        let rollResistance = await new Roll("1d10 + @resistance", {resistance: resistance}).evaluate(); //.roll({async: true});
         if(rollResistance.total >= artisteData.potArtMagique) {
             rollStats.echecResistance = true;
 
@@ -1646,9 +1646,9 @@ export async function oeuvre(artiste, oeuvre, artMagiqueImpro = null, isArtImpro
         user: game.user.id,
         speaker: ChatMessage.getSpeaker({ actor: artiste }),
         roll: rollResult,
-        content: await renderTemplate(messageTemplate, templateContext),
-        sound: CONFIG.sounds.dice,
-        type: CONST.CHAT_MESSAGE_TYPES.ROLL
+        content: await foundry.applications.handlebars.renderTemplate(messageTemplate, templateContext),
+        sound: CONFIG.sounds.dice//,
+        //type: CONST.CHAT_MESSAGE_TYPES.ROLL
     }
 
     // Affichage du message
@@ -1671,7 +1671,7 @@ export async function oeuvre(artiste, oeuvre, artMagiqueImpro = null, isArtImpro
 async function getJetOeuvreOptions({artisteData = null, oeuvreData = null, cfgData = null}) {
     // Recupération du template
     const template = "systems/agone/templates/partials/dice/dialog-jet-oeuvre.hbs";
-    const html = await renderTemplate(template, {artisteData: artisteData, oeuvreData: oeuvreData, cfgData: cfgData});
+    const html = await foundry.applications.handlebars.renderTemplate(template, {artisteData: artisteData, oeuvreData: oeuvreData, cfgData: cfgData});
 
     return new Promise( resolve => {
         const data = {
@@ -1815,9 +1815,9 @@ export async function desaccord(artiste, instrument, utiliseHeroisme) {
         user: game.user.id,
         speaker: ChatMessage.getSpeaker({ actor: artiste }),
         roll: rollResult,
-        content: await renderTemplate(messageTemplate, templateContext),
-        sound: CONFIG.sounds.dice,
-        type: CONST.CHAT_MESSAGE_TYPES.ROLL
+        content: await foundry.applications.handlebars.renderTemplate(messageTemplate, templateContext),
+        sound: CONFIG.sounds.dice//,
+        //type: CONST.CHAT_MESSAGE_TYPES.ROLL
     }
 
     // Affichage du message
@@ -2012,9 +2012,9 @@ export async function conjurerDemon(conjurateur) {
         user: game.user.id,
         speaker: ChatMessage.getSpeaker({ actor: conjurateur }),
         roll: rollResult,
-        content: await renderTemplate(messageTemplate, templateContext),
-        sound: CONFIG.sounds.dice,
-        type: CONST.CHAT_MESSAGE_TYPES.ROLL
+        content: await foundry.applications.handlebars.renderTemplate(messageTemplate, templateContext),
+        sound: CONFIG.sounds.dice//,
+        //type: CONST.CHAT_MESSAGE_TYPES.ROLL
     }
 
     // Affichage du message
@@ -2037,7 +2037,7 @@ export async function conjurerDemon(conjurateur) {
 async function getJetConjurationOptions({conjurateurData = null, cfgData = null}) {
     // Recupération du template
     const template = "systems/agone/templates/partials/dice/dialog-jet-conjuration.hbs";
-    const html = await renderTemplate(template, {conjurateurData: conjurateurData, cfgData: cfgData });
+    const html = await foundry.applications.handlebars.renderTemplate(template, {conjurateurData: conjurateurData, cfgData: cfgData });
 
     return new Promise( resolve => {
         const data = {
@@ -2104,7 +2104,7 @@ export async function jetPdv({actor = null} = {}) {
     var dices = [];
 
     // Jet du dé et maj du personnage
-    let rollResult = await new Roll(rollFormula, null).roll({async: true});
+    let rollResult = await new Roll(rollFormula, null).evaluate(); //.roll({async: true});
     actor.setD10Pdv(rollResult.total);
 
     // Ajout du dé dans le pool
@@ -2128,9 +2128,9 @@ export async function jetPdv({actor = null} = {}) {
         user: game.user.id,
         speaker: ChatMessage.getSpeaker({ actor: actor }),
         roll: rollResult,
-        content: await renderTemplate(messageTemplate, templateContext),
-        sound: CONFIG.sounds.dice,
-        type: CONST.CHAT_MESSAGE_TYPES.ROLL // CONST.CHAT_MESSAGE_STYLES
+        content: await foundry.applications.handlebars.renderTemplate(messageTemplate, templateContext),
+        sound: CONFIG.sounds.dice//,
+        //type: CONST.CHAT_MESSAGE_TYPES.ROLL // CONST.CHAT_MESSAGE_STYLES
     }
 
     // Affichage du message
@@ -2196,7 +2196,7 @@ async function suggestCritChatMessage(actor, suggestCritData) {
 
     // TODO trouver une méthode plus propre pour pousser le message au GM sans qu'il soit visible coté joueur
     // Peut-être retravailler le template de blind roll
-    let roll = await new Roll("0", null).roll({async : true});
+    let roll = await new Roll("0", null).evaluate(); //.roll({async : true});
 
     let chatCritData = {
         user: game.user.id,
@@ -2204,8 +2204,8 @@ async function suggestCritChatMessage(actor, suggestCritData) {
         blind: true,
         speaker: ChatMessage.getSpeaker({ actor: actor }),
         whisper: game.users.filter(user => user.isGM == true), // Whisper à l'EG
-        content: await renderTemplate("systems/agone/templates/partials/dice/suggestion-critique.hbs", suggestCritData),
-        type: CONST.CHAT_MESSAGE_TYPES.ROLL
+        content: await foundry.applications.handlebars.renderTemplate("systems/agone/templates/partials/dice/suggestion-critique.hbs", suggestCritData)//,
+        //type: CONST.CHAT_MESSAGE_TYPES.ROLL
     }
 
     await ChatMessage.create(chatCritData);  

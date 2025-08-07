@@ -1,0 +1,18 @@
+<div class="carte">
+    <div class="titre">
+        <img src="{{img}}" title="{{name}}" height="32" width="32"/>
+        <div class="titre-nom">{{name}}</div>
+    </div>
+    <div class="grid-2">
+        <div class="entete">{{localize "agone.chat.demon"}}</div>
+        <div class="entete">{{localize "agone.chat.advocatusDiaboli"}}</div>
+        <div>
+            <i class="fa-duotone fa-solid fa-face-angry-horns icone {{configCouleurDemon system.cercleDemon}}" title="{{configLocalize "cerclesDemon" system.cercleDemon}}"></i>
+            {{system.nomDemon}}
+        </div>
+        <div>{{system.nomAdvocatus}}</div>
+    </div>
+    {{#if system.termes}}
+        <div class="carte-desc">{{editor system.termes target="system.termes" owner=true}}</div>
+    {{/if}}    
+</div>

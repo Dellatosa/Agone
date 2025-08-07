@@ -8,7 +8,7 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
      
     static get defaultOptions() {
 
-        return mergeObject(super.defaultOptions, {
+        return foundry.utils.mergeObject(super.defaultOptions, {
             width: 760,
             height: 910,
             classes: ["agone", "sheet", "actor"],
@@ -842,6 +842,7 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
         let itemId = element.closest(".item").dataset.itemId;
         let item = this.actor.items.get(itemId);
 
+        console.log(item);
         item.roll();
     }
 

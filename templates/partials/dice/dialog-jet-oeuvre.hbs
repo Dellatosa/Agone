@@ -11,11 +11,8 @@
             <div class="form-group">
                 <label>{{localize "agone.items.instrument"}}</label>
                 <select name="instrumentSel">
-                    {{#select instrumentSel}}
-                        {{#each oeuvreData.instruments as | instrument | }}
-                            <option value="{{instrument.label}}">{{configLocalize "instruments" instrument.label}}</option>
-                        {{/each}}
-                    {{/select}}
+                    <!-- TODO : Corriger -> la localisation ne fonctionne pas -->
+                    {{selectOptions oeuvreData.instruments selected=instrumentSel valueAttr="label" labelAttr="label" localize=true}}
                 </select>
             </div>    
         {{/if}}    
@@ -31,11 +28,7 @@
         <div class="form-group">
             <label>{{localize "agone.chat.qualiteInstrument"}}</label>
             <select name="qualiteInstrument">
-                {{#select qualiteInstrument}}
-                    {{#each cfgData.qualiteInstrument as | qualInst |}}
-                        <option value="{{qualInst.modif}}">{{localize qualInst.label}}</option>
-                    {{/each}}
-                {{/select}}
+                {{selectOptions cfgData.qualiteInstrument selected=qualiteInstrument valueAttr="modif" labelAttr="label" localize=true}}
             </select>
         </div>
     {{/if}}
@@ -43,11 +36,7 @@
         <div class="form-group">
             <label>{{localize "agone.chat.bruitEnviron"}}</label>
             <select name="bruitEnviron">
-                {{#select bruitEnviron}}
-                    {{#each cfgData.bruitEnviron as | bruit |}}
-                        <option value="{{bruit.modif}}">{{localize bruit.label}}</option>
-                    {{/each}}
-                {{/select}}
+                {{selectOptions cfgData.bruitEnviron selected=bruitEnviron valueAttr="modif" labelAttr="label" localize=true}}
             </select>
         </div>
     {{/if}}
@@ -55,11 +44,7 @@
         <div class="form-group">
             <label>{{localize "agone.chat.saisonOeuvre" saison=oeuvreData.saison}}</label>
             <select name="saisonOeuvre">
-                {{#select saisonOeuvre}}
-                    {{#each cfgData.saisonOeuvre as | so |}}
-                        <option value="{{so.modif}}">{{localize so.label}}</option>
-                    {{/each}}
-                {{/select}}
+                {{selectOptions cfgData.saisonOeuvre selected=saisonOeuvre valueAttr="modif" labelAttr="label" localize=true}}
             </select>
         </div>
     {{/if}}
@@ -67,11 +52,7 @@
         <div class="form-group">
             <label>{{localize "agone.chat.materiaux"}}</label>
             <select name="materiaux">
-                {{#select materiaux}}
-                    {{#each cfgData.materiaux as | mat |}}
-                        <option value="{{mat.resistance}}">{{localize mat.label}}</option>
-                    {{/each}}
-                {{/select}}
+                {{selectOptions cfgData.materiaux selected=materiaux valueAttr="resistance" labelAttr="label" localize=true}}
             </select>
         </div>
     {{/if}}

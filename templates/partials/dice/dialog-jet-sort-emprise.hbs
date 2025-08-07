@@ -10,11 +10,7 @@
         <div class="form-group">
             <label>{{localize "agone.chat.resonanceEstimee"}}</label>
             <select name="resonanceEstimee">
-                {{#select resonances}}
-                    {{#each cfgData.resonances as | resonance key |}}
-                        <option value="{{key}}">{{localize resonance}}</option>
-                    {{/each}}
-                {{/select}}
+                {{selectOptions cfgData.resonances selected=resonances localize=true}}
             </select>
         </div>
     {{else}}

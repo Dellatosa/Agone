@@ -3,21 +3,13 @@
     <div class="form-group">
         <label>{{localize "agone.chat.cercleDemonInvoque"}}</label>
         <select name="cercleDemonInvoque">
-            {{#select cercleDemonInvoque}}
-                {{#each cfgData.cerclesDemon as | name cercle |}}
-                    <option value="{{cercle}}">{{localize name}}</option>
-                {{/each}}
-            {{/select}}
+            {{selectOptions cfgData.cerclesDemon selected=cercleDemonInvoque localize=true}}
         </select>
     </div>
     <div class="form-group">
         <label>{{localize "agone.chat.encrageApplique"}}</label>
         <select name="encrageApplique">
-            {{#select encrageApplique}}
-                {{#each cfgData.encrageApplique as | encApp val|}}
-                    <option value="{{val}}">{{localize encApp.label}}</option>
-                {{/each}}
-            {{/select}}
+            {{selectOptions cfgData.encrageApplique selected=encrageApplique labelAttr="label" localize=true}}
         </select>
     </div>
     <div class="form-group">
@@ -35,11 +27,7 @@
     <div class="form-group">
         <label>{{localize "agone.chat.melerSangEncre"}}</label>
         <select name="melerSangEncre">
-            {{#select melerSangEncre}}
-                {{#each cfgData.melerSangEncre as | melSang val |}}
-                    <option value="{{val}}">{{localize melSang.label}}</option>
-                {{/each}}
-            {{/select}}
+            {{selectOptions cfgData.melerSangEncre selected=melerSangEncre labelAttr="label" localize=true}}
         </select>
     </div>
     <div class="form-group">

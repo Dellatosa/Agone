@@ -69,7 +69,9 @@ Hooks.once("ready", async function() {
      Migrations.migrateWorld();
 });
 
-Hooks.on("renderChatLog", (app, html, data) => Chat.addChatListeners(html));
+//Hooks.on("renderChatLog", (app, html, data) => Chat.addChatListeners(html));
+
+Hooks.on("renderChatMessageHTML", (message, html, context) => Chat.addChatMessageListeners(html));
 
 Hooks.on("getChatLogEntryContext", Chat.addChatMessageContextOptions);
 
@@ -115,8 +117,8 @@ async function preloadHandlebarsTemplates() {
         "systems/agone/templates/partials/actors/bloc-liste-bienfaits-personnage.hbs",
         "systems/agone/templates/partials/dice/jet-resultat.hbs",
         "systems/agone/templates/partials/dice/jet-resultat-dommages.hbs",
-        "systems/agone/templates/partials/dice/jet-dices-details.hbs",
-        "templates/dice/roll.html"
+        "systems/agone/templates/partials/dice/jet-dices-details.hbs"//,
+        //"templates/dice/roll.html"
     ];
 
     return foundry.applications.handlebars.loadTemplates(templatePaths);

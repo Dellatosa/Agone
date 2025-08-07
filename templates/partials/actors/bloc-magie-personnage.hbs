@@ -7,11 +7,7 @@
                     <div class="lib-obd"><label>{{localize "agone.actors.obedience"}}</label></div>
                     {{#if unlocked}}
                         <select class="val-obd" name="system.caracSecondaires.resonance">
-                        {{#select data.system.caracSecondaires.resonance}}
-                            {{#each config.resonances as |name type|}}
-                                <option value="{{type}}">{{localize name}}</option>
-                            {{/each}}
-                        {{/select}} 
+                            {{selectOptions config.resonances selected=data.system.caracSecondaires.resonance localize=true}}
                         </select>
                     {{else}}
                         <div class="val-obd">{{configLocalize "resonances" data.system.caracSecondaires.resonance}}</div>

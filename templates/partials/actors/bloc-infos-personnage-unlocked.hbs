@@ -21,14 +21,10 @@
         <label>{{localize "agone.actors.peuple"}}</label>
         <div class="peuple">
             <select class="auto-size edit-peuple" name="system.peuple" {{#if figerPeupleH}}disabled{{/if}}{{#if figerPeupleS}}disabled{{/if}}>
-            {{#select data.system.peuple}}
-            {{#each config.peuple as |peuple keyPeuple|}}
-                <option value="{{keyPeuple}}">{{localize peuple.label}}</option>
-            {{/each}}
-            {{/select}}
-        </select>
-        {{#if figerPeupleH}}<i class="fa-solid fa-ban" title="{{localize 'agone.tooltip.verrouPeupleH'}}"></i>{{/if}}
-        {{#if figerPeupleS}}<i class="fa-solid fa-ban" title="{{localize 'agone.tooltip.verrouPeupleS'}}"></i>{{/if}}
+            {{selectOptions config.peuple selected=data.system.peuple valueAttr="id" labelAttr="label" localize=true}}
+            </select>
+            {{#if figerPeupleH}}<i class="fa-solid fa-ban" title="{{localize 'agone.tooltip.verrouPeupleH'}}"></i>{{/if}}
+            {{#if figerPeupleS}}<i class="fa-solid fa-ban" title="{{localize 'agone.tooltip.verrouPeupleS'}}"></i>{{/if}}
         </div>
         <label>{{localize "agone.actors.age"}}</label>
         <div class="small-size"><input name="system.age" type="number" value="{{data.system.age}}" placeholder="{{localize 'agone.actors.anneesAbbr'}}"/></div>
