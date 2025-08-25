@@ -10,7 +10,8 @@ export default class AgoneItem extends Item {
         "Avantage": "systems/agone/templates/partials/chat/carte-avantage.hbs",
         "PouvoirFlamme":"systems/agone/templates/partials/chat/carte-pouvoir-flamme.hbs",
         "PouvoirSaison":"systems/agone/templates/partials/chat/carte-pouvoir-saisonnin.hbs",
-        "Connivence":"systems/agone/templates/partials/chat/carte-connivence.hbs"
+        "Connivence":"systems/agone/templates/partials/chat/carte-connivence.hbs",
+        "Equipement": "systems/agone/templates/partials/chat/carte-equipement.hbs"
     }
 
     prepareData() {

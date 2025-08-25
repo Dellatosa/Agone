@@ -58,6 +58,9 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
         data.peines = data.items.filter(function (item) { return item.type == "Peine"});
         data.bienfaits = data.items.filter(function (item) { return item.type == "Bienfait"});
 
+        data.equipements = data.items.filter(function (item) { return item.type == "Equipement"});
+        
+
         /* ---------------------------------------------------------
         ---- Répartition équilibrée des compétences en fonction ----
         ---- du nombre de colonnes d'affichage sélectionné      ----
@@ -110,6 +113,11 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
         // Affichage du bouton pour le jet de Vieillesse
         if(game.settings.get("agone", "gestionJetVieillesse") && actorData.peuple != "feeNoire") {
             data.jetVieillesseActif = true;
+        }
+
+        // Utilisation de l'option charge quotidienne
+        if(game.settings.get("agone", "gestionCharge")) {
+            data.chargeActive = true;
         }
 
         // Affichage des points de creation
@@ -232,8 +240,11 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
             // Equiper/Déséquiper une arme
             html.find('.mod-equip').click(this._onEquiperArme.bind(this));
 
-            // Equiper/Déséquiper une arme
+            // Equiper/Déséquiper une armure
             html.find('.mod-equip-armure').click(this._onEquiperArmure.bind(this));
+
+            // Porter/Déposer un équipement
+            html.find('.mod-porter-equip').click(this._onPorterEquipement.bind(this));
 
             // roll-comp - jet de compétence
             html.find('.roll-comp').click(this._onRollComp.bind(this));
@@ -761,6 +772,23 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
         }
     }
 
+    _onPorterEquipement(event) {
+        event.preventDefault();
+        const element = event.currentTarget;
+
+        const itemId = element.closest(".item").dataset.itemId;
+        const item = this.actor.items.get(itemId);
+
+        const action = element.dataset.action;
+
+        if(action == "porter") {
+            return item.update({["system.porte"] : true});
+        }
+        else if (action == "deposer") {
+            return item.update({["system.porte"] : false});
+        }
+    }
+
     // Gestionnaire d'événements pour les listes d'items
      // Création d'un item
     _onCreerItem(event) {
@@ -842,7 +870,6 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
         let itemId = element.closest(".item").dataset.itemId;
         let item = this.actor.items.get(itemId);
 
-        console.log(item);
         item.roll();
     }
 

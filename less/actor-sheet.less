@@ -84,7 +84,7 @@ select.auto-size {
         //scrollbar-color: var(--color-scroolbar);
     }
 
-    .competences-content, .combat-content, .magie-content {
+    .competences-content, .combat-content, .magie-content, .equipement-content {
         height: 100%;
     }
 
@@ -118,7 +118,8 @@ a.nohlight {
 }*/
 
 .actor-infos {
-    
+    width: 100%;
+
     .info-val {
         margin: 4px 7px 0 3px;
         font-family: "BarbedorMedium";
@@ -946,6 +947,72 @@ a.nohlight {
     }
 }
 
+.grid-data-equip {
+    display: grid;
+    grid-template-columns: 1.25fr 3fr;
+    height: 100%;
+
+    font-family: "BarbedorMedium";
+
+    .data-equip {
+        background: linear-gradient(to right; #00000000; #00000021;);
+        padding: 5px;
+
+        .data-charge-titre {
+            text-align: center;
+            font: var(--font-lorgol-24px);
+            margin-bottom: 2px;
+        }
+
+        .charge {
+            .grid-charge {
+                display: grid;
+                grid-template-columns: 1fr 3.5em;
+                align-items: center;
+                margin: 3px 1px;
+                padding: 3px;
+                border: solid 1px var(--color-box-border-dark);
+                border-radius: 5px;
+
+                .lib {
+                    grid-column-start: 1;
+                    grid-column-end: 2;
+                }
+
+                .lib-all {
+                    grid-column-start: 1;
+                    grid-column-end: 3;
+                    text-align: center;
+                }
+
+                .val {
+                    background-color: var(--color-stats-background);
+                    margin: 2px 5px;
+                    text-align: center;
+                    align-items: center;
+                    border-radius: 3px;
+                    height: 26px;
+
+                    label {
+                        position: relative;
+                        top: 5px;
+                    }       
+                }
+            }
+        }
+    }
+
+    .equipement {
+        font-family: "BarbedorMedium";
+
+        .titre-rub {
+            font: var(--font-lorgol-28px);
+            text-align: center;
+        }
+    }
+}
+
+
 .recap {
     display: flex;
     flex-direction: row;
@@ -1117,7 +1184,7 @@ a.nohlight {
     }
 }
 
-.grid-connivences {
+.grid-connivences , .grid-equip-combat {
     display: grid;
     grid-template-columns: 1fr;
 
@@ -1168,6 +1235,42 @@ a.nohlight {
                 text-align: left;
             }
         }
+    }
+
+    .bloc-equip, .bloc-equip-charge, .bloc-equip-unlocked, .bloc-equip-charge-unlocked {
+        align-items: center;
+
+        img {
+           flex: 0 0 24px;
+            border: none;
+            height: 24px;
+        }
+
+        .nom {
+            font-family: "BarbedorMedium";
+            font-size: 1.1em;
+            margin-left: 2px;
+        }
+    }
+
+    .bloc-equip {
+        display: grid;
+        grid-template-columns: 24px 1fr 70px;
+    }
+
+    .bloc-equip-charge {
+        display: grid;
+        grid-template-columns: 24px 1fr 70px 70px 20px;
+    }
+
+    .bloc-equip-unlocked {
+        display: grid;
+        grid-template-columns: 24px 1fr 70px 20px 20px;
+    }
+
+    .bloc-equip-charge-unlocked {
+        display: grid;
+        grid-template-columns: 24px 1fr 70px 70px 20px 20px;
     }
 }
 

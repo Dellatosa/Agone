@@ -22,6 +22,16 @@ export const registerSystemSettings = function() {
         default: true
     });
 
+    // Utiliser les règles de charge (gestion du poids porté)
+    game.settings.register("agone","gestionCharge", {
+        config: true,
+        scope: "world",
+        name: "parametres.gestionCharge.nom",
+        hint: "parametres.gestionCharge.label",
+        type: Boolean,
+        default: false
+    });
+
     // Activer la gestion des rencontres
     game.settings.register("agone","gestionDesRencontres", {
         config: false,

@@ -146,6 +146,15 @@ export default class AgoneActor extends Actor {
 
             data.caracSecondaires.malusBlessures = this.getMalusBlessureGrave(data.caracSecondaires.nbBlessureGrave);
 
+            if(game.settings.get("agone", "gestionCharge")) {
+                data.caracSecondaires.malusCharge = this.calcMalusCharge();
+            }
+            else {
+                data.caracSecondaires.malusCharge = 0;
+            }
+            
+            console.log("MalusCharge", data.caracSecondaires.malusCharge);
+
             // Calcul des compétences
             for(let[keyFam, famille] of Object.entries(data.familleCompetences)) {
                 for(let[keyComp, competence] of Object.entries(famille.competences)) {
@@ -554,6 +563,28 @@ export default class AgoneActor extends Actor {
                 return -6;
             case 3:
                 return -12;
+        }
+    }
+
+    calcMalusCharge() {
+        const equipPortes = this.items.filter(function (item) { return (item.type == "Armure" || item.type == "Arme" || item.type == "Equipement") && item.system.porte == true})
+        console.log("MalusCharge",equipPortes);
+        
+        let poidsPorte = 0;
+        equipPortes.forEach(equip => {
+            poidsPorte += equip.system.poids != null ? equip.system.poids : 0;
+        });
+        console.log("MalusCharge", poidsPorte);
+
+        switch(true) {
+            case poidsPorte >= this.system.caracSecondaires.chargeMax:
+                return -8;
+            case poidsPorte >= this.system.caracSecondaires.demiCharge:
+                return -4;
+            case poidsPorte >= this.system.caracSecondaires.chargeQuotidienne:
+                return -2;
+            case poidsPorte < this.system.caracSecondaires.chargeQuotidienne:
+                return 0;
         }
     }
 

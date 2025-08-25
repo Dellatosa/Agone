@@ -1,0 +1,15 @@
+<div class="carte">
+    <div class="titre">
+        <img src="{{img}}" title="{{name}}" height="32" width="32"/>
+        <div class="titre-nom">{{name}}</div>
+    </div>
+    <div class="grid-2">
+        <div class="entete">{{localize "agone.chat.valeur"}}</div>
+        <div class="entete">{{localize "agone.chat.poids"}}</div>
+        <div>{{system.valeur}}</div>
+        <div>{{system.poids}}</div>
+    </div>
+    {{#if system.description}}
+        <div class="carte-desc">{{editor system.description target="system.description" owner=true}}</div>
+    {{/if}}    
+</div>

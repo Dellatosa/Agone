@@ -1,0 +1,111 @@
+<div class="grid-data-equip">
+    <div class="data-equip">
+        <div class="charge">            
+            <div class="grid-charge">
+                <div class="data-charge-titre lib-all">{{localize "agone.actors.charge"}}</div>
+                <label>{{localize "agone.actors.chargeMax"}}</label>
+                <div class="val"><label>{{data.system.caracSecondaires.chargeMax}}</label></div>
+                <label>{{localize "agone.actors.demiCharge"}}</label>
+                <div class="val"><label>{{data.system.caracSecondaires.demiCharge}}</label></div>
+                <label>{{localize "agone.actors.chargeQuotidienne"}}</label>
+                <div class="val"><label>{{data.system.caracSecondaires.chargeQuotidienne}}</label></div>
+                {{#if chargeActive}}
+                    <label>{{localize "agone.actors.malusCharge"}}</label>
+                    <div class="val"><label>{{data.system.caracSecondaires.malusCharge}}</label></div>
+                {{/if}}
+            </div>
+            {{#if typePersonnage}}
+            {{/if}}
+        </div>
+    </div>
+    <div class="equipement">
+        <div class="titre-rub">{{localize "agone.actors.equipCombat"}}</div>
+        <div class="grid-equip-combat">       
+            {{#each armes as |arme id|}}
+                {{#if ../unlocked}}
+                    {{#if ../chargeActive}}
+                        <div class="bloc-equip-charge-unlocked item" data-item-id="{{arme._id}}">
+                            {{> "systems/agone/templates/partials/actors/ligne-equipement-base.hbs"}}
+                            {{> "systems/agone/templates/partials/actors/ligne-equipement-charge.hbs"}}
+                            {{> "systems/agone/templates/partials/actors/ligne-equipement-edition.hbs"}}
+                        </div>
+                    {{else}}
+                        <div class="bloc-equip-unlocked item" data-item-id="{{arme._id}}">
+                            {{> "systems/agone/templates/partials/actors/ligne-equipement-base.hbs"}}
+                            {{> "systems/agone/templates/partials/actors/ligne-equipement-edition.hbs"}}
+                        </div>
+                    {{/if}}
+                {{else}}
+                    {{#if ../chargeActive}}
+                        <div class="bloc-equip-charge item" data-item-id="{{arme._id}}">
+                            {{> "systems/agone/templates/partials/actors/ligne-equipement-base.hbs"}}
+                            {{> "systems/agone/templates/partials/actors/ligne-equipement-charge.hbs"}}
+                            {{> "systems/agone/templates/partials/actors/ligne-equipement-porter.hbs"}}
+                        </div>
+                    {{else}}
+                        <div class="bloc-equip item" data-item-id="{{arme._id}}">
+                            {{> "systems/agone/templates/partials/actors/ligne-equipement-base.hbs"}}
+                        </div>
+                    {{/if}}
+                {{/if}}
+            {{/each}}
+            {{#each armures as |armure id|}}
+                {{#if ../unlocked}}
+                    {{#if ../chargeActive}}
+                        <div class="bloc-equip-charge-unlocked item" data-item-id="{{armure._id}}">
+                            {{> "systems/agone/templates/partials/actors/ligne-equipement-base.hbs"}}
+                            {{> "systems/agone/templates/partials/actors/ligne-equipement-charge.hbs"}}
+                            {{> "systems/agone/templates/partials/actors/ligne-equipement-edition.hbs"}}
+                        </div> 
+                    {{else}}
+                        <div class="bloc-equip-unlocked item" data-item-id="{{armure._id}}">
+                            {{> "systems/agone/templates/partials/actors/ligne-equipement-base.hbs"}}
+                            {{> "systems/agone/templates/partials/actors/ligne-equipement-edition.hbs"}}
+                        </div> 
+                     {{/if}}
+                {{else}}
+                    {{#if ../chargeActive}}
+                        <div class="bloc-equip-charge item" data-item-id="{{armure._id}}">
+                            {{> "systems/agone/templates/partials/actors/ligne-equipement-base.hbs"}}
+                            {{> "systems/agone/templates/partials/actors/ligne-equipement-charge.hbs"}}
+                            {{> "systems/agone/templates/partials/actors/ligne-equipement-porter.hbs"}}
+                        </div>
+                    {{else}}
+                        <div class="bloc-equip item" data-item-id="{{armure._id}}">
+                            {{> "systems/agone/templates/partials/actors/ligne-equipement-base.hbs"}}
+                        </div>
+                    {{/if}}
+                {{/if}}
+            {{/each}}
+            <div class="titre-rub">{{localize "agone.actors.equipAutre"}}</div>
+            {{#each equipements as |equipement id|}}
+                {{#if ../unlocked}}
+                    {{#if ../chargeActive}}
+                        <div class="bloc-equip-charge-unlocked item" data-item-id="{{equipement._id}}">
+                            {{> "systems/agone/templates/partials/actors/ligne-equipement-base.hbs"}}
+                            {{> "systems/agone/templates/partials/actors/ligne-equipement-charge.hbs"}}
+                            {{> "systems/agone/templates/partials/actors/ligne-equipement-edition.hbs"}}
+                        </div> 
+                    {{else}}
+                        <div class="bloc-equip-unlocked item" data-item-id="{{equipement._id}}">
+                            {{> "systems/agone/templates/partials/actors/ligne-equipement-base.hbs"}}
+                            {{> "systems/agone/templates/partials/actors/ligne-equipement-edition.hbs"}}
+                        </div> 
+                     {{/if}}
+                {{else}}
+                    {{#if ../chargeActive}}
+                        <div class="bloc-equip-charge item" data-item-id="{{equipement._id}}">
+                            {{> "systems/agone/templates/partials/actors/ligne-equipement-base.hbs"}}
+                            {{> "systems/agone/templates/partials/actors/ligne-equipement-charge.hbs"}}
+                            {{> "systems/agone/templates/partials/actors/ligne-equipement-porter.hbs"}}
+                        </div>
+                    {{else}}
+                        <div class="bloc-equip item" data-item-id="{{equipement._id}}">
+                            {{> "systems/agone/templates/partials/actors/ligne-equipement-base.hbs"}}
+                        </div>
+                    {{/if}}
+                {{/if}}
+            {{/each}}
+        </div>
+    </div>
+</div>

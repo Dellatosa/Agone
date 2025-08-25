@@ -1,0 +1,21 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
+        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.common.name'}}"/></h1>
+    </header>
+    <div class="sheet-content">
+        <div class="grid-equipement">
+            <label class="grid-titre">{{localize "agone.items.quantite"}}</label>
+            <label class="grid-titre">{{localize "agone.items.valeur"}}</label>
+            <label class="grid-titre">{{localize "agone.items.poids"}}</label>
+            <div><input name="system.quantite" type="text" value="{{data.system.quantite}}" data-dtype="Number" placeholder="0"/></div>
+            <div><input name="system.valeur" type="text" value="{{data.system.valeur}}" data-dtype="Number" placeholder="0"/></div>
+            <div><input name="system.poids" type="text" value="{{data.system.poids}}" data-dtype="Number" placeholder="0"/></div>
+        </div>
+         <div>{{localize "agone.items.equipementDesc"}}</div> 
+         {{editor data.system.description target="system.description" button=true owner=true editable=true}}
+    </div>
+    <footer class="sheet-footer">
+        <div>{{localize "agone.common.type"}} : <span>{{localize "agone.items.equipementLabel"}}</span></div>
+    </footer>
+</form>

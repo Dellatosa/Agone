@@ -58,6 +58,7 @@
             "apparence": "Apparence",
             "nbBlessureGrave": "Nb blessures graves",
             "malusBlessures": "Malus de blessures",
+            "malusCharge": "Malus de charge",
             "origine": "Origine",
             "occupation": "Occupation",
             "sexe": "Sexe",
@@ -138,6 +139,7 @@
             "sbc": "SBC",
             "bonusDommages": "Bonus de dommages",
             "bdom": "BD",
+            "charge": "Charge",
             "chargeMax": "Charge maximale",
             "demiCharge": "Demi charge",
             "chargeQuotidienne": "Charge quotidienne",
@@ -261,6 +263,7 @@
             "voirAvantage": "Voir l'avantage",
             "voirPouvoir": "Voir le pouvoir",
             "voirConnivence": "Voir la connivence",
+            "voirEquipement": "Voir l'équipement",
             "humain": "Humain",
             "saisonnin": "Saisonnin",
             "lutin": "Lutin",   
@@ -285,7 +288,9 @@
             "actionsDefense": "Actions de défense",
             "reposDanseurs": "Repos des danseurs",
             "sortsConnus": "Sorts connus",
-            "conjurer": "Conjurer un Démon"
+            "conjurer": "Conjurer un Démon",
+            "equipCombat": "Equipement de combat",
+            "equipAutre": "Autre équipement"
         },
         "items":{
             "description": "Description",
@@ -314,6 +319,8 @@
             "armureDesc": "Description de l'armure",
             "danseurLabel": "Danseur",
             "danseurDesc": "Description du danseur",
+            "equipementDesc": "Description de l'équipement",
+            "equipementLabel": "Equipement",
             "sortLabel": "Sort",
             "sortDesc": "Description du sort",
             "oeuvreLabel": "Oeuvre",
@@ -409,7 +416,10 @@
             "longue": "Longue (P/2 - P)",
             "extreme": "Extrême (P - Px2)",
             "rarete": "Rareté",
-            "descEffet": "Description de l'effet"
+            "descEffet": "Description de l'effet",
+            "quantite": "Quantité",
+            "valeur" : "Valeur (po)",
+            "poids": "Poids (kg)"
         },
         "chat": {
             "succes": "Succès !",
@@ -506,6 +516,8 @@
             "cercle": "Cercle",
             "demon": "Démon",
             "advocatusDiaboli": "Advocatus Diaboli",
+            "valeur" : "Valeur (po)",
+            "poids": "Poids (kg)",
             "encAppTour1": "1 tour",
             "encAppTour2": "2 tours",
             "encAppTour3": "3 tours",
@@ -637,7 +649,11 @@
             "memoire": "Mémoire",
             "endurance": "Endurance",
             "bonusEmprise": "Bonus d'Emprise",
-            "empathie": "Empathie"
+            "empathie": "Empathie",
+            "valeur": "Valeur (po)",
+            "poids": "Poids (kg)",
+            "clickPourPorterEquipement": "Cliquer pour porter l'équipement",
+            "clickPourDeposerEquipement": "Cliquer pour déposer l'équipement"
         }
     },
     "parametres": {
@@ -668,6 +684,10 @@
         "gestionJetVieillesse": {
             "nom": "Gestion des jets de vieillesse",
             "label": "Si cette option est active, un bouton permet le jet de dé et calcule les éventuels malus aux futurs jets" 
+        },
+        "gestionCharge": {
+            "nom": "Gestion du malus de charge",
+            "label": "Si cette option est active, le malus de charge est calculé en fonction du poids des équipements portés" 
         }
     }
 }

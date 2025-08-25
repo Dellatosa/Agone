@@ -76,6 +76,11 @@
   grid-template-columns: repeat(3, 1fr);
   padding: 3px;
 }
+.grid-equipement {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  padding: 3px;
+}
 .grid-botteSecrete {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -194,7 +199,8 @@ select.auto-size {
 }
 .agone.sheet.actor .competences-content,
 .agone.sheet.actor .combat-content,
-.agone.sheet.actor .magie-content {
+.agone.sheet.actor .magie-content,
+.agone.sheet.actor .equipement-content {
   height: 100%;
 }
 .agone.sheet.actor .fullheight {
@@ -219,6 +225,9 @@ a.nohlight {
     text-shadow: 0 0 10px red;
     cursor: pointer;
 }*/
+.actor-infos {
+  width: 100%;
+}
 .actor-infos .info-val {
   margin: 4px 7px 0 3px;
   font-family: "BarbedorMedium";
@@ -902,6 +911,58 @@ a.nohlight {
   font: var(--font-lorgol-28px);
   text-align: center;
 }
+.grid-data-equip {
+  display: grid;
+  grid-template-columns: 1.25fr 3fr;
+  height: 100%;
+  font-family: "BarbedorMedium";
+}
+.grid-data-equip .data-equip {
+  background: linear-gradient(to right, #00000000, #00000021);
+  padding: 5px;
+}
+.grid-data-equip .data-equip .data-charge-titre {
+  text-align: center;
+  font: var(--font-lorgol-24px);
+  margin-bottom: 2px;
+}
+.grid-data-equip .data-equip .charge .grid-charge {
+  display: grid;
+  grid-template-columns: 1fr 3.5em;
+  align-items: center;
+  margin: 3px 1px;
+  padding: 3px;
+  border: solid 1px var(--color-box-border-dark);
+  border-radius: 5px;
+}
+.grid-data-equip .data-equip .charge .grid-charge .lib {
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+.grid-data-equip .data-equip .charge .grid-charge .lib-all {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  text-align: center;
+}
+.grid-data-equip .data-equip .charge .grid-charge .val {
+  background-color: var(--color-stats-background);
+  margin: 2px 5px;
+  text-align: center;
+  align-items: center;
+  border-radius: 3px;
+  height: 26px;
+}
+.grid-data-equip .data-equip .charge .grid-charge .val label {
+  position: relative;
+  top: 5px;
+}
+.grid-data-equip .equipement {
+  font-family: "BarbedorMedium";
+}
+.grid-data-equip .equipement .titre-rub {
+  font: var(--font-lorgol-28px);
+  text-align: center;
+}
 .recap {
   display: flex;
   flex-direction: row;
@@ -1576,50 +1637,112 @@ a.nohlight {
   grid-row-start: 1;
   grid-row-end: 4;
 }
-.grid-connivences {
+.grid-connivences,
+.grid-equip-combat {
   display: grid;
   grid-template-columns: 1fr;
 }
-.grid-connivences .bloc-connivence {
+.grid-connivences .bloc-connivence,
+.grid-equip-combat .bloc-connivence {
   border: solid 1px var(--color-box-border-dark);
   border-radius: 5px;
   margin: 2px;
   padding: 2px;
 }
-.grid-connivences .bloc-connivence .icone {
+.grid-connivences .bloc-connivence .icone,
+.grid-equip-combat .bloc-connivence .icone {
   font-size: 1.3em;
   margin-left: 2px;
 }
-.grid-connivences .bloc-connivence .ligne-titre {
+.grid-connivences .bloc-connivence .ligne-titre,
+.grid-equip-combat .bloc-connivence .ligne-titre {
   display: flex;
   align-items: center;
   margin-bottom: 5px;
   background-color: var(--color-stats-background);
 }
-.grid-connivences .bloc-connivence .ligne-titre img {
+.grid-connivences .bloc-connivence .ligne-titre img,
+.grid-equip-combat .bloc-connivence .ligne-titre img {
   flex: 0 0 24px;
   border: none;
   height: 24px;
 }
-.grid-connivences .bloc-connivence .ligne-titre .titre {
+.grid-connivences .bloc-connivence .ligne-titre .titre,
+.grid-equip-combat .bloc-connivence .ligne-titre .titre {
   flex: 2;
   font-family: "BarbedorMedium";
   font-size: 1.3em;
   margin-left: 2px;
 }
-.grid-connivences .bloc-connivence .ligne-stats-connivence {
+.grid-connivences .bloc-connivence .ligne-stats-connivence,
+.grid-equip-combat .bloc-connivence .ligne-stats-connivence {
   display: grid;
   grid-template-columns: 1fr 1fr;
   text-align: center;
   align-items: center;
   margin-bottom: 3px;
 }
-.grid-connivences .bloc-connivence .ligne-stats-connivence .desc-col {
+.grid-connivences .bloc-connivence .ligne-stats-connivence .desc-col,
+.grid-equip-combat .bloc-connivence .ligne-stats-connivence .desc-col {
   grid-column-start: 1;
   grid-column-end: 3;
   padding: 3px;
   background-color: var(--color-stats-background);
   text-align: left;
+}
+.grid-connivences .bloc-equip,
+.grid-equip-combat .bloc-equip,
+.grid-connivences .bloc-equip-charge,
+.grid-equip-combat .bloc-equip-charge,
+.grid-connivences .bloc-equip-unlocked,
+.grid-equip-combat .bloc-equip-unlocked,
+.grid-connivences .bloc-equip-charge-unlocked,
+.grid-equip-combat .bloc-equip-charge-unlocked {
+  align-items: center;
+}
+.grid-connivences .bloc-equip img,
+.grid-equip-combat .bloc-equip img,
+.grid-connivences .bloc-equip-charge img,
+.grid-equip-combat .bloc-equip-charge img,
+.grid-connivences .bloc-equip-unlocked img,
+.grid-equip-combat .bloc-equip-unlocked img,
+.grid-connivences .bloc-equip-charge-unlocked img,
+.grid-equip-combat .bloc-equip-charge-unlocked img {
+  flex: 0 0 24px;
+  border: none;
+  height: 24px;
+}
+.grid-connivences .bloc-equip .nom,
+.grid-equip-combat .bloc-equip .nom,
+.grid-connivences .bloc-equip-charge .nom,
+.grid-equip-combat .bloc-equip-charge .nom,
+.grid-connivences .bloc-equip-unlocked .nom,
+.grid-equip-combat .bloc-equip-unlocked .nom,
+.grid-connivences .bloc-equip-charge-unlocked .nom,
+.grid-equip-combat .bloc-equip-charge-unlocked .nom {
+  font-family: "BarbedorMedium";
+  font-size: 1.1em;
+  margin-left: 2px;
+}
+.grid-connivences .bloc-equip,
+.grid-equip-combat .bloc-equip {
+  display: grid;
+  grid-template-columns: 24px 1fr 70px;
+}
+.grid-connivences .bloc-equip-charge,
+.grid-equip-combat .bloc-equip-charge {
+  display: grid;
+  grid-template-columns: 24px 1fr 70px 70px 20px;
+}
+.grid-connivences .bloc-equip-unlocked,
+.grid-equip-combat .bloc-equip-unlocked {
+  display: grid;
+  grid-template-columns: 24px 1fr 70px 20px 20px;
+}
+.grid-connivences .bloc-equip-charge-unlocked,
+.grid-equip-combat .bloc-equip-charge-unlocked {
+  display: grid;
+  grid-template-columns: 24px 1fr 70px 70px 20px 20px;
 }
 .liste-armes,
 .liste-armures,

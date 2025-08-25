@@ -58,6 +58,7 @@
             "apparence": "Appearance",      
             "nbBlessureGrave": "Serious wound",
             "malusBlessures": "Wounds penalty",
+            "malusCharge": "Load penalty",
             "origine": "Birthplace",
             "occupation": "Occupation",
             "sexe": "Sex",
@@ -138,6 +139,7 @@
             "sbc": "CWT",
             "bonusDommages": "Damages bonus",
             "bdom": "DB",
+            "charge": "Load",
             "chargeMax": "Maximum load",
             "demiCharge": "Half load",
             "chargeQuotidienne": "Daily load",
@@ -261,6 +263,7 @@
             "voirAvantage": "Display asset",
             "voirPouvoir": "Display power",
             "voirConnivence": "Display connivance",
+            "voirEquipement": "Display Equipment'",
             "humain": "Human",
             "saisonnin": "Seasonling",
             "lutin": "Sprite",   
@@ -285,7 +288,9 @@
             "actionsDefense": "Defense Actions",
             "reposDanseurs": "Dancers rest",
             "sortsConnus": "Spells known",
-            "conjurer": "Invoking a Demon"
+            "conjurer": "Invoking a Demon",
+            "equipCombat": "Fight equipment",
+            "equipAutre": "Other equipment"
         },
         "items":{
             "description": "Description",
@@ -314,6 +319,8 @@
             "armureDesc": "Armour description",
             "danseurLabel": "Dancer",
             "danseurDesc": "Dancer description",
+            "equipementDesc": "Equipment description",
+            "equipementLabel": "Equipment",
             "sortLabel": "Spell",
             "sortDesc": "Spell description",
             "oeuvreLabel": "Work",
@@ -409,7 +416,10 @@
             "longue": "Long (R/2 - R)",
             "extreme": "Extreme (R - Rx2)",
             "rarete": "Rarity",
-            "descEffet": "Effect description"
+            "descEffet": "Effect description",
+            "quantite": "Quantity",
+            "valeur" : "Cost (gp)",
+            "poids": "Weight (kg)"
         },
         "chat": {
             "succes": "Success !",
@@ -506,6 +516,8 @@
             "cercle": "Circle",
             "demon": "Demon",
             "advocatusDiaboli": "Advocatus Diaboli",
+            "valeur" : "Cost (gp)",
+            "poids": "Weight (kg)",
             "encAppTour1": "1 round",
             "encAppTour2": "2 rounds",
             "encAppTour3": "3 rounds",
@@ -637,7 +649,11 @@
             "memoire": "Memory",
             "endurance": "Stamina",
             "bonusEmprise": "Ascendancy bonus",
-            "empathie": "Empathy"
+            "empathie": "Empathy",
+            "valeur":"Cost (gp)",
+            "poids": "Weight (kg)",
+            "clickPourPorterEquipement": "Click to carry equipment",
+            "clickPourDeposerEquipement": "Click to drop equipment"
         }
     },
     "parametres": {
@@ -665,6 +681,10 @@
         "gestionDesRencontres": {
             "nom": "NO TRAD - Activer la gestion des rencontres",
             "label": "NO TRAD - Si la gestion des rencontres de combat est active, elle impacte les jets d'initiative, d'esquive et de dommages" 
+        },
+        "gestionCharge": {
+            "nom": "NO TRAD - Gestion de la charge quotidienne",
+            "label": "NO TRAD - Si cette option est active, un malus de charge quotidienne est calculé en fonction du poids des équipements portés" 
         }
     }
 }

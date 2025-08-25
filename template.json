@@ -1271,7 +1271,10 @@
       "protection": 0,
       "malus": 0,
       "malusPerception": 0,
-      "equipee": false
+      "equipee": false,
+      "valeur": 0,
+      "poids": 0,
+      "porte": false
     },
     "Arme": {
       "templates": [ "base" ],
@@ -1286,7 +1289,10 @@
       "minForce": 0,
       "minAgilite": 0,
       "portee": 0,
-      "equipee": ""
+      "equipee": "",
+      "valeur": 0,
+      "poids": 0,
+      "porte": false
     },
     "Danseur": {
       "templates": [ "base" ],
@@ -1334,7 +1340,9 @@
     "Equipement": {
       "templates": [ "base" ],
       "quantite": 1,
-      "poids": 0
+      "valeur": 0,
+      "poids": 0,
+      "porte": false
     }
   }
 }
