@@ -1,0 +1,27 @@
+<div class="titre-rub">{{localize "agone.actors.avantages"}}</div>
+<div class="grid-avantages">
+    {{#each avantages as |avantage id|}}
+        <div class="bloc-avantage item" data-item-id="{{avantage._id}}">
+            <div class="ligne-titre">
+                <a class="item-roll"><img src="{{img}}" title="{{localize 'agone.actors.voirAvantage'}}"/></a>
+                <div class="titre">{{name}}</div>
+                {{#if ../unlocked}}
+                    <div class="icone"><a class="editer-item" title="{{localize 'agone.common.editer'}}"><i class="fa-duotone fa-solid fa-pen-to-square"></i></a></div>
+                    <div class="icone"><a class="supprimer-item" title="{{localize 'agone.common.supprimer'}}"><i class="fa-duotone fa-solid fa-x"></i></a></div>
+                {{else}}
+                {{/if}}
+            </div>
+            <div class="ligne-stats-avantage">
+                <div>
+                    {{configLocalize "typesAvantageDefaut" system.type}}
+                </div>
+                <div>
+                   {{localize 'agone.common.cout'}} {{system.cout}}
+                </div>
+            </div>
+            <div class="ligne-stats-avantage">
+                <div class="desc-col">{{editor system.descBonus target="system.descBonus" owner=true editable=false}}</div>
+            </div>
+        </div>
+    {{/each}}
+</div>

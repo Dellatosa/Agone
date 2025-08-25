@@ -15,7 +15,7 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "competences" },
                     { navSelector: ".competences-tabs", contentSelector: ".competences-content", initial: "epreuves" },
                     { navSelector: ".magie-tabs", contentSelector: ".magie-content", initial: "emprise" },
-                    { navSelector: ".historique-tabs", contentSelector: ".historique-content", initial: "pouvoirs" }]
+                    { navSelector: ".historique-tabs", contentSelector: ".historique-content", initial: "avantagesDefauts" }]
         });
     }
 
@@ -109,6 +109,9 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
 
         // Onglet magie sélectionné
         data.tabMagieActif = this.actor.getFlag(game.system.id, "TabMagieActif");
+
+        // Onglet historique sélectionné
+        data.tabHistoActif = this.actor.getFlag(game.system.id, "TabHistoActif");
         
         // Affichage du bouton pour le jet de Vieillesse
         if(game.settings.get("agone", "gestionJetVieillesse") && actorData.peuple != "feeNoire") {
@@ -212,6 +215,9 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
 
             // Changement d'onglet magie
             html.find("nav.magie-tabs").click(this._onChangeMagieTabs.bind(this));
+
+            // Changement d'onglet historqiue
+            html.find("nav.historique-tabs").click(this._onChangeHistoTabs.bind(this));
 
             // Modifier les aspects - Damné uniquement
             html.find(".mod-aspect-crea").click(this._onModifAspect.bind(this));
@@ -340,6 +346,19 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
         for(const tab of event.currentTarget.children) {
             if(tab.matches(".active")) {
                 await this.actor.setFlag(game.system.id, "TabMagieActif", tab.dataset.tab);
+            }
+        }
+    }
+
+    // Changement d'onglet histo
+    async _onChangeHistoTabs(event) {
+        event.preventDefault();
+
+        console.log("TAB HISTO ACTIF!");
+
+        for(const tab of event.currentTarget.children) {
+            if(tab.matches(".active")) {
+                await this.actor.setFlag(game.system.id, "TabHistoActif", tab.dataset.tab);
             }
         }
     }

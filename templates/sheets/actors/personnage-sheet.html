@@ -25,7 +25,7 @@
         <a class="item" data-tab="combat">{{localize "agone.actors.combat"}}</a>
         <a class="item" data-tab="magie">{{localize "agone.actors.magie"}}</a>
         <a class="item" data-tab="equipement">{{localize "agone.actors.equipement"}}</a>
-        <a class="item" data-tab="avantagesDefauts">{{localize "agone.actors.avantages"}} / {{localize "agone.actors.defauts"}}</a>
+        <!-- <a class="item" data-tab="avantagesDefauts">{{localize "agone.actors.avantages"}} / {{localize "agone.actors.defauts"}}</a> -->
         <a class="item" data-tab="historique">{{localize "agone.actors.historique"}}</a>
     </nav>
     <section class="sheet-body">
@@ -48,65 +48,28 @@
         </div>
         <div class="tab magie-content" data-group="principal" data-tab="magie">
             {{> "systems/agone/templates/partials/actors/bloc-magie-personnage.hbs"}}
-            <!-- {{#if typePersonnage}} -->
-                
-            <!-- {{else}}
-                <nav class="magie-tabs tabs" data-group="magie">
-                    <a class="item" data-tab="emprise">{{localize "agone.actors.emprise"}}</a>
-                    <a class="item" data-tab="artsMagiques">{{localize "agone.actors.artsMagiques"}}</a>
-                    <a class="item" data-tab="conjuration">{{localize "agone.actors.conjuration"}}</a>
-                </nav>
-                <div class="tab" data-group="magie" data-tab="emprise">
-                    {{> "systems/agone/templates/partials/actors/bloc-recap-emprise-personnage.hbs"}}
-                    <h3>{{localize "agone.actors.danseurs"}}</h3>
-                    <div class="liste-danseurs">
-                        {{> "systems/agone/templates/partials/actors/bloc-liste-danseurs-personnage.hbs"}}
-                    </div>
-                    <h3>{{localize "agone.actors.sorts"}}</h3>
-                    <div class="liste-sorts">
-                        {{> "systems/agone/templates/partials/actors/bloc-liste-sorts-personnage.hbs"}}
-                    </div>
-                </div>
-                <div class="tab" data-group="magie" data-tab="artsMagiques">
-                    {{> "systems/agone/templates/partials/actors/bloc-recap-artsmagiques-personnage.hbs"}}
-                    <h3>{{localize "agone.actors.oeuvres"}}</h3>
-                    <div class="liste-oeuvres">
-                        {{> "systems/agone/templates/partials/actors/bloc-liste-oeuvres-personnage.hbs"}}
-                    </div>
-                </div>
-                <div class="tab" data-group="magie" data-tab="conjuration">
-                    {{> "systems/agone/templates/partials/actors/bloc-recap-conjuration-personnage.hbs"}}
-                    <h3>{{localize "agone.actors.connivences"}}</h3>
-                    <div class="liste-connivences">
-                        {{> "systems/agone/templates/partials/actors/bloc-liste-connivences-personnage.hbs"}}
-                    </div>
-                </div>
-            {{/if}} -->
         </div>
         <div class="tab equipement-content" data-group="principal" data-tab="equipement">
             {{> "systems/agone/templates/partials/actors/bloc-equipement-personnage.hbs"}}
-            <!-- {{> "systems/agone/templates/partials/actors/bloc-recap-equipement-personnage.hbs"}}
-            <h3>{{localize "agone.actors.armures"}}</h3>
-            <div class="liste-armures">
-                {{> "systems/agone/templates/partials/actors/bloc-liste-armures-personnage.hbs"}}
-            </div> -->
         </div>
-        <div class="tab" data-group="principal" data-tab="avantagesDefauts">
-            <h3>{{localize "agone.actors.avantages"}}</h3>
-            <div class="liste-avantages">
-                {{> "systems/agone/templates/partials/actors/bloc-liste-avantages-personnage.hbs"}}
-            </div>
-            <h3>{{localize "agone.actors.defauts"}}</h3>
-            <div class="liste-defauts">
-                {{> "systems/agone/templates/partials/actors/bloc-liste-defauts-personnage.hbs"}}
-            </div>
-        </div>
-        <div class="tab historique-content fullheight" data-group="principal" data-tab="historique">
-            <nav class="historique-tabs tabs" data-group="historique">
+        <div class="tab historique-content" data-group="principal" data-tab="historique">
+            {{> "systems/agone/templates/partials/actors/bloc-historique-personnage.hbs"}}
+            <!-- <nav class="historique-tabs tabs" data-group="historique">
+                <a class="item" data-tab="avantagesDefauts">{{localize "agone.actors.avantages"}} / {{localize "agone.actors.defauts"}}</a>
                 <a class="item" data-tab="pouvoirs">{{localize "agone.actors.pouvoirs"}}</a>
                 <a class="item" data-tab="peinesBienfaits">{{localize "agone.actors.peinesBienfaits"}}</a>
                 <a class="item" data-tab="histoire">{{localize "agone.actors.histoire"}}</a>
             </nav>
+            <div class="tab" data-group="historique" data-tab="avantagesDefauts">
+                <h3>{{localize "agone.actors.avantages"}}</h3>
+                <div class="liste-avantages">
+                    {{> "systems/agone/templates/partials/actors/bloc-liste-avantages-personnage.hbs"}}
+                </div>
+                <h3>{{localize "agone.actors.defauts"}}</h3>
+                <div class="liste-defauts">
+                    {{> "systems/agone/templates/partials/actors/bloc-liste-defauts-personnage.hbs"}}
+                </div>
+            </div>
             <div class="tab" data-group="historique" data-tab="pouvoirs">
                 <h3>{{localize "agone.actors.flamme"}}</h3>
                 <div class="liste-pouvoirs-flamme">
@@ -152,7 +115,7 @@
                 {{editor data.system.apparence target="system.apparence" button=true owner=true editable=true}}
                 <div>{{localize "agone.actors.biographie"}}</div>
                 {{editor data.system.biographie target="system.biographie" button=true owner=true editable=true}}
-            </div>
+            </div> -->
         </div>
     </section>
     <!-- <footer class="sheet-footer">    

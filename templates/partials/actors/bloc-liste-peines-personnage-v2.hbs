@@ -1,0 +1,27 @@
+<div class="titre-rub">{{localize "agone.actors.peines"}}</div>
+<div class="grid-peines">
+    {{#each peines as |peine id|}}
+        <div class="bloc-peine item" data-item-id="{{peine._id}}">
+            <div class="ligne-titre">
+                <a class="item-roll"><img src="{{img}}" title="{{localize 'agone.actors.voirPeine'}}"/></a>
+                <div class="titre">{{name}}</div>
+                {{#if ../unlocked}}
+                    <div class="icone"><a class="editer-item" title="{{localize 'agone.common.editer'}}"><i class="fa-duotone fa-solid fa-pen-to-square"></i></a></div>
+                    <div class="icone"><a class="supprimer-item" title="{{localize 'agone.common.supprimer'}}"><i class="fa-duotone fa-solid fa-x"></i></a></div>
+                {{else}}
+                {{/if}}
+            </div>
+            <div class="ligne-stats-peine">
+                <div>
+                   {{configLocalize "typesPeine" system.type}}
+                </div>
+                <div>
+                   {{localize "agone.items.palier"}} {{system.palier}}
+                </div>
+            </div>
+            <div class="ligne-stats-peine">
+                <div class="desc-col">{{editor system.descMalus target="system.descMalus" owner=true editable=false}}</div>
+            </div>
+        </div>
+    {{/each}}
+</div>

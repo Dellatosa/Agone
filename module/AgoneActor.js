@@ -152,8 +152,6 @@ export default class AgoneActor extends Actor {
             else {
                 data.caracSecondaires.malusCharge = 0;
             }
-            
-            console.log("MalusCharge", data.caracSecondaires.malusCharge);
 
             // Calcul des compétences
             for(let[keyFam, famille] of Object.entries(data.familleCompetences)) {
@@ -568,13 +566,11 @@ export default class AgoneActor extends Actor {
 
     calcMalusCharge() {
         const equipPortes = this.items.filter(function (item) { return (item.type == "Armure" || item.type == "Arme" || item.type == "Equipement") && item.system.porte == true})
-        console.log("MalusCharge",equipPortes);
         
         let poidsPorte = 0;
         equipPortes.forEach(equip => {
             poidsPorte += equip.system.poids != null ? equip.system.poids : 0;
         });
-        console.log("MalusCharge", poidsPorte);
 
         switch(true) {
             case poidsPorte >= this.system.caracSecondaires.chargeMax:

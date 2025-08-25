@@ -264,6 +264,8 @@
             "voirPouvoir": "Voir le pouvoir",
             "voirConnivence": "Voir la connivence",
             "voirEquipement": "Voir l'équipement",
+            "voirPeine": "Voir la peine",
+            "voirBienfait": "Voir le bienfait",
             "humain": "Humain",
             "saisonnin": "Saisonnin",
             "lutin": "Lutin",   
@@ -518,6 +520,8 @@
             "advocatusDiaboli": "Advocatus Diaboli",
             "valeur" : "Valeur (po)",
             "poids": "Poids (kg)",
+            "type": "Type",
+            "palier": "Palier",
             "encAppTour1": "1 tour",
             "encAppTour2": "2 tours",
             "encAppTour3": "3 tours",
@@ -653,7 +657,9 @@
             "valeur": "Valeur (po)",
             "poids": "Poids (kg)",
             "clickPourPorterEquipement": "Cliquer pour porter l'équipement",
-            "clickPourDeposerEquipement": "Cliquer pour déposer l'équipement"
+            "clickPourDeposerEquipement": "Cliquer pour déposer l'équipement",
+            "experience": "Expérience",
+            "coutHeroisme": "Coût en point d'héroïsme"
         }
     },
     "parametres": {

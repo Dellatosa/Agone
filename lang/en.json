@@ -263,7 +263,9 @@
             "voirAvantage": "Display asset",
             "voirPouvoir": "Display power",
             "voirConnivence": "Display connivance",
-            "voirEquipement": "Display Equipment'",
+            "voirEquipement": "Display Equipment",
+            "voirPeine": "Display sorrow",
+            "voirBienfait": "Display gift",
             "humain": "Human",
             "saisonnin": "Seasonling",
             "lutin": "Sprite",   
@@ -518,6 +520,8 @@
             "advocatusDiaboli": "Advocatus Diaboli",
             "valeur" : "Cost (gp)",
             "poids": "Weight (kg)",
+            "type": "Type",
+            "palier": "Level",
             "encAppTour1": "1 round",
             "encAppTour2": "2 rounds",
             "encAppTour3": "3 rounds",
@@ -653,7 +657,9 @@
             "valeur":"Cost (gp)",
             "poids": "Weight (kg)",
             "clickPourPorterEquipement": "Click to carry equipment",
-            "clickPourDeposerEquipement": "Click to drop equipment"
+            "clickPourDeposerEquipement": "Click to drop equipment",
+            "experience": "Experience",
+            "coutHeroisme": "Fortune cost"
         }
     },
     "parametres": {

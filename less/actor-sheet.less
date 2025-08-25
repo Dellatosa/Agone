@@ -70,11 +70,7 @@ select.auto-size {
         margin-bottom: 10px;
     }
 
-    nav.historique-tabs {
-        height: 26px;
-        line-height: 26px;
-        border-bottom: 1px solid #b5b3a4;
-    }
+    
 
     .sheet-body {
         height: 100%;
@@ -84,7 +80,7 @@ select.auto-size {
         //scrollbar-color: var(--color-scroolbar);
     }
 
-    .competences-content, .combat-content, .magie-content, .equipement-content {
+    .competences-content, .combat-content, .magie-content, .equipement-content, .historique-content {
         height: 100%;
     }
 
@@ -1012,6 +1008,70 @@ a.nohlight {
     }
 }
 
+.grid-data-histo {
+    display: grid;
+    grid-template-columns: 1.25fr 3fr;
+    height: 100%;
+
+    font-family: "BarbedorMedium";
+
+    .data-histo {
+        background: linear-gradient(to right; #00000000; #00000021;);
+        padding: 5px;
+
+        .data-experience-titre, .data-peinesBienfaits-titre {
+            text-align: center;
+            font: var(--font-lorgol-24px);
+            margin-bottom: 2px;
+        }
+
+        .experience, .peinesBienfaits {
+
+            .grid-experience, .grid-peinesBienfaits {
+                display: grid;
+                grid-template-columns: 1fr 3.5em;
+                align-items: center;
+                margin: 3px 1px;
+                padding: 3px;
+                border: solid 1px var(--color-box-border-dark);
+                border-radius: 5px;
+
+                .lib {
+                    grid-column-start: 1;
+                    grid-column-end: 2;
+                }
+
+                .lib-all {
+                    grid-column-start: 1;
+                    grid-column-end: 3;
+                    text-align: center;
+                }
+
+                .val {
+                    background-color: var(--color-stats-background);
+                    margin: 2px 5px;
+                    text-align: center;
+                    align-items: center;
+                    border-radius: 3px;
+                    height: 26px;
+
+                    label {
+                        position: relative;
+                        top: 5px;
+                    }       
+                }
+            }
+        }
+    }
+
+    .historique {
+
+        .titre-rub {
+            font: var(--font-lorgol-28px);
+            text-align: center;
+        }
+    }
+}
 
 .recap {
     display: flex;
@@ -1184,11 +1244,11 @@ a.nohlight {
     }
 }
 
-.grid-connivences , .grid-equip-combat {
+.grid-connivences , .grid-equip-combat, .grid-avantages, .grid-defauts, .grid-pouvoirsFlamme, .grid-pouvoirsSaison, .grid-peines, .grid-bienfaits {
     display: grid;
     grid-template-columns: 1fr;
 
-    .bloc-connivence {
+    .bloc-connivence, .bloc-avantage, .bloc-defaut, .bloc-pouvoirFlamme, .bloc-pouvoirSaison, .bloc-peine, .bloc-bienfait {
         border: solid 1px var(--color-box-border-dark);
         border-radius: 5px;
         margin: 2px;
@@ -1197,6 +1257,10 @@ a.nohlight {
         .icone {
             font-size: 1.3em;
             margin-left: 2px;
+        }
+
+        .mr {
+            margin-right: 3px;
         }
 
         .ligne-titre {
@@ -1219,9 +1283,30 @@ a.nohlight {
             }
         }
 
-        .ligne-stats-connivence {
+        .ligne-stats-connivence, .ligne-stats-avantage, .ligne-stats-defaut, .ligne-stats-pouvoirFlamme, .ligne-stats-peine, .ligne-stats-bienfait {
             display: grid;
             grid-template-columns: 1fr 1fr;
+            text-align: center;
+            align-items: center;
+            margin-bottom: 3px;
+
+            .desc-col {
+                grid-column-start: 1;
+                grid-column-end: 3;
+
+                padding: 3px;
+                background-color: var(--color-stats-background);
+                text-align: left;
+            }
+
+            .desc-col.no-bg {
+                background-color: transparent;
+            }
+        }
+
+        .ligne-stats-pouvoirSaison {
+            display: grid;
+            grid-template-columns: 1fr;
             text-align: center;
             align-items: center;
             margin-bottom: 3px;
@@ -1239,6 +1324,12 @@ a.nohlight {
 
     .bloc-equip, .bloc-equip-charge, .bloc-equip-unlocked, .bloc-equip-charge-unlocked {
         align-items: center;
+        margin: 2px;
+
+        .icone {
+            font-size: 1.2em;
+            text-align: center;
+        }
 
         img {
            flex: 0 0 24px;

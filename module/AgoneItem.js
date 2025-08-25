@@ -11,14 +11,14 @@ export default class AgoneItem extends Item {
         "PouvoirFlamme":"systems/agone/templates/partials/chat/carte-pouvoir-flamme.hbs",
         "PouvoirSaison":"systems/agone/templates/partials/chat/carte-pouvoir-saisonnin.hbs",
         "Connivence":"systems/agone/templates/partials/chat/carte-connivence.hbs",
-        "Equipement": "systems/agone/templates/partials/chat/carte-equipement.hbs"
+        "Equipement": "systems/agone/templates/partials/chat/carte-equipement.hbs",
+        "Peine": "systems/agone/templates/partials/chat/carte-peine.hbs",
+        "Bienfait": "systems/agone/templates/partials/chat/carte-bienfait.hbs"
     }
 
     prepareData() {
         super.prepareData();
         let data = this.system;
-
-        //console.log(this);
     }
 
     async roll() {

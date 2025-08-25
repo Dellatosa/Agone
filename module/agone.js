@@ -52,6 +52,10 @@ Hooks.once("setup", function() {
     game.actors.forEach(actor => {
         actor.setFlag(game.system.id, "TabMagieActif", "emprise");
     });
+
+    game.actors.forEach(actor => {
+        actor.setFlag(game.system.id, "TabHistoActif", "avantagesDefauts");
+    });
 });
 
 Hooks.once("ready", async function() {
@@ -114,12 +118,19 @@ async function preloadHandlebarsTemplates() {
         "systems/agone/templates/partials/actors/ligne-equipement-charge.hbs",
         "systems/agone/templates/partials/actors/ligne-equipement-edition.hbs",
         "systems/agone/templates/partials/actors/ligne-equipement-porter.hbs",
+        "systems/agone/templates/partials/actors/bloc-historique-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-defauts-personnage.hbs",
+        "systems/agone/templates/partials/actors/bloc-liste-defauts-personnage-v2.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-avantages-personnage.hbs",
+        "systems/agone/templates/partials/actors/bloc-liste-avantages-personnage-v2.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-pouvoirs-flamme-personnage.hbs",
+        "systems/agone/templates/partials/actors/bloc-liste-pouvoirs-flamme-personnage-v2.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-pouvoirs-saisonnin-personnage.hbs",
+        "systems/agone/templates/partials/actors/bloc-liste-pouvoirs-saisonnin-personnage-v2.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-peines-personnage.hbs",
+        "systems/agone/templates/partials/actors/bloc-liste-peines-personnage-v2.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-bienfaits-personnage.hbs",
+        "systems/agone/templates/partials/actors/bloc-liste-bienfaits-personnage-v2.hbs",
         "systems/agone/templates/partials/dice/jet-resultat.hbs",
         "systems/agone/templates/partials/dice/jet-resultat-dommages.hbs",
         "systems/agone/templates/partials/dice/jet-dices-details.hbs"//,
