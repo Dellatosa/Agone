@@ -29,23 +29,23 @@ select.auto-size {
 }
 
 .cd-blanc {
-    color: white;
+    color:var(--color-cercle-1);
 }
 
 .cd-bleu {
-    color: rgb(43, 43, 187);
+    color: var(--color-cercle-2);
 }
 
 .cd-jaune {
-    color: rgb(201, 146, 43);
+    color: var(--color-cercle-3);
 }
 
 .cd-rouge {
-    color: rgb(153, 16, 16);
+    color: var(--color-cercle-4);
 }
 
 .cd-noir {
-    color: black;
+    color: var(--color-cercle-5);
 }
 
 .agone.sheet.actor  {
@@ -70,8 +70,6 @@ select.auto-size {
         margin-bottom: 10px;
     }
 
-    
-
     .sheet-body {
         height: 100%;
         overflow-y: scroll;
@@ -87,6 +85,15 @@ select.auto-size {
     .fullheight {
         height: 100%;
     
+        .editor {
+            height: 170px;
+            background-color: var(--color-stats-background);
+        }
+    }
+
+    .tab.histoire {
+        margin: 3px;
+        
         .editor {
             height: 170px;
             background-color: var(--color-stats-background);

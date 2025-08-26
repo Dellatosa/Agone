@@ -1,0 +1,96 @@
+.agone.sheet.demon  {
+    
+    form {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    nav.tabs {
+        font-family: "BarbedorMedium";
+        align-items: center;
+    
+        .active {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+    }
+
+    nav:not(.sheet-tabs) {
+        margin-bottom: 10px;
+    }
+
+    .sheet-body {
+        height: 100%;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        scrollbar-width: thin;
+        //scrollbar-color: var(--color-scroolbar);
+    }
+}
+
+.agone.sheet.demon .sheet-header, .sheet-fixed-content {
+    img {
+        flex: 0 0 150px;
+        border: none;
+        height: 150px;
+    }
+}
+
+.demon-infos {
+    width: 100%;
+
+    .info-val {
+        margin: 4px 7px 0 3px;
+        font-family: "BarbedorMedium";
+        font-size: 1.3em;text-align: center;
+    }
+
+    label {
+        margin: 0 3px;
+        font: var(--font-lorgol-21px);
+    }
+
+    input[type=number] , input[type=text], select {
+        font-family: "BarbedorMedium";
+    }
+
+    .demon-name-line {
+        display: grid;
+        grid-template-columns: 1fr 25px;
+        align-items: center;
+        justify-content: center;
+
+        .nom-demon  {
+            margin-left: 10px;
+            font: var(--font-lorgol-nom-perso);
+
+            input[type=text] {
+                height: auto;
+                font-family: "Lorgol";
+            }
+        }
+
+        .padlock {
+            font-size: 1.2em;
+            margin-left: 5px;
+        }
+    }
+
+    .demon-infos-line-1 {
+        display: grid;
+        grid-template-columns: 55px 1.2fr 1fr 1fr 45px 12px 45px;
+        align-items: center;
+        height: 32px;
+
+        .switch a {
+            font-size: 1.2em;
+            margin-left: 5px;
+        }
+
+        .sep {
+            font-family: "BarbedorMedium";
+            text-align: center;
+        }
+    }
+}

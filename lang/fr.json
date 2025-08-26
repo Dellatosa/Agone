@@ -292,7 +292,11 @@
             "sortsConnus": "Sorts connus",
             "conjurer": "Conjurer un Démon",
             "equipCombat": "Equipement de combat",
-            "equipAutre": "Autre équipement"
+            "equipAutre": "Autre équipement",
+            "cercle": "Cercle",
+            "pcAppelUtilises": "Points d'appel utilisés",
+            "modeLibre": "Mode libre",
+            "pointsAppel": "Points d'appel"
         },
         "items":{
             "description": "Description",
@@ -522,6 +526,7 @@
             "poids": "Poids (kg)",
             "type": "Type",
             "palier": "Palier",
+            "malusCharge": "Malus de charge",
             "encAppTour1": "1 tour",
             "encAppTour2": "2 tours",
             "encAppTour3": "3 tours",
@@ -659,7 +664,8 @@
             "clickPourPorterEquipement": "Cliquer pour porter l'équipement",
             "clickPourDeposerEquipement": "Cliquer pour déposer l'équipement",
             "experience": "Expérience",
-            "coutHeroisme": "Coût en point d'héroïsme"
+            "coutHeroisme": "Coût en point d'héroïsme",
+            "changerModeCreation": "Changer de mode création"
         }
     },
     "parametres": {

@@ -1,0 +1,9 @@
+<form class="{{cssClass}}" autocomplete="off">
+    <header class="sheet-header">
+        {{#if unlocked}}
+            {{> "systems/agone/templates/partials/actors/bloc-infos-demon-unlocked.hbs"}}
+        {{else}}
+            {{> "systems/agone/templates/partials/actors/bloc-infos-demon.hbs"}}
+        {{/if}}
+    </header>
+</form>

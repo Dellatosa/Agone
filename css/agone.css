@@ -2,31 +2,32 @@
   display: flex;
   flex-direction: column;
 }
-.agone.sheet.item .sheet-content {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-.agone.sheet.item .sheet-content select {
-  width: 100%;
-}
-.agone.sheet.item .sheet-content .editor {
-  height: 100%;
-}
-.agone.sheet.item .sheet-content div {
-  padding: 1px;
-}
+.agone.sheet.item .sheet-content,
 .agone.sheet.item .sheet-body {
-  height: 100%;
   display: flex;
   flex-direction: column;
 }
+.agone.sheet.item .sheet-content select,
 .agone.sheet.item .sheet-body select {
   width: 100%;
 }
-.agone.sheet.item .sheet-body .editor {
-  height: 50%;
+.agone.sheet.item .sheet-content .ed-100,
+.agone.sheet.item .sheet-body .ed-100 {
+  min-height: 100px;
 }
+.agone.sheet.item .sheet-content .ed-150,
+.agone.sheet.item .sheet-body .ed-150 {
+  min-height: 150px;
+}
+.agone.sheet.item .sheet-content .ed-200,
+.agone.sheet.item .sheet-body .ed-200 {
+  min-height: 200px;
+}
+.agone.sheet.item .sheet-content .editor,
+.agone.sheet.item .sheet-body .editor {
+  min-height: inherit;
+}
+.agone.sheet.item .sheet-content div,
 .agone.sheet.item .sheet-body div {
   padding: 1px;
 }
@@ -156,19 +157,19 @@ select.auto-size {
   color: white;
 }
 .cd-blanc {
-  color: white;
+  color: var(--color-cercle-1);
 }
 .cd-bleu {
-  color: #2b2bbb;
+  color: var(--color-cercle-2);
 }
 .cd-jaune {
-  color: #c9922b;
+  color: var(--color-cercle-3);
 }
 .cd-rouge {
-  color: #991010;
+  color: var(--color-cercle-4);
 }
 .cd-noir {
-  color: black;
+  color: var(--color-cercle-5);
 }
 .agone.sheet.actor form {
   display: flex;
@@ -203,6 +204,13 @@ select.auto-size {
   height: 100%;
 }
 .agone.sheet.actor .fullheight .editor {
+  height: 170px;
+  background-color: var(--color-stats-background);
+}
+.agone.sheet.actor .tab.histoire {
+  margin: 3px;
+}
+.agone.sheet.actor .tab.histoire .editor {
   height: 170px;
   background-color: var(--color-stats-background);
 }
@@ -3841,9 +3849,92 @@ a.nohlight {
   --color-red-warning: #aa0200;
   --color-green-success: #18520b;
   --color-scroolbar: #782e22;
+  --color-cercle-1: white;
+  --color-cercle-2: #2b2bbb;
+  --color-cercle-3: #c9922b;
+  --color-cercle-4: #991010;
+  --color-cercle-5: black;
   --font-lorgol-nom-perso: 3em "Lorgol";
   --font-lorgol-35px: 2.5em "Lorgol";
   --font-lorgol-28px: 2em "Lorgol";
   --font-lorgol-24px: 1.75em "Lorgol";
   --font-lorgol-21px: 1.5em "Lorgol";
+}
+.agone.sheet.demon form {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.agone.sheet.demon nav.tabs {
+  font-family: "BarbedorMedium";
+  align-items: center;
+}
+.agone.sheet.demon nav.tabs .active {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+.agone.sheet.demon nav:not(.sheet-tabs) {
+  margin-bottom: 10px;
+}
+.agone.sheet.demon .sheet-body {
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  scrollbar-width: thin;
+}
+.agone.sheet.demon .sheet-header img,
+.sheet-fixed-content img {
+  flex: 0 0 150px;
+  border: none;
+  height: 150px;
+}
+.demon-infos {
+  width: 100%;
+}
+.demon-infos .info-val {
+  margin: 4px 7px 0 3px;
+  font-family: "BarbedorMedium";
+  font-size: 1.3em;
+  text-align: center;
+}
+.demon-infos label {
+  margin: 0 3px;
+  font: var(--font-lorgol-21px);
+}
+.demon-infos input[type=number],
+.demon-infos input[type=text],
+.demon-infos select {
+  font-family: "BarbedorMedium";
+}
+.demon-infos .demon-name-line {
+  display: grid;
+  grid-template-columns: 1fr 25px;
+  align-items: center;
+  justify-content: center;
+}
+.demon-infos .demon-name-line .nom-demon {
+  margin-left: 10px;
+  font: var(--font-lorgol-nom-perso);
+}
+.demon-infos .demon-name-line .nom-demon input[type=text] {
+  height: auto;
+  font-family: "Lorgol";
+}
+.demon-infos .demon-name-line .padlock {
+  font-size: 1.2em;
+  margin-left: 5px;
+}
+.demon-infos .demon-infos-line-1 {
+  display: grid;
+  grid-template-columns: 55px 1.2fr 1fr 1fr 45px 12px 45px;
+  align-items: center;
+  height: 32px;
+}
+.demon-infos .demon-infos-line-1 .switch a {
+  font-size: 1.2em;
+  margin-left: 5px;
+}
+.demon-infos .demon-infos-line-1 .sep {
+  font-family: "BarbedorMedium";
+  text-align: center;
 }

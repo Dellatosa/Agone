@@ -45,7 +45,7 @@
             <div><input name="system.dureeOeuvre" type="text" value="{{data.system.dureeOeuvre}}" placeholder="{{localize 'agone.items.dureeOeuvre'}}"/></div>
         </div>
          <div>{{localize "agone.items.oeuvreDesc"}}</div> 
-         {{editor data.system.description target="system.description" button=true owner=true editable=true}}
+         <div class="ed-150">{{editor data.system.description target="system.description" button=true owner=true editable=true}}</div>
     </div>
     <footer class="sheet-footer">
         <div>{{localize "agone.common.type"}} : <span>{{localize "agone.items.oeuvreLabel"}}</span></div>

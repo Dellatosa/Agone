@@ -1204,10 +1204,14 @@
     },
     "Demon": {
       "templates": [ "base", "caracsAspects", "competences" ],
-      "typedemon": "",
+      "cercle": "",
       "vol": 0,
       "opacite": 0,
-      "seuilInvocation": 0
+      "seuilInvocation": 0,
+      "pcAppel": {
+        "base" : 0,
+        "depense": 0
+      }
     }
   },
   "Item": {

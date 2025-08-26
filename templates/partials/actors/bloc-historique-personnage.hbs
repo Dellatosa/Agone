@@ -31,46 +31,22 @@
             <a class="item" data-tab="histoire">{{localize "agone.actors.histoire"}}</a>
         </nav>
         <div class="tab" data-group="historique" data-tab="avantagesDefauts">
-            <!-- <h3>{{localize "agone.actors.avantages"}}</h3>
-            <div class="liste-avantages">
-                {{> "systems/agone/templates/partials/actors/bloc-liste-avantages-personnage.hbs"}}
-            </div> -->
             {{> "systems/agone/templates/partials/actors/bloc-liste-avantages-personnage-v2.hbs"}}
-            <!-- <h3>{{localize "agone.actors.defauts"}}</h3>
-            <div class="liste-defauts">
-                {{> "systems/agone/templates/partials/actors/bloc-liste-defauts-personnage.hbs"}}
-            </div> -->
             {{> "systems/agone/templates/partials/actors/bloc-liste-defauts-personnage-v2.hbs"}}
         </div>
         <div class="tab" data-group="historique" data-tab="pouvoirs">
-            <!-- <h3>{{localize "agone.actors.flamme"}}</h3>
-            <div class="liste-pouvoirs-flamme">
-                {{> "systems/agone/templates/partials/actors/bloc-liste-pouvoirs-flamme-personnage.hbs"}}
-            </div> -->
             {{> "systems/agone/templates/partials/actors/bloc-liste-pouvoirs-flamme-personnage-v2.hbs"}}
-            <!-- <h3>{{localize "agone.actors.saisonnin"}}</h3>
-            <div class="liste-pouvoirs-saisonnin">
-                {{> "systems/agone/templates/partials/actors/bloc-liste-pouvoirs-saisonnin-personnage.hbs"}}
-            </div> -->
             {{> "systems/agone/templates/partials/actors/bloc-liste-pouvoirs-saisonnin-personnage-v2.hbs"}}
         </div>
         <div class="tab" data-group="historique" data-tab="peinesBienfaits">
-            <!-- <h3>{{localize "agone.actors.peines"}}</h3>
-            <div class="liste-peines">
-                {{> "systems/agone/templates/partials/actors/bloc-liste-peines-personnage.hbs"}}
-            </div> -->
             {{> "systems/agone/templates/partials/actors/bloc-liste-peines-personnage-v2.hbs"}}
-            <!-- <h3>{{localize "agone.actors.bienfaits"}}</h3>
-            <div class="liste-bienfaits">
-                {{> "systems/agone/templates/partials/actors/bloc-liste-bienfaits-personnage.hbs"}}
-            </div> -->
             {{> "systems/agone/templates/partials/actors/bloc-liste-bienfaits-personnage-v2.hbs"}}
         </div>
-        <div class="tab" data-group="historique" data-tab="histoire">
-            <div>{{localize "agone.actors.apparence"}}</div>
-            {{editor data.system.apparence target="system.apparence" button=true owner=true editable=true}}
-            <div>{{localize "agone.actors.biographie"}}</div>
-            {{editor data.system.biographie target="system.biographie" button=true owner=true editable=true}}
+        <div class="tab histoire" data-group="historique" data-tab="histoire">
+            <div class="titre-rub">{{localize "agone.actors.apparence"}}</div>
+            {{editor data.system.apparence target="system.apparence" engine="prosemirror" button=true editable=true}}
+            <div class="titre-rub">{{localize "agone.actors.biographie"}}</div>
+            {{editor data.system.biographie target="system.biographie" engine="prosemirror" button=true editable=true}}
         </div>
     </div>
 </div>

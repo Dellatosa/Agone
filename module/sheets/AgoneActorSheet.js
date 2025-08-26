@@ -2,7 +2,7 @@ import * as Dice from "../dice.js";
 import * as Chat from "../chat.js";
 import * as Utils from "../common/utils.js";
 
-import EditCompFormApplication from "../EditCompFormApplication.js";
+//import EditCompFormApplication from "../EditCompFormApplication.js";
 
 export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
      
@@ -266,7 +266,7 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
 
             // Liste d'items dans la feuille
             // Création d'un item
-            html.find('.creer-item').click(this._onCreerItem.bind(this));
+            //html.find('.creer-item').click(this._onCreerItem.bind(this));
 
             // Edition d'un item
             html.find('.editer-item').click(this._onEditerItem.bind(this));
@@ -353,8 +353,6 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
     // Changement d'onglet histo
     async _onChangeHistoTabs(event) {
         event.preventDefault();
-
-        console.log("TAB HISTO ACTIF!");
 
         for(const tab of event.currentTarget.children) {
             if(tab.matches(".active")) {
@@ -917,6 +915,7 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
             specialisation: compData.specialisation,
             labelSpecialisation: compData.labelSpecialisation,
             jetDefautInterdit: compData.jetDefautInterdit,
+            aspect: caracData.aspect,
             rangCarac: caracData.rangCarac,
             labelCarac: caracData.labelCarac,
             bonusAspect: caracData.bonusAspect,

@@ -22,8 +22,8 @@
             <div><input name="system.malus" type="text" value="{{data.system.malus}}" data-dtype="Number" placeholder="0"/></div>
             <div><input name="system.malusPerception" type="text" value="{{data.system.malusPerception}}" data-dtype="Number" placeholder="0" readonly/></div>
         </div>
-         <div>{{localize "agone.items.armureDesc"}}</div> 
-         {{editor data.system.description target="system.description" button=true owner=true editable=true}}
+        <div>{{localize "agone.items.armureDesc"}}</div> 
+        <div class="ed-150">{{editor data.system.description target="system.description" button=true owner=true editable=true}}</div>
     </div>
     <footer class="sheet-footer">
         <div>{{localize "agone.common.type"}} : <span>{{localize "agone.items.armureLabel"}}</span></div>

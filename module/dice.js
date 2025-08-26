@@ -63,6 +63,12 @@ export async function jetCaracteristique({actor = null,
         baseFormula += " + @malusBlessureGrave";
     }
 
+    // Malus de charge
+    if(aspect == "corps" && actor.system.caracSecondaires.malusCharge < 0) {
+        rollData.malusCharge = actor.system.caracSecondaires.malusCharge;
+        baseFormula += " + @malusCharge";
+    }
+
     // Utilisation d'un point d'héroïsme
     if(utiliseHeroisme) {
 
@@ -197,6 +203,7 @@ export async function jetCompetence({actor = null,
     labelSpecialisation = null,
     jetDefautInterdit = null,
     diffJetVieillesse = null,
+    aspect = null,
     rangCarac = null,
     labelCarac = null,
     bonusAspect = null,
@@ -304,6 +311,12 @@ export async function jetCompetence({actor = null,
     if(malusBlessureGrave < 0) {
         rollData.malusBlessureGrave = malusBlessureGrave;
         baseFormula += " + @malusBlessureGrave";
+    }
+
+    // Malus de charge
+    if(aspect == "corps" && actor.system.caracSecondaires.malusCharge < 0) {
+        rollData.malusCharge = actor.system.caracSecondaires.malusCharge;
+        baseFormula += " + @malusCharge";
     }
 
     // Modificateur d'attaque (jet d'arme)
@@ -592,6 +605,8 @@ export async function combatArme(actor, arme, type) {
     // Caractéristique
     const carac = arme.system.style == "trait" || arme.system.style == "jet" ? "tir" : "melee";
     let caracData = actor.getCaracData(carac);
+
+    console.log("Jet Arme", caracData);
     
     // Autres stats de combat
     let statsCombat = new Object();
@@ -725,6 +740,7 @@ export async function combatArme(actor, arme, type) {
         rangComp: compData.rangComp,
         labelComp: compData.labelComp,
         jetDefautInterdit: false,
+        aspect: caracData.aspect,
         rangCarac: caracData.rangCarac,
         labelCarac: caracData.labelCarac,
         bonusAspect: gererBonusAspect ? caracData.bonusAspect : null,
@@ -983,7 +999,7 @@ function _processJetDefenseOptions(form, typeDefense) {
 }
 
 /* -------------------------------------------------------
---- Gestion des jets de défense anturelle ou d'esquive ---
+--- Gestion des jets de défense naturelle ou d'esquive ---
 ------------------------------------------------------- */
 export async function jetDefense(defenseur, typeDef) {
     let compData;
@@ -1049,6 +1065,7 @@ export async function jetDefense(defenseur, typeDef) {
         specialisation: typeDef == "esquive" ? compData.specialisation : null,
         labelSpecialisation: typeDef == "esquive" ? compData.labelSpecialisation : null,
         jetDefautInterdit: typeDef == "esquive" ? compData.jetDefautInterdit : false,
+        aspect: caracData.aspect,
         rangCarac: caracData.rangCarac,
         labelCarac: caracData.labelCarac,
         bonusAspect: gererBonusAspect ? caracData.bonusAspect : null,
@@ -1998,7 +2015,7 @@ export async function conjurerDemon(conjurateur) {
     // Recupération du template
     const messageTemplate = "systems/agone/templates/partials/dice/jet-conjuration.hbs";
 
-    console.log(rollStats);
+    //console.log(rollStats);
     
     // Assignation des données au template
     let templateContext = {

@@ -292,7 +292,11 @@
             "sortsConnus": "Spells known",
             "conjurer": "Invoking a Demon",
             "equipCombat": "Fight equipment",
-            "equipAutre": "Other equipment"
+            "equipAutre": "Other equipment",
+            "cercle": "Circle",
+            "pcAppelUtilises": "Used call points",
+            "modeLibre": "Free mode",
+            "pointsAppel": "Call points"
         },
         "items":{
             "description": "Description",
@@ -522,6 +526,7 @@
             "poids": "Weight (kg)",
             "type": "Type",
             "palier": "Level",
+            "malusCharge": "Load penalty",
             "encAppTour1": "1 round",
             "encAppTour2": "2 rounds",
             "encAppTour3": "3 rounds",
@@ -659,7 +664,8 @@
             "clickPourPorterEquipement": "Click to carry equipment",
             "clickPourDeposerEquipement": "Click to drop equipment",
             "experience": "Experience",
-            "coutHeroisme": "Fortune cost"
+            "coutHeroisme": "Fortune cost",
+            "changerModeCreation": "NO TRAD - Change de mode création"
         }
     },
     "parametres": {

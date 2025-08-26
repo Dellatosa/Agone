@@ -21,7 +21,7 @@
             <div><input name="system.experience" type="text" value="{{data.system.experience}}" data-dtype="Number" placeholder="0"/></div>
         </div>
         <div>{{localize "agone.items.danseurDesc"}}</div> 
-        {{editor data.system.description target="system.description" button=true owner=true editable=true}}
+        <div class="ed-100">{{editor data.system.description target="system.description" button=true owner=true editable=true}}</div>
         {{#if data.system.sortsDispo}}
             <h3>Sorts disponibles</h3>
             <div class="grid-sort-disp">

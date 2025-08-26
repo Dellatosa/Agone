@@ -5,7 +5,7 @@ export default class AgoneItemSheet extends foundry.appv1.sheets.ItemSheet {
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
             width: 550,
-            height: 370,
+            height: 'auto', //370,
             classes: ["agone", "sheet", "item"],
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }]
         });

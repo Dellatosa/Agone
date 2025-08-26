@@ -19,7 +19,7 @@
         <div>
             <span>{{localize "agone.items.pouvoirSaisonDesc"}}</span>
         </div>
-        {{editor data.system.description target="system.description" button=true owner=true editable=true}}
+        <div class="ed-200">{{editor data.system.description target="system.description" button=true owner=true editable=true}}</div>
         <div>
             <span>{{localize "agone.items.descEffet"}}</span>
             <textarea name="system.descEffet" placeholder="{{localize 'agone.items.descEffet'}}">{{data.system.descEffet}}</textarea>

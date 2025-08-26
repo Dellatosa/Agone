@@ -1,6 +1,7 @@
 import { agone } from "./config.js";
 import AgoneItemSheet from "./sheets/AgoneItemSheet.js";
 import AgoneActorSheet from "./sheets/AgoneActorSheet.js";
+import AgoneDemonSheet from "./sheets/AgoneDemonSheet.js";
 import AgoneItem from "./AgoneItem.js";
 import AgoneActor from "./AgoneActor.js";
 import AgoneCombat from "./combat/AgoneCombat.js";
@@ -28,9 +29,10 @@ Hooks.once("init", function(){
     //CONFIG.Combat.documentClass = AgoneCombat;
     //CONFIG.ui.Combat = AgoneCombatTracker;
     CONFIG.Combatant.documentClass = AgoneCombatant;
-
+ 
     foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
-    foundry.documents.collections.Actors.registerSheet("agone", AgoneActorSheet, {makeDefault: true});
+    foundry.documents.collections.Actors.registerSheet("agone", AgoneActorSheet, {types: ["Personnage", "Damne", "Terne"], makeDefault: true});
+    foundry.documents.collections.Actors.registerSheet("agone", AgoneDemonSheet, {types: ["Demon"], makeDefault: true});
 
     foundry.documents.collections.Items.unregisterSheet("core", foundry.appv1.sheets.ItemSheet);
     foundry.documents.collections.Items.registerSheet("agone", AgoneItemSheet, {makeDefault: true});
@@ -81,56 +83,48 @@ Hooks.on("getChatLogEntryContext", Chat.addChatMessageContextOptions);
 
 async function preloadHandlebarsTemplates() {
     const templatePaths = [
+        // Entête
         "systems/agone/templates/partials/actors/bloc-infos-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-infos-personnage-unlocked.hbs",
+        "systems/agone/templates/partials/actors/bloc-infos-demon.hbs",
+        "systems/agone/templates/partials/actors/bloc-infos-demon-unlocked.hbs",
         "systems/agone/templates/partials/actors/bloc-flamme-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-aspect-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-aspect-personnage-unlocked.hbs",
         "systems/agone/templates/partials/actors/bloc-aspect-damne-unlocked.hbs",
         "systems/agone/templates/partials/actors/bloc-aspect-terne.hbs",
         "systems/agone/templates/partials/actors/bloc-aspect-terne-unlocked.hbs",
+        // Onglet Compétences
         "systems/agone/templates/partials/actors/bloc-carac-secondaires.hbs",
         "systems/agone/templates/partials/actors/bloc-competences-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-competences-personnage-unlocked.hbs",
+        // Onglet Combat
         "systems/agone/templates/partials/actors/bloc-combat-personnage.hbs",
-        "systems/agone/templates/partials/actors/bloc-recap-combat-personnage.hbs",
-        "systems/agone/templates/partials/actors/bloc-liste-armes-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-armes-personnage-v2.hbs",
-        "systems/agone/templates/partials/actors/bloc-liste-armures-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-armures-personnage-v2.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-manoeuvres-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-bottesSecretes-personnage.hbs",
+        // Onglet Magie
         "systems/agone/templates/partials/actors/bloc-magie-personnage.hbs",
-        "systems/agone/templates/partials/actors/bloc-recap-emprise-personnage.hbs",
-        "systems/agone/templates/partials/actors/bloc-liste-danseurs-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-danseurs-personnage-v2.hbs",
-        "systems/agone/templates/partials/actors/bloc-liste-sorts-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-sorts-personnage-v2.hbs",
-        "systems/agone/templates/partials/actors/bloc-recap-artsmagiques-personnage.hbs",
-        "systems/agone/templates/partials/actors/bloc-liste-oeuvres-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-oeuvres-personnage-v2.hbs",
-        "systems/agone/templates/partials/actors/bloc-recap-conjuration-personnage.hbs",
-        "systems/agone/templates/partials/actors/bloc-liste-connivences-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-connivences-personnage-v2.hbs",
-        "systems/agone/templates/partials/actors/bloc-recap-equipement-personnage.hbs",
+        // Onglet Equipement
         "systems/agone/templates/partials/actors/bloc-equipement-personnage.hbs",
         "systems/agone/templates/partials/actors/ligne-equipement-base.hbs",
         "systems/agone/templates/partials/actors/ligne-equipement-charge.hbs",
         "systems/agone/templates/partials/actors/ligne-equipement-edition.hbs",
         "systems/agone/templates/partials/actors/ligne-equipement-porter.hbs",
+        // Onglet Historique
         "systems/agone/templates/partials/actors/bloc-historique-personnage.hbs",
-        "systems/agone/templates/partials/actors/bloc-liste-defauts-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-defauts-personnage-v2.hbs",
-        "systems/agone/templates/partials/actors/bloc-liste-avantages-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-avantages-personnage-v2.hbs",
-        "systems/agone/templates/partials/actors/bloc-liste-pouvoirs-flamme-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-pouvoirs-flamme-personnage-v2.hbs",
-        "systems/agone/templates/partials/actors/bloc-liste-pouvoirs-saisonnin-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-pouvoirs-saisonnin-personnage-v2.hbs",
-        "systems/agone/templates/partials/actors/bloc-liste-peines-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-peines-personnage-v2.hbs",
-        "systems/agone/templates/partials/actors/bloc-liste-bienfaits-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-bienfaits-personnage-v2.hbs",
+        // Jet de dés
         "systems/agone/templates/partials/dice/jet-resultat.hbs",
         "systems/agone/templates/partials/dice/jet-resultat-dommages.hbs",
         "systems/agone/templates/partials/dice/jet-dices-details.hbs"//,

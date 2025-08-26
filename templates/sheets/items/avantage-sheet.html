@@ -25,7 +25,7 @@
                     <div><input name="system.cout" type="text" value="{{data.system.cout}}" data-dtype="Number" placeholder="0"/></div>
                 </div>
                 <div>{{localize "agone.items.avantageDesc"}}</div>
-                {{editor data.system.description target="system.description" button=true owner=true editable=true}}
+                <div class="ed-200">{{editor data.system.description target="system.description" button=true owner=true editable=true}}</div>
                 <div>
                     <span>{{localize "agone.items.descBonus"}}</span>
                     <textarea name="system.descBonus" placeholder="{{localize 'agone.items.descBonus'}}">{{data.system.descBonus}}</textarea>

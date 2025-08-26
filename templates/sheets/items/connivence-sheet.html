@@ -20,8 +20,8 @@
             <div><input name="system.nomDemon" type="text" value="{{data.system.nomDemon}}" placeholder="{{localize 'agone.items.nomDemon'}}"/></div>
             <div><input name="system.nomAdvocatus" type="text" value="{{data.system.nomAdvocatus}}" placeholder="{{localize 'agone.items.nomAdvocatus'}}"/></div>
         </div>
-         <div>{{localize "agone.items.termes"}}</div> 
-         {{editor data.system.termes target="system.termes" button=true owner=true editable=true}}
+        <div>{{localize "agone.items.termes"}}</div> 
+        <div class="ed-200">{{editor data.system.termes target="system.termes" button=true owner=true editable=true}}</div>
     </div>
     <footer class="sheet-footer">
         <div>{{localize "agone.common.type"}} : <span>{{localize "agone.items.connivenceLabel"}}</span></div>

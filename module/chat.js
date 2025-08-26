@@ -144,7 +144,7 @@ function onJetArtImprovise(event) {
     let artiste = getCardActor(card);
     let artId =  artCard.dataset.artId;
 
-    console.log(event,card, artCard);
+    //console.log(event,card, artCard);
 
     Dice.oeuvre(artiste, null, artId, true);
 }

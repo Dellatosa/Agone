@@ -16,6 +16,7 @@
         <div class="roll-details">{{stats.labelComp}} ({{stats.rangComp}}) + {{stats.labelCarac}} ({{stats.rangCarac}})
             {{#if stats.labelAspect}} + {{stats.labelAspect}} ({{stats.bonusAspect}}){{/if}}
             {{#if stats.malusBlessureGrave}} + {{localize "agone.chat.malusBlessureGrave"}} ({{stats.malusBlessureGrave}}){{/if}}
+            {{#if stats.malusCharge}} + {{localize "agone.chat.malusCharge"}} ({{stats.malusCharge}}){{/if}}
             {{#if stats.modifAttaque}}<span> + {{localize "agone.items.modifAttaque"}} ({{stats.modifAttaque}})</span>{{/if}}
             {{#if stats.modifParade}}<span> + {{localize "agone.items.modifParade"}} ({{stats.modifParade}})</span>{{/if}}
             {{#if stats.malusManiement}}<span> + {{localize "agone.chat.malusManiement"}} ({{stats.malusManiement}})</span>{{/if}}

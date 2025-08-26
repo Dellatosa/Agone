@@ -204,6 +204,11 @@ export default class AgoneActor extends Actor {
         if (this.getFlag(game.system.id, "SheetUnlocked")) return true;
         return false;
     }
+
+    get utilisePcAppel() {
+        if (this.getFlag(game.system.id, "SheetUtiliseAppel")) return true;
+        return false;
+    }
     
     calcBonusDommages(force, tai) {
         let total = force + tai;
