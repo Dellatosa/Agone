@@ -295,6 +295,7 @@
             "equipAutre": "Other equipment",
             "cercle": "Circle",
             "pcAppelUtilises": "Used call points",
+            "pcAppelDispo": "Available call points",
             "modeLibre": "Free mode",
             "pointsAppel": "Call points"
         },

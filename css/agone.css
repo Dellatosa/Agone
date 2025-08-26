@@ -3926,15 +3926,20 @@ a.nohlight {
 }
 .demon-infos .demon-infos-line-1 {
   display: grid;
-  grid-template-columns: 55px 1.2fr 1fr 1fr 45px 12px 45px;
+  grid-template-columns: 1fr 1fr 45px 1fr 45px 25px;
   align-items: center;
   height: 32px;
 }
-.demon-infos .demon-infos-line-1 .switch a {
-  font-size: 1.2em;
+.demon-infos .demon-infos-line-1 .switch {
+  font: var(--font-lorgol-21px);
   margin-left: 5px;
 }
-.demon-infos .demon-infos-line-1 .sep {
-  font-family: "BarbedorMedium";
-  text-align: center;
+.demon-infos .demon-infos-line-1 .switch span {
+  margin-left: 3px;
+}
+.demon-infos .demon-infos-line-2 {
+  display: grid;
+  grid-template-columns: 55px 1.5fr 50px 35px 50px 35px 50px 35px 25px;
+  align-items: center;
+  height: 32px;
 }

@@ -295,6 +295,7 @@
             "equipAutre": "Autre équipement",
             "cercle": "Cercle",
             "pcAppelUtilises": "Points d'appel utilisés",
+            "pcAppelDispo": "Points d'appel disponibles",
             "modeLibre": "Mode libre",
             "pointsAppel": "Points d'appel"
         },

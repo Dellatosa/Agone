@@ -9,31 +9,53 @@
         </div>
     </div>
     <div class="demon-infos-line-1">
-        <label>{{localize "agone.actors.cercle"}}</label>
-        <select class="auto-size edit-peuple" name="system.cercle">
-            {{selectOptions config.cerclesDemon selected=data.system.cercle localize=true}}
-        </select>
         {{#if estEG}}
             {{#if utilisePcAppel}}
                 <div class="switch">
                     <a class="sheet-utilise-appel" title="{{localize 'agone.tooltip.changerModeCreation'}}"><i class="fa-solid fa-circle-9"></i></a>
-                    {{localize "agone.actors.pointsAppel"}}
+                    <span>{{localize "agone.actors.pointsAppel"}}</span>
                 </div>
             {{else}}
                 <div class="switch">
                     <a class="sheet-utilise-appel" title="{{localize 'agone.tooltip.changerModeCreation'}}"><i class="fa-light fa-circle"></i></a>
-                    {{localize "agone.actors.modeLibre"}}
+                    <span>{{localize "agone.actors.modeLibre"}}</span>
+                </div>
+            {{/if}}
+        {{else}}
+            {{#if utilisePcAppel}}
+                <div class="switch">
+                    <i class="fa-solid fa-circle-9" title="{{localize 'agone.tooltip.changerModeCreation'}}"></i>
+                    <span>{{localize "agone.actors.pointsAppel"}}</span>
+                </div>
+            {{else}}
+                <div class="switch">
+                    <i class="fa-light fa-circle" title="{{localize 'agone.tooltip.changerModeCreation'}}"></i>
+                    <span>{{localize "agone.actors.modeLibre"}}</span>
                 </div>
             {{/if}}
         {{/if}}      
         <label>{{localize "agone.actors.pcAppelUtilises"}} : </label>
         <div class="info-val">{{data.system.pcAppel.depense}}</div>
-        <div class="sep"> / </div>
+        <label>{{localize "agone.actors.pcAppelDispo"}} : </label>
         {{#if estEG}}
             <div class="small-size"><input name="system.pcAppel.base" type="number" value="{{data.system.pcAppel.base}}" placeholder="0"/></div>
         {{else}}
             <div class="info-val">{{data.system.pcAppel.base}}</div>
             <div>&nbsp;</div>
         {{/if}}
+        <div>&nbsp;</div>
+    </div>
+    <div class="demon-infos-line-2">
+        <label>{{localize "agone.actors.cercle"}}</label>
+        <select class="auto-size edit-peuple" name="system.cercle">
+            {{selectOptions config.cerclesDemon selected=data.system.cercle localize=true}}
+        </select>
+        <label>{{localize "agone.actors.tai"}}</label>
+        <div class="info-val">{{data.system.caracSecondaires.tai.valeur}}</div>
+        <label>{{localize "agone.actors.mouvementAbbr"}} : </label>
+        <div class="info-val">{{data.system.caracSecondaires.mouvement.valeur}}</div>
+        <label>{{localize "agone.actors.vol"}} : </label>
+        <div class="info-val">{{data.system.vol}}</div>
+        <div>&nbsp;</div>
     </div>
 </div>
