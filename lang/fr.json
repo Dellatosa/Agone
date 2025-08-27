@@ -627,7 +627,8 @@
             "warnPcCaracVide": "Vous n'avez plus de points de création disponibles pour vos caractéristiques.",
             "warnPcCompVide": "Vous n'avez plus de points de création disponibles pour vos compétences.",
             "warnCompSpe": "Vous ne pouvez pas baisser une compétence spécialisée en dessous de 5.",
-            "warnSpeCompMini": "Il faut un minimum de 5 dans une compétence pour se spécialiser."
+            "warnSpeCompMini": "Il faut un minimum de 5 dans une compétence pour se spécialiser.",
+            "warnPcAppelVide": "Vous n'avez plus de points d'appel disponibles"
         },
         "tooltip": {
             "verrou": "Verrouiller la fiche",

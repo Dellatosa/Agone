@@ -1204,7 +1204,7 @@
     },
     "Demon": {
       "templates": [ "base", "caracsAspects", "competences" ],
-      "cercle": "",
+      "cercle": "aucun",
       "caracSecondaires": {
         "tai": {
           "min": -2,
@@ -1214,7 +1214,8 @@
         "vol": {
           "min": 0,
           "max": 20,
-          "valeur": 0
+          "valeur": 0,
+          "pc": 0
         },
         "densite": {
           "valeur": 0,

@@ -92,7 +92,6 @@ export default class AgoneDemonSheet extends foundry.appv1.sheets.ActorSheet {
         // l'utilisateur actif est l'EG
         data.estEG = game.user.isGM;
 
-        console.log(this);
         return data;
     }
 
@@ -201,38 +200,39 @@ export default class AgoneDemonSheet extends foundry.appv1.sheets.ActorSheet {
             const stat = element.dataset.stat;
             const action = element.dataset.action;
 
-            const currentVal = parseInt(this.actor.system.caracSecondaires[stat].pc);
+            if(this.actor.system.cercle != "aucun") {
+                const currentVal = parseInt(this.actor.system.caracSecondaires[stat].pc);
             
-            if(action == "minus") {
-                if(currentVal > parseInt(this.actor.system.caracSecondaires[stat].min)) {
+                if(action == "minus") {
+                    if(currentVal > parseInt(this.actor.system.caracSecondaires[stat].min)) {
         
-                    await this.actor.update({ [`system.caracSecondaires.${stat}.pc`] : currentVal - 1 });
+                        await this.actor.update({ [`system.caracSecondaires.${stat}.pc`] : currentVal - 1 });
     
-                    if(this.actor.utilisePcAppel) {
-                        const currentPcDep = parseInt(this.actor.system.pcAppel.depense);
-                        await this.actor.update({ [`system.pcAppel.depense`] : currentPcDep - 1 });
-                    }
-                }
-            }
-            else if(action == "plus") {
-                if(currentVal < parseInt(this.actor.system.caracSecondaires[stat].max) - parseInt(this.actor.system.caracSecondaires[stat].min)) {
-        
-                    if(this.actor.utilisePcAppel) {
-                        const currentPcDep = parseInt(this.actor.system.pcAppel.depense);
-                        const pcMax = parseInt(this.actor.system.pcAppel.base);
-        
-                        if (currentPcDep + 1 > pcMax) {
-                            ui.notifications.warn(game.i18n.localize("agone.notifications.warnPcAppelVide"));
-                            return;
+                        if(this.actor.utilisePcAppel) {
+                            const currentPcDep = parseInt(this.actor.system.pcAppel.depense);
+                            await this.actor.update({ [`system.pcAppel.depense`] : currentPcDep - 1 });
                         }
-        
-                        await this.actor.update({ [`system.pcAppel.depense`] : currentPcDep + 1 });
                     }
-                    
-                    await this.actor.update({ [`system.caracSecondaires.${stat}.pc`] : currentVal + 1 });
                 }
-            }
-            
+                else if(action == "plus") {
+                    if(currentVal < parseInt(this.actor.system.caracSecondaires[stat].max) - parseInt(this.actor.system.caracSecondaires[stat].min)) {
+        
+                        if(this.actor.utilisePcAppel) {
+                            const currentPcDep = parseInt(this.actor.system.pcAppel.depense);
+                            const pcMax = parseInt(this.actor.system.pcAppel.base);
+        
+                            if (currentPcDep + 1 > pcMax) {
+                                ui.notifications.warn(game.i18n.localize("agone.notifications.warnPcAppelVide"));
+                                return;
+                            }
+        
+                            await this.actor.update({ [`system.pcAppel.depense`] : currentPcDep + 1 });
+                        }
+                    
+                        await this.actor.update({ [`system.caracSecondaires.${stat}.pc`] : currentVal + 1 });
+                    }
+                }
+            }            
         }
     }
 

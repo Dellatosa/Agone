@@ -178,6 +178,12 @@ export default class AgoneActor extends Actor {
              // Récupération des aspects
             for (let [keyA, aspect] of Object.entries(data.aspects)) {
 
+                // Pas de bonus d'aspect pourles démons
+                if(aspect.bonus == null) {
+                    aspect.bonus = {};
+                }
+                aspect.bonus.valeur = 0;
+
                 // Modificateurs de cercle des caractéristiques primaires
                 for (let [keyC, carac] of Object.entries(aspect.caracteristiques)) {
                     if(!carac.secondaire) {
@@ -191,8 +197,9 @@ export default class AgoneActor extends Actor {
                     if(!carac.secondaire) { carac.valeur = carac.min + carac.pc; }
                 }
 
-                // Calcul de la taille
+                // Calcul des statistiques (taille, vol)
                 data.caracSecondaires.tai.valeur = data.caracSecondaires.tai.min + data.caracSecondaires.tai.pc;
+                data.caracSecondaires.vol.valeur = data.caracSecondaires.vol.min + data.caracSecondaires.vol.pc;
 
                 /* -------------------------------------------------
                 ---- Récupération des données de traduction des ----
