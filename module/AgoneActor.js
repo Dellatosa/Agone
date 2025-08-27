@@ -153,21 +153,9 @@ export default class AgoneActor extends Actor {
                 data.caracSecondaires.malusCharge = 0;
             }
 
-            // Calcul des compétences
-            for(let[keyFam, famille] of Object.entries(data.familleCompetences)) {
-                for(let[keyComp, competence] of Object.entries(famille.competences)) {
-                    competence.rang = competence.pc + competence.avgDef + competence.exp;
-                    if(competence.domaine == true) {
-                        for(let[keyDom, domaine] of Object.entries(competence.domaines)) {
-                            domaine.rang = domaine.pc + domaine.avgDef + domaine.exp;
-                        }
-                    }
-                } 
-            }
-
             /* ---------------------------------------------------------
-            ---- Récupération des données de traduction en fonction ----
-            ---- de la langue sélectionnée                          ----
+            ---- Récupération des données de traduction des aspects ----
+            ---- et caractéristiques de la langue sélectionnée      ----
             ----------------------------------------------------------*/
 
             // Récupération des traductions pour les aspects
@@ -184,19 +172,78 @@ export default class AgoneActor extends Actor {
                     carac.abrev = game.i18n.localize(CONFIG.agone.caracAbrev[keyC]);
                 }
             }
+        }
+        else { // Demon
 
-            // Récupération des traductions pour les compétences
-            for(let[keyFam, famille] of Object.entries(data.familleCompetences)) {
-                famille.label = game.i18n.localize(CONFIG.agone.typesCompetence[keyFam]);
-                for(let[keyComp, competence] of Object.entries(famille.competences)) {
-                    competence.label = game.i18n.localize(CONFIG.agone.competences[keyComp]);
-                    if(competence.domaine == true) {
-                        for(let[keyDom, domaine] of Object.entries(competence.domaines)) {
-                            if(domaine.domPerso == false) domaine.label = game.i18n.localize(CONFIG.agone.competences[keyDom]);
-                        }
+             // Récupération des aspects
+            for (let [keyA, aspect] of Object.entries(data.aspects)) {
+
+                // Modificateurs de cercle des caractéristiques primaires
+                for (let [keyC, carac] of Object.entries(aspect.caracteristiques)) {
+                    if(!carac.secondaire) {
+                        carac.min = CONFIG.agone.statsDemon[data.cercle].caracMin;
+                        carac.max = CONFIG.agone.statsDemon[data.cercle].caracMax;
                     }
-                } 
+                }
+
+                // Calcul des caractéristiques primaires
+                for (let [keyC, carac] of Object.entries(aspect.caracteristiques)) {
+                    if(!carac.secondaire) { carac.valeur = carac.min + carac.pc; }
+                }
+
+                // Calcul de la taille
+                data.caracSecondaires.tai.valeur = data.caracSecondaires.tai.min + data.caracSecondaires.tai.pc;
+
+                /* -------------------------------------------------
+                ---- Récupération des données de traduction des ----
+                ---- caractéristiques de la langue sélectionnée ----
+                --------------------------------------------------*/
+
+                // Récupération des traductions pour les caractéristiques
+                for (let [keyC, carac] of Object.entries(aspect.caracteristiques)) {
+                    carac.label = game.i18n.localize(CONFIG.agone.caracteristiques[keyC]);
+                    carac.abrev = game.i18n.localize(CONFIG.agone.caracAbrev[keyC]);
+                }
             }
+
+            // Calcul des caractéristiques secondaires du Démon
+            data.caracSecondaires.mouvement.valeur = this.calcMvDemon(data.caracSecondaires.tai.valeur);
+            data.caracSecondaires.chargeMax = (data.aspects.corps.caracteristiques.force.valeur + data.aspects.corps.caracteristiques.resistance.valeur) * this.calcModPoidsDemon(data.caracSecondaires.tai.valeur);
+            data.caracSecondaires.demiCharge = Math.floor(data.caracSecondaires.chargeMax / 2);
+            data.caracSecondaires.chargeQuotidienne = Math.floor(data.caracSecondaires.chargeMax / 4);
+            data.caracSecondaires.bonusDommages = this.calcBonusDommages(data.aspects.corps.caracteristiques.force.valeur, data.caracSecondaires.tai.valeur);
+            data.caracSecondaires.densite.min = CONFIG.agone.statsDemon[data.cercle].densite;
+            data.caracSecondaires.opacite.min = CONFIG.agone.statsDemon[data.cercle].opacite;
+        }
+
+        // Calcul des compétences
+        for(let[keyFam, famille] of Object.entries(data.familleCompetences)) {
+            for(let[keyComp, competence] of Object.entries(famille.competences)) {
+                competence.rang = competence.pc + competence.avgDef + competence.exp;
+                if(competence.domaine == true) {
+                    for(let[keyDom, domaine] of Object.entries(competence.domaines)) {
+                        domaine.rang = domaine.pc + domaine.avgDef + domaine.exp;
+                    }
+                }
+            } 
+        } 
+
+        /* -------------------------------------------------------------
+        ---- Récupération des données de traduction des compétences ----
+        ---- en fonction de la langue sélectionnée                  ----
+        --------------------------------------------------------------*/
+
+        // Récupération des traductions pour les compétences
+        for(let[keyFam, famille] of Object.entries(data.familleCompetences)) {
+            famille.label = game.i18n.localize(CONFIG.agone.typesCompetence[keyFam]);
+            for(let[keyComp, competence] of Object.entries(famille.competences)) {
+                competence.label = game.i18n.localize(CONFIG.agone.competences[keyComp]);
+                if(competence.domaine == true) {
+                    for(let[keyDom, domaine] of Object.entries(competence.domaines)) {
+                        if(domaine.domPerso == false) domaine.label = game.i18n.localize(CONFIG.agone.competences[keyDom]);
+                    }
+                }
+            } 
         }
     }
 
@@ -260,6 +307,40 @@ export default class AgoneActor extends Actor {
             case 23:
                 return 43;
                  
+        }
+    }
+
+    calcMvDemon(tai) {
+        switch(tai) {
+            case -2:
+                return 1;
+            case -1:
+                return 2;
+            case 0:   
+                return 3; 
+            case 1:   
+                return 4;
+            case 2:
+                return 6;
+            case 3:   
+                return 8; 
+        }
+    }
+
+    calcModPoidsDemon(tai) {
+        switch(tai) {
+            case -2:
+                return 4;
+            case -1:
+                return 6;
+            case 0:   
+                return 7; 
+            case 1:   
+                return 10;
+            case 2:
+                return 15;
+            case 3:   
+                return 20; 
         }
     }
 

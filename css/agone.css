@@ -3900,6 +3900,7 @@ a.nohlight {
 .demon-infos label {
   margin: 0 3px;
   font: var(--font-lorgol-21px);
+  text-align: end;
 }
 .demon-infos input[type=number],
 .demon-infos input[type=text],
@@ -3939,7 +3940,41 @@ a.nohlight {
 }
 .demon-infos .demon-infos-line-2 {
   display: grid;
-  grid-template-columns: 55px 1.5fr 50px 35px 50px 35px 50px 35px 25px;
+  grid-template-columns: max-content 1fr max-content 40px max-content 40px max-content 40px 25px;
   align-items: center;
   height: 32px;
+}
+.demon-infos .demon-infos-line-2-unlocked {
+  display: grid;
+  grid-template-columns: max-content 1fr max-content 1.5em 3.5em 1.5em max-content 40px max-content 1.5em 3.5em 1.5em 25px;
+  align-items: center;
+  height: 32px;
+}
+.demon-infos .val-stat {
+  background-color: var(--color-stats-background);
+  margin: 2px 5px;
+  text-align: center;
+  align-items: center;
+  border-radius: 3px;
+  height: 26px;
+}
+.demon-infos .val-stat label {
+  font-family: "BarbedorMedium";
+  font-size: 1em;
+  position: relative;
+  top: 5px;
+}
+.demon-infos .val-stat .fa-circle-up,
+.demon-infos .val-stat .fa-circle-down {
+  font-size: 0.8em;
+  color: var(--color-red-warning);
+}
+.demon-infos .stat-appel {
+  font-size: 0.8em;
+}
+.demon-infos .stat-appel.minus {
+  text-align: right;
+}
+.demon-infos .stat-appel.plus {
+  text-align: left;
 }

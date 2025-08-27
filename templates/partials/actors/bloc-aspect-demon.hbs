@@ -1,0 +1,21 @@
+<!-- Blocs d'aspects (corps, esprit ame) avec caractéristiques primaires associées à chaque aspect -->
+{{#each data.system.aspects as |aspect keyAsp|}}
+    <div class="aspect {{#if (eq keyAsp "corps")}}bd-left{{/if}} {{#if (eq keyAsp "ame")}}bd-right{{/if}}">
+        <div class="aspect-titre">{{aspect.positif.label}}</div>
+        <div class="carac-line {{keyAsp}}">
+            {{#each aspect.caracteristiques as |carac keyCarac|}}
+                {{#unless (or carac.secondaire (eq keyCarac "resistance"))}}
+                <label>{{carac.label}}</label>
+                <div class="val-carac">
+                    <label>
+                        {{carac.valeur}}
+                        {{#if carac.peupleMin}} <i class="fa-solid fa-circle-up" title="{{localize 'agone.tooltip.minPeuple'}}"></i>{{/if}}
+                        {{#if carac.peupleMax}} <i class="fa-solid fa-circle-down" title="{{localize 'agone.tooltip.maxPeuple'}}"></i>{{/if}}
+                    </label>
+                </div>
+                <a class="roll-carac" title="{{localize 'agone.actors.jetCarac'}}" data-carac="{{keyCarac}}"><i class="fa-duotone fa-solid fa-dice-d10"></i></a>
+                {{/unless}}
+            {{/each}}
+        </div>
+    </div>
+{{/each}}

@@ -1152,6 +1152,69 @@ agone.couleurDemon = {
     obsidien: "cd-noir"
 }
 
+agone.statsDemon = {
+    aucun: {
+        caracMin: 0,
+        caracMax: 0,
+        niveauComp: 0,
+        nbFamComp: 0,
+        densite: 0,
+        bonusDensite: 0,
+        opacite: 0,
+        bonusOpacite: 0
+    },
+    opalin: {
+        caracMin: 2,
+        caracMax: 9,
+        niveauComp: 10,
+        nbFamComp: 1,
+        densite: 20,
+        bonusDensite: 1,
+        opacite: 0,
+        bonusOpacite: 1
+    },
+    azurin: {
+        caracMin: 3,
+        caracMax: 11,
+        niveauComp: 30,
+        nbFamComp: 2,
+        densite: 25,
+        bonusDensite: 3,
+        opacite: 5,
+        bonusOpacite: 3
+    },
+    safran: {
+        caracMin: 4,
+        caracMax: 14,
+        niveauComp: 50,
+        nbFamComp: 3,
+        densite: 40,
+        bonusDensite: 6,
+        opacite: 10,
+        bonusOpacite: 4
+    },
+    carmin: {
+        caracMin: 7,
+        caracMax: 17,
+        niveauComp: 100,
+        nbFamComp: 4,
+        densite: 55,
+        bonusDensite: 9,
+        opacite: 15,
+        bonusOpacite: 5
+    },
+    obsidien: {
+        caracMin: 9,
+        caracMax: 20,
+        niveauComp: 300,
+        nbFamComp: 5,
+        densite: 100,
+        bonusDensite: 15,
+        opacite: 25,
+        bonusOpacite: 10
+    }
+}
+
 agone.symboles = {
     accord: "fa-duotone fa-music",
     cyse: "fa-duotone fa-landmark",

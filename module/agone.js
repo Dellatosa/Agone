@@ -94,6 +94,8 @@ async function preloadHandlebarsTemplates() {
         "systems/agone/templates/partials/actors/bloc-aspect-damne-unlocked.hbs",
         "systems/agone/templates/partials/actors/bloc-aspect-terne.hbs",
         "systems/agone/templates/partials/actors/bloc-aspect-terne-unlocked.hbs",
+        "systems/agone/templates/partials/actors/bloc-aspect-demon.hbs",
+        "systems/agone/templates/partials/actors/bloc-aspect-demon-unlocked.hbs",
         // Onglet Compétences
         "systems/agone/templates/partials/actors/bloc-carac-secondaires.hbs",
         "systems/agone/templates/partials/actors/bloc-competences-personnage.hbs",

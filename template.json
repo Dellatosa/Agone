@@ -1205,8 +1205,26 @@
     "Demon": {
       "templates": [ "base", "caracsAspects", "competences" ],
       "cercle": "",
-      "vol": 0,
-      "opacite": 0,
+      "caracSecondaires": {
+        "tai": {
+          "min": -2,
+          "max": 3,
+          "pc": 0
+        },
+        "vol": {
+          "min": 0,
+          "max": 20,
+          "valeur": 0
+        },
+        "densite": {
+          "valeur": 0,
+          "min": 0
+        },
+        "opacite": {
+          "valeur": 0,
+          "min": 0
+        }
+      },
       "seuilInvocation": 0,
       "pcAppel": {
         "base" : 0,

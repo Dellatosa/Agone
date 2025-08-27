@@ -84,9 +84,15 @@ export default class AgoneDemonSheet extends foundry.appv1.sheets.ActorSheet {
         // Mode de création : Libre / Points d'appel
         data.utilisePcAppel = this.actor.utilisePcAppel;
 
+        // Verrouillage du cercle si le mode de création est "Points d'appel" et en cas de dépense de points de d'appel
+        if(data.utilisePcAppel && actorData.pcAppel.depense > 0) {
+            data.figerCercle = true;
+        }
+
         // l'utilisateur actif est l'EG
         data.estEG = game.user.isGM;
 
+        console.log(this);
         return data;
     }
 
@@ -128,6 +134,9 @@ export default class AgoneDemonSheet extends foundry.appv1.sheets.ActorSheet {
 
             // Basculer le mode de création Libre / Points d'appel
             html.find(".sheet-utilise-appel").click(this._onSheetUtiliseAppel.bind(this));
+
+            // Modifier les statistiques démoniaques (Tai, Mv, Densité, Opacité)
+            html.find(".mod-stat-appel").click(this._onModifStatAppel.bind(this));
 
             // Modifier les caractéristiques
             html.find(".mod-carac-crea").click(this._onModifCaracCrea.bind(this));
@@ -183,6 +192,50 @@ export default class AgoneDemonSheet extends foundry.appv1.sheets.ActorSheet {
         this.actor.sheet.render(true);
     }
 
+    // Modifier les statistiques démoniaques (Tai, Mv, Densité, Opacité)
+    async _onModifStatAppel(event) {
+        event.preventDefault();
+        const element = event.currentTarget;
+    
+        if(!event.detail || event.detail == 1) {
+            const stat = element.dataset.stat;
+            const action = element.dataset.action;
+
+            const currentVal = parseInt(this.actor.system.caracSecondaires[stat].pc);
+            
+            if(action == "minus") {
+                if(currentVal > parseInt(this.actor.system.caracSecondaires[stat].min)) {
+        
+                    await this.actor.update({ [`system.caracSecondaires.${stat}.pc`] : currentVal - 1 });
+    
+                    if(this.actor.utilisePcAppel) {
+                        const currentPcDep = parseInt(this.actor.system.pcAppel.depense);
+                        await this.actor.update({ [`system.pcAppel.depense`] : currentPcDep - 1 });
+                    }
+                }
+            }
+            else if(action == "plus") {
+                if(currentVal < parseInt(this.actor.system.caracSecondaires[stat].max) - parseInt(this.actor.system.caracSecondaires[stat].min)) {
+        
+                    if(this.actor.utilisePcAppel) {
+                        const currentPcDep = parseInt(this.actor.system.pcAppel.depense);
+                        const pcMax = parseInt(this.actor.system.pcAppel.base);
+        
+                        if (currentPcDep + 1 > pcMax) {
+                            ui.notifications.warn(game.i18n.localize("agone.notifications.warnPcAppelVide"));
+                            return;
+                        }
+        
+                        await this.actor.update({ [`system.pcAppel.depense`] : currentPcDep + 1 });
+                    }
+                    
+                    await this.actor.update({ [`system.caracSecondaires.${stat}.pc`] : currentVal + 1 });
+                }
+            }
+            
+        }
+    }
+
     // Modifier les caractéristiques
     async _onModifCaracCrea(event) {
         event.preventDefault();
@@ -197,30 +250,28 @@ export default class AgoneDemonSheet extends foundry.appv1.sheets.ActorSheet {
         
             if(action == "minus") {
                 if(currentVal > 0) {
-                    const cout = Utils.getCoutAchat(currentVal);
         
                     await this.actor.update({ [`system.aspects.${aspect}.caracteristiques.${carac}.pc`] : currentVal - 1 });
     
-                    if(this.actor.type == "Personnage") {
-                        const currentPcDep = parseInt(this.actor.system.pcCaracs.depense);
-                        await this.actor.update({ [`system.pcCaracs.depense`] : currentPcDep - cout });
+                    if(this.actor.utilisePcAppel) {
+                        const currentPcDep = parseInt(this.actor.system.pcAppel.depense);
+                        await this.actor.update({ [`system.pcAppel.depense`] : currentPcDep - 1 });
                     }
                 }
             }
             else if(action == "plus") {
-                if(currentVal < parseInt(this.actor.system.aspects[aspect].caracteristiques[carac].max)) {
+                if(currentVal < parseInt(this.actor.system.aspects[aspect].caracteristiques[carac].max - parseInt(this.actor.system.aspects[aspect].caracteristiques[carac].min))) {
         
-                    if(this.actor.type == "Personnage") {
-                        const currentPcDep = parseInt(this.actor.system.pcCaracs.depense);
-                        const pcMax = parseInt(this.actor.system.pcCaracs.base);
-                        const cout = Utils.getCoutAchat(currentVal + 1);
+                    if(this.actor.utilisePcAppel) {
+                        const currentPcDep = parseInt(this.actor.system.pcAppel.depense);
+                        const pcMax = parseInt(this.actor.system.pcAppel.base);
         
-                        if (currentPcDep + cout > pcMax) {
-                            ui.notifications.warn(game.i18n.localize("agone.notifications.warnPcCaracVide"));
+                        if (currentPcDep + 1 > pcMax) {
+                            ui.notifications.warn(game.i18n.localize("agone.notifications.warnPcAppelVide"));
                             return;
                         }
         
-                        await this.actor.update({ [`system.pcCaracs.depense`] : currentPcDep + cout });
+                        await this.actor.update({ [`system.pcAppel.depense`] : currentPcDep + 1 });
                     }
                     
                     await this.actor.update({ [`system.aspects.${aspect}.caracteristiques.${carac}.pc`] : currentVal + 1 });

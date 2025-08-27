@@ -6,4 +6,13 @@
             {{> "systems/agone/templates/partials/actors/bloc-infos-demon.hbs"}}
         {{/if}}
     </header>
+    <div class="sheet-fixed-content">
+        <div class="aspects-and-caracs">    
+            {{#if unlocked}}
+                {{> "systems/agone/templates/partials/actors/bloc-aspect-demon-unlocked.hbs"}}
+            {{else}}
+                {{> "systems/agone/templates/partials/actors/bloc-aspect-demon.hbs"}}
+            {{/if}}
+        </div>
+    </div>
 </form>

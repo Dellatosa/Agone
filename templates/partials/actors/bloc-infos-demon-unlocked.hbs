@@ -33,29 +33,59 @@
                     <span>{{localize "agone.actors.modeLibre"}}</span>
                 </div>
             {{/if}}
-        {{/if}}      
-        <label>{{localize "agone.actors.pcAppelUtilises"}} : </label>
-        <div class="info-val">{{data.system.pcAppel.depense}}</div>
-        <label>{{localize "agone.actors.pcAppelDispo"}} : </label>
-        {{#if estEG}}
-            <div class="small-size"><input name="system.pcAppel.base" type="number" value="{{data.system.pcAppel.base}}" placeholder="0"/></div>
-        {{else}}
-            <div class="info-val">{{data.system.pcAppel.base}}</div>
-            <div>&nbsp;</div>
+        {{/if}}
+        {{#if utilisePcAppel}}
+            <label>{{localize "agone.actors.pcAppelUtilises"}} : </label>
+            <div class="info-val">{{data.system.pcAppel.depense}}</div>
+            <label>{{localize "agone.actors.pcAppelDispo"}} : </label>
+            {{#if estEG}}
+                <div class="small-size"><input name="system.pcAppel.base" type="number" value="{{data.system.pcAppel.base}}" placeholder="0"/></div>
+            {{else}}
+                <div class="info-val">{{data.system.pcAppel.base}}</div>
+                <div>&nbsp;</div>
+            {{/if}}
         {{/if}}
         <div>&nbsp;</div>
     </div>
-    <div class="demon-infos-line-2">
+    <div class="demon-infos-line-2-unlocked">
         <label>{{localize "agone.actors.cercle"}}</label>
-        <select class="auto-size edit-peuple" name="system.cercle">
+        <select class="auto-size edit-peuple" name="system.cercle" {{#if figerCercle}}disabled{{/if}}>
             {{selectOptions config.cerclesDemon selected=data.system.cercle localize=true}}
         </select>
         <label>{{localize "agone.actors.tai"}}</label>
-        <div class="info-val">{{data.system.caracSecondaires.tai.valeur}}</div>
+        <div class="stat-appel minus">
+            <a class="mod-stat-appel" title="{{localize 'agone.tooltip.dimCarac'}}" data-stat="tai" data-action="minus">
+                <i class="fa-solid fa-circle-minus"></i>
+            </a>
+        </div>
+        <div class="val-stat">
+            <label>
+                {{data.system.caracSecondaires.tai.valeur}}
+            </label>
+        </div>
+        <div class="stat-appel plus">
+            <a class="mod-stat-appel" title="{{localize 'agone.tooltip.augCarac'}}" data-stat="tai" data-action="plus">
+                <i class="fa-solid fa-circle-plus"></i>
+            </a>
+        </div>
         <label>{{localize "agone.actors.mouvementAbbr"}} : </label>
         <div class="info-val">{{data.system.caracSecondaires.mouvement.valeur}}</div>
-        <label>{{localize "agone.actors.vol"}} : </label>
-        <div class="info-val">{{data.system.vol}}</div>
+        <label>{{localize "agone.actors.vol"}}</label>
+        <div class="stat-appel minus">
+            <a class="mod-stat-appel" title="{{localize 'agone.tooltip.dimCarac'}}" data-stat="vol" data-action="minus">
+                <i class="fa-solid fa-circle-minus"></i>
+            </a>
+        </div>
+        <div class="val-stat">
+            <label>
+                {{data.system.caracSecondaires.vol.valeur}}
+            </label>
+        </div>
+        <div class="stat-appel plus">
+            <a class="mod-stat-appel" title="{{localize 'agone.tooltip.augCarac'}}" data-stat="vol" data-action="plus">
+                <i class="fa-solid fa-circle-plus"></i>
+            </a>
+        </div>
         <div>&nbsp;</div>
     </div>
 </div>

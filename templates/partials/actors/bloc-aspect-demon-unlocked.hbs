@@ -1,0 +1,30 @@
+<!-- Blocs d'aspects (corps, esprit ame) avec caractéristiques primaires associées à chaque aspect -->
+{{#each data.system.aspects as |aspect keyAsp|}}
+    <div class="aspect {{#if (eq keyAsp "corps")}}bd-left{{/if}} {{#if (eq keyAsp "ame")}}bd-right{{/if}}">
+        <div class="aspect-titre">{{aspect.positif.label}}</div>
+        <div class="carac-line-unlocked {{keyAsp}}">
+            {{#each aspect.caracteristiques as |carac keyCarac|}}
+                {{#unless (or carac.secondaire (eq keyCarac "resistance"))}}
+                <label>{{carac.label}}</label>
+                <div class="carac-crea minus">
+                    <a class="mod-carac-crea" title="{{localize 'agone.tooltip.dimCarac'}}" data-aspect="{{keyAsp}}" data-carac="{{keyCarac}}" data-action="minus">
+                        <i class="fa-solid fa-circle-minus"></i>
+                    </a>
+                </div>
+                <div class="val-carac">
+                    <label>
+                        {{carac.valeur}}
+                        {{#if carac.peupleMin}} <i class="fa-solid fa-circle-up" title="{{localize 'agone.tooltip.minPeuple'}}"></i>{{/if}}
+                        {{#if carac.peupleMax}} <i class="fa-solid fa-circle-down" title="{{localize 'agone.tooltip.maxPeuple'}}"></i>{{/if}}
+                    </label>
+                </div>
+                <div class="carac-crea plus">
+                    <a class="mod-carac-crea" title="{{localize 'agone.tooltip.augCarac'}}" data-aspect="{{keyAsp}}" data-carac="{{keyCarac}}" data-action="plus">
+                        <i class="fa-solid fa-circle-plus"></i>
+                    </a>
+                </div>
+                {{/unless}}
+            {{/each}}
+        </div>
+    </div>
+{{/each}}
