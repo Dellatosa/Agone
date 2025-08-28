@@ -12,7 +12,7 @@
         {{#if estEG}}
             {{#if utilisePcAppel}}
                 <div class="switch">
-                    <a class="sheet-utilise-appel" title="{{localize 'agone.tooltip.changerModeCreation'}}"><i class="fa-solid fa-circle-9"></i></a>
+                    <a class="sheet-utilise-appel" title="{{localize 'agone.tooltip.changerModeCreation'}}"><i class="fa-solid fa-circle-a"></i></a>
                     <span>{{localize "agone.actors.pointsAppel"}}</span>
                 </div>
             {{else}}
@@ -24,7 +24,7 @@
         {{else}}
             {{#if utilisePcAppel}}
                 <div class="switch">
-                    <i class="fa-solid fa-circle-9" title="{{localize 'agone.tooltip.changerModeCreation'}}"></i>
+                    <i class="fa-solid fa-circle-a" title="{{localize 'agone.tooltip.changerModeCreation'}}"></i>
                     <span>{{localize "agone.actors.pointsAppel"}}</span>
                 </div>
             {{else}}
@@ -45,7 +45,9 @@
                 <div>&nbsp;</div>
             {{/if}}
         {{/if}}
-        <div>&nbsp;</div>
+        <div class="reset">
+            <a class="sheet-reset-stats" title="{{localize 'agone.tooltip.reinitStats'}}"><i class="fa-solid fa-circle-xmark"></i></a>
+        </div>
     </div>
     <div class="demon-infos-line-2-unlocked">
         <label>{{localize "agone.actors.cercle"}}</label>

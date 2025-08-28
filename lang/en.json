@@ -71,6 +71,7 @@
             "peuple": "Race",
             "vol": "Flight move",
             "opacite": "Opacity",
+            "densite": "Density",
             "seuilInvocation": "Invoking threshold",
             "experience": "Experience",
             "competence": "Skill",
@@ -667,7 +668,12 @@
             "clickPourDeposerEquipement": "Click to drop equipment",
             "experience": "Experience",
             "coutHeroisme": "Fortune cost",
-            "changerModeCreation": "NO TRAD - Change de mode création"
+            "changerModeCreation": "NO TRAD - Changer de mode de création",
+            "reinitStats": "NO TRAD - Réinitialiser les statistiques",
+            "augTenebre": "NO TRAD - Augmenter la Ténèbre",
+            "dimTenebre": "NO TRAD - Diminuer la Ténèbre",
+            "augBlessGrave": "NO TRAD - Augmenter le nombre de blessures graves",
+            "dimBlessGrave": "NO TRAD - Diminuer le nombre de blessures graves"
         }
     },
     "parametres": {

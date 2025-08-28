@@ -71,6 +71,7 @@
             "peuple": "Peuple",
             "vol": "Vol",
             "opacite": "Opacité",
+            "densite": "Densité",
             "seuilInvocation": "Seuil d'invocation",
             "experience": "Expérience",
             "competence": "Compétence",
@@ -667,7 +668,16 @@
             "clickPourDeposerEquipement": "Cliquer pour déposer l'équipement",
             "experience": "Expérience",
             "coutHeroisme": "Coût en point d'héroïsme",
-            "changerModeCreation": "Changer de mode création"
+            "changerModeCreation": "Changer de mode de création",
+            "reinitStats": "Réinitialiser les statistiques",
+            "augTenebre": "Augmenter la Ténèbre",
+            "dimTenebre": "Diminuer la Ténèbre",
+            "augBlessGrave": "Augmenter le nombre de blessures graves",
+            "dimBlessGrave": "Diminuer le nombre de blessures graves"
+        },
+        "dialog": {
+            "titreReinitStats": "Réinitialisation des statistiques ?",
+            "messageReinitStats": "Confirmez-vous la réinitialisation des caractéristiques et statistiques de cette fiche ?"
         }
     },
     "parametres": {

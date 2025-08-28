@@ -27,6 +27,10 @@
         scrollbar-width: thin;
         //scrollbar-color: var(--color-scroolbar);
     }
+
+    .competences-content, .combat-content, .historique-content { /*.magie-content, .equipement-content,*/
+        height: 100%;
+    }
 }
 
 .agone.sheet.demon .sheet-header, .sheet-fixed-content {
@@ -85,12 +89,19 @@
         height: 32px;
 
         .switch {
-            font: var(--font-lorgol-21px);
-            margin-left: 5px;
+            font-size: 1.2em;
+            margin-left: 4px;
 
             span {
+                font: var(--font-lorgol-21px);
                 margin-left: 3px;
             }
+        }
+
+        .reset {
+            grid-column-start: 6;
+            font-size: 1.2em;
+            margin-left: 4px;
         }
     }
 
@@ -109,23 +120,67 @@
     }
 
     .val-stat {
+        background-color: var(--color-stats-background);
+        margin: 2px 5px;
+        text-align: center;
+        align-items: center;
+        border-radius: 3px;
+        height: 26px;
+
+        label {
+            font-family: "BarbedorMedium";
+            font-size: 1em;
+            position: relative;
+            top: 5px;
+        }
+
+        .fa-circle-up, .fa-circle-down {
+            font-size: 0.8em;
+            color: var(--color-red-warning);
+        }
+    }
+
+    .stat-appel {
+        font-size: 0.8em;
+    }
+
+    .stat-appel.minus {
+        text-align: right;
+    }
+
+    .stat-appel.plus {
+        text-align: left;
+    }
+}
+
+.grid-caracSec-comp .caracSec {
+    
+    .grid-caracSec-demon {
+        display: grid;
+        grid-template-columns: 1fr 3.5em;
+        align-items: center;
+    }
+
+    .grid-caracSec-demon-unlock {
+        display: grid;
+        grid-template-columns: 1fr 10px 3.5em 10px;
+        align-items: center;
+    }
+
+    .grid-caracSec-demon , .grid-caracSec-demon-unlock {
+        font-family: "BarbedorMedium";
+            
+        .val-caracSec {
             background-color: var(--color-stats-background);
-            margin: 2px 5px;
+            margin: 2px;
             text-align: center;
             align-items: center;
             border-radius: 3px;
-            height: 26px;
+            height: 23px;
 
             label {
-                font-family: "BarbedorMedium";
-                font-size: 1em;
                 position: relative;
-                top: 5px;
-            }
-
-            .fa-circle-up, .fa-circle-down {
-                font-size: 0.8em;
-                color: var(--color-red-warning);
+                top: 4px;
             }
         }
 
@@ -136,8 +191,9 @@
         .stat-appel.minus {
             text-align: right;
         }
-
+            
         .stat-appel.plus {
             text-align: left;
         }
+    }
 }

@@ -29,18 +29,7 @@
     </nav>
     <section class="sheet-body">
         <div class="tab competences-content" data-group="principal" data-tab="competences">
-            <div class="grid-caracSec-comp">
-                <div class="caracSec">
-                    {{> "systems/agone/templates/partials/actors/bloc-carac-secondaires.hbs"}}
-                </div>
-                <div class="competences">
-                    {{#if unlocked}}
-                        {{> "systems/agone/templates/partials/actors/bloc-competences-personnage-unlocked.hbs"}}
-                    {{else}}
-                        {{> "systems/agone/templates/partials/actors/bloc-competences-personnage.hbs"}}
-                    {{/if}}
-                </div>
-            </div>
+            {{> "systems/agone/templates/partials/actors/bloc-competences-personnage.hbs"}}
         </div>
         <div class="tab combat-content" data-group="principal" data-tab="combat">
             {{> "systems/agone/templates/partials/actors/bloc-combat-personnage.hbs"}}

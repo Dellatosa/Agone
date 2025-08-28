@@ -97,9 +97,10 @@ async function preloadHandlebarsTemplates() {
         "systems/agone/templates/partials/actors/bloc-aspect-demon.hbs",
         "systems/agone/templates/partials/actors/bloc-aspect-demon-unlocked.hbs",
         // Onglet Compétences
-        "systems/agone/templates/partials/actors/bloc-carac-secondaires.hbs",
         "systems/agone/templates/partials/actors/bloc-competences-personnage.hbs",
-        "systems/agone/templates/partials/actors/bloc-competences-personnage-unlocked.hbs",
+        "systems/agone/templates/partials/actors/bloc-competences-demon.hbs",
+        "systems/agone/templates/partials/actors/bloc-liste-competences-personnage.hbs",
+        "systems/agone/templates/partials/actors/bloc-liste-competences-personnage-unlocked.hbs",
         // Onglet Combat
         "systems/agone/templates/partials/actors/bloc-combat-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-armes-personnage-v2.hbs",

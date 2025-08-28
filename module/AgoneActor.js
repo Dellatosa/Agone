@@ -175,7 +175,7 @@ export default class AgoneActor extends Actor {
         }
         else { // Demon
 
-             // Récupération des aspects
+            // Récupération des aspects
             for (let [keyA, aspect] of Object.entries(data.aspects)) {
 
                 // Pas de bonus d'aspect pourles démons
@@ -184,7 +184,7 @@ export default class AgoneActor extends Actor {
                 }
                 aspect.bonus.valeur = 0;
 
-                // Modificateurs de cercle des caractéristiques primaires
+                // Modificateurs de cercle des caractéristiques primaires 
                 for (let [keyC, carac] of Object.entries(aspect.caracteristiques)) {
                     if(!carac.secondaire) {
                         carac.min = CONFIG.agone.statsDemon[data.cercle].caracMin;
@@ -196,10 +196,6 @@ export default class AgoneActor extends Actor {
                 for (let [keyC, carac] of Object.entries(aspect.caracteristiques)) {
                     if(!carac.secondaire) { carac.valeur = carac.min + carac.pc; }
                 }
-
-                // Calcul des statistiques (taille, vol)
-                data.caracSecondaires.tai.valeur = data.caracSecondaires.tai.min + data.caracSecondaires.tai.pc;
-                data.caracSecondaires.vol.valeur = data.caracSecondaires.vol.min + data.caracSecondaires.vol.pc;
 
                 /* -------------------------------------------------
                 ---- Récupération des données de traduction des ----
@@ -213,14 +209,24 @@ export default class AgoneActor extends Actor {
                 }
             }
 
+            // Modificateurs de cercle des statistiques démoniaques
+            data.caracSecondaires.densite.min = CONFIG.agone.statsDemon[data.cercle].densite;
+            data.caracSecondaires.opacite.min = CONFIG.agone.statsDemon[data.cercle].opacite;
+
+            // Calcul des statistiques (taille, vol)
+            data.caracSecondaires.tai.valeur = data.caracSecondaires.tai.min + data.caracSecondaires.tai.pc;
+            data.caracSecondaires.vol.valeur = data.caracSecondaires.vol.min + data.caracSecondaires.vol.pc;
+            data.caracSecondaires.densite.max = data.caracSecondaires.densite.min + data.caracSecondaires.densite.pc;
+            data.caracSecondaires.opacite.valeur = data.caracSecondaires.opacite.min + data.caracSecondaires.opacite.pc;
+
             // Calcul des caractéristiques secondaires du Démon
             data.caracSecondaires.mouvement.valeur = this.calcMvDemon(data.caracSecondaires.tai.valeur);
-            data.caracSecondaires.chargeMax = (data.aspects.corps.caracteristiques.force.valeur + data.aspects.corps.caracteristiques.resistance.valeur) * this.calcModPoidsDemon(data.caracSecondaires.tai.valeur);
+            data.aspects.corps.caracteristiques.melee.valeur = Math.floor((data.aspects.corps.caracteristiques.force.valeur + data.aspects.corps.caracteristiques.agilite.valeur * 2) / 3) + data.aspects.corps.caracteristiques.melee.avgDef;
+            data.aspects.corps.caracteristiques.tir.valeur = Math.floor((data.aspects.corps.caracteristiques.perception.valeur + data.aspects.corps.caracteristiques.agilite.valeur) / 2) + data.aspects.corps.caracteristiques.tir.avgDef;
+            data.caracSecondaires.chargeMax = (data.aspects.corps.caracteristiques.force.valeur + Math.floor(data.caracSecondaires.densite.max / 5)) * this.calcModPoidsDemon(data.caracSecondaires.tai.valeur);
             data.caracSecondaires.demiCharge = Math.floor(data.caracSecondaires.chargeMax / 2);
             data.caracSecondaires.chargeQuotidienne = Math.floor(data.caracSecondaires.chargeMax / 4);
             data.caracSecondaires.bonusDommages = this.calcBonusDommages(data.aspects.corps.caracteristiques.force.valeur, data.caracSecondaires.tai.valeur);
-            data.caracSecondaires.densite.min = CONFIG.agone.statsDemon[data.cercle].densite;
-            data.caracSecondaires.opacite.min = CONFIG.agone.statsDemon[data.cercle].opacite;
         }
 
         // Calcul des compétences

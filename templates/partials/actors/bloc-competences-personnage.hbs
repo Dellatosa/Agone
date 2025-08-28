@@ -1,58 +1,71 @@
-<div class="comp-titre">
-    <label>{{localize "agone.actors.competences"}}</label>
-</div>
-<nav class="competences-tabs tabs" data-group="competences">
-    <a class="item" data-tab="epreuves">{{localize "agone.actors.epreuves"}}</a>
-    <a class="item" data-tab="maraude">{{localize "agone.actors.maraude"}}</a>
-    <a class="item" data-tab="societe">{{localize "agone.actors.societe"}}</a>
-    <a class="item" data-tab="savoir">{{localize "agone.actors.savoir"}}</a>
-    <a class="item" data-tab="occulte">{{localize "agone.actors.occulte"}}</a>
-</nav>
-{{#each data.system.familleCompetences as |famille keyFam|}}
-    <div class="tab" data-group="competences" data-tab="{{keyFam}}">
-        <div class="actor-fam-comp">
-            {{#each ../data.system.colFams as |col|}}
-                <div class="actor-comp-grid col-{{col}}">
-                    {{#each famille.competences as |competence keyComp|}}
-                        {{#if domaine}}
-                            {{#if (eq competence.numcolFamille col)}}
-                                <label class="titre-comp">{{competence.label}}</label>
-                            {{/if}}
-                            {{#each domaines as |domaine keyDom|}}
-                                {{#if (eq domaine.numcolFamille col)}}                                
-                                    <a class="roll-comp" title="{{localize 'agone.actors.jetComp'}}" data-famille="{{keyFam}}" data-competence="{{keyComp}}" data-domaine="{{keyDom}}" data-carac="{{domaine.caracteristique}}"><i class="fa-duotone fa-solid fa-dice-d10"></i></a> 
-                                    {{#if domPerso}}
-                                        {{#if (eq keyComp "musique")}}
-                                            <div class="dom-perso"><label>{{configLocalize "instruments" domaine.label}}</label></div>
-                                        {{else}}
-                                            <div class="dom-perso"><label>{{domaine.label}}</label></div>
-                                        {{/if}}
-                                    {{else}}
-                                        <label class="dom-fixe">{{domaine.label}}</label>
-                                    {{/if}}
-                                    <div class="val-comp"><label>{{domaine.rang}}</label></div>
-                                    {{#if domaine.specialisation }}
-                                        <a class="nohlight spec" title="{{domaine.labelSpecialisation}}"><i class="fa-duotone fa-solid fa-award"></i></i></a>
-                                    {{else}}
-                                        <div></div>
-                                    {{/if}} 
-                                {{/if}}
-                            {{/each}}
-                        {{else}}
-                            {{#if (eq competence.numcolFamille col)}}
-                                <a class="roll-comp" title="{{localize 'agone.actors.jetComp'}}" data-famille="{{keyFam}}" data-competence="{{keyComp}}" data-carac="{{competence.caracteristique}}"><i class="fa-duotone fa-solid fa-dice-d10"></i></a> 
-                                <label class="lbl-comp">{{competence.label}}</label>     
-                                <div class="val-comp"><label>{{competence.rang}}</label></div>
-                                {{#if competence.specialisation }}
-                                    <a class="nohlight spec" title="{{competence.labelSpecialisation}}"><i class="fa-duotone fa-solid fa-award"></i></i></a>
-                                {{else}}
-                                 <div></div>
-                                {{/if}}
-                            {{/if}}                             
-                        {{/if}}
-                    {{/each}}
+<div class="grid-caracSec-comp">
+    <div class="caracSec">
+        <div class="caracSec-titre">Caractéristiques Secondaires</div>
+        <div class="grid-caracSec">
+            <div>{{localize "agone.actors.melee"}}</div>
+            <div class="val-caracSec">
+                <label>{{data.system.aspects.corps.caracteristiques.melee.valeur}}</label>
+            </div>
+            <div>{{localize "agone.actors.tir"}}</div>
+            <div class="val-caracSec">
+                <label>{{data.system.aspects.corps.caracteristiques.tir.valeur}}</label>
+            </div>
+            <div>{{localize "agone.actors.bonusDommages"}}</div>
+            <div class="val-caracSec">
+                <label>{{data.system.caracSecondaires.bonusDommages}}</label>
+            </div>
+            {{#if afficherHeroisme}}
+                <label>{{localize "agone.actors.heroisme"}}</label>
+                <div class="val-caracSec">
+                    <label>{{data.system.caracSecondaires.heroisme.max}}</label>
                 </div>
-            {{/each}}
+            {{/if}}
+            <div>
+                {{localize "agone.actors.pdv"}}
+                {{#if unlocked}}
+                    {{#if (lt data.system.caracSecondaires.pdv.d10 1)}}
+                        <a class="roll-pdv" title="{{localize 'agone.actors.jetPdv'}}"><i class="fa-duotone fa-solid fa-dice-d10"></i></a>
+                    {{/if}}
+                {{/if}}
+            </div>
+            <div class="val-caracSec">
+                <label>{{data.system.caracSecondaires.pdv.max}}</label>
+            </div>
+            <div>{{localize "agone.actors.seuilBlessureGrave"}}</div>
+            <div class="val-caracSec">
+                <label>{{data.system.caracSecondaires.seuilBlessureGrave}}</label>
+            </div>
+            <div>{{localize "agone.actors.seuilBlessureCritique"}}</div>
+            <div class="val-caracSec">
+                <label>{{data.system.caracSecondaires.seuilBlessureCritique}}</label>
+            </div>
+            <div>{{localize "agone.actors.chargeMax"}}</div>
+            <div class="val-caracSec">
+                <label>{{data.system.caracSecondaires.chargeMax}}</label>
+            </div>
+            <div>{{localize "agone.actors.demiCharge"}}</div>
+            <div class="val-caracSec">
+                <label>{{data.system.caracSecondaires.demiCharge}}</label>
+            </div>
+            <div>{{localize "agone.actors.chargeQuotidienne"}}</div>
+            <div class="val-caracSec">
+                <label>{{data.system.caracSecondaires.chargeQuotidienne}}</label>
+            </div>
+            <div>{{localize "agone.actors.art"}}</div>
+            <div class="val-caracSec">
+                <label>{{data.system.aspects.ame.caracteristiques.art.valeur}}</label>
+            </div>
+            <div>{{localize "agone.actors.emprise"}}</div>
+            <div class="val-caracSec">
+                <label>{{data.system.aspects.esprit.caracteristiques.emprise.valeur}}</label>
+            </div>
         </div>
     </div>
-{{/each}}
+    <div class="competences">
+        {{#if unlocked}}
+            {{> "systems/agone/templates/partials/actors/bloc-liste-competences-personnage-unlocked.hbs"}}
+        {{else}}
+            {{> "systems/agone/templates/partials/actors/bloc-liste-competences-personnage.hbs"}}
+        {{/if}}
+    </div>
+</div>

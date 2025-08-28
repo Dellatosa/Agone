@@ -15,4 +15,28 @@
             {{/if}}
         </div>
     </div>
+    <nav class="sheet-tabs tabs" data-group="principal">
+        <a class="item" data-tab="competences">{{localize "agone.actors.competences"}}</a>
+        <a class="item" data-tab="combat">{{localize "agone.actors.combat"}}</a>
+        <!--<a class="item" data-tab="magie">{{localize "agone.actors.magie"}}</a>
+        <a class="item" data-tab="equipement">{{localize "agone.actors.equipement"}}</a>-->
+        <a class="item" data-tab="historique">{{localize "agone.actors.historique"}}</a>
+    </nav>
+    <section class="sheet-body">
+        <div class="tab competences-content" data-group="principal" data-tab="competences">
+            {{> "systems/agone/templates/partials/actors/bloc-competences-demon.hbs"}}
+        </div>
+        <div class="tab combat-content" data-group="principal" data-tab="combat">
+            {{> "systems/agone/templates/partials/actors/bloc-combat-personnage.hbs"}}
+        </div>
+        <!--<div class="tab magie-content" data-group="principal" data-tab="magie">
+            {{> "systems/agone/templates/partials/actors/bloc-magie-personnage.hbs"}}
+        </div>
+        <div class="tab equipement-content" data-group="principal" data-tab="equipement">
+            {{> "systems/agone/templates/partials/actors/bloc-equipement-personnage.hbs"}}
+        </div>-->
+        <div class="tab historique-content" data-group="principal" data-tab="historique">
+            {{> "systems/agone/templates/partials/actors/bloc-historique-personnage.hbs"}}
+        </div>
+    </section>
 </form>

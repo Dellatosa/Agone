@@ -491,15 +491,6 @@ a.nohlight {
 .grid-caracSec-comp .competences .actor-fam-comp {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  /*.col-1 {
-                grid-column-start: 1;
-                grid-column-end: 2;
-            }
-
-            .col-2 {
-                grid-column-start: 2;
-                grid-column-end: 3;
-            }*/
 }
 .grid-caracSec-comp .competences .actor-fam-comp .col-max {
   grid-column-start: 1;
@@ -3882,6 +3873,12 @@ a.nohlight {
   overflow-x: hidden;
   scrollbar-width: thin;
 }
+.agone.sheet.demon .competences-content,
+.agone.sheet.demon .combat-content,
+.agone.sheet.demon .historique-content {
+  /*.magie-content, .equipement-content,*/
+  height: 100%;
+}
 .agone.sheet.demon .sheet-header img,
 .sheet-fixed-content img {
   flex: 0 0 150px;
@@ -3932,11 +3929,17 @@ a.nohlight {
   height: 32px;
 }
 .demon-infos .demon-infos-line-1 .switch {
-  font: var(--font-lorgol-21px);
-  margin-left: 5px;
+  font-size: 1.2em;
+  margin-left: 4px;
 }
 .demon-infos .demon-infos-line-1 .switch span {
+  font: var(--font-lorgol-21px);
   margin-left: 3px;
+}
+.demon-infos .demon-infos-line-1 .reset {
+  grid-column-start: 6;
+  font-size: 1.2em;
+  margin-left: 4px;
 }
 .demon-infos .demon-infos-line-2 {
   display: grid;
@@ -3976,5 +3979,45 @@ a.nohlight {
   text-align: right;
 }
 .demon-infos .stat-appel.plus {
+  text-align: left;
+}
+.grid-caracSec-comp .caracSec .grid-caracSec-demon {
+  display: grid;
+  grid-template-columns: 1fr 3.5em;
+  align-items: center;
+}
+.grid-caracSec-comp .caracSec .grid-caracSec-demon-unlock {
+  display: grid;
+  grid-template-columns: 1fr 10px 3.5em 10px;
+  align-items: center;
+}
+.grid-caracSec-comp .caracSec .grid-caracSec-demon,
+.grid-caracSec-comp .caracSec .grid-caracSec-demon-unlock {
+  font-family: "BarbedorMedium";
+}
+.grid-caracSec-comp .caracSec .grid-caracSec-demon .val-caracSec,
+.grid-caracSec-comp .caracSec .grid-caracSec-demon-unlock .val-caracSec {
+  background-color: var(--color-stats-background);
+  margin: 2px;
+  text-align: center;
+  align-items: center;
+  border-radius: 3px;
+  height: 23px;
+}
+.grid-caracSec-comp .caracSec .grid-caracSec-demon .val-caracSec label,
+.grid-caracSec-comp .caracSec .grid-caracSec-demon-unlock .val-caracSec label {
+  position: relative;
+  top: 4px;
+}
+.grid-caracSec-comp .caracSec .grid-caracSec-demon .stat-appel,
+.grid-caracSec-comp .caracSec .grid-caracSec-demon-unlock .stat-appel {
+  font-size: 0.8em;
+}
+.grid-caracSec-comp .caracSec .grid-caracSec-demon .stat-appel.minus,
+.grid-caracSec-comp .caracSec .grid-caracSec-demon-unlock .stat-appel.minus {
+  text-align: right;
+}
+.grid-caracSec-comp .caracSec .grid-caracSec-demon .stat-appel.plus,
+.grid-caracSec-comp .caracSec .grid-caracSec-demon-unlock .stat-appel.plus {
   text-align: left;
 }

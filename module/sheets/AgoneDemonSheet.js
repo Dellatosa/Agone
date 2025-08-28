@@ -134,6 +134,9 @@ export default class AgoneDemonSheet extends foundry.appv1.sheets.ActorSheet {
             // Basculer le mode de création Libre / Points d'appel
             html.find(".sheet-utilise-appel").click(this._onSheetUtiliseAppel.bind(this));
 
+            // Réinitialiser les statistiques globales (caractéristiques et stats démoniaques)
+            html.find(".sheet-reset-stats").click(this._onSheetResetStats.bind(this));
+            
             // Modifier les statistiques démoniaques (Tai, Mv, Densité, Opacité)
             html.find(".mod-stat-appel").click(this._onModifStatAppel.bind(this));
 
@@ -191,6 +194,37 @@ export default class AgoneDemonSheet extends foundry.appv1.sheets.ActorSheet {
         this.actor.sheet.render(true);
     }
 
+    async _onSheetResetStats(event) {
+        event.preventDefault();
+
+        const reinitValidee = await foundry.applications.api.DialogV2.confirm({
+            window: { title: game.i18n.localize("agone.dialog.titreReinitStats") },
+            content: `<p>${game.i18n.localize("agone.dialog.messageReinitStats")}</p>`
+        });
+
+        if(reinitValidee) {
+            // Récupération des aspects
+            for (let [keyA, aspect] of Object.entries(this.actor.system.aspects)) {
+
+                // Reinitialisation caractéristiques primaires
+                for (let [keyC, carac] of Object.entries(aspect.caracteristiques)) {
+                    if(!carac.secondaire) {
+                        await this.actor.update({ [`system.aspects.${keyA}.caracteristiques.${keyC}.pc`] : 0 });
+                    }
+                }
+            }
+
+            // Reinitialisation des statistiques
+            await this.actor.update({ [`system.caracSecondaires.tai.pc`] : 0 });
+            await this.actor.update({ [`system.caracSecondaires.vol.pc`] : 0 });
+            await this.actor.update({ [`system.caracSecondaires.densite.pc`] : 0 });
+            await this.actor.update({ [`system.caracSecondaires.opacite.pc`] : 0 });
+
+            // Reinitialisation des points d'appel
+            await this.actor.update({ [`system.pcAppel.depense`] : 0 });
+        }
+    }
+
     // Modifier les statistiques démoniaques (Tai, Mv, Densité, Opacité)
     async _onModifStatAppel(event) {
         event.preventDefault();
@@ -202,11 +236,20 @@ export default class AgoneDemonSheet extends foundry.appv1.sheets.ActorSheet {
 
             if(this.actor.system.cercle != "aucun") {
                 const currentVal = parseInt(this.actor.system.caracSecondaires[stat].pc);
-            
+
                 if(action == "minus") {
-                    if(currentVal > parseInt(this.actor.system.caracSecondaires[stat].min)) {
+                    if(currentVal > 0) {
         
-                        await this.actor.update({ [`system.caracSecondaires.${stat}.pc`] : currentVal - 1 });
+                        if(stat == "densite") {
+                            await this.actor.update({ [`system.caracSecondaires.densite.pc`] : currentVal - CONFIG.agone.statsDemon[this.actor.system.cercle].bonusDensite });
+                        }
+                        else if(stat == "opacite") {
+                            await this.actor.update({ [`system.caracSecondaires.opacite.pc`] : currentVal - CONFIG.agone.statsDemon[this.actor.system.cercle].bonusOpacite });
+                        }
+                        else {
+                            await this.actor.update({ [`system.caracSecondaires.${stat}.pc`] : currentVal - 1 });
+                        }
+                        
     
                         if(this.actor.utilisePcAppel) {
                             const currentPcDep = parseInt(this.actor.system.pcAppel.depense);
@@ -215,7 +258,8 @@ export default class AgoneDemonSheet extends foundry.appv1.sheets.ActorSheet {
                     }
                 }
                 else if(action == "plus") {
-                    if(currentVal < parseInt(this.actor.system.caracSecondaires[stat].max) - parseInt(this.actor.system.caracSecondaires[stat].min)) {
+                    if((currentVal < parseInt(this.actor.system.caracSecondaires[stat].max) - parseInt(this.actor.system.caracSecondaires[stat].min))
+                        || stat == "densite" || stat == "opacite") {
         
                         if(this.actor.utilisePcAppel) {
                             const currentPcDep = parseInt(this.actor.system.pcAppel.depense);
@@ -229,7 +273,15 @@ export default class AgoneDemonSheet extends foundry.appv1.sheets.ActorSheet {
                             await this.actor.update({ [`system.pcAppel.depense`] : currentPcDep + 1 });
                         }
                     
-                        await this.actor.update({ [`system.caracSecondaires.${stat}.pc`] : currentVal + 1 });
+                        if(stat == "densite") {
+                            await this.actor.update({ [`system.caracSecondaires.densite.pc`] : currentVal + CONFIG.agone.statsDemon[this.actor.system.cercle].bonusDensite });
+                        }
+                        else if(stat == "opacite") {
+                            await this.actor.update({ [`system.caracSecondaires.opacite.pc`] : currentVal + CONFIG.agone.statsDemon[this.actor.system.cercle].bonusOpacite });
+                        }
+                        else {
+                            await this.actor.update({ [`system.caracSecondaires.${stat}.pc`] : currentVal + 1 });
+                        }
                     }
                 }
             }            

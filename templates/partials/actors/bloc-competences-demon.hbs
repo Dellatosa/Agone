@@ -1,0 +1,142 @@
+<div class="grid-caracSec-comp">
+    <div class="caracSec">
+        <div class="caracSec-titre">Caractéristiques Secondaires</div>
+        {{#if unlocked}}
+            <div class="grid-caracSec-demon-unlock">
+                <div>{{localize "agone.actors.melee"}}</div>
+                <div></div>
+                <div class="val-caracSec">
+                    <label>{{data.system.aspects.corps.caracteristiques.melee.valeur}}</label>
+                </div>
+                <div></div>
+                <div>{{localize "agone.actors.tir"}}</div>
+                <div></div>
+                <div class="val-caracSec">
+                    <label>{{data.system.aspects.corps.caracteristiques.tir.valeur}}</label>
+                </div>
+                <div></div>
+                <div>{{localize "agone.actors.bonusDommages"}}</div>
+                <div></div>
+                <div class="val-caracSec">
+                    <label>{{data.system.caracSecondaires.bonusDommages}}</label>
+                </div>
+                <div></div>
+                <div>{{localize "agone.actors.densite"}}</div>
+                <div>
+                    <div class="stat-appel minus">
+                        <a class="mod-stat-appel" title="{{localize 'agone.tooltip.dimDensite'}}" data-stat="densite" data-action="minus">
+                            <i class="fa-solid fa-circle-minus"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="val-caracSec">
+                    <label>{{data.system.caracSecondaires.densite.max}}</label>
+                </div>
+                <div>
+                    <div class="stat-appel plus">
+                        <a class="mod-stat-appel" title="{{localize 'agone.tooltip.augDensite'}}" data-stat="densite" data-action="plus">
+                            <i class="fa-solid fa-circle-plus"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>{{localize "agone.actors.opacite"}}</div>
+                <div>
+                    <div class="stat-appel minus">
+                        <a class="mod-stat-appel" title="{{localize 'agone.tooltip.dimDensite'}}" data-stat="opacite" data-action="minus">
+                            <i class="fa-solid fa-circle-minus"></i>
+                        </a>
+                    </div></div>
+                <div class="val-caracSec">
+                    <label>{{data.system.caracSecondaires.opacite.valeur}}</label>
+                </div>
+                <div>
+                    <div class="stat-appel plus">
+                        <a class="mod-stat-appel" title="{{localize 'agone.tooltip.augDensite'}}" data-stat="opacite" data-action="plus">
+                            <i class="fa-solid fa-circle-plus"></i>
+                        </a>
+                    </div>
+                </div>
+               <!--<div>{{localize "agone.actors.seuilBlessureGrave"}}</div>
+               <div></div>
+                <div class="val-caracSec">
+                    <label>{{data.system.caracSecondaires.seuilBlessureGrave}}</label>
+                </div>
+                <div></div>
+                <div>{{localize "agone.actors.seuilBlessureCritique"}}</div>
+                <div></div>
+                <div class="val-caracSec">
+                    <label>{{data.system.caracSecondaires.seuilBlessureCritique}}</label>
+                </div>
+                <div></div>-->
+                <div>{{localize "agone.actors.chargeMax"}}</div>
+                <div></div>
+                <div class="val-caracSec">
+                    <label>{{data.system.caracSecondaires.chargeMax}}</label>
+                </div>
+                <div></div>
+                <div>{{localize "agone.actors.demiCharge"}}</div>
+                <div></div>
+                <div class="val-caracSec">
+                    <label>{{data.system.caracSecondaires.demiCharge}}</label>
+                </div>
+                <div></div>
+                <div>{{localize "agone.actors.chargeQuotidienne"}}</div>
+                <div></div>
+                <div class="val-caracSec">
+                    <label>{{data.system.caracSecondaires.chargeQuotidienne}}</label>
+                </div>
+                <div></div>
+            </div>
+        {{else}}
+            <div class="grid-caracSec-demon">
+                <div>{{localize "agone.actors.melee"}}</div>
+                <div class="val-caracSec">
+                    <label>{{data.system.aspects.corps.caracteristiques.melee.valeur}}</label>
+                </div>
+                <div>{{localize "agone.actors.tir"}}</div>
+                <div class="val-caracSec">
+                    <label>{{data.system.aspects.corps.caracteristiques.tir.valeur}}</label>
+                </div>
+                <div>{{localize "agone.actors.bonusDommages"}}</div>
+                <div class="val-caracSec">
+                    <label>{{data.system.caracSecondaires.bonusDommages}}</label>
+                </div>
+                <div>{{localize "agone.actors.densite"}}</div>
+                <div class="val-caracSec">
+                    <label>{{data.system.caracSecondaires.densite.max}}</label>
+                </div>
+                <div>{{localize "agone.actors.opacite"}}</div>
+                <div class="val-caracSec">
+                    <label>{{data.system.caracSecondaires.opacite.valeur}}</label>
+                </div>
+               <!--<div>{{localize "agone.actors.seuilBlessureGrave"}}</div>
+                <div class="val-caracSec">
+                    <label>{{data.system.caracSecondaires.seuilBlessureGrave}}</label>
+                </div>
+                <div>{{localize "agone.actors.seuilBlessureCritique"}}</div>
+                <div class="val-caracSec">
+                    <label>{{data.system.caracSecondaires.seuilBlessureCritique}}</label>
+                </div>-->
+                <div>{{localize "agone.actors.chargeMax"}}</div>
+                <div class="val-caracSec">
+                    <label>{{data.system.caracSecondaires.chargeMax}}</label>
+                </div>
+                <div>{{localize "agone.actors.demiCharge"}}</div>
+                <div class="val-caracSec">
+                    <label>{{data.system.caracSecondaires.demiCharge}}</label>
+                </div>
+                <div>{{localize "agone.actors.chargeQuotidienne"}}</div>
+                <div class="val-caracSec">
+                    <label>{{data.system.caracSecondaires.chargeQuotidienne}}</label>
+                </div>
+            </div>
+        {{/if}}
+    </div>
+    <div class="competences">
+        {{#if unlocked}}
+            {{> "systems/agone/templates/partials/actors/bloc-liste-competences-personnage-unlocked.hbs"}}
+        {{else}}
+            {{> "systems/agone/templates/partials/actors/bloc-liste-competences-personnage.hbs"}}
+        {{/if}}
+    </div>
+</div>
