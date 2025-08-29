@@ -1,4 +1,8 @@
+{{#if (or typePersonnage (eq tabHistoActif "peinesBienfaits"))}}
 <div class="grid-data-histo">
+{{else}}
+<div class="grid-data-histo-mini">
+{{/if}}
     <div class="data-histo">
         {{#if typePersonnage}}
         <div class="experience">            

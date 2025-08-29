@@ -125,12 +125,14 @@ async function preloadHandlebarsTemplates() {
         "systems/agone/templates/partials/actors/ligne-equipement-porter.hbs",
         // Onglet Historique
         "systems/agone/templates/partials/actors/bloc-historique-personnage.hbs",
+        "systems/agone/templates/partials/actors/bloc-historique-demon.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-defauts-personnage-v2.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-avantages-personnage-v2.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-pouvoirs-flamme-personnage-v2.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-pouvoirs-saisonnin-personnage-v2.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-peines-personnage-v2.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-bienfaits-personnage-v2.hbs",
+        "systems/agone/templates/partials/actors/bloc-liste-pouvoirs-demon.hbs",
         // Jet de dés
         "systems/agone/templates/partials/dice/jet-resultat.hbs",
         "systems/agone/templates/partials/dice/jet-resultat-dommages.hbs",

@@ -1,0 +1,18 @@
+<div class="grid-data-histo-mini">
+    <div class="data-histo"></div>
+    <div class="historique">
+        <nav class="historique-tabs tabs" data-group="historique">
+            <a class="item" data-tab="pouvoirs">{{localize "agone.actors.pouvoirs"}}</a>
+            <a class="item" data-tab="histoire">{{localize "agone.actors.histoire"}}</a>
+        </nav>
+        <div class="tab" data-group="historique" data-tab="pouvoirs">
+            {{> "systems/agone/templates/partials/actors/bloc-liste-pouvoirs-demon.hbs"}}
+        </div>
+        <div class="tab histoire" data-group="historique" data-tab="histoire">
+            <div class="titre-rub">{{localize "agone.actors.apparence"}}</div>
+            {{editor data.system.apparence target="system.apparence" engine="prosemirror" button=true editable=true}}
+            <div class="titre-rub">{{localize "agone.actors.biographie"}}</div>
+            {{editor data.system.biographie target="system.biographie" engine="prosemirror" button=true editable=true}}
+        </div>
+    </div>
+</div>

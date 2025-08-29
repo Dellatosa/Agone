@@ -12,20 +12,19 @@
             {{#if unlocked}}
                 <div class="edit">
                     <i class="fa-duotone fa-solid fa-sword" title="{{localize 'agone.tooltip.modificateurAttaque'}}"></i>
-                    {{data.system.armesNaturelles.griffes.modifAttaque}}
-                    <!-- <input name="system.system.armesNaturelles.griffes.modifAttaque" type="number" value="{{data.system.armesNaturelles.griffes.modifAttaque}}" placeholder="0"/> -->
+                    <input name="system.armesNaturelles.griffes.modifAttaque" type="number" value="{{data.system.armesNaturelles.griffes.modifAttaque}}" placeholder="0"/>
                 </div>
                 <div class="edit">
                     <i class="fa-duotone fa-solid fa-shield-halved" title="{{localize 'agone.tooltip.modificateurParade'}}"></i>
-                    {{data.system.armesNaturelles.griffes.modifParade}}
+                    <input name="system.armesNaturelles.griffes.modifParade" type="number" value="{{data.system.armesNaturelles.griffes.modifParade}}" placeholder="0"/>
                 </div>
                 <div class="edit">
                     <i class="fa-duotone fa-solid fa-bolt" title="{{localize 'agone.tooltip.modificateurInit'}}"></i>
-                    {{data.system.armesNaturelles.griffes.modifInit}}
+                    <input name="system.armesNaturelles.griffes.modifInit" type="number" value="{{data.system.armesNaturelles.griffes.modifInit}}" placeholder="0"/>
                 </div>
                 <div class="edit">
                     <i class="fa-duotone fa-solid fa-burst" title="{{localize 'agone.tooltip.modificateurDommages'}}"></i>
-                    {{data.system.armesNaturelles.griffes.modifDommages}}
+                    <input name="system.armesNaturelles.griffes.modifDommages" type="number" value="{{data.system.armesNaturelles.griffes.modifDommages}}" placeholder="0"/>
                 </div>
             {{else}}
                 <div><i class="fa-duotone fa-solid fa-sword" title="{{localize 'agone.tooltip.modificateurAttaque'}}"></i> {{data.system.armesNaturelles.griffes.modifAttaque}}</div>
@@ -52,18 +51,37 @@
             <div class="full-row">
                 <i class="{{configSymbole data.system.armesNaturelles.crocs.style}} icone" title="{{configLocalize "stylesArme" data.system.armesNaturelles.crocs.style}}"></i>
             </div>
-            <div><i class="fa-duotone fa-solid fa-sword" title="{{localize 'agone.tooltip.modificateurAttaque'}}"></i> {{data.system.armesNaturelles.crocs.modifAttaque}}</div>
-            <div><i class="fa-duotone fa-solid fa-shield-halved" title="{{localize 'agone.tooltip.modificateurParade'}}"></i> {{data.system.armesNaturelles.crocs.modifParade}}</div>
-            <div><i class="fa-duotone fa-solid fa-bolt" title="{{localize 'agone.tooltip.modificateurInit'}}"></i> {{data.system.armesNaturelles.crocs.modifInit}}</div>
-            <div>
-                <i class="fa-duotone fa-solid fa-burst" title="{{localize 'agone.tooltip.modificateurDommages'}}"></i> {{data.system.armesNaturelles.crocs.modifDommages}}
-                {{#if (eq system.armesNaturelles.crocs.type "perftranch")}}
-                    <i class="{{configSymbole "perforante"}}" title="{{configLocalize "typesArme" "perforante"}}"></i>
-                    <i class="{{configSymbole "tranchante"}}" title="{{configLocalize "typesArme" "tranchante"}}"></i>
-                {{else}}
-                    <i class="{{configSymbole data.system.armesNaturelles.crocs.type}}" title="{{configLocalize "typesArme" data.system.armesNaturelles.crocs.type}}"></i>
-                {{/if}}
-            </div>
+            {{#if unlocked}}
+                <div class="edit">
+                    <i class="fa-duotone fa-solid fa-sword" title="{{localize 'agone.tooltip.modificateurAttaque'}}"></i>
+                    <input name="system.armesNaturelles.crocs.modifAttaque" type="number" value="{{data.system.armesNaturelles.crocs.modifAttaque}}" placeholder="0"/>
+                    </div>
+                <div class="edit">
+                    <i class="fa-duotone fa-solid fa-shield-halved" title="{{localize 'agone.tooltip.modificateurParade'}}"></i>
+                    <input name="system.armesNaturelles.crocs.modifParade" type="number" value="{{data.system.armesNaturelles.crocs.modifParade}}" placeholder="0"/>
+                    </div>
+                <div class="edit">
+                    <i class="fa-duotone fa-solid fa-bolt" title="{{localize 'agone.tooltip.modificateurInit'}}"></i>
+                    <input name="system.armesNaturelles.crocs.modifInit" type="number" value="{{data.system.armesNaturelles.crocs.modifInit}}" placeholder="0"/>
+                    </div>
+                <div class="edit">
+                    <i class="fa-duotone fa-solid fa-burst" title="{{localize 'agone.tooltip.modificateurDommages'}}"></i>
+                    <input name="system.armesNaturelles.crocs.modifDommages" type="number" value="{{data.system.armesNaturelles.crocs.modifDommages}}" placeholder="0"/>
+                </div>
+            {{else}}
+                <div><i class="fa-duotone fa-solid fa-sword" title="{{localize 'agone.tooltip.modificateurAttaque'}}"></i> {{data.system.armesNaturelles.crocs.modifAttaque}}</div>
+                <div><i class="fa-duotone fa-solid fa-shield-halved" title="{{localize 'agone.tooltip.modificateurParade'}}"></i> {{data.system.armesNaturelles.crocs.modifParade}}</div>
+                <div><i class="fa-duotone fa-solid fa-bolt" title="{{localize 'agone.tooltip.modificateurInit'}}"></i> {{data.system.armesNaturelles.crocs.modifInit}}</div>
+                <div>
+                    <i class="fa-duotone fa-solid fa-burst" title="{{localize 'agone.tooltip.modificateurDommages'}}"></i> {{data.system.armesNaturelles.crocs.modifDommages}}
+                    {{#if (eq system.armesNaturelles.crocs.type "perftranch")}}
+                        <i class="{{configSymbole "perforante"}}" title="{{configLocalize "typesArme" "perforante"}}"></i>
+                        <i class="{{configSymbole "tranchante"}}" title="{{configLocalize "typesArme" "tranchante"}}"></i>
+                    {{else}}
+                        <i class="{{configSymbole data.system.armesNaturelles.crocs.type}}" title="{{configLocalize "typesArme" data.system.armesNaturelles.crocs.type}}"></i>
+                    {{/if}}
+                </div>
+            {{/if}}    
         </div>
     </div>
 </div>
