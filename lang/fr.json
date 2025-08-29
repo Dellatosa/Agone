@@ -226,6 +226,8 @@
             "demonologie": "Démonologie",
             "harmonie": "Harmonie",
             "resonance": "Résonance",
+            "griffes": "Griffes",
+            "crocs": "Crocs",
             "epreuves": "Epreuves",
             "maraude": "Maraude",
             "societe": "Société",
@@ -298,7 +300,9 @@
             "pcAppelUtilises": "Points d'appel utilisés",
             "pcAppelDispo": "Points d'appel disponibles",
             "modeLibre": "Mode libre",
-            "pointsAppel": "Points d'appel"
+            "pointsAppel": "Points d'appel",
+            "nivCompUtilises": "Niveaux de comp. utilisés",
+            "armesNat": "Armes naturelles"
         },
         "items":{
             "description": "Description",
@@ -629,7 +633,10 @@
             "warnPcCompVide": "Vous n'avez plus de points de création disponibles pour vos compétences.",
             "warnCompSpe": "Vous ne pouvez pas baisser une compétence spécialisée en dessous de 5.",
             "warnSpeCompMini": "Il faut un minimum de 5 dans une compétence pour se spécialiser.",
-            "warnPcAppelVide": "Vous n'avez plus de points d'appel disponibles"
+            "warnPcAppelVide": "Vous n'avez plus de points d'appel disponibles.",
+            "warnNivCompVide": "Vous n'avez plus de niveaux de compétence disponibles.",
+            "warnNbFamComp": "Des niveaux de compétences sont déjà distribués dans {nbFam} famille(s).",
+            "warnFamOcculte": "Seul un Obsidien peut disposer de compétences dans la famille Occulte."
         },
         "tooltip": {
             "verrou": "Verrouiller la fiche",
@@ -672,6 +679,8 @@
             "reinitStats": "Réinitialiser les statistiques",
             "augTenebre": "Augmenter la Ténèbre",
             "dimTenebre": "Diminuer la Ténèbre",
+            "augPerfidie": "Augmenter la Perfidie",
+            "dimPerfidie": "Diminuer la Perfidie",
             "augBlessGrave": "Augmenter le nombre de blessures graves",
             "dimBlessGrave": "Diminuer le nombre de blessures graves"
         },

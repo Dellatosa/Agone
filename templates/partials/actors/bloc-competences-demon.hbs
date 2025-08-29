@@ -2,7 +2,7 @@
     <div class="caracSec">
         <div class="caracSec-titre">Caractéristiques Secondaires</div>
         {{#if unlocked}}
-            <div class="grid-caracSec-demon-unlock">
+            <div class="grid-caracSec-demon-edit">
                 <div>{{localize "agone.actors.melee"}}</div>
                 <div></div>
                 <div class="val-caracSec">
@@ -134,9 +134,9 @@
     </div>
     <div class="competences">
         {{#if unlocked}}
-            {{> "systems/agone/templates/partials/actors/bloc-liste-competences-personnage-unlocked.hbs"}}
+            {{> "systems/agone/templates/partials/actors/bloc-liste-competences-demon-unlocked.hbs"}}
         {{else}}
-            {{> "systems/agone/templates/partials/actors/bloc-liste-competences-personnage.hbs"}}
+            {{> "systems/agone/templates/partials/actors/bloc-liste-competences-demon.hbs"}}
         {{/if}}
     </div>
 </div>

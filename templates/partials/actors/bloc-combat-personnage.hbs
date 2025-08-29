@@ -1,7 +1,7 @@
 <div class="grid-data-att">
     <div class="data-combat">
-        <div class="heroisme">
-            {{#if typePersonnage}}
+        {{#if typePersonnage}}
+            <div class="heroisme">
                 <div class="grid-heroisme">
                     <div class="data-combat-titre lib-all">{{localize "agone.actors.heroisme"}}</div>
                     <label>{{localize "agone.common.reserve"}}</label>
@@ -10,8 +10,8 @@
                     <div class="sep"> / </div>
                     <div class="val"><label>{{data.system.caracSecondaires.heroisme.max}}</label></div>
                 </div>
-            {{/if}}
-        </div>
+            </div> 
+        {{/if}}
         <div class="sante">
             <div class="grid-sante">
                 <div class="data-combat-titre lib-all">{{localize "agone.actors.etatSante"}}</div>

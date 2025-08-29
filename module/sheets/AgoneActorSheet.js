@@ -228,8 +228,11 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
             // Modifier les compétences
             html.find(".mod-comp-crea").click(this._onModifCompetenceCrea.bind(this));
 
-            //Modifier le score de ténèbre
+            // Modifier le score de Ténèbre
             html.find(".mod-tenebre-crea").click(this._onModifTenebre.bind(this));
+
+             // Modifier le score de Perfidie
+            html.find(".mod-perfidie-crea").click(this._onModifPerfidie.bind(this));
 
             //Modifier le score de ténèbre
             html.find(".mod-blessGrave").click(this._onModifBlessureGrave.bind(this));
@@ -652,6 +655,30 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
 
                 if(currentVal < rangMax) {
                     await this.actor.update({ [`system.caracSecondaires.tenebre.gain`] : currentVal + 1 });
+                }
+            }
+        }
+    }
+
+    async _onModifPerfidie(event) {
+        event.preventDefault();
+        const element = event.currentTarget;
+        const action = element.dataset.action;
+        let currentVal = 0;
+        
+        if(!event.detail || event.detail == 1) {
+            currentVal = parseInt(this.actor.system.caracSecondaires.perfidie.gain);
+
+            if(action == "minus") {
+                if(currentVal > 0) {
+                    await this.actor.update({ [`system.caracSecondaires.perfidie.gain`] : currentVal - 1 });
+                }
+            }
+            else if(action == "plus") {
+                let rangMax = 100 - parseInt(this.actor.system.caracSecondaires.perfidie.avgDef);
+
+                if(currentVal < rangMax) {
+                    await this.actor.update({ [`system.caracSecondaires.perfidie.gain`] : currentVal + 1 });
                 }
             }
         }

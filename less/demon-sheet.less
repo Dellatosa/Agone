@@ -161,13 +161,13 @@
         align-items: center;
     }
 
-    .grid-caracSec-demon-unlock {
+    .grid-caracSec-demon-edit {
         display: grid;
-        grid-template-columns: 1fr 10px 3.5em 10px;
+        grid-template-columns: 1fr 1.1em 3.5em 1.1em;
         align-items: center;
     }
 
-    .grid-caracSec-demon , .grid-caracSec-demon-unlock {
+    .grid-caracSec-demon , .grid-caracSec-demon-edit {
         font-family: "BarbedorMedium";
             
         .val-caracSec {
@@ -194,6 +194,61 @@
             
         .stat-appel.plus {
             text-align: left;
+        }
+    }
+}
+
+.grid-armes-nat {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    .bloc-arme-nat {
+        border: solid 1px var(--color-box-border-dark);
+        border-radius: 5px;
+        margin: 2px;
+        padding: 2px;
+
+        .icone {
+            font-size: 1.3em;
+            margin-left: 2px;
+        }
+
+        .ligne-titre {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+            background-color: var(--color-stats-background);
+
+            img {
+                flex: 0 0 24px;
+                border: none;
+                height: 24px;
+            }
+
+            .titre {
+                flex: 2;
+                font-family: "BarbedorMedium";
+                font-size: 1.3em;
+                margin-left: 2px;
+            }
+        }
+
+        .ligne-stats-arme-nat {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            text-align: center;
+            align-items: center;
+            margin-bottom: 3px;
+
+            .full-row {
+                grid-row-start: 1;
+                grid-row-end: 3;
+            }
+
+            .edit {
+                display: flex;
+                flex-direction: row;
+            }
         }
     }
 }

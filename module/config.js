@@ -340,7 +340,9 @@ agone.competences = {
     hiver: "agone.actors.hiver",
     jorniste: "agone.actors.jorniste",
     eclipsiste: "agone.actors.eclipsiste",
-    obscurantiste: "agone.actors.obscurantiste"
+    obscurantiste: "agone.actors.obscurantiste",
+    griffes: "agone.actors.griffes",
+    crocs: "agone.actors.crocs"
 }
 
 agone.peuple = {

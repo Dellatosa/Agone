@@ -66,13 +66,23 @@ export default class AgoneDemonSheet extends foundry.appv1.sheets.ActorSheet {
             const nbCompsFamilleParCol = Math.ceil(famille.nbCompsFamille / 2);
             
             for(let[keyComp, competence] of Object.entries(famille.competences)) {
-                competence.numcolFamille = Math.floor(numCompFamille / nbCompsFamilleParCol);
-                numCompFamille += 1;
                 
-                if(competence.domaine == true) {
-                    for(let[keyDom, domaine] of Object.entries(competence.domaines)) {
-                        domaine.numcolFamille = Math.floor(numCompFamille / nbCompsFamilleParCol);
-                        numCompFamille += 1;
+                if(competence.speDemon) {
+                    competence.numcolFamille = Math.floor(numCompFamille / nbCompsFamilleParCol);
+                    numCompFamille += 1;
+                }
+            }
+
+            for(let[keyComp, competence] of Object.entries(famille.competences)) {   
+                if(!competence.speDemon) { 
+                    competence.numcolFamille = Math.floor(numCompFamille / nbCompsFamilleParCol);
+                    numCompFamille += 1;
+                
+                    if(competence.domaine == true) {
+                        for(let[keyDom, domaine] of Object.entries(competence.domaines)) {
+                            domaine.numcolFamille = Math.floor(numCompFamille / nbCompsFamilleParCol);
+                            numCompFamille += 1;
+                        }
                     }
                 }
             } 
@@ -352,12 +362,7 @@ export default class AgoneDemonSheet extends foundry.appv1.sheets.ActorSheet {
                 
             if(action == "minus") {
                 if(currentVal > 0) {
-                    const cout = Utils.getCoutAchat(currentVal);
                     if(domaine) {
-                        // Pas de score inférieur à 5 pour la compétence de peuple d'un Inspiré
-                        if(this.actor.type == "Personnage" && this.actor.system.familleCompetences[famille].competences[competence].domaines[domaine].peuple && currentVal <= 5) {
-                            return;
-                        }
                         // Pas de score inférieur à 5 pour une compétence spécialisée
                         if(this.actor.system.familleCompetences[famille].competences[competence].domaines[domaine].specialisation && currentVal <= 5) {
                             ui.notifications.warn(game.i18n.localize("agone.notifications.warnCompSpe"));
@@ -367,10 +372,6 @@ export default class AgoneDemonSheet extends foundry.appv1.sheets.ActorSheet {
                         await this.actor.update({ [`system.familleCompetences.${famille}.competences.${competence}.domaines.${domaine}.pc`] : currentVal - 1 });
                     }
                     else {
-                        // Pas de score inférieur à 5 pour la compétence de peuple d'un Inspiré
-                        if(this.actor.type == "Personnage" && this.actor.system.familleCompetences[famille].competences[competence].peuple && currentVal <= 5) {
-                            return;
-                        }
                         // Pas de score inférieur à 5 pour une compétence spécialisée
                         if(this.actor.system.familleCompetences[famille].competences[competence].specialisation && currentVal <= 5) {
                             ui.notifications.warn(game.i18n.localize("agone.notifications.warnCompSpe"));
@@ -380,13 +381,25 @@ export default class AgoneDemonSheet extends foundry.appv1.sheets.ActorSheet {
                         await this.actor.update({ [`system.familleCompetences.${famille}.competences.${competence}.pc`] : currentVal - 1 });
                     }
         
-                    if(this.actor.type == "Personnage") {
-                        const currentPcDep = parseInt(this.actor.system.pcCompetences.depense);
-                        await this.actor.update({ [`system.pcCompetences.depense`] : currentPcDep - cout });
-                    }
+                    const currentPcDep = parseInt(this.actor.system.nivComp.depense);
+                    await this.actor.update({ [`system.nivComp.depense`] : currentPcDep - 1 });
                 }
             }
             else if(action == "plus") {
+                // Limite de familles de compétence selon le cercle du démon
+                if(this.actor.system.nbFamilleValorisee >= CONFIG.agone.statsDemon[this.actor.system.cercle].nbFamComp 
+                    && !this.actor.system.familleCompetences[famille].famValorisee
+                    && !this.actor.system.familleCompetences[famille].competences[competence].speDemon) {
+                        ui.notifications.warn(game.i18n.format("agone.notifications.warnNbFamComp", { nbFam: this.actor.system.nbFamilleValorisee }));
+                        return;
+                    }
+                
+                // Famille Occulte uniquement pour les Obsidiens
+                if(famille == "occulte" && this.actor.system.cercle != "obsidien") {
+                    ui.notifications.warn(game.i18n.localize("agone.notifications.warnFamOcculte"));
+                    return;
+                }
+
                 let rangMax = 0;
                 if(domaine) {
                     rangMax = parseInt(this.actor.system.familleCompetences[famille].competences[competence].domaines[domaine].max);
@@ -397,18 +410,14 @@ export default class AgoneDemonSheet extends foundry.appv1.sheets.ActorSheet {
         
                 if(currentVal < rangMax) {
                 
-                    if(this.actor.type == "Personnage") {
-                        const currentPcDep = parseInt(this.actor.system.pcCompetences.depense);
-                        const cout = Utils.getCoutAchat(currentVal + 1);
-                        const pcMax = parseInt(this.actor.system.pcCompetences.base);
+                    const currentPcDep = parseInt(this.actor.system.nivComp.depense);
     
-                        if (currentPcDep + cout > pcMax) {
-                            ui.notifications.warn(game.i18n.localize("agone.notifications.warnPcCompVide"));
-                            return;
-                        }
-        
-                        await this.actor.update({ [`system.pcCompetences.depense`] : currentPcDep + cout });
+                    if (currentPcDep + 1 > parseInt(this.actor.system.nivComp.base)) {
+                        ui.notifications.warn(game.i18n.localize("agone.notifications.warnNivCompVide"));
+                        return;
                     }
+        
+                    await this.actor.update({ [`system.nivComp.depense`] : currentPcDep + 1 });
                         
                     if(domaine) {
                         await this.actor.update({ [`system.familleCompetences.${famille}.competences.${competence}.domaines.${domaine}.pc`] : currentVal + 1 });

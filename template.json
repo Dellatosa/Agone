@@ -1233,6 +1233,62 @@
       "pcAppel": {
         "base" : 0,
         "depense": 0
+      },
+      "nivComp": {
+        "base" : 0,
+        "depense": 0
+      },
+      "familleCompetences": {
+        "epreuves": {
+          "competences": {
+            "griffes": {
+              "label": "Griffes",
+              "domaine": false,
+              "rang": 0,
+              "pc": 0,
+              "exp": 0,
+              "avgDef": 0,
+              "caracteristique": "melee",
+              "specialisation": false,
+              "labelSpecialisation": "",
+              "max": 10,
+              "speDemon": true
+            },
+            "crocs": {
+              "label": "Crocs",
+              "domaine": false,
+              "rang": 0,
+              "pc": 0,
+              "exp": 0,
+              "avgDef": 0,
+              "caracteristique": "melee",
+              "specialisation": false, 
+              "labelSpecialisation": "",
+              "max": 10,
+              "speDemon": true
+            }
+          }
+        }
+      },
+      "armesNaturelles": {
+        "griffes": {
+          "type": "",
+          "competence": "griffes",
+          "style": "melee",
+          "modifInit": 0,
+          "modifAttaque": 0,
+          "modifParade": 0,
+          "modifDommages": 0
+        },
+        "crocs": {
+          "type": "",
+          "competence": "crocs",
+          "style": "melee",
+          "modifInit": 0,
+          "modifAttaque": 0,
+          "modifParade": 0,
+          "modifDommages": 0
+        }
       }
     }
   },

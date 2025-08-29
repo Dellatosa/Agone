@@ -830,7 +830,7 @@ a.nohlight {
 }
 .grid-magies .data-magie .conjuration .grid-conjuration-edit {
   display: grid;
-  grid-template-columns: 1fr 1.5em 3.5em 1.5em;
+  grid-template-columns: 1fr 1.1em 3.5em 1.1em;
   align-items: center;
   margin: 3px 1px;
   padding: 3px;
@@ -866,7 +866,7 @@ a.nohlight {
 .grid-magies .data-magie .conjuration .grid-conjuration-edit .tenebre-crea.minus {
   text-align: right;
 }
-.grid-magies .data-magie .conjuration .grid-conjuration-edit .tenebre-crea {
+.grid-magies .data-magie .conjuration .grid-conjuration-edit .tenebre-crea.plus {
   text-align: left;
 }
 .grid-magies .data-magie .conjuration .grid-conjuration {
@@ -1019,32 +1019,90 @@ a.nohlight {
   position: relative;
   top: 5px;
 }
+.grid-data-histo .data-histo .experience .grid-peinesBienfaits-edit,
+.grid-data-histo .data-histo .peinesBienfaits .grid-peinesBienfaits-edit {
+  display: grid;
+  grid-template-columns: 1fr 1.1em 3.5em 1.1em;
+  align-items: center;
+  margin: 3px 1px;
+  padding: 3px;
+  border: solid 1px var(--color-box-border-dark);
+  border-radius: 5px;
+}
+.grid-data-histo .data-histo .experience .grid-peinesBienfaits-edit .lib,
+.grid-data-histo .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .lib {
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+.grid-data-histo .data-histo .experience .grid-peinesBienfaits-edit .lib-all,
+.grid-data-histo .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .lib-all {
+  grid-column-start: 1;
+  grid-column-end: 5;
+  text-align: center;
+}
+.grid-data-histo .data-histo .experience .grid-peinesBienfaits-edit .val,
+.grid-data-histo .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .val {
+  background-color: var(--color-stats-background);
+  margin: 2px 5px;
+  text-align: center;
+  align-items: center;
+  border-radius: 3px;
+  height: 26px;
+}
+.grid-data-histo .data-histo .experience .grid-peinesBienfaits-edit .val label,
+.grid-data-histo .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .val label {
+  position: relative;
+  top: 5px;
+}
+.grid-data-histo .data-histo .experience .grid-peinesBienfaits-edit .tenebre-crea,
+.grid-data-histo .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .tenebre-crea,
+.grid-data-histo .data-histo .experience .grid-peinesBienfaits-edit .perfidie-crea,
+.grid-data-histo .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .perfidie-crea {
+  font-size: 0.8em;
+}
+.grid-data-histo .data-histo .experience .grid-peinesBienfaits-edit .tenebre-crea.minus,
+.grid-data-histo .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .tenebre-crea.minus,
+.grid-data-histo .data-histo .experience .grid-peinesBienfaits-edit .perfidie-crea.minus,
+.grid-data-histo .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .perfidie-crea.minus {
+  text-align: right;
+}
+.grid-data-histo .data-histo .experience .grid-peinesBienfaits-edit .tenebre-crea.plus,
+.grid-data-histo .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .tenebre-crea.plus,
+.grid-data-histo .data-histo .experience .grid-peinesBienfaits-edit .perfidie-crea.plus,
+.grid-data-histo .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .perfidie-crea.plus {
+  text-align: left;
+}
 .grid-data-histo .historique .titre-rub {
   font: var(--font-lorgol-28px);
   text-align: center;
 }
-.recap {
-  display: flex;
-  flex-direction: row;
-  padding: 3px;
-  justify-content: center;
-  margin-bottom: 0.5rem;
-}
-.recap .recap-item {
-  align-items: center;
-  display: flex;
-  flex: 1;
-  justify-content: center;
-}
-.recap .recap-item label {
-  margin: 3px;
-}
-.recap .recap-item div {
-  margin: 3px;
-}
-.recap button {
-  flex: 0 0 135px;
-}
+/*.recap {
+    display: flex;
+    flex-direction: row;
+    padding: 3px; 
+    justify-content: center;
+    margin-bottom: 0.5rem;
+
+    .recap-item {
+        align-items: center;
+
+        display: flex;
+        flex: 1;
+        justify-content: center;
+
+        label {
+            margin: 3px;
+        }
+
+        div {
+            margin: 3px;
+        } 
+    }
+
+    button {
+        flex: 0 0 135px;
+    }
+}*/
 .grid-armes,
 .grid-armures,
 .grid-danseurs,
@@ -3986,17 +4044,17 @@ a.nohlight {
   grid-template-columns: 1fr 3.5em;
   align-items: center;
 }
-.grid-caracSec-comp .caracSec .grid-caracSec-demon-unlock {
+.grid-caracSec-comp .caracSec .grid-caracSec-demon-edit {
   display: grid;
-  grid-template-columns: 1fr 10px 3.5em 10px;
+  grid-template-columns: 1fr 1.1em 3.5em 1.1em;
   align-items: center;
 }
 .grid-caracSec-comp .caracSec .grid-caracSec-demon,
-.grid-caracSec-comp .caracSec .grid-caracSec-demon-unlock {
+.grid-caracSec-comp .caracSec .grid-caracSec-demon-edit {
   font-family: "BarbedorMedium";
 }
 .grid-caracSec-comp .caracSec .grid-caracSec-demon .val-caracSec,
-.grid-caracSec-comp .caracSec .grid-caracSec-demon-unlock .val-caracSec {
+.grid-caracSec-comp .caracSec .grid-caracSec-demon-edit .val-caracSec {
   background-color: var(--color-stats-background);
   margin: 2px;
   text-align: center;
@@ -4005,19 +4063,65 @@ a.nohlight {
   height: 23px;
 }
 .grid-caracSec-comp .caracSec .grid-caracSec-demon .val-caracSec label,
-.grid-caracSec-comp .caracSec .grid-caracSec-demon-unlock .val-caracSec label {
+.grid-caracSec-comp .caracSec .grid-caracSec-demon-edit .val-caracSec label {
   position: relative;
   top: 4px;
 }
 .grid-caracSec-comp .caracSec .grid-caracSec-demon .stat-appel,
-.grid-caracSec-comp .caracSec .grid-caracSec-demon-unlock .stat-appel {
+.grid-caracSec-comp .caracSec .grid-caracSec-demon-edit .stat-appel {
   font-size: 0.8em;
 }
 .grid-caracSec-comp .caracSec .grid-caracSec-demon .stat-appel.minus,
-.grid-caracSec-comp .caracSec .grid-caracSec-demon-unlock .stat-appel.minus {
+.grid-caracSec-comp .caracSec .grid-caracSec-demon-edit .stat-appel.minus {
   text-align: right;
 }
 .grid-caracSec-comp .caracSec .grid-caracSec-demon .stat-appel.plus,
-.grid-caracSec-comp .caracSec .grid-caracSec-demon-unlock .stat-appel.plus {
+.grid-caracSec-comp .caracSec .grid-caracSec-demon-edit .stat-appel.plus {
   text-align: left;
+}
+.grid-armes-nat {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.grid-armes-nat .bloc-arme-nat {
+  border: solid 1px var(--color-box-border-dark);
+  border-radius: 5px;
+  margin: 2px;
+  padding: 2px;
+}
+.grid-armes-nat .bloc-arme-nat .icone {
+  font-size: 1.3em;
+  margin-left: 2px;
+}
+.grid-armes-nat .bloc-arme-nat .ligne-titre {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  background-color: var(--color-stats-background);
+}
+.grid-armes-nat .bloc-arme-nat .ligne-titre img {
+  flex: 0 0 24px;
+  border: none;
+  height: 24px;
+}
+.grid-armes-nat .bloc-arme-nat .ligne-titre .titre {
+  flex: 2;
+  font-family: "BarbedorMedium";
+  font-size: 1.3em;
+  margin-left: 2px;
+}
+.grid-armes-nat .bloc-arme-nat .ligne-stats-arme-nat {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  text-align: center;
+  align-items: center;
+  margin-bottom: 3px;
+}
+.grid-armes-nat .bloc-arme-nat .ligne-stats-arme-nat .full-row {
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+.grid-armes-nat .bloc-arme-nat .ligne-stats-arme-nat .edit {
+  display: flex;
+  flex-direction: row;
 }

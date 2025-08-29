@@ -212,12 +212,16 @@ export default class AgoneActor extends Actor {
             // Modificateurs de cercle des statistiques démoniaques
             data.caracSecondaires.densite.min = CONFIG.agone.statsDemon[data.cercle].densite;
             data.caracSecondaires.opacite.min = CONFIG.agone.statsDemon[data.cercle].opacite;
+            data.nivComp.base = CONFIG.agone.statsDemon[data.cercle].niveauComp;
 
             // Calcul des statistiques (taille, vol)
             data.caracSecondaires.tai.valeur = data.caracSecondaires.tai.min + data.caracSecondaires.tai.pc;
             data.caracSecondaires.vol.valeur = data.caracSecondaires.vol.min + data.caracSecondaires.vol.pc;
             data.caracSecondaires.densite.max = data.caracSecondaires.densite.min + data.caracSecondaires.densite.pc;
             data.caracSecondaires.opacite.valeur = data.caracSecondaires.opacite.min + data.caracSecondaires.opacite.pc;
+            if(data.caracSecondaires.densite.value > data.caracSecondaires.densite.max) {
+                data.caracSecondaires.densite.value = data.caracSecondaires.densite.max;
+            }
 
             // Calcul des caractéristiques secondaires du Démon
             data.caracSecondaires.mouvement.valeur = this.calcMvDemon(data.caracSecondaires.tai.valeur);
@@ -229,17 +233,31 @@ export default class AgoneActor extends Actor {
             data.caracSecondaires.bonusDommages = this.calcBonusDommages(data.aspects.corps.caracteristiques.force.valeur, data.caracSecondaires.tai.valeur);
         }
 
+        
+        // Nombre de famille dans lesquelles des points sont dépensées
+        let nbFamilleValorisee = 0;
+
         // Calcul des compétences
         for(let[keyFam, famille] of Object.entries(data.familleCompetences)) {
+            // Booleen qui indique si au moins une compétence est valorisée dans la famille
+            famille.famValorisee = false;
+
             for(let[keyComp, competence] of Object.entries(famille.competences)) {
+                if(competence.pc > 0 && !competence.speDemon) {famille.famValorisee = true; }
                 competence.rang = competence.pc + competence.avgDef + competence.exp;
+
                 if(competence.domaine == true) {
                     for(let[keyDom, domaine] of Object.entries(competence.domaines)) {
+                        if(domaine.pc > 0 && !competence.speDemon) {famille.famValorisee = true; }
                         domaine.rang = domaine.pc + domaine.avgDef + domaine.exp;
                     }
                 }
             } 
+
+            if(famille.famValorisee) { nbFamilleValorisee += 1; }
         } 
+
+        data.nbFamilleValorisee = nbFamilleValorisee;
 
         /* -------------------------------------------------------------
         ---- Récupération des données de traduction des compétences ----

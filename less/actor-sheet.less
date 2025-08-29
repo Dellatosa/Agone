@@ -845,7 +845,7 @@ a.nohlight {
         .conjuration {
             .grid-conjuration-edit {
                 display: grid;
-                grid-template-columns: 1fr 1.5em 3.5em 1.5em;
+                grid-template-columns: 1fr 1.1em 3.5em 1.1em;
                 align-items: center;
                 margin: 3px 1px;
                 padding: 3px;
@@ -888,7 +888,7 @@ a.nohlight {
                     text-align: right;
                 }
 
-                .tenebre-crea {
+                .tenebre-crea.plus {
                     text-align: left;
                 }
             }
@@ -1058,6 +1058,53 @@ a.nohlight {
                     }       
                 }
             }
+
+            .grid-peinesBienfaits-edit {
+                display: grid;
+                grid-template-columns: 1fr 1.1em 3.5em 1.1em;
+                align-items: center;
+                margin: 3px 1px;
+                padding: 3px;
+                border: solid 1px var(--color-box-border-dark);
+                border-radius: 5px;
+
+                .lib {
+                    grid-column-start: 1;
+                    grid-column-end: 3;
+                }
+
+                .lib-all {
+                    grid-column-start: 1;
+                    grid-column-end: 5;
+                    text-align: center;
+                }
+
+                .val {
+                    background-color: var(--color-stats-background);
+                    margin: 2px 5px;
+                    text-align: center;
+                    align-items: center;
+                    border-radius: 3px;
+                    height: 26px;
+
+                    label {
+                        position: relative;
+                        top: 5px;
+                    }       
+                }
+
+                .tenebre-crea, .perfidie-crea {
+                    font-size: 0.8em;
+                }
+
+                .tenebre-crea.minus, .perfidie-crea.minus {
+                    text-align: right;
+                }
+
+                .tenebre-crea.plus, .perfidie-crea.plus {
+                    text-align: left;
+                }
+            }
         }
     }
 
@@ -1070,7 +1117,7 @@ a.nohlight {
     }
 }
 
-.recap {
+/*.recap {
     display: flex;
     flex-direction: row;
     padding: 3px; 
@@ -1096,7 +1143,7 @@ a.nohlight {
     button {
         flex: 0 0 135px;
     }
-}
+}*/
 
 .grid-armes, .grid-armures, .grid-danseurs, .grid-sorts , .grid-oeuvres {
     display: grid;

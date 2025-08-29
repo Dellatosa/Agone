@@ -1,0 +1,30 @@
+<div class="grid-data-att">
+    <div class="data-combat">
+        <div class="sante">
+            <div class="grid-sante">
+                <div class="data-combat-titre lib-all">{{localize "agone.actors.etatSante"}}</div>
+                <label>{{localize "agone.actors.densite"}}</label>
+                <div class="edit"><input name="system.caracSecondaires.densite.value" type="number" value="{{data.system.caracSecondaires.densite.value}}" placeholder="0" max="{{data.system.caracSecondaires.densite.max}}"/></div>
+                <div class="sep"> / </div>
+                <div class="val"><label>{{data.system.caracSecondaires.densite.max}}</label></div>
+                <label class="lib">{{localize "agone.actors.opacite"}}</label>
+                <div class="val"><label>{{data.system.caracSecondaires.opacite.valeur}}</label></div>
+            </div>
+        </div>
+        <div class="init-basique">
+            <div class="data-combat-titre">{{localize "agone.actors.initiative"}}</div>
+            <button class="initiative"><i class="fa-duotone fa-solid fa-bolt"></i> {{localize "agone.actors.initiativeNonArme"}}</button>
+        </div>
+        <div class="actions-def"> 
+            <div class="data-combat-titre">{{localize "agone.actors.actionsDefense"}}</div>
+            <button class="esquive"><i class="fa-duotone fa-solid fa-person-running-fast"></i> {{localize "agone.actors.esquive"}}</button>
+            <button class="defenseNat"><i class="fa-duotone fa-solid fa-shield-slash"></i> {{localize "agone.actors.defenseNat"}}</button>
+            <button class="resistMagieNat"><i class="fa-sharp-duotone fa-solid fa-person-falling-burst"></i> {{localize "agone.actors.resistMagie"}}</button>
+        </div>
+    </div>
+    <div class="attaque">
+        {{> "systems/agone/templates/partials/actors/bloc-armes-nat-demon.hbs" }}
+        {{> "systems/agone/templates/partials/actors/bloc-liste-armes-personnage-v2.hbs"}}
+        {{> "systems/agone/templates/partials/actors/bloc-liste-armures-personnage-v2.hbs"}}
+    </div>
+</div>
