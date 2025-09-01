@@ -26,6 +26,9 @@
         <a class="item" data-tab="magie">{{localize "agone.actors.magie"}}</a>
         <a class="item" data-tab="equipement">{{localize "agone.actors.equipement"}}</a>
         <a class="item" data-tab="historique">{{localize "agone.actors.historique"}}</a>
+        {{#if (and typePersonnage estEG)}}
+            <a class="item" data-tab="eg">{{localize "agone.actors.EG"}}</a>
+        {{/if}}
     </nav>
     <section class="sheet-body">
         <div class="tab competences-content" data-group="principal" data-tab="competences">
@@ -42,6 +45,14 @@
         </div>
         <div class="tab historique-content" data-group="principal" data-tab="historique">
             {{> "systems/agone/templates/partials/actors/bloc-historique-personnage.hbs"}}
+        </div>
+        <div class="tab eg-content" data-group="principal" data-tab="eg">
+            <div>TODO - ONGLET EMINENCE GRISE</div>
+            <div>Expérience</div>
+            <div>Ténèbre et Perfidie</div>
+            <div>Notes de l'EG</div>
+            <div>Mode 'Modification libre' uniquement pour EG (pas de cout de crea ou exp)</div>
+            <div>Switcher du mode points de création au mode dépense d'expérience</div>
         </div>
     </section>
     <!-- <footer class="sheet-footer">    

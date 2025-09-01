@@ -34,8 +34,10 @@
     "verified": "11.315",
     "maximum": "13"
   },
-  "gridDistance": 1.5,
-  "gridUnits": "m",
+  "grid": {
+    "distance": 1.5,
+    "units": "m"
+  },
   "initiative": "1d10 + @aspects.corps.caracteristiques.agilite.valeur + @aspects.corps.caracteristiques.perception.valeur + @aspects.corps.bonus.valeur",
   "primaryTokenAttribute": "caracSecondaires.pdv",
   "url": "https://github.com/Dellatosa/Agone",

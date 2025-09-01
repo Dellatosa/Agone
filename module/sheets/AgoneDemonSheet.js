@@ -169,8 +169,11 @@ export default class AgoneDemonSheet extends foundry.appv1.sheets.ActorSheet {
             //Suppression d'un item
             html.find('.supprimer-item').click(this._onSupprimerItem.bind(this));
 
-            // item-roll - jet de dés depuis un item
+            // item-roll - carte de chat depuis un item
             html.find('.item-roll').click(this._onItemRoll.bind(this));
+
+            // Carte de chat pour arme naturelle de démon
+            html.find('.arme-nat-chat').click(this._onArmeNatChat.bind(this));
 
             // Initiative
             html.find('button.initiative').click(this._onInitiativeRoll.bind(this));
@@ -469,6 +472,30 @@ export default class AgoneDemonSheet extends foundry.appv1.sheets.ActorSheet {
         let item = this.actor.items.get(itemId);
 
         item.roll();
+    }
+
+    async _onArmeNatChat(event) {
+        event.preventDefault();
+        const element = event.currentTarget;
+
+        const armeNat = this.actor.system.armesNaturelles[element.dataset.arme];
+
+        let chatData = {
+            user: game.user.id,
+            speaker: ChatMessage.getSpeaker({ actor: this.actor })
+        };
+
+        let cardData = {
+            ...armeNat,
+            name: game.i18n.localize(`agone.actors.${element.dataset.arme}`),
+            img: `systems/agone/images/actor/demon/${element.dataset.arme}.png`,
+            isToken: this.actor.isToken ? 1 : 0,
+            owner: this.actor.isToken ? this.actor.token.id : this.actor.id,
+        };
+
+        chatData.content = await foundry.applications.handlebars.renderTemplate("systems/agone/templates/partials/chat/carte-arme-nat.hbs", cardData);
+
+        return ChatMessage.create(chatData);
     }
 
     // roll-comp - jet de compétence

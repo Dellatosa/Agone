@@ -1,0 +1,23 @@
+<div class="carte arme-nat" data-is-token="{{isToken}}" data-owner-id="{{owner}}">
+    <div class="titre">
+        <img src="{{img}}" title="{{name}}" height="32" width="32"/>
+        <div class="titre-nom">{{name}}</div>
+    </div>
+    <div class="grid-4">
+        <label class="entete">{{localize "agone.items.modifInit"}}</label>
+        <label class="entete">{{localize "agone.items.modifAttaque"}}</label>
+        <label class="entete">{{localize "agone.items.modifParade"}}</label>
+        <label class="entete">{{localize "agone.items.modifDommages"}}</label>
+        <div>{{modifInit}}</div>
+        <div>{{modifAttaque}}</div>
+        <div>{{modifParade}}</div>
+        <div>{{modifDommages}}</div>
+    </div>
+    <div class="boutons-carte">
+        <div class="ligne-btn-3">
+            <button class="initiative"><i class="fa-duotone fa-solid fa-bolt"></i> {{localize "agone.chat.initiative"}}</button>
+            <button class="attaque"><i class="fa-duotone fa-sword"></i> {{localize "agone.chat.attaque"}}</button>
+            <button class="parade"><i class="fa-duotone fa-shield-halved"></i> {{localize "agone.chat.parade"}}</button>
+        </div>        
+    </div>
+</div>

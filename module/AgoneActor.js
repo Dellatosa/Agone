@@ -825,9 +825,8 @@ export default class AgoneActor extends Actor {
     }
 
     reposDanseurs() {
-
         this.getDanseurs().forEach(danseur => {
-            danseur.update({"data.endurance.value": danseur.system.endurance.max });
+            danseur.update({"system.endurance.value": danseur.system.endurance.max });
         });
     }
 

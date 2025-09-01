@@ -302,7 +302,8 @@
             "modeLibre": "Mode libre",
             "pointsAppel": "Points d'appel",
             "nivCompUtilises": "Niveaux de comp. utilisés",
-            "armesNat": "Armes naturelles"
+            "armesNat": "Armes naturelles",
+            "EG": "EG"
         },
         "items":{
             "description": "Description",
@@ -506,8 +507,6 @@
             "blessureGrave": "Blessure Grave !",
             "encaisseDommages": "Encaisse {dom} points de dommages",
             "aucunDommages" : "N'encaisse aucun dommages",
-            "regenEndDanseurs": "Régénérer l'endurance des Danseurs",
-            "regenEndDanseursMsg": "Tous vos Danseurs vont retrouver leur niveau d'endurance maximum.<br>Confirmez-vous cette action ?",
             "artImproviseMsg": "De quel art relève cette improvisation ?",
             "combatSansCompArme": "Arme non maitrisée",
             "interpretationCritique": "Interprétation de l'échec critique",
@@ -686,7 +685,9 @@
         },
         "dialog": {
             "titreReinitStats": "Réinitialisation des statistiques ?",
-            "messageReinitStats": "Confirmez-vous la réinitialisation des caractéristiques et statistiques de cette fiche ?"
+            "messageReinitStats": "Confirmez-vous la réinitialisation des caractéristiques et statistiques de cette fiche ?",
+            "regenEndDanseurs": "Régénérer l'endurance des Danseurs",
+            "regenEndDanseursMsg": "Tous vos Danseurs vont retrouver leur niveau d'endurance maximum.<br>Confirmez-vous cette action ?"
         }
     },
     "parametres": {

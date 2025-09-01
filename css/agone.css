@@ -1050,6 +1050,19 @@ a.nohlight {
   position: relative;
   top: 5px;
 }
+.grid-data-histo .data-histo .experience .grid-experience .edit,
+.grid-data-histo-mini .data-histo .experience .grid-experience .edit,
+.grid-data-histo .data-histo .peinesBienfaits .grid-experience .edit,
+.grid-data-histo-mini .data-histo .peinesBienfaits .grid-experience .edit,
+.grid-data-histo .data-histo .experience .grid-peinesBienfaits .edit,
+.grid-data-histo-mini .data-histo .experience .grid-peinesBienfaits .edit,
+.grid-data-histo .data-histo .peinesBienfaits .grid-peinesBienfaits .edit,
+.grid-data-histo-mini .data-histo .peinesBienfaits .grid-peinesBienfaits .edit {
+  flex: 0 1 3.5em;
+  margin: 2px 5px;
+  text-align: center;
+  height: 26px;
+}
 .grid-data-histo .data-histo .experience .grid-peinesBienfaits-edit,
 .grid-data-histo-mini .data-histo .experience .grid-peinesBienfaits-edit,
 .grid-data-histo .data-histo .peinesBienfaits .grid-peinesBienfaits-edit,
@@ -3864,6 +3877,7 @@ a.nohlight {
 .chat-message .carte .boutons-carte button {
   margin: 1px;
   width: 90%;
+  gap: 0.15rem;
   justify-self: center;
   font-family: "BarbedorMedium";
 }
@@ -3962,6 +3976,15 @@ a.nohlight {
   --font-lorgol-28px: 2em "Lorgol";
   --font-lorgol-24px: 1.75em "Lorgol";
   --font-lorgol-21px: 1.5em "Lorgol";
+}
+#pause img {
+  opacity: 0.8;
+}
+#pause figcaption {
+  font: var(--font-lorgol-35px);
+}
+.paused img {
+  content: url("../images/ui/danseur-pause.png");
 }
 .agone.sheet.demon form {
   display: flex;

@@ -8,10 +8,17 @@
         <div class="experience">            
             <div class="grid-experience">
                 <div class="data-experience-titre lib-all">{{localize "agone.actors.experience"}}</div>
-                <label>{{localize "agone.actors.experienceDisponible"}}</label>
-                <div class="val"><label>{{data.system.experience.disponible}}</label></div>
-                <label>{{localize "agone.actors.experienceTotale"}}</label>
-                <div class="val"><label>{{data.system.experience.totale}}</label></div>
+                {{#if (and estEG unlocked)}}
+                    <label>{{localize "agone.actors.experienceDisponible"}}</label>
+                    <div class="edit"><input name="system.experience.disponible" type="number" value="{{data.system.experience.disponible}}" placeholder="0" max="{{data.system.experience.totale}}"/></div>
+                    <label>{{localize "agone.actors.experienceTotale"}}</label>
+                    <div class="edit"><input name="system.experience.totale" type="number" value="{{data.system.experience.totale}}" placeholder="0"/></div>
+                {{else}}
+                    <label>{{localize "agone.actors.experienceDisponible"}}</label>
+                    <div class="val"><label>{{data.system.experience.disponible}}</label></div>
+                    <label>{{localize "agone.actors.experienceTotale"}}</label>
+                    <div class="val"><label>{{data.system.experience.totale}}</label></div>
+                {{/if}}
             </div>
         </div>
         {{/if}}
@@ -21,11 +28,15 @@
                 <div class="grid-peinesBienfaits-edit">
                     <div class="data-peinesBienfaits-titre lib-all">{{localize "agone.actors.corruption"}}</div>
                     <label>{{localize "agone.actors.tenebre"}}</label>
-                    <div class="tenebre-crea minus">
-                        <a class="mod-tenebre-crea" title="{{localize 'agone.tooltip.dimTenebre'}}" data-action="minus">
-                            <i class="fa-solid fa-circle-minus"></i>
-                        </a>
-                    </div>
+                    {{#if estEG}}
+                        <div class="tenebre-crea minus">
+                            <a class="mod-tenebre-crea" title="{{localize 'agone.tooltip.dimTenebre'}}" data-action="minus">
+                                <i class="fa-solid fa-circle-minus"></i>
+                            </a>
+                        </div>
+                    {{else}}
+                        <div></div>
+                    {{/if}}
                     <div class="val"><label>{{data.system.caracSecondaires.tenebre.valeur}}</label></div>
                     <div class="tenebre-crea plus">
                         <a class="mod-tenebre-crea" title="{{localize 'agone.tooltip.augTenebre'}}" data-action="plus">
@@ -33,11 +44,15 @@
                         </a>
                     </div>
                     <label>{{localize "agone.actors.perfidie"}}</label>
-                    <div class="perfidie-crea minus">
-                        <a class="mod-perfidie-crea" title="{{localize 'agone.tooltip.dimPerfidie'}}" data-action="minus">
-                            <i class="fa-solid fa-circle-minus"></i>
-                        </a>
-                    </div>
+                    {{#if estEG}}
+                        <div class="perfidie-crea minus">
+                            <a class="mod-perfidie-crea" title="{{localize 'agone.tooltip.dimPerfidie'}}" data-action="minus">
+                                <i class="fa-solid fa-circle-minus"></i>
+                            </a>
+                        </div>
+                    {{else}}
+                        <div></div>
+                    {{/if}}    
                     <div class="val"><label>{{data.system.caracSecondaires.perfidie.valeur}}</label></div>
                     <div class="perfidie-crea plus">
                         <a class="mod-perfidie-crea" title="{{localize 'agone.tooltip.augPerfidie'}}" data-action="plus">

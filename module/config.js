@@ -858,7 +858,7 @@ agone.itemDefImage = {
     BotteSecrete: "icons/svg/combat.svg",
     Bienfait: "icons/svg/sun.svg",
     Connivence: "icons/svg/mage-shield.svg",
-    Danseur: "icons/svg/cowled.svg",
+    Danseur: "systems/agone/images/item/danseur.png",
     Defaut: "icons/svg/downgrade.svg",
     Ecole: "icons/svg/city.svg",
     Equipement: "icons/svg/item-bag.svg",

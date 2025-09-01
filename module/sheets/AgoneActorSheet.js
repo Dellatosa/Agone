@@ -104,6 +104,9 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
             } 
         }
 
+        // l'utilisateur actif est l'EG
+        data.estEG = game.user.isGM;
+
         // Etat du verrou sur la feuille
         data.unlocked = this.actor.isUnlocked;
 
@@ -1165,15 +1168,16 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
     }
 
     // Regeneration de l'endurance des Danseurs
-    _onReposDanseurs(event) {
+    async _onReposDanseurs(event) {
         event.preventDefault();
 
-        let dlg = Dialog.confirm({
-            title: game.i18n.localize("agone.chat.regenEndDanseurs"),
-            content: game.i18n.localize("agone.chat.regenEndDanseursMsg"),
-            yes: () => this.actor.reposDanseurs(),
-            //no: () =>, On ne fait rien sur le 'Non'
-            defaultYes: true
+        const repos = await foundry.applications.api.DialogV2.confirm({
+            window: { title: game.i18n.localize("agone.dialog.regenEndDanseurs") },
+            content: `<p>${game.i18n.localize("agone.dialog.regenEndDanseursMsg")}</p>`
         });
+
+        if(repos) {
+            this.actor.reposDanseurs();
+        }
     }
 }
