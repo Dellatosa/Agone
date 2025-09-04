@@ -287,6 +287,22 @@ export default class AgoneActor extends Actor {
         if (this.getFlag(game.system.id, "SheetUtiliseAppel")) return true;
         return false;
     }
+
+    get modeEditionLibre() {
+        if (this.getFlag(game.system.id, "SheetModeEditionLibre")) return true;
+        return false;
+    }
+
+    get typeRessEdition() {
+        const flagdata = this.getFlag(game.system.id, "SheetTypeRessEdition");
+        if (flagdata) {
+            return flagdata;
+        }
+        else {
+            return "modePc";
+        }
+        
+    }
     
     calcBonusDommages(force, tai) {
         let total = force + tai;

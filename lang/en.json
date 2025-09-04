@@ -36,7 +36,9 @@
             "annuler": "Cancel",
             "aucun": "None",
             "editerComp": "Edit skills",
-            "reserve": "Pool"
+            "reserve": "Pool",
+            "actif": "On",
+            "inactif": "off"
         },
         "actors": {
             "biographie": "Biography",
@@ -128,6 +130,7 @@
             "creativite": "Creativity",
             "CRE": "CRE",
             "pdv": "Hit points",
+            "pdvMax": "Hit points (Max)",
             "tai": "SIZ",
             "mouvement": "Movement",
             "mouvementAbbr": "Mov.",
@@ -303,7 +306,13 @@
             "pointsAppel": "Call points",
             "nivCompUtilises": "Used skill levels",
             "armesNat": "Natural weapons",
-            "EG": "EG"
+            "EG": "EG",
+            "notesEG": "EG notes",
+            "optionsModeEdit": "Edit mode options",
+            "typeRessource": "Resource type",
+            "modeLibreEG": "Free mode (EG)",
+            "modePointsCrea": "Creation points",
+            "modeExperience": "Experience points"
         },
         "items":{
             "description": "Description",
@@ -681,7 +690,9 @@
             "augPerfidie": "NO TRAD - Augmenter la Perfidie",
             "dimPerfidie": "NO TRAD - Diminuer la Perfidie",
             "augBlessGrave": "NO TRAD - Augmenter le nombre de blessures graves",
-            "dimBlessGrave": "NO TRAD - Diminuer le nombre de blessures graves"
+            "dimBlessGrave": "NO TRAD - Diminuer le nombre de blessures graves",
+            "infoEditionTypeRess": "NO TRAD - Choisissez si le mode édition de la feuille de personnage permet de répartir les points de création ou les points d'expérience",
+            "infoEditionModeLibre": "NO TRAD - Le mode libre permet à l'EG de modifier les caractéristiques et compétences sans dépense de points de création ou d'expérience"
         },
         "dialog": {
             "titreReinitStats": "NO TRAD - Réinitialisation des statistiques ?",

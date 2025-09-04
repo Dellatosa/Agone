@@ -136,8 +136,9 @@ async function preloadHandlebarsTemplates() {
         // Jet de dés
         "systems/agone/templates/partials/dice/jet-resultat.hbs",
         "systems/agone/templates/partials/dice/jet-resultat-dommages.hbs",
-        "systems/agone/templates/partials/dice/jet-dices-details.hbs"//,
-        //"templates/dice/roll.html"
+        "systems/agone/templates/partials/dice/jet-dices-details.hbs",
+        // Onglet EG
+        "systems/agone/templates/partials/actors/bloc-eg-personnage.hbs"
     ];
 
     return foundry.applications.handlebars.loadTemplates(templatePaths);

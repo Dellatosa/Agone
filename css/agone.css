@@ -192,6 +192,7 @@ select.auto-size {
   overflow-y: scroll;
   overflow-x: hidden;
   scrollbar-width: thin;
+  scrollbar-color: var(--color-scroolbar) rgba(255, 255, 255, 0);
 }
 .agone.sheet.actor .competences-content,
 .agone.sheet.actor .combat-content,
@@ -3525,187 +3526,291 @@ a.nohlight {
   display: grid;
   grid-template-columns: 24px 1fr 70px 70px 20px 20px;
 }
-.liste-armes,
-.liste-armures,
-.liste-danseurs,
-.liste-sorts,
-.liste-oeuvres,
-.liste-connivences,
-.liste-avantages,
-.liste-defauts,
-.liste-manoeuvres,
-.liste-pouvoirs-flamme,
-.liste-pouvoirs-saisonnin,
-.liste-peines,
-.liste-bienfaits {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 0.5rem;
+.eg-content {
+  font-family: "BarbedorMedium";
 }
-.ligne-arme {
+.eg-content .titre-rub {
+  font: var(--font-lorgol-28px);
+  text-align: center;
+}
+.eg-content .grid-options-eg {
   display: grid;
-  grid-template-columns: 2.5em 2fr 2fr 1.5fr repeat(5, 1fr) 2fr 2fr repeat(3, 1fr) 2em 2em;
-  padding: 3px;
+  grid-template-columns: 1fr 1.5fr;
+}
+.eg-content .grid-options-eg .titre-option {
   text-align: center;
+  font: var(--font-lorgol-24px);
+  margin-bottom: 2px;
 }
-.ligne-arme > * {
-  padding: 3px;
-}
-.ligne-arme img {
-  border: none;
-}
-.ligne-armure {
+.eg-content .grid-options-eg .grid-mode-edition {
   display: grid;
-  grid-template-columns: 2.5em 1fr 2fr repeat(4, 1fr) 2em 2em;
+  grid-template-columns: 1fr 1.5em 1.1fr 1.5em;
+  align-items: center;
+  margin: 3px 1px;
   padding: 3px;
+  border: solid 1px var(--color-box-border-dark);
+  border-radius: 5px;
+  grid-auto-rows: 30px;
+}
+.eg-content .grid-options-eg .grid-mode-edition .lib-all {
+  grid-column-start: 1;
+  grid-column-end: 5;
+}
+.eg-content .grid-options-eg .grid-mode-edition .sel {
+  grid-column-start: 2;
+  grid-column-end: 4;
+}
+.eg-content .grid-options-eg .grid-mode-edition .check {
+  grid-column-start: 2;
   text-align: center;
 }
-.ligne-armure > * {
-  padding: 3px;
+.eg-content .grid-options-eg .grid-mode-edition .lib-check {
+  grid-column-start: 3;
 }
-.ligne-armure img {
-  border: none;
-}
-.ligne-armure .inline-chk {
+.eg-content .grid-options-eg .grid-mode-edition .info {
+  grid-column-start: 4;
   text-align: center;
 }
-.ligne-danseur {
+.eg-content .grid-options-eg .grid-statistiques {
   display: grid;
-  grid-template-columns: 2.5em 2fr repeat(7, 1fr) 2em 2em;
+  grid-template-columns: 1fr 15px 3.5em 15px 1fr 15px 3.5em 15px;
+  align-items: center;
+  margin: 3px 1px;
+  padding: 3px;
+  border: solid 1px var(--color-box-border-dark);
+  border-radius: 5px;
+}
+.eg-content .grid-options-eg .grid-statistiques .lib-all {
+  grid-column-start: 1;
+  grid-column-end: 9;
+}
+.eg-content .grid-options-eg .grid-statistiques .lib {
+  padding-left: 5px;
+}
+.eg-content .grid-options-eg .grid-statistiques .lib-g {
+  grid-column-start: 1;
+  grid-column-end: 3;
+  padding-left: 5px;
+}
+.eg-content .grid-options-eg .grid-statistiques .lib-d {
+  grid-column-start: 5;
+  grid-column-end: 7;
+  padding-left: 5px;
+}
+.eg-content .grid-options-eg .grid-statistiques .edit {
+  flex: 0 1 3.5em;
   padding: 3px;
   text-align: center;
 }
-.ligne-danseur > * {
-  padding: 3px;
-}
-.ligne-danseur img {
-  border: none;
-}
-.ligne-sort {
-  display: grid;
-  grid-template-columns: 2.5em 2fr 2fr repeat(4, 1fr) 2em 2em;
-  padding: 3px;
-  text-align: center;
-}
-.ligne-sort > * {
-  padding: 3px;
-}
-.ligne-sort img {
-  border: none;
-}
-.ligne-oeuvre {
-  display: grid;
-  grid-template-columns: 2.5em 2fr 2fr 2fr 2fr repeat(4, 1fr) 2em 2em;
-  padding: 3px;
-  text-align: center;
-}
-.ligne-oeuvre > * {
-  padding: 3px;
-}
-.ligne-oeuvre img {
-  border: none;
-}
-.ligne-connivence {
-  display: grid;
-  grid-template-columns: 2.5em repeat(4, 1fr) 2em 2em;
-  padding: 3px;
-  text-align: center;
-}
-.ligne-connivence > * {
-  padding: 3px;
-}
-.ligne-connivence img {
-  border: none;
-}
-.ligne-manoeuvre {
-  display: grid;
-  grid-template-columns: 2.5em 2fr repeat(4, 1fr) 2em 2em;
-  padding: 3px;
-  text-align: center;
-}
-.ligne-manoeuvre > * {
-  padding: 3px;
-}
-.ligne-manoeuvre img {
-  border: none;
-}
-.ligne-botteSecrete {
-  display: grid;
-  grid-template-columns: 2.5em 2fr 2fr 1fr 2em 2em;
-  padding: 3px;
-  text-align: center;
-}
-.ligne-botteSecrete > * {
-  padding: 3px;
-}
-.ligne-botteSecrete img {
-  border: none;
-}
-.ligne-avantage,
-.ligne-defaut,
-.ligne-peine {
-  display: grid;
-  grid-template-columns: 2.5em 1fr 1fr 0.5fr 3fr 2em 2em;
-  padding: 3px;
-  text-align: center;
-}
-.ligne-avantage > *,
-.ligne-defaut > *,
-.ligne-peine > * {
-  padding: 3px;
-}
-.ligne-avantage img,
-.ligne-defaut img,
-.ligne-peine img {
-  border: none;
-}
-.ligne-pouvoir-flamme,
-.ligne-pouvoir-saisonnin {
-  display: grid;
-  grid-template-columns: 2.5em 1.5fr 0.5fr 3fr 2em 2em;
-  padding: 3px;
-  text-align: center;
-}
-.ligne-pouvoir-flamme > *,
-.ligne-pouvoir-saisonnin > * {
-  padding: 3px;
-}
-.ligne-pouvoir-flamme img,
-.ligne-pouvoir-saisonnin img {
-  border: none;
-}
-.ligne-bienfait {
-  display: grid;
-  grid-template-columns: 2.5em 1fr 3fr 2em 2em;
-  padding: 3px;
-  text-align: center;
-}
-.ligne-bienfait > * {
-  padding: 3px;
-}
-.ligne-bienfait img {
-  border: none;
-}
-.ligne-arme.titre,
-.ligne-armure.titre,
-.ligne-danseur.titre,
-.ligne-sort.titre,
-.ligne-oeuvre.titre,
-.ligne-connivence.titre,
-.ligne-avantage.titre,
-.ligne-defaut.titre,
-.ligne-manoeuvre.titre,
-.ligne-botteSecrete.titre,
-.ligne-pouvoir-flamme.titre,
-.ligne-pouvoir-saisonnin.titre,
-.ligne-peine.titre,
-.ligne-bienfait.titre {
-  font-weight: bold;
-  text-align: center;
+.eg-content .grid-options-eg .grid-statistiques .val {
   background-color: var(--color-stats-background);
-  border-top: solid thin var(--color-box-border-dark);
-  padding: 3px;
+  margin: 2px 5px;
+  text-align: center;
+  align-items: center;
+  border-radius: 3px;
+  height: 26px;
 }
+.eg-content .grid-options-eg .grid-statistiques .val label {
+  position: relative;
+  top: 5px;
+}
+.eg-content .grid-options-eg .grid-statistiques .minus {
+  text-align: right;
+}
+.eg-content .grid-options-eg .grid-statistiques .plus {
+  text-align: left;
+}
+.eg-content .notes-eg .editor {
+  height: 170px;
+  background-color: var(--color-stats-background);
+}
+/*
+.liste-armes, .liste-armures, .liste-danseurs, .liste-sorts, .liste-oeuvres, .liste-connivences, .liste-avantages, .liste-defauts, .liste-manoeuvres, 
+.liste-pouvoirs-flamme, .liste-pouvoirs-saisonnin, .liste-peines, .liste-bienfaits {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 0.5rem;
+}
+
+.ligne-arme {
+    display: grid;
+    grid-template-columns: 2.5em 2fr 2fr 1.5fr repeat(5, 1fr) 2fr 2fr repeat(3, 1fr) 2em 2em;
+    padding: 3px;
+    text-align: center;
+
+    > * {
+        padding: 3px;
+    }
+
+    img {
+        border: none;
+    }
+}
+
+.ligne-armure {
+    display: grid;
+    grid-template-columns: 2.5em 1fr 2fr repeat(4, 1fr) 2em 2em;
+    padding: 3px;
+    text-align: center;
+
+    > * {
+        padding: 3px;
+    }
+
+    img {
+        border: none;
+    }
+
+    .inline-chk {
+        text-align: center;
+    }
+
+}
+
+.ligne-danseur {
+    display: grid;
+    grid-template-columns: 2.5em 2fr repeat(7, 1fr) 2em 2em;
+    padding: 3px;
+    text-align: center;
+
+    > * {
+        padding: 3px;
+    }
+
+    img {
+        border: none;
+    }
+}
+
+.ligne-sort {
+    display: grid;
+    grid-template-columns: 2.5em 2fr 2fr repeat(4, 1fr) 2em 2em;
+    padding: 3px;
+    text-align: center;
+
+    > * {
+        padding: 3px;
+    }
+ 
+    img {
+        border: none;
+    }
+}
+
+.ligne-oeuvre {
+    display: grid;
+    grid-template-columns: 2.5em 2fr 2fr 2fr 2fr repeat(4, 1fr) 2em 2em;
+    padding: 3px;
+    text-align: center;
+
+    > * {
+        padding: 3px;
+    }
+
+    img {
+        border: none;
+    }
+}
+
+.ligne-connivence {
+    display: grid;
+    grid-template-columns: 2.5em repeat(4, 1fr) 2em 2em;
+    padding: 3px;
+    text-align: center;
+
+    > * {
+        padding: 3px;
+    }
+
+    img {
+        border: none;
+    }
+}
+
+.ligne-manoeuvre {
+    display: grid;
+    grid-template-columns: 2.5em 2fr repeat(4, 1fr) 2em 2em;
+    padding: 3px;
+    text-align: center;
+
+    > * {
+        padding: 3px;
+    }
+
+    img {
+        border: none;
+    }
+}
+
+.ligne-botteSecrete {
+    display: grid;
+    grid-template-columns: 2.5em 2fr 2fr 1fr 2em 2em;
+    padding: 3px;
+    text-align: center;
+
+    > * {
+        padding: 3px;
+    }
+
+    img {
+        border: none;
+    }
+}
+
+.ligne-avantage, .ligne-defaut, .ligne-peine {
+    display: grid;
+    grid-template-columns: 2.5em 1fr 1fr 0.5fr 3fr 2em 2em;
+    padding: 3px;
+    text-align: center;
+
+    > * {
+        padding: 3px;
+    }
+
+    img {
+        border: none;
+    }
+}
+
+.ligne-pouvoir-flamme, .ligne-pouvoir-saisonnin {
+    display: grid;
+    grid-template-columns: 2.5em 1.5fr 0.5fr 3fr 2em 2em;
+    padding: 3px;
+    text-align: center;
+
+    > * {
+        padding: 3px;
+    }
+
+    img {
+        border: none;
+    }
+}
+
+.ligne-bienfait {
+    display: grid;
+    grid-template-columns: 2.5em 1fr 3fr 2em 2em;
+    padding: 3px;
+    text-align: center;
+
+    > * {
+        padding: 3px;
+    }
+
+    img {
+        border: none;
+    }
+}
+
+.ligne-arme.titre, .ligne-armure.titre, .ligne-danseur.titre, .ligne-sort.titre, .ligne-oeuvre.titre, .ligne-connivence.titre, .ligne-avantage.titre, .ligne-defaut.titre, 
+.ligne-manoeuvre.titre, .ligne-botteSecrete.titre, .ligne-pouvoir-flamme.titre, .ligne-pouvoir-saisonnin.titre, .ligne-peine.titre, .ligne-bienfait.titre {
+    font-weight: bold;
+    text-align: center;
+    background-color: var(--color-stats-background);
+    border-top: solid thin var(--color-box-border-dark);
+    padding: 3px;
+}
+    */
 .txt-small {
   font-size: smaller;
 }

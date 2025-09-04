@@ -1,0 +1,61 @@
+<div class="grid-options-eg">
+    <div class="mode-edition">
+        <div class="grid-mode-edition">
+            <div class="titre-option lib-all">{{localize "agone.actors.optionsModeEdit"}}</div>
+            <div>{{localize "agone.actors.typeRessource"}}</div>
+            <select class="sel edit-ress" name="typeRessEdition">
+                {{selectOptions config.modeEdition selected=typeRessEdition localize=true}}
+            </select>
+            <div class="info"><i class="fa-solid fa-circle-info" title="{{localize 'agone.tooltip.infoEditionTypeRess'}}"></i></div>
+            <div>{{localize "agone.actors.modeLibreEG"}}</div>
+            <div class="check"><a class="mode-edit-libre">{{#if modeEditionLibre }}<i class="fa-solid fa-circle-check"></i>{{else}}<i class="fa-light fa-circle"></i>{{/if}}</a></div>
+            <div class="lib-check">{{#if modeEditionLibre }}{{localize "agone.common.actif"}}{{else}}{{localize "agone.common.inactif"}}{{/if}}</div>
+            <div class="info"><i class="fa-solid fa-circle-info" title="{{localize 'agone.tooltip.infoEditionModeLibre'}}"></i></div>
+        </div>    
+    </div>
+    <div class="stats">
+        <div class="grid-statistiques">
+            <div class="titre-option lib-all">Statistiques</div>
+            <label class="lib-g">{{localize "agone.actors.pdv"}}</label>
+            <div class="edit"><input name="system.caracSecondaires.pdv.value" type="number" value="{{data.system.caracSecondaires.pdv.value}}" placeholder="0" max="{{data.system.caracSecondaires.pdv.max}}"/></div>
+            <div></div>
+            <label class="lib-d">{{localize "agone.actors.pdvMax"}}</label>
+            <div class="edit"><input name="system.caracSecondaires.pdv.value" type="number" value="{{data.system.caracSecondaires.pdv.max}}" placeholder="0"/></div>
+            <div></div>
+            <label class="lib">{{localize "agone.actors.tenebre"}}</label>
+            <div class="tenebre-crea minus">
+                <a class="mod-tenebre-crea" title="{{localize 'agone.tooltip.dimTenebre'}}" data-action="minus">
+                    <i class="fa-solid fa-circle-minus"></i>
+                </a>
+            </div>
+            <div class="val"><label>{{data.system.caracSecondaires.tenebre.valeur}}</label></div>
+            <div class="tenebre-crea plus">
+                <a class="mod-tenebre-crea" title="{{localize 'agone.tooltip.augTenebre'}}" data-action="plus">
+                    <i class="fa-solid fa-circle-plus"></i>
+                </a>
+            </div>
+            <label class="lib">{{localize "agone.actors.perfidie"}}</label>
+            <div class="perfidie-crea minus">
+                <a class="mod-perfidie-crea" title="{{localize 'agone.tooltip.dimPerfidie'}}" data-action="minus">
+                    <i class="fa-solid fa-circle-minus"></i>
+                </a>
+            </div> 
+            <div class="val"><label>{{data.system.caracSecondaires.perfidie.valeur}}</label></div>
+            <div class="perfidie-crea plus">
+                <a class="mod-perfidie-crea" title="{{localize 'agone.tooltip.augPerfidie'}}" data-action="plus">
+                    <i class="fa-solid fa-circle-plus"></i>
+                </a>
+            </div>
+            <label class="lib-g">{{localize "agone.actors.experienceDisponible"}}</label>
+            <div class="edit"><input name="system.experience.disponible" type="number" value="{{data.system.experience.disponible}}" placeholder="0" max="{{data.system.experience.totale}}"/></div>
+            <div></div>        
+            <label class="lib-d">{{localize "agone.actors.experienceTotale"}}</label>
+            <div class="edit"><input name="system.experience.totale" type="number" value="{{data.system.experience.totale}}" placeholder="0"/></div>
+            <div></div>
+        </div>
+    </div>
+</div>
+<div class="notes-eg">
+    <div class="titre-rub">{{localize "agone.actors.notesEG"}}</div>
+    {{editor data.system.notesEG target="system.notesEG" engine="prosemirror" button=true editable=true}}
+</div>

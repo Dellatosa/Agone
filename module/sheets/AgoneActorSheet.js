@@ -115,6 +115,12 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
 
         // Onglet historique sélectionné
         data.tabHistoActif = this.actor.getFlag(game.system.id, "TabHistoActif");
+
+        // Mode edition libre
+        data.modeEditionLibre = this.actor.modeEditionLibre;
+
+        // Type de ressource mode edition
+        data.typeRessEdition = this.actor.typeRessEdition;
         
         // Affichage du bouton pour le jet de Vieillesse
         if(game.settings.get("agone", "gestionJetVieillesse") && actorData.peuple != "feeNoire") {
@@ -332,6 +338,12 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
             // Boutons de l'onglet Conjuration
             // Conjurer un démon
             html.find('button.conjurer').click(this._onConjurerDemon.bind(this));
+
+            // Mode édition libre (pour l'EG seulement)
+            html.find('.mode-edit-libre').click(this._onSheetChangeModeEditionLibre.bind(this));
+
+            // Modifier le type de ressource du mode édition
+            html.find('.edit-ress').change(this._onEditerRessourceEdition.bind(this));
         }
     }
 
@@ -365,6 +377,15 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
                 await this.actor.setFlag(game.system.id, "TabHistoActif", tab.dataset.tab);
             }
         }
+    }
+
+    async _onSheetChangeModeEditionLibre(event) {
+        event.preventDefault();
+        
+        let flagData = await this.actor.getFlag(game.system.id, "SheetModeEditionLibre");
+        if (flagData) await this.actor.unsetFlag(game.system.id, "SheetModeEditionLibre");
+        else await this.actor.setFlag(game.system.id, "SheetModeEditionLibre", "SheetModeEditionLibre");
+        this.actor.sheet.render(true);
     }
 
     // Modifier le peuple
@@ -477,6 +498,12 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
                 }
             }
         }
+    }
+
+    async _onEditerRessourceEdition(event) {
+        event.preventDefault();
+
+        this.actor.setFlag(game.system.id, "SheetTypeRessEdition", event.target.value);
     }
 
     // Modifier les aspects - Damné uniquement

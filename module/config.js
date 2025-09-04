@@ -1217,6 +1217,11 @@ agone.statsDemon = {
     }
 }
 
+agone.modeEdition = {
+    modePc: "agone.actors.modePointsCrea",
+    modeExp: "agone.actors.modeExperience"
+}
+
 agone.symboles = {
     accord: "fa-duotone fa-music",
     cyse: "fa-duotone fa-landmark",
