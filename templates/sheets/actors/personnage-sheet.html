@@ -11,7 +11,11 @@
         <div class="aspects-and-caracs">    
             {{#if unlocked}}
                 {{#if typePersonnage}}
-                    {{> "systems/agone/templates/partials/actors/bloc-aspect-personnage-unlocked.hbs"}}
+                    {{#if (eq typeRessEdition "modeExp")}}
+                        {{> "systems/agone/templates/partials/actors/bloc-aspect-personnage-experience.hbs"}}
+                    {{else}}
+                        {{> "systems/agone/templates/partials/actors/bloc-aspect-personnage-unlocked.hbs"}}
+                    {{/if}}
                 {{else}}
                     {{> "systems/agone/templates/partials/actors/bloc-aspect-damne-unlocked.hbs"}}
                 {{/if}}
@@ -46,9 +50,11 @@
         <div class="tab historique-content" data-group="principal" data-tab="historique">
             {{> "systems/agone/templates/partials/actors/bloc-historique-personnage.hbs"}}
         </div>
-        <div class="tab eg-content" data-group="principal" data-tab="eg">
-            {{> "systems/agone/templates/partials/actors/bloc-eg-personnage.hbs"}}
-        </div>
+        {{#if (and typePersonnage estEG)}}
+            <div class="tab eg-content" data-group="principal" data-tab="eg">
+                {{> "systems/agone/templates/partials/actors/bloc-eg-personnage.hbs"}}
+            </div>
+        {{/if}}
     </section>
     <!-- <footer class="sheet-footer">    
     </footer> -->

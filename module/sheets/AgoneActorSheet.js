@@ -132,7 +132,7 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
             data.chargeActive = true;
         }
 
-        // Affichage des points de creation
+        // La fiche est du type Personnage
         data.typePersonnage = data.data.type == "Personnage";
 
         data.afficherHeroisme = data.data.type == "Personnage" || data.data.type == "Damne";
@@ -231,8 +231,14 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
             // Modifier les aspects - Damné uniquement
             html.find(".mod-aspect-crea").click(this._onModifAspect.bind(this));
 
+            // Modifier l'expérience des aspects
+            html.find(".mod-aspect-expe").click(this._onModifAspectExpe.bind(this));
+
             // Modifier les caractéristiques
             html.find(".mod-carac-crea").click(this._onModifCaracCrea.bind(this));
+
+             // Modifier l'expérience des caractéristiques
+            html.find(".mod-carac-expe").click(this._onModifCaracExpe.bind(this));
 
             // Modifier les compétences
             html.find(".mod-comp-crea").click(this._onModifCompetenceCrea.bind(this));
@@ -446,6 +452,7 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
                 }
             }
 
+            // Ajout des competences de peuple sur le nouveau peuple
             console.log("Ajout des compétences de peuple sur", peupleSelect);
             if(CONFIG.agone.peuple[peupleSelect].competences) {
                 for (let [keyF, famille] of Object.entries(CONFIG.agone.peuple[peupleSelect].competences)) {
@@ -531,6 +538,39 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
         }
     }
 
+    async _onModifAspectExpe(event) {
+        event.preventDefault();
+        const element = event.currentTarget;
+
+        if(!event.detail || event.detail == 1) {
+            const aspect = element.dataset.aspect;
+            const action = element.dataset.action;
+
+            const expDispo = parseInt(this.actor.system.experience.disponible);
+            const coutExp =  parseInt(this.actor.system.aspects[aspect].positif.coutExp); 
+            const currentExp = parseInt(this.actor.system.aspects[aspect].positif.expAtt);
+
+            if(action == "minus") {
+                if(currentExp > 0) {
+                    await this.actor.update({ [`system.aspects.${aspect}.positif.expAtt`] : currentExp - 1 });
+                    await this.actor.update({ [`system.experience.disponible`] : expDispo + 1 });
+                }
+            }
+            else if(action == "plus") {
+                if(currentExp < coutExp) {
+
+                    if(expDispo <= 0) {
+                        ui.notifications.warn(game.i18n.localize("agone.notifications.warnExpeDispoVide"));
+                        return;
+                    }
+
+                    await this.actor.update({ [`system.experience.disponible`] : expDispo - 1 });
+                    await this.actor.update({ [`system.aspects.${aspect}.positif.expAtt`] : currentExp + 1 });
+                }
+            }
+        }
+    }
+
     // Modifier les caractéristiques
     async _onModifCaracCrea(event) {
         event.preventDefault();
@@ -549,7 +589,7 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
     
                     await this.actor.update({ [`system.aspects.${aspect}.caracteristiques.${carac}.pc`] : currentVal - 1 });
     
-                    if(this.actor.type == "Personnage") {
+                    if(this.actor.type == "Personnage" && !this.actor.modeEditionLibre) {
                         const currentPcDep = parseInt(this.actor.system.pcCaracs.depense);
                         await this.actor.update({ [`system.pcCaracs.depense`] : currentPcDep - cout });
                     }
@@ -558,7 +598,7 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
             else if(action == "plus") {
                 if(currentVal < parseInt(this.actor.system.aspects[aspect].caracteristiques[carac].max)) {
     
-                    if(this.actor.type == "Personnage") {
+                    if(this.actor.type == "Personnage" && !this.actor.modeEditionLibre) {
                         const currentPcDep = parseInt(this.actor.system.pcCaracs.depense);
                         const pcMax = parseInt(this.actor.system.pcCaracs.base);
                         const cout = Utils.getCoutAchat(currentVal + 1);
@@ -572,6 +612,43 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
                     }
                     
                     await this.actor.update({ [`system.aspects.${aspect}.caracteristiques.${carac}.pc`] : currentVal + 1 });
+                }
+            }
+        }
+    }
+
+    // Modifier l'expérience des caractéristiques
+    async _onModifCaracExpe(event) {
+        event.preventDefault();
+        const element = event.currentTarget;
+
+        if(!event.detail || event.detail == 1) {
+            const aspect = element.dataset.aspect;
+            const carac = element.dataset.carac;
+            const action = element.dataset.action;
+    
+            const expDispo = parseInt(this.actor.system.experience.disponible);
+            const coutExp =  parseInt(this.actor.system.aspects[aspect].caracteristiques[carac].coutExp); 
+            const currentExp = parseInt(this.actor.system.aspects[aspect].caracteristiques[carac].expAtt);
+
+            //const currentVal = parseInt(this.actor.system.aspects[aspect].caracteristiques[carac].pc);
+    
+            if(action == "minus") {
+                if(currentExp > 0) {
+                    await this.actor.update({ [`system.aspects.${aspect}.caracteristiques.${carac}.expAtt`] : currentExp - 1 });
+                    await this.actor.update({ [`system.experience.disponible`] : expDispo + 1 });
+                }
+            }
+            else if(action == "plus") {
+                if(currentExp < coutExp) {
+
+                    if(expDispo <= 0) {
+                        ui.notifications.warn(game.i18n.localize("agone.notifications.warnExpeDispoVide"));
+                        return;
+                    }
+
+                    await this.actor.update({ [`system.experience.disponible`] : expDispo - 1 });
+                    await this.actor.update({ [`system.aspects.${aspect}.caracteristiques.${carac}.expAtt`] : currentExp + 1 });
                 }
             }
         }
@@ -625,7 +702,7 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
                         await this.actor.update({ [`system.familleCompetences.${famille}.competences.${competence}.pc`] : currentVal - 1 });
                     }
     
-                    if(this.actor.type == "Personnage") {
+                    if(this.actor.type == "Personnage" && !this.actor.modeEditionLibre) {
                         const currentPcDep = parseInt(this.actor.system.pcCompetences.depense);
                         await this.actor.update({ [`system.pcCompetences.depense`] : currentPcDep - cout });
                     }
@@ -642,7 +719,7 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
     
                 if(currentVal < rangMax) {
                 
-                    if(this.actor.type == "Personnage") {
+                    if(this.actor.type == "Personnage" && !this.actor.modeEditionLibre) {
                         const currentPcDep = parseInt(this.actor.system.pcCompetences.depense);
                         const cout = Utils.getCoutAchat(currentVal + 1);
                         const pcMax = parseInt(this.actor.system.pcCompetences.base);
@@ -767,7 +844,7 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
             return;
         }
 
-        if(this.actor.type == "Personnage") {
+        if(this.actor.type == "Personnage" && !this.actor.modeEditionLibre) {
             const currentPcDep = parseInt(this.actor.system.pcCompetences.depense);
             const pcMax = parseInt(this.actor.system.pcCompetences.base);
 

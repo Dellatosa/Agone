@@ -58,4 +58,4 @@ export default class EditCompFormApplication extends FormApplication {
     }
 }
   
-  window.EditCompFormApplication = EditCompFormApplication;
+window.EditCompFormApplication = EditCompFormApplication;

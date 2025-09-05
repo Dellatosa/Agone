@@ -13,8 +13,6 @@ export default class AgoneDemonSheet extends foundry.appv1.sheets.ActorSheet {
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "competences" },
                     { navSelector: ".competences-tabs", contentSelector: ".competences-content", initial: "epreuves" },
                     { navSelector: ".historique-tabs", contentSelector: ".historique-content", initial: "pouvoirs" }
-                    //{ navSelector: ".magie-tabs", contentSelector: ".magie-content", initial: "emprise" },
-                    //{ navSelector: ".historique-tabs", contentSelector: ".historique-content", initial: "avantagesDefauts" }
                   ]
         });
     }

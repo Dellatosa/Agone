@@ -16,7 +16,11 @@
             <div class="grid-sante">
                 <div class="data-combat-titre lib-all">{{localize "agone.actors.etatSante"}}</div>
                 <label>{{localize "agone.actors.pdv"}}</label>
-                <div class="edit"><input name="system.caracSecondaires.pdv.value" type="number" value="{{data.system.caracSecondaires.pdv.value}}" placeholder="0" max="{{data.system.caracSecondaires.pdv.max}}"/></div>
+                {{#if (and typePersonnage estEG)}}
+                    <div class="val"><label>{{data.system.caracSecondaires.pdv.value}}</label></div>
+                {{else}}
+                    <div class="edit"><input name="system.caracSecondaires.pdv.value" type="number" value="{{data.system.caracSecondaires.pdv.value}}" placeholder="0" max="{{data.system.caracSecondaires.pdv.max}}"/></div>
+                {{/if}}
                 <div class="sep"> / </div>
                 <div class="val"><label>{{data.system.caracSecondaires.pdv.max}}</label></div>
                 <label class="lib-blessGrave">{{localize "agone.actors.nbBlessureGrave"}}</label>

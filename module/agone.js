@@ -91,6 +91,7 @@ async function preloadHandlebarsTemplates() {
         "systems/agone/templates/partials/actors/bloc-flamme-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-aspect-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-aspect-personnage-unlocked.hbs",
+        "systems/agone/templates/partials/actors/bloc-aspect-personnage-experience.hbs",
         "systems/agone/templates/partials/actors/bloc-aspect-damne-unlocked.hbs",
         "systems/agone/templates/partials/actors/bloc-aspect-terne.hbs",
         "systems/agone/templates/partials/actors/bloc-aspect-terne-unlocked.hbs",
@@ -101,6 +102,7 @@ async function preloadHandlebarsTemplates() {
         "systems/agone/templates/partials/actors/bloc-competences-demon.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-competences-personnage.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-competences-personnage-unlocked.hbs",
+        "systems/agone/templates/partials/actors/bloc-liste-competences-personnage-experience.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-competences-demon.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-competences-demon-unlocked.hbs",
         // Onglet Combat

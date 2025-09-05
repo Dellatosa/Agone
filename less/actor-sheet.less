@@ -291,6 +291,15 @@ a.nohlight {
             font-weight: bold;
         }
 
+        .aspect-line-expe {
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            grid-template-columns: max-content 3.5em 1.5em 3.5em 1.5em;
+            font-family: "BarbedorMedium";
+            font-weight: bold;
+        }
+
         .bonus-line {
             display: grid;
             justify-content: center;
@@ -316,6 +325,14 @@ a.nohlight {
             font-family: "BarbedorMedium";
         }
 
+        .carac-line-expe {
+            display: grid;
+            justify-content: center;
+            align-items: center;
+            grid-template-columns: max-content 3em 1.2em 3em 1.2em;
+            font-family: "BarbedorMedium";
+        }
+
         .carac-line.corps {
             display: grid;
             justify-content: center;
@@ -330,8 +347,14 @@ a.nohlight {
             font-family: "BarbedorMedium";
         }
 
-        .val-carac {
-            background-color: var(--color-stats-background);
+        .carac-line-expe.corps {
+            display: grid;
+            justify-content: center;
+            grid-template-columns: max-content 3em 1.2em 3em 1.2em max-content 3em 1.2em 3em 1.2em;
+            font-family: "BarbedorMedium";
+        }
+
+        .val-carac, .val-expe {
             margin: 2px 5px;
             text-align: center;
             align-items: center;
@@ -349,15 +372,27 @@ a.nohlight {
             }
         }
 
-        .carac-crea, .aspect-crea {
+        .val-carac {
+            background-color: var(--color-stats-background);
+        }
+
+        .val-expe {
+            background-color: var(--color-stats-back-expe);
+        }
+
+        .val-expe.max {
+            background-color: var(--color-stats-back-expe-max);
+        }
+
+        .carac-crea, .aspect-crea, .carac-expe, .aspect-expe {
             font-size: 0.8em;
         }
 
-        .carac-crea.minus, .aspect-crea.minus {
+        .minus {
             text-align: right;
         }
 
-        .carac-crea.plus, .aspect-crea.plus {
+        .plus {
             text-align: left;
         }
     }

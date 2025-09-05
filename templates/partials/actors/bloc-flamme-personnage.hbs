@@ -1,7 +1,7 @@
-<div class="actor-flamme{{#if (and unlocked typePersonnage)}} pc{{/if}}">
+<div class="actor-flamme{{#if (and unlocked typePersonnage (eq typeRessEdition "modePc"))}} pc{{/if}}">
     <div class="box-flamme">
         <label>{{localize "agone.actors.caracteristiques"}}</label>
-        {{#if (and unlocked typePersonnage)}}
+        {{#if (and unlocked typePersonnage (eq typeRessEdition "modePc"))}}
             <div class="pc-box">
                 <div>{{localize "agone.actors.pcCaracUtilises"}}</div>
                 <div>{{data.system.pcCaracs.depense}} / {{data.system.pcCaracs.base}}</div>

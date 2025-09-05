@@ -23,3 +23,16 @@ export function getCoutAchatTotal(niveau) {
 
     return coutTotal;
 }
+
+export function getCoutExpe(stat, niveau) {
+    if(stat == "aspect") {
+        return niveau * 7;
+    }
+    else if(stat == "carac") {
+        return niveau * 5;
+    }
+    else if(stat == "comp") {
+        return niveau * 3;
+    }
+    else return 0;
+}

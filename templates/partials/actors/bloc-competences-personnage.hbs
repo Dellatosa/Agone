@@ -63,7 +63,11 @@
     </div>
     <div class="competences">
         {{#if unlocked}}
-            {{> "systems/agone/templates/partials/actors/bloc-liste-competences-personnage-unlocked.hbs"}}
+            {{#if (eq typeRessEdition "modeExp")}}
+                {{> "systems/agone/templates/partials/actors/bloc-liste-competences-personnage-experience.hbs"}}
+            {{else}}
+                {{> "systems/agone/templates/partials/actors/bloc-liste-competences-personnage-unlocked.hbs"}}
+            {{/if}}
         {{else}}
             {{> "systems/agone/templates/partials/actors/bloc-liste-competences-personnage.hbs"}}
         {{/if}}

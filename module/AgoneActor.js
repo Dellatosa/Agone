@@ -17,6 +17,7 @@ export default class AgoneActor extends Actor {
 
                 // Calcul des aspects
                 aspect.positif.valeur = aspect.positif.base + aspect.positif.pc + aspect.positif.exp + aspect.positif.avgDef;
+                aspect.positif.coutExp = (aspect.positif.base + aspect.positif.pc + aspect.positif.exp + 1) * 7;
                 aspect.negatif.valeur = aspect.negatif.base + aspect.negatif.pc + aspect.negatif.exp + aspect.negatif.avgDef;
 
                 // Calcul du bonus
@@ -77,10 +78,14 @@ export default class AgoneActor extends Actor {
                 data.caracSecondaires.bonusDommages = this.calcBonusDommages(data.aspects.corps.caracteristiques.force.valeur, data.caracSecondaires.tai.valeur);
                 data.caracSecondaires.pdv.bpdv = CONFIG.agone.peuple[data.peuple].bpdv;
 
-                // modificateurs de peuple des caractéristiques primaires
+                // Caractéristiques primaires
                 for (let [keyA, aspect] of Object.entries(data.aspects)) {
                     for (let [keyC, carac] of Object.entries(aspect.caracteristiques)) {
                         if(!carac.secondaire) {
+                            //Cout en experience du niveau suivant
+                            carac.coutExp = (carac.pc + carac.exp + 1) * 5;
+                            
+                            // Modificateurs de peuple des caractéristiques primaires
                             if(CONFIG.agone.peuple[data.peuple].caracs[keyC]) {
                                 carac.valeur += CONFIG.agone.peuple[data.peuple].caracs[keyC].mod;
                                 if(CONFIG.agone.peuple[data.peuple].caracs[keyC].min > 0) {
