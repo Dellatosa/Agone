@@ -1290,6 +1290,7 @@
     "Demon": {
       "templates": [ "base", "caracsAspects", "competences" ],
       "cercle": "aucun",
+      "pouvoirsSpeciaux": "",
       "caracSecondaires": {
         "tai": {
           "min": -2,

@@ -6,13 +6,20 @@
             <a class="item" data-tab="histoire">{{localize "agone.actors.histoire"}}</a>
         </nav>
         <div class="tab" data-group="historique" data-tab="pouvoirs">
-            {{> "systems/agone/templates/partials/actors/bloc-liste-pouvoirs-demon.hbs"}}
+            <div class="titre-rub">{{localize "agone.actors.pouvoirsSpeciaux"}}</div>
+            <div class="edit-250">
+                {{editor data.system.pouvoirsSpeciaux target="system.pouvoirsSpeciaux" engine="prosemirror" button=true editable=true}}
+            </div>
         </div>
         <div class="tab histoire" data-group="historique" data-tab="histoire">
             <div class="titre-rub">{{localize "agone.actors.apparence"}}</div>
-            {{editor data.system.apparence target="system.apparence" engine="prosemirror" button=true editable=true}}
+            <div class="edit-170">
+                {{editor data.system.apparence target="system.apparence" engine="prosemirror" button=true editable=true}}
+            </div>
             <div class="titre-rub">{{localize "agone.actors.biographie"}}</div>
-            {{editor data.system.biographie target="system.biographie" engine="prosemirror" button=true editable=true}}
+            <div class="edit-170">
+                {{editor data.system.biographie target="system.biographie" engine="prosemirror" button=true editable=true}}
+            </div>
         </div>
     </div>
 </div>
