@@ -15,6 +15,8 @@ export default class AgoneActor extends Actor {
                 // Base de 1 en positif pour les Inspirés
                 if(this.type == "Personnage") { aspect.positif.base = 1; }
 
+                console.log(aspect);
+                
                 // Calcul des aspects
                 aspect.positif.valeur = aspect.positif.base + aspect.positif.pc + aspect.positif.exp + aspect.positif.avgDef;
                 aspect.positif.coutExp = (aspect.positif.base + aspect.positif.pc + aspect.positif.exp + 1) * 7;
@@ -142,7 +144,7 @@ export default class AgoneActor extends Actor {
             }
 
             // Calcul du nombre de points de vie max et des seuils de blessure
-            data.caracSecondaires.pdv.max = data.caracSecondaires.pdv.bpdv + data.aspects.corps.caracteristiques.resistance.valeur * 3 + data.caracSecondaires.pdv.d10;
+            data.caracSecondaires.pdv.max = data.caracSecondaires.pdv.bpdv + data.aspects.corps.caracteristiques.resistance.valeur * 3 + data.caracSecondaires.pdv.d10 + (data.caracSecondaires.pdv.pc ? data.caracSecondaires.pdv.pc : 0);
             data.caracSecondaires.seuilBlessureGrave = Math.floor(data.caracSecondaires.pdv.max / 3);
             data.caracSecondaires.seuilBlessureCritique = Math.floor(data.caracSecondaires.pdv.max / 2);
             if(data.caracSecondaires.pdv.value > data.caracSecondaires.pdv.max) {

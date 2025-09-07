@@ -247,16 +247,16 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
             html.find(".mod-comp-expe").click(this._onModifCompetenceExpe.bind(this));
 
             // Modifier le score de Ténèbre
-            html.find(".mod-tenebre-crea").click(this._onModifTenebre.bind(this));
+            html.find(".mod-tenebre").click(this._onModifTenebre.bind(this));
 
              // Modifier le score de Perfidie
             html.find(".mod-perfidie-crea").click(this._onModifPerfidie.bind(this));
 
-            //Modifier le score de ténèbre
-            html.find(".mod-blessGrave").click(this._onModifBlessureGrave.bind(this));
+            // Modifier le nombre de points de vie max
+            html.find(".mod-pdv-max").click(this._onModifPdvMax.bind(this));
 
-            //// edit-comp - edition des compétences d'une famille
-            //html.find('.edit-comp').click(this._onEditComp.bind(this));
+            //Modifier le nombre de blessures graves
+            html.find(".mod-blessGrave").click(this._onModifBlessureGrave.bind(this));
 
             // Modifier le peuple
             html.find('.edit-peuple').change(this._onEditerPeuple.bind(this));
@@ -353,6 +353,12 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
 
             // Modifier le type de ressource du mode édition
             html.find('.edit-ress').change(this._onEditerRessourceEdition.bind(this));
+
+            // Attribuer ou retirer de l'expérience
+            html.find('.mod-experience').click(this._onAttribuerExperience.bind(this));
+
+            // Valider les points d'experience attibués
+            html.find('button.validerExpe').click(this._onValiderExpe.bind(this));
         }
     }
 
@@ -641,15 +647,18 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
                 }
             }
             else if(action == "plus") {
-                if(currentExp < coutExp) {
+                const currentVal = parseInt(this.actor.system.aspects[aspect].caracteristiques[carac].pc + parseInt(this.actor.system.aspects[aspect].caracteristiques[carac].exp));
+                if(currentVal < parseInt(this.actor.system.aspects[aspect].caracteristiques[carac].max)) {
+                    if(currentExp < coutExp) {
 
-                    if(expDispo <= 0) {
-                        ui.notifications.warn(game.i18n.localize("agone.notifications.warnExpeDispoVide"));
-                        return;
+                        if(expDispo <= 0) {
+                            ui.notifications.warn(game.i18n.localize("agone.notifications.warnExpeDispoVide"));
+                            return;
+                        }
+
+                        await this.actor.update({ [`system.experience.disponible`] : expDispo - 1 });
+                        await this.actor.update({ [`system.aspects.${aspect}.caracteristiques.${carac}.expAtt`] : currentExp + 1 });
                     }
-
-                    await this.actor.update({ [`system.experience.disponible`] : expDispo - 1 });
-                    await this.actor.update({ [`system.aspects.${aspect}.caracteristiques.${carac}.expAtt`] : currentExp + 1 });
                 }
             }
         }
@@ -754,82 +763,57 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
             const domaine= element.dataset.domaine;
             const action = element.dataset.action;
 
+            const expDispo = parseInt(this.actor.system.experience.disponible);
             let coutExp = 0;
             let currentExp = 0;
             if(domaine) {
                 coutExp = parseInt(this.actor.system.familleCompetences[famille].competences[competence].domaines[domaine].coutExp);
-                coutExp = parseInt(this.actor.system.familleCompetences[famille].competences[competence].domaines[domaine].expAtt);
+                currentExp = parseInt(this.actor.system.familleCompetences[famille].competences[competence].domaines[domaine].expAtt);
             }
             else {
                 coutExp = parseInt(this.actor.system.familleCompetences[famille].competences[competence].coutExp);
-                coutExp = parseInt(this.actor.system.familleCompetences[famille].competences[competence].expAtt);
+                currentExp = parseInt(this.actor.system.familleCompetences[famille].competences[competence].expAtt);
             }
             
             if(action == "minus") {
-                if(currentVal > 0) {
-                    const cout = Utils.getCoutAchat(currentVal);
+                if(currentExp > 0) {
                     if(domaine) {
-                        // Pas de score inférieur à 5 pour la compétence de peuple d'un Inspiré
-                        if(this.actor.type == "Personnage" && this.actor.system.familleCompetences[famille].competences[competence].domaines[domaine].peuple && currentVal <= 5) {
-                            return;
-                        }
-                        // Pas de score inférieur à 5 pour une compétence spécialisée
-                        if(this.actor.system.familleCompetences[famille].competences[competence].domaines[domaine].specialisation && currentVal <= 5) {
-                            ui.notifications.warn(game.i18n.localize("agone.notifications.warnCompSpe"));
-                            return;
-                        }
-
-                        await this.actor.update({ [`system.familleCompetences.${famille}.competences.${competence}.domaines.${domaine}.pc`] : currentVal - 1 });
+                        await this.actor.update({ [`system.familleCompetences.${famille}.competences.${competence}.domaines.${domaine}.expAtt`] : currentExp - 1 });
                     }
                     else {
-                        // Pas de score inférieur à 5 pour la compétence de peuple d'un Inspiré
-                        if(this.actor.type == "Personnage" && this.actor.system.familleCompetences[famille].competences[competence].peuple && currentVal <= 5) {
-                            return;
-                        }
-                        // Pas de score inférieur à 5 pour une compétence spécialisée
-                        if(this.actor.system.familleCompetences[famille].competences[competence].specialisation && currentVal <= 5) {
-                            ui.notifications.warn(game.i18n.localize("agone.notifications.warnCompSpe"));
-                            return;
-                        }
-
-                        await this.actor.update({ [`system.familleCompetences.${famille}.competences.${competence}.pc`] : currentVal - 1 });
+                        await this.actor.update({ [`system.familleCompetences.${famille}.competences.${competence}.expAtt`] : currentExp - 1 });
                     }
-    
-                    if(this.actor.type == "Personnage" && !this.actor.modeEditionLibre) {
-                        const currentPcDep = parseInt(this.actor.system.pcCompetences.depense);
-                        await this.actor.update({ [`system.pcCompetences.depense`] : currentPcDep - cout });
-                    }
+                    
+                    await this.actor.update({ [`system.experience.disponible`] : expDispo + 1 });
                 }
             }
             else if(action == "plus") {
+                let currentVal = 0;
                 let rangMax = 0;
                 if(domaine) {
+                    currentVal = parseInt(this.actor.system.familleCompetences[famille].competences[competence].domaines[domaine].pc);
                     rangMax = parseInt(this.actor.system.familleCompetences[famille].competences[competence].domaines[domaine].max);
                 }
                 else {
+                    currentVal = parseInt(this.actor.system.familleCompetences[famille].competences[competence].pc);
                     rangMax = parseInt(this.actor.system.familleCompetences[famille].competences[competence].max);
                 }
-    
+
                 if(currentVal < rangMax) {
-                
-                    if(this.actor.type == "Personnage" && !this.actor.modeEditionLibre) {
-                        const currentPcDep = parseInt(this.actor.system.pcCompetences.depense);
-                        const cout = Utils.getCoutAchat(currentVal + 1);
-                        const pcMax = parseInt(this.actor.system.pcCompetences.base);
-    
-                        if (currentPcDep + cout > pcMax) {
-                            ui.notifications.warn(game.i18n.localize("agone.notifications.warnPcCompVide"));
+                    if(currentExp < coutExp) {
+
+                        if(expDispo <= 0) {
+                            ui.notifications.warn(game.i18n.localize("agone.notifications.warnExpeDispoVide"));
                             return;
                         }
-    
-                        await this.actor.update({ [`system.pcCompetences.depense`] : currentPcDep + cout });
-                    }
-                    
-                    if(domaine) {
-                        await this.actor.update({ [`system.familleCompetences.${famille}.competences.${competence}.domaines.${domaine}.pc`] : currentVal + 1 });
-                    }
-                    else {
-                        await this.actor.update({ [`system.familleCompetences.${famille}.competences.${competence}.pc`] : currentVal + 1 });
+
+                        await this.actor.update({ [`system.experience.disponible`] : expDispo - 1 });
+                        if(domaine) {
+                            await this.actor.update({ [`system.familleCompetences.${famille}.competences.${competence}.domaines.${domaine}.expAtt`] : currentExp + 1 });
+                        }
+                        else {
+                            await this.actor.update({ [`system.familleCompetences.${famille}.competences.${competence}.expAtt`] : currentExp + 1 });
+                        }
                     }
                 }
             }
@@ -880,6 +864,28 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
                 if(currentVal < rangMax) {
                     await this.actor.update({ [`system.caracSecondaires.perfidie.gain`] : currentVal + 1 });
                 }
+            }
+        }
+    }
+
+    async _onModifPdvMax(event) {
+        event.preventDefault();
+        const element = event.currentTarget;
+        const action = element.dataset.action;
+        let currentVal = 0;
+        
+        if(!event.detail || event.detail == 1) {
+            currentVal = this.actor.system.caracSecondaires.pdv.pc ? parseInt(this.actor.system.caracSecondaires.pdv.pc) : 0;
+
+            if(action == "minus") {
+                if(currentVal > 0) {
+                    console.log("minus");
+                    await this.actor.update({ [`system.caracSecondaires.pdv.pc`] : currentVal - 1 });
+                }
+            }
+            else if(action == "plus") {
+                console.log("plus");
+                await this.actor.update({ [`system.caracSecondaires.pdv.pc`] : currentVal + 1 });
             }
         }
     }
@@ -1117,15 +1123,6 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
         item.roll();
     }
 
-    /*// edit-comp - edition des compétences d'une famille
-    _onEditComp(event) {
-        event.preventDefault();
-        const dataset = event.currentTarget.dataset;
-        const lstComps = this.actor.getCompetences(dataset.famille);
-
-        new EditCompFormApplication(this.actor, dataset.famille, lstComps).render(true);
-    }*/
-
     // roll-comp - jet de compétence
     _onRollComp(event) {
         event.preventDefault();
@@ -1196,6 +1193,30 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
             difficulte: 15 + this.actor.diffJetVieillesse,
             titrePersonnalise: "Jet de vieillesse"
         });
+    }
+
+    // Attribuer de l'expérience
+    async _onAttribuerExperience(event) {
+        event.preventDefault();
+
+        const nbExpAtt = this.actor.system.experience.attribuee;
+        if (nbExpAtt != 0) {
+            const AttExp = await foundry.applications.api.DialogV2.confirm({
+                window: { title: game.i18n.localize("agone.dialog.attribuerExp") },
+                content: `<p>${game.i18n.localize("agone.dialog.attribuerExpMsg")}</p>`
+            });
+
+            if(AttExp) {            
+                if(nbExpAtt < 0 && this.actor.system.experience.disponible + nbExpAtt < 0) {
+                    ui.notifications.warn(game.i18n.localize("agone.notifications.warnExpeDispoNegatif"));
+                    return;
+                }
+
+                await this.actor.update({ [`system.experience.disponible`] :  this.actor.system.experience.disponible + nbExpAtt });
+                 await this.actor.update({ [`system.experience.totale`] :  this.actor.system.experience.totale + nbExpAtt });
+                 await this.actor.update({ [`system.experience.attribuee`] : 0 });
+            }
+        }
     }
 
     // Gestionnaire d'événements de l'onglet Combat
@@ -1343,7 +1364,7 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
             }
         }
         else {
-            ui.notifications.warn('Aucune comprétence de musique trouvée');
+            ui.notifications.warn(game.i18n.localize("agone.notifications.warnCompMusique"));
             return;
         }
         
@@ -1375,6 +1396,37 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
 
         if(repos) {
             this.actor.reposDanseurs();
+        }
+    }
+
+    async _onValiderExpe(event) {
+        event.preventDefault();
+
+        const valider = await foundry.applications.api.DialogV2.confirm({
+            window: { title: game.i18n.localize("agone.dialog.validerExpe") },
+            content: `<p>${game.i18n.localize("agone.dialog.validerExpeMsg")}</p>`
+        });
+
+        console.log(this.actor.system);
+
+        if(valider) {
+            // Aspects et Caracs
+            for (let [keyA, aspect] of Object.entries(this.actor.system.aspects)) {
+                if(aspect.positif.coutExp == aspect.positif.expAtt) {
+                    ui.notifications.info(game.i18n.format("agone.notifications.augmentationAspect", { aspect: aspect.positif.label }));
+                    await this.actor.update({ [`system.aspects.${keyA}.positif.exp`] : aspect.positif.exp + 1 });
+                    await this.actor.update({ [`system.aspects.${keyA}.positif.expAtt`] : 0 });
+                }
+
+                // Récupération des traductions pour les caractéristiques
+                for (let [keyC, carac] of Object.entries(aspect.caracteristiques)) {
+                    if ((carac.coutExp == carac.expAtt) && !carac.secondaire) {
+                        ui.notifications.info(game.i18n.format("agone.notifications.augmentationCarac", { carac: carac.label }));
+                        await this.actor.update({ [`system.aspects.${keyA}.caracteristiques.${keyC}.exp`] : carac.exp + 1 });
+                        await this.actor.update({ [`system.aspects.${keyA}.caracteristiques.${keyC}.expAtt`] : 0 });
+                    }
+                }
+            }
         }
     }
 }

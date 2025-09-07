@@ -314,7 +314,9 @@
             "typeRessource": "Resource type",
             "modeLibreEG": "Free mode (EG)",
             "modePointsCrea": "Creation points",
-            "modeExperience": "Experience points"
+            "modeExperience": "Experience points",
+            "attribuerExpe": "Give experience points",
+            "validerExpe": "NO TRAD - Valider l'expérience"
         },
         "items":{
             "description": "Description",
@@ -646,7 +648,10 @@
             "warnPcAppelVide": "NO TRAD - Vous n'avez plus de points d'appel disponibles.",
             "warnNivCompVide": "NO TRAD - Vous n'avez plus de niveaux de compétence disponibles.",
             "warnNbFamComp": "NO TRAD - Des niveaux de compétences sont déjà distribués dans {nbFam} famille(s).",
-            "warnFamOcculte": "NO TRAD - Seul un Obsidien peut disposer de compétences dans la famille Occulte."
+            "warnFamOcculte": "NO TRAD - Seul un Obsidien peut disposer de compétences dans la famille Occulte.",
+            "warnExpeDispoNegatif": "NO TRAD - Vous ne pouvez pas retirer plus de points d'expérience que de le nombre de points d'expérience disponible du personnage.",
+            "warnExpeDispoVide": "NO TRAD - Vous n'avez plus de points d'expérience disponible.",
+            "warnCompMusique": "NO TRAD - Aucune compétence de musique trouvée."
         },
         "tooltip": {
             "verrou": "Lock sheet",
@@ -693,16 +698,23 @@
             "dimPerfidie": "NO TRAD - Diminuer la Perfidie",
             "augBlessGrave": "NO TRAD - Augmenter le nombre de blessures graves",
             "dimBlessGrave": "NO TRAD - Diminuer le nombre de blessures graves",
+            "dimPdvMax": "NO TRAD - Diminuer les points de vie maximum",
+            "augPdvMax": "NO TRAD - Augmenter les points de vie maximum",
             "infoEditionTypeRess": "NO TRAD - Choisissez si le mode édition de la feuille de personnage permet de répartir les points de création ou les points d'expérience",
             "infoEditionModeLibre": "NO TRAD - Le mode libre permet à l'EG de modifier les caractéristiques et compétences sans dépense de points de création ou d'expérience",
             "augExpe": "NO TRAD - Augmenter l'expérience attribuée",
-            "dimExpe": "NO TRAD - Diminuer l'expérience attribuée"
+            "dimExpe": "NO TRAD - Diminuer l'expérience attribuée",
+            "attribuerExpe": "NO TRAD - Attribuer de l'expérience au personnage"
         },
         "dialog": {
             "titreReinitStats": "NO TRAD - Réinitialisation des statistiques ?",
             "messageReinitStats": "NO TRAD - Confirmez-vous la réinitialisation des caractéristiques et statistiques de cette fiche ?",
             "regenEndDanseurs": "NO TRAD - Régénérer l'endurance des Danseurs",
-            "regenEndDanseursMsg": "NO TRAD - Tous vos Danseurs vont retrouver leur niveau d'endurance maximum.<br>Confirmez-vous cette action ?"
+            "regenEndDanseursMsg": "NO TRAD - Tous vos Danseurs vont retrouver leur niveau d'endurance maximum.<br>Confirmez-vous cette action ?",
+            "attribuerExp": "NO TRAD - Attribuer des points d'expérience ?",
+            "attribuerExpMsg": "NO TRAD - Confirmez-vous l'attribution de ce nombre de points d'expérience au personnage ?",
+            "validerExpe": "NO TRAD - Valider la répartition de l'expérience ?",
+            "validerExpeMsg": "NO TRAD - Validez-vous la répartition des points d'expérience pour ce personnage ?"
         }
     },
     "parametres": {

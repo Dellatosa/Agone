@@ -17,6 +17,11 @@
         <div class="gestion-expe">
             <div class="grid-gestion-expe">
                 <div class="titre-option lib-all">{{localize "agone.actors.modeExperience"}}</div>
+                <label class="lib-expAtt">{{localize "agone.actors.attribuerExpe"}}</label>
+                <div class="val-expAtt"><input class="edit" name="system.experience.attribuee" type="number" value="{{data.system.experience.attribuee}}" placeholder="0"/></div>
+                <a class="mod-experience" title="{{localize 'agone.tooltip.attribuerExpe'}}">
+                    <i class="fa-duotone fa-solid fa-graduation-cap"></i>
+                    </a>
                 <label class="lib">{{localize "agone.actors.expDispo"}}</label>
                 <div class="val"><label>{{data.system.experience.disponible}}</label></div>
                 <label class="lib">{{localize "agone.actors.expTotale"}}</label>
@@ -31,20 +36,29 @@
             <div class="edit"><input name="system.caracSecondaires.pdv.value" type="number" value="{{data.system.caracSecondaires.pdv.value}}" placeholder="0" max="{{data.system.caracSecondaires.pdv.max}}"/></div>
             <div></div>
             <label class="lib">{{localize "agone.actors.tenebre"}}</label>
-            <div class="tenebre-crea minus">
-                <a class="mod-tenebre-crea" title="{{localize 'agone.tooltip.dimTenebre'}}" data-action="minus">
+            <div class="tenebre minus">
+                <a class="mod-tenebre" title="{{localize 'agone.tooltip.dimTenebre'}}" data-action="minus">
                     <i class="fa-solid fa-circle-minus"></i>
                 </a>
             </div>
             <div class="val"><label>{{data.system.caracSecondaires.tenebre.valeur}}</label></div>
-            <div class="tenebre-crea plus">
-                <a class="mod-tenebre-crea" title="{{localize 'agone.tooltip.augTenebre'}}" data-action="plus">
+            <div class="tenebre plus">
+                <a class="mod-tenebre" title="{{localize 'agone.tooltip.augTenebre'}}" data-action="plus">
                     <i class="fa-solid fa-circle-plus"></i>
                 </a>
             </div>
-            <label class="lib-g">{{localize "agone.actors.pdvMax"}}</label>
-            <div class="edit"><input name="system.caracSecondaires.pdv.max" type="number" value="{{data.system.caracSecondaires.pdv.max}}" placeholder="0"/></div>
-            <div></div>
+            <label class="lib">{{localize "agone.actors.pdvMax"}}</label>
+            <div class="pdv-max minus">
+                <a class="mod-pdv-max" title="{{localize 'agone.tooltip.dimPdvMax'}}" data-action="minus">
+                    <i class="fa-solid fa-circle-minus"></i>
+                </a>
+            </div>
+            <div class="val"><label>{{data.system.caracSecondaires.pdv.max}}</label></div>
+            <div class="pdv-max plus">
+                <a class="mod-pdv-max" title="{{localize 'agone.tooltip.augPdvMax'}}" data-action="plus">
+                    <i class="fa-solid fa-circle-plus"></i>
+                </a>
+            </div>
             <label class="lib">{{localize "agone.actors.perfidie"}}</label>
             <div class="perfidie-crea minus">
                 <a class="mod-perfidie-crea" title="{{localize 'agone.tooltip.dimPerfidie'}}" data-action="minus">

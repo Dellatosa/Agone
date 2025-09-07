@@ -12,6 +12,9 @@
                 <div class="val"><label>{{data.system.experience.disponible}}</label></div>
                 <label>{{localize "agone.actors.experienceTotale"}}</label>
                 <div class="val"><label>{{data.system.experience.totale}}</label></div>
+                {{#if (and unlocked (eq typeRessEdition "modeExp") (not modeEditionLibre))}}
+                    <div class="action-exp"><button class="validerExpe"><i class="fa-duotone fa-solid fa-graduation-cap"></i> {{localize "agone.actors.validerExpe"}}</button></div>
+                {{/if}}
             </div>
         </div>
         {{/if}}
@@ -22,8 +25,8 @@
                     <div class="data-peinesBienfaits-titre lib-all">{{localize "agone.actors.corruption"}}</div>
                     <label>{{localize "agone.actors.tenebre"}}</label>
                     {{#if estEG}}
-                        <div class="tenebre-crea minus">
-                            <a class="mod-tenebre-crea" title="{{localize 'agone.tooltip.dimTenebre'}}" data-action="minus">
+                        <div class="tenebre minus">
+                            <a class="mod-tenebre" title="{{localize 'agone.tooltip.dimTenebre'}}" data-action="minus">
                                 <i class="fa-solid fa-circle-minus"></i>
                             </a>
                         </div>
@@ -31,8 +34,8 @@
                         <div></div>
                     {{/if}}
                     <div class="val"><label>{{data.system.caracSecondaires.tenebre.valeur}}</label></div>
-                    <div class="tenebre-crea plus">
-                        <a class="mod-tenebre-crea" title="{{localize 'agone.tooltip.augTenebre'}}" data-action="plus">
+                    <div class="tenebre plus">
+                        <a class="mod-tenebre" title="{{localize 'agone.tooltip.augTenebre'}}" data-action="plus">
                             <i class="fa-solid fa-circle-plus"></i>
                         </a>
                     </div>

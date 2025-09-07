@@ -932,13 +932,13 @@ a.nohlight {
   position: relative;
   top: 5px;
 }
-.grid-magies .data-magie .conjuration .grid-conjuration-edit .tenebre-crea {
+.grid-magies .data-magie .conjuration .grid-conjuration-edit .tenebre {
   font-size: 0.8em;
 }
-.grid-magies .data-magie .conjuration .grid-conjuration-edit .tenebre-crea.minus {
+.grid-magies .data-magie .conjuration .grid-conjuration-edit .tenebre.minus {
   text-align: right;
 }
-.grid-magies .data-magie .conjuration .grid-conjuration-edit .tenebre-crea.plus {
+.grid-magies .data-magie .conjuration .grid-conjuration-edit .tenebre.plus {
   text-align: left;
 }
 .grid-magies .data-magie .conjuration .grid-conjuration {
@@ -1135,6 +1135,29 @@ a.nohlight {
   text-align: center;
   height: 26px;
 }
+.grid-data-histo .data-histo .experience .grid-experience .action-exp,
+.grid-data-histo-mini .data-histo .experience .grid-experience .action-exp,
+.grid-data-histo .data-histo .peinesBienfaits .grid-experience .action-exp,
+.grid-data-histo-mini .data-histo .peinesBienfaits .grid-experience .action-exp,
+.grid-data-histo .data-histo .experience .grid-peinesBienfaits .action-exp,
+.grid-data-histo-mini .data-histo .experience .grid-peinesBienfaits .action-exp,
+.grid-data-histo .data-histo .peinesBienfaits .grid-peinesBienfaits .action-exp,
+.grid-data-histo-mini .data-histo .peinesBienfaits .grid-peinesBienfaits .action-exp {
+  grid-column-start: span 2;
+}
+.grid-data-histo .data-histo .experience .grid-experience .action-exp button,
+.grid-data-histo-mini .data-histo .experience .grid-experience .action-exp button,
+.grid-data-histo .data-histo .peinesBienfaits .grid-experience .action-exp button,
+.grid-data-histo-mini .data-histo .peinesBienfaits .grid-experience .action-exp button,
+.grid-data-histo .data-histo .experience .grid-peinesBienfaits .action-exp button,
+.grid-data-histo-mini .data-histo .experience .grid-peinesBienfaits .action-exp button,
+.grid-data-histo .data-histo .peinesBienfaits .grid-peinesBienfaits .action-exp button,
+.grid-data-histo-mini .data-histo .peinesBienfaits .grid-peinesBienfaits .action-exp button {
+  margin: 1px 0;
+  font-family: "BarbedorMedium";
+  border-radius: 5px;
+  border: 1px solid var(--color-box-border-dark);
+}
 .grid-data-histo .data-histo .experience .grid-peinesBienfaits-edit,
 .grid-data-histo-mini .data-histo .experience .grid-peinesBienfaits-edit,
 .grid-data-histo .data-histo .peinesBienfaits .grid-peinesBienfaits-edit,
@@ -1180,30 +1203,30 @@ a.nohlight {
   position: relative;
   top: 5px;
 }
-.grid-data-histo .data-histo .experience .grid-peinesBienfaits-edit .tenebre-crea,
-.grid-data-histo-mini .data-histo .experience .grid-peinesBienfaits-edit .tenebre-crea,
-.grid-data-histo .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .tenebre-crea,
-.grid-data-histo-mini .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .tenebre-crea,
+.grid-data-histo .data-histo .experience .grid-peinesBienfaits-edit .tenebre,
+.grid-data-histo-mini .data-histo .experience .grid-peinesBienfaits-edit .tenebre,
+.grid-data-histo .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .tenebre,
+.grid-data-histo-mini .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .tenebre,
 .grid-data-histo .data-histo .experience .grid-peinesBienfaits-edit .perfidie-crea,
 .grid-data-histo-mini .data-histo .experience .grid-peinesBienfaits-edit .perfidie-crea,
 .grid-data-histo .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .perfidie-crea,
 .grid-data-histo-mini .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .perfidie-crea {
   font-size: 0.8em;
 }
-.grid-data-histo .data-histo .experience .grid-peinesBienfaits-edit .tenebre-crea.minus,
-.grid-data-histo-mini .data-histo .experience .grid-peinesBienfaits-edit .tenebre-crea.minus,
-.grid-data-histo .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .tenebre-crea.minus,
-.grid-data-histo-mini .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .tenebre-crea.minus,
+.grid-data-histo .data-histo .experience .grid-peinesBienfaits-edit .tenebre.minus,
+.grid-data-histo-mini .data-histo .experience .grid-peinesBienfaits-edit .tenebre.minus,
+.grid-data-histo .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .tenebre.minus,
+.grid-data-histo-mini .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .tenebre.minus,
 .grid-data-histo .data-histo .experience .grid-peinesBienfaits-edit .perfidie-crea.minus,
 .grid-data-histo-mini .data-histo .experience .grid-peinesBienfaits-edit .perfidie-crea.minus,
 .grid-data-histo .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .perfidie-crea.minus,
 .grid-data-histo-mini .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .perfidie-crea.minus {
   text-align: right;
 }
-.grid-data-histo .data-histo .experience .grid-peinesBienfaits-edit .tenebre-crea.plus,
-.grid-data-histo-mini .data-histo .experience .grid-peinesBienfaits-edit .tenebre-crea.plus,
-.grid-data-histo .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .tenebre-crea.plus,
-.grid-data-histo-mini .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .tenebre-crea.plus,
+.grid-data-histo .data-histo .experience .grid-peinesBienfaits-edit .tenebre.plus,
+.grid-data-histo-mini .data-histo .experience .grid-peinesBienfaits-edit .tenebre.plus,
+.grid-data-histo .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .tenebre.plus,
+.grid-data-histo-mini .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .tenebre.plus,
 .grid-data-histo .data-histo .experience .grid-peinesBienfaits-edit .perfidie-crea.plus,
 .grid-data-histo-mini .data-histo .experience .grid-peinesBienfaits-edit .perfidie-crea.plus,
 .grid-data-histo .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .perfidie-crea.plus,
@@ -3644,7 +3667,7 @@ a.nohlight {
 }
 .eg-content .grid-options-eg .grid-gestion-expe {
   display: grid;
-  grid-template-columns: 1fr 3.5em 1fr 3.5em;
+  grid-template-columns: 1.5fr 3.5em 1fr 3.5em;
   align-items: center;
   margin: 3px 1px;
   padding: 3px;
@@ -3655,8 +3678,15 @@ a.nohlight {
   grid-column-start: 1;
   grid-column-end: 5;
 }
+.eg-content .grid-options-eg .grid-gestion-expe .lib-expAtt {
+  grid-column-start: span 2;
+}
+.eg-content .grid-options-eg .grid-gestion-expe .val-expAtt {
+  display: flex;
+  justify-content: center;
+}
 .eg-content .grid-options-eg .grid-gestion-expe .edit {
-  flex: 0 1 3.5em;
+  flex: 0 1 3em;
   padding: 3px;
   text-align: center;
 }
@@ -3671,6 +3701,9 @@ a.nohlight {
 .eg-content .grid-options-eg .grid-gestion-expe .val label {
   position: relative;
   top: 5px;
+}
+.eg-content .grid-options-eg .grid-gestion-expe .mod-experience {
+  text-align: center;
 }
 .eg-content .grid-options-eg .grid-statistiques {
   display: grid;
@@ -4166,7 +4199,7 @@ a.nohlight {
 }
 :root {
   --color-stats-background: rgba(82, 77, 77, 0.075);
-  --color-stats-back-expe: rgba(226, 120, 120, 0.5);
+  --color-stats-back-expe: rgba(92, 131, 87, 0.5);
   --color-stats-back-expe-max: rgba(132, 226, 120, 0.5);
   --color-box-border: #B8B8B8;
   --color-box-border-dark: rgba(138, 137, 137, 0.7);
