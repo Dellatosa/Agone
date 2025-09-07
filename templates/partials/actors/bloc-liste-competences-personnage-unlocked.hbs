@@ -1,6 +1,6 @@
 <div class="comp-titre">
     <label>{{localize "agone.actors.competences"}}</label>
-    {{#if typePersonnage}}
+    {{#if (and typePersonnage (not modeEditionLibre))}}
         <div class="pc-box">
             <div>{{localize "agone.actors.pcCompUtilises"}}</div>
             <div>{{data.system.pcCompetences.depense}} / {{data.system.pcCompetences.base}}</div>

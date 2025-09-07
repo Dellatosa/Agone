@@ -243,6 +243,9 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
             // Modifier les compétences
             html.find(".mod-comp-crea").click(this._onModifCompetenceCrea.bind(this));
 
+            // Modifier l'expérience des compétences
+            html.find(".mod-comp-expe").click(this._onModifCompetenceExpe.bind(this));
+
             // Modifier le score de Ténèbre
             html.find(".mod-tenebre-crea").click(this._onModifTenebre.bind(this));
 
@@ -630,8 +633,6 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
             const expDispo = parseInt(this.actor.system.experience.disponible);
             const coutExp =  parseInt(this.actor.system.aspects[aspect].caracteristiques[carac].coutExp); 
             const currentExp = parseInt(this.actor.system.aspects[aspect].caracteristiques[carac].expAtt);
-
-            //const currentVal = parseInt(this.actor.system.aspects[aspect].caracteristiques[carac].pc);
     
             if(action == "minus") {
                 if(currentExp > 0) {
@@ -670,6 +671,98 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
             }
             else {
                 currentVal = parseInt(this.actor.system.familleCompetences[famille].competences[competence].pc);
+            }
+            
+            if(action == "minus") {
+                if(currentVal > 0) {
+                    const cout = Utils.getCoutAchat(currentVal);
+                    if(domaine) {
+                        // Pas de score inférieur à 5 pour la compétence de peuple d'un Inspiré
+                        if(this.actor.type == "Personnage" && this.actor.system.familleCompetences[famille].competences[competence].domaines[domaine].peuple && currentVal <= 5) {
+                            return;
+                        }
+                        // Pas de score inférieur à 5 pour une compétence spécialisée
+                        if(this.actor.system.familleCompetences[famille].competences[competence].domaines[domaine].specialisation && currentVal <= 5) {
+                            ui.notifications.warn(game.i18n.localize("agone.notifications.warnCompSpe"));
+                            return;
+                        }
+
+                        await this.actor.update({ [`system.familleCompetences.${famille}.competences.${competence}.domaines.${domaine}.pc`] : currentVal - 1 });
+                    }
+                    else {
+                        // Pas de score inférieur à 5 pour la compétence de peuple d'un Inspiré
+                        if(this.actor.type == "Personnage" && this.actor.system.familleCompetences[famille].competences[competence].peuple && currentVal <= 5) {
+                            return;
+                        }
+                        // Pas de score inférieur à 5 pour une compétence spécialisée
+                        if(this.actor.system.familleCompetences[famille].competences[competence].specialisation && currentVal <= 5) {
+                            ui.notifications.warn(game.i18n.localize("agone.notifications.warnCompSpe"));
+                            return;
+                        }
+
+                        await this.actor.update({ [`system.familleCompetences.${famille}.competences.${competence}.pc`] : currentVal - 1 });
+                    }
+    
+                    if(this.actor.type == "Personnage" && !this.actor.modeEditionLibre) {
+                        const currentPcDep = parseInt(this.actor.system.pcCompetences.depense);
+                        await this.actor.update({ [`system.pcCompetences.depense`] : currentPcDep - cout });
+                    }
+                }
+            }
+            else if(action == "plus") {
+                let rangMax = 0;
+                if(domaine) {
+                    rangMax = parseInt(this.actor.system.familleCompetences[famille].competences[competence].domaines[domaine].max);
+                }
+                else {
+                    rangMax = parseInt(this.actor.system.familleCompetences[famille].competences[competence].max);
+                }
+    
+                if(currentVal < rangMax) {
+                
+                    if(this.actor.type == "Personnage" && !this.actor.modeEditionLibre) {
+                        const currentPcDep = parseInt(this.actor.system.pcCompetences.depense);
+                        const cout = Utils.getCoutAchat(currentVal + 1);
+                        const pcMax = parseInt(this.actor.system.pcCompetences.base);
+    
+                        if (currentPcDep + cout > pcMax) {
+                            ui.notifications.warn(game.i18n.localize("agone.notifications.warnPcCompVide"));
+                            return;
+                        }
+    
+                        await this.actor.update({ [`system.pcCompetences.depense`] : currentPcDep + cout });
+                    }
+                    
+                    if(domaine) {
+                        await this.actor.update({ [`system.familleCompetences.${famille}.competences.${competence}.domaines.${domaine}.pc`] : currentVal + 1 });
+                    }
+                    else {
+                        await this.actor.update({ [`system.familleCompetences.${famille}.competences.${competence}.pc`] : currentVal + 1 });
+                    }
+                }
+            }
+        }
+    }
+
+    async _onModifCompetenceExpe(event) {
+        event.preventDefault();
+        const element = event.currentTarget;
+
+        if(!event.detail || event.detail == 1) {
+            const famille= element.dataset.famille;
+            const competence= element.dataset.competence;
+            const domaine= element.dataset.domaine;
+            const action = element.dataset.action;
+
+            let coutExp = 0;
+            let currentExp = 0;
+            if(domaine) {
+                coutExp = parseInt(this.actor.system.familleCompetences[famille].competences[competence].domaines[domaine].coutExp);
+                coutExp = parseInt(this.actor.system.familleCompetences[famille].competences[competence].domaines[domaine].expAtt);
+            }
+            else {
+                coutExp = parseInt(this.actor.system.familleCompetences[famille].competences[competence].coutExp);
+                coutExp = parseInt(this.actor.system.familleCompetences[famille].competences[competence].expAtt);
             }
             
             if(action == "minus") {

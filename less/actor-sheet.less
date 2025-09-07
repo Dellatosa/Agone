@@ -480,7 +480,7 @@ a.nohlight {
                     margin: 2px 5px;
                 }
             }
-            
+
             .actor-comp-grid {
                 display: grid;
                 padding: 3px;
@@ -542,12 +542,30 @@ a.nohlight {
             .actor-comp-grid-unlocked {
                 display: grid;
                 padding: 3px;
-                grid-template-columns: 1fr 1.5em 2em 1.5em 2.5em 1fr 1fr;
+                grid-template-columns: 1fr 1.5em 2.5em 1.5em 2.5em 1fr 1fr;
                 font-size: 0.9em;
                 font-family: "BarbedorMedium";
-        
+
                 .titre-comp {
                     grid-column-start: span 7;
+                }
+            }
+
+            .actor-comp-grid-expe {
+                display: grid;
+                padding: 3px;
+                grid-template-columns: 1fr 2em 1.5em 2em 1.5em 2.5em 1fr 1fr;
+                font-size: 0.9em;
+                font-family: "BarbedorMedium";
+
+                .titre-comp {
+                    grid-column-start: span 8;
+                }
+            }
+
+            .actor-comp-grid-unlocked, .actor-comp-grid-expe {
+        
+                .titre-comp {
                     font-weight: bold;
                     height: 26px;
                     margin: 2px;
@@ -574,7 +592,7 @@ a.nohlight {
                     }
                 }
         
-                .val-comp {
+                .val-comp, .val-expe {
                     background-color: var(--color-stats-background);
                     margin: 2px;
                     text-align: center;
@@ -586,16 +604,24 @@ a.nohlight {
                         top: 5px;
                     }
                 }
+
+                .val-expe {
+                    background-color: var(--color-stats-back-expe);
+                }
+
+                .val-expe.max {
+                    background-color: var(--color-stats-back-expe-max);
+                }
         
-                .comp-crea {
+                .comp-crea, .comp-expe {
                     font-size: 0.8em;
                 }
         
-                .comp-crea.minus {
+                .minus {
                     text-align: right;
                 }
         
-                .comp-crea.plus {
+                .plus {
                     text-align: left;
                 }
 

@@ -11,7 +11,7 @@
         <div class="aspects-and-caracs">    
             {{#if unlocked}}
                 {{#if typePersonnage}}
-                    {{#if (eq typeRessEdition "modeExp")}}
+                    {{#if (and (eq typeRessEdition "modeExp") (not modeEditionLibre))}}
                         {{> "systems/agone/templates/partials/actors/bloc-aspect-personnage-experience.hbs"}}
                     {{else}}
                         {{> "systems/agone/templates/partials/actors/bloc-aspect-personnage-unlocked.hbs"}}

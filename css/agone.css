@@ -590,58 +590,96 @@ a.nohlight {
 .grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked {
   display: grid;
   padding: 3px;
-  grid-template-columns: 1fr 1.5em 2em 1.5em 2.5em 1fr 1fr;
+  grid-template-columns: 1fr 1.5em 2.5em 1.5em 2.5em 1fr 1fr;
   font-size: 0.9em;
   font-family: "BarbedorMedium";
 }
 .grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked .titre-comp {
   grid-column-start: span 7;
+}
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-expe {
+  display: grid;
+  padding: 3px;
+  grid-template-columns: 1fr 2em 1.5em 2em 1.5em 2.5em 1fr 1fr;
+  font-size: 0.9em;
+  font-family: "BarbedorMedium";
+}
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-expe .titre-comp {
+  grid-column-start: span 8;
+}
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked .titre-comp,
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-expe .titre-comp {
   font-weight: bold;
   height: 26px;
   margin: 2px;
 }
-.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked .lbl-comp {
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked .lbl-comp,
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-expe .lbl-comp {
   align-self: center;
 }
-.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked .dom-fixe {
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked .dom-fixe,
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-expe .dom-fixe {
   text-indent: 1em;
   align-self: center;
 }
-.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked .dom-perso {
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked .dom-perso,
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-expe .dom-perso {
   margin: 2px;
   background-color: var(--color-stats-background);
   border-radius: 3px;
 }
-.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked .dom-perso label {
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked .dom-perso label,
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-expe .dom-perso label {
   position: relative;
   top: 5px;
   left: 2px;
 }
-.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked .val-comp {
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked .val-comp,
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-expe .val-comp,
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked .val-expe,
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-expe .val-expe {
   background-color: var(--color-stats-background);
   margin: 2px;
   text-align: center;
   border-radius: 3px;
   height: 26px;
 }
-.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked .val-comp label {
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked .val-comp label,
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-expe .val-comp label,
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked .val-expe label,
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-expe .val-expe label {
   position: relative;
   top: 5px;
 }
-.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked .comp-crea {
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked .val-expe,
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-expe .val-expe {
+  background-color: var(--color-stats-back-expe);
+}
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked .val-expe.max,
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-expe .val-expe.max {
+  background-color: var(--color-stats-back-expe-max);
+}
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked .comp-crea,
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-expe .comp-crea,
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked .comp-expe,
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-expe .comp-expe {
   font-size: 0.8em;
 }
-.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked .comp-crea.minus {
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked .minus,
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-expe .minus {
   text-align: right;
 }
-.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked .comp-crea.plus {
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked .plus,
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-expe .plus {
   text-align: left;
 }
-.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked a {
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked a,
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-expe a {
   text-align: center;
   align-self: center;
 }
-.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked a.case-chk-spe {
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-unlocked a.case-chk-spe,
+.grid-caracSec-comp .competences .actor-fam-comp .actor-comp-grid-expe a.case-chk-spe {
   font-size: 1.3em;
 }
 .grid-data-att {

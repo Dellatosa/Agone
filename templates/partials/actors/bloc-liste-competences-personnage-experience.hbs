@@ -17,7 +17,7 @@
 {{#each data.system.familleCompetences as |famille keyFam|}}
     <div class="tab" data-group="competences" data-tab="{{keyFam}}">
         <div class="actor-fam-comp">
-            <div class="actor-comp-grid-unlocked col-max">
+            <div class="actor-comp-grid-expe col-max">
                 {{#each famille.competences as |competence keyComp|}}
                     {{#if domaine}}
                         <label class="titre-comp">{{competence.label}}</label>
@@ -35,14 +35,19 @@
                             {{else}}
                                 <label class="dom-fixe">{{domaine.label}}</label>
                             {{/if}}
-                            <div class="comp-crea minus">
-                                <a class="mod-comp-crea" title="{{localize 'agone.tooltip.dimComp'}}" data-famille="{{keyFam}}" data-competence="{{keyComp}}" data-domaine="{{keyDom}}" data-action="minus">
+                            <div class="val-comp"><label>{{domaine.rang}}</label></div>
+                            <div class="comp-expe minus">
+                                <a class="mod-comp-expe" title="{{localize 'agone.tooltip.dimExpe'}}" data-famille="{{keyFam}}" data-competence="{{keyComp}}" data-domaine="{{keyDom}}" data-action="minus">
                                     <i class="fa-solid fa-circle-minus"></i>
                                 </a>
                             </div>
-                            <div class="val-comp"><label>{{domaine.rang}}</label></div>
-                            <div class="comp-crea plus">
-                                <a class="mod-comp-crea" title="{{localize 'agone.tooltip.augComp'}}" data-famille="{{keyFam}}" data-competence="{{keyComp}}" data-domaine="{{keyDom}}" data-action="plus">
+                            {{#if (eq domaine.expAtt domaine.coutExp)}}
+                                <div class="val-expe max"><label>{{domaine.expAtt}}</label></div>
+                            {{else}}
+                                <div class="val-expe"><label>{{domaine.expAtt}}</label></div>
+                            {{/if}}
+                            <div class="comp-expe plus">
+                                <a class="mod-comp-expe" title="{{localize 'agone.tooltip.augExpe'}}" data-famille="{{keyFam}}" data-competence="{{keyComp}}" data-domaine="{{keyDom}}" data-action="plus">
                                     <i class="fa-solid fa-circle-plus"></i>
                                 </a>
                             </div>
@@ -56,14 +61,19 @@
                         {{/each}}
                     {{else}}
                         <label class="lbl-comp">{{competence.label}}</label>
-                        <div class="comp-crea minus">
-                            <a class="mod-comp-crea" title="{{localize 'agone.tooltip.dimComp'}}" data-famille="{{keyFam}}" data-competence="{{keyComp}}" data-action="minus">
+                        <div class="val-comp"><label>{{competence.rang}}</label></div>
+                        <div class="comp-expe minus">
+                            <a class="mod-comp-expe" title="{{localize 'agone.tooltip.dimExpe'}}" data-famille="{{keyFam}}" data-competence="{{keyComp}}" data-action="minus">
                                 <i class="fa-solid fa-circle-minus"></i>
                             </a>
-                        </div>  
-                        <div class="val-comp"><label>{{competence.rang}}</label></div>
-                        <div class="comp-crea plus">
-                            <a class="mod-comp-crea" title="{{localize 'agone.tooltip.augComp'}}" data-famille="{{keyFam}}" data-competence="{{keyComp}}" data-action="plus">
+                        </div>
+                        {{#if (eq competence.expAtt competence.coutExp)}}
+                            <div class="val-expe max"><label>{{competence.expAtt}}</label></div>
+                        {{else}}
+                            <div class="val-expe"><label>{{competence.expAtt}}</label></div>
+                        {{/if}}
+                        <div class="comp-expe plus">
+                            <a class="mod-comp-expe" title="{{localize 'agone.tooltip.augExpe'}}" data-famille="{{keyFam}}" data-competence="{{keyComp}}" data-action="plus">
                                 <i class="fa-solid fa-circle-plus"></i>
                             </a>
                         </div>

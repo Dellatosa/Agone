@@ -250,11 +250,13 @@ export default class AgoneActor extends Actor {
             for(let[keyComp, competence] of Object.entries(famille.competences)) {
                 if(competence.pc > 0 && !competence.speDemon) {famille.famValorisee = true; }
                 competence.rang = competence.pc + competence.avgDef + competence.exp;
+                competence.coutExp = (competence.pc + competence.exp + 1) * 3;
 
                 if(competence.domaine == true) {
                     for(let[keyDom, domaine] of Object.entries(competence.domaines)) {
                         if(domaine.pc > 0 && !competence.speDemon) {famille.famValorisee = true; }
                         domaine.rang = domaine.pc + domaine.avgDef + domaine.exp;
+                        domaine.coutExp = (domaine.pc + domaine.exp + 1) * 3;
                     }
                 }
             } 

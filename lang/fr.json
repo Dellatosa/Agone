@@ -694,7 +694,9 @@
             "augBlessGrave": "Augmenter le nombre de blessures graves",
             "dimBlessGrave": "Diminuer le nombre de blessures graves",
             "infoEditionTypeRess": "Choisissez si le mode édition de la feuille de personnage permet de répartir les points de création ou les points d'expérience",
-            "infoEditionModeLibre": "Le mode libre permet à l'EG de modifier les caractéristiques et compétences sans dépense de points de création ou d'expérience"
+            "infoEditionModeLibre": "Le mode libre permet à l'EG de modifier les caractéristiques et compétences sans dépense de points de création ou d'expérience",
+            "augExpe": "Augmenter l'expérience attribuée",
+            "dimExpe": "Diminuer l'expérience attribuée"
         },
         "dialog": {
             "titreReinitStats": "Réinitialisation des statistiques ?",
