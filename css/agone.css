@@ -3750,9 +3750,11 @@ a.nohlight {
 }
 .eg-content .grid-options-eg .grid-statistiques .minus {
   text-align: right;
+  font-size: 0.8em;
 }
 .eg-content .grid-options-eg .grid-statistiques .plus {
   text-align: left;
+  font-size: 0.8em;
 }
 .eg-content .notes-eg .editor {
   height: 170px;
