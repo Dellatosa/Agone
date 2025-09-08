@@ -134,13 +134,13 @@ async function preloadHandlebarsTemplates() {
         "systems/agone/templates/partials/actors/bloc-liste-pouvoirs-saisonnin-personnage-v2.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-peines-personnage-v2.hbs",
         "systems/agone/templates/partials/actors/bloc-liste-bienfaits-personnage-v2.hbs",
-        "systems/agone/templates/partials/actors/bloc-liste-pouvoirs-demon.hbs",
         // Jet de dés
         "systems/agone/templates/partials/dice/jet-resultat.hbs",
         "systems/agone/templates/partials/dice/jet-resultat-dommages.hbs",
         "systems/agone/templates/partials/dice/jet-dices-details.hbs",
         // Onglet EG
-        "systems/agone/templates/partials/actors/bloc-eg-personnage.hbs"
+        "systems/agone/templates/partials/actors/bloc-eg-personnage.hbs",
+        "systems/agone/templates/partials/effects/agone-changes.hbs"
     ];
 
     return foundry.applications.handlebars.loadTemplates(templatePaths);
