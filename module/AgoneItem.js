@@ -21,6 +21,11 @@ export default class AgoneItem extends Item {
         let data = this.system;
     }
 
+    static getDefaultArtwork(itemData) {
+        console.log(itemData);
+        return { img: CONFIG.agone.itemDefImage[itemData.type] ? CONFIG.agone.itemDefImage[itemData.type] : "icons/svg/mystery-man-black.svg" };
+    }
+
     async roll() {
         let chatData = {
             user: game.user.id,
@@ -73,7 +78,6 @@ export default class AgoneItem extends Item {
 Hooks.on("closeAgoneItemSheet", (itemSheet, html) => onCloseAgoneItemSheet(itemSheet));
 Hooks.on("updateItem", (item, modif, info, id) => onUpdateItem(item, modif));
 Hooks.on("deleteItem", (item, render, id) => onDeleteItem(item));
-Hooks.on("createItem", (item, render, id) => onCreateItem(item));
 
 function onCloseAgoneItemSheet(itemSheet) {
     // Modification sur un Danseur
@@ -88,13 +92,6 @@ function onCloseAgoneItemSheet(itemSheet) {
     if(itemSheet.item.type == "Armure") {
         // Le malus de perception dépend du type d'armure
         itemSheet.item.update({"system.malusPerception": CONFIG.agone.typesArmureMalusPer[itemSheet.item.system.type]});
-    }
-}
-
-function onCreateItem(item) {
-    if (item.img == "icons/svg/item-bag.svg") {
-        let image = CONFIG.agone.itemDefImage[item.type] ? CONFIG.agone.itemDefImage[item.type] : "icons/svg/mystery-man-black.svg";
-        item.img = image;
     }
 }
 

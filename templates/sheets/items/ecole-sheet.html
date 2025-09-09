@@ -8,11 +8,7 @@
             <label class="grid-titre">{{localize "agone.common.type"}}</label>
             <div>
                 <select name="system.type">
-                    {{#select data.system.type}}
-                        {{#each config.typesCompetence as |name type|}}
-                            <option value="{{type}}">{{localize name}}</option>
-                        {{/each}}
-                    {{/select}} 
+                    {{selectOptions config.typesCompetence selected=data.system.type localize=true}}
                 </select>
             </div>
         </div>

@@ -11,11 +11,7 @@
             <label class="grid-titre">{{localize "agone.items.malusPerception"}}</label>
             <div>
                 <select name="system.type">
-                    {{#select data.system.type}}
-                        {{#each config.typesArmure as |name type|}}
-                            <option value="{{type}}">{{localize name}}</option>
-                        {{/each}}
-                    {{/select}} 
+                    {{selectOptions config.typesArmure selected=data.system.type localize=true}}
                 </select>
             </div>
             <div><input name="system.protection" type="text" value="{{data.system.protection}}" data-dtype="Number" placeholder="0"/></div>

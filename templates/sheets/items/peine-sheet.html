@@ -15,11 +15,7 @@
                     <label class="grid-titre">{{localize "agone.items.palier"}}</label>
                     <div>
                         <select name="system.type">
-                            {{#select data.system.type}}
-                                {{#each config.typesPeine as |name type|}}
-                                    <option value="{{type}}">{{localize name}}</option>
-                                {{/each}}
-                            {{/select}} 
+                            {{selectOptions config.typesPeine selected=data.system.type localize=true}}
                         </select>
                     </div>
                     <div><input name="system.palier" type="text" value="{{data.system.palier}}" data-dtype="Number" placeholder="0"/></div>

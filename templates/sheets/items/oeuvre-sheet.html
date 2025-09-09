@@ -14,29 +14,17 @@
             <label class="grid-titre">{{localize "agone.items.dureeOeuvre"}}</label>
             <div>
                 <select name="system.artMagique">
-                    {{#select data.system.artMagique}}
-                        {{#each config.arts as |name type|}}
-                            <option value="{{type}}">{{localize name}}</option>
-                        {{/each}}
-                    {{/select}}
+                    {{selectOptions config.arts selected=data.system.artMagique localize=true}}
                 </select>
             </div>
             <div>
                 <select name="system.saison">
-                    {{#select data.system.saison}}
-                        {{#each config.saisons as |name type|}}
-                            <option value="{{type}}">{{localize name}}</option>
-                        {{/each}}
-                    {{/select}}
+                    {{selectOptions config.saisons selected=data.system.saison localize=true}}
                 </select>
             </div>
             <div>
                 <select name="system.instrument">
-                    {{#select data.system.instrument}}
-                        {{#each config.instruments as |name type|}}
-                            <option value="{{type}}">{{localize name}}</option>
-                        {{/each}}
-                    {{/select}}
+                    {{selectOptions config.instruments selected=data.system.instrument localize=true}}
                 </select>
             </div>
             <div><input name="system.seuil" type="text" value="{{data.system.seuil}}" data-dtype="Number" placeholder="0"/></div>

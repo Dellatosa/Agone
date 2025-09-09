@@ -444,21 +444,21 @@ export default class AgoneDemonSheet extends foundry.appv1.sheets.ActorSheet {
     }
 
     //Suppression d'un item
-    _onSupprimerItem(event) {
+    async _onSupprimerItem(event) {
         event.preventDefault();
         const element = event.currentTarget;
 
         let itemId = element.closest(".item").dataset.itemId;
         let item = this.actor.items.get(itemId);
         
-        let content = `<p>${game.i18n.localize("agone.common.objet")} : ${item.name}<br>${game.i18n.localize("agone.common.confirmSupprText")}<p>`
-        let dlg = Dialog.confirm({
-            title: game.i18n.localize("agone.common.confirmSuppr"),
-            content: content,
-            yes: () => item.delete(),
-            //no: () =>, On ne fait rien sur le 'Non'
-            defaultYes: false
-           });
+        const suppr = await foundry.applications.api.DialogV2.confirm({
+            window: { title: game.i18n.localize("agone.dialog.confirmSuppr") },
+            content: `<p>${game.i18n.localize("agone.dialog.objetASuppr")} : ${item.name}<br>${game.i18n.localize("agone.dialog.confirmSupprText")}<p>`
+        });
+
+        if(suppr) {
+            item.delete();
+        }
     }
 
     // item-roll - jet de dés depuis un item

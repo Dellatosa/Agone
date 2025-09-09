@@ -5,7 +5,7 @@ export default class AgoneItemSheet extends foundry.appv1.sheets.ItemSheet {
     static get defaultOptions() {
         return foundry.utils.mergeObject(super.defaultOptions, {
             width: 550,
-            height: 'auto', //370,
+            height: 'auto',
             classes: ["agone", "sheet", "item"],
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }]
         });
@@ -80,7 +80,7 @@ export default class AgoneItemSheet extends foundry.appv1.sheets.ItemSheet {
         let effectId = element.closest(".effet").dataset.effectId;
         let effet = this.item.effects.get(effectId);
 
-        new AgoneActiveEffectConfig(effet).render(true);
+        new AgoneActiveEffectConfig({ document: effet}).render(true);
     }
 
     _onSupprimerEffet(event) {

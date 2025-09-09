@@ -4,29 +4,22 @@ export default class AgoneActiveEffectConfig extends foundry.applications.sheets
         classes: ["agone", "sheet", "active-effect-config"]
     }
 
-    /*static get defaultOptions() {
-        return foundry.utils.mergeObject(super.defaultOptions, {
-            width: 560,
-            height: 300,
-            classes: ["agone", "sheet", "active-effect"],
-            template:  "systems/agone/templates/sheets/effects/active-effect-sheet.html"
-        });
-    }*/
+    static PARTS = {
+        header: {template: "templates/sheets/active-effect/header.hbs"},
+        tabs: {template: "templates/generic/tab-navigation.hbs"},
+        details: {template: "templates/sheets/active-effect/details.hbs", scrollable: [""]},
+        duration: {template: "templates/sheets/active-effect/duration.hbs"},
+        changes: {template: "systems/agone/templates/partials/effects/agone-changes.hbs", scrollable: ["ol[data-changes]"]},
+        footer: {template: "templates/generic/form-footer.hbs"}
+    };
 
-     static PARTS = {
-    header: {template: "templates/sheets/active-effect/header.hbs"},
-    tabs: {template: "templates/generic/tab-navigation.hbs"},
-    details: {template: "templates/sheets/active-effect/details.hbs", scrollable: [""]},
-    duration: {template: "templates/sheets/active-effect/duration.hbs"},
-    changes: {template: "templates/sheets/active-effect/changes.hbs", scrollable: ["ol[data-changes]"]},
-    footer: {template: "templates/generic/form-footer.hbs"}
-  };
+    async _preparePartContext(partId, context) {
+        const partContext = await super._preparePartContext(partId, context);
+        switch ( partId ) {
+            case "changes":
+            partContext.config = CONFIG.agone;
+        }
 
-    /*async getData() {
-
-        const data = await super.getData();
-        data.config = CONFIG.agone;
-
-        return data;
-    }*/
+        return partContext;
+    }
 }

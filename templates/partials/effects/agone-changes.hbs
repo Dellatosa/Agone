@@ -11,7 +11,9 @@
         {{#with ../fields.changes.element.fields as |changeFields|}}
         <li data-index="{{i}}">
             <div class="key">
-                {{formInput changeFields.key name=(concat "changes." i ".key") value=change.key}}
+                <select name="changes.{{i}}.key">
+                    {{selectOptions ../../config.clefsEffets selected=change.key localize=true}}
+                </select>
             </div>
             <div class="mode">
                 {{formInput changeFields.mode name=(concat "changes." i ".mode") value=change.mode choices=@root.modes}}

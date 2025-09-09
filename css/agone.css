@@ -1207,30 +1207,30 @@ a.nohlight {
 .grid-data-histo-mini .data-histo .experience .grid-peinesBienfaits-edit .tenebre,
 .grid-data-histo .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .tenebre,
 .grid-data-histo-mini .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .tenebre,
-.grid-data-histo .data-histo .experience .grid-peinesBienfaits-edit .perfidie-crea,
-.grid-data-histo-mini .data-histo .experience .grid-peinesBienfaits-edit .perfidie-crea,
-.grid-data-histo .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .perfidie-crea,
-.grid-data-histo-mini .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .perfidie-crea {
+.grid-data-histo .data-histo .experience .grid-peinesBienfaits-edit .perfidie,
+.grid-data-histo-mini .data-histo .experience .grid-peinesBienfaits-edit .perfidie,
+.grid-data-histo .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .perfidie,
+.grid-data-histo-mini .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .perfidie {
   font-size: 0.8em;
 }
 .grid-data-histo .data-histo .experience .grid-peinesBienfaits-edit .tenebre.minus,
 .grid-data-histo-mini .data-histo .experience .grid-peinesBienfaits-edit .tenebre.minus,
 .grid-data-histo .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .tenebre.minus,
 .grid-data-histo-mini .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .tenebre.minus,
-.grid-data-histo .data-histo .experience .grid-peinesBienfaits-edit .perfidie-crea.minus,
-.grid-data-histo-mini .data-histo .experience .grid-peinesBienfaits-edit .perfidie-crea.minus,
-.grid-data-histo .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .perfidie-crea.minus,
-.grid-data-histo-mini .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .perfidie-crea.minus {
+.grid-data-histo .data-histo .experience .grid-peinesBienfaits-edit .perfidie.minus,
+.grid-data-histo-mini .data-histo .experience .grid-peinesBienfaits-edit .perfidie.minus,
+.grid-data-histo .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .perfidie.minus,
+.grid-data-histo-mini .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .perfidie.minus {
   text-align: right;
 }
 .grid-data-histo .data-histo .experience .grid-peinesBienfaits-edit .tenebre.plus,
 .grid-data-histo-mini .data-histo .experience .grid-peinesBienfaits-edit .tenebre.plus,
 .grid-data-histo .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .tenebre.plus,
 .grid-data-histo-mini .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .tenebre.plus,
-.grid-data-histo .data-histo .experience .grid-peinesBienfaits-edit .perfidie-crea.plus,
-.grid-data-histo-mini .data-histo .experience .grid-peinesBienfaits-edit .perfidie-crea.plus,
-.grid-data-histo .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .perfidie-crea.plus,
-.grid-data-histo-mini .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .perfidie-crea.plus {
+.grid-data-histo .data-histo .experience .grid-peinesBienfaits-edit .perfidie.plus,
+.grid-data-histo-mini .data-histo .experience .grid-peinesBienfaits-edit .perfidie.plus,
+.grid-data-histo .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .perfidie.plus,
+.grid-data-histo-mini .data-histo .peinesBienfaits .grid-peinesBienfaits-edit .perfidie.plus {
   text-align: left;
 }
 .grid-data-histo .historique .titre-rub,

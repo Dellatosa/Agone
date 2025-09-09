@@ -250,7 +250,7 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
             html.find(".mod-tenebre").click(this._onModifTenebre.bind(this));
 
              // Modifier le score de Perfidie
-            html.find(".mod-perfidie-crea").click(this._onModifPerfidie.bind(this));
+            html.find(".mod-perfidie").click(this._onModifPerfidie.bind(this));
 
             // Modifier le nombre de points de vie max
             html.find(".mod-pdv-max").click(this._onModifPdvMax.bind(this));
@@ -1068,21 +1068,21 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
     }
 
     //Suppression d'un item
-    _onSupprimerItem(event) {
+    async _onSupprimerItem(event) {
         event.preventDefault();
         const element = event.currentTarget;
 
         let itemId = element.closest(".item").dataset.itemId;
         let item = this.actor.items.get(itemId);
         
-        let content = `<p>${game.i18n.localize("agone.common.objet")} : ${item.name}<br>${game.i18n.localize("agone.common.confirmSupprText")}<p>`
-        let dlg = Dialog.confirm({
-            title: game.i18n.localize("agone.common.confirmSuppr"),
-            content: content,
-            yes: () => item.delete(),
-            //no: () =>, On ne fait rien sur le 'Non'
-            defaultYes: false
-           });
+        const suppr = await foundry.applications.api.DialogV2.confirm({
+            window: { title: game.i18n.localize("agone.dialog.confirmSuppr") },
+            content: `<p>${game.i18n.localize("agone.dialog.objetASuppr")} : ${item.name}<br>${game.i18n.localize("agone.dialog.confirmSupprText")}<p>`
+        });
+
+        if(suppr) {
+            item.delete();
+        }
     }
 
     // Edition d'un champ d'item directement en ligne
@@ -1180,8 +1180,6 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
         event.preventDefault();
 
         let caracData = this.actor.getCaracData("resistance");
-
-        //console.log(this.actor.diffJetVieillesse);
 
         Dice.jetCaracteristique({
             actor: this.actor,
@@ -1342,9 +1340,6 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
         event.preventDefault();
 
         // Carte de sélection de l'art magique à afficher dans le chat
-        //let arts = Object();
-        //arts = this.actor.system.familleCompetences.occulte.competences.artsMagiques.domaines;
-        //console.log(this.actor.system.familleCompetences.occulte.competences.artsMagiques.domaines, arts);
         Chat.selArtMagiqueReconnOeuvre(this.actor, this.actor.system.familleCompetences.occulte.competences.artsMagiques.domaines);
     }
 

@@ -28,9 +28,6 @@
             "name": "Name",
             "type": "Type",
             "cout": "Cost",
-            "objet": "Item",
-            "confirmSuppr" : "Deletion confirmation",
-            "confirmSupprText": "Are you sure you want to delete this item ?",
             "details": "Details",
             "jet": "Roll",
             "annuler": "Cancel",
@@ -715,7 +712,10 @@
             "attribuerExp": "NO TRAD - Attribuer des points d'expérience ?",
             "attribuerExpMsg": "NO TRAD - Confirmez-vous l'attribution de ce nombre de points d'expérience au personnage ?",
             "validerExpe": "NO TRAD - Valider la répartition de l'expérience ?",
-            "validerExpeMsg": "NO TRAD - Validez-vous la répartition des points d'expérience pour ce personnage ?"
+            "validerExpeMsg": "NO TRAD - Validez-vous la répartition des points d'expérience pour ce personnage ?",
+            "objetASuppr": "Item to delete",
+            "confirmSuppr" : "Confirm deletion ?",
+            "confirmSupprText": "Are you sure you want to delete this item ?"
         }
     },
     "parametres": {

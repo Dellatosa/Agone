@@ -8,11 +8,7 @@
             <label class="grid-titre">{{localize "agone.actors.saisonnin"}}</label>
             <div>
                 <select name="system.saisonnin">
-                    {{#select data.system.saisonnin}}
-                        {{#each config.saisonnins as |name type|}}
-                            <option value="{{type}}">{{localize name}}</option>
-                        {{/each}}
-                    {{/select}} 
+                    {{selectOptions config.saisonnins selected=data.system.saisonnin localize=true}}
                 </select>
             </div>
         </div>

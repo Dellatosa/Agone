@@ -15,8 +15,6 @@ export default class AgoneActor extends Actor {
                 // Base de 1 en positif pour les Inspirés
                 if(this.type == "Personnage") { aspect.positif.base = 1; }
 
-                console.log(aspect);
-                
                 // Calcul des aspects
                 aspect.positif.valeur = aspect.positif.base + aspect.positif.pc + aspect.positif.exp + aspect.positif.avgDef;
                 aspect.positif.coutExp = (aspect.positif.base + aspect.positif.pc + aspect.positif.exp + 1) * 7;

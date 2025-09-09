@@ -10,11 +10,7 @@
             <label class="grid-titre">{{localize "agone.items.nomAdvocatus"}}</label>
             <div>
                 <select name="system.cercleDemon">
-                    {{#select data.system.cercleDemon}}
-                        {{#each config.cerclesDemon as |name type|}}
-                            <option value="{{type}}">{{localize name}}</option>
-                        {{/each}}
-                    {{/select}}
+                    {{selectOptions config.cerclesDemon selected=data.system.cercleDemon localize=true}}
                 </select>
             </div>
             <div><input name="system.nomDemon" type="text" value="{{data.system.nomDemon}}" placeholder="{{localize 'agone.items.nomDemon'}}"/></div>

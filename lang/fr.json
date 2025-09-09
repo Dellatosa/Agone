@@ -28,9 +28,6 @@
             "name": "Nom",
             "type": "Type",
             "cout": "Coût",
-            "objet": "Objet",
-            "confirmSuppr" : "Confirmation de suppression",
-            "confirmSupprText": "Etes-vous certain de vouloir supprimer cet objet ?",
             "details": "Détails",
             "jet": "Jet",
             "annuler": "Annuler",
@@ -717,7 +714,10 @@
             "attribuerExp": "Attribuer des points d'expérience ?",
             "attribuerExpMsg": "Confirmez-vous l'attribution de ce nombre de points d'expérience au personnage ?",
             "validerExpe": "Valider la répartition de l'expérience ?",
-            "validerExpeMsg": "Validez-vous la répartition des points d'expérience pour ce personnage ?"
+            "validerExpeMsg": "Validez-vous la répartition des points d'expérience pour ce personnage ?",
+            "objetASuppr": "Nom de l'objet à supprimer",
+            "confirmSuppr" : "Confirmer la suppression ?",
+            "confirmSupprText": "Etes-vous certain de vouloir supprimer cet objet ?"
         }
     },
     "parametres": {

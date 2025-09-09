@@ -851,25 +851,6 @@ agone.peuple = {
     } 
 }
 
-agone.itemDefImage = {
-    Arme: "icons/svg/sword.svg",
-    Armure: "icons/svg/statue.svg",
-    Avantage: "icons/svg/upgrade.svg",
-    BotteSecrete: "icons/svg/combat.svg",
-    Bienfait: "icons/svg/sun.svg",
-    Connivence: "icons/svg/mage-shield.svg",
-    Danseur: "systems/agone/images/item/danseur.png",
-    Defaut: "icons/svg/downgrade.svg",
-    Ecole: "icons/svg/city.svg",
-    Equipement: "icons/svg/item-bag.svg",
-    Manoeuvre: "icons/svg/combat.svg",
-    Oeuvre: "icons/svg/temple.svg",
-    Peine: "icons/svg/poison.svg",
-    PouvoirFlamme: "icons/svg/fire.svg",
-    PouvoirSaison: "icons/svg/oak.svg",
-    Sort: "icons/svg/daze.svg"    
-}
-
 agone.typesArme = {
     aucun: "",
     perforante: "agone.items.perforante",
@@ -1239,6 +1220,25 @@ agone.symboles = {
     obscurantiste: "fa-solid fa-sparkle"
 }
 
+agone.itemDefImage = {
+    Arme: "icons/svg/sword.svg",
+    Armure: "icons/svg/statue.svg",
+    Avantage: "icons/svg/upgrade.svg",
+    BotteSecrete: "icons/svg/combat.svg",
+    Bienfait: "icons/svg/sun.svg",
+    Connivence: "icons/svg/mage-shield.svg",
+    Danseur: "systems/agone/images/item/danseur.png",
+    Defaut: "icons/svg/downgrade.svg",
+    Ecole: "icons/svg/city.svg",
+    Equipement: "icons/svg/item-bag.svg",
+    Manoeuvre: "icons/svg/combat.svg",
+    Oeuvre: "icons/svg/temple.svg",
+    Peine: "icons/svg/poison.svg",
+    PouvoirFlamme: "icons/svg/fire.svg",
+    PouvoirSaison: "icons/svg/oak.svg",
+    Sort: "icons/svg/daze.svg"    
+}
+
 agone.clefsEffets = {
     "": "",
     "system.aspects.ame.positif.avgDef": "agone.actors.ame",
@@ -1270,5 +1270,4 @@ agone.clefsEffets = {
     "system.familleCompetences.societe.competences.peinture.rang": "agone.actors.peinture",
     "system.familleCompetences.societe.competences.poesie.rang": "agone.actors.poesie",
     "system.familleCompetences.societe.competences.sculpture.rang": "agone.actors.sculpture"
-    
 }
