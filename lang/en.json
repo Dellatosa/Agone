@@ -35,7 +35,8 @@
             "editerComp": "Edit skills",
             "reserve": "Pool",
             "actif": "On",
-            "inactif": "off"
+            "inactif": "off",
+            "pcComp": "NO TRAD - Points de créa (compétences)"
         },
         "actors": {
             "biographie": "Biography",

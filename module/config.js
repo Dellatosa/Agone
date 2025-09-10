@@ -1269,5 +1269,6 @@ agone.clefsEffets = {
     "system.familleCompetences.societe.competences.musique.domaines.d3.rang": "agone.actors.musiqueD3",
     "system.familleCompetences.societe.competences.peinture.rang": "agone.actors.peinture",
     "system.familleCompetences.societe.competences.poesie.rang": "agone.actors.poesie",
-    "system.familleCompetences.societe.competences.sculpture.rang": "agone.actors.sculpture"
+    "system.familleCompetences.societe.competences.sculpture.rang": "agone.actors.sculpture",
+    "system.pcCompetences.avgDef": "agone.common.pcComp"
 }

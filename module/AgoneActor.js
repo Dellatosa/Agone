@@ -106,7 +106,7 @@ export default class AgoneActor extends Actor {
                 // Nb de points de création selon le peuple
                 if(this.type == "Personnage") {
                     data.pcCaracs.base = data.peuple == "humain" ? 80 : 70;
-                    data.pcCompetences.base = data.peuple == "humain" ? 120 : 100;
+                    data.pcCompetences.base = data.peuple == "humain" ? 120 + data.pcCompetences.avgDef : 100 + data.pcCompetences.avgDef;
                 }
             } else {
                 data.caracSecondaires.tai.valeur = 0 + data.caracSecondaires.tai.avgDef;
@@ -118,7 +118,7 @@ export default class AgoneActor extends Actor {
                 data.caracSecondaires.pdv.bpdv = 0;
                 if(this.type == "Personnage") {
                     data.pcCaracs.base = 0;
-                    data.pcCompetences.base = 0;
+                    data.pcCompetences.base = 0 + data.pcCompetences.avgDef;
                 }
             }
 

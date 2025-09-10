@@ -35,7 +35,8 @@
             "editerComp": "Edition des compétences",
             "reserve": "Réserve",
             "actif": "Actif",
-            "inactif": "Inactif"
+            "inactif": "Inactif",
+            "pcComp": "Points de créa (compétences)"
         },
         "actors": {
             "biographie": "Biographie",
