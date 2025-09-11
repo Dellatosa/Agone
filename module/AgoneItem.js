@@ -26,12 +26,16 @@ export default class AgoneItem extends Item {
         return { img: CONFIG.agone.itemDefImage[itemData.type] ? CONFIG.agone.itemDefImage[itemData.type] : "icons/svg/mystery-man-black.svg" };
     }
 
-    async roll() {
+    async roll(msgVisible) {
         let chatData = {
             user: game.user.id,
-            speaker: ChatMessage.getSpeaker({ actor: this.actor })
+            speaker: ChatMessage.getSpeaker({ actor: this.actor }),
         };
 
+        if(!msgVisible) {
+            chatData.whisper = game.user.id;
+        }
+        
         let cardData = {
             ...this,
             isToken: this.actor.isToken ? 1 : 0,

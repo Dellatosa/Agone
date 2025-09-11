@@ -11,6 +11,7 @@ import { registerSystemSettings } from "./settings.js";
 import registerHandlebarsHelpers from "./common/helpers.js"
 import * as Chat from "./chat.js";
 import * as Migrations from "./migration.js";
+import * as Utils from "./common/utils.js"
 
 Hooks.once("init", function(){
     console.log("Agone | Initialisation du système Agone RPG");
@@ -29,6 +30,8 @@ Hooks.once("init", function(){
     //CONFIG.Combat.documentClass = AgoneCombat;
     //CONFIG.ui.Combat = AgoneCombatTracker;
     CONFIG.Combatant.documentClass = AgoneCombatant;
+
+    CONFIG.queries["agone.messageToEG"] = Utils.messageInfoEG;
  
     foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
     foundry.documents.collections.Actors.registerSheet("agone", AgoneActorSheet, {types: ["Personnage", "Damne", "Terne"], makeDefault: true});

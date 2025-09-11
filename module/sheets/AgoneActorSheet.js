@@ -186,7 +186,7 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
         return data;
     }
 
-    async _updateObject(event, formData) {
+    /*async _updateObject(event, formData) {
         const updateObj = {};
 
         for (const [key, value] of Object.entries(formData)) {             
@@ -197,7 +197,7 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
         this.actor.update(updateObj);
 
         super._updateObject(event, formData);
-    }
+    }*/
 
     activateListeners(html) {
         super.activateListeners(html);
@@ -1120,7 +1120,7 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
         let itemId = element.closest(".item").dataset.itemId;
         let item = this.actor.items.get(itemId);
 
-        item.roll();
+        item.roll(event.shiftKey);
     }
 
     // roll-comp - jet de compétence
@@ -1219,10 +1219,19 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
 
     // Gestionnaire d'événements de l'onglet Combat
     // Régénération de l'Héroisme
-    _onRegenHeroisme(event) {
+    async _onRegenHeroisme(event) {
         event.preventDefault();
         
         this.actor.regenererHeroisme();
+
+        const user = game.users.activeGM;
+        const queryData = {
+            actorId: this.actor._id,
+            action: "regenererHeroisme"
+        };
+
+        const queryValue = await user.query("agone.messageToEG", queryData);
+        //console.log("query Result", queryValue);
     }
 
     // Initiative - base, sans arme
@@ -1401,8 +1410,6 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
             window: { title: game.i18n.localize("agone.dialog.validerExpe") },
             content: `<p>${game.i18n.localize("agone.dialog.validerExpeMsg")}</p>`
         });
-
-        console.log(this.actor.system);
 
         if(valider) {
             // Aspects 

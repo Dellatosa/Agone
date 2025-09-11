@@ -104,7 +104,7 @@ export default class AgoneDemonSheet extends foundry.appv1.sheets.ActorSheet {
         return data;
     }
 
-    async _updateObject(event, formData) {
+    /*async _updateObject(event, formData) {
         const updateObj = {};
 
         for (const [key, value] of Object.entries(formData)) {             
@@ -115,7 +115,7 @@ export default class AgoneDemonSheet extends foundry.appv1.sheets.ActorSheet {
         this.actor.update(updateObj);
 
         super._updateObject(event, formData);
-    }
+    }*/
 
     activateListeners(html) {
         super.activateListeners(html);
