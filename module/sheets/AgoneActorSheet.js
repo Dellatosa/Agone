@@ -1405,7 +1405,7 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
         console.log(this.actor.system);
 
         if(valider) {
-            // Aspects et Caracs
+            // Aspects 
             for (let [keyA, aspect] of Object.entries(this.actor.system.aspects)) {
                 if(aspect.positif.coutExp == aspect.positif.expAtt) {
                     ui.notifications.info(game.i18n.format("agone.notifications.augmentationAspect", { aspect: aspect.positif.label }));
@@ -1413,7 +1413,7 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
                     await this.actor.update({ [`system.aspects.${keyA}.positif.expAtt`] : 0 });
                 }
 
-                // Récupération des traductions pour les caractéristiques
+                // Caractéristiques
                 for (let [keyC, carac] of Object.entries(aspect.caracteristiques)) {
                     if ((carac.coutExp == carac.expAtt) && !carac.secondaire) {
                         ui.notifications.info(game.i18n.format("agone.notifications.augmentationCarac", { carac: carac.label }));
@@ -1421,6 +1421,27 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
                         await this.actor.update({ [`system.aspects.${keyA}.caracteristiques.${keyC}.expAtt`] : 0 });
                     }
                 }
+            }
+
+            // Compétences
+            for(let[keyFam, famille] of Object.entries(this.actor.system.familleCompetences)) {
+                for(let[keyComp, competence] of Object.entries(famille.competences)) {
+                    if(competence.coutExp == competence.expAtt) {
+                        ui.notifications.info(game.i18n.format("agone.notifications.augmentationComp", { comp: competence.label }));
+                        await this.actor.update({ [`system.familleCompetences.${keyFam}.competences.${keyComp}.exp`] : competence.exp + 1 });
+                        await this.actor.update({ [`system.familleCompetences.${keyFam}.competences.${keyComp}.expAtt`] : 0 });
+                    }
+                
+                    if(competence.domaine == true) {
+                        for(let[keyDom, domaine] of Object.entries(competence.domaines)) {
+                            if(domaine.coutExp == domaine.expAtt) {
+                                ui.notifications.info(game.i18n.format("agone.notifications.augmentationComp", { comp: domaine.label }));
+                                await this.actor.update({[`system.familleCompetences.${keyFam}.competences.${keyComp}.domaines.${keyDom}.exp`]: domaine.exp + 1 });
+                                await this.actor.update({[`system.familleCompetences.${keyFam}.competences.${keyComp}.domaines.${keyDom}.expAtt`]: 0 });
+                            }
+                        }
+                    }
+                } 
             }
         }
     }

@@ -2,6 +2,16 @@
   display: flex;
   flex-direction: column;
 }
+.agone.sheet.item .sheet-header img {
+  border: none;
+}
+.agone.sheet.item .sheet-header .item-name {
+  font: var(--font-lorgol-nom-perso);
+  flex-grow: 1;
+}
+.agone.sheet.item .sheet-header .item-name input {
+  height: auto;
+}
 .agone.sheet.item .sheet-content,
 .agone.sheet.item .sheet-body {
   display: flex;

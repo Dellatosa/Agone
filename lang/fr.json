@@ -652,7 +652,8 @@
             "warnExpeDispoVide": "Vous n'avez plus de points d'expérience disponible.",
             "warnCompMusique": "Aucune compétence de musique trouvée.",
             "augmentationAspect": "Augmentation par l'expérience de l'aspect {aspect}.",
-            "augmentationCarac": "Augmentation par l'expérience de la caracteristique {carac}."
+            "augmentationCarac": "Augmentation par l'expérience de la caracteristique {carac}.", 
+            "augmentationComp": "Augmentation par l'expérience de la competence {comp}."
         },
         "tooltip": {
             "verrou": "Verrouiller la fiche",

@@ -650,7 +650,10 @@
             "warnFamOcculte": "NO TRAD - Seul un Obsidien peut disposer de compétences dans la famille Occulte.",
             "warnExpeDispoNegatif": "NO TRAD - Vous ne pouvez pas retirer plus de points d'expérience que de le nombre de points d'expérience disponible du personnage.",
             "warnExpeDispoVide": "NO TRAD - Vous n'avez plus de points d'expérience disponible.",
-            "warnCompMusique": "NO TRAD - Aucune compétence de musique trouvée."
+            "warnCompMusique": "NO TRAD - Aucune compétence de musique trouvée.",
+            "augmentationAspect": "NO TRAD - Augmentation par l'expérience de l'aspect {aspect}.",
+            "augmentationCarac": "NO TRAD - Augmentation par l'expérience de la caracteristique {carac}.", 
+            "augmentationComp": "NO TRAD - Augmentation par l'expérience de la competence {comp}."
         },
         "tooltip": {
             "verrou": "Lock sheet",
