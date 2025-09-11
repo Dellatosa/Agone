@@ -1086,7 +1086,7 @@ a.nohlight {
         background: linear-gradient(to right; #00000000; #00000021;);
         padding: 5px;
 
-        .data-experience-titre, .data-peinesBienfaits-titre {
+        .data-experience-titre, .data-peinesBienfaits-titre, .data-heroisme-titre {
             text-align: center;
             font: var(--font-lorgol-24px);
             margin-bottom: 2px;
@@ -1139,11 +1139,11 @@ a.nohlight {
                     grid-column-start: span 2;
 
                     button {
-                    margin: 1px 0;
-                    font-family: "BarbedorMedium";
-                    border-radius: 5px;
-                    border: 1px solid var(--color-box-border-dark);
-                }
+                        margin: 1px 0;
+                        font-family: "BarbedorMedium";
+                        border-radius: 5px;
+                        border: 1px solid var(--color-box-border-dark);
+                    }
                 }
 
             }
@@ -1195,6 +1195,43 @@ a.nohlight {
                 }
             }
         }
+
+        .heroisme {
+            .grid-heroisme {
+                display: grid;
+                grid-template-columns: 1fr 10px 3.5em 10px 3.5em;
+                align-items: center;
+                margin: 3px 1px;
+                padding: 3px;
+                border: solid 1px var(--color-box-border-dark);
+                border-radius: 5px;
+
+                .lib-all {
+                    grid-column-start: 1;
+                    grid-column-end: 6;
+                    text-align: center;
+                }
+
+                .sep {
+                    align-self: center;
+                    text-align: center;
+                }
+
+                .val {
+                    background-color: var(--color-stats-background);
+                    margin: 2px 5px;
+                    text-align: center;
+                    align-items: center;
+                    border-radius: 3px;
+                    height: 26px;
+
+                    label {
+                        position: relative;
+                        top: 5px;
+                    }       
+                }
+            }
+        }
     }
 
     .historique {
@@ -1234,11 +1271,11 @@ a.nohlight {
     }
 }*/
 
-.grid-armes, .grid-armures, .grid-danseurs, .grid-sorts , .grid-oeuvres {
+.grid-armes, .grid-armures, .grid-danseurs, .grid-sorts , .grid-oeuvres, .grid-avantages, .grid-defauts {
     display: grid;
     grid-template-columns: 1fr 1fr;
 
-    .bloc-arme, .bloc-armure, .bloc-danseur, .bloc-sort, .bloc-oeuvre {
+    .bloc-arme, .bloc-armure, .bloc-danseur, .bloc-sort, .bloc-oeuvre, .bloc-avantage, .bloc-defaut {
         border: solid 1px var(--color-box-border-dark);
         border-radius: 5px;
         margin: 2px;
@@ -1374,14 +1411,35 @@ a.nohlight {
                 grid-row-end: 4;
             }
         }
+
+        .ligne-stats-avantage, .ligne-stats-defaut {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            text-align: center;
+            align-items: center;
+            margin-bottom: 3px;
+
+            .desc-col {
+                grid-column-start: 1;
+                grid-column-end: 3;
+
+                padding: 3px;
+                background-color: var(--color-stats-background);
+                text-align: left;
+            }
+
+            .desc-col.no-bg {
+                background-color: transparent;
+            }
+        }
     }
 }
 
-.grid-connivences , .grid-equip-combat, .grid-avantages, .grid-defauts, .grid-pouvoirsFlamme, .grid-pouvoirsSaison, .grid-peines, .grid-bienfaits {
+.grid-connivences , .grid-equip-combat, .grid-pouvoirsFlamme, .grid-pouvoirsSaison, .grid-peines, .grid-bienfaits {
     display: grid;
     grid-template-columns: 1fr;
 
-    .bloc-connivence, .bloc-avantage, .bloc-defaut, .bloc-pouvoirFlamme, .bloc-pouvoirSaison, .bloc-peine, .bloc-bienfait {
+    .bloc-connivence, .bloc-pouvoirFlamme, .bloc-pouvoirSaison, .bloc-peine, .bloc-bienfait {
         border: solid 1px var(--color-box-border-dark);
         border-radius: 5px;
         margin: 2px;

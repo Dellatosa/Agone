@@ -2,8 +2,6 @@ import * as Dice from "../dice.js";
 import * as Chat from "../chat.js";
 import * as Utils from "../common/utils.js";
 
-//import EditCompFormApplication from "../EditCompFormApplication.js";
-
 export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
      
     static get defaultOptions() {
@@ -284,10 +282,6 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
 
             // roll-vieillesse
             html.find('.roll-vieillesse').click(this._onRollVieillesse.bind(this));
-
-            // Liste d'items dans la feuille
-            // Création d'un item
-            //html.find('.creer-item').click(this._onCreerItem.bind(this));
 
             // Edition d'un item
             html.find('.editer-item').click(this._onEditerItem.bind(this));
@@ -1224,14 +1218,8 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
         
         this.actor.regenererHeroisme();
 
-        const user = game.users.activeGM;
-        const queryData = {
-            actorId: this.actor._id,
-            action: "regenererHeroisme"
-        };
-
-        const queryValue = await user.query("agone.messageToEG", queryData);
-        //console.log("query Result", queryValue);
+        // Message silencieux à l'EG
+        Utils.envoiMessageEG(this.actor._id, "regenererHeroisme");
     }
 
     // Initiative - base, sans arme
@@ -1400,6 +1388,9 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
 
         if(repos) {
             this.actor.reposDanseurs();
+
+            // Message silencieux à l'EG
+            Utils.envoiMessageEG(this.actor._id, "reposDanseurs");
         }
     }
 

@@ -31,7 +31,8 @@ Hooks.once("init", function(){
     //CONFIG.ui.Combat = AgoneCombatTracker;
     CONFIG.Combatant.documentClass = AgoneCombatant;
 
-    CONFIG.queries["agone.messageToEG"] = Utils.messageInfoEG;
+    // Socket - message silencieux à l'EG
+    CONFIG.queries["agone.messageEG"] = Utils.receptMessageEG;
  
     foundry.documents.collections.Actors.unregisterSheet("core", foundry.appv1.sheets.ActorSheet);
     foundry.documents.collections.Actors.registerSheet("agone", AgoneActorSheet, {types: ["Personnage", "Damne", "Terne"], makeDefault: true});

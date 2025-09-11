@@ -31,6 +31,9 @@ export function addChatMessageListeners(html) {
     query = html.querySelectorAll('button.jet-art-improvise');
     query.forEach( element => { element.addEventListener('click', onJetArtImprovise); }); 
 
+    query = html.querySelector('button.jet-pouvoir');
+    if(query) { query.addEventListener('click', onJetPouvoir); }
+
     query = html.querySelector('a.editer-item-sort');
     if(query) { query.addEventListener('click', onEditItemSort); }
 
@@ -144,9 +147,34 @@ function onJetArtImprovise(event) {
     let artiste = getCardActor(card);
     let artId =  artCard.dataset.artId;
 
-    //console.log(event,card, artCard);
-
     Dice.oeuvre(artiste, null, artId, true);
+}
+
+async function onJetPouvoir(event) {
+    const card = event.currentTarget.closest(".pouvoir");
+    let inspire = getCardActor(card);
+    let pouvoir = inspire.items.get(card.dataset.itemId);
+
+    if(pouvoir.system.coutHeroisme > 0) {
+        if(!inspire.depenserHeroisme()) {
+            ui.notifications.warn(game.i18n.localize("agone.notifications.warnHeroismeEpuisePouv"));
+            return;
+        }
+    }
+    
+    let chatData = {
+        user: game.user.id,
+        speaker: ChatMessage.getSpeaker({ actor: inspire })
+    };
+
+    let cardData = {
+        pouvoir: pouvoir,
+        owner: inspire.id
+    };
+
+    chatData.content = await foundry.applications.handlebars.renderTemplate("systems/agone/templates/partials/chat/carte-utiliser-pouvoir.hbs", cardData);
+
+    return ChatMessage.create(chatData);
 }
 
 function onEditItemSort(event) {

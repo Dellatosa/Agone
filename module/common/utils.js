@@ -24,14 +24,32 @@ export function getCoutAchatTotal(niveau) {
     return coutTotal;
 }
 
-export async function messageInfoEG(queryData) {
-    console.log("queryData", queryData);
+// Envoi d'un message d'information dans le chat à l'EG
+// sans visibilité pour du message pour l'émetteur
+
+// Envoi du message
+export async function envoiMessageEG(actorId, action) {
+    const user = game.users.activeGM;
+    const queryData = {
+        actorId: actorId,
+        action: action
+    };
+
+    const queryValue = await user.query("agone.messageEG", queryData);
+}
+
+// Réception du message
+export async function receptMessageEG(queryData) {
     const actor = game.actors.get(queryData.actorId);
 
     let message = "A définir";
     switch(queryData.action) {
         case "regenererHeroisme":
-            message = "Utilisation de la régénération de la réserve d'héroïsme"
+            message = "Utilisation de la régénération de la réserve d'héroïsme";
+            break;
+        case "reposDanseurs":
+            message = "Utilisation du bouton de repos des danseurs";
+            break;
     }
 
     let chatData = {
@@ -40,8 +58,6 @@ export async function messageInfoEG(queryData) {
             content: message,
             whisper: game.users.filter(user => user.isGM == true)
         };
-
-    console.log(chatData);
 
     ChatMessage.create(chatData);
 

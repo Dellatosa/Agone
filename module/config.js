@@ -1217,7 +1217,8 @@ agone.symboles = {
     perforante: "fa-duotone fa-solid fa-bullseye-arrow",
     jorniste: "fa-duotone fa-solid fa-sparkle white",
     eclipsiste: "fa-duotone fa-solid fa-sparkle",
-    obscurantiste: "fa-solid fa-sparkle"
+    obscurantiste: "fa-solid fa-sparkle",
+    pouvoirFlamme: "fa-duotone fa-solid fa-fire-flame-curved"
 }
 
 agone.itemDefImage = {

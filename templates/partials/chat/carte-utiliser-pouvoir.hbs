@@ -1,0 +1,10 @@
+<div class="carte utiliser-pouvoir">
+    <div>{{localize "agone.chat.utiliserPouvoir"}}</div>
+    <div class="titre">
+        <img src="{{pouvoir.img}}" title="{{pouvoir.name}}" height="32" width="32"/>
+        <div class="titre-nom">{{pouvoir.name}}</div>
+    </div>
+    {{#if pouvoir.system.description}}
+        <div class="carte-desc">{{editor pouvoir.system.description target="pouvoir.system.description" owner=true}}</div>
+    {{/if}}
+</div>
