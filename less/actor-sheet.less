@@ -1057,11 +1057,17 @@ a.nohlight {
     }
 
     .equipement {
+        margin: 3px;
         font-family: "BarbedorMedium";
 
         .titre-rub {
             font: var(--font-lorgol-28px);
             text-align: center;
+        }
+
+        .editor {
+            height: 150px;
+            background-color: var(--color-stats-background);
         }
     }
 }
@@ -1239,6 +1245,15 @@ a.nohlight {
         .titre-rub {
             font: var(--font-lorgol-28px);
             text-align: center;
+        }
+
+        .edit-170 {
+            margin: 3px;
+
+            .editor {
+                height: 170px;
+                background-color: var(--color-stats-background);
+            }
         }
     }
 }
@@ -1435,7 +1450,7 @@ a.nohlight {
     }
 }
 
-.grid-connivences , .grid-equip-combat, .grid-pouvoirsFlamme, .grid-pouvoirsSaison, .grid-peines, .grid-bienfaits {
+.grid-connivences , .grid-equip, .grid-pouvoirsFlamme, .grid-pouvoirsSaison, .grid-peines, .grid-bienfaits {
     display: grid;
     grid-template-columns: 1fr;
 

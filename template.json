@@ -3,7 +3,9 @@
     "types": [ "Personnage", "Damne", "Terne", "Demon" ],
     "templates": {
       "base": {
-        "apparence": ""
+        "apparence": "",
+        "possessions": "",
+        "pouvoirsSpeciaux": ""
       },
       "informations": {
         "origine": "",
@@ -1291,7 +1293,6 @@
     "Demon": {
       "templates": [ "base", "caracsAspects", "competences" ],
       "cercle": "aucun",
-      "pouvoirsSpeciaux": "",
       "caracSecondaires": {
         "tai": {
           "min": -2,

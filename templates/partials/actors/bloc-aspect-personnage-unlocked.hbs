@@ -2,12 +2,41 @@
 {{#each data.system.aspects as |aspect keyAsp|}}
     <div class="aspect {{#if (eq keyAsp "corps")}}bd-left{{/if}} {{#if (eq keyAsp "ame")}}bd-right{{/if}}">
         <div class="aspect-titre">{{aspect.positif.label}}</div>
-        <div class="aspect-line">
-            <label>{{aspect.positif.label}}</label>
-            <div class="val-carac"><label>{{aspect.positif.valeur}}</label></div>
-            <label>{{aspect.negatif.label}}</label>
-            <div class="val-carac"><label>{{aspect.negatif.valeur}}</label></div>
-        </div>
+        {{#if ../modeEditionLibre}}
+            <div class="aspect-line-unlocked">
+                <label>{{aspect.positif.label}}</label>
+                <div class="aspect-crea minus">
+                    <a class="mod-aspect-crea" title="{{localize 'agone.tooltip.dimAspect'}}" data-type="positif" data-aspect="{{keyAsp}}" data-action="minus">
+                        <i class="fa-solid fa-circle-minus"></i>
+                    </a>
+                </div>
+                <div class="val-carac"><label>{{aspect.positif.valeur}}</label></div>
+                <div class="aspect-crea plus">
+                    <a class="mod-aspect-crea" title="{{localize 'agone.tooltip.augAspect'}}" data-type="positif" data-aspect="{{keyAsp}}" data-action="plus">
+                        <i class="fa-solid fa-circle-plus"></i>
+                    </a>
+                </div>
+                <label>{{aspect.negatif.label}}</label>
+                <div class="aspect-crea minus">
+                    <a class="mod-aspect-crea" title="{{localize 'agone.tooltip.dimAspect'}}" data-type="negatif" data-aspect="{{keyAsp}}" data-action="minus">
+                        <i class="fa-solid fa-circle-minus"></i>
+                    </a>
+                </div>
+                <div class="val-carac"><label>{{aspect.negatif.valeur}}</label></div>
+                <div class="aspect-crea plus">
+                    <a class="mod-aspect-crea" title="{{localize 'agone.tooltip.augAspect'}}" data-type="negatif" data-aspect="{{keyAsp}}" data-action="plus">
+                        <i class="fa-solid fa-circle-plus"></i>
+                    </a>
+                </div>
+            </div>
+        {{else}}
+            <div class="aspect-line">
+                <label>{{aspect.positif.label}}</label>
+                <div class="val-carac"><label>{{aspect.positif.valeur}}</label></div>
+                <label>{{aspect.negatif.label}}</label>
+                <div class="val-carac"><label>{{aspect.negatif.valeur}}</label></div>
+            </div>
+        {{/if}}
         <div class="bonus-line">
             <label>{{aspect.bonus.label}}</label>
             <div class="val-carac"><label>{{aspect.bonus.valeur}}</label></div>

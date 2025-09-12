@@ -315,7 +315,8 @@
             "modePointsCrea": "Creation points",
             "modeExperience": "Experience points",
             "attribuerExpe": "Give experience points",
-            "validerExpe": "NO TRAD - Valider l'expérience"
+            "validerExpe": "NO TRAD - Valider l'expérience",
+            "possessions": "Possessions"
         },
         "items":{
             "description": "Description",

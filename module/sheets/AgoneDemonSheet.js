@@ -7,8 +7,8 @@ export default class AgoneDemonSheet extends foundry.appv1.sheets.ActorSheet {
     static get defaultOptions() {
 
         return foundry.utils.mergeObject(super.defaultOptions, {
-            width: 760,
-            height: 910,
+            width: 800,
+            height: 960,
             classes: ["agone", "sheet", "demon"],
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "competences" },
                     { navSelector: ".competences-tabs", contentSelector: ".competences-content", initial: "epreuves" },

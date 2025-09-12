@@ -61,6 +61,9 @@ export default class AgoneItemSheet extends foundry.appv1.sheets.ItemSheet {
 
         //Suppression d'un item
         html.find('.supprimer-effet').click(this._onSupprimerEffet.bind(this));
+
+        // Modification de l'endurance max d'un danseur
+        html.find('.enduranceMax').change(this._onChangeEnduranceMax.bind(this));
     }
 
     _onCreerEffet(event) {
@@ -91,6 +94,12 @@ export default class AgoneItemSheet extends foundry.appv1.sheets.ItemSheet {
         let effet = this.item.effects.get(effectId);
 
         effet.delete();
+    }
+
+    _onChangeEnduranceMax(event) {
+        event.preventDefault();
+
+        this.item.update({"system.endurance.value": event.currentTarget.value});
     }
 
     _onAjoutSortDanseur(event) {

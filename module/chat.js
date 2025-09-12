@@ -216,7 +216,7 @@ function onInitiative(event) {
     let combattant = getCardActor(card);
     let arme = combattant.items.get(card.dataset.itemId); 
 
-    combattant.rollInitiative({createCombatants: true});
+    combattant.rollInitiative({rerollInitiative: true});
 }
 
 function getCardActor(card) {

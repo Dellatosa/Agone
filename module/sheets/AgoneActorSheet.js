@@ -7,8 +7,8 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
     static get defaultOptions() {
 
         return foundry.utils.mergeObject(super.defaultOptions, {
-            width: 760,
-            height: 910,
+            width: 800,
+            height: 960,
             classes: ["agone", "sheet", "actor"],
             tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "competences" },
                     { navSelector: ".competences-tabs", contentSelector: ".competences-content", initial: "epreuves" },
@@ -131,7 +131,13 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
         }
 
         // La fiche est du type Personnage
-        data.typePersonnage = data.data.type == "Personnage";
+        data.estPersonnage = data.data.type == "Personnage";
+
+        // La fiche est du type Terne
+        data.estTerne = data.data.type == "Terne";
+
+        // La fiche est du peuple humain
+        data.estHumain = actorData.peuple == "humain";
 
         data.afficherHeroisme = data.data.type == "Personnage" || data.data.type == "Damne";
 
@@ -399,7 +405,7 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
 
     // Modifier le peuple
     async _onEditerPeuple(event) {
-        event.preventDefault();
+        event.preventDefault();        
 
         const peupleInit = this.actor.system.peuple;
         const peupleSelect = event.target.value;
@@ -872,13 +878,9 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
             currentVal = this.actor.system.caracSecondaires.pdv.pc ? parseInt(this.actor.system.caracSecondaires.pdv.pc) : 0;
 
             if(action == "minus") {
-                if(currentVal > 0) {
-                    console.log("minus");
-                    await this.actor.update({ [`system.caracSecondaires.pdv.pc`] : currentVal - 1 });
-                }
+                await this.actor.update({ [`system.caracSecondaires.pdv.pc`] : currentVal - 1 });
             }
             else if(action == "plus") {
-                console.log("plus");
                 await this.actor.update({ [`system.caracSecondaires.pdv.pc`] : currentVal + 1 });
             }
         }
@@ -1226,7 +1228,7 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
     _onInitiativeRoll(event) {
         event.preventDefault();
         
-        this.actor.rollInitiative({createCombatants: true});
+        this.actor.rollInitiative({rerollInitiative: true});
     }
 
     // Esquive

@@ -18,7 +18,7 @@
     </div>
     <div class="equipement">
         <div class="titre-rub">{{localize "agone.actors.equipCombat"}}</div>
-        <div class="grid-equip-combat">       
+        <div class="grid-equip">       
             {{#each armes as |arme id|}}
                 {{#if ../unlocked}}
                     {{#if ../chargeActive}}
@@ -75,7 +75,9 @@
                     {{/if}}
                 {{/if}}
             {{/each}}
-            <div class="titre-rub">{{localize "agone.actors.equipAutre"}}</div>
+        </div>
+        <div class="titre-rub">{{localize "agone.actors.equipAutre"}}</div>
+        <div class="grid-equip">
             {{#each equipements as |equipement id|}}
                 {{#if ../unlocked}}
                     {{#if ../chargeActive}}
@@ -105,5 +107,7 @@
                 {{/if}}
             {{/each}}
         </div>
+        <div class="titre-rub">{{localize "agone.actors.possessions"}}</div>
+        {{editor data.system.possessions target="system.possessions" engine="prosemirror" button=true editable=true}}
     </div>
 </div>

@@ -19,6 +19,18 @@ export default class AgoneItem extends Item {
     prepareData() {
         super.prepareData();
         let data = this.system;
+
+        if(this.type == "Danseur") {
+            const memUtilisee = this.getMemoireUtilisee();
+
+            if(data.memoire.max < memUtilisee) {
+                this.update({"system.memoire.max": memUtilisee });
+                data.memoire.value = 0;
+            }
+            else {
+                data.memoire.value = data.memoire.max - memUtilisee;
+            }
+        }
     }
 
     static getDefaultArtwork(itemData) {
@@ -64,18 +76,25 @@ export default class AgoneItem extends Item {
     }
 
     updateMemoireDispo(memMax) {
+        this.update({"data.memoire.value": memMax - this.getMemoireUtilisee()});
+    }
+
+    // Calcul du total de memoire utilisée par les sorts connus
+    getMemoireUtilisee() {
+        let memUtilisee = 0;
+
         if(this.system.sortsConnus.length > 0) {
-            // Le danseur a des sorts connus. On déduit leur valeur de la memoire max.
             if(this.actor) {
                 // Le danseur est lié à un personnage, on cherche dans les sorts du personnage
                 let sortsPerso = this.actor.items.filter(function (item) { return item.type == "Sort"});
                 sortsPerso.forEach( sort => {
                     let sc = this.system.sortsConnus.find( id => id == sort.id)
-                    if(sc !== undefined) memMax -= Math.floor(sort.system.seuil / 5);
+                    if(sc !== undefined) memUtilisee += Math.floor(sort.system.seuil / 5);
                 });  
             }
         }
-        this.update({"data.memoire.value": memMax });
+
+        return memUtilisee;
     }
 }
 
@@ -84,14 +103,6 @@ Hooks.on("updateItem", (item, modif, info, id) => onUpdateItem(item, modif));
 Hooks.on("deleteItem", (item, render, id) => onDeleteItem(item));
 
 function onCloseAgoneItemSheet(itemSheet) {
-    // Modification sur un Danseur
-    if(itemSheet.item.type == "Danseur") {
-        // Modification de la mémoire max
-        itemSheet.item.updateMemoireDispo(itemSheet.item.system.memoire.max);
-        // Modification de l'endurance max
-        itemSheet.item.update({"system.endurance.value": itemSheet.item.system.endurance.max});
-    }
-
     // Modification sur une armure
     if(itemSheet.item.type == "Armure") {
         // Le malus de perception dépend du type d'armure
@@ -130,7 +141,7 @@ function onDeleteItem(item) {
     if(item.type == "Sort" && item.actor) {
         let lstDanseurs = item.actor.items.filter(function (item) { return item.type == "Danseur" });
         lstDanseurs.forEach(danseur => {
-            danseur.updateMemoireDispo(danseur.system.memoire.max)
+            danseur.updateMemoireDispo(danseur.system.memoire.max);
             danseur.system.sortsConnus.splice(danseur.system.sortsConnus.indexOf(item.id), 1);
             danseur.update({"system.sortsConnus": danseur.system.sortsConnus});
         });

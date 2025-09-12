@@ -10,7 +10,7 @@
         {{> "systems/agone/templates/partials/actors/bloc-flamme-personnage.hbs"}}
         <div class="aspects-and-caracs">    
             {{#if unlocked}}
-                {{#if typePersonnage}}
+                {{#if estPersonnage}}
                     {{#if (and (eq typeRessEdition "modeExp") (not modeEditionLibre))}}
                         {{> "systems/agone/templates/partials/actors/bloc-aspect-personnage-experience.hbs"}}
                     {{else}}
@@ -30,7 +30,7 @@
         <a class="item" data-tab="magie">{{localize "agone.actors.magie"}}</a>
         <a class="item" data-tab="equipement">{{localize "agone.actors.equipement"}}</a>
         <a class="item" data-tab="historique">{{localize "agone.actors.historique"}}</a>
-        {{#if (and typePersonnage estEG)}}
+        {{#if (and estPersonnage estEG)}}
             <a class="item" data-tab="eg">{{localize "agone.actors.EG"}}</a>
         {{/if}}
     </nav>
@@ -50,7 +50,7 @@
         <div class="tab historique-content" data-group="principal" data-tab="historique">
             {{> "systems/agone/templates/partials/actors/bloc-historique-personnage.hbs"}}
         </div>
-        {{#if (and typePersonnage estEG)}}
+        {{#if (and estPersonnage estEG)}}
             <div class="tab eg-content" data-group="principal" data-tab="eg">
                 {{> "systems/agone/templates/partials/actors/bloc-eg-personnage.hbs"}}
             </div>

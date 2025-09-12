@@ -315,7 +315,8 @@
             "modePointsCrea": "Points de création",
             "modeExperience": "Points d'expérience",
             "attribuerExpe": "Attribuer de l'expérience",
-            "validerExpe": "Valider l'expérience"
+            "validerExpe": "Valider l'expérience",
+            "possessions": "Possessions"
         },
         "items":{
             "description": "Description",

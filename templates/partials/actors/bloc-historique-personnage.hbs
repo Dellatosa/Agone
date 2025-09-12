@@ -1,10 +1,10 @@
-{{#if (or typePersonnage (eq tabHistoActif "peinesBienfaits"))}}
+{{#if (or estPersonnage (eq tabHistoActif "peinesBienfaits"))}}
 <div class="grid-data-histo">
 {{else}}
 <div class="grid-data-histo-mini">
 {{/if}}
     <div class="data-histo">
-        {{#if typePersonnage}}
+        {{#if estPersonnage}}
         <div class="heroisme">
             <div class="grid-heroisme">
                 <div class="data-heroisme-titre lib-all">{{localize "agone.actors.heroisme"}}</div>
@@ -90,8 +90,18 @@
             {{> "systems/agone/templates/partials/actors/bloc-liste-defauts-personnage-v2.hbs"}}
         </div>
         <div class="tab" data-group="historique" data-tab="pouvoirs">
-            {{> "systems/agone/templates/partials/actors/bloc-liste-pouvoirs-flamme-personnage-v2.hbs"}}
-            {{> "systems/agone/templates/partials/actors/bloc-liste-pouvoirs-saisonnin-personnage-v2.hbs"}}
+            {{#unless estTerne}}
+                {{> "systems/agone/templates/partials/actors/bloc-liste-pouvoirs-flamme-personnage-v2.hbs"}}
+            {{/unless}}
+            {{#unless estHumain}}
+                {{> "systems/agone/templates/partials/actors/bloc-liste-pouvoirs-saisonnin-personnage-v2.hbs"}}
+            {{/unless}}
+            {{#unless estPersonnage}}
+                <div class="titre-rub">{{localize "agone.actors.pouvoirsSpeciaux"}}</div>
+                <div class="edit-170">
+                    {{editor data.system.pouvoirsSpeciaux target="system.pouvoirsSpeciaux" engine="prosemirror" button=true editable=true}}
+                </div>
+            {{/unless}}
         </div>
         <div class="tab" data-group="historique" data-tab="peinesBienfaits">
             {{> "systems/agone/templates/partials/actors/bloc-liste-peines-personnage-v2.hbs"}}

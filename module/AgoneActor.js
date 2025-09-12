@@ -10,6 +10,11 @@ export default class AgoneActor extends Actor {
             ---- Calculs de caractéristiques et scores secondaires ----
             ---------------------------------------------------------*/
 
+            // Peuple par défaut
+            if(!data.peuple) {
+                data.peuple = "humain";
+            }
+
             // Calcul des valeurs d'aspects
             for (let [keyA, aspect] of Object.entries(data.aspects)) {
                 // Base de 1 en positif pour les Inspirés
