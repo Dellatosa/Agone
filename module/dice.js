@@ -551,7 +551,7 @@ export async function combatArme(actor, arme, type) {
     //console.log(game.combat, actor.estCombattantActif());
 
     // Vérification de l'utilisation d'une réaction le même round - uniquement en combat
-    if(type == "Parade") {
+    if(type == "Parade" && actor.type != "Demon") {
         if(actor.reactionUtilisee() && game.settings.get("agone","gestionDesRencontres")) {
             ui.notifications.warn(game.i18n.localize("agone.notifications.warnReactionUtilisee"));
             return;
@@ -590,8 +590,12 @@ export async function combatArme(actor, arme, type) {
 
     // Calcul des données de combat
     let compData = new Object();
+
     // Competence
-    if(arme.system.competence) {
+    if(arme == "griffes" || arme == "crocs") {
+        compData = actor.getCompData("epreuves", arme);
+    }
+    else if(arme.system.competence) {
         compData = actor.getCompData("epreuves", "armes", arme.system.competence);
     }
     else {
@@ -603,10 +607,17 @@ export async function combatArme(actor, arme, type) {
     }
     
     // Caractéristique
-    const carac = arme.system.style == "trait" || arme.system.style == "jet" ? "tir" : "melee";
+    let carac = "";
+    if(arme == "griffes" || arme == "crocs") {
+        carac = "melee";
+    }
+    else {
+        carac = arme.system.style == "trait" || arme.system.style == "jet" ? "tir" : "melee";
+    }
+    
     let caracData = actor.getCaracData(carac);
 
-    console.log("Jet Arme", caracData);
+    //console.log("Jet Arme", caracData);
     
     // Autres stats de combat
     let statsCombat = new Object();
@@ -614,16 +625,21 @@ export async function combatArme(actor, arme, type) {
     // Malus de maniement suivants prérequis AGI et FOR
     let reducMalusAgi = 0;
     let reducMalusFor = 0;
-    if(arme.system.style == "melee" && arme.system.equipee == "deuxMains") {
-        reducMalusAgi = 1;
-        reducMalusFor = 2;
-    }
-
+    let malusAgilite = 0;
+    let malusForce = 0;
     statsCombat.malusManiement = null;
-    let malusAgilite = Math.min(actor.system.aspects.corps.caracteristiques.agilite.valeur - arme.system.minAgilite + reducMalusAgi, 0);
-    let malusForce = Math.min(actor.system.aspects.corps.caracteristiques.force.valeur - arme.system.minForce + reducMalusFor, 0);
-    if(malusAgilite + malusForce < 0) {
-        statsCombat.malusManiement = malusAgilite + malusForce;
+
+    if(arme != "griffes" && arme != "crocs") {
+        if(arme.system.style == "melee" && arme.system.equipee == "deuxMains") {
+            reducMalusAgi = 1;
+            reducMalusFor = 2;
+        }
+
+        malusAgilite = Math.min(actor.system.aspects.corps.caracteristiques.agilite.valeur - arme.system.minAgilite + reducMalusAgi, 0);
+        malusForce = Math.min(actor.system.aspects.corps.caracteristiques.force.valeur - arme.system.minForce + reducMalusFor, 0);
+        if(malusAgilite + malusForce < 0) {
+            statsCombat.malusManiement = malusAgilite + malusForce;
+        }
     }
 
     // Autres données de l'acteur
@@ -635,15 +651,22 @@ export async function combatArme(actor, arme, type) {
 
     // Construction des strutures de données pour l'affichage de la boite de dialogue
     let armeData = {
-        nomArme: arme.name
+        nomArme: arme == "griffes" || arme == "crocs" ? game.i18n.localize(`agone.actors.${arme}`) : arme.name
     };
 
     let dialogOptions;
     if(type == "Attaque") {
-        statsCombat.modifAttaque = arme.system.modifAttaque;
-        armeData.distance = arme.system.style == "trait" || arme.system.style == "jet" ? "distance" : "contact";
+        if(arme == "griffes" || arme == "crocs") {
+            statsCombat.modifAttaque = actor.system.armesNaturelles[arme].modifAttaque;
+            armeData.distance = "contact";
+        }
+        else {
+            statsCombat.modifAttaque = arme.system.modifAttaque;
+            armeData.distance = arme.system.style == "trait" || arme.system.style == "jet" ? "distance" : "contact";
+        }
+        
         let attaquantData = {
-            potAttaque: caracData.rangCarac + caracData.bonusAspect + compData.rangComp + statsCombat.malusManiement + arme.system.modifAttaque,
+            potAttaque: caracData.rangCarac + caracData.bonusAspect + compData.rangComp + statsCombat.malusManiement + statsCombat.modifAttaque, //arme.system.modifAttaque,
             specialisation : compData.specialisation,
             labelSpecialisation: compData.labelSpecialisation
         };
@@ -651,9 +674,15 @@ export async function combatArme(actor, arme, type) {
         dialogOptions = await getJetAttaqueOptions({attaquantData: attaquantData, armeData: armeData, cfgData: CONFIG.agone});
     }
     else if(type == "Parade") {
-        statsCombat.modifParade = arme.system.modifParade;
+        if(arme == "griffes" || arme == "crocs") {
+            statsCombat.modifParade = actor.system.armesNaturelles[arme].modifParade;
+        }
+        else {
+            statsCombat.modifParade = arme.system.modifParade;
+        }
+        
         let defenseurData = {
-            potDefense: caracData.rangCarac + caracData.bonusAspect + compData.rangComp + statsCombat.malusManiement + arme.system.modifParade,
+            potDefense: caracData.rangCarac + caracData.bonusAspect + compData.rangComp + statsCombat.malusManiement + statsCombat.modifParade, //arme.system.modifParade,
             typeDefense: "parade",
             specialisation : compData.specialisation,
             labelSpecialisation: compData.labelSpecialisation
@@ -774,24 +803,26 @@ export async function combatArme(actor, arme, type) {
         rollStats.labelAspect = null;
     }
 
-    if(actor.estAttaquer() && type == "Parade") {
-        rollStats.infosAttaque = actor.getInfosAttaque();
-        let diffTaiMR = actor.calcDiffTaiMR(rollStats.infosAttaque.taiAttaquant);
-        rollStats.marge = rollResult.total - rollStats.infosAttaque.resultatJet - rollStats.infosAttaque.bonusDommages;
+    if(actor.type != "Demon") {
+        if(actor.estAttaquer() && type == "Parade") {
+            rollStats.infosAttaque = actor.getInfosAttaque();
+            let diffTaiMR = actor.calcDiffTaiMR(rollStats.infosAttaque.taiAttaquant);
+            rollStats.marge = rollResult.total - rollStats.infosAttaque.resultatJet - rollStats.infosAttaque.bonusDommages;
 
-        if(rollStats.marge + diffTaiMR <= 0) {
-            rollStats.attaqueTouche = true;
-            rollStats.dommagesRecus = (rollStats.marge * -1) - actor.getProtectionArmure();
+            if(rollStats.marge + diffTaiMR <= 0) {
+                rollStats.attaqueTouche = true;
+                rollStats.dommagesRecus = (rollStats.marge * -1) - actor.getProtectionArmure();
 
-            if(rollStats.dommagesRecus > statsCombat.seuilBlessureCritique) {
-                rollStats.blessureCritique = true;
-                let lienTableCritique = getTableCritique(rollStats.infosAttaque.typeArme);
-                if(lienTableCritique) {
-                    rollStats.lienTableCritique = lienTableCritique;
+                if(rollStats.dommagesRecus > statsCombat.seuilBlessureCritique) {
+                    rollStats.blessureCritique = true;
+                    let lienTableCritique = getTableCritique(rollStats.infosAttaque.typeArme);
+                    if(lienTableCritique) {
+                        rollStats.lienTableCritique = lienTableCritique;
+                    }
                 }
-            }
-            else if (rollStats.dommagesRecus > statsCombat.seuilBlessureGrave) {
-                rollStats.blessureGrave = true;
+                else if (rollStats.dommagesRecus > statsCombat.seuilBlessureGrave) {
+                    rollStats.blessureGrave = true;
+                }
             }
         }
     }

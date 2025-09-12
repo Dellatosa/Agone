@@ -311,6 +311,9 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
             // Initiative
             html.find('button.initiative').click(this._onInitiativeRoll.bind(this));
 
+            // Initiative des armes équipées
+            html.find('button.init-arme').click(this._onInitArmeRoll.bind(this));
+
             // Esquive
             html.find('button.esquive').click(this._onEsquive.bind(this));
 
@@ -1228,7 +1231,15 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
     _onInitiativeRoll(event) {
         event.preventDefault();
         
-        this.actor.rollInitiative({rerollInitiative: true});
+        this.actor.rollInitiative({rerollInitiative: true, initiativeOptions: { formula:  this.actor.getInitiativeFormula() }});
+    }
+
+    _onInitArmeRoll(event) {
+        event.preventDefault();
+        const armeId = event.currentTarget.dataset.armeId;
+        const arme = this.actor.items.get(armeId);
+
+        this.actor.rollInitiative({rerollInitiative: true, initiativeOptions: { formula:  this.actor.getInitiativeFormula(arme) }});
     }
 
     // Esquive

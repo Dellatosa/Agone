@@ -803,6 +803,12 @@ a.nohlight {
   border-radius: 5px;
   border: 1px solid var(--color-box-border-dark);
 }
+.grid-data-att .data-combat .actions-def img,
+.grid-data-att .data-combat .init-basique img {
+  flex: 0 0 24px;
+  border: none;
+  height: 24px;
+}
 .grid-data-att .attaque {
   font-family: "BarbedorMedium";
 }
@@ -4410,6 +4416,24 @@ a.nohlight {
 .grid-caracSec-comp .caracSec .grid-caracSec-demon .stat-appel.plus,
 .grid-caracSec-comp .caracSec .grid-caracSec-demon-edit .stat-appel.plus {
   text-align: left;
+}
+.grid-data-att .data-combat .init-demon {
+  margin: 3px 1px;
+  padding: 3px;
+  border: solid 1px var(--color-box-border-dark);
+  border-radius: 5px;
+}
+.grid-data-att .data-combat .init-demon button {
+  display: flex;
+  margin: 1px 0;
+  font-family: "BarbedorMedium";
+  border-radius: 5px;
+  border: 1px solid var(--color-box-border-dark);
+}
+.grid-data-att .data-combat .init-demon img {
+  flex: 0 0 24px;
+  border: none;
+  height: 24px;
 }
 .grid-armes-nat {
   display: grid;

@@ -820,23 +820,49 @@ export default class AgoneActor extends Actor {
         }
     }
 
-    getInitiativeMod() {
-        let data = this.system;
+    getInitiativeFormula(arme) {
+        let baseFormula = "1d10 + @aspects.corps.caracteristiques.agilite.valeur + @aspects.corps.caracteristiques.perception.valeur";
 
+        // Aspect Corps pour les Inspirés et Damnés
+        if(this.gererBonusAspect()) {
+            baseFormula +=  " + @aspects.corps.bonus.valeur";
+        }
+
+        // Bonus (ou malus) d'initiative lié aux avantages/défauts
+        if(this.system.caracSecondaires.bonusInitiative) {
+            baseFormula += ` + ${this.system.caracSecondaires.bonusInitiative}`
+        }
+
+         // Malus de blessures
+        const malusBlessure = this.getMalusBlessureGrave(this.system.caracSecondaires.nbBlessureGrave);
+        if(malusBlessure != 0) {
+            baseFormula += ` + ${malusBlessure}`
+        }
+
+        if(arme) {
+            if(arme == "griffes" && this.system.armesNaturelles.griffes.modifInit != 0) {
+               baseFormula += ` + ${this.system.armesNaturelles.griffes.modifInit}`
+            }
+            else if(arme == "crocs" && this.system.armesNaturelles.crocs.modifInit != 0) {
+                baseFormula += ` + ${this.system.armesNaturelles.crocs.modifInit}`
+            }
+            else if(arme.system.modifInit != 0) {
+                baseFormula += ` + ${arme.system.modifInit}`
+            }
+        }
+
+        return baseFormula;
+    }
+
+    /*getInitiativeMod() {
         let modInit = 0;
 
         // Malus de blessures
-        modInit += this.getMalusBlessureGrave(data.caracSecondaires.nbBlessureGrave);
+        modInit += this.getMalusBlessureGrave(this.system.caracSecondaires.nbBlessureGrave);
 
         // Bonus (ou malus) d'initiative lié aux avantages/défauts
-        if(data.caracSecondaires.bonusInitiative) {
-            modInit += data.caracSecondaires.bonusInitiative;
-        }
-
-        // Malus d'armure
-        let malusArmure = this.getMalusArmure("agilite");
-        if(malusArmure) {
-            modInit += malusArmure;
+        if(this.system.caracSecondaires.bonusInitiative) {
+            modInit += this.system.caracSecondaires.bonusInitiative;
         }
 
         // Bonus de l'arme
@@ -850,7 +876,7 @@ export default class AgoneActor extends Actor {
         });
 
         return modInit;
-    }
+    }*/
 
     reposDanseurs() {
         this.getDanseurs().forEach(danseur => {

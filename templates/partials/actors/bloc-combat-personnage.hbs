@@ -47,6 +47,11 @@
         <div class="init-basique">
             <div class="data-combat-titre">{{localize "agone.actors.initiative"}}</div>
             <button class="initiative"><i class="fa-duotone fa-solid fa-bolt"></i> {{localize "agone.actors.initiativeNonArme"}}</button>
+            {{#each armes as |arme id|}}
+                {{#if system.equipee}}
+                    <button class="init-arme" data-arme-id="{{arme._id}}"><i class="{{configSymbole system.style}}"></i> {{name}}</button>
+                {{/if}}
+            {{/each}}
         </div>
         <div class="actions-def"> 
             <div class="data-combat-titre">{{localize "agone.actors.actionsDefense"}}</div>

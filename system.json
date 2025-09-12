@@ -38,7 +38,6 @@
     "distance": 1.5,
     "units": "m"
   },
-  "initiative": "1d10 + @aspects.corps.caracteristiques.agilite.valeur + @aspects.corps.caracteristiques.perception.valeur + @aspects.corps.bonus.valeur",
   "primaryTokenAttribute": "caracSecondaires.pdv",
   "url": "https://github.com/Dellatosa/Agone",
   "manifest": "https://raw.githubusercontent.com/Dellatosa/Agone/main/system.json",

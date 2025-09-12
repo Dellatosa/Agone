@@ -4,11 +4,20 @@ export function addChatMessageListeners(html) {
     let query = html.querySelector('button.attaque');
     if(query) { query.addEventListener('click', onAttaque); }
 
+    query = html.querySelector('button.att-arme-nat');
+    if(query) { query.addEventListener('click', onAttaqueArmeNat); }
+
     query = html.querySelector('button.parade');
     if(query) { query.addEventListener('click', onParade); }
 
+    query = html.querySelector('button.par-arme-nat');
+    if(query) { query.addEventListener('click', onParadeArmeNat); }
+
     query = html.querySelector('button.initiative');
     if(query) { query.addEventListener('click', onInitiative); }
+
+    query = html.querySelector('button.init-arme-nat');
+    if(query) { query.addEventListener('click', onInitiativeArmeNat); }
 
     query = html.querySelector('button.jet-sort');
     if(query) { query.addEventListener('click', onJetSort); }
@@ -40,23 +49,6 @@ export function addChatMessageListeners(html) {
     query = html.querySelector('a.editer-item-ctr-magie');
     if(query) { query.addEventListener('click', onEditItemContreMagie); }
 }
-
-/*
-export function addChatListeners(html) {
-    html.on('click', 'button.attaque', onAttaque);
-    html.on('click', 'button.parade', onParade);
-    html.on('click', 'button.initiative', onInitiative);
-    html.on('click', 'button.jet-sort', onJetSort);
-    html.on('click', 'button.jet-sort-intuitif', onJetSortIntuitif);
-    html.on('click', 'a.editer-item-sort', onEditItemSort)
-    html.on('click', 'button.jet-contre-magie', onJetContreMagie);
-    html.on('click', 'a.editer-item-ctr-magie', onEditItemContreMagie);
-    html.on('click', 'button.jet-reconn-oeuvre', onJetReconnOeuvre);
-    html.on('click', 'button.jet-desaccord', onJetDesaccord);
-    html.on('click', 'button.jet-oeuvre', onJetOeuvre);
-    html.on('click', 'button.jet-art-improvise', onJetArtImprovise);
-}
-*/
 
 function onJetSort(event) {
     const card = event.currentTarget.closest(".danseur");
@@ -189,34 +181,57 @@ function onEditItemSort(event) {
 function onEditItemContreMagie(event) {
     const card = event.currentTarget.closest(".ctr-magie");
     const danseurCard = event.currentTarget.closest(".danseur");
-    let mage = getCardActor(card);
-    let danseurItem = mage.items.get(danseurCard.dataset.danseurId);
+    const mage = getCardActor(card);
+    const danseurItem = mage.items.get(danseurCard.dataset.danseurId);
 
     danseurItem.sheet.render(true);
 }
 
 function onAttaque(event) {
     const card = event.currentTarget.closest(".arme");
-    let attaquant = getCardActor(card);
-    let arme = attaquant.items.get(card.dataset.itemId); 
+    const attaquant = getCardActor(card);
+    const arme = attaquant.items.get(card.dataset.itemId); 
 
     Dice.combatArme(attaquant, arme, "Attaque");
 }
 
+function onAttaqueArmeNat(event) {
+    const card = event.currentTarget.closest(".arme-nat");
+    const attaquant = getCardActor(card);
+
+    Dice.combatArme(attaquant, card.dataset.armeNat, "Attaque");
+}
+
 function onParade(event) {
     const card = event.currentTarget.closest(".arme");
-    let defenseur = getCardActor(card);
-    let arme = defenseur.items.get(card.dataset.itemId);
+    const defenseur = getCardActor(card);
+    const arme = defenseur.items.get(card.dataset.itemId);
 
     Dice.combatArme(defenseur, arme, "Parade");
 }
 
+function onParadeArmeNat(event) {
+    const card = event.currentTarget.closest(".arme-nat");
+    const defenseur = getCardActor(card);
+
+    Dice.combatArme(defenseur, card.dataset.armeNat, "Parade");
+}
+
 function onInitiative(event) {
     const card = event.currentTarget.closest(".arme");
-    let combattant = getCardActor(card);
-    let arme = combattant.items.get(card.dataset.itemId); 
+    const combattant = getCardActor(card);
+    const arme = combattant.items.get(card.dataset.itemId); 
 
-    combattant.rollInitiative({rerollInitiative: true});
+    combattant.rollInitiative({rerollInitiative: true, initiativeOptions: { formula:  combattant.getInitiativeFormula(arme) }});
+}
+
+function onInitiativeArmeNat(event) {
+    const card = event.currentTarget.closest(".arme-nat");
+    const combattant = getCardActor(card);
+
+    console.log(card.dataset);
+
+    combattant.rollInitiative({rerollInitiative: true, initiativeOptions: { formula:  combattant.getInitiativeFormula(card.dataset.armeNat) }});
 }
 
 function getCardActor(card) {

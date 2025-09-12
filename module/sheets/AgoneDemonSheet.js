@@ -176,6 +176,9 @@ export default class AgoneDemonSheet extends foundry.appv1.sheets.ActorSheet {
             // Initiative
             html.find('button.initiative').click(this._onInitiativeRoll.bind(this));
 
+            // Initiative des armes naturelles
+            html.find('button.init-arme-nat').click(this._onInitArmeNatRoll.bind(this));
+
             // Esquive
             html.find('button.esquive').click(this._onEsquive.bind(this));
 
@@ -483,6 +486,10 @@ export default class AgoneDemonSheet extends foundry.appv1.sheets.ActorSheet {
             speaker: ChatMessage.getSpeaker({ actor: this.actor })
         };
 
+        if(!event.shiftKey) {
+            chatData.whisper = game.user.id;
+        }
+
         let cardData = {
             ...armeNat,
             name: game.i18n.localize(`agone.actors.${element.dataset.arme}`),
@@ -543,7 +550,15 @@ export default class AgoneDemonSheet extends foundry.appv1.sheets.ActorSheet {
     _onInitiativeRoll(event) {
         event.preventDefault();
             
+        this.actor.rollInitiative({rerollInitiative: true, initiativeOptions: { formula:  this.actor.getInitiativeFormula() }});
         this.actor.rollInitiative({createCombatants: true});
+    }
+
+    _onInitArmeNatRoll(event) {
+        event.preventDefault();
+        const armeNat = event.currentTarget.dataset.armeNat;
+
+        this.actor.rollInitiative({rerollInitiative: true, initiativeOptions: { formula:  this.actor.getInitiativeFormula(armeNat) }});
     }
     
     // Esquive

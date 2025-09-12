@@ -29,7 +29,7 @@ Hooks.once("init", function(){
     CONFIG.Actor.documentClass = AgoneActor;
     //CONFIG.Combat.documentClass = AgoneCombat;
     //CONFIG.ui.Combat = AgoneCombatTracker;
-    CONFIG.Combatant.documentClass = AgoneCombatant;
+    //CONFIG.Combatant.documentClass = AgoneCombatant;
 
     // Socket - message silencieux à l'EG
     CONFIG.queries["agone.messageEG"] = Utils.receptMessageEG;

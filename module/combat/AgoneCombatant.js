@@ -5,7 +5,9 @@ export default class AgoneCombatant extends Combatant {
         //this.reinitFlags();
     }
 
-    _getInitiativeFormula() {
+    /*_getInitiativeFormula() {
+        console.log("Combatant getInitFormula !!");
+
         let baseFormula = "1d10 + @aspects.corps.caracteristiques.agilite.valeur + @aspects.corps.caracteristiques.perception.valeur";
         if(this.actor.gererBonusAspect()) {
             baseFormula +=  " + @aspects.corps.bonus.valeur";
@@ -19,7 +21,7 @@ export default class AgoneCombatant extends Combatant {
         this.reinitFlags();
 
         return baseFormula;
-    }
+    }*/
 
     async reinitFlags() {
         await this.setFlag("agone", "estAttaquer", false);
