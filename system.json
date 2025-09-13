@@ -2,7 +2,7 @@
   "id": "agone",
   "title": "Agone JDR",
   "description": "Un système non-officiel pour le jeu de rôle Agone",
-  "version": "0.2.6",
+  "version": "0.3.0",
   "authors": [
     {
       "name": "Dellatosa",
@@ -30,9 +30,8 @@
     }
   ],
   "compatibility": {
-    "minimum": "10.278",
-    "verified": "11.315",
-    "maximum": "13"
+    "minimum": "13",
+    "verified": "13.348"
   },
   "grid": {
     "distance": 1.5,
@@ -41,5 +40,5 @@
   "primaryTokenAttribute": "caracSecondaires.pdv",
   "url": "https://github.com/Dellatosa/Agone",
   "manifest": "https://raw.githubusercontent.com/Dellatosa/Agone/main/system.json",
-  "download": "https://github.com/Dellatosa/Agone/archive/refs/tags/v0.2.6.zip"
+  "download": "https://github.com/Dellatosa/Agone/archive/refs/tags/v0.3.0.zip"
 }
