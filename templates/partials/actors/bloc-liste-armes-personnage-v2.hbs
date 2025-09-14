@@ -83,7 +83,7 @@
                     <div>{{localize "agone.actors.competence"}}</div>
                     <select class="inline-edit" data-field="system.competence">
                         <!-- TODO : A corriger -> la liste comporte les domaines vides -->
-                        {{selectOptions ../actor.system.familleCompetences.epreuves.competences.armes.domaines selected=system.competence}}
+                        {{selectOptions ../actor.system.compArmes selected=system.competence}}
                     </select>
                 </div>
             {{/if}}

@@ -288,6 +288,20 @@ export default class AgoneActor extends Actor {
                 }
             } 
         }
+        
+        // Competences d'armes connues
+        let compArmes = { 
+            aucun: "",
+            ...data.familleCompetences.epreuves.competences.armes.domaines
+        };
+
+        Object.keys(compArmes).forEach(key => {
+            if(compArmes[key].label == "") {
+                delete compArmes[key];
+            }
+        })
+
+        data.compArmes = compArmes;
     }
 
     get isUnlocked() {

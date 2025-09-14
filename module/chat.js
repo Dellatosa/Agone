@@ -19,14 +19,14 @@ export function addChatMessageListeners(html) {
     query = html.querySelector('button.init-arme-nat');
     if(query) { query.addEventListener('click', onInitiativeArmeNat); }
 
-    query = html.querySelector('button.jet-sort');
-    if(query) { query.addEventListener('click', onJetSort); }
+    query = html.querySelectorAll('button.jet-sort');
+    query.forEach( element => { element.addEventListener('click', onJetSort); });
 
     query = html.querySelector('button.jet-sort-intuitif');
     if(query) { query.addEventListener('click', onJetSortIntuitif); }
 
-    query = html.querySelector('button.jet-contre-magie');
-    if(query) { query.addEventListener('click', onJetContreMagie); }
+    query = html.querySelectorAll('button.jet-contre-magie');
+    query.forEach( element => { element.addEventListener('click', onJetContreMagie); });
 
     query = html.querySelectorAll('button.jet-reconn-oeuvre');
     query.forEach( element => { element.addEventListener('click', onJetReconnOeuvre); });
@@ -43,11 +43,11 @@ export function addChatMessageListeners(html) {
     query = html.querySelector('button.jet-pouvoir');
     if(query) { query.addEventListener('click', onJetPouvoir); }
 
-    query = html.querySelector('a.editer-item-sort');
-    if(query) { query.addEventListener('click', onEditItemSort); }
+    query = html.querySelectorAll('a.editer-item-sort');
+    query.forEach( element => { element.addEventListener('click', onEditItemSort); });
 
-    query = html.querySelector('a.editer-item-ctr-magie');
-    if(query) { query.addEventListener('click', onEditItemContreMagie); }
+    query = html.querySelectorAll('a.editer-item-ctr-magie');
+    query.forEach( element => { element.addEventListener('click', onEditItemContreMagie); });
 }
 
 function onJetSort(event) {
@@ -172,6 +172,9 @@ async function onJetPouvoir(event) {
 function onEditItemSort(event) {
     const card = event.currentTarget.closest(".danseur");
     const sortCard = event.currentTarget.closest(".sort");
+
+    console.log(card, sortCard);
+
     let mage = getCardActor(card);
     let sortItem = mage.items.get(sortCard.dataset.sortId);
 
