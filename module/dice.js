@@ -166,10 +166,10 @@ export async function jetCaracteristique({actor = null,
     let chatData = {
         user: game.user.id,
         speaker: ChatMessage.getSpeaker({ actor: actor }),
-        roll: rollResult,
+        rolls: [rollResult],
         content: await foundry.applications.handlebars.renderTemplate(messageTemplate, templateContext),
         sound: CONFIG.sounds.dice//,
-        //type: CONST.CHAT_MESSAGE_TYPES.ROLL // CONST.CHAT_MESSAGE_STYLES
+        //style:  CONST.CHAT_MESSAGE_STYLES //CONST.CHAT_MESSAGE_TYPES.ROLL
     }
 
     // Affichage du message
@@ -468,10 +468,9 @@ export async function jetCompetence({actor = null,
         let chatData = {
             user: game.user.id,
             speaker: ChatMessage.getSpeaker({ actor: actor }),
-            roll: rollResult,
+            rolls: [rollResult],
             content: await foundry.applications.handlebars.renderTemplate(messageTemplate, templateContext),
-            sound: CONFIG.sounds.dice//,
-            //type: CONST.CHAT_MESSAGE_TYPES.ROLL
+            sound: CONFIG.sounds.dice
         }
 
         // Affichage du message
@@ -548,11 +547,11 @@ function _processJetCompetenceOptions(form) {
 --- Gestion des jets d'attaque et de défense avec une arme ---
 ----------------------------------------------------------- */
 export async function combatArme(actor, arme, type) {
-    //console.log(game.combat, actor.estCombattantActif());
+    //console.log(game.combat, game.settings.get("agone","gestionDesRencontres"), actor.estCombattantActif());
 
     // Vérification de l'utilisation d'une réaction le même round - uniquement en combat
     if(type == "Parade" && actor.type != "Demon") {
-        if(actor.reactionUtilisee() && game.settings.get("agone","gestionDesRencontres")) {
+        if(game.settings.get("agone","gestionDesRencontres") && actor.reactionUtilisee()) {
             ui.notifications.warn(game.i18n.localize("agone.notifications.warnReactionUtilisee"));
             return;
         }
@@ -804,7 +803,7 @@ export async function combatArme(actor, arme, type) {
     }
 
     if(actor.type != "Demon") {
-        if(actor.estAttaquer() && type == "Parade") {
+        if(game.settings.get("agone","gestionDesRencontres") && actor.estAttaquer() && type == "Parade") {
             rollStats.infosAttaque = actor.getInfosAttaque();
             let diffTaiMR = actor.calcDiffTaiMR(rollStats.infosAttaque.taiAttaquant);
             rollStats.marge = rollResult.total - rollStats.infosAttaque.resultatJet - rollStats.infosAttaque.bonusDommages;
@@ -855,7 +854,7 @@ export async function combatArme(actor, arme, type) {
     let chatData = {
         user: game.user.id,
         speaker: ChatMessage.getSpeaker({ actor: actor }),
-        roll: rollResult,
+        rolls: [rollResult],
         content: await foundry.applications.handlebars.renderTemplate(messageTemplate, templateContext),
         sound: CONFIG.sounds.dice//,
         //type: CONST.CHAT_MESSAGE_TYPES.ROLL
@@ -874,23 +873,25 @@ export async function combatArme(actor, arme, type) {
         await suggestCritChatMessage(actor, suggestCritData);
     }
 
-    if(type == "Attaque" && nbCibles > 0) {
-        let combattant = ciblesData.cibles[0].combatant;
-        if(combattant) {
-            let bd = statsCombat.bonusDommages + arme.system.modifDommages;
-            combattant.setAttaqueCombattant(actor.name, arme.system.type, statsCombat.tai, rollResult.total, bd);
-        }
-    }
-
-    if(type == "Parade") {
-        actor.setDefense(true, rollResult.total);
-        // Retirer les dommages aux PV, et appliquer les blessures graves
-        if(rollStats.dommagesRecus) {
-            actor.subirDommages(rollStats.dommagesRecus);
+    if(game.settings.get("agone","gestionDesRencontres")) {
+        if(type == "Attaque" && nbCibles > 0) {
+            let combattant = ciblesData.cibles[0].combatant;
+            if(combattant) {
+                let bd = statsCombat.bonusDommages + arme.system.modifDommages;
+                combattant.setAttaqueCombattant(actor.name, arme.system.type, statsCombat.tai, rollResult.total, bd);
+            }
         }
 
-        if(rollStats.blessureGrave) {
-            actor.subirBlessureGrave();
+        if(type == "Parade") {
+            actor.setDefense(true, rollResult.total);
+            // Retirer les dommages aux PV, et appliquer les blessures graves
+            if(rollStats.dommagesRecus) {
+                actor.subirDommages(rollStats.dommagesRecus);
+            }
+
+            if(rollStats.blessureGrave) {
+                actor.subirBlessureGrave();
+            }
         }
     }
 }
@@ -1036,7 +1037,7 @@ export async function jetDefense(defenseur, typeDef) {
     let compData;
 
     if(typeDef == "esquive") {
-        if(defenseur.reactionUtilisee() && game.settings.get("agone","gestionDesRencontres")) {
+        if(game.settings.get("agone","gestionDesRencontres") && defenseur.reactionUtilisee()) {
             ui.notifications.warn(game.i18n.localize("agone.notifications.warnReactionUtilisee"));
             return;
         }
@@ -1126,7 +1127,7 @@ export async function jetDefense(defenseur, typeDef) {
         rollStats.labelAspect = null;
     }
     
-    if(defenseur.estAttaquer()) {
+    if(game.settings.get("agone","gestionDesRencontres") && defenseur.estAttaquer()) {
         rollStats.infosAttaque = defenseur.getInfosAttaque();
         let diffTaiMR = defenseur.calcDiffTaiMR(rollStats.infosAttaque.taiAttaquant);
         rollStats.marge = rollResult.total - rollStats.infosAttaque.resultatJet - rollStats.infosAttaque.bonusDommages;
@@ -1164,7 +1165,7 @@ export async function jetDefense(defenseur, typeDef) {
     let chatData = {
         user: game.user.id,
         speaker: ChatMessage.getSpeaker({ actor: defenseur }),
-        roll: rollResult,
+        rolls: rollResult,
         content: await foundry.applications.handlebars.renderTemplate(messageTemplate, templateContext),
         sound: CONFIG.sounds.dice//,
         //type: CONST.CHAT_MESSAGE_TYPES.ROLL
@@ -1182,14 +1183,16 @@ export async function jetDefense(defenseur, typeDef) {
         await suggestCritChatMessage(defenseur, suggestCritData);
     }
 
-    defenseur.setDefense(typeDef == "defenseNat" ? false : true, rollResult.total);
-    // Retirer les dommages aux PV, et appliquer les blessures graves
-    if(rollStats.dommagesRecus) {
-        defenseur.subirDommages(rollStats.dommagesRecus);
-    }
+    if(game.settings.get("agone","gestionDesRencontres")) {
+        defenseur.setDefense(typeDef == "defenseNat" ? false : true, rollResult.total);
+        // Retirer les dommages aux PV, et appliquer les blessures graves
+        if(rollStats.dommagesRecus) {
+            defenseur.subirDommages(rollStats.dommagesRecus);
+        }
 
-    if(rollStats.blessureGrave) {
-        defenseur.subirBlessureGrave();
+        if(rollStats.blessureGrave) {
+            defenseur.subirBlessureGrave();
+        }
     }
 }
 
@@ -1347,10 +1350,9 @@ export async function sortEmprise(mage, danseur, sort, isIntuitif = false) {
     let chatData = {
         user: game.user.id,
         speaker: ChatMessage.getSpeaker({ actor: mage }),
-        roll: rollResult,
+        rolls: [rollResult],
         content: await foundry.applications.handlebars.renderTemplate(messageTemplate, templateContext),
-        sound: CONFIG.sounds.dice//,
-        //type: CONST.CHAT_MESSAGE_TYPES.ROLL
+        sound: CONFIG.sounds.dice
     }
 
     // Affichage du message
@@ -1502,10 +1504,9 @@ export async function contreMagie(mage, danseur, utiliseHeroisme) {
     let chatData = {
         user: game.user.id,
         speaker: ChatMessage.getSpeaker({ actor: mage }),
-        roll: rollResult,
+        rolls: [rollResult],
         content: await foundry.applications.handlebars.renderTemplate(messageTemplate, templateContext),
-        sound: CONFIG.sounds.dice//,
-        //type: CONST.CHAT_MESSAGE_TYPES.ROLL
+        sound: CONFIG.sounds.dice
     }
 
     // Affichage du message
@@ -1693,10 +1694,9 @@ export async function oeuvre(artiste, oeuvre, artMagiqueImpro = null, isArtImpro
     let chatData = {
         user: game.user.id,
         speaker: ChatMessage.getSpeaker({ actor: artiste }),
-        roll: rollResult,
+        rolls: [rollResult],
         content: await foundry.applications.handlebars.renderTemplate(messageTemplate, templateContext),
-        sound: CONFIG.sounds.dice//,
-        //type: CONST.CHAT_MESSAGE_TYPES.ROLL
+        sound: CONFIG.sounds.dice
     }
 
     // Affichage du message
@@ -1862,10 +1862,9 @@ export async function desaccord(artiste, instrument, utiliseHeroisme) {
     let chatData = {
         user: game.user.id,
         speaker: ChatMessage.getSpeaker({ actor: artiste }),
-        roll: rollResult,
+        rolls: [rollResult],
         content: await foundry.applications.handlebars.renderTemplate(messageTemplate, templateContext),
-        sound: CONFIG.sounds.dice//,
-        //type: CONST.CHAT_MESSAGE_TYPES.ROLL
+        sound: CONFIG.sounds.dice
     }
 
     // Affichage du message
@@ -2059,10 +2058,9 @@ export async function conjurerDemon(conjurateur) {
     let chatData = {
         user: game.user.id,
         speaker: ChatMessage.getSpeaker({ actor: conjurateur }),
-        roll: rollResult,
+        rolls: [rollResult],
         content: await foundry.applications.handlebars.renderTemplate(messageTemplate, templateContext),
-        sound: CONFIG.sounds.dice//,
-        //type: CONST.CHAT_MESSAGE_TYPES.ROLL
+        sound: CONFIG.sounds.dice
     }
 
     // Affichage du message
@@ -2175,10 +2173,9 @@ export async function jetPdv({actor = null} = {}) {
     let chatData = {
         user: game.user.id,
         speaker: ChatMessage.getSpeaker({ actor: actor }),
-        roll: rollResult,
+        rolls: [rollResult],
         content: await foundry.applications.handlebars.renderTemplate(messageTemplate, templateContext),
-        sound: CONFIG.sounds.dice//,
-        //type: CONST.CHAT_MESSAGE_TYPES.ROLL // CONST.CHAT_MESSAGE_STYLES
+        sound: CONFIG.sounds.dice
     }
 
     // Affichage du message
@@ -2248,7 +2245,7 @@ async function suggestCritChatMessage(actor, suggestCritData) {
 
     let chatCritData = {
         user: game.user.id,
-        roll: roll,
+        rolls: [roll],
         blind: true,
         speaker: ChatMessage.getSpeaker({ actor: actor }),
         whisper: game.users.filter(user => user.isGM == true), // Whisper à l'EG
