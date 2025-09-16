@@ -305,6 +305,9 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
             html.find('.item-roll').click(this._onItemRoll.bind(this));
 
             // Boutons de l'onglet Combat
+            // Dépenser héroisme
+            html.find('.dep-heroisme').click(this._onDepenserHeroisme.bind(this));
+
             // Regen héroisme
             html.find('.regen-heroisme').click(this._onRegenHeroisme.bind(this));
 
@@ -1217,6 +1220,13 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
     }
 
     // Gestionnaire d'événements de l'onglet Combat
+    // Utiliser héroïsme
+    async _onDepenserHeroisme(event) {
+        event.preventDefault();
+        
+        this.actor.depenserHeroisme();
+    }
+
     // Régénération de l'Héroisme
     async _onRegenHeroisme(event) {
         event.preventDefault();

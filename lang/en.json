@@ -316,7 +316,8 @@
             "modeExperience": "Experience points",
             "attribuerExpe": "Give experience points",
             "validerExpe": "NO TRAD - Valider l'expérience",
-            "possessions": "Possessions"
+            "possessions": "Possessions",
+            "depenserHeroisme" : "Use a Fortune point"
         },
         "items":{
             "description": "Description",

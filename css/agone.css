@@ -709,7 +709,7 @@ a.nohlight {
 }
 .grid-data-att .data-combat .heroisme .grid-heroisme {
   display: grid;
-  grid-template-columns: 1fr 10px 3.5em 10px 3.5em;
+  grid-template-columns: 1fr 10px 3.5em 10px 3.5em 10px;
   align-items: center;
   margin: 3px 1px;
   padding: 3px;
@@ -718,7 +718,7 @@ a.nohlight {
 }
 .grid-data-att .data-combat .heroisme .grid-heroisme .lib-all {
   grid-column-start: 1;
-  grid-column-end: 6;
+  grid-column-end: 7;
   text-align: center;
 }
 .grid-data-att .data-combat .heroisme .grid-heroisme .sep {
@@ -736,6 +736,9 @@ a.nohlight {
 .grid-data-att .data-combat .heroisme .grid-heroisme .val label {
   position: relative;
   top: 5px;
+}
+.grid-data-att .data-combat .heroisme .grid-heroisme .util-heroisme {
+  font-size: 0.8em;
 }
 .grid-data-att .data-combat .sante .grid-sante {
   display: grid;
@@ -1259,7 +1262,7 @@ a.nohlight {
 .grid-data-histo .data-histo .heroisme .grid-heroisme,
 .grid-data-histo-mini .data-histo .heroisme .grid-heroisme {
   display: grid;
-  grid-template-columns: 1fr 10px 3.5em 10px 3.5em;
+  grid-template-columns: 1fr 10px 3.5em 10px 3.5em 10px;
   align-items: center;
   margin: 3px 1px;
   padding: 3px;
@@ -1269,7 +1272,7 @@ a.nohlight {
 .grid-data-histo .data-histo .heroisme .grid-heroisme .lib-all,
 .grid-data-histo-mini .data-histo .heroisme .grid-heroisme .lib-all {
   grid-column-start: 1;
-  grid-column-end: 6;
+  grid-column-end: 7;
   text-align: center;
 }
 .grid-data-histo .data-histo .heroisme .grid-heroisme .sep,
@@ -1290,6 +1293,10 @@ a.nohlight {
 .grid-data-histo-mini .data-histo .heroisme .grid-heroisme .val label {
   position: relative;
   top: 5px;
+}
+.grid-data-histo .data-histo .heroisme .grid-heroisme .util-heroisme,
+.grid-data-histo-mini .data-histo .heroisme .grid-heroisme .util-heroisme {
+  font-size: 0.8em;
 }
 .grid-data-histo .historique .titre-rub,
 .grid-data-histo-mini .historique .titre-rub {

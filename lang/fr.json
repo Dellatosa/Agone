@@ -316,7 +316,8 @@
             "modeExperience": "Points d'expérience",
             "attribuerExpe": "Attribuer de l'expérience",
             "validerExpe": "Valider l'expérience",
-            "possessions": "Possessions"
+            "possessions": "Possessions",
+            "depenserHeroisme" : "Dépenser un point d'Héroïsme"
         },
         "items":{
             "description": "Description",
