@@ -1,0 +1,64 @@
+<form>
+    <div class="titre">
+        {{#if armeData.equipee}}<i class="fa-solid fa-hand-fist {{#if (eq armeData.equipee "mainSec")}}red{{/if}} icone"></i>{{/if}} {{armeData.nomArme}}
+    </div>
+    <div class="grid-entete">
+        <div class="lib-ent"><i class="{{configSymbole armeData.distance}}"></i> {{configLocalize "typeCombat" armeData.distance}}</div>
+        <div class="lib-ent">{{ localize "agone.dialog.potentiel"}} <i class="fa-duotone fa-sword"></i> {{attaquantData.potAttaque}}</div>
+    </div>
+    {{#if (eq armeData.distance "contact")}}
+        <div class="grid-att">
+            {{#if attaquantData.specialisation}}
+                <div class="lib-lg"><i class="fa-duotone fa-solid fa-award"></i> {{ localize "agone.actors.specialisation"}}  <span class="bold">{{attaquantData.labelSpecialisation}} (+1)</span></div>
+                <div class="val"><input type="checkbox" name="utiliseSpecialisation"/></div>
+            {{/if}}
+            <div class="lib-lg">{{ localize "agone.chat.utiliseHeroisme"}}</div>
+            <div class="val"><input type="checkbox" name="utiliseHeroisme"/></div>
+            <div class="lib-all">{{ localize "agone.dialog.autresModif"}}</div>
+            <div class="lib">{{ localize "agone.chat.attaquantsSimultanes"}}</div>
+            <div class="val"><input type="number" name="attaquantsSimultanes" min="1" value="1"/></div>
+            <div class="lib-d">{{ localize "agone.chat.mauvaiseMain"}}</div>
+            <div class="val"><input type="checkbox" name="mauvaiseMain"/></div>
+            <div class="lib">{{ localize "agone.chat.armeNonPrete"}}</div>
+            <div class="val"><input type="checkbox" name="armeNonPrete"/></div>
+            <div class="lib-d">{{ localize "agone.chat.attaquantAuSol"}}</div>
+            <div class="val"><input type="checkbox" name="attaquantAuSol"/></div>
+        </div>
+    {{/if}}
+    {{#if (eq armeData.distance "distance")}}
+        <div class="grid-att-dist">
+            {{#if attaquantData.specialisation}}
+                <div class="lib-lg"><i class="fa-duotone fa-solid fa-award"></i> {{ localize "agone.actors.specialisation"}}  <span class="bold">{{attaquantData.labelSpecialisation}} (+1)</span></div>
+                <div class="val"><input type="checkbox" name="utiliseSpecialisation"/></div>
+            {{/if}}
+            <div class="lib-lg">{{ localize "agone.chat.utiliseHeroisme"}}</div>
+            <div class="val"><input type="checkbox" name="utiliseHeroisme"/></div>
+            <div class="lib-lg">{{ localize "agone.chat.viser"}}</div>
+            <div class="val"><input type="checkbox" name="viser"/></div>
+            <div class="lib-sel">{{ localize "agone.chat.distanceTir"}}</div>
+            <select name="difficulte">
+                {{selectOptions cfgData.distanceTir selected=difficulte valueAttr="modif" labelAttr="label" localize=true}}
+            </select>
+            <div class="lib-all">{{ localize "agone.dialog.tireur"}}</div>
+            <div class="lib-sel">{{ localize "agone.chat.mouvementTireur"}}</div>
+            <select name="mouvementTireur">
+                {{selectOptions cfgData.mouvementCombat selected=mouvementTireur valueAttr="modif" labelAttr="label" localize=true}}
+            </select>
+            <div class="lib-lg">{{ localize "agone.chat.armeNonPreteDist"}}</div>
+            <div class="val"><input type="checkbox" name="armeNonPreteDist"/></div>
+            <div class="lib-lg">{{ localize "agone.chat.tireurEnMelee"}}</div>
+            <div class="val"><input type="checkbox" name="tireurEnMelee"/></div>
+            <div class="lib-all">{{ localize "agone.dialog.cible"}}</div>
+            <div class="lib-lg">{{ localize "agone.chat.taiCible"}}</div>
+            <div class="val"><input type="number" name="taiCible" min="-2" max="3" value="0"/></div>
+            <div class="lib-sel">{{ localize "agone.chat.visibiliteCible"}}</div>
+            <select name="visibiliteCible">
+                {{selectOptions cfgData.visibiliteCombat selected=visibiliteCible valueAttr="modif" labelAttr="label" localize=true}}
+            </select>
+            <div class="lib-sel">{{ localize "agone.chat.mouvementCible"}}</div>
+            <select name="mouvementCible">   
+                {{selectOptions cfgData.mouvementCombat selected=mouvementCible valueAttr="modif" labelAttr="label" localize=true}}
+            </select>
+        </div>
+    {{/if}}
+</form>

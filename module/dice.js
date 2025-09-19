@@ -231,9 +231,11 @@ export async function jetCompetence({actor = null,
 
     let gererBonusAspect = actor.gererBonusAspect();
 
+    console.log(labelComp);
+
     // Affichage de la fenêtre de dialogue (vrai par défaut)
     if(afficherDialog) {
-        let dialogOptions = await getJetCompetenceOptions({cfgData: CONFIG.agone, defCarac: defCarac, specialisation: specialisation, labelSpecialisation: labelSpecialisation});
+        let dialogOptions = await getJetCompetenceOptions({cfgData: CONFIG.agone, labelComp: labelComp, defCarac: defCarac, specialisation: specialisation, labelSpecialisation: labelSpecialisation});
 
         // On annule le jet sur les boutons 'Annuler' ou 'Fermeture'
         if(dialogOptions.annule) {
@@ -493,10 +495,11 @@ export async function jetCompetence({actor = null,
 /* --------------------------------------------------------------------------
 --- Fonction de construction de la boite de dialogue de jet de compétence ---
 -------------------------------------------------------------------------- */
-async function getJetCompetenceOptions({cfgData = null, defCarac = null, specialisation = false, labelSpecialisation = null}) {
+async function getJetCompetenceOptions({cfgData = null, labelComp = null, defCarac = null, specialisation = false, labelSpecialisation = null}) {
     // Recupération du template
-    const template = "systems/agone/templates/partials/dice/dialog-jet-competence.hbs";
-    const html = await foundry.applications.handlebars.renderTemplate(template, {data: cfgData, defCarac: defCarac, specialisation: specialisation, labelSpecialisation: labelSpecialisation});
+    //const template = "systems/agone/templates/partials/dice/dialog-jet-competence.hbs";
+    const template = "systems/agone/templates/dialog/dialog-jet-competence-v2.hbs";
+    const html = await foundry.applications.handlebars.renderTemplate(template, {data: cfgData, labelComp: labelComp, defCarac: defCarac, specialisation: specialisation, labelSpecialisation: labelSpecialisation});
 
     return new Promise( resolve => {
         const data = {
@@ -504,7 +507,7 @@ async function getJetCompetenceOptions({cfgData = null, defCarac = null, special
             content: html,
             buttons: {
                 jet: { // Bouton qui lance le jet de dé
-                    icon: '<i class="fas fa-dice"></i>',
+                    icon: '<i class="fa-duotone fa-solid fa-dice-d10"></i>',
                     label: game.i18n.localize("agone.common.jet"),
                     callback: html => resolve(_processJetCompetenceOptions(html[0].querySelector("form")))
                 },
@@ -650,7 +653,8 @@ export async function combatArme(actor, arme, type) {
 
     // Construction des strutures de données pour l'affichage de la boite de dialogue
     let armeData = {
-        nomArme: arme == "griffes" || arme == "crocs" ? game.i18n.localize(`agone.actors.${arme}`) : arme.name
+        nomArme: arme == "griffes" || arme == "crocs" ? game.i18n.localize(`agone.actors.${arme}`) : arme.name,
+        equipee: arme.system.equipee
     };
 
     let dialogOptions;
@@ -901,7 +905,8 @@ export async function combatArme(actor, arme, type) {
 ---------------------------------------------------------------------- */
 async function getJetAttaqueOptions({attaquantData = null, armeData = null, cfgData = null}) {
     // Recupération du template
-    const template = "systems/agone/templates/partials/dice/dialog-jet-combat-attaque.hbs";
+    //const template = "systems/agone/templates/partials/dice/dialog-jet-combat-attaque.hbs";
+    const template = "systems/agone/templates/dialog/dialog-jet-combat-attaque-v2.hbs";
     const html = await foundry.applications.handlebars.renderTemplate(template, {attaquantData: attaquantData, armeData: armeData, cfgData: cfgData});
 
     return new Promise( resolve => {
@@ -910,7 +915,7 @@ async function getJetAttaqueOptions({attaquantData = null, armeData = null, cfgD
             content: html,
             buttons: {
                 jet: { // Bouton qui lance le jet de dé
-                    icon: '<i class="fas fa-dice"></i>',
+                    icon: '<i class="fa-duotone fa-solid fa-dice-d10"></i>',
                     label: game.i18n.localize("agone.common.jet"),
                     callback: html => resolve(_processJetAttaqueOptions(html[0].querySelector("form"), armeData.distance))
                 },
@@ -968,7 +973,8 @@ function _processJetAttaqueOptions(form, distance) {
 ----------------------------------------------------------------------- */
 async function getJetDefenseOptions({defenseurData = null, armeData = null}) {
     // Recupération du template
-    const template = "systems/agone/templates/partials/dice/dialog-jet-combat-defense.hbs";
+    //const template = "systems/agone/templates/partials/dice/dialog-jet-combat-defense.hbs";
+    const template = "systems/agone/templates/dialog/dialog-jet-combat-defense-v2.hbs";
     const html = await foundry.applications.handlebars.renderTemplate(template, {defenseurData: defenseurData, armeData: armeData});
 
     return new Promise( resolve => {
@@ -977,7 +983,7 @@ async function getJetDefenseOptions({defenseurData = null, armeData = null}) {
             content: html,
             buttons: {
                 jet: { // Bouton qui lance le jet de dé
-                    icon: '<i class="fas fa-dice"></i>',
+                    icon: '<i class="fa-duotone fa-solid fa-dice-d10"></i>',
                     label: game.i18n.localize("agone.common.jet"),
                     callback: html => resolve(_processJetDefenseOptions(html[0].querySelector("form"), defenseurData.typeDefense))
                 },
@@ -1049,7 +1055,7 @@ export async function jetDefense(defenseur, typeDef) {
 
     let titrePersonnalise;
     let defenseurData = {
-        typeDefense: "esquive", // Pour gestion fenetre de dialogue
+        typeDefense: typeDef, //"esquive", // Pour gestion fenetre de dialogue
         seuilBlessureCritique: defenseur.system.caracSecondaires.seuilBlessureCritique,
         seuilBlessureGrave: defenseur.system.caracSecondaires.seuilBlessureGrave
     };

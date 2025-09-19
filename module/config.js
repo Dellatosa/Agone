@@ -867,6 +867,11 @@ agone.stylesArme = {
     bouclier: "agone.items.bouclier"
 }
 
+agone.typeCombat = {
+    contact: "agone.dialog.contact",
+    distance: "agone.dialog.distance"
+}
+
 agone.mouvementCombat = {
     aucun: {
         label: "agone.common.aucun",
@@ -1215,6 +1220,8 @@ agone.symboles = {
     contondante: "fa-duotone fa-solid fa-hammer-war",
     tranchante: "fa-duotone fa-solid fa-sickle",
     perforante: "fa-duotone fa-solid fa-bullseye-arrow",
+    contact: "fa-duotone fa-solid fa-swords",
+    distance: "fa-duotone fa-solid fa-bow-arrow",
     jorniste: "fa-duotone fa-solid fa-sparkle white",
     eclipsiste: "fa-duotone fa-solid fa-sparkle",
     obscurantiste: "fa-solid fa-sparkle",

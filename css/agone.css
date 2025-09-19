@@ -4544,3 +4544,105 @@ a.nohlight {
 .grid-pouvoirsDemon .bloc-pouvoirDemon .ligne-stats-pouvoirDemon .desc-col.no-bg {
   background-color: transparent;
 }
+.app.window-app.dialog {
+  font-family: "BarbedorMedium";
+}
+.app.window-app.dialog .titre {
+  font: var(--font-lorgol-28px);
+  text-align: center;
+}
+.app.window-app.dialog .titre .icone {
+  font-size: 1.3rem;
+  margin-right: 5px;
+}
+.app.window-app.dialog .grid-dlg-comp {
+  display: grid;
+  grid-template-columns: 1.5fr 1.5fr 1fr 3.5em;
+  align-items: center;
+  grid-auto-rows: 30px;
+  margin: 10px 0;
+}
+.app.window-app.dialog .grid-dlg-comp .lib,
+.app.window-app.dialog .grid-dlg-comp .lib-chk {
+  margin-left: 3px;
+}
+.app.window-app.dialog .grid-dlg-comp .lib-diff {
+  margin-left: 10px;
+}
+.app.window-app.dialog .grid-dlg-comp .lib-chk {
+  grid-column-start: span 3;
+}
+.app.window-app.dialog .grid-dlg-comp .val {
+  text-align: center;
+}
+.app.window-app.dialog .grid-entete {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding-bottom: 5px;
+  margin: 5px 0;
+  border-bottom: solid 2px;
+}
+.app.window-app.dialog .grid-entete .lib-ent,
+.app.window-app.dialog .grid-entete .lib-ent-all {
+  text-align: center;
+  font-size: 1.2em;
+}
+.app.window-app.dialog .grid-entete .lib-ent-all {
+  grid-column-start: span 2;
+}
+.app.window-app.dialog .grid-entete .red {
+  color: red;
+}
+.app.window-app.dialog .grid-att .lib,
+.app.window-app.dialog .grid-att-dist .lib,
+.app.window-app.dialog .grid-att .lib-lg,
+.app.window-app.dialog .grid-att-dist .lib-lg,
+.app.window-app.dialog .grid-att .lib-sel,
+.app.window-app.dialog .grid-att-dist .lib-sel {
+  margin-left: 3px;
+}
+.app.window-app.dialog .grid-att .lib-d,
+.app.window-app.dialog .grid-att-dist .lib-d {
+  margin-left: 6px;
+}
+.app.window-app.dialog .grid-att .val,
+.app.window-app.dialog .grid-att-dist .val {
+  text-align: center;
+}
+.app.window-app.dialog .grid-att {
+  display: grid;
+  grid-template-columns: 1fr 3.5em 1fr 3.5em;
+  align-items: center;
+  grid-auto-rows: 30px;
+  margin: 10px 0;
+}
+.app.window-app.dialog .grid-att .lib-all {
+  grid-column-start: span 4;
+  text-align: center;
+  font-size: 1.15em;
+}
+.app.window-app.dialog .grid-att .lib-lg {
+  grid-column-start: span 3;
+}
+.app.window-app.dialog .grid-att-dist {
+  display: grid;
+  grid-template-columns: 1fr 1fr 8.5em 3.5em;
+  align-items: center;
+  grid-auto-rows: 30px;
+  margin: 10px 0;
+}
+.app.window-app.dialog .grid-att-dist .lib-all {
+  grid-column-start: span 4;
+  text-align: center;
+  font-size: 1.15em;
+}
+.app.window-app.dialog .grid-att-dist .lib-lg {
+  grid-column-start: span 3;
+}
+.app.window-app.dialog .grid-att-dist .lib-sel {
+  grid-column-start: span 2;
+}
+.app.window-app.dialog .grid-att-dist select {
+  grid-column-start: span 2;
+}

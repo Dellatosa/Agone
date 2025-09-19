@@ -1,0 +1,118 @@
+.app.window-app.dialog {
+    font-family: "BarbedorMedium";
+
+    .titre {
+        font: var(--font-lorgol-28px);
+        text-align: center;
+
+        .icone {
+            font-size: 1.3rem;
+            margin-right: 5px;
+        }
+    }
+
+    .grid-dlg-comp {
+        display: grid;
+        grid-template-columns: 1.5fr 1.5fr 1fr 3.5em;
+        align-items: center;
+        grid-auto-rows: 30px;
+        margin: 10px 0;
+
+        .lib, .lib-chk {
+            margin-left: 3px;
+        }
+
+        .lib-diff {
+            margin-left: 10px;
+        }
+
+        .lib-chk {
+            grid-column-start: span 3;
+        }
+
+        .val {
+            text-align: center;
+        }
+    }
+
+    .grid-entete {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        padding-bottom: 5px;
+        margin: 5px 0;
+        border-bottom: solid 2px;
+
+        .lib-ent, .lib-ent-all {
+            text-align: center;
+            font-size: 1.2em;
+        }
+
+        .lib-ent-all {
+            grid-column-start: span 2;
+        }
+
+        .red {
+            color: red;
+        }
+    }
+
+    .grid-att, .grid-att-dist {
+
+        .lib, .lib-lg, .lib-sel {
+            margin-left: 3px;
+        }
+
+        .lib-d {
+            margin-left: 6px;
+        }
+
+        .val {
+            text-align: center;
+        }
+    }
+
+    .grid-att {
+        display: grid;
+        grid-template-columns: 1fr 3.5em 1fr 3.5em;
+        align-items: center;
+        grid-auto-rows: 30px;
+        margin: 10px 0;
+
+        .lib-all {
+            grid-column-start: span 4;
+            text-align: center;
+            font-size: 1.15em;
+        }
+
+        .lib-lg {
+            grid-column-start: span 3;
+        }
+    }
+
+    .grid-att-dist {
+        display: grid;
+        grid-template-columns: 1fr 1fr 8.5em 3.5em;
+        align-items: center;
+        grid-auto-rows: 30px;
+        margin: 10px 0;
+
+        .lib-all {
+            grid-column-start: span 4;
+            text-align: center;
+            font-size: 1.15em;
+        }
+
+        .lib-lg {
+            grid-column-start: span 3;
+        }
+
+        .lib-sel {
+            grid-column-start: span 2;
+        }
+
+        select {
+            grid-column-start: span 2;
+        }
+    }
+}

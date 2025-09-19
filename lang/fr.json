@@ -724,7 +724,15 @@
             "validerExpeMsg": "Validez-vous la répartition des points d'expérience pour ce personnage ?",
             "objetASuppr": "Nom de l'objet à supprimer",
             "confirmSuppr" : "Confirmer la suppression ?",
-            "confirmSupprText": "Etes-vous certain de vouloir supprimer cet objet ?"
+            "confirmSupprText": "Etes-vous certain de vouloir supprimer cet objet ?",
+            "contact": "Corps à corps",
+            "distance": "Distance",
+            "potentiel": "Potentiel",
+            "autresModif": "Autres modificateurs",
+            "tireur": "Tireur",
+            "cible": "Cible",
+            "esquive": "Esquive",
+            "defenseNat": "Défense naturelle"
         }
     },
     "parametres": {
