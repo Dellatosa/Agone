@@ -1,0 +1,49 @@
+<form>
+    <div class="titre">{{ localize "agone.dialog.conjurationDemon"}}</div>
+    <div class="grid-entete">
+        <div class="lib-ent-all">{{ localize "agone.dialog.potentiel"}} <i class="fa-duotone fa-solid fa-face-angry-horns icone"></i> {{conjurateurData.potConjuration}}</div>
+    </div>
+    <div class="grid-conj">
+        <div class="lib-sel">{{localize "agone.dialog.cercleDemonInvoque"}}</div>
+        <select name="cercleDemonInvoque">
+            {{selectOptions cfgData.cerclesDemon selected=cercleDemonInvoque localize=true}}
+        </select>
+        {{#if conjurateurData.specialisation}}
+            <div class="lib-lg"><i class="fa-duotone fa-solid fa-award"></i> {{ localize "agone.actors.specialisation"}}  <span class="bold">{{conjurateurData.labelSpecialisation}}</span></div>
+            <div class="val"><input type="checkbox" name="utiliseSpecialisation"/></div>
+        {{/if}}
+        <div class="lib-lg">{{localize "agone.dialog.utiliseHeroisme"}}</div>
+        <div class="val"><input type="checkbox" name="utiliseHeroisme"/></div>
+        <div class="lib-all">{{localize "agone.dialog.condEncrage"}}</div>
+        <div class="lib">{{ localize "agone.dialog.ombresProfondes"}}</div>
+        <div class="val"><input type="checkbox" name="ombresProfondes"/></div>
+        <div class="lib">{{ localize "agone.dialog.ombresClaires"}}</div>
+        <div class="val"><input type="checkbox" name="ombresClaires"/></div>
+        <div class="lib">{{ localize "agone.dialog.encrageRapide"}}</div>
+        <div class="val"><input type="checkbox" name="encrageRapide"/></div>
+        <div> </div>
+        <div> </div>
+        <div class="lib-sel">{{localize "agone.dialog.encrageApplique"}}</div>
+        <select name="encrageApplique">
+            {{selectOptions cfgData.encrageApplique selected=encrageApplique labelAttr="label" localize=true}}
+        </select>
+        <div class="lib-sel">{{localize "agone.dialog.melerSangEncre"}}</div>
+        <select name="melerSangEncre">
+            {{selectOptions cfgData.melerSangEncre selected=melerSangEncre labelAttr="label" localize=true}}
+        </select>
+        <div class="lib-all">{{localize "agone.dialog.conseils"}}</div>
+        <div class="lib">{{ localize "agone.dialog.conseilDiablotin"}}</div>
+        <div class="val"><input type="checkbox" name="conseilDiablotin"/></div>
+        <div class="lib">{{ localize "agone.dialog.conseilTenebreux"}}</div>
+        <div class="val"><input type="number" name="conseilTenebreux" min="0" max="10" value="0"/></div>
+        <div class="lib">{{ localize "agone.dialog.conseilDemon"}}</div>
+        <div class="val"><input type="checkbox" name="conseilDemon"/></div>
+        <div></div>
+        <div></div>
+        <div class="lib-all">{{localize "agone.dialog.presence"}}</div>
+        <div class="lib">{{ localize "agone.dialog.presenceTenebreux"}}</div>
+        <div class="val"><input type="checkbox" name="presenceTenebreux"/></div>
+        <div class="lib">{{ localize "agone.dialog.presenceMinotaure"}}</div>
+        <div class="val"><input type="checkbox" name="presenceMinotaure"/></div>
+    </div>
+</form>

@@ -1,17 +1,17 @@
 <form>
     <div class="titre">{{labelComp}}</div>
     <div class="grid-dlg-comp">
-        <div class="lib">{{ localize "agone.actors.caracteristique"}}</div>
+        <div class="lib">{{ localize "agone.dialog.caracteristique"}}</div>
         <select name="caracteristique">
             {{selectOptions data.caracteristiques selected=defCarac localize=true}}
         </select>
-        <div class="lib-diff">{{ localize "agone.chat.difficulte"}}</div>
+        <div class="lib-diff">{{ localize "agone.dialog.difficulte"}}</div>
         <div class="val"><input type="number" name="difficulte" value="15" min="0"/></div>
         {{#if specialisation}}
             <div class="lib-chk"><i class="fa-duotone fa-solid fa-award"></i> {{ localize "agone.actors.specialisation"}}  <span class="bold">{{labelSpecialisation}}</span> (+1)</div>
             <div class="val"><input type="checkbox" name="utiliseSpecialisation"/></div>
         {{/if}}
-        <div class="lib-chk">{{ localize "agone.chat.utiliseHeroisme"}}</div>
+        <div class="lib-chk">{{ localize "agone.dialog.utiliseHeroisme"}}</div>
         <div class="val"><input type="checkbox" name="utiliseHeroisme"/></div>
     </div>
 </form>

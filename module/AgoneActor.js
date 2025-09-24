@@ -649,7 +649,7 @@ export default class AgoneActor extends Actor {
         else if(instrument) {
             const instruments = this.getInstrumentsPratiques();
             
-            if(instruments && instruments.some( inst => inst.label == instrument)) {
+            if(instruments && instruments.some( inst => inst.value == instrument)) {
                 result.rangCompetence = data.familleCompetences.societe.competences[compId].domaines[domaine].rang;
                 result.labelCompetence = data.familleCompetences.societe.competences[compId].domaines[domaine].label;    
             }
@@ -666,13 +666,12 @@ export default class AgoneActor extends Actor {
     }
 
     getInstrumentsPratiques() {
-        //let nbDomaines = 0;
         let instruments = [];
         let domainesMusique = this.system.familleCompetences.societe.competences.musique.domaines;
         for(let[keyDom, domaine] of Object.entries(domainesMusique)) {
             if(domaine.rang > 0) {
-                //nbDomaines += 1;
-                instruments.push(domaine);
+                //instruments.push(domaine);
+                instruments.push({value: domaine.label, label: `agone.items.${domaine.label}`});
             }
         }
 

@@ -164,7 +164,7 @@ async function onJetPouvoir(event) {
         owner: inspire.id
     };
 
-    chatData.content = await foundry.applications.handlebars.renderTemplate("systems/agone/templates/partials/chat/carte-utiliser-pouvoir.hbs", cardData);
+    chatData.content = await foundry.applications.handlebars.renderTemplate("systems/agone/templates/chat/carte-utiliser-pouvoir.hbs", cardData);
 
     return ChatMessage.create(chatData);
 }
@@ -172,8 +172,6 @@ async function onJetPouvoir(event) {
 function onEditItemSort(event) {
     const card = event.currentTarget.closest(".danseur");
     const sortCard = event.currentTarget.closest(".sort");
-
-    console.log(card, sortCard);
 
     let mage = getCardActor(card);
     let sortItem = mage.items.get(sortCard.dataset.sortId);
@@ -232,8 +230,6 @@ function onInitiativeArmeNat(event) {
     const card = event.currentTarget.closest(".arme-nat");
     const combattant = getCardActor(card);
 
-    console.log(card.dataset);
-
     combattant.rollInitiative({rerollInitiative: true, initiativeOptions: { formula:  combattant.getInitiativeFormula(card.dataset.armeNat) }});
 }
 
@@ -260,7 +256,7 @@ export async function selDanseurContreMagie(actor, danseurs) {
         owner: actor.id
     };
 
-    chatData.content = await foundry.applications.handlebars.renderTemplate("systems/agone/templates/partials/chat/carte-contre-magie.hbs", cardData);
+    chatData.content = await foundry.applications.handlebars.renderTemplate("systems/agone/templates/chat/carte-contre-magie.hbs", cardData);
 
     return ChatMessage.create(chatData);
 }
@@ -276,7 +272,7 @@ export async function selArtMagiqueReconnOeuvre(actor, arts) {
         owner: actor.id
     };
 
-    chatData.content = await foundry.applications.handlebars.renderTemplate("systems/agone/templates/partials/chat/carte-reconn-oeuvre.hbs", cardData);
+    chatData.content = await foundry.applications.handlebars.renderTemplate("systems/agone/templates/chat/carte-reconn-oeuvre.hbs", cardData);
     //chatData.roll = true;
 
     return ChatMessage.create(chatData);
@@ -293,7 +289,7 @@ export async function selArtMagiqueImprovise(actor, arts) {
         owner: actor.id
     };
 
-    chatData.content = await foundry.applications.handlebars.renderTemplate("systems/agone/templates/partials/chat/carte-art-improvise.hbs", cardData);
+    chatData.content = await foundry.applications.handlebars.renderTemplate("systems/agone/templates/chat/carte-art-improvise.hbs", cardData);
     //chatData.roll = true;
 
     return ChatMessage.create(chatData);
@@ -310,7 +306,7 @@ export async function selInstrumentDesaccord(actor, instruments) {
         owner: actor.id
     };
 
-    chatData.content = await foundry.applications.handlebars.renderTemplate("systems/agone/templates/partials/chat/carte-instrument-desaccord.hbs", cardData);
+    chatData.content = await foundry.applications.handlebars.renderTemplate("systems/agone/templates/chat/carte-instrument-desaccord.hbs", cardData);
     //chatData.roll = true;
 
     return ChatMessage.create(chatData);

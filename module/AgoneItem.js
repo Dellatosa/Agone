@@ -1,19 +1,19 @@
 export default class AgoneItem extends Item {
 
     chatTemplate = {
-        "Arme": "systems/agone/templates/partials/chat/carte-arme.hbs",
-        "Armure": "systems/agone/templates/partials/chat/carte-armure.hbs",
-        "Danseur": "systems/agone/templates/partials/chat/carte-danseur.hbs",
-        "Sort": "systems/agone/templates/partials/chat/carte-sort.hbs",
-        "Oeuvre": "systems/agone/templates/partials/chat/carte-oeuvre.hbs",
-        "Defaut": "systems/agone/templates/partials/chat/carte-defaut.hbs",
-        "Avantage": "systems/agone/templates/partials/chat/carte-avantage.hbs",
-        "PouvoirFlamme":"systems/agone/templates/partials/chat/carte-pouvoir-flamme.hbs",
-        "PouvoirSaison":"systems/agone/templates/partials/chat/carte-pouvoir-saisonnin.hbs",
-        "Connivence":"systems/agone/templates/partials/chat/carte-connivence.hbs",
-        "Equipement": "systems/agone/templates/partials/chat/carte-equipement.hbs",
-        "Peine": "systems/agone/templates/partials/chat/carte-peine.hbs",
-        "Bienfait": "systems/agone/templates/partials/chat/carte-bienfait.hbs"
+        "Arme": "systems/agone/templates/chat/carte-arme.hbs",
+        "Armure": "systems/agone/templates/chat/carte-armure.hbs",
+        "Danseur": "systems/agone/templates/chat/carte-danseur.hbs",
+        "Sort": "systems/agone/templates/chat/carte-sort.hbs",
+        "Oeuvre": "systems/agone/templates/chat/carte-oeuvre.hbs",
+        "Defaut": "systems/agone/templates/chat/carte-defaut.hbs",
+        "Avantage": "systems/agone/templates/chat/carte-avantage.hbs",
+        "PouvoirFlamme":"systems/agone/templates/chat/carte-pouvoir-flamme.hbs",
+        "PouvoirSaison":"systems/agone/templates/chat/carte-pouvoir-saisonnin.hbs",
+        "Connivence":"systems/agone/templates/chat/carte-connivence.hbs",
+        "Equipement": "systems/agone/templates/chat/carte-equipement.hbs",
+        "Peine": "systems/agone/templates/chat/carte-peine.hbs",
+        "Bienfait": "systems/agone/templates/chat/carte-bienfait.hbs"
     }
 
     prepareData() {
@@ -34,7 +34,6 @@ export default class AgoneItem extends Item {
     }
 
     static getDefaultArtwork(itemData) {
-        console.log(itemData);
         return { img: CONFIG.agone.itemDefImage[itemData.type] ? CONFIG.agone.itemDefImage[itemData.type] : "icons/svg/mystery-man-black.svg" };
     }
 

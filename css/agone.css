@@ -4575,6 +4575,34 @@ a.nohlight {
 .app.window-app.dialog .grid-dlg-comp .val {
   text-align: center;
 }
+.app.window-app.dialog .grid-entete .lib-ent,
+.app.window-app.dialog .grid-entete-sort .lib-ent,
+.app.window-app.dialog .grid-entete-art .lib-ent,
+.app.window-app.dialog .grid-entete .lib-ent-all,
+.app.window-app.dialog .grid-entete-sort .lib-ent-all,
+.app.window-app.dialog .grid-entete-art .lib-ent-all {
+  text-align: center;
+  font-size: 1.2em;
+}
+.app.window-app.dialog .grid-entete .lib-ent-all,
+.app.window-app.dialog .grid-entete-sort .lib-ent-all,
+.app.window-app.dialog .grid-entete-art .lib-ent-all {
+  grid-column-start: span 2;
+}
+.app.window-app.dialog .grid-entete .line,
+.app.window-app.dialog .grid-entete-sort .line,
+.app.window-app.dialog .grid-entete-art .line {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.app.window-app.dialog .grid-entete img,
+.app.window-app.dialog .grid-entete-sort img,
+.app.window-app.dialog .grid-entete-art img {
+  flex: 0 0 32px;
+  border: none;
+  height: 32px;
+}
 .app.window-app.dialog .grid-entete {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -4583,66 +4611,151 @@ a.nohlight {
   margin: 5px 0;
   border-bottom: solid 2px;
 }
-.app.window-app.dialog .grid-entete .lib-ent,
-.app.window-app.dialog .grid-entete .lib-ent-all {
-  text-align: center;
-  font-size: 1.2em;
-}
-.app.window-app.dialog .grid-entete .lib-ent-all {
-  grid-column-start: span 2;
-}
 .app.window-app.dialog .grid-entete .red {
   color: red;
 }
+.app.window-app.dialog .grid-entete-sort,
+.app.window-app.dialog .grid-entete-art {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  padding-bottom: 5px;
+  margin: 5px 0;
+  border-bottom: solid 2px;
+}
 .app.window-app.dialog .grid-att .lib,
 .app.window-app.dialog .grid-att-dist .lib,
+.app.window-app.dialog .grid-def .lib,
+.app.window-app.dialog .grid-sort .lib,
+.app.window-app.dialog .grid-sort-int .lib,
+.app.window-app.dialog .grid-art .lib,
+.app.window-app.dialog .grid-art-int .lib,
+.app.window-app.dialog .grid-conj .lib,
 .app.window-app.dialog .grid-att .lib-lg,
 .app.window-app.dialog .grid-att-dist .lib-lg,
+.app.window-app.dialog .grid-def .lib-lg,
+.app.window-app.dialog .grid-sort .lib-lg,
+.app.window-app.dialog .grid-sort-int .lib-lg,
+.app.window-app.dialog .grid-art .lib-lg,
+.app.window-app.dialog .grid-art-int .lib-lg,
+.app.window-app.dialog .grid-conj .lib-lg,
 .app.window-app.dialog .grid-att .lib-sel,
-.app.window-app.dialog .grid-att-dist .lib-sel {
+.app.window-app.dialog .grid-att-dist .lib-sel,
+.app.window-app.dialog .grid-def .lib-sel,
+.app.window-app.dialog .grid-sort .lib-sel,
+.app.window-app.dialog .grid-sort-int .lib-sel,
+.app.window-app.dialog .grid-art .lib-sel,
+.app.window-app.dialog .grid-art-int .lib-sel,
+.app.window-app.dialog .grid-conj .lib-sel {
   margin-left: 3px;
 }
 .app.window-app.dialog .grid-att .lib-d,
-.app.window-app.dialog .grid-att-dist .lib-d {
+.app.window-app.dialog .grid-att-dist .lib-d,
+.app.window-app.dialog .grid-def .lib-d,
+.app.window-app.dialog .grid-sort .lib-d,
+.app.window-app.dialog .grid-sort-int .lib-d,
+.app.window-app.dialog .grid-art .lib-d,
+.app.window-app.dialog .grid-art-int .lib-d,
+.app.window-app.dialog .grid-conj .lib-d {
   margin-left: 6px;
 }
 .app.window-app.dialog .grid-att .val,
-.app.window-app.dialog .grid-att-dist .val {
+.app.window-app.dialog .grid-att-dist .val,
+.app.window-app.dialog .grid-def .val,
+.app.window-app.dialog .grid-sort .val,
+.app.window-app.dialog .grid-sort-int .val,
+.app.window-app.dialog .grid-art .val,
+.app.window-app.dialog .grid-art-int .val,
+.app.window-app.dialog .grid-conj .val {
   text-align: center;
 }
-.app.window-app.dialog .grid-att {
+.app.window-app.dialog .grid-att,
+.app.window-app.dialog .grid-def,
+.app.window-app.dialog .grid-sort {
   display: grid;
   grid-template-columns: 1fr 3.5em 1fr 3.5em;
   align-items: center;
   grid-auto-rows: 30px;
   margin: 10px 0;
 }
-.app.window-app.dialog .grid-att .lib-all {
+.app.window-app.dialog .grid-att .lib-all,
+.app.window-app.dialog .grid-def .lib-all,
+.app.window-app.dialog .grid-sort .lib-all {
   grid-column-start: span 4;
   text-align: center;
   font-size: 1.15em;
 }
-.app.window-app.dialog .grid-att .lib-lg {
+.app.window-app.dialog .grid-att .lib-lg,
+.app.window-app.dialog .grid-def .lib-lg,
+.app.window-app.dialog .grid-sort .lib-lg {
   grid-column-start: span 3;
 }
-.app.window-app.dialog .grid-att-dist {
+.app.window-app.dialog .grid-att-dist,
+.app.window-app.dialog .grid-conj {
   display: grid;
-  grid-template-columns: 1fr 1fr 8.5em 3.5em;
+  grid-template-columns: 1fr 3.5em 8.5em 3.5em;
   align-items: center;
   grid-auto-rows: 30px;
   margin: 10px 0;
 }
-.app.window-app.dialog .grid-att-dist .lib-all {
+.app.window-app.dialog .grid-att-dist .lib-all,
+.app.window-app.dialog .grid-conj .lib-all {
   grid-column-start: span 4;
   text-align: center;
   font-size: 1.15em;
 }
-.app.window-app.dialog .grid-att-dist .lib-lg {
+.app.window-app.dialog .grid-att-dist .lib-lg,
+.app.window-app.dialog .grid-conj .lib-lg {
   grid-column-start: span 3;
 }
-.app.window-app.dialog .grid-att-dist .lib-sel {
+.app.window-app.dialog .grid-att-dist .lib-sel,
+.app.window-app.dialog .grid-conj .lib-sel {
   grid-column-start: span 2;
 }
-.app.window-app.dialog .grid-att-dist select {
+.app.window-app.dialog .grid-att-dist select,
+.app.window-app.dialog .grid-conj select {
   grid-column-start: span 2;
+}
+.app.window-app.dialog .grid-sort-int,
+.app.window-app.dialog .grid-art-int {
+  display: grid;
+  grid-template-columns: 1fr 3.5em 1.25fr 8.5em;
+  align-items: center;
+  grid-auto-rows: 30px;
+  margin: 10px 0;
+}
+.app.window-app.dialog .grid-sort-int .lib-all,
+.app.window-app.dialog .grid-art-int .lib-all {
+  grid-column-start: span 4;
+  text-align: center;
+  font-size: 1.15em;
+}
+.app.window-app.dialog .grid-sort-int .lib-lg,
+.app.window-app.dialog .grid-art-int .lib-lg {
+  grid-column-start: span 3;
+}
+.app.window-app.dialog .grid-art .lib,
+.app.window-app.dialog .grid-art-spe .lib {
+  margin-left: 3px;
+}
+.app.window-app.dialog .grid-art .lib-all,
+.app.window-app.dialog .grid-art-spe .lib-all {
+  grid-column-start: span 2;
+  text-align: center;
+  font-size: 1.15em;
+}
+.app.window-app.dialog .grid-art {
+  display: grid;
+  grid-template-columns: 1fr 3.5em;
+  align-items: center;
+  grid-auto-rows: 30px;
+  margin-top: 10px;
+  margin-bottom: 5px;
+}
+.app.window-app.dialog .grid-art-spe {
+  display: grid;
+  grid-template-columns: 1fr 11em;
+  align-items: center;
+  grid-auto-rows: 30px;
+  margin-bottom: 10px;
 }

@@ -154,7 +154,7 @@ export async function jetCaracteristique({actor = null,
     }
 
     // Recupération du template
-    const messageTemplate = "systems/agone/templates/partials/dice/jet-caracteristique.hbs"; 
+    const messageTemplate = "systems/agone/templates/dice/jet-caracteristique.hbs"; 
 
     // Assignation des données au template
     let templateContext = {
@@ -458,7 +458,7 @@ export async function jetCompetence({actor = null,
         }
 
         // Recupération du template
-        const messageTemplate = "systems/agone/templates/partials/dice/jet-competence.hbs";
+        const messageTemplate = "systems/agone/templates/dice/jet-competence.hbs";
 
         // Assignation des données au template
         let templateContext = {
@@ -497,7 +497,6 @@ export async function jetCompetence({actor = null,
 -------------------------------------------------------------------------- */
 async function getJetCompetenceOptions({cfgData = null, labelComp = null, defCarac = null, specialisation = false, labelSpecialisation = null}) {
     // Recupération du template
-    //const template = "systems/agone/templates/partials/dice/dialog-jet-competence.hbs";
     const template = "systems/agone/templates/dialog/dialog-jet-competence-v2.hbs";
     const html = await foundry.applications.handlebars.renderTemplate(template, {data: cfgData, labelComp: labelComp, defCarac: defCarac, specialisation: specialisation, labelSpecialisation: labelSpecialisation});
 
@@ -618,8 +617,6 @@ export async function combatArme(actor, arme, type) {
     }
     
     let caracData = actor.getCaracData(carac);
-
-    //console.log("Jet Arme", caracData);
     
     // Autres stats de combat
     let statsCombat = new Object();
@@ -842,7 +839,7 @@ export async function combatArme(actor, arme, type) {
     }
 
     // Recupération du template
-    const messageTemplate = "systems/agone/templates/partials/dice/jet-arme.hbs";
+    const messageTemplate = "systems/agone/templates/dice/jet-arme.hbs";
     //let renderedRoll = await rollResult.render();
 
      // Assignation des données au template
@@ -905,7 +902,6 @@ export async function combatArme(actor, arme, type) {
 ---------------------------------------------------------------------- */
 async function getJetAttaqueOptions({attaquantData = null, armeData = null, cfgData = null}) {
     // Recupération du template
-    //const template = "systems/agone/templates/partials/dice/dialog-jet-combat-attaque.hbs";
     const template = "systems/agone/templates/dialog/dialog-jet-combat-attaque-v2.hbs";
     const html = await foundry.applications.handlebars.renderTemplate(template, {attaquantData: attaquantData, armeData: armeData, cfgData: cfgData});
 
@@ -973,7 +969,6 @@ function _processJetAttaqueOptions(form, distance) {
 ----------------------------------------------------------------------- */
 async function getJetDefenseOptions({defenseurData = null, armeData = null}) {
     // Recupération du template
-    //const template = "systems/agone/templates/partials/dice/dialog-jet-combat-defense.hbs";
     const template = "systems/agone/templates/dialog/dialog-jet-combat-defense-v2.hbs";
     const html = await foundry.applications.handlebars.renderTemplate(template, {defenseurData: defenseurData, armeData: armeData});
 
@@ -1161,7 +1156,7 @@ export async function jetDefense(defenseur, typeDef) {
         rollStats.descCritique = critInfos.desc;
     }
 
-    const messageTemplate = "systems/agone/templates/partials/dice/jet-competence.hbs";
+    const messageTemplate = "systems/agone/templates/dice/jet-competence.hbs";
 
     let templateContext = {
         stats: rollStats,
@@ -1265,6 +1260,7 @@ export async function sortEmprise(mage, danseur, sort, isIntuitif = false) {
 
     let sortData = {
         nomSort: isIntuitif ? game.i18n.localize("agone.items.sortIntuitif") : sort.name,
+        resonance: isIntuitif ? "" : sort.system.resonance,
         seuil: isIntuitif ? 0 : sort.system.seuil,
         seuilTotal: isIntuitif ? 0 : sort.system.seuilTotal,
         diffObedience: isIntuitif ? false : sort.system.diffObedience,
@@ -1341,7 +1337,7 @@ export async function sortEmprise(mage, danseur, sort, isIntuitif = false) {
     }
 
     // Recupération du template
-    const messageTemplate = "systems/agone/templates/partials/dice/jet-sort-emprise.hbs";
+    const messageTemplate = "systems/agone/templates/dice/jet-sort-emprise.hbs";
 
     // Assignation des données au template
     let templateContext = {
@@ -1380,7 +1376,7 @@ export async function sortEmprise(mage, danseur, sort, isIntuitif = false) {
 ------------------------------------------------------------------------------ */
 async function getJetSortEmpriseOptions({mageData = null, danseurData = null, sortData = null, cfgData = null}) {
     // Recupération du template
-    const template = "systems/agone/templates/partials/dice/dialog-jet-sort-emprise.hbs";
+    const template = "systems/agone/templates/dialog/dialog-jet-sort-emprise-v2.hbs";
     const html = await foundry.applications.handlebars.renderTemplate(template, {mageData: mageData, danseurData: danseurData, sortData: sortData, cfgData: cfgData });
 
     return new Promise( resolve => {
@@ -1389,7 +1385,7 @@ async function getJetSortEmpriseOptions({mageData = null, danseurData = null, so
             content: html,
             buttons: {
                 jet: { // Bouton qui lance le jet de dé
-                    icon: '<i class="fas fa-dice"></i>',
+                    icon: '<i class="fa-duotone fa-solid fa-dice-d10"></i>',
                     label: game.i18n.localize("agone.common.jet"),
                     callback: html => resolve(_processJetSortEmpriseOptions(html[0].querySelector("form")))
                 },
@@ -1496,7 +1492,7 @@ export async function contreMagie(mage, danseur, utiliseHeroisme) {
     }
 
     // Recupération du template
-    const messageTemplate = "systems/agone/templates/partials/dice/jet-contre-magie.hbs";
+    const messageTemplate = "systems/agone/templates/dice/jet-contre-magie.hbs";
 
     // Assignation des données au template
     let templateContext = {
@@ -1568,6 +1564,7 @@ export async function oeuvre(artiste, oeuvre, artMagiqueImpro = null, isArtImpro
         nomOeuvre: isArtImpro ? game.i18n.localize("agone.actors.oeuvreImprovisee") : oeuvre.name,
         seuil: isArtImpro ? 0 : oeuvre.system.seuil,
         artMagique: isArtImpro ? artMagiqueImpro : oeuvre.system.artMagique,
+        instrument: isArtImpro ? "" : oeuvre.system.instrument,
         saison: isArtImpro ? "" : oeuvre.system.saison,
         instruments: isArtImpro ? artiste.getInstrumentsPratiques() : null,
         isArtImpro: isArtImpro
@@ -1686,7 +1683,7 @@ export async function oeuvre(artiste, oeuvre, artMagiqueImpro = null, isArtImpro
     }
 
     // Recupération du template
-    const messageTemplate = "systems/agone/templates/partials/dice/jet-oeuvre.hbs";
+    const messageTemplate = "systems/agone/templates/dice/jet-oeuvre.hbs";
 
     // Assignation des données au template
     let templateContext = {
@@ -1724,7 +1721,7 @@ export async function oeuvre(artiste, oeuvre, artMagiqueImpro = null, isArtImpro
 ------------------------------------------------------------------------- */
 async function getJetOeuvreOptions({artisteData = null, oeuvreData = null, cfgData = null}) {
     // Recupération du template
-    const template = "systems/agone/templates/partials/dice/dialog-jet-oeuvre.hbs";
+    const template = "systems/agone/templates/dialog/dialog-jet-oeuvre-v2.hbs";
     const html = await foundry.applications.handlebars.renderTemplate(template, {artisteData: artisteData, oeuvreData: oeuvreData, cfgData: cfgData});
 
     return new Promise( resolve => {
@@ -1733,7 +1730,7 @@ async function getJetOeuvreOptions({artisteData = null, oeuvreData = null, cfgDa
             content: html,
             buttons: {
                 jet: { // Bouton qui lance le jet de dé
-                    icon: '<i class="fas fa-dice"></i>',
+                    icon: '<i class="fa-duotone fa-solid fa-dice-d10"></i>',
                     label: game.i18n.localize("agone.common.jet"),
                     callback: html => resolve(_processJetOeuvreOptions(html[0].querySelector("form")))
                 },
@@ -1855,7 +1852,7 @@ export async function desaccord(artiste, instrument, utiliseHeroisme) {
     }
 
     // Recupération du template
-    const messageTemplate = "systems/agone/templates/partials/dice/jet-desaccord.hbs";
+    const messageTemplate = "systems/agone/templates/dice/jet-desaccord.hbs";
 
     // Assignation des données au template
     let templateContext = {
@@ -2049,9 +2046,7 @@ export async function conjurerDemon(conjurateur) {
     }
 
     // Recupération du template
-    const messageTemplate = "systems/agone/templates/partials/dice/jet-conjuration.hbs";
-
-    //console.log(rollStats);
+    const messageTemplate = "systems/agone/templates/dice/jet-conjuration.hbs";
     
     // Assignation des données au template
     let templateContext = {
@@ -2088,7 +2083,7 @@ export async function conjurerDemon(conjurateur) {
 -------------------------------------------------------------------------- */
 async function getJetConjurationOptions({conjurateurData = null, cfgData = null}) {
     // Recupération du template
-    const template = "systems/agone/templates/partials/dice/dialog-jet-conjuration.hbs";
+    const template = "systems/agone/templates/dialog/dialog-jet-conjuration-v2.hbs";
     const html = await foundry.applications.handlebars.renderTemplate(template, {conjurateurData: conjurateurData, cfgData: cfgData });
 
     return new Promise( resolve => {
@@ -2097,7 +2092,7 @@ async function getJetConjurationOptions({conjurateurData = null, cfgData = null}
             content: html,
             buttons: {
                 jet: { // Bouton qui lance le jet de dé
-                    icon: '<i class="fas fa-dice"></i>',
+                    icon: '<i class="fa-duotone fa-solid fa-dice-d10"></i>',
                     label: game.i18n.localize("agone.common.jet"),
                     callback: html => resolve(_processJetConjurationOptions(html[0].querySelector("form")))
                 },
@@ -2168,7 +2163,7 @@ export async function jetPdv({actor = null} = {}) {
     });
 
     // Recupération du template
-    const messageTemplate = "systems/agone/templates/partials/dice/jet-pdv.hbs"; 
+    const messageTemplate = "systems/agone/templates/dice/jet-pdv.hbs"; 
 
     // Assignation des données au template
     let templateContext = {
@@ -2255,7 +2250,7 @@ async function suggestCritChatMessage(actor, suggestCritData) {
         blind: true,
         speaker: ChatMessage.getSpeaker({ actor: actor }),
         whisper: game.users.filter(user => user.isGM == true), // Whisper à l'EG
-        content: await foundry.applications.handlebars.renderTemplate("systems/agone/templates/partials/dice/suggestion-critique.hbs", suggestCritData)//,
+        content: await foundry.applications.handlebars.renderTemplate("systems/agone/templates/dice/suggestion-critique.hbs", suggestCritData)//,
         //type: CONST.CHAT_MESSAGE_TYPES.ROLL
     }
 

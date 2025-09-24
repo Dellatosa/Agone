@@ -1,0 +1,80 @@
+<form>
+    {{#if oeuvreData.isArtImpro}}
+        <div class="titre">{{ localize "agone.dialog.oeuvreImpro"}}</div>
+        <div class="grid-entete">
+            <div class="lib-ent"><i class="{{configSymbole oeuvreData.artMagique}}"></i> {{configLocalize "arts" oeuvreData.artMagique}}</div>
+            <div class="lib-ent">{{ localize "agone.dialog.potentiel"}} <i class="{{configSymbole oeuvreData.artMagique}}"></i> {{artisteData.potArtMagique}}</div>
+        </div>
+        {{#if (eq oeuvreData.artMagique "accord")}}
+            <div class="grid-art-int">
+                <div class="lib-all">{{ localize "agone.dialog.estimation"}}</div>
+                <div class="lib">{{ localize "agone.dialog.seuilEstime"}} <i class="fa-regular fa-circle-question" title="{{localize "agone.tooltip.seuilEstimeMsg"}}"></i></div>
+                <div class="val"><input type="number" name="seuilEstime" value="0" min="0"/></div>
+            
+                <div class="lib-d">{{localize "agone.items.instrument"}}</div>
+                <select name="instrumentSel">
+                    {{selectOptions oeuvreData.instruments selected=instrumentSel localize=true}}
+                </select>
+            </div>    
+        {{else}}
+            <div class="grid-art">
+                <div class="lib-all">{{ localize "agone.dialog.estimation"}}</div>
+                <div class="lib">{{ localize "agone.dialog.seuilEstime"}} <i class="fa-regular fa-circle-question" title="{{localize "agone.tooltip.seuilEstimeMsg"}}"></i></div>
+                <div class="val"><input type="number" name="seuilEstime" value="0" min="0"/></div>
+            </div>
+        {{/if}}
+    {{else}}
+        <div class="titre">
+            <i class="{{configSymbole oeuvreData.artMagique}} icone"></i> {{oeuvreData.nomOeuvre}}
+        </div>
+        {{#if (or (eq oeuvreData.artMagique "accord") (eq oeuvreData.artMagique "decorum"))}}
+            <div class="grid-entete-art">
+        {{else}}
+            <div class="grid-entete">
+        {{/if}}
+            <div class="lib-ent">{{ localize "agone.items.seuil"}} {{oeuvreData.seuil}}</div>
+            {{#if (eq oeuvreData.artMagique "accord")}}<div class="lib-ent">{{configLocalize "instruments" oeuvreData.instrument}}</div>{{/if}}
+            {{#if (eq oeuvreData.artMagique "decorum")}}<div class="lib-ent">{{configLocalize "saisons" oeuvreData.saison}}</div>{{/if}}
+            <div class="lib-ent">{{ localize "agone.dialog.potentiel"}} <i class="{{configSymbole oeuvreData.artMagique}}"></i> {{artisteData.potArtMagique}}</div>
+        </div>
+    {{/if}}
+    <div class="grid-art">
+        {{#if artisteData.specialisation}}
+            <div class="lib-lg"><i class="fa-duotone fa-solid fa-award"></i> {{ localize "agone.actors.specialisation"}}  <span class="bold">{{artisteData.labelSpecialisation}}</span></div>
+            <div class="val"><input type="checkbox" name="utiliseSpecialisation"/></div>
+        {{/if}}
+        <div class="lib-lg">{{ localize "agone.dialog.utiliseHeroisme"}}</div>
+        <div class="val"><input type="checkbox" name="utiliseHeroisme"/></div>
+        <div class="lib-lg">{{ localize "agone.dialog.magieInstantanee"}}</div>
+        <div class="val"><input type="checkbox" name="magieInstantanee"/></div>
+        <div class="lib-lg">{{localize "agone.dialog.margeQualite"}}</div>
+        <div class="val"><input type="number" name="margeQualite" value="0" min="0"/></div>
+    </div>
+    <div class="grid-art-spe">
+        <div class="lib-all">{{configLocalize "arts" oeuvreData.artMagique}}</div>
+        {{#if (eq oeuvreData.artMagique "accord")}}
+            <div class="lib">{{localize "agone.dialog.qualiteInstrument"}}</div>
+            <select name="qualiteInstrument">
+                {{selectOptions cfgData.qualiteInstrument selected=qualiteInstrument valueAttr="modif" labelAttr="label" localize=true}}
+            </select>
+        {{/if}}
+        {{#if (eq oeuvreData.artMagique "geste")}}
+            <div class="lib">{{localize "agone.dialog.bruitEnviron"}}</div>
+            <select name="bruitEnviron">
+                {{selectOptions cfgData.bruitEnviron selected=bruitEnviron valueAttr="modif" labelAttr="label" localize=true}}
+            </select>
+        {{/if}}
+        {{#if (eq oeuvreData.artMagique "decorum")}}
+            <div class="lib">{{localize "agone.dialog.saisonActu"}}</div>
+            <select name="saisonOeuvre">
+                {{selectOptions cfgData.saisonOeuvre selected=saisonOeuvre valueAttr="modif" labelAttr="label" localize=true}}
+            </select>
+        {{/if}}
+        {{#if (eq oeuvreData.artMagique "cyse")}}
+            <div class="lib">{{localize "agone.dialog.materiaux"}}</div>
+            <select name="materiaux">
+                {{selectOptions cfgData.materiaux selected=materiaux valueAttr="resistance" labelAttr="label" localize=true}}
+            </select>
+        {{/if}}
+    </div>
+</form>

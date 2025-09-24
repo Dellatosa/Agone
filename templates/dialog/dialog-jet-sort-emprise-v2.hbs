@@ -1,0 +1,49 @@
+<form>
+    {{#if sortData.isIntuitif}}
+        <div class="titre">
+            <i class="fa-duotone fa-solid fa-sparkles"></i> {{ localize "agone.dialog.sortMagieIntuitive"}}
+        </div>
+        <div class="grid-entete">
+            <div class="lib-ent line"><img src="systems/agone/images/item/danseur.png"/> {{danseurData.nomDanseur}}</div>
+            <div class="lib-ent">{{ localize "agone.dialog.potentiel"}} <i class="fa-duotone fa-solid fa-sparkles"></i> {{mageData.potEmprise}}</div>
+        </div>
+        <div class="grid-sort-int">
+            <div class="lib-all">{{ localize "agone.dialog.estimation"}}</div>
+            <div class="lib">{{ localize "agone.dialog.seuilEstime"}} <i class="fa-regular fa-circle-question" title="{{localize "agone.tooltip.seuilEstimeMsg" seuil=sortData.seuil }}"></i></div>
+            <div class="val"><input type="number" name="seuilEstime" value="0" min="0"/></div>
+            <div class="lib">{{localize "agone.dialog.resonanceEstimee"}}</div>
+            <select name="resonanceEstimee">
+                {{selectOptions cfgData.resonances selected=resonances localize=true}}
+            </select>
+        </div>
+    {{else}}
+        <div class="titre">
+            <i class="{{configSymbole sortData.resonance}} icone" title="{{configLocalize "resonances" sortData.resonance}}"></i> {{sortData.nomSort}}
+        </div>
+        <div class="grid-entete-sort">
+            <div class="lib-ent line"><img src="systems/agone/images/item/danseur.png"/> {{danseurData.nomDanseur}}</div>
+            <div class="lib-ent">
+                {{ localize "agone.items.seuil"}} {{sortData.seuilTotal}}
+                {{#if sortData.diffObedience}}<i class="fa-regular fa-circle-question" title="{{localize "agone.tooltip.seuilDetail" seuil=sortData.seuil }}"></i>{{/if}}
+            </div>
+            <div class="lib-ent">{{ localize "agone.dialog.potentiel"}} <i class="fa-duotone fa-solid fa-sparkles"></i> {{mageData.potEmprise}}</div>
+        </div>
+    {{/if}}
+    <div class="grid-sort">
+        {{#if mageData.specialisation}}
+            <div class="lib-lg"><i class="fa-duotone fa-solid fa-award"></i> {{ localize "agone.actors.specialisation"}}  <span class="bold">{{mageData.labelSpecialisation}}</span></div>
+            <div class="val"><input type="checkbox" name="utiliseSpecialisation"/></div>
+        {{/if}}
+        <div class="lib-lg">{{ localize "agone.dialog.utiliseHeroisme"}}</div>
+        <div class="val"><input type="checkbox" name="utiliseHeroisme"/></div>
+        <div class="lib-all">{{ localize "agone.dialog.autresModif"}}</div>
+        <div class="lib-lg">{{ localize "agone.dialog.magieInstantanee"}}</div>
+        <div class="val"><input type="checkbox" name="magieInstantanee"/></div>
+        <div class="lib-lg">{{ localize "agone.dialog.danseurInvisible"}}</div>
+        <div class="val"><input type="checkbox" name="danseurInvisible"/></div>
+        {{#if (eq mageData.resonance "jorniste")}}
+            <div class="lib-lg">{{ localize "agone.dialog.mouvImperceptibles"}}</div>
+            <div class="val"><input type="checkbox" name="mouvImperceptibles"/></div>
+        {{/if}}
+    </div>
+</form>

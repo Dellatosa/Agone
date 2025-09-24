@@ -1371,7 +1371,7 @@ export default class AgoneActorSheet extends foundry.appv1.sheets.ActorSheet {
 
         if(instruments) {
             if(instruments.length == 1) {
-                Dice.desaccord(this.actor, instruments[0].label, event.shiftKey);
+                Dice.desaccord(this.actor, instruments[0].value, event.shiftKey);
             }
             else {
                 // Selection de l'instrument

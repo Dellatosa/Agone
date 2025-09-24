@@ -498,7 +498,7 @@ export default class AgoneDemonSheet extends foundry.appv1.sheets.ActorSheet {
             owner: this.actor.isToken ? this.actor.token.id : this.actor.id,
         };
 
-        chatData.content = await foundry.applications.handlebars.renderTemplate("systems/agone/templates/partials/chat/carte-arme-nat.hbs", cardData);
+        chatData.content = await foundry.applications.handlebars.renderTemplate("systems/agone/templates/chat/carte-arme-nat.hbs", cardData);
 
         return ChatMessage.create(chatData);
     }
