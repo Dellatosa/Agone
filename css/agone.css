@@ -12,6 +12,147 @@
 .agone.sheet.item .sheet-header .item-name input {
   height: auto;
 }
+.agone.sheet.item .sheet-content nav.tabs {
+  font-family: "BarbedorMedium";
+  align-items: center;
+}
+.agone.sheet.item .sheet-content nav.tabs .active {
+  font-weight: bold;
+  font-size: 1.2em;
+}
+.agone.sheet.item .sheet-content .ligne-eff {
+  display: grid;
+  grid-template-columns: 1fr 2em;
+  margin-bottom: 5px;
+  align-items: center;
+}
+.agone.sheet.item .sheet-content .ligne-eff .titre-eff {
+  text-align: center;
+  font: var(--font-lorgol-28px);
+}
+.agone.sheet.item .sheet-content .ligne-eff .icone {
+  text-align: center;
+}
+.agone.sheet.item .sheet-content .grid-2col {
+  display: grid;
+  grid-template-columns: 3fr 7fr;
+  font-family: "BarbedorMedium";
+}
+.agone.sheet.item .sheet-content .grid-2col .col-stats {
+  background: linear-gradient(to right, #00000000, #00000021);
+  padding: 5px;
+}
+.agone.sheet.item .sheet-content .grid-2col .desc-titre {
+  text-align: center;
+  font: var(--font-lorgol-28px);
+}
+.agone.sheet.item .sheet-content .grid-arme-stats .lib-titre,
+.agone.sheet.item .sheet-content .grid-armure-stats .lib-titre,
+.agone.sheet.item .sheet-content .grid-avg-stats .lib-titre,
+.agone.sheet.item .sheet-content .grid-def-stats .lib-titre {
+  grid-column-start: span 3;
+  text-align: center;
+  font: var(--font-lorgol-28px);
+  margin-bottom: 5px;
+}
+.agone.sheet.item .sheet-content .grid-arme-stats .lib,
+.agone.sheet.item .sheet-content .grid-armure-stats .lib,
+.agone.sheet.item .sheet-content .grid-avg-stats .lib,
+.agone.sheet.item .sheet-content .grid-def-stats .lib {
+  grid-column-start: span 2;
+}
+.agone.sheet.item .sheet-content .grid-arme-stats .sel,
+.agone.sheet.item .sheet-content .grid-armure-stats .sel,
+.agone.sheet.item .sheet-content .grid-avg-stats .sel,
+.agone.sheet.item .sheet-content .grid-def-stats .sel {
+  margin: 2px;
+  grid-column-start: span 2;
+}
+.agone.sheet.item .sheet-content .grid-arme-stats .val,
+.agone.sheet.item .sheet-content .grid-armure-stats .val,
+.agone.sheet.item .sheet-content .grid-avg-stats .val,
+.agone.sheet.item .sheet-content .grid-def-stats .val {
+  margin: 2px;
+  align-items: center;
+  text-align: center;
+}
+.agone.sheet.item .sheet-content .grid-arme-stats .val-fixe,
+.agone.sheet.item .sheet-content .grid-armure-stats .val-fixe,
+.agone.sheet.item .sheet-content .grid-avg-stats .val-fixe,
+.agone.sheet.item .sheet-content .grid-def-stats .val-fixe {
+  background-color: var(--color-stats-background);
+  margin: 2px;
+  text-align: center;
+  align-items: center;
+  border-radius: 3px;
+  height: 26px;
+}
+.agone.sheet.item .sheet-content .grid-arme-stats .val-fixe label,
+.agone.sheet.item .sheet-content .grid-armure-stats .val-fixe label,
+.agone.sheet.item .sheet-content .grid-avg-stats .val-fixe label,
+.agone.sheet.item .sheet-content .grid-def-stats .val-fixe label {
+  position: relative;
+  top: 4px;
+}
+.agone.sheet.item .sheet-content .grid-arme-stats,
+.agone.sheet.item .sheet-content .grid-armure-stats {
+  display: grid;
+  grid-template-columns: 1fr 5.5em 3.5em;
+  align-items: center;
+}
+.agone.sheet.item .sheet-content .grid-avg-stats,
+.agone.sheet.item .sheet-content .grid-def-stats {
+  display: grid;
+  grid-template-columns: 1fr 6.5em 3.5em;
+  align-items: center;
+}
+.agone.sheet.item .sheet-content .grid-danseur-stats {
+  display: grid;
+  grid-template-columns: 1fr 3.5em;
+  align-items: center;
+}
+.agone.sheet.item .sheet-content .grid-danseur-stats .lib-titre {
+  grid-column-start: span 2;
+  text-align: center;
+  font: var(--font-lorgol-28px);
+  margin-bottom: 5px;
+}
+.agone.sheet.item .sheet-content .grid-danseur-stats .val {
+  margin: 2px;
+  align-items: center;
+  text-align: center;
+}
+.agone.sheet.item .sheet-content .grid-danseur-stats .val-fixe {
+  background-color: var(--color-stats-background);
+  margin: 2px;
+  text-align: center;
+  align-items: center;
+  border-radius: 3px;
+  height: 26px;
+}
+.agone.sheet.item .sheet-content .grid-danseur-stats .val-fixe label {
+  position: relative;
+  top: 4px;
+}
+.agone.sheet.item .sheet-content .grid-danseur-stats .icone {
+  font-size: 0.8em;
+}
+.grid-sort-disp {
+  display: grid;
+  grid-template-columns: 2.5em 2fr 1fr 5em 5em;
+  padding: 3px;
+  align-items: center;
+  text-align: center;
+}
+.grid-sort-disp .nova {
+  align-self: normal;
+}
+.grid-sort-disp > * {
+  padding: 3px;
+}
+.grid-sort-disp img {
+  border: none;
+}
 .agone.sheet.item .sheet-content,
 .agone.sheet.item .sheet-body {
   display: flex;
@@ -33,9 +174,18 @@
 .agone.sheet.item .sheet-body .ed-200 {
   min-height: 200px;
 }
+.agone.sheet.item .sheet-content .ed-350,
+.agone.sheet.item .sheet-body .ed-350 {
+  min-height: 350px;
+}
+.agone.sheet.item .sheet-content .ed-400,
+.agone.sheet.item .sheet-body .ed-400 {
+  min-height: 400px;
+}
 .agone.sheet.item .sheet-content .editor,
 .agone.sheet.item .sheet-body .editor {
   min-height: inherit;
+  background-color: var(--color-stats-background);
 }
 .agone.sheet.item .sheet-content div,
 .agone.sheet.item .sheet-body div {
@@ -110,18 +260,6 @@
   display: grid;
   grid-template-columns: 1fr;
   padding: 3px;
-}
-.grid-sort-disp {
-  display: grid;
-  grid-template-columns: 2.5em 2fr 2fr 1fr 1fr;
-  padding: 3px;
-  text-align: center;
-}
-.grid-sort-disp > * {
-  padding: 3px;
-}
-.grid-sort-disp img {
-  border: none;
 }
 .ligne-effet {
   display: grid;

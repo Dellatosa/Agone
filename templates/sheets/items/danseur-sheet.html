@@ -1,51 +1,58 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
         <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
-        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.common.name'}}"/></h1>
+        <div class="item-name"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.common.name'}}"/></div>
     </header>
     <div class="sheet-content">
-        <div class="grid-danseur">
-            <label class="grid-titre">{{localize "agone.items.memoireDispo"}}</label>
-            <label class="grid-titre">{{localize "agone.items.memoireMax"}}</label>
-            <label class="grid-titre">{{localize "agone.items.bonusEmprise"}}</label>
-            <label class="grid-titre">{{localize "agone.items.empathie"}}</label>
-            <label class="grid-titre">{{localize "agone.items.enduranceDispo"}}</label>
-            <label class="grid-titre">{{localize "agone.items.enduranceMax"}}</label>
-            <label class="grid-titre">{{localize "agone.actors.experience"}}</label>
-            <div><input name="system.memoire.value" type="text" value="{{data.system.memoire.value}}" data-dtype="Number" placeholder="0" readonly/></div>
-            <div><input name="system.memoire.max" type="text" value="{{data.system.memoire.max}}" data-dtype="Number" placeholder="0" min="0"/></div>
-            <div><input name="system.bonusEmprise" type="text" value="{{data.system.bonusEmprise}}" data-dtype="Number" placeholder="0" min="0"/></div>
-            <div><input name="system.empathie" type="text" value="{{data.system.empathie}}" data-dtype="Number" placeholder="0" min="0"/></div>
-            <div><input name="system.endurance.value" type="text" value="{{data.system.endurance.value}}" data-dtype="Number" placeholder="0" readonly/></div>
-            <div><input name="system.endurance.max" class="enduranceMax" type="text" value="{{data.system.endurance.max}}" data-dtype="Number" placeholder="0" min="0"/></div>
-            <div><input name="system.experience" type="text" value="{{data.system.experience}}" data-dtype="Number" placeholder="0" min="0"/></div>
-        </div>
-        <div>{{localize "agone.items.danseurDesc"}}</div> 
-        <div class="ed-100">{{editor data.system.description target="system.description" button=true owner=true editable=true}}</div>
-        {{#if data.system.sortsDispo}}
-            <h3>Sorts disponibles</h3>
-            <div class="grid-sort-disp">
-                <label class="grid-titre"></label>
-                <label class="grid-titre">{{localize "agone.common.name"}}</label>
-                <label class="grid-titre">{{localize "agone.items.resonance"}}</label>
-                <label class="grid-titre">{{localize "agone.items.seuil"}}</label>
-                <label class="grid-titre">{{localize "agone.items.sortConnu"}}</label>
-                {{#each data.system.sortsDispo as | sort | }}
-                    <img src="{{sort.img}}" title="{{sort.name}}" height="32" width="32"/>
-                    <label>{{sort.name}}</label>
-                    <label>{{sort.system.resonance}}</label>
-                    <label>{{sort.system.seuil}}</label>
-                    {{#if sort.connu }}
-                        <div class="uncheck-sort-connu sort" data-item-id="{{sort.id}}"><i class="far fa-check-square"></i></div>
-                    {{else}}
-                        <div class="check-sort-connu sort" data-item-id="{{sort.id}}"><i class="far fa-square"></i></div>
-                    {{/if}}
-                    
-                {{/each}}
+        <div class="grid-2col">
+            <div class="col-stats">
+                <div class="grid-danseur-stats">
+                    <div class="lib-titre">{{localize "agone.items.danseur"}}</div>
+                    <div class="lib"><i class="fa-duotone fa-solid fa-sparkles"></i> {{localize "agone.items.bonusEmprise"}}</div>
+                    <div class="val"><input name="system.bonusEmprise" type="number" value="{{data.system.bonusEmprise}}" placeholder="0" min="0"/></div>
+                    <div class="lib"><i class="fa-duotone fa-solid fa-hands-holding-heart"></i> {{localize "agone.items.empathie"}}</div>
+                    <div class="val"><input name="system.empathie" type="number" value="{{data.system.empathie}}" placeholder="0" min="0"/></div>
+                    <div class="lib"><i class="fa-duotone fa-solid fa-wreath-laurel"></i> {{localize "agone.actors.experience"}}</div>
+                    <div class="val"><input name="system.experience" type="number" value="{{data.system.experience}}" placeholder="0" min="0"/></div>
+                    <div class="lib-titre"><i class="fa-duotone fa-solid fa-head-side-brain icone"></i> {{localize "agone.items.memoire"}}</div>
+                    <div class="lib">{{localize "agone.items.disponible"}}</div>
+                    <div class="val-fixe"><label>{{data.system.memoire.value}}</label></div>
+                    <div class="lib">{{localize "agone.items.maximum"}}</div>
+                    <div class="val"><input name="system.memoire.max" type="number" value="{{data.system.memoire.max}}" placeholder="0" min="0"/></div>
+                    <div class="lib-titre"><i class="fa-duotone fa-solid fa-heart-circle-bolt icone"></i> {{localize "agone.items.endurance"}}</div>
+                    <div class="lib">{{localize "agone.items.disponible"}}</div>
+                    <div class="val-fixe"><label>{{data.system.endurance.value}}</label></div>
+                    <div class="lib">{{localize "agone.items.maximum"}}</div>
+                    <div class="val"><input name="system.endurance.max" class="enduranceMax" type="number" value="{{data.system.endurance.max}}" placeholder="0" min="0"/></div>
+                </div>
             </div>
-        {{/if}}
+            <div>
+                <div class="desc-titre">{{localize "agone.items.danseurDesc"}}</div>
+                <div class="ed-100">
+                    {{editor data.system.description target="system.description" engine="prosemirror" button=true editable=true}}
+                </div>
+                {{#if data.system.sortsDispo}}
+                    <div class="desc-titre">Sorts disponibles</div>
+                    <div class="grid-sort-disp">
+                        <label class="grid-titre nova"></label>
+                        <label class="grid-titre">{{localize "agone.common.name"}}</label>
+                        <label class="grid-titre">{{localize "agone.items.resonance"}}</label>
+                        <label class="grid-titre">{{localize "agone.items.seuil"}}</label>
+                        <label class="grid-titre">{{localize "agone.items.sortConnu"}}</label>
+                        {{#each data.system.sortsDispo as | sort | }}
+                            <img src="{{sort.img}}" title="{{sort.name}}" height="32" width="32"/>
+                            <label>{{sort.name}}</label>
+                            <label><i class="{{configSymbole system.resonance}}"></i> {{configLocalize "resonances" sort.system.resonance}}</label>
+                            <label>{{sort.system.seuil}}</label>
+                            {{#if sort.connu }}
+                                <div class="uncheck-sort-connu sort" data-item-id="{{sort.id}}"><i class="far fa-check-square"></i></div>
+                            {{else}}
+                                <div class="check-sort-connu sort" data-item-id="{{sort.id}}"><i class="far fa-square"></i></div>
+                            {{/if}}                
+                        {{/each}}
+                    </div>
+                {{/if}}
+            </div>
+        </div>
     </div>
-    <footer class="sheet-footer">
-        <div>{{localize "agone.common.type"}} : <span>{{localize "agone.items.danseurLabel"}}</span></div>
-    </footer>
 </form>

@@ -1,27 +1,34 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
         <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
-        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.common.name'}}"/></h1>
+        <div class="item-name"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.items.nom'}}"/></div>
     </header>
     <div class="sheet-content">
-        <div class="grid-armure">
-            <label class="grid-titre">{{localize "agone.common.type"}}</label>
-            <label class="grid-titre">{{localize "agone.items.protection"}}</label>
-            <label class="grid-titre">{{localize "agone.items.malusAgilite"}}</label>
-            <label class="grid-titre">{{localize "agone.items.malusPerception"}}</label>
-            <div>
-                <select name="system.type">
-                    {{selectOptions config.typesArmure selected=data.system.type localize=true}}
-                </select>
+        <div class="grid-2col">
+            <div class="col-stats">
+                <div class="grid-armure-stats">
+                    <div class="lib-titre">{{localize "agone.items.armure"}}</div>
+                    <div>{{localize "agone.common.type"}}</div>
+                    <div class="sel">
+                        <select name="system.type">
+                            {{selectOptions config.typesArmure selected=data.system.type localize=true}}
+                        </select>
+                    </div>
+                    <div class="lib"><i class="fa-duotone fa-solid fa-shield-plus"></i> {{localize "agone.items.protection"}}</div>
+                    <div class="val"><input name="system.protection" type="number" value="{{data.system.protection}}" placeholder="0" min="0"/></div>
+                    <div class="lib-titre">{{localize "agone.items.modificateurs"}}</div>
+                    <div class="lib"><i class="fa-duotone fa-solid fa-weight-hanging"></i> {{localize "agone.items.malusAgilite"}}</div>
+                    <div class="val"><input name="system.malus" type="number" value="{{data.system.malus}}" placeholder="0" min="0"/></div>
+                    <div class="lib"><i class="fa-duotone fa-solid fa-eye-low-vision"></i> {{localize "agone.items.malusPerception"}}</div>
+                    <div class="val-fixe"><label>{{data.system.malusPerception}}</label></div>
+                </div>
             </div>
-            <div><input name="system.protection" type="text" value="{{data.system.protection}}" data-dtype="Number" placeholder="0"/></div>
-            <div><input name="system.malus" type="text" value="{{data.system.malus}}" data-dtype="Number" placeholder="0"/></div>
-            <div><input name="system.malusPerception" type="text" value="{{data.system.malusPerception}}" data-dtype="Number" placeholder="0" readonly/></div>
+            <div>
+                <div class="desc-titre">{{localize "agone.items.armureDesc"}}</div> 
+                <div class="ed-200">
+                    {{editor data.system.description target="system.description" engine="prosemirror" button=true editable=true}}
+                </div>
+            </div>
         </div>
-        <div>{{localize "agone.items.armureDesc"}}</div> 
-        <div class="ed-150">{{editor data.system.description target="system.description" button=true owner=true editable=true}}</div>
     </div>
-    <footer class="sheet-footer">
-        <div>{{localize "agone.common.type"}} : <span>{{localize "agone.items.armureLabel"}}</span></div>
-    </footer>
 </form>

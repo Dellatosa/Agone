@@ -20,11 +20,30 @@ export default class AgoneItem extends Item {
         super.prepareData();
         let data = this.system;
 
+        if(this.type == "Arme") {
+            // Valeurs mini et maxi
+            if(data.portee < 0) data.portee = 0;
+            if(data.minForce < 0) data.minForce = 0;
+            if(data.minAgilite < 0) data.minAgilite = 0;
+            if(data.tai < -2) data.tai = -2;
+            if(data.tai > 3) data.tai = 3;
+        }
+
+        if(this.type == "Armure" && data.type != "") {
+            // Valeurs mini et maxi
+            if(data.protection < 0) data.protection = 0;
+            if(data.malus > 0) data.malus = 0;
+
+            // Calcul malus perception
+            data.malusPerception = CONFIG.agone.typesArmureMalusPer[data.type];
+        }
+
         if(this.type == "Danseur") {
             const memUtilisee = this.getMemoireUtilisee();
 
             if(data.memoire.max < memUtilisee) {
-                this.update({"system.memoire.max": memUtilisee });
+                data.memoire.max = memUtilisee;
+                //this.update({"system.memoire.max": memUtilisee });
                 data.memoire.value = 0;
             }
             else {
@@ -97,17 +116,8 @@ export default class AgoneItem extends Item {
     }
 }
 
-Hooks.on("closeAgoneItemSheet", (itemSheet, html) => onCloseAgoneItemSheet(itemSheet));
 Hooks.on("updateItem", (item, modif, info, id) => onUpdateItem(item, modif));
 Hooks.on("deleteItem", (item, render, id) => onDeleteItem(item));
-
-function onCloseAgoneItemSheet(itemSheet) {
-    // Modification sur une armure
-    if(itemSheet.item.type == "Armure") {
-        // Le malus de perception dépend du type d'armure
-        itemSheet.item.update({"system.malusPerception": CONFIG.agone.typesArmureMalusPer[itemSheet.item.system.type]});
-    }
-}
 
 function onUpdateItem(item, modif) {
     //if(item.parent.isToken) return;

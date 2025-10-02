@@ -1,43 +1,53 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
         <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
-        <div class="item-name"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.common.name'}}"/></div>
+        <div class="item-name"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.items.nom'}}"/></div>
     </header>
     <div class="sheet-content">
-        <div class="grid-arme">
-            <label class="grid-titre">{{localize "agone.items.style"}}</label>
-            <label class="grid-titre">{{localize "agone.items.modifInit"}}</label>
-            <label class="grid-titre">{{localize "agone.items.modifAttaque"}}</label>
-            <label class="grid-titre">{{localize "agone.items.modifParade"}}</label>
-            <label class="grid-titre">{{localize "agone.items.modifDommages"}}</label>
-            <label class="grid-titre">{{localize "agone.items.portee"}}</label>
-            <label class="grid-titre">{{localize "agone.common.type"}}</label>
-            <label class="grid-titre">{{localize "agone.items.minForce"}}</label>
-            <label class="grid-titre">{{localize "agone.items.minAgilite"}}</label>
-            <label class="grid-titre">{{localize "agone.items.tai"}}</label>
-            <div>
-                <select name="system.style">
-                    {{selectOptions config.stylesArme selected=data.system.style localize=true}}
-                </select>
+        <div class="grid-2col">
+            <div class="col-stats">
+                <div class="grid-arme-stats">
+                    <div class="lib-titre">{{localize "agone.items.arme"}}</div>
+                    <div>{{localize "agone.common.type"}}</div>
+                    <div class="sel">
+                        <select name="system.style">
+                            {{selectOptions config.stylesArme selected=data.system.style localize=true}}
+                        </select>
+                    </div>
+                    <div>{{localize "agone.items.typeDom"}}</div>
+                    <div class="sel">
+                        <select name="system.type">
+                            {{selectOptions config.typesArme selected=data.system.type localize=true}} 
+                        </select>
+                    </div>
+                    {{#if (or (eq data.system.style "trait") (eq data.system.style "jet"))}}
+                        <div class="lib">{{localize "agone.items.portee"}}</div>
+                        <div class="val"><input name="system.portee" type="number" value="{{data.system.portee}}" placeholder="0" min="0"/></div>
+                    {{/if}}
+                    <div class="lib-titre">{{localize "agone.items.modificateurs"}}</div>
+                    <div class="lib"><i class="fa-duotone fa-solid fa-bolt"></i> {{localize "agone.items.modifInit"}}</div>
+                    <div class="val"><input name="system.modifInit" type="number" value="{{data.system.modifInit}}" placeholder="0"/></div>
+                    <div class="lib"><i class="fa-duotone fa-solid fa-sword"></i> {{localize "agone.items.modifAttaque"}}</div>
+                    <div class="val"><input name="system.modifAttaque" type="number" value="{{data.system.modifAttaque}}" placeholder="0"/></div>
+                    <div class="lib"><i class="fa-duotone fa-solid fa-shield-halved"></i> {{localize "agone.items.modifParade"}}</div>
+                    <div class="val"><input name="system.modifParade" type="number" value="{{data.system.modifParade}}"  placeholder="0"/></div>
+                    <div class="lib"><i class="fa-duotone fa-solid fa-burst"></i> {{localize "agone.items.modifDommages"}}</div>
+                    <div class="val"><input name="system.modifDommages" type="number" value="{{data.system.modifDommages}}" placeholder="0"/></div>
+                    <div class="lib-titre">{{localize "agone.items.prerequis"}}</div>
+                    <div class="lib">{{localize "agone.items.minForce"}}</div>
+                    <div class="val"><input name="system.minForce" type="number" value="{{data.system.minForce}}" placeholder="0" min="0"/></div>
+                    <div class="lib">{{localize "agone.items.minAgilite"}}</div>
+                    <div class="val"><input name="system.minAgilite" type="number" value="{{data.system.minAgilite}}" placeholder="0" min="0"/></div>
+                    <div class="lib">{{localize "agone.items.taiArme"}}</div>
+                    <div class="val"><input name="system.tai" type="number" value="{{data.system.tai}}" placeholder="0" min="-2" max="3"/></div>
+                </div>
             </div>
-            <div><input name="system.modifInit" type="text" value="{{data.system.modifInit}}" data-dtype="Number" placeholder="0"/></div>
-            <div><input name="system.modifAttaque" type="text" value="{{data.system.modifAttaque}}" data-dtype="Number" placeholder="0"/></div>
-            <div><input name="system.modifParade" type="text" value="{{data.system.modifParade}}" data-dtype="Number" placeholder="0"/></div>
-            <div><input name="system.modifDommages" type="text" value="{{data.system.modifDommages}}" data-dtype="Number" placeholder="0"/></div>
-            <div><input name="system.portee" type="text" value="{{data.system.portee}}" data-dtype="Number" placeholder="0"/></div>
             <div>
-                <select name="system.type">
-                    {{selectOptions config.typesArme selected=data.system.type localize=true}} 
-                </select>
-            </div>
-            <div><input name="system.minForce" type="text" value="{{data.system.minForce}}" data-dtype="Number" placeholder="0"/></div>
-            <div><input name="system.minAgilite" type="text" value="{{data.system.minAgilite}}" data-dtype="Number" placeholder="0"/></div>
-            <div><input name="system.tai" type="text" value="{{data.system.tai}}" data-dtype="Number" placeholder="0"/></div>
+                <div class="desc-titre">{{localize "agone.items.armeDesc"}}</div> 
+                <div class="ed-400">
+                    {{editor data.system.description target="system.description" engine="prosemirror" button=true editable=true}}
+                </div>
+            </div> 
         </div>
-         <div>{{localize "agone.items.armeDesc"}}</div> 
-         <div class="ed-150">{{editor data.system.description target="system.description" button=true owner=true editable=true}}</div>
     </div>
-    <footer class="sheet-footer">
-        <div>{{localize "agone.common.type"}} : <span>{{localize "agone.items.armeLabel"}}</span></div>
-    </footer>
 </form>

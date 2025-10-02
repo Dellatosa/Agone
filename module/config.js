@@ -929,6 +929,7 @@ agone.typesArmure = {
 }
 
 agone.typesArmureMalusPer = {
+    aucun: 0,
     vesteSeule: 0,
     partielle: -1,
     complete: -3

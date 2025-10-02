@@ -1,7 +1,7 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
         <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
-        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.common.name'}}"/></h1>
+        <div class="item-name"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.items.nom'}}"/></div>
     </header>
     <div class="sheet-content">
         <nav class="sheet-tabs tabs" data-group="primaire">
@@ -10,37 +10,40 @@
         </nav>
         <section class="sheet-body">
             <div class="tab" data-group="primaire" data-tab="description">
-                <div class="grid-avantage">
-                    <label class="grid-titre">{{localize "agone.common.type"}}</label>
-                    <label class="grid-titre">{{localize "agone.common.cout"}}</label>
-                    <div>
-                        <select name="system.type">
-                            {{#select data.system.type}}
-                                {{#each config.typesAvantageDefaut as |name type|}}
-                                    <option value="{{type}}">{{localize name}}</option>
-                                {{/each}}
-                            {{/select}} 
-                        </select>
+                <div class="grid-2col">
+                    <div class="col-stats">
+                        <div class="grid-avg-stats">
+                            <div class="lib-titre">{{localize "agone.items.avantage"}}</div>
+                            <div>{{localize "agone.common.type"}}</div>
+                            <div class="sel">
+                                <select name="system.type">
+                                    {{selectOptions config.typesAvantageDefaut selected=data.system.type localize=true}} 
+                                </select>
+                            </div>
+                            <div class="lib">{{localize "agone.common.cout"}}</div>
+                            <div class="val"><input name="system.cout" type="number" value="{{data.system.cout}}" placeholder="0" min="0"/></div>
+                        </div>
                     </div>
-                    <div><input name="system.cout" type="text" value="{{data.system.cout}}" data-dtype="Number" placeholder="0"/></div>
+                    <div>
+                        <div class="desc-titre">{{localize "agone.items.avantageDesc"}}</div> 
+                        <div class="ed-100">
+                            {{editor data.system.description target="system.description" engine="prosemirror" button=true editable=true}}
+                        </div>
+                        <div class="desc-titre">{{localize "agone.items.prerequis"}}</div>
+                        <div class="ed-100">
+                            {{editor data.system.prerequis target="system.prerequis" engine="prosemirror" button=true editable=true}}
+                        </div>
+                        <div class="desc-titre">{{localize "agone.items.descBonus"}}</div>
+                        <div class="ed-100">
+                            {{editor data.system.descBonus target="system.descBonus" engine="prosemirror" button=true editable=true}}
+                        </div>
+                    </div>
                 </div>
-                <div>{{localize "agone.items.avantageDesc"}}</div>
-                <div class="ed-200">{{editor data.system.description target="system.description" button=true owner=true editable=true}}</div>
-                <div>
-                    <span>{{localize "agone.items.descBonus"}}</span>
-                    <textarea name="system.descBonus" placeholder="{{localize 'agone.items.descBonus'}}">{{data.system.descBonus}}</textarea>
-                </div> 
-                <div>
-                    <span>{{localize "agone.items.prerequis"}}</span>
-                    <textarea name="system.prerequis" placeholder="{{localize 'agone.items.prerequis'}}">{{data.system.prerequis}}</textarea>
-                </div> 
             </div>
             <div class="tab" data-group="primaire" data-tab="effets">
-                <div class="ligne-effet titre">
-                    <label></label>
-                    <label>{{localize "agone.common.name"}}</label>
-                    <label></label>
-                    <a class="creer-effet" title="{{localize 'agone.common.ajouter'}}"><i class="fas fa-plus"></i></a>
+                <div class="ligne-eff">
+                    <div class="titre-eff">{{localize "agone.items.effets"}}</div>
+                    <a class="creer-effet icone" title="{{localize 'agone.common.ajouter'}}"><i class="fas fa-plus"></i></a>
                 </div>
                 {{#each item.effects as |effet id|}}
                 <div class="ligne-effet effet" data-effect-id="{{effet.id}}">
@@ -53,7 +56,4 @@
             </div>
         </section>
     </div>
-    <footer class="sheet-footer">
-        <div>{{localize "agone.common.type"}} : <span>{{localize "agone.items.avantageLabel"}}</span></div>
-    </footer>
 </form>

@@ -21,9 +21,162 @@
         }
     }
 }
+.agone.sheet.item .sheet-content {
+
+    nav.tabs {
+        font-family: "BarbedorMedium";
+        align-items: center;
+    
+        .active {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+    }
+    
+    .ligne-eff {
+        display: grid;
+        grid-template-columns: 1fr 2em;
+        margin-bottom: 5px;
+        align-items: center;
+
+        .titre-eff {
+            text-align: center;
+            font: var(--font-lorgol-28px);            
+        }
+
+        .icone {
+            text-align: center;
+        }
+    } 
+    
+
+    .grid-2col {
+        display: grid;
+        grid-template-columns: 3fr 7fr;
+
+        font-family: "BarbedorMedium";
+
+        .col-stats {
+            background: linear-gradient(to right; #00000000; #00000021;);
+            padding: 5px;
+        }
+
+        .desc-titre {
+            text-align: center;
+            font: var(--font-lorgol-28px);
+        }
+    }
+
+    .grid-arme-stats, .grid-armure-stats, .grid-avg-stats, .grid-def-stats {
+
+        .lib-titre {
+            grid-column-start: span 3;
+            text-align: center;
+            font: var(--font-lorgol-28px);
+            margin-bottom: 5px;
+        }
+
+        .lib {
+            grid-column-start: span 2;
+        }
+
+        .sel {
+            margin: 2px;
+            grid-column-start: span 2;
+        }
+
+        .val {
+            margin: 2px;
+            align-items: center;
+            text-align: center;
+        }
+
+        .val-fixe {
+            background-color: var(--color-stats-background);
+            margin: 2px;
+            text-align: center;
+            align-items: center;
+            border-radius: 3px;
+            height: 26px;
+
+            label {
+                position: relative;
+                top: 4px;
+            }
+        }
+    }
+
+    .grid-arme-stats, .grid-armure-stats {
+        display: grid;
+        grid-template-columns: 1fr 5.5em 3.5em;
+        align-items: center;
+    }
+
+    .grid-avg-stats, .grid-def-stats {
+        display: grid;
+        grid-template-columns: 1fr 6.5em 3.5em;
+        align-items: center;
+    }
+
+    .grid-danseur-stats {
+        display: grid;
+        grid-template-columns: 1fr 3.5em;
+        align-items: center;
+
+        .lib-titre {
+            grid-column-start: span 2;
+            text-align: center;
+            font: var(--font-lorgol-28px);
+            margin-bottom: 5px;
+        }
+
+        .val {
+            margin: 2px;
+            align-items: center;
+            text-align: center;
+        }
+
+        .val-fixe {
+            background-color: var(--color-stats-background);
+            margin: 2px;
+            text-align: center;
+            align-items: center;
+            border-radius: 3px;
+            height: 26px;
+
+            label {
+                position: relative;
+                top: 4px;
+            }
+        }
+
+        .icone {
+            font-size: 0.8em;
+        }
+    }
+}
+
+.grid-sort-disp {
+    display: grid;
+    grid-template-columns: 2.5em 2fr 1fr 5em 5em;
+    padding: 3px;
+    align-items: center;
+    text-align: center;
+
+    .nova {
+        align-self: normal;
+    }
+
+    > * {
+        padding: 3px;
+    }
+
+    img {
+        border: none;
+    }
+}
 
 .agone.sheet.item .sheet-content, .agone.sheet.item .sheet-body {
-    //height: 100%;
     display: flex;
     flex-direction: column;
 
@@ -43,8 +196,17 @@
         min-height: 200px;
     }
 
+    .ed-350 { 
+        min-height: 350px;
+    }
+
+    .ed-400 { 
+        min-height: 400px;
+    }
+
     .editor {
         min-height: inherit;
+        background-color: var(--color-stats-background);
     }
 
     div {
@@ -129,21 +291,6 @@
     display: grid;
     grid-template-columns: 1fr;
     padding: 3px;
-}
-
-.grid-sort-disp {
-    display: grid;
-    grid-template-columns: 2.5em 2fr 2fr 1fr 1fr;
-    padding: 3px;
-    text-align: center;
-
-    > * {
-        padding: 3px;
-    }
-
-    img {
-        border: none;
-    }
 }
 
 .ligne-effet {
