@@ -1,27 +1,31 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
         <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
-        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.common.name'}}"/></h1>
+        <div class="item-name"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.items.nom'}}"/></div>
     </header>
     <div class="sheet-content">
-        <div class="grid-pvsaison">
-            <label class="grid-titre">{{localize "agone.actors.saisonnin"}}</label>
+        <div class="grid-2col">
+            <div class="col-stats">
+                <div class="grid-pvsais-stats">
+                    <div class="lib-titre">{{localize "agone.items.pouvoirSaison"}}</div>
+                    <div>{{localize "agone.actors.saisonnin"}}</div>
+                    <div class="sel">
+                        <select name="system.saisonnin">
+                            {{selectOptions config.saisonnins selected=data.system.saisonnin localize=true}}
+                        </select>
+                    </div>
+                </div>
+            </div>
             <div>
-                <select name="system.saisonnin">
-                    {{selectOptions config.saisonnins selected=data.system.saisonnin localize=true}}
-                </select>
+                <div class="desc-titre">{{localize "agone.items.pouvoirSaisonDesc"}}</div>
+                <div class="ed-200">
+                    {{editor data.system.description target="system.description" engine="prosemirror" button=true editable=true}}
+                </div>
+                <div class="desc-titre">{{localize "agone.items.descEffet"}}</div>
+                <div class="ed-150">
+                    {{editor data.system.descEffet target="system.descEffet" engine="prosemirror" button=true editable=true}}
+                </div>
             </div>
         </div>
-        <div>
-            <span>{{localize "agone.items.pouvoirSaisonDesc"}}</span>
-        </div>
-        <div class="ed-200">{{editor data.system.description target="system.description" button=true owner=true editable=true}}</div>
-        <div>
-            <span>{{localize "agone.items.descEffet"}}</span>
-            <textarea name="system.descEffet" placeholder="{{localize 'agone.items.descEffet'}}">{{data.system.descEffet}}</textarea>
-        </div>
     </div>
-    <footer class="sheet-footer">
-        <div>{{localize "agone.common.type"}} : <span>{{localize "agone.items.pouvoirSaisonLabel"}}</span></div>
-    </footer>
 </form>

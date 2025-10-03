@@ -1,27 +1,33 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
         <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
-        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.common.name'}}"/></h1>
+        <div class="item-name"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.items.nom'}}"/></div>
     </header>
     <div class="sheet-content">
-        <div class="grid-manoeuvre">
-            <label class="grid-titre">{{localize "agone.items.modifInit"}}</label>
-            <label class="grid-titre">{{localize "agone.items.modifAttaque"}}</label>
-            <label class="grid-titre">{{localize "agone.items.modifDefense"}}</label>
-            <label class="grid-titre">{{localize "agone.items.modifDommages"}}</label>
-            <div><input name="system.modifInit" type="text" value="{{data.system.modifInit}}" data-dtype="Number" placeholder="0"/></div>
-            <div><input name="system.modifAttaque" type="text" value="{{data.system.modifAttaque}}" data-dtype="Number" placeholder="0"/></div>
-            <div><input name="system.modifDefense" type="text" value="{{data.system.modifDefense}}" data-dtype="Number" placeholder="0"/></div>
-            <div><input name="system.modifDommages" type="text" value="{{data.system.modifDommages}}" data-dtype="Number" placeholder="0"/></div>
+        <div class="grid-2col">
+            <div class="col-stats">
+                <div class="grid-man-stats">
+                    <div class="lib-titre">{{localize "agone.items.modificateurs"}}</div>
+                    <div><i class="fa-duotone fa-solid fa-bolt"></i> {{localize "agone.items.modifInit"}}</div>
+                    <div class="val"><input name="system.modifInit" type="number" value="{{data.system.modifInit}}" placeholder="0"/></div>
+                    <div><i class="fa-duotone fa-solid fa-sword"></i> {{localize "agone.items.modifAttaque"}}</div>
+                    <div class="val"><input name="system.modifAttaque" type="number" value="{{data.system.modifAttaque}}" placeholder="0"/></div>
+                    <div><i class="fa-duotone fa-solid fa-shield-halved"></i> {{localize "agone.items.modifDefense"}}</div>
+                    <div class="val"><input name="system.modifDefense" type="number" value="{{data.system.modifDefense}}" placeholder="0"/></div>
+                    <div><i class="fa-duotone fa-solid fa-burst"></i> {{localize "agone.items.modifDommages"}}</div>
+                    <div class="val"><input name="system.modifDommages" type="number" value="{{data.system.modifDommages}}" placeholder="0"/></div>
+                </div>
+            </div>
+            <div>
+                <div class="desc-titre">{{localize "agone.items.manoeuvreDesc"}}</div>
+                <div class="ed-150">
+                    {{editor data.system.description target="system.description" engine="prosemirror" button=true editable=true}}
+                </div>
+                <div class="desc-titre">{{localize "agone.items.condition"}}</div>
+                <div class="ed-150">
+                    {{editor data.system.condition target="system.condition" engine="prosemirror" button=true editable=true}}
+                </div>
+            </div>
         </div>
-         <div>{{localize "agone.items.manoeuvreDesc"}}</div> 
-            <div class="ed-150">{{editor data.system.description target="system.description" button=true owner=true editable=true}}</div>
-        </div>
-        <div>
-            <span>{{localize "agone.items.condition"}}</span>
-            <textarea name="system.condition" placeholder="{{localize 'agone.items.condition'}}">{{data.system.condition}}</textarea>
-        </div>
-    <footer class="sheet-footer">
-        <div>{{localize "agone.common.type"}} : <span>{{localize "agone.items.manoeuvreLabel"}}</span></div>
-    </footer>
+    </div>
 </form>

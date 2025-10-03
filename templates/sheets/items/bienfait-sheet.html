@@ -1,19 +1,16 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
         <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
-        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.common.name'}}"/></h1>
+        <div class="item-name"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.items.nom'}}"/></div>
     </header>
     <div class="sheet-content">
-        <div>
-            <span>{{localize "agone.items.bienfaitDesc"}}</span>
+        <div class="desc-titre">{{localize "agone.items.bienfaitDesc"}}</div>
+        <div class="ed-200">
+            {{editor data.system.description target="system.description" engine="prosemirror" button=true editable=true}}
         </div>
-        <div class="ed-200">{{editor data.system.description target="system.description" button=true owner=true editable=true}}</div>
-        <div>
-            <span>{{localize "agone.items.descBonus"}}</span>
-            <textarea name="system.descBonus" placeholder="{{localize 'agone.items.descBonus'}}">{{data.system.descBonus}}</textarea>
+        <div class="desc-titre">{{localize "agone.items.descBonus"}}</div>
+        <div class="ed-150">
+            {{editor data.system.descBonus target="system.descBonus" engine="prosemirror" button=true editable=true}}
         </div>
     </div>
-    <footer class="sheet-footer">
-        <div>{{localize "agone.common.type"}} : <span>{{localize "agone.items.bienfaitLabel"}}</span></div>
-    </footer>
 </form>

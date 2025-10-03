@@ -1,21 +1,27 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
         <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
-        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.common.name'}}"/></h1>
+        <div class="item-name"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.items.nom'}}"/></div>
     </header>
     <div class="sheet-content">
-        <div class="grid-equipement">
-            <label class="grid-titre">{{localize "agone.items.quantite"}}</label>
-            <label class="grid-titre">{{localize "agone.items.valeur"}}</label>
-            <label class="grid-titre">{{localize "agone.items.poids"}}</label>
-            <div><input name="system.quantite" type="text" value="{{data.system.quantite}}" data-dtype="Number" placeholder="0"/></div>
-            <div><input name="system.valeur" type="text" value="{{data.system.valeur}}" data-dtype="Number" placeholder="0"/></div>
-            <div><input name="system.poids" type="text" value="{{data.system.poids}}" data-dtype="Number" placeholder="0"/></div>
+        <div class="grid-2col">
+            <div class="col-stats">
+                <div class="grid-equip-stats">
+                    <div class="lib-titre">{{localize "agone.items.equipement"}}</div>
+                    <div>{{localize "agone.items.quantite"}}</div>
+                    <div class="val"><input name="system.quantite" type="number" value="{{data.system.quantite}}" placeholder="0" min="0"/></div>
+                    <div><i class="fa-duotone fa-solid fa-coins"></i> {{localize "agone.items.valeur"}}</div>
+                    <div class="val"><input name="system.valeur" type="number" value="{{data.system.valeur}}" placeholder="0" min="0"/></div>
+                    <div><i class="fa-duotone fa-solid fa-weight-hanging"></i> {{localize "agone.items.poids"}}</div>
+                    <div class="val"><input name="system.poids" type="number" value="{{data.system.poids}}" placeholder="0" min="0"/></div>
+                </div>
+            </div>
+            <div>
+                <div class="desc-titre">{{localize "agone.items.equipementDesc"}}</div>
+                <div class="ed-150">
+                    {{editor data.system.description target="system.description" engine="prosemirror" button=true editable=true}}
+                </div>
+            </div>
         </div>
-         <div>{{localize "agone.items.equipementDesc"}}</div> 
-         <div class="ed-150">{{editor data.system.description target="system.description" button=true owner=true editable=true}}</div>
     </div>
-    <footer class="sheet-footer">
-        <div>{{localize "agone.common.type"}} : <span>{{localize "agone.items.equipementLabel"}}</span></div>
-    </footer>
 </form>

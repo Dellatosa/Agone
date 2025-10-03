@@ -1,21 +1,27 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
         <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
-        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.common.name'}}"/></h1>
+        <div class="item-name"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.items.nom'}}"/></div>
     </header>
     <div class="sheet-content">
-        <div class="grid-ecole">
-            <label class="grid-titre">{{localize "agone.common.type"}}</label>
+        <div class="grid-2col">
+            <div class="col-stats">
+                <div class="grid-ecole-stats">
+                    <div class="lib-titre">{{localize "agone.items.ecole"}}</div>
+                    <div>{{localize "agone.common.type"}}</div>
+                    <div class="sel">
+                        <select name="system.type">
+                            {{selectOptions config.typesCompetence selected=data.system.type localize=true}}
+                        </select>
+                    </div>
+                </div>
+            </div>
             <div>
-                <select name="system.type">
-                    {{selectOptions config.typesCompetence selected=data.system.type localize=true}}
-                </select>
+                <div class="desc-titre">{{localize "agone.items.ecoleDesc"}}</div>
+                <div class="ed-150">
+                    {{editor data.system.description target="system.description" engine="prosemirror" button=true editable=true}}
+                </div>
             </div>
         </div>
-        <div>{{localize "agone.items.ecoleDesc"}}</div>
-        <div class="ed-150">{{editor data.system.description target="system.description" button=true owner=true editable=true}}</div>
     </div>
-    <footer class="sheet-footer">
-        <div>{{localize "agone.common.type"}} : <span>{{localize "agone.items.ecoleLabel"}}</span></div>
-    </footer>
 </form>

@@ -1,7 +1,7 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
         <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
-        <div class="item-name"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.common.name'}}"/></div>
+        <div class="item-name"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.items.nom'}}"/></div>
     </header>
     <div class="sheet-content">
         <nav class="sheet-tabs tabs" data-group="primaire">
@@ -37,16 +37,14 @@
                 </div>
             </div>
             <div class="tab" data-group="primaire" data-tab="effets">
-                <div class="ligne-effet titre">
-                    <label></label>
-                    <label>{{localize "agone.common.name"}}</label>
-                    <label></label>
-                    <a class="creer-effet" title="{{localize 'agone.common.ajouter'}}"><i class="fas fa-plus"></i></a>
+                <div class="ligne-eff">
+                    <div class="titre-eff">{{localize "agone.items.effets"}}</div>
+                    <a class="creer-effet icone" title="{{localize 'agone.common.ajouter'}}"><i class="fas fa-plus"></i></a>
                 </div>
                 {{#each item.effects as |effet id|}}
                 <div class="ligne-effet effet" data-effect-id="{{effet.id}}">
                     <a class="editer-effet"><img src="{{effet.img}}" title="{{localize 'agone.common.editer'}}" height="32" width="32"/></a>
-                    <div>{{effet.label}}</div>
+                    <div>{{effet.name}}</div>
                     <a class="editer-effet" title="{{localize 'agone.common.editer'}}"><i class="fas fa-edit"></i></a>
                     <a class="supprimer-effet" title="{{localize 'agone.common.supprimer'}}"><i class="fas fa-trash"></i></a>
                 </div>            

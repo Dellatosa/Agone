@@ -1,41 +1,51 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
         <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
-        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.common.name'}}"/></h1>
+        <div class="item-name"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.items.nom'}}"/></div>
     </header>
     <div class="sheet-content">
-        <div class="grid-oeuvre">
-            <label class="grid-titre">{{localize "agone.items.artMagique"}}</label>
-            <label class="grid-titre">{{localize "agone.actors.saison"}}</label>
-            <label class="grid-titre">{{localize "agone.items.instrument"}}</label>
-            <label class="grid-titre">{{localize "agone.items.seuil"}}</label>
-            <label class="grid-titre">{{localize "agone.items.porteeZoneEffet"}}</label>
-            <label class="grid-titre">{{localize "agone.items.tempsPreparation"}}</label>
-            <label class="grid-titre">{{localize "agone.items.dureeOeuvre"}}</label>
-            <div>
-                <select name="system.artMagique">
-                    {{selectOptions config.arts selected=data.system.artMagique localize=true}}
-                </select>
+        <div class="grid-2col">
+            <div class="col-stats">
+                <div class="grid-oeuvre-stats">
+                    <div class="lib-titre">{{localize "agone.items.artMagique"}}</div>
+                    <div>{{localize "agone.items.art"}}</div>
+                    <div class="sel">
+                        <select name="system.artMagique">
+                            {{selectOptions config.arts selected=data.system.artMagique localize=true}}
+                        </select>
+                    </div>
+                    {{#if (eq data.system.artMagique "decorum")}}
+                        <div>{{localize "agone.actors.saison"}}</div>
+                        <div class="sel">
+                            <select name="system.saison">
+                                {{selectOptions config.saisons selected=data.system.saison localize=true}}
+                            </select>
+                        </div>
+                    {{/if}}
+                    {{#if (eq data.system.artMagique "accord")}}
+                        <div>{{localize "agone.items.instrument"}}</div>
+                        <div class="sel">
+                            <select name="system.instrument">
+                                {{selectOptions config.instruments selected=data.system.instrument localize=true}}
+                            </select>
+                        </div>
+                    {{/if}}
+                    <div class="lib-titre">{{localize "agone.items.statistiques"}}</div>
+                    <div class="lib">{{localize "agone.items.seuil"}}</div>
+                    <div class="val"><input name="system.seuil" type="number" value="{{data.system.seuil}}" placeholder="0" min="0"/></div>
+                    <div><i class="fa-duotone fa-solid fa-ruler-horizontal"></i> {{localize "agone.items.porteeZone"}}</div>
+                    <div class="sel"><input name="system.portee" type="text" value="{{data.system.portee}}" placeholder="{{localize 'agone.items.porteeZoneEffet'}}"/></div>
+                    <div><i class="fa-duotone fa-solid fa-sparkles"></i> {{localize "agone.items.tempsPrepa"}}</div>
+                    <div class="sel"><input name="system.tempsPreparation" type="text" value="{{data.system.tempsPreparation}}" placeholder="{{localize 'agone.items.tempsPreparation'}}"/></div>
+                    <div><i class="fa-duotone fa-solid fa-hourglass-clock"></i> {{localize "agone.items.duree"}}</div>
+                    <div class="sel"><input name="system.dureeOeuvre" type="text" value="{{data.system.dureeOeuvre}}" placeholder="{{localize 'agone.items.dureeOeuvre'}}"/></div>
+                </div>  
             </div>
             <div>
-                <select name="system.saison">
-                    {{selectOptions config.saisons selected=data.system.saison localize=true}}
-                </select>
-            </div>
-            <div>
-                <select name="system.instrument">
-                    {{selectOptions config.instruments selected=data.system.instrument localize=true}}
-                </select>
-            </div>
-            <div><input name="system.seuil" type="text" value="{{data.system.seuil}}" data-dtype="Number" placeholder="0"/></div>
-            <div><input name="system.portee" type="text" value="{{data.system.portee}}" placeholder="{{localize 'agone.items.porteeZoneEffet'}}"/></div>
-            <div><input name="system.tempsPreparation" type="text" value="{{data.system.tempsPreparation}}" placeholder="{{localize 'agone.items.tempsPreparation'}}"/></div>
-            <div><input name="system.dureeOeuvre" type="text" value="{{data.system.dureeOeuvre}}" placeholder="{{localize 'agone.items.dureeOeuvre'}}"/></div>
+                <div class="desc-titre">{{localize "agone.items.oeuvreDesc"}}</div> 
+                <div class="ed-250">
+                    {{editor data.system.description target="system.description" engine="prosemirror" button=true editable=true}}
+                </div>
+            </div>  
         </div>
-         <div>{{localize "agone.items.oeuvreDesc"}}</div> 
-         <div class="ed-150">{{editor data.system.description target="system.description" button=true owner=true editable=true}}</div>
-    </div>
-    <footer class="sheet-footer">
-        <div>{{localize "agone.common.type"}} : <span>{{localize "agone.items.oeuvreLabel"}}</span></div>
-    </footer>
 </form>

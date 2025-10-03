@@ -1,23 +1,27 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
         <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
-        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.common.name'}}"/></h1>
+        <div class="item-name"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.items.nom'}}"/></div>
     </header>
     <div class="sheet-content">
-        <div class="grid-pvflamme">
-            <label class="grid-titre">{{localize "agone.items.coutHeroisme"}}</label>
-            <div><input name="system.coutHeroisme" type="text" value="{{data.system.coutHeroisme}}" data-dtype="Number" placeholder="0"/></div>
-        </div>
-        <div>
-            <span>{{localize "agone.items.pouvoirFlammeDesc"}}</span>
-        </div>
-        <div class="ed-200">{{editor data.system.description target="system.description" button=true owner=true editable=true}}</div>
-        <div>
-            <span>{{localize "agone.items.descEffet"}}</span>
-            <textarea name="system.descEffet" placeholder="{{localize 'agone.items.descEffet'}}">{{data.system.descEffet}}</textarea>
+        <div class="grid-2col">
+            <div class="col-stats">
+                <div class="grid-pvflam-stats">
+                    <div class="lib-titre">{{localize "agone.items.pouvoirFlamme"}}</div>
+                    <div><i class="fa-duotone fa-solid fa-fire-flame-curved"></i> {{localize "agone.items.coutHeroisme"}}</div>
+                    <div class="val"><input name="system.coutHeroisme" type="number" value="{{data.system.coutHeroisme}}" placeholder="0" min="0"/></div>
+                </div>
+            </div>
+            <div>
+                <div class="desc-titre">{{localize "agone.items.pouvoirFlammeDesc"}}</div>
+                <div class="ed-200">
+                    {{editor data.system.description target="system.description" engine="prosemirror" button=true editable=true}}
+                </div>
+                <div class="desc-titre">{{localize "agone.items.descEffet"}}</div>
+                <div class="ed-150">
+                    {{editor data.system.descEffet target="system.descEffet" engine="prosemirror" button=true editable=true}}
+                </div>
+            </div>
         </div>
     </div>
-    <footer class="sheet-footer">
-        <div>{{localize "agone.common.type"}} : <span>{{localize "agone.items.pouvoirFlammeLabel"}}</span></div>
-    </footer>
 </form>

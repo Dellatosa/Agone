@@ -1,7 +1,7 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
         <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
-        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.common.name'}}"/></h1>
+        <div class="item-name"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.common.name'}}"/></div>
     </header>
     <div class="sheet-content">
         <nav class="sheet-tabs tabs" data-group="primaire">
@@ -10,37 +10,41 @@
         </nav>
         <section class="sheet-body">
             <div class="tab" data-group="primaire" data-tab="description">
-                <div class="grid-peine">
-                    <label class="grid-titre">{{localize "agone.common.type"}}</label>
-                    <label class="grid-titre">{{localize "agone.items.palier"}}</label>
-                    <div>
-                        <select name="system.type">
-                            {{selectOptions config.typesPeine selected=data.system.type localize=true}}
-                        </select>
+                <div class="grid-2col">
+                    <div class="col-stats">
+                        <div class="grid-peine-stats">
+                            <div class="lib-titre">{{localize "agone.items.peine"}}</div>
+                            <div>{{localize "agone.common.type"}}</div>
+                            <div class="sel">
+                                <select name="system.type">
+                                    {{selectOptions config.typesPeine selected=data.system.type localize=true}}
+                                </select>
+                            </div>
+                            <div class="lib">{{localize "agone.items.palier"}}</div>
+                            <div class="val"><input name="system.palier" type="number" value="{{data.system.palier}}" placeholder="0" min="0"/></div>
+                        </div>
                     </div>
-                    <div><input name="system.palier" type="text" value="{{data.system.palier}}" data-dtype="Number" placeholder="0"/></div>
+                    <div>
+                        <div class="desc-titre">{{localize "agone.items.peineDesc"}}</div>
+                        <div class="ed-150">
+                            {{editor data.system.description target="system.description" engine="prosemirror" button=true editable=true}}
+                        </div>
+                        <div class="desc-titre">{{localize "agone.items.descMalus"}}</div>
+                        <div class="ed-150">
+                            {{editor data.system.descMalus target="system.descMalus" engine="prosemirror" button=true editable=true}}
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <span>{{localize "agone.items.peineDesc"}}</span>
-                </div>
-                <div class="ed-200">{{editor data.system.description target="system.description" button=true owner=true editable=true}}</div>
-                <div>
-                    <span>{{localize "agone.items.descMalus"}}</span>
-                    <textarea name="system.descMalus" placeholder="{{localize 'agone.items.descMalus'}}">{{data.system.descMalus}}</textarea>
-                </div>
-                <!-- Gérer la sélection du bienfait associé -->
             </div>
             <div class="tab" data-group="primaire" data-tab="effets">
-                <div class="ligne-effet titre">
-                    <label></label>
-                    <label>{{localize "agone.common.name"}}</label>
-                    <label></label>
-                    <a class="creer-effet" title="{{localize 'agone.common.ajouter'}}"><i class="fas fa-plus"></i></a>
+                <div class="ligne-eff">
+                    <div class="titre-eff">{{localize "agone.items.effets"}}</div>
+                    <a class="creer-effet icone" title="{{localize 'agone.common.ajouter'}}"><i class="fas fa-plus"></i></a>
                 </div>
                 {{#each item.effects as |effet id|}}
                 <div class="ligne-effet effet" data-effect-id="{{effet.id}}">
-                    <a class="editer-effet"><img src="{{effet.data.icon}}" title="{{localize 'agone.common.editer'}}" height="32" width="32"/></a>
-                    <div>{{effet.data.label}}</div>
+                    <a class="editer-effet"><img src="{{effet.img}}" title="{{localize 'agone.common.editer'}}" height="32" width="32"/></a>
+                    <div>{{effet.name}}</div>
                     <a class="editer-effet" title="{{localize 'agone.common.editer'}}"><i class="fas fa-edit"></i></a>
                     <a class="supprimer-effet" title="{{localize 'agone.common.supprimer'}}"><i class="fas fa-trash"></i></a>
                 </div>            
@@ -48,7 +52,4 @@
             </div>
         </section>       
     </div>
-    <footer class="sheet-footer">
-        <div>{{localize "agone.common.type"}} : <span>{{localize "agone.items.peineLabel"}}</span></div>
-    </footer>
 </form>

@@ -1,25 +1,32 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
         <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
-        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.common.name'}}"/></h1>
+        <div class="item-name"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.items.nom'}}"/></div>
     </header>
     <div class="sheet-content">
-        <div class="grid-connivence">
-            <label class="grid-titre">{{localize "agone.items.cercleDemon"}}</label>
-            <label class="grid-titre">{{localize "agone.items.nomDemon"}}</label>
-            <label class="grid-titre">{{localize "agone.items.nomAdvocatus"}}</label>
-            <div>
-                <select name="system.cercleDemon">
-                    {{selectOptions config.cerclesDemon selected=data.system.cercleDemon localize=true}}
-                </select>
+        <div class="grid-2col">
+            <div class="col-stats">
+                <div class="grid-coniv-stats">
+                    <div class="lib-titre">{{localize "agone.items.demon"}}</div>
+                    <div class="lib">{{localize "agone.items.cercle"}}</div>
+                    <div class="sel">
+                        <select name="system.cercleDemon">
+                            {{selectOptions config.cerclesDemon selected=data.system.cercleDemon localize=true}}
+                        </select>
+                    </div>
+                    <div class="lib"><i class="fa-duotone fa-solid fa-face-angry-horns"></i> {{localize "agone.items.nom"}}</div>
+                    <div class="val"><input name="system.nomDemon" type="text" value="{{data.system.nomDemon}}" placeholder="{{localize 'agone.items.nomDemon'}}"/></div>
+                    <div class="lib-titre">{{localize "agone.items.advocatus"}}</div>
+                    <div class="lib"><i class="fa-duotone fa-solid fa-scroll-old"></i> {{localize "agone.items.nom"}}</div>
+                    <div class="val"><input name="system.nomAdvocatus" type="text" value="{{data.system.nomAdvocatus}}" placeholder="{{localize 'agone.items.nomAdvocatus'}}"/></div>
+                </div>
             </div>
-            <div><input name="system.nomDemon" type="text" value="{{data.system.nomDemon}}" placeholder="{{localize 'agone.items.nomDemon'}}"/></div>
-            <div><input name="system.nomAdvocatus" type="text" value="{{data.system.nomAdvocatus}}" placeholder="{{localize 'agone.items.nomAdvocatus'}}"/></div>
+            <div>
+                <div class="desc-titre">{{localize "agone.items.termes"}}</div>
+                <div class="ed-200">
+                    {{editor data.system.termes target="system.termes" engine="prosemirror" button=true editable=true}}
+                </div>
+            </div>
         </div>
-        <div>{{localize "agone.items.termes"}}</div> 
-        <div class="ed-200">{{editor data.system.termes target="system.termes" button=true owner=true editable=true}}</div>
     </div>
-    <footer class="sheet-footer">
-        <div>{{localize "agone.common.type"}} : <span>{{localize "agone.items.connivenceLabel"}}</span></div>
-    </footer>
 </form>

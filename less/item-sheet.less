@@ -49,6 +49,10 @@
         }
     } 
     
+    .desc-titre {
+        text-align: center;
+        font: var(--font-lorgol-28px);
+    }
 
     .grid-2col {
         display: grid;
@@ -60,14 +64,10 @@
             background: linear-gradient(to right; #00000000; #00000021;);
             padding: 5px;
         }
-
-        .desc-titre {
-            text-align: center;
-            font: var(--font-lorgol-28px);
-        }
     }
 
-    .grid-arme-stats, .grid-armure-stats, .grid-avg-stats, .grid-def-stats {
+    .grid-arme-stats, .grid-armure-stats, .grid-avg-stats, .grid-def-stats, .grid-botte-stats, .grid-ecole-stats, .grid-oeuvre-stats, 
+    .grid-peine-stats, .grid-pvsais-stats, .grid-sort-stats  {
 
         .lib-titre {
             grid-column-start: span 3;
@@ -106,22 +106,19 @@
         }
     }
 
-    .grid-arme-stats, .grid-armure-stats {
+    .grid-arme-stats, .grid-armure-stats, .grid-botte-stats, .grid-ecole-stats, .grid-oeuvre-stats, .grid-pvsais-stats, .grid-sort-stats {
         display: grid;
         grid-template-columns: 1fr 5.5em 3.5em;
         align-items: center;
     }
 
-    .grid-avg-stats, .grid-def-stats {
+    .grid-avg-stats, .grid-def-stats, .grid-peine-stats {
         display: grid;
         grid-template-columns: 1fr 6.5em 3.5em;
         align-items: center;
     }
 
-    .grid-danseur-stats {
-        display: grid;
-        grid-template-columns: 1fr 3.5em;
-        align-items: center;
+    .grid-danseur-stats, .grid-coniv-stats, .grid-equip-stats, .grid-man-stats, .grid-pvflam-stats {
 
         .lib-titre {
             grid-column-start: span 2;
@@ -153,6 +150,22 @@
         .icone {
             font-size: 0.8em;
         }
+
+        .sel {
+            margin: 2px;
+        }
+    }
+
+    .grid-danseur-stats, .grid-equip-stats, .grid-man-stats, .grid-pvflam-stats {
+        display: grid;
+        grid-template-columns: 1fr 3.5em;
+        align-items: center;
+    }
+
+    .grid-coniv-stats {
+        display: grid;
+        grid-template-columns: 1fr 1.7fr;
+        align-items: center;
     }
 }
 
@@ -196,6 +209,10 @@
         min-height: 200px;
     }
 
+    .ed-250 { 
+        min-height: 250px;
+    }
+
     .ed-350 { 
         min-height: 350px;
     }
@@ -227,18 +244,6 @@
     padding: 3px;
 }
 
-.grid-arme {
-    display: grid;
-    grid-template-columns: 2fr repeat(5, 1fr) 2.5fr repeat(3, 1fr);
-    padding: 3px;
-}
-
-.grid-danseur {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    padding: 3px;
-}
-
 .grid-oeuvre {
     display: grid;
     grid-template-columns: 1.5fr 1.5fr 1.5fr repeat(4, 1fr);
@@ -251,43 +256,13 @@
     padding: 3px;
 }
 
-.grid-armure {
-    display: grid;
-    grid-template-columns: 1.5fr repeat(3, 1fr);
-    padding: 3px;
-}
-
-.grid-manoeuvre {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    padding: 3px;
-}
-
-.grid-connivence {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    padding: 3px;
-}
-
-.grid-equipement {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    padding: 3px;
-}
-
-.grid-botteSecrete {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    padding: 3px;
-}
-
-.grid-avantage, .grid-defaut, .grid-peine {
+.grid-peine {
     display: grid;
     grid-template-columns: 2fr 1fr;
     padding: 3px;
 }
 
-.grid-pvflamme, .grid-ecole, .grid-pvsaison {
+.grid-pvflamme, .grid-pvsaison {
     display: grid;
     grid-template-columns: 1fr;
     padding: 3px;

@@ -1,29 +1,36 @@
 <form class="{{cssClass}}" autocomplete="off">
     <header class="sheet-header">
         <img src="{{item.img}}" data-edit="img" title="{{item.name}}" height="64" width="64"/>
-        <h1><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.common.name'}}"/></h1>
+        <div class="item-name"><input name="name" type="text" value="{{item.name}}" placeholder="{{localize 'agone.items.nom'}}"/></div>
     </header>
     <div class="sheet-content">
-        <div class="grid-sort">
-            <label class="grid-titre">{{localize "agone.items.resonance"}}</label>
-            <label class="grid-titre">{{localize "agone.items.seuil"}}</label>
-            <label class="grid-titre">{{localize "agone.items.porteeZoneEffet"}}</label>
-            <label class="grid-titre">{{localize "agone.items.dureeDanse"}}</label>
-            <label class="grid-titre">{{localize "agone.items.dureeSort"}}</label>
-            <div>
-                <select name="system.resonance">
-                    {{selectOptions config.resonances selected=data.system.resonance localize=true}}
-                </select>
+        <div class="grid-2col">
+            <div class="col-stats">
+                <div class="grid-sort-stats">
+                    <div class="lib-titre">{{localize "agone.items.sort"}}</div>
+                    <div>{{localize "agone.items.resonance"}}</div>
+                    <div class="sel">
+                        <select name="system.resonance">
+                            {{selectOptions config.resonances selected=data.system.resonance localize=true}}
+                        </select>
+                    </div>
+                    <div class="lib-titre">{{localize "agone.items.statistiques"}}</div>
+                    <div class="lib">{{localize "agone.items.seuil"}}</div>
+                    <div class="val"><input name="system.seuil" type="number" value="{{data.system.seuil}}" placeholder="0" min="0"/></div>
+                    <div><i class="fa-duotone fa-solid fa-ruler-horizontal"></i> {{localize "agone.items.porteeZone"}}</div>
+                    <div class="sel"><input name="system.portee" type="text" value="{{data.system.portee}}" placeholder="{{localize 'agone.items.porteeZoneEffet'}}"/></div>
+                    <div><i class="fa-duotone fa-solid fa-sparkles"></i> {{localize "agone.items.danse"}}</div>
+                    <div class="sel"><input name="system.dureeDanse" type="text" value="{{data.system.dureeDanse}}" placeholder="{{localize 'agone.items.dureeDanse'}}"/></div>
+                    <div><i class="fa-duotone fa-solid fa-hourglass-clock"></i> {{localize "agone.items.sort"}}</div>
+                    <div class="sel"><input name="system.dureeSort" type="text" value="{{data.system.dureeSort}}" placeholder="{{localize 'agone.items.dureeSort'}}"/></div>
+                </div>
             </div>
-            <div><input name="system.seuil" type="text" value="{{data.system.seuil}}" data-dtype="Number" placeholder="0"/></div>
-            <div><input name="system.portee" type="text" value="{{data.system.portee}}" placeholder="{{localize 'agone.items.porteeZoneEffet'}}"/></div>
-            <div><input name="system.dureeDanse" type="text" value="{{data.system.dureeDanse}}" placeholder="{{localize 'agone.items.dureeDanse'}}"/></div>
-            <div><input name="system.dureeSort" type="text" value="{{data.system.dureeSort}}" placeholder="{{localize 'agone.items.dureeSort'}}"/></div>
+            <div>
+                <div class="desc-titre">{{localize "agone.items.sortDesc"}}</div>
+                <div class="ed-200">
+                    {{editor data.system.description target="system.description" engine="prosemirror" button=true editable=true}}
+                </div>
+            </div>
         </div>
-         <div>{{localize "agone.items.sortDesc"}}</div> 
-         <div class="ed-150">{{editor data.system.description target="system.description" button=true owner=true editable=true}}</div>
     </div>
-    <footer class="sheet-footer">
-        <div>{{localize "agone.common.type"}} : <span>{{localize "agone.items.sortLabel"}}</span></div>
-    </footer>
 </form>

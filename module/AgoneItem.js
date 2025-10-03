@@ -38,17 +38,50 @@ export default class AgoneItem extends Item {
             data.malusPerception = CONFIG.agone.typesArmureMalusPer[data.type];
         }
 
-        if(this.type == "Danseur") {
-            const memUtilisee = this.getMemoireUtilisee();
+        if(this.type == "Avantage" || this.type == "Defaut") {
+            if(data.cout < 0) data.cout = 0;
+        }
 
+        if(this.type == "BotteSecrete") {
+            if(data.rarete < 0) data.rarete = 0;
+        }
+
+        if(this.type == "Danseur") {
+            if(data.bonusEmprise < 0) data.bonusEmprise = 0;
+            if(data.empathie < 0) data.empathie = 0;
+            if(data.experience < 0) data.experience = 0;
+            if(data.endurance.max < 0)  {
+                data.endurance.value = 0;
+                data.endurance.max = 0;
+            }
+
+            // Calcul de la mémoire utilisée
+            const memUtilisee = this.getMemoireUtilisee();
             if(data.memoire.max < memUtilisee) {
                 data.memoire.max = memUtilisee;
-                //this.update({"system.memoire.max": memUtilisee });
                 data.memoire.value = 0;
             }
             else {
                 data.memoire.value = data.memoire.max - memUtilisee;
             }
+        }
+
+        if(this.type == "Equipement") {
+            if(data.quantite < 0) data.quantite = 0;
+            if(data.valeur < 0) data.valeur = 0;
+            if(data.poids < 0) data.poids = 0;
+        }
+
+        if(this.type == "Oeuvre" || this.type == "Sort") {
+            if(data.seuil < 0) data.seuil = 0;
+        }
+
+        if(this.type == "Peine") {
+            if(data.palier < 0) data.palier = 0;
+        }
+
+        if(this.type == "PouvoirFlamme") {
+            if(data.coutHeroisme < 0) data.coutHeroisme = 0;
         }
     }
 

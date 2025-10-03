@@ -33,6 +33,10 @@
 .agone.sheet.item .sheet-content .ligne-eff .icone {
   text-align: center;
 }
+.agone.sheet.item .sheet-content .desc-titre {
+  text-align: center;
+  font: var(--font-lorgol-28px);
+}
 .agone.sheet.item .sheet-content .grid-2col {
   display: grid;
   grid-template-columns: 3fr 7fr;
@@ -42,14 +46,16 @@
   background: linear-gradient(to right, #00000000, #00000021);
   padding: 5px;
 }
-.agone.sheet.item .sheet-content .grid-2col .desc-titre {
-  text-align: center;
-  font: var(--font-lorgol-28px);
-}
 .agone.sheet.item .sheet-content .grid-arme-stats .lib-titre,
 .agone.sheet.item .sheet-content .grid-armure-stats .lib-titre,
 .agone.sheet.item .sheet-content .grid-avg-stats .lib-titre,
-.agone.sheet.item .sheet-content .grid-def-stats .lib-titre {
+.agone.sheet.item .sheet-content .grid-def-stats .lib-titre,
+.agone.sheet.item .sheet-content .grid-botte-stats .lib-titre,
+.agone.sheet.item .sheet-content .grid-ecole-stats .lib-titre,
+.agone.sheet.item .sheet-content .grid-oeuvre-stats .lib-titre,
+.agone.sheet.item .sheet-content .grid-peine-stats .lib-titre,
+.agone.sheet.item .sheet-content .grid-pvsais-stats .lib-titre,
+.agone.sheet.item .sheet-content .grid-sort-stats .lib-titre {
   grid-column-start: span 3;
   text-align: center;
   font: var(--font-lorgol-28px);
@@ -58,20 +64,38 @@
 .agone.sheet.item .sheet-content .grid-arme-stats .lib,
 .agone.sheet.item .sheet-content .grid-armure-stats .lib,
 .agone.sheet.item .sheet-content .grid-avg-stats .lib,
-.agone.sheet.item .sheet-content .grid-def-stats .lib {
+.agone.sheet.item .sheet-content .grid-def-stats .lib,
+.agone.sheet.item .sheet-content .grid-botte-stats .lib,
+.agone.sheet.item .sheet-content .grid-ecole-stats .lib,
+.agone.sheet.item .sheet-content .grid-oeuvre-stats .lib,
+.agone.sheet.item .sheet-content .grid-peine-stats .lib,
+.agone.sheet.item .sheet-content .grid-pvsais-stats .lib,
+.agone.sheet.item .sheet-content .grid-sort-stats .lib {
   grid-column-start: span 2;
 }
 .agone.sheet.item .sheet-content .grid-arme-stats .sel,
 .agone.sheet.item .sheet-content .grid-armure-stats .sel,
 .agone.sheet.item .sheet-content .grid-avg-stats .sel,
-.agone.sheet.item .sheet-content .grid-def-stats .sel {
+.agone.sheet.item .sheet-content .grid-def-stats .sel,
+.agone.sheet.item .sheet-content .grid-botte-stats .sel,
+.agone.sheet.item .sheet-content .grid-ecole-stats .sel,
+.agone.sheet.item .sheet-content .grid-oeuvre-stats .sel,
+.agone.sheet.item .sheet-content .grid-peine-stats .sel,
+.agone.sheet.item .sheet-content .grid-pvsais-stats .sel,
+.agone.sheet.item .sheet-content .grid-sort-stats .sel {
   margin: 2px;
   grid-column-start: span 2;
 }
 .agone.sheet.item .sheet-content .grid-arme-stats .val,
 .agone.sheet.item .sheet-content .grid-armure-stats .val,
 .agone.sheet.item .sheet-content .grid-avg-stats .val,
-.agone.sheet.item .sheet-content .grid-def-stats .val {
+.agone.sheet.item .sheet-content .grid-def-stats .val,
+.agone.sheet.item .sheet-content .grid-botte-stats .val,
+.agone.sheet.item .sheet-content .grid-ecole-stats .val,
+.agone.sheet.item .sheet-content .grid-oeuvre-stats .val,
+.agone.sheet.item .sheet-content .grid-peine-stats .val,
+.agone.sheet.item .sheet-content .grid-pvsais-stats .val,
+.agone.sheet.item .sheet-content .grid-sort-stats .val {
   margin: 2px;
   align-items: center;
   text-align: center;
@@ -79,7 +103,13 @@
 .agone.sheet.item .sheet-content .grid-arme-stats .val-fixe,
 .agone.sheet.item .sheet-content .grid-armure-stats .val-fixe,
 .agone.sheet.item .sheet-content .grid-avg-stats .val-fixe,
-.agone.sheet.item .sheet-content .grid-def-stats .val-fixe {
+.agone.sheet.item .sheet-content .grid-def-stats .val-fixe,
+.agone.sheet.item .sheet-content .grid-botte-stats .val-fixe,
+.agone.sheet.item .sheet-content .grid-ecole-stats .val-fixe,
+.agone.sheet.item .sheet-content .grid-oeuvre-stats .val-fixe,
+.agone.sheet.item .sheet-content .grid-peine-stats .val-fixe,
+.agone.sheet.item .sheet-content .grid-pvsais-stats .val-fixe,
+.agone.sheet.item .sheet-content .grid-sort-stats .val-fixe {
   background-color: var(--color-stats-background);
   margin: 2px;
   text-align: center;
@@ -90,39 +120,58 @@
 .agone.sheet.item .sheet-content .grid-arme-stats .val-fixe label,
 .agone.sheet.item .sheet-content .grid-armure-stats .val-fixe label,
 .agone.sheet.item .sheet-content .grid-avg-stats .val-fixe label,
-.agone.sheet.item .sheet-content .grid-def-stats .val-fixe label {
+.agone.sheet.item .sheet-content .grid-def-stats .val-fixe label,
+.agone.sheet.item .sheet-content .grid-botte-stats .val-fixe label,
+.agone.sheet.item .sheet-content .grid-ecole-stats .val-fixe label,
+.agone.sheet.item .sheet-content .grid-oeuvre-stats .val-fixe label,
+.agone.sheet.item .sheet-content .grid-peine-stats .val-fixe label,
+.agone.sheet.item .sheet-content .grid-pvsais-stats .val-fixe label,
+.agone.sheet.item .sheet-content .grid-sort-stats .val-fixe label {
   position: relative;
   top: 4px;
 }
 .agone.sheet.item .sheet-content .grid-arme-stats,
-.agone.sheet.item .sheet-content .grid-armure-stats {
+.agone.sheet.item .sheet-content .grid-armure-stats,
+.agone.sheet.item .sheet-content .grid-botte-stats,
+.agone.sheet.item .sheet-content .grid-ecole-stats,
+.agone.sheet.item .sheet-content .grid-oeuvre-stats,
+.agone.sheet.item .sheet-content .grid-pvsais-stats,
+.agone.sheet.item .sheet-content .grid-sort-stats {
   display: grid;
   grid-template-columns: 1fr 5.5em 3.5em;
   align-items: center;
 }
 .agone.sheet.item .sheet-content .grid-avg-stats,
-.agone.sheet.item .sheet-content .grid-def-stats {
+.agone.sheet.item .sheet-content .grid-def-stats,
+.agone.sheet.item .sheet-content .grid-peine-stats {
   display: grid;
   grid-template-columns: 1fr 6.5em 3.5em;
   align-items: center;
 }
-.agone.sheet.item .sheet-content .grid-danseur-stats {
-  display: grid;
-  grid-template-columns: 1fr 3.5em;
-  align-items: center;
-}
-.agone.sheet.item .sheet-content .grid-danseur-stats .lib-titre {
+.agone.sheet.item .sheet-content .grid-danseur-stats .lib-titre,
+.agone.sheet.item .sheet-content .grid-coniv-stats .lib-titre,
+.agone.sheet.item .sheet-content .grid-equip-stats .lib-titre,
+.agone.sheet.item .sheet-content .grid-man-stats .lib-titre,
+.agone.sheet.item .sheet-content .grid-pvflam-stats .lib-titre {
   grid-column-start: span 2;
   text-align: center;
   font: var(--font-lorgol-28px);
   margin-bottom: 5px;
 }
-.agone.sheet.item .sheet-content .grid-danseur-stats .val {
+.agone.sheet.item .sheet-content .grid-danseur-stats .val,
+.agone.sheet.item .sheet-content .grid-coniv-stats .val,
+.agone.sheet.item .sheet-content .grid-equip-stats .val,
+.agone.sheet.item .sheet-content .grid-man-stats .val,
+.agone.sheet.item .sheet-content .grid-pvflam-stats .val {
   margin: 2px;
   align-items: center;
   text-align: center;
 }
-.agone.sheet.item .sheet-content .grid-danseur-stats .val-fixe {
+.agone.sheet.item .sheet-content .grid-danseur-stats .val-fixe,
+.agone.sheet.item .sheet-content .grid-coniv-stats .val-fixe,
+.agone.sheet.item .sheet-content .grid-equip-stats .val-fixe,
+.agone.sheet.item .sheet-content .grid-man-stats .val-fixe,
+.agone.sheet.item .sheet-content .grid-pvflam-stats .val-fixe {
   background-color: var(--color-stats-background);
   margin: 2px;
   text-align: center;
@@ -130,12 +179,40 @@
   border-radius: 3px;
   height: 26px;
 }
-.agone.sheet.item .sheet-content .grid-danseur-stats .val-fixe label {
+.agone.sheet.item .sheet-content .grid-danseur-stats .val-fixe label,
+.agone.sheet.item .sheet-content .grid-coniv-stats .val-fixe label,
+.agone.sheet.item .sheet-content .grid-equip-stats .val-fixe label,
+.agone.sheet.item .sheet-content .grid-man-stats .val-fixe label,
+.agone.sheet.item .sheet-content .grid-pvflam-stats .val-fixe label {
   position: relative;
   top: 4px;
 }
-.agone.sheet.item .sheet-content .grid-danseur-stats .icone {
+.agone.sheet.item .sheet-content .grid-danseur-stats .icone,
+.agone.sheet.item .sheet-content .grid-coniv-stats .icone,
+.agone.sheet.item .sheet-content .grid-equip-stats .icone,
+.agone.sheet.item .sheet-content .grid-man-stats .icone,
+.agone.sheet.item .sheet-content .grid-pvflam-stats .icone {
   font-size: 0.8em;
+}
+.agone.sheet.item .sheet-content .grid-danseur-stats .sel,
+.agone.sheet.item .sheet-content .grid-coniv-stats .sel,
+.agone.sheet.item .sheet-content .grid-equip-stats .sel,
+.agone.sheet.item .sheet-content .grid-man-stats .sel,
+.agone.sheet.item .sheet-content .grid-pvflam-stats .sel {
+  margin: 2px;
+}
+.agone.sheet.item .sheet-content .grid-danseur-stats,
+.agone.sheet.item .sheet-content .grid-equip-stats,
+.agone.sheet.item .sheet-content .grid-man-stats,
+.agone.sheet.item .sheet-content .grid-pvflam-stats {
+  display: grid;
+  grid-template-columns: 1fr 3.5em;
+  align-items: center;
+}
+.agone.sheet.item .sheet-content .grid-coniv-stats {
+  display: grid;
+  grid-template-columns: 1fr 1.7fr;
+  align-items: center;
 }
 .grid-sort-disp {
   display: grid;
@@ -174,6 +251,10 @@
 .agone.sheet.item .sheet-body .ed-200 {
   min-height: 200px;
 }
+.agone.sheet.item .sheet-content .ed-250,
+.agone.sheet.item .sheet-body .ed-250 {
+  min-height: 250px;
+}
 .agone.sheet.item .sheet-content .ed-350,
 .agone.sheet.item .sheet-body .ed-350 {
   min-height: 350px;
@@ -202,16 +283,6 @@
   border-top: solid thin #777777;
   padding: 3px;
 }
-.grid-arme {
-  display: grid;
-  grid-template-columns: 2fr repeat(5, 1fr) 2.5fr repeat(3, 1fr);
-  padding: 3px;
-}
-.grid-danseur {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  padding: 3px;
-}
 .grid-oeuvre {
   display: grid;
   grid-template-columns: 1.5fr 1.5fr 1.5fr repeat(4, 1fr);
@@ -222,40 +293,12 @@
   grid-template-columns: 1.5fr repeat(4, 1fr);
   padding: 3px;
 }
-.grid-armure {
-  display: grid;
-  grid-template-columns: 1.5fr repeat(3, 1fr);
-  padding: 3px;
-}
-.grid-manoeuvre {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  padding: 3px;
-}
-.grid-connivence {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  padding: 3px;
-}
-.grid-equipement {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  padding: 3px;
-}
-.grid-botteSecrete {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  padding: 3px;
-}
-.grid-avantage,
-.grid-defaut,
 .grid-peine {
   display: grid;
   grid-template-columns: 2fr 1fr;
   padding: 3px;
 }
 .grid-pvflamme,
-.grid-ecole,
 .grid-pvsaison {
   display: grid;
   grid-template-columns: 1fr;
